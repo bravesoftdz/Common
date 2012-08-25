@@ -122,6 +122,11 @@ begin
   CloseHandle(CreateFile('C:\default.html', GENERIC_WRITE, FILE_SHARE_WRITE, nil, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0));
   FindExecutable('C:\default.html', nil, Path); //Find the executable (default browser) associated with the html file.
   DeleteFile('C:\default.html');
+  if Path = '' then
+  begin
+    Result := False;
+    Exit;
+  end;
   //ShellExecute(0, 'open', PChar(Browser), PChar(URL), nil, SW_SHOW);
   RunCommand(Path{Browser}, URL);
 end;
