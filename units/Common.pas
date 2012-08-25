@@ -95,11 +95,13 @@ begin
 end;
 
 function BrowseURL(const URL: string): Boolean;
+//var
+  //Browser: string;
 var
-  Browser: string;
+  Path: array[0..255] of char;
 begin
   Result := True;
-  Browser := '';
+  (*Browser := '';
   with TRegistry.Create do
   try
     RootKey := HKEY_CLASSES_ROOT;
@@ -116,9 +118,12 @@ begin
     Exit;
   end;
   Browser := Copy(Browser, Pos('"', Browser) + 1, Length(Browser));
-  Browser := Copy(Browser, 1, Pos('"', Browser) - 1);
+  Browser := Copy(Browser, 1, Pos('"', Browser) - 1);     *)
+  CloseHandle(CreateFile('C:\default.html', GENERIC_WRITE, FILE_SHARE_WRITE, nil, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0));
+  FindExecutable('C:\default.html', nil, Path); //Find the executable (default browser) associated with the html file.
+  DeleteFile('C:\default.html');
   //ShellExecute(0, 'open', PChar(Browser), PChar(URL), nil, SW_SHOW);
-  RunCommand(Browser, URL);
+  RunCommand(Path{Browser}, URL);
 end;
 
 function GetOSInfo: string;
