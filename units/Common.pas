@@ -98,6 +98,7 @@ function BrowseURL(const URL: string): Boolean;
 //var
   //Browser: string;
 var
+  TempFileName: string;
   Path: array[0..255] of char;
 begin
   Result := True;
@@ -119,9 +120,10 @@ begin
   end;
   Browser := Copy(Browser, Pos('"', Browser) + 1, Length(Browser));
   Browser := Copy(Browser, 1, Pos('"', Browser) - 1);     *)
-  CloseHandle(CreateFile('C:\default.html', GENERIC_WRITE, FILE_SHARE_WRITE, nil, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0));
-  FindExecutable('C:\default.html', nil, Path); //Find the executable (default browser) associated with the html file.
-  DeleteFile('C:\default.html');
+  TempFileName := 'C:\bonecode-default.html';
+  CloseHandle(CreateFile(PWideChar(TempFileName), GENERIC_WRITE, FILE_SHARE_WRITE, nil, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0));
+  FindExecutable(PWideChar(TempFileName), nil, Path); //Find the executable (default browser) associated with the html file.
+  DeleteFile(PWideChar(TempFileName));
   if Path = '' then
   begin
     Result := False;
