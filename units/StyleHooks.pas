@@ -170,6 +170,7 @@ begin
     SynEdit.Gutter.Color := clBtnFace;
     SynEdit.Color := clWindow;
   end;
+  SynEdit.ActiveLineColor := SynEdit.Color;
   {if LStyles.Enabled then
   begin
     SynEdit.Gutter.GradientStartColor := LStyles.GetStyleColor(scEdit); //scGenericGradientEnd);
