@@ -151,8 +151,10 @@ begin
   SynEdit.Gutter.Gradient := False;
   if LStyles.Enabled then
   begin
+    //SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
+    //SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText); //sfMenuItemTextSelected);
     SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
-    SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText); //sfMenuItemTextSelected);
+    SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(SynEdit.Font.Color); //LStyles.GetSystemColor(clHighlightText);
 
     SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfHeaderSectionTextNormal); //sfEditBoxTextNormal);
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit); //SynEdit.Color;
