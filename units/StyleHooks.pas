@@ -42,11 +42,12 @@ type
   end;
 
   procedure UpdateGutter(SynEdit: TSynEdit);
+  function LightenColor(AColor: TColor): TColor;
 
 implementation
 
 uses
-  Winapi.Windows;
+  Winapi.Windows, Math;
 
 { TSynEditStyleHook }
 
@@ -143,6 +144,25 @@ begin
   Handled := True;
 end;
 
+function LightenColor(AColor: TColor): TColor;
+var
+  r, g, b: Double;
+  rgb: Longint;
+begin
+  rgb := ColorToRGB(AColor);
+  r := rgb and $FF;
+  g := (rgb shr 8) and $FF;
+  b := (rgb shr 16) and $FF;
+
+  r := r + (225 - r) * 0.2;
+  g := g + (225 - g) * 0.2;
+  b := b + (225 - b) * 0.2;
+
+  Result := TColor((Max(Min(Round(b), 255),0) shl 16)
+                or (Max(Min(Round(g), 255),0) shl 8)
+                or Max(Min(Round(r), 255),0));
+end;
+
 procedure UpdateGutter(SynEdit: TSynEdit);
 var
   LStyles: TCustomStyleServices;
@@ -153,8 +173,13 @@ begin
   begin
     //SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
     //SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText); //sfMenuItemTextSelected);
+   // StyleServices.GetElementColor(StyleServices.GetElementDetails(tgClassicCellSelected), ecTextColor, HighlightTextColor);
+   // StyleServices.GetElementColor(StyleServices.GetElementDetails(tgClassicCellSelected), ecFillColor, HighlightColor);
+
     SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
     SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText);
+    //SynEdit.SelectedColor.Background := HighlightColor;
+    //SynEdit.SelectedColor.Foreground := HighlightTextColor;
 
     SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfHeaderSectionTextNormal); //sfEditBoxTextNormal);
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit); //SynEdit.Color;
@@ -172,7 +197,11 @@ begin
     SynEdit.Gutter.Color := clBtnFace;
     SynEdit.Color := clWindow;
   end;
-  SynEdit.ActiveLineColor := SynEdit.Color;
+  //if not LStyles.GetElementColor(LStyles.GetElementDetails(tgCellNormal), ecBorderColor, LColor) or  (LColor = clNone) then
+  //  LColor := SynEdit.Color;
+
+  SynEdit.ActiveLineColor := SynEdit.Color; //LColor
+
   {if LStyles.Enabled then
   begin
     SynEdit.Gutter.GradientStartColor := LStyles.GetStyleColor(scEdit); //scGenericGradientEnd);
