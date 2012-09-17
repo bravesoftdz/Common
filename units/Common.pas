@@ -66,7 +66,7 @@ function GetTextAfterChar(Separator: char; Text: string): string;
 implementation
 
 uses
-  Winapi.Windows, System.Win.Registry, Vcl.Forms, Winapi.ShellAPI, System.SysUtils, Vcl.StdCtrls,
+  Winapi.Windows, Vcl.Forms, Winapi.ShellAPI, System.SysUtils, Vcl.StdCtrls,
   System.Character, Vcl.ActnList, System.StrUtils;
 
 procedure RunCommand(const Cmd, Params: String);
