@@ -38,7 +38,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Vcl.Themes;
+  Common, Vcl.Themes;
 
 var
   FDownloadURLDialog: TDownloadURLDialog;
@@ -48,6 +48,7 @@ begin
   if FDownloadURLDialog = nil then
     Application.CreateForm(TDownloadURLDialog, FDownloadURLDialog);
   Result := FDownloadURLDialog;
+  Common.SetStyledFormSize(Result, 370, 140);
 end;
 
 procedure TDownloadURLDialog.CancelActionExecute(Sender: TObject);

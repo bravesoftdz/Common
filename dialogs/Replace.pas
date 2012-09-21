@@ -56,14 +56,7 @@ begin
   if FReplaceDialog = nil then
     Application.CreateForm(TReplaceDialog, FReplaceDialog);
   Result := FReplaceDialog;
-  Result.Width := 404;
-  Result.Height := 165;
-  if Assigned(TStyleManager.ActiveStyle) then
-    if TStyleManager.ActiveStyle.Name <> 'Windows' then
-    begin
-      Result.Width := Result.Width + 6;
-      Result.Height := Result.Height + 8
-    end;
+  Common.SetStyledFormSize(Result, 404, 165);
 end;
 
 procedure TReplaceDialog.FormDestroy(Sender: TObject);

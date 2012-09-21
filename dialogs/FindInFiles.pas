@@ -67,14 +67,7 @@ begin
     Application.CreateForm(TFindInFilesDialog, FFindInFilesDialog);
   Result := FFindInFilesDialog;
   TStyleManager.Engine.RegisterStyleHook(TJvDirectoryEdit, TEditStyleHook);
-  Result.Width := 402;
-  Result.Height := 141;
-  if Assigned(TStyleManager.ActiveStyle) then
-    if TStyleManager.ActiveStyle.Name <> 'Windows' then
-    begin
-      Result.Width := Result.Width + 6;
-      Result.Height := Result.Height + 8
-    end;
+  Common.SetStyledFormSize(Result, 402, 141);
 end;
 
 procedure TFindInFilesDialog.FormDestroy(Sender: TObject);
