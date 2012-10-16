@@ -15,8 +15,8 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
-    property OrigWidth: Integer read FOrigWidth;
-    property OrigHeight: Integer read FOrigHeight;
+    property OrigWidth: Integer read FOrigWidth write FOrigWidth;
+    property OrigHeight: Integer read FOrigHeight write FOrigHeight;
   end;
 
 implementation
