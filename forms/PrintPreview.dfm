@@ -26,6 +26,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       item
         Width = 100
       end>
+    ParentShowHint = False
+    ShowHint = True
   end
   object SynEditPrintPreview: TSynEditPrintPreview
     Left = 0
@@ -42,6 +44,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Width = 508
     Height = 27
     Align = alTop
+    AutoSize = True
     BevelOuter = bvNone
     Padding.Left = 2
     Padding.Top = 2
@@ -49,21 +52,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Padding.Bottom = 2
     TabOrder = 2
     object Bevel7: TBevel
-      AlignWithMargins = True
-      Left = 104
-      Top = 4
-      Width = 4
-      Height = 19
-      Margins.Left = 6
-      Margins.Top = 2
-      Margins.Bottom = 2
-      Align = alLeft
-      Shape = bsLeftLine
-      ExplicitLeft = 127
-      ExplicitTop = 5
-      ExplicitHeight = 18
-    end
-    object Bevel1: TBevel
       AlignWithMargins = True
       Left = 156
       Top = 4
@@ -74,10 +62,11 @@ object PrintPreviewDialog: TPrintPreviewDialog
       Margins.Bottom = 2
       Align = alLeft
       Shape = bsLeftLine
-      ExplicitLeft = 292
+      ExplicitLeft = 143
       ExplicitTop = 3
+      ExplicitHeight = 21
     end
-    object Bevel2: TBevel
+    object Bevel1: TBevel
       AlignWithMargins = True
       Left = 217
       Top = 4
@@ -88,8 +77,24 @@ object PrintPreviewDialog: TPrintPreviewDialog
       Margins.Bottom = 2
       Align = alLeft
       Shape = bsLeftLine
-      ExplicitLeft = 340
-      ExplicitTop = 8
+      ExplicitLeft = 200
+      ExplicitTop = 3
+      ExplicitHeight = 21
+    end
+    object Bevel2: TBevel
+      AlignWithMargins = True
+      Left = 104
+      Top = 4
+      Width = 4
+      Height = 19
+      Margins.Left = 6
+      Margins.Top = 2
+      Margins.Bottom = 2
+      Align = alLeft
+      Shape = bsLeftLine
+      ExplicitLeft = 90
+      ExplicitTop = 3
+      ExplicitHeight = 21
     end
     object ToolBar: TBCToolBar
       Left = 2
@@ -97,7 +102,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
       Width = 96
       Height = 23
       Align = alLeft
-      AutoSize = True
       ButtonHeight = 23
       ButtonWidth = 24
       Caption = 'ToolBar'
@@ -105,6 +109,9 @@ object PrintPreviewDialog: TPrintPreviewDialog
       EdgeOuter = esNone
       Images = ImageList
       TabOrder = 0
+      ExplicitLeft = 5
+      ExplicitTop = 5
+      ExplicitHeight = 17
       object FirstToolButton: TToolButton
         Left = 0
         Top = 0
@@ -140,11 +147,15 @@ object PrintPreviewDialog: TPrintPreviewDialog
       Width = 39
       Height = 23
       Align = alLeft
+      AutoSize = True
       ButtonHeight = 23
       ButtonWidth = 24
       Caption = 'ZoomToolBar'
       Images = ImageList
       TabOrder = 1
+      ExplicitLeft = 120
+      ExplicitTop = 5
+      ExplicitHeight = 17
       object ZoomToolButton: TToolButton
         Left = 0
         Top = 0
@@ -163,6 +174,9 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ButtonWidth = 24
       Images = ImageList
       TabOrder = 2
+      ExplicitLeft = 182
+      ExplicitTop = 5
+      ExplicitHeight = 17
       object LineNumbersToolButton: TToolButton
         Left = 0
         Top = 0
@@ -184,6 +198,9 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ButtonWidth = 24
       Images = ImageList
       TabOrder = 3
+      ExplicitLeft = 249
+      ExplicitTop = 5
+      ExplicitHeight = 17
       object PrintSetupToolButton: TToolButton
         Left = 0
         Top = 0
@@ -202,7 +219,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Left = 178
     Top = 122
     Bitmap = {
-      494C01010A004C009C0011001100FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010A004C00A80011001100FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000440000003300000001002000000000003036
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

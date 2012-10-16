@@ -5,7 +5,7 @@ unit Common;
 interface
 
 uses
-  Vcl.Controls, Vcl.Forms, BCStringGrid, BCComboBox, Vcl.Dialogs, Vcl.ActnMan, Vcl.ActnMenus, Winapi.WinInet,
+  Vcl.Controls, Vcl.Forms, Dlg, BCStringGrid, BCComboBox, Vcl.Dialogs, Vcl.ActnMan, Vcl.ActnMenus, Winapi.WinInet,
   System.Types;
 
 const
@@ -62,7 +62,7 @@ function GetFileVersion(Path: string): string;
 function GetNextToken(Separator: char; Text: string): string;
 function RemoveTokenFromStart(Separator: char; Text: string): string;
 function GetTextAfterChar(Separator: char; Text: string): string;
-procedure SetStyledFormSize(Form: TForm; DefaultWidth, DefaultHeight: Integer);
+procedure SetStyledFormSize(Dialog: TDialog); //; DefaultWidth, DefaultHeight: Integer);
 
 implementation
 
@@ -555,55 +555,62 @@ begin
   Result := System.Copy(Text, Pos(Separator, Text) + 1, Length(Text));
 end;
 
-procedure SetStyledFormSize(Form: TForm; DefaultWidth, DefaultHeight: Integer);
+procedure SetStyledFormSize(Dialog: TDialog); // DefaultWidth, DefaultHeight: Integer);
 var
+  w, h: Integer;
   StyleName: string;
 begin
-  with Form do
-  begin
-    Width := DefaultWidth;
-    Height := DefaultHeight;
-  end;
+  w := 0;
+  h := 0;
   if Assigned(TStyleManager.ActiveStyle) then
   begin
     StyleName := TStyleManager.ActiveStyle.Name;
 
     if (StyleName = STYLENAME_AURIC) or (StyleName = STYLENAME_AMAKRITS) then
-    with Form do
+    with Dialog do
     begin
-      Width := Width + 6;
-      Height := Height + 7;
-    end;
+      w := 6;
+      h := 7;
+    end
+    else
     if (StyleName = STYLENAME_AMETHYST_KAMRI) or (StyleName = STYLENAME_AQUA_GRAPHITE) or
       (StyleName = STYLENAME_AQUA_LIGHT_SLATE) or (StyleName = STYLENAME_CHARCOAL_DARK_SLATE) or
       (StyleName = STYLENAME_COBALT_XEMEDIA) or (StyleName = STYLENAME_CYAN_DUSK) or
       (StyleName = STYLENAME_CYAN_NIGHT) or (StyleName = STYLENAME_EMERALD_LIGHT_SLATE) or
       (StyleName = STYLENAME_GOLDEN_GRAPHITE) or (StyleName = STYLENAME_RUBY_GRAPHITE) or
       (StyleName = STYLENAME_SAPPHIRE_KAMRI) or (StyleName = STYLENAME_SMOKEY_QUARTZ_KAMRI) then
-    with Form do
+    with Dialog do
     begin
-      Width := Width + 8;
-      Height := Height + 7;
-    end;
+      w := 8;
+      h := 7;
+    end
+    else
     if StyleName = STYLENAME_CARBON then
-    with Form do
+    with Dialog do
     begin
-      Width := Width + 4;
-      Height := Height + 5;
-    end;
+      w := 4;
+      h := 5;
+    end
+    else
     if (StyleName = STYLENAME_ICEBERG_CLASSICO) or (StyleName = STYLENAME_LAVENDER_CLASSICO) or (StyleName = STYLENAME_SLATE_CLASSICO) then
-    with Form do
+    with Dialog do
     begin
-      Width := Width + 8;
-      Height := Height + 8;
-    end;
+      w := 8;
+      h := 8;
+    end
+    else
     if (StyleName = STYLENAME_METRO_BLACK) or (StyleName = STYLENAME_METRO_BLUE) or (StyleName = STYLENAME_METRO_GREEN) or
       (StyleName = STYLENAME_TURUOISE_GRAY) then
-    with Form do
+    with Dialog do
     begin
-      Width := Width + 10;
-      Height := Height + 10;
+      w := 10;
+      h := 10;
     end;
+  end;
+  with Dialog do
+  begin
+    Width :=  Dialog.OrigWidth + w;
+    Height := Dialog.OrigHeight + h;
   end;
 end;
 

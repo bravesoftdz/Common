@@ -5,24 +5,36 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, JvExMask, JvToolEdit,
-  BCComboBox, JvExStdCtrls, JvCombobox, Vcl.Themes, Vcl.ActnList, Vcl.Buttons, JvEdit, BCEdit;
+  BCComboBox, JvExStdCtrls, JvCombobox, Vcl.Themes, Vcl.ActnList, Vcl.Buttons, JvEdit, BCEdit, Dlg;
 
 type
-  TFindInFilesDialog = class(TForm)
-    FindWhatLabel: TLabel;
-    FindWhatComboBox: TBCComboBox;
-    FileTypeLabel: TLabel;
-    FileTypeComboBox: TBCComboBox;
-    FolderLabel: TLabel;
-    CaseSensitiveCheckBox: TCheckBox;
-    LookInSubfoldersCheckBox: TCheckBox;
+  TFindInFilesDialog = class(TDialog)
     ButtonPanel: TPanel;
-    FindButton: TButton;
-    CancelButton: TButton;
-    FolderEdit: TBCEdit;
-    FolderBitBtn: TBitBtn;
     ActionList: TActionList;
     FolderButtonClickAction: TAction;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    FindWhatLabel: TLabel;
+    Panel3: TPanel;
+    FileTypeLabel: TLabel;
+    Panel4: TPanel;
+    FolderLabel: TLabel;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    FindWhatComboBox: TBCComboBox;
+    Panel7: TPanel;
+    FileTypeComboBox: TBCComboBox;
+    Panel8: TPanel;
+    Panel9: TPanel;
+    CaseSensitiveCheckBox: TCheckBox;
+    LookInSubfoldersCheckBox: TCheckBox;
+    Panel10: TPanel;
+    FindButton: TButton;
+    Panel11: TPanel;
+    CancelButton: TButton;
+    FolderBitBtn: TBitBtn;
+    Panel12: TPanel;
+    FolderEdit: TBCEdit;
     procedure FormDestroy(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FindWhatComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -64,10 +76,12 @@ var
 function FindInFilesDialog: TFindInFilesDialog;
 begin
   if FFindInFilesDialog = nil then
+  begin
     Application.CreateForm(TFindInFilesDialog, FFindInFilesDialog);
+    TStyleManager.Engine.RegisterStyleHook(TJvDirectoryEdit, TEditStyleHook);
+  end;
   Result := FFindInFilesDialog;
-  TStyleManager.Engine.RegisterStyleHook(TJvDirectoryEdit, TEditStyleHook);
-  Common.SetStyledFormSize(Result, 402, 141);
+  Common.SetStyledFormSize(Result);
 end;
 
 procedure TFindInFilesDialog.FormDestroy(Sender: TObject);

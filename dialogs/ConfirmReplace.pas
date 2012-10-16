@@ -4,16 +4,18 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls,
-  Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Dlg;
 
 type
-  TConfirmReplaceDialog = class(TForm)
-    YesButton: TButton;
-    ConfirmationLabel: TLabel;
-    NoButton: TButton;
+  TConfirmReplaceDialog = class(TDialog)
+    BottomPanel: TPanel;
     CancelButton: TButton;
     YesToAllButton: TButton;
+    ClientPanel: TPanel;
     Image: TImage;
+    ConfirmationLabel: TLabel;
+    YesButton: TButton;
+    NoButton: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   public
@@ -40,7 +42,8 @@ begin
   if FConfirmReplaceDialog = nil then
     Application.CreateForm(TConfirmReplaceDialog, FConfirmReplaceDialog);
   Result := FConfirmReplaceDialog;
-  Common.SetStyledFormSize(Result, 351, 146);
+  Result.Width := Result.YesButton.Width * 4 + 40;
+  Common.SetStyledFormSize(Result);
 end;
 
 procedure TConfirmReplaceDialog.FormCreate(Sender: TObject);

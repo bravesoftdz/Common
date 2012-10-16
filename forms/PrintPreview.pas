@@ -120,6 +120,9 @@ begin
 
   FLeft := SynEditPrintPreview.SynEditPrint.Margins.PLeft;
   FTop := SynEditPrintPreview.SynEditPrint.Margins.PTop;
+
+  StatusBar.Font.Name := 'Tahoma'; // IDE is losing this for some reason... :/
+  StatusBar.Font.Size := 8;
 end;
 
 procedure TPrintPreviewDialog.FirstActionExecute(Sender: TObject);

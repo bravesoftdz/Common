@@ -18,6 +18,7 @@ type
     CancelAction: TAction;
     SaveDialog: TSaveDialog;
     OKAction: TAction;
+    Panel1: TPanel;
     procedure FormDestroy(Sender: TObject);
     procedure CancelActionExecute(Sender: TObject);
     procedure OKActionExecute(Sender: TObject);
@@ -48,7 +49,6 @@ begin
   if FDownloadURLDialog = nil then
     Application.CreateForm(TDownloadURLDialog, FDownloadURLDialog);
   Result := FDownloadURLDialog;
-  Common.SetStyledFormSize(Result, 370, 140);
 end;
 
 procedure TDownloadURLDialog.CancelActionExecute(Sender: TObject);

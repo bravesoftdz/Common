@@ -6,22 +6,32 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls,
-  Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, JvExStdCtrls, JvCombobox, BCComboBox;
+  Vcl.Forms, Dlg, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, JvExStdCtrls, JvCombobox, BCComboBox;
 
 type
-  TReplaceDialog = class(TForm)
-    ReplaceWithLabel: TLabel;
-    ReplaceWithComboBox: TBCComboBox;
+  TReplaceDialog = class(TDialog)
+    Panel1: TPanel;
+    CancelButton: TButton;
+    Panel2: TPanel;
+    Panel3: TPanel;
     SearchForLabel: TLabel;
+    Panel5: TPanel;
+    ReplaceWithLabel: TLabel;
+    Panel4: TPanel;
+    Panel6: TPanel;
     SearchForComboBox: TBCComboBox;
+    Panel7: TPanel;
+    ReplaceWithComboBox: TBCComboBox;
+    Panel8: TPanel;
     OptionsGroupBox: TGroupBox;
     CaseSensitiveCheckBox: TCheckBox;
     WholeWordsCheckBox: TCheckBox;
+    Panel9: TPanel;
     ReplaceInRadioGroup: TRadioGroup;
-    Panel1: TPanel;
+    Panel10: TPanel;
     FindButton: TButton;
+    Panel11: TPanel;
     ReplaceAllButton: TButton;
-    CancelButton: TButton;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormDestroy(Sender: TObject);
     procedure SearchForComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -56,7 +66,7 @@ begin
   if FReplaceDialog = nil then
     Application.CreateForm(TReplaceDialog, FReplaceDialog);
   Result := FReplaceDialog;
-  Common.SetStyledFormSize(Result, 404, 165);
+  Common.SetStyledFormSize(Result);
 end;
 
 procedure TReplaceDialog.FormDestroy(Sender: TObject);

@@ -15,68 +15,78 @@ object DownloadURLDialog: TDownloadURLDialog
   Position = poMainFormCenter
   Visible = True
   OnDestroy = FormDestroy
-  DesignSize = (
-    364
-    116)
   PixelsPerInch = 96
   TextHeight = 13
   object TopPanel: TPanel
-    Left = 1
-    Top = 1
-    Width = 362
+    Left = 0
+    Top = 0
+    Width = 364
     Height = 74
-    Anchors = [akLeft, akTop, akRight]
+    Align = alTop
     BevelEdges = []
     BevelOuter = bvNone
     BorderWidth = 1
     Color = clWhite
     Ctl3D = True
+    Padding.Left = 10
+    Padding.Top = 18
+    Padding.Right = 10
+    Padding.Bottom = 10
     ParentBackground = False
     ParentCtl3D = False
     TabOrder = 0
-    DesignSize = (
-      362
-      74)
+    ExplicitLeft = 1
+    ExplicitTop = 1
+    ExplicitWidth = 362
     object InformationLabel: TLabel
-      Left = -4
-      Top = 18
-      Width = 366
+      Left = 11
+      Top = 19
+      Width = 342
       Height = 13
+      Align = alTop
       Alignment = taCenter
-      Anchors = [akLeft, akTop, akRight]
       AutoSize = False
       Caption = 'InformationLabel'
+      ExplicitLeft = -4
+      ExplicitTop = 18
       ExplicitWidth = 372
     end
     object ProgressBar: TJvProgressBar
-      Left = 12
-      Top = 44
-      Width = 341
+      Left = 11
+      Top = 46
+      Width = 342
       Height = 17
-      Anchors = [akLeft, akTop, akRight]
+      Align = alBottom
       DoubleBuffered = False
       ParentDoubleBuffered = False
       TabOrder = 0
+      ExplicitLeft = 12
+      ExplicitTop = 44
+      ExplicitWidth = 341
     end
   end
   object ProgressPanel: TPanel
-    Left = 1
-    Top = 76
-    Width = 362
-    Height = 40
-    Anchors = [akLeft, akRight, akBottom]
+    Left = 0
+    Top = 75
+    Width = 364
+    Height = 41
+    Align = alClient
     BevelOuter = bvNone
     Ctl3D = True
     ParentBackground = False
     ParentCtl3D = False
     TabOrder = 1
+    ExplicitLeft = 2
+    ExplicitTop = 84
+    ExplicitWidth = 362
+    ExplicitHeight = 40
     DesignSize = (
-      362
-      40)
+      364
+      41)
     object Button: TButton
       Left = 147
       Top = 7
-      Width = 67
+      Width = 69
       Height = 25
       Margins.Left = 4
       Margins.Top = 4
@@ -88,7 +98,16 @@ object DownloadURLDialog: TDownloadURLDialog
       Default = True
       ModalResult = 2
       TabOrder = 0
+      ExplicitWidth = 67
     end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 74
+    Width = 364
+    Height = 1
+    Align = alTop
+    TabOrder = 2
   end
   object ActionList: TActionList
     Left = 300
