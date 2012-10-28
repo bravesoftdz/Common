@@ -39,8 +39,10 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FindWhatComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FolderButtonClickActionExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
+    procedure SetButtons;
     function GetFindWhatText: string;
     function GetFileTypeText: string;
     function GetFolderText: string;
@@ -89,6 +91,12 @@ begin
   FFindInFilesDialog := nil;
 end;
 
+procedure TFindInFilesDialog.FormShow(Sender: TObject);
+begin
+  inherited;
+  SetButtons;
+end;
+
 function TFindInFilesDialog.GetFindWhatText: string;
 begin
   Result := FindWhatComboBox.Text;
@@ -119,10 +127,15 @@ begin
   Result := LookInSubfoldersCheckBox.Checked;
 end;
 
+procedure TFindInFilesDialog.SetButtons;
+begin
+  FindButton.Enabled := Trim(FindWhatComboBox.Text) <> '';
+end;
+
 procedure TFindInFilesDialog.FindWhatComboBoxKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  FindButton.Enabled := Trim(FindWhatComboBox.Text) <> '';
+  SetButtons;
 end;
 
 procedure TFindInFilesDialog.FolderButtonClickActionExecute(Sender: TObject);
