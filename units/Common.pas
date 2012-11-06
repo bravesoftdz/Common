@@ -5,12 +5,13 @@ unit Common;
 interface
 
 uses
-  Vcl.Controls, Vcl.Forms, Dlg, BCStringGrid, BCComboBox, Vcl.Dialogs, Vcl.ActnMan, Vcl.ActnMenus, Winapi.WinInet,
-  System.Types;
+  Vcl.Controls, Vcl.Forms, Dlg, BCStringGrid, BCComboBox, Vcl.Dialogs, Vcl.ActnMan, Vcl.ActnMenus,
+  Winapi.WinInet, System.Types;
 
 const
   CHR_ENTER = Chr(13) + Chr(10);
   CHR_TAB = Chr(9);
+
   { style names }
   STYLENAME_AMAKRITS = 'Amakrits';
   STYLENAME_AMETHYST_KAMRI = 'Amethyst Kamri';
@@ -47,7 +48,7 @@ function MessageDialog(const Msg: string; DlgType: TMsgDlgType;
 procedure ShowMessage(Msg: string);
 procedure ShowErrorMessage(Msg: string);
 procedure ShowWarningMessage(Msg: string);
-procedure AutoSizeCol(Grid: TBCStringGrid);
+procedure AutoSizeCol(Grid: TBCStringGrid; StartCol: Integer = 0);
 function AddSlash(Path: string): string;
 procedure InsertTextToCombo(ComboBox: TBCComboBox);
 function IsAsciiFile(Filename: string): Boolean;
@@ -62,7 +63,7 @@ function GetFileVersion(Path: string): string;
 function GetNextToken(Separator: char; Text: string): string;
 function RemoveTokenFromStart(Separator: char; Text: string): string;
 function GetTextAfterChar(Separator: char; Text: string): string;
-procedure SetStyledFormSize(Dialog: TDialog); //; DefaultWidth, DefaultHeight: Integer);
+procedure SetStyledFormSize(Dialog: TDialog);
 
 implementation
 
@@ -96,31 +97,12 @@ begin
 end;
 
 function BrowseURL(const URL: string): Boolean;
-//var
-  //Browser: string;
 var
   TempFileName: string;
   Path: array[0..255] of char;
 begin
   Result := True;
-  (*Browser := '';
-  with TRegistry.Create do
-  try
-    RootKey := HKEY_CLASSES_ROOT;
-    Access := KEY_QUERY_VALUE;
-    if OpenKey('\htmlfile\shell\open\command', False) then
-      Browser := ReadString('');
-    CloseKey;
-  finally
-    Free;
-  end;
-  if Browser = '' then
-  begin
-    Result := False;
-    Exit;
-  end;
-  Browser := Copy(Browser, Pos('"', Browser) + 1, Length(Browser));
-  Browser := Copy(Browser, 1, Pos('"', Browser) - 1);     *)
+
   TempFileName := 'C:\bonecode-default.html';
   CloseHandle(CreateFile(PWideChar(TempFileName), GENERIC_WRITE, FILE_SHARE_WRITE, nil, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0));
   FindExecutable(PWideChar(TempFileName), nil, Path); //Find the executable (default browser) associated with the html file.
@@ -130,8 +112,8 @@ begin
     Result := False;
     Exit;
   end;
-  //ShellExecute(0, 'open', PChar(Browser), PChar(URL), nil, SW_SHOW);
-  RunCommand(Path{Browser}, URL);
+
+  RunCommand(Path, URL);
 end;
 
 function GetOSInfo: string;
@@ -252,24 +234,20 @@ var
   CaptionIndex: Integer;
 begin
   { Create the Dialog }
-  { Dialog erzeugen }
   with CreateMessageDialog(Msg, DlgType, Buttons) do
   try
     HelpContext := 0;
     HelpFile := '';
     CaptionIndex := 0;
     { Loop through Objects in Dialog }
-    { Über alle Objekte auf dem Dialog iterieren}
     for i := 0 to ComponentCount - 1 do
     begin
      { If the object is of type TButton, then }
-     { Wenn es ein Button ist, dann...}
       if (Components[i] is TButton) then
       begin
         dlgButton := TButton(Components[i]);
         if CaptionIndex > High(Captions) then Break;
         { Give a new caption from our Captions array}
-        { Schreibe Beschriftung entsprechend Captions array}
         dlgButton.Caption := Captions[CaptionIndex];
         Inc(CaptionIndex);
       end;
@@ -281,12 +259,12 @@ begin
   end;
 end;
 
-procedure AutoSizeCol(Grid: TBCStringGrid);
+procedure AutoSizeCol(Grid: TBCStringGrid; StartCol: Integer);
 var
   i, W, WMax, Column: Integer;
 begin
   Screen.Cursor := crHourglass;
-  for Column := 0 to Grid.ColCount - 1 do
+  for Column := StartCol to Grid.ColCount - 1 do
   begin
     if not Grid.IsHidden(Column, 0) then
     begin
@@ -302,7 +280,6 @@ begin
   end;
 
   Grid.Width := Grid.ColWidths[0] + Grid.ColWidths[1] + 2;
-// xxx  Grid.Height := Grid.RowCount * Grid.DefaultRowHeight + 5;
   Grid.Visible := True;
   Screen.Cursor := crDefault;
 end;
@@ -459,15 +436,15 @@ end;
 
 function GetAppVersion(const Url:string):string;
 const
-BuffSize     = 64*1024;
-TitleTagBegin='<p>';
-TitleTagEnd  ='</p>';
+  BuffSize = 64*1024;
+  TitleTagBegin = '<p>';
+  TitleTagEnd = '</p>';
 var
-  hInter   : HINTERNET;
+  hInter: HINTERNET;
   UrlHandle: HINTERNET;
   BytesRead: Cardinal;
-  Buffer   : Pointer;
-  i,f      : Integer;
+  Buffer: Pointer;
+  i,f: Integer;
 begin
   Result:='';
   hInter := InternetOpen('', INTERNET_OPEN_TYPE_PRECONFIG, nil, nil, 0);
@@ -480,14 +457,14 @@ begin
         if Assigned(UrlHandle) then
         begin
           InternetReadFile(UrlHandle, Buffer, BuffSize, BytesRead);
-          if BytesRead>0 then
+          if BytesRead > 0 then
           begin
             SetString(Result, PAnsiChar(Buffer), BytesRead);
-            i:=Pos(TitleTagBegin,Result);
-            if i>0 then
+            i := Pos(TitleTagBegin,Result);
+            if i > 0 then
             begin
-              f:=PosEx(TitleTagEnd,Result,i+Length(TitleTagBegin));
-              Result:=Copy(Result,i+Length(TitleTagBegin),f-i-Length(TitleTagBegin));
+              f := PosEx(TitleTagEnd,Result,i+Length(TitleTagBegin));
+              Result := Copy(Result,i+Length(TitleTagBegin),f-i-Length(TitleTagBegin));
             end;
           end;
         end;
@@ -504,8 +481,7 @@ end;
 function PointInRect(const P: TPoint; const R: TRect): Boolean;
 begin
   with R do
-    Result := (Left <= P.X) and (Top <= P.Y) and
-      (Right >= P.X) and (Bottom >= P.Y);
+    Result := (Left <= P.X) and (Top <= P.Y) and (Right >= P.X) and (Bottom >= P.Y);
 end;
 
 function GetFileVersion(Path: string): string;
@@ -555,7 +531,7 @@ begin
   Result := System.Copy(Text, Pos(Separator, Text) + 1, Length(Text));
 end;
 
-procedure SetStyledFormSize(Dialog: TDialog); // DefaultWidth, DefaultHeight: Integer);
+procedure SetStyledFormSize(Dialog: TDialog);
 var
   w, h: Integer;
   StyleName: string;
