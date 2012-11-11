@@ -17,18 +17,6 @@ type
     constructor Create(AControl: TWinControl); override;
   end;
 
-  TVirtualTreeStyleHook = class(TScrollingStyleHook) //TListBoxStyleHook)
-  strict private
-    procedure UpdateColors;
-    procedure WMEraseBkgnd(var Message: TMessage); message WM_ERASEBKGND;
-  strict protected
-    procedure WndProc(var Message: TMessage); override;
-    procedure WMSetFocus(var Message: TMessage); message WM_SETFOCUS;
-    procedure WMKillFocus(var Message: TMessage); message WM_KILLFOCUS;
-  public
-    constructor Create(AControl: TWinControl); override;
-  end;
-
   TProgressBarStyleHookMarquee = class(TProgressBarStyleHook)
   private
     Timer : TTimer;
@@ -87,61 +75,6 @@ begin
   else
     inherited WndProc(Message);
   end;
-end;
-
-{ TListBoxStyleHook }
-
-constructor TVirtualTreeStyleHook.Create(AControl: TWinControl);
-begin
-  inherited;
-  OverrideEraseBkgnd := True;
-  UpdateColors;
-end;
-
-procedure TVirtualTreeStyleHook.WMEraseBkgnd(var Message: TMessage);
-begin
-  Handled := True;
-end;
-
-procedure TVirtualTreeStyleHook.WMSetFocus(var Message: TMessage);
-begin
-  inherited;
-  CallDefaultProc(Message);
-  RedrawWindow(Handle, nil, 0, RDW_INVALIDATE or RDW_UPDATENOW);
-  Handled := True;
-end;
-
-procedure TVirtualTreeStyleHook.WndProc(var Message: TMessage);
-begin
-  case Message.Msg of
-    CM_ENABLEDCHANGED:
-      begin
-        UpdateColors;
-        Handled := False; // Allow control to handle message
-      end
-  else
-    inherited WndProc(Message);
-  end;
-end;
-
-procedure TVirtualTreeStyleHook.UpdateColors;
-const
-  ColorStates: array[Boolean] of TStyleColor = (scListBoxDisabled, scListBox);
-  FontColorStates: array[Boolean] of TStyleFont = (sfListItemTextDisabled, sfListItemTextNormal);
-var
-  LStyle: TCustomStyleServices;
-begin
-  LStyle := StyleServices;
-  Brush.Color := LStyle.GetStyleColor(ColorStates[Control.Enabled]);
-  FontColor := LStyle.GetStyleFontColor(FontColorStates[Control.Enabled]);
-end;
-
-procedure TVirtualTreeStyleHook.WMKillFocus(var Message: TMessage);
-begin
-  inherited;
-  CallDefaultProc(Message);
-  RedrawWindow(Handle, nil, 0, RDW_INVALIDATE or RDW_UPDATENOW);
-  Handled := True;
 end;
 
 function LightenColor(AColor: TColor): TColor;
