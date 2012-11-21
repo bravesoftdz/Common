@@ -104,21 +104,13 @@ begin
   SynEdit.Gutter.Gradient := False;
   if LStyles.Enabled then
   begin
-    //SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
-    //SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText); //sfMenuItemTextSelected);
-   // StyleServices.GetElementColor(StyleServices.GetElementDetails(tgClassicCellSelected), ecTextColor, HighlightTextColor);
-   // StyleServices.GetElementColor(StyleServices.GetElementDetails(tgClassicCellSelected), ecFillColor, HighlightColor);
-
     SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
     SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText);
-    //SynEdit.SelectedColor.Background := HighlightColor;
-    //SynEdit.SelectedColor.Foreground := HighlightTextColor;
-
-    SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfHeaderSectionTextNormal); //sfEditBoxTextNormal);
-    SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit); //SynEdit.Color;
-    SynEdit.Gutter.Color := LStyles.GetStyleColor(scPanel); // LStyles.GetStyleColor(scGenericGradientEnd);
+    SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfHeaderSectionTextNormal);
+    SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
+    SynEdit.Gutter.Color := LStyles.GetStyleColor(scPanel);
     SynEdit.RightEdgeColor := LStyles.GetStyleColor(scPanel);
-    SynEdit.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextNormal); //LStyles.GetSystemColor(SynEdit.Font.Color);
+    SynEdit.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
     SynEdit.Color := LStyles.GetStyleColor(scEdit);
   end
   else
@@ -130,27 +122,8 @@ begin
     SynEdit.Gutter.Color := clBtnFace;
     SynEdit.Color := clWindow;
   end;
-  //if not LStyles.GetElementColor(LStyles.GetElementDetails(tgCellNormal), ecBorderColor, LColor) or  (LColor = clNone) then
-  //  LColor := SynEdit.Color;
 
-  SynEdit.ActiveLineColor := SynEdit.Color; //LColor
-
-  {if LStyles.Enabled then
-  begin
-    SynEdit.Gutter.GradientStartColor := LStyles.GetStyleColor(scEdit); //scGenericGradientEnd);
-    SynEdit.Gutter.GradientEndColor := LStyles.GetStyleColor(scPanel); //scGenericGradientBase);
-    SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
-    SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scBorder); //SynEdit.Color;
-    SynEdit.Gutter.Color := LStyles.GetStyleColor(scPanel); // LStyles.GetStyleColor(scGenericGradientEnd);
-  end
-  else
-  begin
-    SynEdit.Gutter.GradientStartColor := clBtnFace;
-    SynEdit.Gutter.GradientEndColor := clWindow;
-    SynEdit.Gutter.Font.Color := clWindowText;
-    SynEdit.Gutter.BorderColor := clWindow;
-    SynEdit.Gutter.Color := clBtnFace;
-  end;}
+  SynEdit.ActiveLineColor := SynEdit.Color;
 end;
 
 { TProgressBarStyleHookMarquee }
@@ -160,7 +133,7 @@ begin
   inherited;
   FStep := 0;
   Timer := TTimer.Create(nil);
-  Timer.Interval := 100;//TProgressBar(Control).MarqueeInterval;
+  Timer.Interval := 100;
   Timer.OnTimer := TimerAction;
   Timer.Enabled := TJvProgressBar(Control).Marquee;
 end;
