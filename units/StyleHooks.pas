@@ -138,6 +138,10 @@ begin
       SQLSyn.KeyAttri.Foreground := LightenColor(LStyles.GetSystemColor(clHighlight))
     else
       SQLSyn.KeyAttri.Foreground := clBlue;
+    SQLSyn.DelimitedIdentifierAttri.Foreground := SQLSyn.KeyAttri.Foreground;
+    SQLSyn.FunctionAttri.Foreground := SQLSyn.KeyAttri.Foreground;
+    SQLSyn.PLSQLAttri.Foreground := SQLSyn.KeyAttri.Foreground;
+    SQLSyn.SQLPlusAttri.Foreground := SQLSyn.KeyAttri.Foreground;
   end;
 end;
 
