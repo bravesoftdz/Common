@@ -4,7 +4,7 @@ interface
 
 uses
   Vcl.StdCtrls, Winapi.Messages, Vcl.Controls, SynEdit, Vcl.Styles, Vcl.Themes, Vcl.ComCtrls,
-  Vcl.ExtCtrls, Vcl.Graphics, Vcl.Forms, JvProgressBar;
+  Vcl.ExtCtrls, Vcl.Graphics, Vcl.Forms, JvProgressBar, SynHighlighterSQL;
 
 type
   TSynEditStyleHook = class(TMemoStyleHook)
@@ -31,6 +31,7 @@ type
 
   procedure UpdateGutter(SynEdit: TSynEdit);
   function LightenColor(AColor: TColor): TColor;
+  procedure UpdateSQLSynColors(SQLSyn: TSynSQLSyn);
 
 implementation
 
@@ -124,6 +125,20 @@ begin
   end;
 
   SynEdit.ActiveLineColor := SynEdit.Color;
+end;
+
+procedure UpdateSQLSynColors(SQLSyn: TSynSQLSyn);
+var
+  LStyles: TCustomStyleServices;
+begin
+  LStyles := StyleServices;
+  if Assigned(LStyles) then
+  begin
+    if LStyles.GetStyleColor(scEdit) <> clWhite then
+      SQLSyn.KeyAttri.Foreground := LightenColor(LStyles.GetSystemColor(clHighlight))
+    else
+      SQLSyn.KeyAttri.Foreground := clBlue;
+  end;
 end;
 
 { TProgressBarStyleHookMarquee }
