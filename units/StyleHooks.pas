@@ -58,7 +58,8 @@ type
   procedure UpdatePythonSynColors(PythonSyn: TSynPythonSyn; WhiteBackground: Boolean);
   procedure UpdateRubySynColors(RubySyn: TSynRubySyn; WhiteBackground: Boolean);
   procedure UpdateSDDSynColors(SDDSyn: TSynSDDSyn; WhiteBackground: Boolean);
-  procedure UpdateSQLSynColors(SQLSyn: TSynSQLSyn; WhiteBackground: Boolean);
+  procedure UpdateSQLSynColors(SQLSyn: TSynSQLSyn); overload;
+  procedure UpdateSQLSynColors(SQLSyn: TSynSQLSyn; WhiteBackground: Boolean); overload;
   procedure UpdateSMLSynColors(SMLSyn: TSynSMLSyn; WhiteBackground: Boolean);
   procedure UpdateTclTkSynColors(TclTkSyn: TSynTclTkSyn; WhiteBackground: Boolean);
   procedure UpdateTexSynColors(TexSyn: TSynTexSyn; WhiteBackground: Boolean);
@@ -522,6 +523,15 @@ begin
     SDDSyn.KeyAttri.Foreground := clLime;
     SDDSyn.NumberAttri.Foreground := clAqua;
   end;
+end;
+
+procedure UpdateSQLSynColors(SQLSyn: TSynSQLSyn);
+var
+  LStyles: TCustomStyleServices;
+begin
+  LStyles := StyleServices;
+  if Assigned(LStyles) then
+    UpdateSQLSynColors(SQLSyn, LStyles.GetStyleColor(scEdit) = clWhite);
 end;
 
 procedure UpdateSQLSynColors(SQLSyn: TSynSQLSyn; WhiteBackground: Boolean);
