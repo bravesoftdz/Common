@@ -12,31 +12,6 @@ const
   CHR_ENTER = Chr(13) + Chr(10);
   CHR_TAB = Chr(9);
 
-  { style names }
-  STYLENAME_AMAKRITS = 'Amakrits';
-  STYLENAME_AMETHYST_KAMRI = 'Amethyst Kamri';
-  STYLENAME_AQUA_GRAPHITE = 'Aqua Graphite';
-  STYLENAME_AQUA_LIGHT_SLATE = 'Aqua Light Slate';
-  STYLENAME_AURIC = 'Auric';
-  STYLENAME_CARBON = 'Carbon';
-  STYLENAME_CHARCOAL_DARK_SLATE = 'Charcoal Dark Slate';
-  STYLENAME_COBALT_XEMEDIA = 'Cobalt XEMedia';
-  STYLENAME_CYAN_DUSK = 'Cyan Dusk';
-  STYLENAME_CYAN_NIGHT = 'Cyan Night';
-  STYLENAME_EMERALD_LIGHT_SLATE = 'Emerald Light Slate';
-  STYLENAME_GOLDEN_GRAPHITE = 'Golden Graphite';
-  STYLENAME_ICEBERG_CLASSICO = 'Iceberg Classico';
-  STYLENAME_LAVENDER_CLASSICO = 'Lavender Classico';
-  STYLENAME_METRO_BLACK = 'Metro Black';
-  STYLENAME_METRO_BLUE = 'Metro Blue';
-  STYLENAME_METRO_GREEN = 'Metro Green';
-  STYLENAME_RUBY_GRAPHITE = 'Ruby Graphite';
-  STYLENAME_SAPPHIRE_KAMRI = 'Sapphire Kamri';
-  STYLENAME_SLATE_CLASSICO = 'Slate Classico';
-  STYLENAME_SMOKEY_QUARTZ_KAMRI = 'Smokey Quartz Kamri';
-  STYLENAME_TURUOISE_GRAY = 'Turquoise Gray';
-  STYLENAME_WINDOWS = 'Windows';
-
 function BrowseURL(const URL: string): Boolean;
 function GetOSInfo: string;
 function StringBetween(Str: string; SubStr1: string; SunStr2: string): string;
@@ -63,7 +38,6 @@ function GetFileVersion(Path: string): string;
 function GetNextToken(Separator: char; Text: string): string;
 function RemoveTokenFromStart(Separator: char; Text: string): string;
 function GetTextAfterChar(Separator: char; Text: string): string;
-procedure SetStyledFormSize(Dialog: TDialog);
 
 implementation
 
@@ -531,65 +505,6 @@ end;
 function GetTextAfterChar(Separator: char; Text: string): string;
 begin
   Result := System.Copy(Text, Pos(Separator, Text) + 1, Length(Text));
-end;
-
-procedure SetStyledFormSize(Dialog: TDialog);
-var
-  w, h: Integer;
-  StyleName: string;
-begin
-  w := 0;
-  h := 0;
-  if Assigned(TStyleManager.ActiveStyle) then
-  begin
-    StyleName := TStyleManager.ActiveStyle.Name;
-
-    if (StyleName = STYLENAME_AURIC) or (StyleName = STYLENAME_AMAKRITS) then
-    with Dialog do
-    begin
-      w := 6;
-      h := 7;
-    end
-    else
-    if (StyleName = STYLENAME_AMETHYST_KAMRI) or (StyleName = STYLENAME_AQUA_GRAPHITE) or
-      (StyleName = STYLENAME_AQUA_LIGHT_SLATE) or (StyleName = STYLENAME_CHARCOAL_DARK_SLATE) or
-      (StyleName = STYLENAME_COBALT_XEMEDIA) or (StyleName = STYLENAME_CYAN_DUSK) or
-      (StyleName = STYLENAME_CYAN_NIGHT) or (StyleName = STYLENAME_EMERALD_LIGHT_SLATE) or
-      (StyleName = STYLENAME_GOLDEN_GRAPHITE) or (StyleName = STYLENAME_RUBY_GRAPHITE) or
-      (StyleName = STYLENAME_SAPPHIRE_KAMRI) or (StyleName = STYLENAME_SMOKEY_QUARTZ_KAMRI) then
-    with Dialog do
-    begin
-      w := 8;
-      h := 7;
-    end
-    else
-    if StyleName = STYLENAME_CARBON then
-    with Dialog do
-    begin
-      w := 4;
-      h := 5;
-    end
-    else
-    if (StyleName = STYLENAME_ICEBERG_CLASSICO) or (StyleName = STYLENAME_LAVENDER_CLASSICO) or (StyleName = STYLENAME_SLATE_CLASSICO) then
-    with Dialog do
-    begin
-      w := 8;
-      h := 8;
-    end
-    else
-    if (StyleName = STYLENAME_METRO_BLACK) or (StyleName = STYLENAME_METRO_BLUE) or (StyleName = STYLENAME_METRO_GREEN) or
-      (StyleName = STYLENAME_TURUOISE_GRAY) then
-    with Dialog do
-    begin
-      w := 10;
-      h := 10;
-    end;
-  end;
-  with Dialog do
-  begin
-    Width :=  Dialog.OrigWidth + w;
-    Height := Dialog.OrigHeight + h;
-  end;
 end;
 
 end.

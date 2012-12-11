@@ -29,7 +29,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Common, Vcl.Themes;
+  Common, Vcl.Themes, StyleHooks;
 
 resourcestring
   SAskReplaceText = 'Replace this occurence of "%s"?';
@@ -43,7 +43,7 @@ begin
     Application.CreateForm(TConfirmReplaceDialog, FConfirmReplaceDialog);
   Result := FConfirmReplaceDialog;
   Result.Width := Result.YesButton.Width * 4 + 40;
-  Common.SetStyledFormSize(Result);
+  StyleHooks.SetStyledFormSize(Result);
 end;
 
 procedure TConfirmReplaceDialog.FormCreate(Sender: TObject);

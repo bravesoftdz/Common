@@ -56,7 +56,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Common, Lib, Vcl.Themes;
+  Common, Lib, Vcl.Themes, StyleHooks;
 
 var
   FReplaceDialog: TReplaceDialog;
@@ -66,7 +66,7 @@ begin
   if FReplaceDialog = nil then
     Application.CreateForm(TReplaceDialog, FReplaceDialog);
   Result := FReplaceDialog;
-  Common.SetStyledFormSize(Result);
+  StyleHooks.SetStyledFormSize(Result);
 end;
 
 procedure TReplaceDialog.FormDestroy(Sender: TObject);

@@ -113,10 +113,9 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 47
-        Height = 22
+        Height = 13
         Align = alLeft
         Caption = 'Find what'
-        ExplicitHeight = 13
       end
     end
     object Panel3: TPanel
@@ -136,10 +135,9 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 41
-        Height = 23
+        Height = 13
         Align = alLeft
         Caption = 'File type'
-        ExplicitHeight = 13
       end
     end
     object Panel4: TPanel
@@ -159,10 +157,9 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 30
-        Height = 22
+        Height = 13
         Align = alLeft
         Caption = 'Folder'
-        ExplicitHeight = 13
       end
     end
   end
@@ -196,7 +193,6 @@ object FindInFilesDialog: TFindInFilesDialog
         Width = 276
         Height = 21
         Align = alTop
-        ItemHeight = 13
         ReadOnly = False
         TabOrder = 0
         OnKeyUp = FindWhatComboBoxKeyUp
@@ -224,7 +220,6 @@ object FindInFilesDialog: TFindInFilesDialog
         Height = 21
         Align = alTop
         DropDownCount = 20
-        ItemHeight = 13
         ReadOnly = False
         TabOrder = 0
         Text = '*.*'

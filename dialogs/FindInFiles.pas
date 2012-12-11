@@ -67,7 +67,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common,
+  Common, StyleHooks,
   {$WARNINGS OFF}
   Vcl.FileCtrl; { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}
@@ -83,7 +83,7 @@ begin
     TStyleManager.Engine.RegisterStyleHook(TJvDirectoryEdit, TEditStyleHook);
   end;
   Result := FFindInFilesDialog;
-  Common.SetStyledFormSize(Result);
+  StyleHooks.SetStyledFormSize(Result);
 end;
 
 procedure TFindInFilesDialog.FormDestroy(Sender: TObject);
