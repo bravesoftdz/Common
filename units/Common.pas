@@ -43,7 +43,7 @@ implementation
 
 uses
   Winapi.Windows, Winapi.ShellAPI, System.SysUtils, Vcl.StdCtrls,
-  System.Character, Vcl.ActnList, System.StrUtils, Vcl.Themes;
+  System.Character, Vcl.ActnList, System.StrUtils;
 
 procedure RunCommand(const Cmd, Params: String);
 var
