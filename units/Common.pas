@@ -79,7 +79,7 @@ begin
   Result := True;
   tmp := StrAlloc(255);
   GetTempPath(255,tmp);
-  TempFileName := tmp + 'bonecode-default.html';
+  TempFileName := Format('%s%s', [tmp, 'bonecode-default.html']);
   CloseHandle(CreateFile(PWideChar(TempFileName), GENERIC_WRITE, FILE_SHARE_WRITE, nil, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0));
   FindExecutable(PWideChar(TempFileName), nil, Path); //Find the executable (default browser) associated with the html file.
   DeleteFile(PWideChar(TempFileName));
@@ -263,9 +263,9 @@ end;
 function AddSlash(Path: string): string;
 begin
   if Path = '' then
-    exit;
+    Exit;
   if Path[Length(Path)] <> '\' then
-    Result := Path + '\'
+    Result := Format('%s\', [Path])
   else
     Result := Path;
 end;

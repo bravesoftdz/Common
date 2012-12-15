@@ -14,29 +14,6 @@ uses
   SynHighlighterSQL, SynHighlighterWeb, Dlg;
 
 const
-  { style names }
-  STYLENAME_AMAKRITS = 'Amakrits';
-  STYLENAME_AMETHYST_KAMRI = 'Amethyst Kamri';
-  STYLENAME_AQUA_GRAPHITE = 'Aqua Graphite';
-  STYLENAME_AQUA_LIGHT_SLATE = 'Aqua Light Slate';
-  STYLENAME_AURIC = 'Auric';
-  STYLENAME_CARBON = 'Carbon';
-  STYLENAME_CHARCOAL_DARK_SLATE = 'Charcoal Dark Slate';
-  STYLENAME_COBALT_XEMEDIA = 'Cobalt XEMedia';
-  STYLENAME_CYAN_DUSK = 'Cyan Dusk';
-  STYLENAME_CYAN_NIGHT = 'Cyan Night';
-  STYLENAME_EMERALD_LIGHT_SLATE = 'Emerald Light Slate';
-  STYLENAME_GOLDEN_GRAPHITE = 'Golden Graphite';
-  STYLENAME_ICEBERG_CLASSICO = 'Iceberg Classico';
-  STYLENAME_LAVENDER_CLASSICO = 'Lavender Classico';
-  STYLENAME_METRO_BLACK = 'Metro Black';
-  STYLENAME_METRO_BLUE = 'Metro Blue';
-  STYLENAME_METRO_GREEN = 'Metro Green';
-  STYLENAME_RUBY_GRAPHITE = 'Ruby Graphite';
-  STYLENAME_SAPPHIRE_KAMRI = 'Sapphire Kamri';
-  STYLENAME_SLATE_CLASSICO = 'Slate Classico';
-  STYLENAME_SMOKEY_QUARTZ_KAMRI = 'Smokey Quartz Kamri';
-  STYLENAME_TURUOISE_GRAY = 'Turquoise Gray';
   STYLENAME_WINDOWS = 'Windows';
 
 type
@@ -846,9 +823,9 @@ end;
 procedure SetStyledFormSize(Dialog: TDialog);
 var
   w, h: Integer;
-  StyleName: string;
+//  StyleName: string;
 begin
-  w := 0;
+ (* w := 0;
   h := 0;
   if Assigned(TStyleManager.ActiveStyle) then
   begin
@@ -893,6 +870,16 @@ begin
     begin
       w := 10;
       h := 10;
+    end;
+  end; *)
+  w := 0;
+  h := 0;
+  if Assigned(TStyleManager.ActiveStyle) then
+  begin
+    if TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS then
+    begin
+      w := 10;
+      h := 0;
     end;
   end;
   with Dialog do

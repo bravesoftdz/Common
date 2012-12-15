@@ -112,8 +112,8 @@ begin
   SynEditPrintPreview.UpdatePreview;
   SynEditPrintPreview.FirstPage;
   if Printer.PrinterIndex >= 0 then
-    PrintAction.Hint := 'Print (' + Printer.Printers[Printer.PrinterIndex] +
-      ')|Print the document on ' + Printer.Printers[Printer.PrinterIndex];
+    PrintAction.Hint := Format('Print (%s)|Print the document on %s',
+      [Printer.Printers[Printer.PrinterIndex], Printer.Printers[Printer.PrinterIndex]]);
   SynEditPrintPreview.ScalePercent := 100;
   LineNumbersToolButton.Down := SynEditPrintPreview.SynEditPrint.LineNumbers;
   WordWrapToolButton.Down := SynEditPrintPreview.SynEditPrint.Wrap;
@@ -182,7 +182,7 @@ end;
 
 procedure TPrintPreviewDialog.ApplicationEventsHint(Sender: TObject);
 begin
-  StatusBar.Panels[0].Text := '  ' + Application.Hint;
+  StatusBar.Panels[0].Text := Format('  %s', [Application.Hint]);
 end;
 
 procedure TPrintPreviewDialog.SynEditPrintPreviewMouseDown(
@@ -216,7 +216,7 @@ end;
 procedure TPrintPreviewDialog.SynEditPrintPreviewPreviewPage(
   Sender: TObject; PageNumber: Integer);
 begin
-  StatusBar.Panels[1].Text := ' Page: ' + IntToStr(SynEditPrintPreview.PageNumber);
+  StatusBar.Panels[1].Text := Format(' Page: %d', [SynEditPrintPreview.PageNumber]);
 end;
 
 procedure TPrintPreviewDialog.WordWrapActionExecute(Sender: TObject);
