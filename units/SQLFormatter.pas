@@ -83,17 +83,8 @@ type
     FExpandBetweenConditions: Boolean;
     FUppercaseKeywords: Boolean;
     FBreakJoinOnSections: Boolean;
-
-//    KeywordMapping: TDictionary<string, string>;
-
-   // function GetIndentString: string;
-   // procedure SetIndentString(Value: string);
-  //public
-  //  KeywordMapping: IDictionary<GenericFormalParam, (2712-2718),GenericFormalParam, (2720-2726)>;
     procedure ProcessSqlNodeList(RootList: IXMLNodeList; State: TSQLFormatterState); //overload;
-    //procedure ProcessSqlNodeList(RootList: TList; State: TSQLFormatterState); overload;
     procedure ProcessSqlNode(ContentElement: IXMLElement; State: TSQLFormatterState);
-//    function ExtracIXMLBetween(StartingElement: IXMLNode; EndingElement: IXMLNode): IXMLNode;
     function FormatKeyword(Keyword: string): string;
     function FormatOperator(OperatorValue: string): string;
     procedure WhiteSpaceSeparateStatements(ContentElement: IXMLElement; State: TSQLFormatterState);
@@ -122,10 +113,40 @@ type
     property BreakJoinOnSections: Boolean read FBreakJoinOnSections write FBreakJoinOnSections;
   end;
 
+  function FormatSQL(SQL: string): string;
+
 implementation
 
 uses
-  SQLParser, StrUtils, Common, XMLConstants;
+  SQLParser, SQLTokenizer, StrUtils, Common, XMLConstants;
+
+
+function FormatSQL(SQL: string): string;
+var
+  SQLParser: TSQLParser;
+  SQLFormatter: TSQLFormatter;
+  SQLTokenizer: TSQLTokenizer;
+  SQLParseTree: TSQLParseTree;
+begin
+  Result := SQL;
+  SQLParser := TSQLParser.Create;
+  SQLFormatter := TSQLFormatter.Create;
+  SQLTokenizer := TSQLTokenizer.Create(SQL);
+  try
+    SQLParseTree := SQLParser.Parse(SQLTokenizer.SQLTokenList);
+    if Assigned(SQLParseTree) then
+    begin
+      if Assigned(SQLParseTree.SelectSingleNode(System.SysUtils.Format('/%s/@%s[.=1]', [XMLConstants.XML_SQL_ROOT, XMLConstants.XML_ERRORFOUND]))) then
+        Result := PARSING_ERRORS_FOUND + SQL
+      else
+        Result := SQLFormatter.FormatSQLTree(SQLParseTree);
+    end;
+  finally
+    SQLTokenizer.Free;
+    SQLFormatter.Free;
+    SQLParser.Free;
+  end;
+end;
 
 { TSqlFormatterState }
 
@@ -339,7 +360,7 @@ begin
   if SQLParseTree.ErrorFound then
     SQLFormatterState.AddOutputContent(XMLConstants.PARSING_ERRORS_FOUND);
 
-  RootList := SQLParseTree.SelectNodes(Format('/%s/*', [XMLConstants.XML_SQL_ROOT]));
+  RootList := SQLParseTree.SelectNodes(SysUtils.Format('/%s/*', [XMLConstants.XML_SQL_ROOT]));
 
   ProcessSqlNodeList(RootList, SQLFormatterState);
   WhiteSpaceBreakAsExpected(SQLFormatterState);
@@ -858,7 +879,7 @@ begin
   Result := nil;
   while Assigned(ContentElement) do
   begin
-    Result := IXMLElement(ContentElement.SelectSingleNode(Format('*[local-name != ''%s'' and local-name != ''%s'' and local-name != ''%s'']',
+    Result := IXMLElement(ContentElement.SelectSingleNode(SysUtils.Format('*[local-name != ''%s'' and local-name != ''%s'' and local-name != ''%s'']',
       [XMLConstants.XML_WHITESPACE, XMLConstants.XML_COMMENT_MULTILINE, XMLConstants.XML_COMMENT_SINGLELINE])));
 
     if Assigned(Result) and

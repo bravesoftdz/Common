@@ -8,7 +8,7 @@ uses
 type
   TSQLTokenType = (ttNone, ttOpenParens, ttCloseParens, ttWhiteSpace, ttOtherNode, ttSingleLineComment,
     ttMultiLineComment, ttString, ttNationalString, ttBracketQuotedName, ttQuotedString, ttComma,
-    ttPeriod, ttSemicolon, ttColon, ttAsterisk, ttMonetaryValue, ttNumber, ttBinaryValue,
+    ttPeriod, ttSemicolon, ttColon, ttAsterisk, ttEqualsSign, ttMonetaryValue, ttNumber, ttBinaryValue,
     ttOtherOperator, ttPseudoName);
 
   TSQLTokenizationType = (tNull,
@@ -33,10 +33,12 @@ type
   TSQLTokenList = class(TList<TSQLToken>)
   private
     FHasErrors: Boolean;
+    FHasUnfinishedToken: Boolean;
   public
     function GetRange(Index: Integer; Count: Integer): TSQLTokenList;
     function GetRangeByIndex(FromIndex: Integer; ToIndex: Integer): TSQLTokenList;
     property HasErrors: Boolean read FHasErrors write FHasErrors;
+    property HasUnfinishedToken: Boolean read FHasUnfinishedToken write FHasUnfinishedToken;
   end;
 
   TSQLTokenPositionsList = class(TList<System.Integer>)
@@ -598,7 +600,7 @@ begin
       (CurrentTokenizationType = tNString) or
       (CurrentTokenizationType = tQuotedString) or
       (CurrentTokenizationType = tBracketQuotedName) then
-      Result.HasErrors := True;
+      Result.HasUnfinishedToken := True;
 
     CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
   end;
