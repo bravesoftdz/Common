@@ -94,7 +94,7 @@ const
   XML_SCOPERESOLUTIONOPERATOR = 'ScopeResolutionOperator';
   XML_EQUALSSIGN = 'EqualsSign';
 
-  PARSING_ERRORS_FOUND = '// Parsing errors found.';
+  PARSING_ERRORS_FOUND = '-- Warning! Errors found during SQL parsing.' + Chr(10) + Chr(13);
 
 implementation
 
