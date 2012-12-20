@@ -567,6 +567,7 @@ begin
   SQLSyn.SQLPlusAttri.Foreground := SQLSyn.KeyAttri.Foreground;
   { clGreen }
   SQLSyn.ConditionalCommentAttri.Foreground := SQLSyn.CommentAttri.Foreground;
+  SQLSyn.KeyAttri.Style := [];
 end;
 
 procedure UpdateSMLSynColors(SMLSyn: TSynSMLSyn; WhiteBackground: Boolean);

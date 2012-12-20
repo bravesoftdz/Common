@@ -357,7 +357,8 @@ var
   SQLFormatterState: TSQLFormatterState;
 begin
   SQLFormatterState := TSQLFormatterState.Create(FIndentString, FSpacesPerTab, FMaxLineWidth, 0);
-  if SQLParseTree.ErrorFound then
+  if Assigned(SQLParseTree.SelectSingleNode(System.SysUtils.Format('/%s/@%s[.=1]', [XMLConstants.XML_SQL_ROOT, XMLConstants.XML_ERRORFOUND]))) then
+ // if SQLParseTree.ErrorFound then
     SQLFormatterState.AddOutputContent(XMLConstants.PARSING_ERRORS_FOUND);
 
   RootList := SQLParseTree.SelectNodes(SysUtils.Format('/%s/*', [XMLConstants.XML_SQL_ROOT]));
@@ -681,7 +682,7 @@ begin
     OutValue := '';
     if ContentElement.NodeName = XMLConstants.XML_NSTRING then
       OutValue := 'N';
-    OutValue := OutValue + '''' + StringReplace(ContentElement.Text, '''', '''''', [rfReplaceAll]) + '''';
+    OutValue := OutValue + ContentElement.Text;
     State.AddOutputContent(OutValue);
     State.WordSeparatorExpected := True;
   end
@@ -689,14 +690,14 @@ begin
   if ContentElement.NodeName = XMLConstants.XML_BRACKET_QUOTED_NAME then
   begin
     WhiteSpaceSeparateWords(State);
-    State.AddOutputContent('[' + StringReplace(ContentElement.Text, ']', ']]', [rfReplaceAll]) + ']');
+    State.AddOutputContent(ContentElement.Text);
     State.WordSeparatorExpected := True;
   end
   else
   if ContentElement.NodeName = XMLConstants.XML_QUOTED_STRING then
   begin
     WhiteSpaceSeparateWords(State);
-    State.AddOutputContent('\"' + StringReplace(ContentElement.Text, '\"', '\"\"', [rfReplaceAll]) + '\"');
+    State.AddOutputContent(ContentElement.Text);
     State.WordSeparatorExpected := True;
   end
   else
