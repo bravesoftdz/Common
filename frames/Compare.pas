@@ -124,12 +124,7 @@ type
     FSourceLeft, FSourceRight: TStringList;
     FResultLeft, FResultRight: TStringList;
     FHashListLeft, FHashListRight: TList;
-    //FGridVisibleRows: Integer;
-    //FDrawGridVisibleRows: Integer;
     FPreviousRow: Integer;
-    //FGridVisibleTop: Integer;
-    //FGridVisibleBottom: Integer;
-
     OldLeftGridProc, OldRightGridProc, OldDrawGridProc, OldLeftScrollBoxProc, OldRightScrollBoxProc: TWndMethod;
     procedure SetOpenDocumentsList(Value: TStringList);
     procedure LeftGridWindowProc(var Message: TMessage);
@@ -150,13 +145,8 @@ type
     procedure FillLeftGridFromSource;
     procedure FillRightGridFromSource;
     procedure Compare;
-//    procedure ScrollDrawGrid;
     procedure ScrollGrids(Row: Integer; EventType: TGridEventType = etNone);
-    //procedure SetGridVisibleRange(Row: Integer; EventType: TGridEventType = etNone);
     procedure SaveGridChanges;
-//    procedure SetScrollBarMax;
-  //protected
-    //property HistoryList: TStringList read FHistoryList write FHistoryList;
     function GetComparedFilesSet: Boolean;
   public
     { Public declarations }
@@ -204,42 +194,21 @@ end;
 procedure TCompareFrame.RightGridWindowProc(var Message: TMessage);
 begin
   OldRightGridProc(Message);
-  if ((Message.Msg = WM_VSCROLL) or // (Message.Msg = WM_HSCROLL) or
-     (Message.msg = WM_Mousewheel)) then
-  begin
+  if (Message.Msg = WM_VSCROLL) or (Message.msg = WM_Mousewheel) then
     OldLeftGridProc(Message);
-    //OldDrawGridProc(Message);
-    //DrawGrid.Invalidate;
-  end;
 end;
 
 procedure TCompareFrame.DrawGridWindowProc(var Message: TMessage);
 begin
   OldDrawGridProc(Message);
-  if ((Message.Msg = WM_VSCROLL) or //(Message.Msg = WM_HSCROLL) or
-     (Message.msg = WM_Mousewheel)) then
+  if (Message.Msg = WM_VSCROLL) or (Message.msg = WM_Mousewheel) then
   begin
     OldLeftGridProc(Message);
     OldRightGridProc(Message);
-    //OldScrollGridProc(Message);
     DrawGrid.Invalidate;
   end;
 end;
 
-{procedure TCompareFrame.ScrollGridWindowProc(var Message: TMessage);
-begin
-  OldScrollGridProc(Message);
-  if ((Message.Msg = WM_VSCROLL) or //(Message.Msg = WM_HSCROLL) or
-     (Message.msg = WM_Mousewheel)) then
-  begin
-    OldLeftGridProc(Message);
-    OldRightGridProc(Message);
-    OldDrawGridProc(Message);
-
-    DrawGrid.Invalidate;
-  end;
-end;
- }
 constructor TCompareFrame.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
@@ -254,11 +223,9 @@ begin
   OldLeftGridProc := LeftGrid.WindowProc;
   OldRightGridProc := RightGrid.WindowProc;
   OldDrawGridProc := DrawGrid.WindowProc;
-  //OldScrollGridProc := ScrollGrid.WindowProc;
   LeftGrid.WindowProc := LeftGridWindowProc;
   RightGrid.WindowProc := RightGridWindowProc;
   DrawGrid.WindowProc := DrawGridWindowProc;
-  //ScrollGrid.WindowProc := ScrollGridWindowProc;
   OldLeftScrollBoxProc := LeftScrollBox.WindowProc;
   OldRightScrollBoxProc := RightScrollBox.WindowProc;
   LeftScrollBox.WindowProc := LeftScrollBoxWindowProc;
@@ -267,7 +234,6 @@ end;
 
 destructor TCompareFrame.Destroy;
 begin
-  //SaveGridChanges;
   FSourceLeft.Free;
   FSourceRight.Free;
   FResultLeft.Free;
@@ -280,7 +246,6 @@ end;
 procedure TCompareFrame.DrawGridDrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 const
-  //PaleGreen: TColor = $66FF66;
   PaleRed: TColor = $6666FF;
   PaleBlue: TColor = $FF6666;
   PaleGray: TColor = $D0D0D0;
@@ -350,17 +315,15 @@ begin
               else
                 rclr := clBtnShadow;
               lclr := clBlue;
-             // if (ARow < FGridVisibleBottom) and (ARow >= FGridVisibleTop) then
               if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
               begin
                 lclr := PaleBlue;
-                //rclr := PaleGray;
                 if LStyles.Enabled then
                   rclr := LStyles.GetStyleColor(scEdit)
                 else
                   rclr := PaleGray;
               end;
-            end; // PaleBlue; //PaleBlue;
+            end;
           ckAdd:
             begin
               if LStyles.Enabled then
@@ -368,22 +331,19 @@ begin
                 else
                   lclr := clBtnShadow;
               rclr := clBlue;
-              //if (ARow < FGridVisibleBottom) and (ARow >= FGridVisibleTop) then
               if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
               begin
-                //lclr := PaleGray;
                 if LStyles.Enabled then
                   lclr := LStyles.GetStyleColor(scEdit)
                 else
                   lclr := PaleGray;
                 rclr := PaleBlue;
               end;
-            end; // PaleRed; //PaleGreen;
+            end;
         end;
 
       with DrawGrid.Canvas do
       begin
-        //if (ARow < FGridVisibleBottom) and (ARow >= FGridVisibleTop) then
         if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
         begin
           if LStyles.Enabled then
@@ -415,7 +375,6 @@ begin
         end;
 
         { Draw a rectangle around visible area }
-        //if FGridVisibleBottom = ARow then
         if LeftGrid.TopRow + LeftGrid.VisibleRowCount = ARow then
         begin
           if LStyles.Enabled then
@@ -424,7 +383,6 @@ begin
             Brush.Color := clBlack;
           FillRect(System.Types.Rect(0, Rect.top, 22, Rect.bottom));
         end;
-        //if FGridVisibleTop - 1 = ARow then
         if LeftGrid.TopRow - 1 = ARow then
         begin
           if LStyles.Enabled then
@@ -433,16 +391,6 @@ begin
             Brush.Color := clBlack;
           FillRect(System.Types.Rect(0, Rect.top, 22, Rect.bottom));
         end;
-
-        { Draw an arrow:
-          **
-          * **
-          *   **
-          *     *
-          *   **
-          * **
-          ** }
-
       end;
     end;
 end;
@@ -466,8 +414,6 @@ begin
 end;
 
 procedure TCompareFrame.ScrollGrids(Row: Integer; EventType: TGridEventType);
-//var
-//  ScoPos: Integer;
 begin
   if Row = FPreviousRow then
     Exit;
@@ -477,76 +423,14 @@ begin
   LeftGrid.Row := Row;
   RightGrid.Row := Row;
   DrawGrid.Row := Row;
-  //VerticalScrollBar.Position := Row;
-//  ScrollGrid.Row := Row;
+
   LeftMemo.Text := LeftGrid.Cells[1, Row];
   RightMemo.Text := RightGrid.Cells[1, Row];
-  (*
-    if (Row >= FGridVisibleBottom) or (Row <= FGridVisibleTop) then
-    begin
-
-      if EventType = etKey then
-        ScoPos := (Row div FGridVisibleRows) * FGridVisibleRows *
-          Round(LeftScrollBox.VertScrollBar.Range / DrawGrid.RowCount)
-      else
-      if (Row = FGridVisibleBottom) then
-        ScoPos := Round((Row / FGridVisibleRows) * FGridVisibleRows) *
-          Round(LeftScrollBox.VertScrollBar.Range / DrawGrid.RowCount)
-        // direction down
-      else
-        ScoPos := Row * Round(LeftScrollBox.VertScrollBar.Range / DrawGrid.RowCount); // direction up
-      if ScoPos <= LeftScrollBox.VertScrollBar.Range then
-      begin
-        LeftScrollBox.VertScrollBar.Position := ScoPos;
-        RightScrollBox.VertScrollBar.Position := ScoPos;
-      end;
-    end;
-   *)
-  //SetGridVisibleRange(Row, EventType);
 
   DrawGrid.Invalidate;
   FPreviousRow := Row;
 end;
 
-(*procedure TCompareFrame.SetGridVisibleRange(Row: Integer; EventType: TGridEventType);
-var
-  ARow: Integer;
-begin
-  ARow := Row;
-
-  if (ARow < FGridVisibleBottom) and (ARow > FGridVisibleTop) then
-    Exit;
-
-  if ARow < 1 then
-    ARow := 0;
-
-  if (ARow > DrawGrid.RowCount - FGridVisibleRows) then
-  begin
-    FGridVisibleTop := DrawGrid.RowCount - FGridVisibleRows;
-    FGridVisibleBottom := DrawGrid.RowCount;
-  end
-  else
-  if (EventType = etKey) or (EventType = etMouse) then
-  begin
-    { visible rows on left (or right) grid }
-    FGridVisibleTop := (ARow div FGridVisibleRows) * FGridVisibleRows;
-    FGridVisibleBottom := (ARow div FGridVisibleRows)
-        * FGridVisibleRows + FGridVisibleRows;
-  end
-  else
-  if (ARow = FGridVisibleBottom) then
-  begin
-    FGridVisibleTop := Round((ARow / FGridVisibleRows) * FGridVisibleRows);
-    FGridVisibleBottom := Round((ARow / FGridVisibleRows)
-        * FGridVisibleRows + FGridVisibleRows);
-  end
-  else
-  begin
-    FGridVisibleTop := ARow;
-    FGridVisibleBottom := ARow + FGridVisibleRows;
-  end;
-end;
-*)
 procedure TCompareFrame.DrawGridMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
@@ -584,7 +468,7 @@ end;
 
 procedure TCompareFrame.LeftComboBoxKeyPress(Sender: TObject; var Key: Char);
 begin
-   Key := #0;
+  Key := #0;
 end;
 
 procedure TCompareFrame.LeftDocumentButtonClickActionExecute(Sender: TObject);
@@ -615,7 +499,6 @@ end;
 procedure TCompareFrame.LeftGridDrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 const
-  //PaleGreen: TColor = $66FF66;
   PaleRed: TColor = $6666FF;
   PaleBlue: TColor = $FF6666;
 var
@@ -726,10 +609,8 @@ procedure TCompareFrame.LeftGridKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if Key = VK_PRIOR then
-    //LeftGrid.Row := Max(LeftGrid.Row - FGridVisibleRows, 0);
     LeftGrid.Row := Max(LeftGrid.Row - LeftGrid.VisibleRowCount, 0);
   if Key = VK_NEXT then
-   // LeftGrid.Row := Min(LeftGrid.Row + FGridVisibleRows, LeftGrid.RowCount - 1);
     LeftGrid.Row := Min(LeftGrid.Row + LeftGrid.VisibleRowCount, LeftGrid.RowCount - 1);
   if (Key = VK_PRIOR) or (Key = VK_NEXT) then 
     Key := 0;
@@ -771,7 +652,6 @@ end;
 procedure TCompareFrame.RightGridDrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 const
-  //PaleGreen: TColor = $AAFFAA;
   PaleRed: TColor = $6666FF;
   PaleBlue: TColor = $FF6666;
 var
@@ -910,20 +790,6 @@ begin
     ScrollGrids(RightGrid.Row, etMouse); 
 end;
 
-(*procedure TCompareFrame.ScrollDrawGrid;
-begin
-  FGridVisibleTop := LeftGrid.TopRow; //  Round( LeftScrollBox.VertScrollBar.Position / LeftGrid.DefaultRowHeight);
-  FGridVisibleBottom := LeftGrid.TopRow + LeftGrid.VisibleRowCount; // FGridVisibleTop + FGridVisibleRows;
-  DrawGrid.Row := FGridVisibleTop;
-  if (FGridVisibleTop > DrawGrid.RowCount - FGridVisibleRows) then
-  begin
-    FGridVisibleTop := DrawGrid.RowCount - FGridVisibleRows;
-    FGridVisibleBottom := DrawGrid.RowCount;
-    DrawGrid.Row := DrawGrid.RowCount - 1;
-  end;
-  DrawGrid.Invalidate;
-end;*)
-
 procedure TCompareFrame.SaveGridChanges;
 begin
   if SaveLeftGridAction.Enabled then
@@ -974,12 +840,6 @@ begin
     Common.ShowErrorMessage(Format('File ''%s'' not found.', [Filename]))
 end;
 
-//procedure TCompareFrame.SetScrollBarMax;
-//begin
-  //VerticalScrollBar.Position := 0;
-  //VerticalScrollBar.Max := Max(LeftGrid.RowCount - 1, RightGrid.RowCount - 1);
-//end;
-
 procedure TCompareFrame.OpenDocumentsLeftActionExecute(Sender: TObject);
 begin
   LeftComboBox.DroppedDown := not LeftComboBox.DroppedDown;
@@ -1023,14 +883,10 @@ begin
   LeftMemo.Enabled := True;
   LeftMemo.Text := LeftGrid.Cells[1, 0];
 
-//   LeftScrollBox.VertScrollBar.Range := FSourceLeft.Count * 19;
-
   DrawGrid.Enabled := True;
   DrawGrid.RowCount := Max(LeftGrid.RowCount, RightGrid.RowCount);
   SetMaxCounts;
   DrawGrid.Invalidate;
-
-  //SetScrollBarMax;
 end;
 
 procedure TCompareFrame.OpenFileToRightGrid(Filename: string);
@@ -1069,10 +925,7 @@ begin
 
   DrawGrid.Enabled := True;
   DrawGrid.RowCount := Max(LeftGrid.RowCount, RightGrid.RowCount);
-  //SetMaxCounts;
   DrawGrid.Invalidate;
-
-  //SetScrollBarMax;
 end;
 
 procedure TCompareFrame.ClearLeftGrid;
