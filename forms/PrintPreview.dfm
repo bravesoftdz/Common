@@ -109,9 +109,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
       EdgeOuter = esNone
       Images = ImageList
       TabOrder = 0
-      ExplicitLeft = 5
-      ExplicitTop = 5
-      ExplicitHeight = 17
       object FirstToolButton: TToolButton
         Left = 0
         Top = 0
@@ -153,9 +150,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
       Caption = 'ZoomToolBar'
       Images = ImageList
       TabOrder = 1
-      ExplicitLeft = 120
-      ExplicitTop = 5
-      ExplicitHeight = 17
       object ZoomToolButton: TToolButton
         Left = 0
         Top = 0
@@ -174,9 +168,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ButtonWidth = 24
       Images = ImageList
       TabOrder = 2
-      ExplicitLeft = 182
-      ExplicitTop = 5
-      ExplicitHeight = 17
       object LineNumbersToolButton: TToolButton
         Left = 0
         Top = 0
@@ -198,9 +189,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ButtonWidth = 24
       Images = ImageList
       TabOrder = 3
-      ExplicitLeft = 249
-      ExplicitTop = 5
-      ExplicitHeight = 17
       object PrintSetupToolButton: TToolButton
         Left = 0
         Top = 0
@@ -219,7 +207,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Left = 178
     Top = 122
     Bitmap = {
-      494C01010A004C00A80011001100FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010A004C00B00011001100FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000440000003300000001002000000000003036
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

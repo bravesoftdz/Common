@@ -1111,11 +1111,6 @@ begin
   RightPanel.Width := LeftPanel.Width;
   if Width mod 2 <> 0 then
     RightPanel.Width := RightPanel.Width - 1;
- // FGridVisibleRows := LeftGrid.VisibleRowCount; // Round(LeftScrollBox.ClientHeight /
-    //  LeftGrid.DefaultRowHeight);
-  //FDrawGridVisibleRows := DrawGrid.VisibleRowCount; // Round
-   // (DrawGrid.ClientHeight / DrawGrid.DefaultRowHeight);
-  //SetGridVisibleRange(DrawGrid.Row);
   DrawGrid.Invalidate;
   Invalidate;
 end;

@@ -35,9 +35,6 @@ object DownloadURLDialog: TDownloadURLDialog
     ParentBackground = False
     ParentCtl3D = False
     TabOrder = 0
-    ExplicitLeft = 1
-    ExplicitTop = 1
-    ExplicitWidth = 362
     object InformationLabel: TLabel
       Left = 11
       Top = 19
@@ -60,9 +57,6 @@ object DownloadURLDialog: TDownloadURLDialog
       DoubleBuffered = False
       ParentDoubleBuffered = False
       TabOrder = 0
-      ExplicitLeft = 12
-      ExplicitTop = 44
-      ExplicitWidth = 341
     end
   end
   object ProgressPanel: TPanel
@@ -76,10 +70,6 @@ object DownloadURLDialog: TDownloadURLDialog
     ParentBackground = False
     ParentCtl3D = False
     TabOrder = 1
-    ExplicitLeft = 2
-    ExplicitTop = 84
-    ExplicitWidth = 362
-    ExplicitHeight = 40
     DesignSize = (
       364
       41)
@@ -98,7 +88,6 @@ object DownloadURLDialog: TDownloadURLDialog
       Default = True
       ModalResult = 2
       TabOrder = 0
-      ExplicitWidth = 67
     end
   end
   object Panel1: TPanel

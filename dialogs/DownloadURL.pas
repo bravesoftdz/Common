@@ -53,7 +53,7 @@ end;
 
 procedure TDownloadURLDialog.CancelActionExecute(Sender: TObject);
 begin
-  InformationLabel.Caption := 'Canceling...';
+  InformationLabel.Caption := CommonDataModule.ConstantMultiStringHolder.StringsByName['DownloadCancelling'].Text;
   Repaint;
   Application.ProcessMessages;
   Close;
@@ -94,7 +94,7 @@ begin
     else
       Close;
   end;
-  SetInformationText('Done.');
+  SetInformationText(CommonDataModule.ConstantMultiStringHolder.StringsByName['DownloadDone'].Text);
   Button.Action := OKAction;
 end;
 

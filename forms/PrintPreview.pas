@@ -84,7 +84,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Vcl.Themes, StyleHooks;
+  Vcl.Themes, StyleHooks, Common;
 
 var
   FPrintPreviewDialog: TPrintPreviewDialog;
@@ -112,7 +112,7 @@ begin
   SynEditPrintPreview.UpdatePreview;
   SynEditPrintPreview.FirstPage;
   if Printer.PrinterIndex >= 0 then
-    PrintAction.Hint := Format('Print (%s)|Print the document on %s',
+    PrintAction.Hint := Format(CommonDataModule.ConstantMultiStringHolder.StringsByName['PreviewPrintDocument'].Text,
       [Printer.Printers[Printer.PrinterIndex], Printer.Printers[Printer.PrinterIndex]]);
   SynEditPrintPreview.ScalePercent := 100;
   LineNumbersToolButton.Down := SynEditPrintPreview.SynEditPrint.LineNumbers;
@@ -216,7 +216,7 @@ end;
 procedure TPrintPreviewDialog.SynEditPrintPreviewPreviewPage(
   Sender: TObject; PageNumber: Integer);
 begin
-  StatusBar.Panels[1].Text := Format(' Page: %d', [SynEditPrintPreview.PageNumber]);
+  StatusBar.Panels[1].Text := Format(CommonDataModule.ConstantMultiStringHolder.StringsByName['PreviewPage'].Text, [SynEditPrintPreview.PageNumber]);
 end;
 
 procedure TPrintPreviewDialog.WordWrapActionExecute(Sender: TObject);

@@ -31,9 +31,6 @@ implementation
 uses
   Common, Vcl.Themes, StyleHooks;
 
-resourcestring
-  SAskReplaceText = 'Replace this occurence of "%s"?';
-
 var
   FConfirmReplaceDialog: TConfirmReplaceDialog;
 
@@ -61,7 +58,7 @@ procedure TConfirmReplaceDialog.PrepareShow(AEditorRect: TRect;
 var
   nW, nH: integer;
 begin
-  ConfirmationLabel.Caption := Format(SAskReplaceText, [AReplaceText]);
+  ConfirmationLabel.Caption := Format(CommonDataModule.YesOrNoMultiStringHolder.StringsByName['ReplaceOccurence'].Text, [AReplaceText]);
   nW := AEditorRect.Right - AEditorRect.Left;
   nH := AEditorRect.Bottom - AEditorRect.Top;
 

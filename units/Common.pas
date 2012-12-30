@@ -22,6 +22,7 @@ type
     ErrorMessageMultiStringHolder: TJvMultiStringHolder;
     WarningMessageMultiStringHolder: TJvMultiStringHolder;
     ConstantMultiStringHolder: TJvMultiStringHolder;
+    FileTypesMultiStringHolder: TJvMultiStringHolder;
   private
     { Private declarations }
   public
@@ -162,7 +163,7 @@ begin
   if IncludeCancel then
     Buttons := Buttons + [mbCancel];
 
-  with CreateMessageDialog('Save changes?', mtConfirmation, Buttons) do
+  with CreateMessageDialog(CommonDataModule.YesOrNoMultiStringHolder.StringsByName['SaveChanges'].Text, mtConfirmation, Buttons) do
   try
     HelpContext := 0;
     HelpFile := '';
@@ -501,7 +502,7 @@ begin
 
   if InfoSize = 0 then
   begin
-    Result := 'Version info not found.';
+    Result := CommonDataModule.ConstantMultiStringHolder.StringsByName['VersionInfoNotFound'].Text;
     Exit;
   end;
 
@@ -579,7 +580,7 @@ var
       TAction(Action).Hint := Hint;
   end;
 
-  procedure SetConstants(MultiStringHolder: TJvMultiStringHolder; Section: string);
+  procedure SetStringHolder(MultiStringHolder: TJvMultiStringHolder; Section: string);
   var
     i: Integer;
     StringName, s: string;
@@ -621,16 +622,12 @@ begin
         end;
       end;
     end;
-    { common AskYesOrNo strings }
-    SetConstants(CommonDataModule.YesOrNoMultiStringHolder, 'AskYesOrNo');
-    { common message strings }
-    SetConstants(CommonDataModule.MessageMultiStringHolder, 'Message');
-    { common error message strings }
-    SetConstants(CommonDataModule.ErrorMessageMultiStringHolder, 'ErrorMessage');
-    { common warning message strings }
-    SetConstants(CommonDataModule.WarningMessageMultiStringHolder, 'WarningMessage');
-    { common constant strings }
-    SetConstants(CommonDataModule.ConstantMultiStringHolder, 'Constant');
+    SetStringHolder(CommonDataModule.YesOrNoMultiStringHolder, 'AskYesOrNo');
+    SetStringHolder(CommonDataModule.MessageMultiStringHolder, 'Message');
+    SetStringHolder(CommonDataModule.ErrorMessageMultiStringHolder, 'ErrorMessage');
+    SetStringHolder(CommonDataModule.WarningMessageMultiStringHolder, 'WarningMessage');
+    SetStringHolder(CommonDataModule.ConstantMultiStringHolder, 'Constant');
+    SetStringHolder(CommonDataModule.FileTypesMultiStringHolder, 'FileTypes');
   finally
     BigIniFile.Free;
   end;

@@ -143,7 +143,7 @@ var
   Dir: string;
 begin
   Dir := FolderEdit.Text;
-  if Vcl.FileCtrl.SelectDirectory('Select root directory', '', Dir, [sdNewFolder, sdShowShares,
+  if Vcl.FileCtrl.SelectDirectory(CommonDataModule.ConstantMultiStringHolder.StringsByName['SelectRootDirectory'].Text, '', Dir, [sdNewFolder, sdShowShares,
     sdNewUI, sdValidateDir], Self) then
     FolderEdit.Text := Dir;
 end;
