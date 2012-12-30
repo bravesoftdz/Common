@@ -5,12 +5,27 @@ unit Common;
 interface
 
 uses
-  Vcl.Controls, Vcl.Forms, Dlg, BCStringGrid, BCComboBox, Vcl.Dialogs, Vcl.ActnMan, Vcl.ActnMenus,
-  Winapi.WinInet, System.Types;
+  System.SysUtils, System.Classes, JvStringHolder, Vcl.Controls, Vcl.Forms, Dlg, BCStringGrid,
+  BCComboBox, Vcl.Dialogs, Vcl.ActnMan, Vcl.ActnMenus, Winapi.WinInet, System.Types;
 
 const
   CHR_ENTER = Chr(13) + Chr(10);
+  CHR_DOUBLE_ENTER = CHR_ENTER + CHR_ENTER;
   CHR_TAB = Chr(9);
+
+  BONECODE_URL = 'http://www.bonecode.com';
+
+type
+  TCommonDataModule = class(TDataModule)
+    YesOrNoMultiStringHolder: TJvMultiStringHolder;
+    MessageMultiStringHolder: TJvMultiStringHolder;
+    ErrorMessageMultiStringHolder: TJvMultiStringHolder;
+    WarningMessageMultiStringHolder: TJvMultiStringHolder;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
 
 function BrowseURL(const URL: string): Boolean;
 function GetOSInfo: string;
@@ -38,12 +53,19 @@ function GetFileVersion(Path: string): string;
 function GetNextToken(Separator: char; Text: string): string;
 function RemoveTokenFromStart(Separator: char; Text: string): string;
 function GetTextAfterChar(Separator: char; Text: string): string;
+procedure CheckForUpdates(AppName: string);
+procedure ReadLanguageFile(ActionMainMenuBar: TActionMainMenuBar);
+
+var
+  CommonDataModule: TCommonDataModule;
 
 implementation
 
+{$R *.dfm}
+
 uses
-  Winapi.Windows, Winapi.ShellAPI, System.SysUtils, Vcl.StdCtrls,
-  System.Character, Vcl.ActnList, System.StrUtils;
+  Winapi.Windows, Winapi.ShellAPI, Vcl.StdCtrls, DownloadURL, Vcl.Menus,
+  System.Character, Vcl.ActnList, System.StrUtils, About, BigINI;
 
 procedure RunCommand(const Cmd, Params: String);
 var
@@ -505,6 +527,90 @@ end;
 function GetTextAfterChar(Separator: char; Text: string): string;
 begin
   Result := System.Copy(Text, Pos(Separator, Text) + 1, Length(Text));
+end;
+
+procedure CheckForUpdates(AppName: string);
+var
+  Version: string;
+begin
+  try
+    try
+      Screen.Cursor := crHourGlass;
+      Version := GetAppVersion(Format('%s/newversioncheck.php?a=%s&v=%s', [BONECODE_URL, LowerCase(AppName), AboutDialog.Version]));
+    finally
+      Screen.Cursor := crDefault;
+    end;
+
+    if (Trim(Version) <> '') and (Version <> AboutDialog.Version) then
+    begin
+      if Common.AskYesOrNo(Format('A new version %s of %s is available.%sWould you like to download it from the Internet?', [Version, AppName, CHR_DOUBLE_ENTER])) then
+        DownloadURLDialog.Open(Format('%s.zip', [AppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, AppName]))
+    end
+    else
+      Common.ShowMessage('You are using the latest version.');
+  except
+    on E: Exception do
+      Common.ShowErrorMessage(E.Message);
+  end;
+end;
+
+procedure ReadLanguageFile(ActionMainMenuBar: TActionMainMenuBar);
+var
+  i, j, k: Integer;
+  Language: string;
+  BigIniFile: TBigIniFile;
+  Action: TContainedAction;
+
+  procedure ReadMenuItem(Key: string);
+  var
+    MenuItem, ShortCut, Hint: string;
+  begin
+    if not Assigned(Action) then
+      Exit;
+    MenuItem := BigIniFile.ReadString('MainMenu', Key, '');
+    if MenuItem <> '' then
+      TAction(Action).Caption := MenuItem;
+    ShortCut := BigIniFile.ReadString('MainMenu', Format('%ss', [Key]), '');
+    if ShortCut <> '' then
+      TAction(Action).ShortCut := TextToShortCut(ShortCut);
+    Hint := BigIniFile.ReadString('MainMenu', Format('%sh', [Key]), '');
+    if Hint <> '' then
+      TAction(Action).Hint := Hint;
+  end;
+begin
+  { get selected language }
+  with TBigIniFile.Create(Common.GetINIFilename) do
+  try
+    Language := ReadString('Preferences', 'Language', '');
+  finally
+    Free;
+  end;
+
+  if Language = '' then
+    Exit;
+
+  BigIniFile := TBigIniFile.Create(Format('%sLanguages\%s.%s', [ExtractFilePath(ParamStr(0)), Language, 'lng']));
+  try
+    { main menu  }
+    for i := 0 to ActionMainMenuBar.ActionClient.Items.Count - 1 do
+    begin
+      ActionMainMenuBar.ActionClient.Items[i].Caption := BigIniFile.ReadString('MainMenu', IntToStr(i), '');
+      for j := 0 to ActionMainMenuBar.ActionClient.Items[i].Items.Count - 1 do
+      begin
+        Action := ActionMainMenuBar.ActionClient.Items[i].Items[j].Action;
+        ReadMenuItem(Format('%d:%d', [i, j]));
+        for k := 0 to ActionMainMenuBar.ActionClient.Items[i].Items[j].Items.Count - 1 do
+        begin
+          Action := ActionMainMenuBar.ActionClient.Items[i].Items[j].Items[k].Action;
+          ReadMenuItem(Format('%d:%d:%d', [i, j, k]));
+        end;
+      end;
+    end;
+    { constants }
+
+  finally
+    BigIniFile.Free;
+  end;
 end;
 
 end.
