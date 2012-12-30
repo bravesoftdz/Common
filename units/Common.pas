@@ -21,6 +21,7 @@ type
     MessageMultiStringHolder: TJvMultiStringHolder;
     ErrorMessageMultiStringHolder: TJvMultiStringHolder;
     WarningMessageMultiStringHolder: TJvMultiStringHolder;
+    ConstantMultiStringHolder: TJvMultiStringHolder;
   private
     { Private declarations }
   public
@@ -543,11 +544,11 @@ begin
 
     if (Trim(Version) <> '') and (Version <> AboutDialog.Version) then
     begin
-      if Common.AskYesOrNo(Format('A new version %s of %s is available.%sWould you like to download it from the Internet?', [Version, AppName, CHR_DOUBLE_ENTER])) then
+      if Common.AskYesOrNo(Format(CommonDataModule.YesOrNoMultiStringHolder.StringsByName['NewVersion'].Text, [Version, AppName, CHR_DOUBLE_ENTER])) then
         DownloadURLDialog.Open(Format('%s.zip', [AppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, AppName]))
     end
     else
-      Common.ShowMessage('You are using the latest version.');
+      Common.ShowMessage(CommonDataModule.MessageMultiStringHolder.StringsByName['LatestVersion'].Text);
   except
     on E: Exception do
       Common.ShowErrorMessage(E.Message);
@@ -576,6 +577,20 @@ var
     Hint := BigIniFile.ReadString('MainMenu', Format('%sh', [Key]), '');
     if Hint <> '' then
       TAction(Action).Hint := Hint;
+  end;
+
+  procedure SetConstants(MultiStringHolder: TJvMultiStringHolder; Section: string);
+  var
+    i: Integer;
+    StringName, s: string;
+  begin
+    for i := 0 to MultiStringHolder.MultipleStrings.Count - 1 do
+    begin
+      StringName := MultiStringHolder.MultipleStrings.Items[i].Name;
+      s := BigIniFile.ReadString(Section, StringName, '');
+      if s <> '' then
+        MultiStringHolder.MultipleStrings.Items[i].Strings.Text := s;
+    end;
   end;
 begin
   { get selected language }
@@ -606,11 +621,23 @@ begin
         end;
       end;
     end;
-    { constants }
-
+    { common AskYesOrNo strings }
+    SetConstants(CommonDataModule.YesOrNoMultiStringHolder, 'AskYesOrNo');
+    { common message strings }
+    SetConstants(CommonDataModule.MessageMultiStringHolder, 'Message');
+    { common error message strings }
+    SetConstants(CommonDataModule.ErrorMessageMultiStringHolder, 'ErrorMessage');
+    { common warning message strings }
+    SetConstants(CommonDataModule.WarningMessageMultiStringHolder, 'WarningMessage');
+    { common constant strings }
+    SetConstants(CommonDataModule.ConstantMultiStringHolder, 'Constant');
   finally
     BigIniFile.Free;
   end;
 end;
+
+initialization
+
+  CommonDataModule := TCommonDataModule.Create(Nil);
 
 end.

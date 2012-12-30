@@ -837,7 +837,7 @@ function TCompareFrame.CheckIfFileExists(Filename: string): Boolean;
 begin
   Result := FileExists(Filename);
   if not Result then
-    Common.ShowErrorMessage(Format('File ''%s'' not found.', [Filename]))
+    Common.ShowErrorMessage(Format(CommonDataModule.ErrorMessageMultiStringHolder.StringsByName['FileNotFound'].Text, [Filename]))
 end;
 
 procedure TCompareFrame.OpenDocumentsLeftActionExecute(Sender: TObject);
