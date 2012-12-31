@@ -35,6 +35,7 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormDestroy(Sender: TObject);
     procedure SearchForComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
   private
     function GetReplaceText: string;
     function GetSearchCaseSensitive: Boolean;
@@ -72,6 +73,13 @@ end;
 procedure TReplaceDialog.FormDestroy(Sender: TObject);
 begin
   FReplaceDialog := nil;
+end;
+
+procedure TReplaceDialog.FormShow(Sender: TObject);
+begin
+  inherited;
+  if SearchForComboBox.CanFocus then
+    SearchForComboBox.SetFocus;
 end;
 
 function TReplaceDialog.GetReplaceText: string;

@@ -34,6 +34,7 @@ uses
 procedure ReadLanguageFile(Language: string; ActionMainMenuBar: TActionMainMenuBar);
 var
   i, j, k: Integer;
+  LanguagePath: string;
   BigIniFile: TBigIniFile;
   Action: TContainedAction;
 
@@ -71,7 +72,11 @@ begin
   if Language = '' then
     Exit;
 
-  BigIniFile := TBigIniFile.Create(Format('%sLanguages\%s.%s', [ExtractFilePath(ParamStr(0)), Language, 'lng']));
+  LanguagePath := IncludeTrailingPathDelimiter(Format('%s%s', [ExtractFilePath(ParamStr(0)), 'Languages']));
+  if not DirectoryExists(LanguagePath) then
+    Exit;
+
+  BigIniFile := TBigIniFile.Create(Format('%s%s.%s', [LanguagePath, Language, 'lng']));
   try
     { main menu  }
     for i := 0 to ActionMainMenuBar.ActionClient.Items.Count - 1 do

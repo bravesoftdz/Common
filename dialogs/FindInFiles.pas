@@ -95,6 +95,8 @@ procedure TFindInFilesDialog.FormShow(Sender: TObject);
 begin
   inherited;
   SetButtons;
+  if FindWhatComboBox.CanFocus then
+    FindWhatComboBox.SetFocus;
 end;
 
 function TFindInFilesDialog.GetFindWhatText: string;

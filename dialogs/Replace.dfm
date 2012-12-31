@@ -18,6 +18,7 @@ object ReplaceDialog: TReplaceDialog
   Position = poMainFormCenter
   OnCloseQuery = FormCloseQuery
   OnDestroy = FormDestroy
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -29,9 +30,6 @@ object ReplaceDialog: TReplaceDialog
     BevelOuter = bvNone
     Padding.Left = 8
     TabOrder = 0
-    ExplicitLeft = 419
-    ExplicitTop = 0
-    ExplicitHeight = 184
     object CancelButton: TButton
       Left = 8
       Top = 62
@@ -42,8 +40,6 @@ object ReplaceDialog: TReplaceDialog
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 69
     end
     object Panel10: TPanel
       Left = 8
@@ -65,7 +61,6 @@ object ReplaceDialog: TReplaceDialog
         Enabled = False
         ModalResult = 1
         TabOrder = 0
-        ExplicitTop = 7
       end
     end
     object Panel11: TPanel
@@ -88,7 +83,6 @@ object ReplaceDialog: TReplaceDialog
         Enabled = False
         ModalResult = 6
         TabOrder = 0
-        ExplicitTop = 16
       end
     end
   end
@@ -101,7 +95,6 @@ object ReplaceDialog: TReplaceDialog
     BevelOuter = bvNone
     Padding.Right = 9
     TabOrder = 1
-    ExplicitHeight = 172
     object Panel3: TPanel
       Left = 0
       Top = 0
@@ -115,9 +108,10 @@ object ReplaceDialog: TReplaceDialog
         Left = 0
         Top = 2
         Width = 50
-        Height = 13
+        Height = 23
         Align = alLeft
         Caption = 'Search for'
+        ExplicitHeight = 13
       end
     end
     object Panel5: TPanel
@@ -133,9 +127,10 @@ object ReplaceDialog: TReplaceDialog
         Left = 0
         Top = 2
         Width = 61
-        Height = 13
+        Height = 23
         Align = alLeft
         Caption = 'Replace with'
+        ExplicitHeight = 13
       end
     end
   end
@@ -147,10 +142,6 @@ object ReplaceDialog: TReplaceDialog
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitLeft = 94
-    ExplicitTop = 5
-    ExplicitWidth = 315
-    ExplicitHeight = 144
     object Panel6: TPanel
       Left = 0
       Top = 0
@@ -159,15 +150,13 @@ object ReplaceDialog: TReplaceDialog
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitLeft = 1
-      ExplicitTop = 1
-      ExplicitWidth = 313
       object SearchForComboBox: TBCComboBox
         Left = 0
         Top = 0
         Width = 319
         Height = 21
         Align = alTop
+        ItemHeight = 13
         ReadOnly = False
         TabOrder = 0
         OnKeyUp = SearchForComboBoxKeyUp
@@ -184,15 +173,13 @@ object ReplaceDialog: TReplaceDialog
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 1
-      ExplicitTop = 26
-      ExplicitWidth = 313
       object ReplaceWithComboBox: TBCComboBox
         Left = 0
         Top = 0
         Width = 319
         Height = 21
         Align = alTop
+        ItemHeight = 13
         ReadOnly = False
         TabOrder = 0
         EditColor = clInfoBk
@@ -209,10 +196,6 @@ object ReplaceDialog: TReplaceDialog
       BevelOuter = bvNone
       Padding.Bottom = 10
       TabOrder = 2
-      ExplicitLeft = 40
-      ExplicitTop = 72
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object OptionsGroupBox: TGroupBox
         Left = 0
         Top = 0
@@ -221,8 +204,6 @@ object ReplaceDialog: TReplaceDialog
         Align = alLeft
         Caption = ' Options '
         TabOrder = 0
-        ExplicitLeft = 12
-        ExplicitTop = 13
         object CaseSensitiveCheckBox: TCheckBox
           Left = 8
           Top = 16
@@ -249,10 +230,6 @@ object ReplaceDialog: TReplaceDialog
         BevelOuter = bvNone
         Padding.Left = 8
         TabOrder = 1
-        ExplicitLeft = 196
-        ExplicitTop = 30
-        ExplicitWidth = 185
-        ExplicitHeight = 41
         object ReplaceInRadioGroup: TRadioGroup
           Left = 8
           Top = 0
@@ -265,9 +242,6 @@ object ReplaceDialog: TReplaceDialog
             ' Whole file'
             ' All open files')
           TabOrder = 0
-          ExplicitLeft = 20
-          ExplicitTop = 25
-          ExplicitWidth = 146
         end
       end
     end

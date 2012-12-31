@@ -42,6 +42,7 @@ function GetNextToken(Separator: char; Text: string): string;
 function RemoveTokenFromStart(Separator: char; Text: string): string;
 function GetTextAfterChar(Separator: char; Text: string): string;
 procedure CheckForUpdates(AppName: string);
+function GetSelectedLanguage(Default: string = ''): string;
 
 implementation
 
@@ -533,6 +534,16 @@ begin
   except
     on E: Exception do
       Common.ShowErrorMessage(E.Message);
+  end;
+end;
+
+function GetSelectedLanguage(Default: string): string;
+begin
+  with TBigIniFile.Create(Common.GetINIFilename) do
+  try
+    Result := ReadString('Preferences', 'Language', Default);
+  finally
+    Free;
   end;
 end;
 
