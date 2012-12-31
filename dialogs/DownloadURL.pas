@@ -39,7 +39,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, Vcl.Themes;
+  Common, Language, Vcl.Themes;
 
 var
   FDownloadURLDialog: TDownloadURLDialog;
@@ -53,7 +53,7 @@ end;
 
 procedure TDownloadURLDialog.CancelActionExecute(Sender: TObject);
 begin
-  InformationLabel.Caption := CommonDataModule.ConstantMultiStringHolder.StringsByName['DownloadCancelling'].Text;
+  InformationLabel.Caption := LanguageDataModule.ConstantMultiStringHolder.StringsByName['DownloadCancelling'].Text;
   Repaint;
   Application.ProcessMessages;
   Close;
@@ -94,7 +94,7 @@ begin
     else
       Close;
   end;
-  SetInformationText(CommonDataModule.ConstantMultiStringHolder.StringsByName['DownloadDone'].Text);
+  SetInformationText(LanguageDataModule.ConstantMultiStringHolder.StringsByName['DownloadDone'].Text);
   Button.Action := OKAction;
 end;
 

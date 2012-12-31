@@ -5,7 +5,7 @@ unit Common;
 interface
 
 uses
-  System.SysUtils, System.Classes, JvStringHolder, Vcl.Controls, Vcl.Forms, Dlg, BCStringGrid,
+  System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Dlg, BCStringGrid,
   BCComboBox, Vcl.Dialogs, Vcl.ActnMan, Vcl.ActnMenus, Winapi.WinInet, System.Types;
 
 const
@@ -14,20 +14,6 @@ const
   CHR_TAB = Chr(9);
 
   BONECODE_URL = 'http://www.bonecode.com';
-
-type
-  TCommonDataModule = class(TDataModule)
-    YesOrNoMultiStringHolder: TJvMultiStringHolder;
-    MessageMultiStringHolder: TJvMultiStringHolder;
-    ErrorMessageMultiStringHolder: TJvMultiStringHolder;
-    WarningMessageMultiStringHolder: TJvMultiStringHolder;
-    ConstantMultiStringHolder: TJvMultiStringHolder;
-    FileTypesMultiStringHolder: TJvMultiStringHolder;
-  private
-    { Private declarations }
-  public
-    { Public declarations }
-  end;
 
 function BrowseURL(const URL: string): Boolean;
 function GetOSInfo: string;
@@ -56,18 +42,12 @@ function GetNextToken(Separator: char; Text: string): string;
 function RemoveTokenFromStart(Separator: char; Text: string): string;
 function GetTextAfterChar(Separator: char; Text: string): string;
 procedure CheckForUpdates(AppName: string);
-procedure ReadLanguageFile(ActionMainMenuBar: TActionMainMenuBar);
-
-var
-  CommonDataModule: TCommonDataModule;
 
 implementation
 
-{$R *.dfm}
-
 uses
   Winapi.Windows, Winapi.ShellAPI, Vcl.StdCtrls, DownloadURL, Vcl.Menus,
-  System.Character, Vcl.ActnList, System.StrUtils, About, BigINI;
+  System.Character, Vcl.ActnList, System.StrUtils, About, BigINI, Language;
 
 procedure RunCommand(const Cmd, Params: String);
 var
@@ -163,7 +143,7 @@ begin
   if IncludeCancel then
     Buttons := Buttons + [mbCancel];
 
-  with CreateMessageDialog(CommonDataModule.YesOrNoMultiStringHolder.StringsByName['SaveChanges'].Text, mtConfirmation, Buttons) do
+  with CreateMessageDialog(LanguageDataModule.YesOrNoMultiStringHolder.StringsByName['SaveChanges'].Text, mtConfirmation, Buttons) do
   try
     HelpContext := 0;
     HelpFile := '';
@@ -502,7 +482,7 @@ begin
 
   if InfoSize = 0 then
   begin
-    Result := CommonDataModule.ConstantMultiStringHolder.StringsByName['VersionInfoNotFound'].Text;
+    Result := LanguageDataModule.ConstantMultiStringHolder.StringsByName['VersionInfoNotFound'].Text;
     Exit;
   end;
 
@@ -545,96 +525,15 @@ begin
 
     if (Trim(Version) <> '') and (Version <> AboutDialog.Version) then
     begin
-      if Common.AskYesOrNo(Format(CommonDataModule.YesOrNoMultiStringHolder.StringsByName['NewVersion'].Text, [Version, AppName, CHR_DOUBLE_ENTER])) then
+      if Common.AskYesOrNo(Format(LanguageDataModule.YesOrNoMultiStringHolder.StringsByName['NewVersion'].Text, [Version, AppName, CHR_DOUBLE_ENTER])) then
         DownloadURLDialog.Open(Format('%s.zip', [AppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, AppName]))
     end
     else
-      Common.ShowMessage(CommonDataModule.MessageMultiStringHolder.StringsByName['LatestVersion'].Text);
+      Common.ShowMessage(LanguageDataModule.MessageMultiStringHolder.StringsByName['LatestVersion'].Text);
   except
     on E: Exception do
       Common.ShowErrorMessage(E.Message);
   end;
 end;
-
-procedure ReadLanguageFile(ActionMainMenuBar: TActionMainMenuBar);
-var
-  i, j, k: Integer;
-  Language: string;
-  BigIniFile: TBigIniFile;
-  Action: TContainedAction;
-
-  procedure ReadMenuItem(Key: string);
-  var
-    MenuItem, ShortCut, Hint: string;
-  begin
-    if not Assigned(Action) then
-      Exit;
-    MenuItem := BigIniFile.ReadString('MainMenu', Key, '');
-    if MenuItem <> '' then
-      TAction(Action).Caption := MenuItem;
-    ShortCut := BigIniFile.ReadString('MainMenu', Format('%ss', [Key]), '');
-    if ShortCut <> '' then
-      TAction(Action).ShortCut := TextToShortCut(ShortCut);
-    Hint := BigIniFile.ReadString('MainMenu', Format('%sh', [Key]), '');
-    if Hint <> '' then
-      TAction(Action).Hint := Hint;
-  end;
-
-  procedure SetStringHolder(MultiStringHolder: TJvMultiStringHolder; Section: string);
-  var
-    i: Integer;
-    StringName, s: string;
-  begin
-    for i := 0 to MultiStringHolder.MultipleStrings.Count - 1 do
-    begin
-      StringName := MultiStringHolder.MultipleStrings.Items[i].Name;
-      s := BigIniFile.ReadString(Section, StringName, '');
-      if s <> '' then
-        MultiStringHolder.MultipleStrings.Items[i].Strings.Text := s;
-    end;
-  end;
-begin
-  { get selected language }
-  with TBigIniFile.Create(Common.GetINIFilename) do
-  try
-    Language := ReadString('Preferences', 'Language', '');
-  finally
-    Free;
-  end;
-
-  if Language = '' then
-    Exit;
-
-  BigIniFile := TBigIniFile.Create(Format('%sLanguages\%s.%s', [ExtractFilePath(ParamStr(0)), Language, 'lng']));
-  try
-    { main menu  }
-    for i := 0 to ActionMainMenuBar.ActionClient.Items.Count - 1 do
-    begin
-      ActionMainMenuBar.ActionClient.Items[i].Caption := BigIniFile.ReadString('MainMenu', IntToStr(i), '');
-      for j := 0 to ActionMainMenuBar.ActionClient.Items[i].Items.Count - 1 do
-      begin
-        Action := ActionMainMenuBar.ActionClient.Items[i].Items[j].Action;
-        ReadMenuItem(Format('%d:%d', [i, j]));
-        for k := 0 to ActionMainMenuBar.ActionClient.Items[i].Items[j].Items.Count - 1 do
-        begin
-          Action := ActionMainMenuBar.ActionClient.Items[i].Items[j].Items[k].Action;
-          ReadMenuItem(Format('%d:%d:%d', [i, j, k]));
-        end;
-      end;
-    end;
-    SetStringHolder(CommonDataModule.YesOrNoMultiStringHolder, 'AskYesOrNo');
-    SetStringHolder(CommonDataModule.MessageMultiStringHolder, 'Message');
-    SetStringHolder(CommonDataModule.ErrorMessageMultiStringHolder, 'ErrorMessage');
-    SetStringHolder(CommonDataModule.WarningMessageMultiStringHolder, 'WarningMessage');
-    SetStringHolder(CommonDataModule.ConstantMultiStringHolder, 'Constant');
-    SetStringHolder(CommonDataModule.FileTypesMultiStringHolder, 'FileTypes');
-  finally
-    BigIniFile.Free;
-  end;
-end;
-
-initialization
-
-  CommonDataModule := TCommonDataModule.Create(Nil);
 
 end.

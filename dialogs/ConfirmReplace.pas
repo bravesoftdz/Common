@@ -29,7 +29,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Common, Vcl.Themes, StyleHooks;
+  Common, Vcl.Themes, StyleHooks, Language;
 
 var
   FConfirmReplaceDialog: TConfirmReplaceDialog;
@@ -58,7 +58,7 @@ procedure TConfirmReplaceDialog.PrepareShow(AEditorRect: TRect;
 var
   nW, nH: integer;
 begin
-  ConfirmationLabel.Caption := Format(CommonDataModule.YesOrNoMultiStringHolder.StringsByName['ReplaceOccurence'].Text, [AReplaceText]);
+  ConfirmationLabel.Caption := Format(LanguageDataModule.YesOrNoMultiStringHolder.StringsByName['ReplaceOccurence'].Text, [AReplaceText]);
   nW := AEditorRect.Right - AEditorRect.Left;
   nH := AEditorRect.Bottom - AEditorRect.Top;
 

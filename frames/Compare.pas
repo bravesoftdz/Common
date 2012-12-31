@@ -162,7 +162,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, Hash, System.Math, System.Types, Vcl.Themes;
+  Common, Hash, System.Math, System.Types, Vcl.Themes, Language;
 
 procedure TCompareFrame.LeftScrollBoxWindowProc(var Message: TMessage);
 begin
@@ -837,7 +837,7 @@ function TCompareFrame.CheckIfFileExists(Filename: string): Boolean;
 begin
   Result := FileExists(Filename);
   if not Result then
-    Common.ShowErrorMessage(Format(CommonDataModule.ErrorMessageMultiStringHolder.StringsByName['FileNotFound'].Text, [Filename]))
+    Common.ShowErrorMessage(Format(LanguageDataModule.ErrorMessageMultiStringHolder.StringsByName['FileNotFound'].Text, [Filename]))
 end;
 
 procedure TCompareFrame.OpenDocumentsLeftActionExecute(Sender: TObject);

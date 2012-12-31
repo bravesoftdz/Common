@@ -69,7 +69,7 @@ implementation
 uses
   Common, StyleHooks,
   {$WARNINGS OFF}
-  Vcl.FileCtrl; { warning: FileCtrl is specific to a platform }
+  Vcl.FileCtrl, Language; { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}
 
 var
@@ -143,7 +143,7 @@ var
   Dir: string;
 begin
   Dir := FolderEdit.Text;
-  if Vcl.FileCtrl.SelectDirectory(CommonDataModule.ConstantMultiStringHolder.StringsByName['SelectRootDirectory'].Text, '', Dir, [sdNewFolder, sdShowShares,
+  if Vcl.FileCtrl.SelectDirectory(LanguageDataModule.ConstantMultiStringHolder.StringsByName['SelectRootDirectory'].Text, '', Dir, [sdNewFolder, sdShowShares,
     sdNewUI, sdValidateDir], Self) then
     FolderEdit.Text := Dir;
 end;
