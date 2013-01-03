@@ -592,7 +592,7 @@ begin
       begin
         s := ReadString(Form.Name, TGroupBox(Form.Components[i]).Name, '');
         if s <> '' then
-          TGroupBox(Form.Components[i]).Caption := s
+          TGroupBox(Form.Components[i]).Caption := Format(' %s ', [s])
       end
       else
       if Form.Components[i] is TAction then
