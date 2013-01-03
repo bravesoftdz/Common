@@ -5,10 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ActnList, Vcl.StdCtrls, Vcl.ComCtrls, JvExComCtrls,
-  JvProgressBar, Vcl.ExtCtrls, Vcl.ExtActns;
+  JvProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, Dlg;
 
 type
-  TDownloadURLDialog = class(TForm)
+  TDownloadURLDialog = class(TDialog)
     TopPanel: TPanel;
     InformationLabel: TLabel;
     ProgressBar: TJvProgressBar;

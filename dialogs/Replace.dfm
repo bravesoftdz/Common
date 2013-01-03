@@ -21,7 +21,7 @@ object ReplaceDialog: TReplaceDialog
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
+  object RightPanel: TPanel
     Left = 407
     Top = 12
     Width = 83
@@ -86,7 +86,7 @@ object ReplaceDialog: TReplaceDialog
       end
     end
   end
-  object Panel2: TPanel
+  object LeftPanel: TPanel
     Left = 12
     Top = 12
     Width = 76
@@ -199,7 +199,7 @@ object ReplaceDialog: TReplaceDialog
       object OptionsGroupBox: TGroupBox
         Left = 0
         Top = 0
-        Width = 145
+        Width = 155
         Height = 65
         Align = alLeft
         Caption = ' Options '
@@ -222,9 +222,9 @@ object ReplaceDialog: TReplaceDialog
         end
       end
       object Panel9: TPanel
-        Left = 145
+        Left = 155
         Top = 0
-        Width = 174
+        Width = 164
         Height = 65
         Align = alClient
         BevelOuter = bvNone
@@ -233,7 +233,7 @@ object ReplaceDialog: TReplaceDialog
         object ReplaceInRadioGroup: TRadioGroup
           Left = 8
           Top = 0
-          Width = 166
+          Width = 156
           Height = 65
           Align = alClient
           Caption = ' Replace in '

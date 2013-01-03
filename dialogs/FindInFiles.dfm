@@ -83,10 +83,10 @@ object FindInFilesDialog: TFindInFilesDialog
       end
     end
   end
-  object Panel1: TPanel
+  object LeftPanel: TPanel
     Left = 12
     Top = 12
-    Width = 62
+    Width = 59
     Height = 96
     Margins.Left = 2
     Margins.Top = 2
@@ -99,7 +99,7 @@ object FindInFilesDialog: TFindInFilesDialog
     object Panel2: TPanel
       Left = 0
       Top = 0
-      Width = 53
+      Width = 50
       Height = 24
       Margins.Left = 2
       Margins.Top = 2
@@ -122,13 +122,14 @@ object FindInFilesDialog: TFindInFilesDialog
     object Panel3: TPanel
       Left = 0
       Top = 24
-      Width = 53
+      Width = 50
       Height = 25
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 2
       Margins.Bottom = 2
       Align = alTop
+      AutoSize = True
       BevelOuter = bvNone
       Padding.Top = 2
       TabOrder = 1
@@ -145,7 +146,7 @@ object FindInFilesDialog: TFindInFilesDialog
     object Panel4: TPanel
       Left = 0
       Top = 49
-      Width = 53
+      Width = 50
       Height = 24
       Margins.Left = 2
       Margins.Top = 2
@@ -167,9 +168,9 @@ object FindInFilesDialog: TFindInFilesDialog
     end
   end
   object Panel5: TPanel
-    Left = 74
+    Left = 71
     Top = 12
-    Width = 276
+    Width = 279
     Height = 96
     Margins.Left = 2
     Margins.Top = 2
@@ -181,7 +182,7 @@ object FindInFilesDialog: TFindInFilesDialog
     object Panel6: TPanel
       Left = 0
       Top = 0
-      Width = 276
+      Width = 279
       Height = 24
       Margins.Left = 2
       Margins.Top = 2
@@ -193,7 +194,7 @@ object FindInFilesDialog: TFindInFilesDialog
       object FindWhatComboBox: TBCComboBox
         Left = 0
         Top = 0
-        Width = 276
+        Width = 279
         Height = 21
         Align = alTop
         ItemHeight = 13
@@ -208,7 +209,7 @@ object FindInFilesDialog: TFindInFilesDialog
     object Panel7: TPanel
       Left = 0
       Top = 24
-      Width = 276
+      Width = 279
       Height = 24
       Margins.Left = 2
       Margins.Top = 2
@@ -220,7 +221,7 @@ object FindInFilesDialog: TFindInFilesDialog
       object FileTypeComboBox: TBCComboBox
         Left = 0
         Top = 0
-        Width = 276
+        Width = 279
         Height = 21
         Align = alTop
         DropDownCount = 20
@@ -236,7 +237,7 @@ object FindInFilesDialog: TFindInFilesDialog
     object Panel8: TPanel
       Left = 0
       Top = 48
-      Width = 276
+      Width = 279
       Height = 21
       Margins.Left = 2
       Margins.Top = 2
@@ -247,7 +248,7 @@ object FindInFilesDialog: TFindInFilesDialog
       BevelOuter = bvNone
       TabOrder = 2
       object FolderBitBtn: TBitBtn
-        Left = 256
+        Left = 259
         Top = 0
         Width = 20
         Height = 21
@@ -285,7 +286,7 @@ object FindInFilesDialog: TFindInFilesDialog
       object Panel12: TPanel
         Left = 0
         Top = 0
-        Width = 256
+        Width = 259
         Height = 21
         Margins.Left = 2
         Margins.Top = 2
@@ -299,7 +300,7 @@ object FindInFilesDialog: TFindInFilesDialog
         object FolderEdit: TBCEdit
           Left = 0
           Top = 0
-          Width = 253
+          Width = 256
           Height = 21
           Hint = 'Folder'
           Align = alTop
@@ -315,23 +316,32 @@ object FindInFilesDialog: TFindInFilesDialog
     object Panel9: TPanel
       Left = 0
       Top = 69
-      Width = 276
+      Width = 279
       Height = 21
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 2
       Margins.Bottom = 2
       Align = alTop
-      AutoSize = True
       BevelOuter = bvNone
       Padding.Top = 4
       TabOrder = 3
+      object Label1: TLabel
+        Left = 18
+        Top = 4
+        Width = 75
+        Height = 17
+        Align = alLeft
+        Caption = 'C&ase sensitivity'
+        Layout = tlCenter
+        ExplicitHeight = 13
+      end
       object CaseSensitiveCheckBox: TCheckBox
         Left = 0
         Top = 4
-        Width = 109
+        Width = 18
         Height = 17
-        Caption = ' C&ase sensitivity'
+        Align = alLeft
         TabOrder = 0
       end
       object LookInSubfoldersCheckBox: TCheckBox
@@ -339,10 +349,20 @@ object FindInFilesDialog: TFindInFilesDialog
         Top = 4
         Width = 120
         Height = 17
+        Align = alLeft
         Caption = ' &Look in subfolders'
         Checked = True
         State = cbChecked
         TabOrder = 1
+      end
+      object TPanel
+        Left = 93
+        Top = 4
+        Width = 8
+        Height = 17
+        Align = alLeft
+        BevelOuter = bvNone
+        TabOrder = 2
       end
     end
   end

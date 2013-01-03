@@ -41,7 +41,6 @@ begin
   Result := FConfirmReplaceDialog;
   Result.Width := Result.YesButton.Width * 4 + 40;
   StyleHooks.SetStyledFormSize(Result);
-  Result.UpdateLanguage;
 end;
 
 procedure TConfirmReplaceDialog.FormCreate(Sender: TObject);

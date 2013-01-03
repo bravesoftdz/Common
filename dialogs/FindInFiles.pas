@@ -12,7 +12,7 @@ type
     ButtonPanel: TPanel;
     ActionList: TActionList;
     FolderButtonClickAction: TAction;
-    Panel1: TPanel;
+    LeftPanel: TPanel;
     Panel2: TPanel;
     FindWhatLabel: TLabel;
     Panel3: TPanel;
@@ -35,6 +35,7 @@ type
     FolderBitBtn: TBitBtn;
     Panel12: TPanel;
     FolderEdit: TBCEdit;
+    Label1: TLabel;
     procedure FormDestroy(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FindWhatComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -67,7 +68,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, StyleHooks,
+  Common, StyleHooks, System.Math,
   {$WARNINGS OFF}
   Vcl.FileCtrl, Language; { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}
@@ -94,6 +95,7 @@ end;
 procedure TFindInFilesDialog.FormShow(Sender: TObject);
 begin
   inherited;
+  LeftPanel.Width := Max(Max(FindWhatLabel.Width + 12, FileTypeLabel.Width + 12), FolderLabel.Width + 12);
   SetButtons;
   if FindWhatComboBox.CanFocus then
     FindWhatComboBox.SetFocus;

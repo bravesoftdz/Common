@@ -123,6 +123,8 @@ begin
 
   StatusBar.Font.Name := 'Tahoma'; // IDE is losing this for some reason... :/
   StatusBar.Font.Size := 8;
+
+  Common.UpdateLanguage(Self);
 end;
 
 procedure TPrintPreviewDialog.FirstActionExecute(Sender: TObject);

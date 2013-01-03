@@ -10,9 +10,9 @@ uses
 
 type
   TReplaceDialog = class(TDialog)
-    Panel1: TPanel;
+    RightPanel: TPanel;
     CancelButton: TButton;
-    Panel2: TPanel;
+    LeftPanel: TPanel;
     Panel3: TPanel;
     SearchForLabel: TLabel;
     Panel5: TPanel;
@@ -57,7 +57,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Common, Lib, Vcl.Themes, StyleHooks;
+  Common, Lib, Vcl.Themes, StyleHooks, System.Math;
 
 var
   FReplaceDialog: TReplaceDialog;
@@ -78,6 +78,8 @@ end;
 procedure TReplaceDialog.FormShow(Sender: TObject);
 begin
   inherited;
+  LeftPanel.Width := Max(SearchForLabel.Width + 12, ReplaceWithLabel.Width + 12);
+  RightPanel.Width := Max(Max(Length(FindButton.Caption), Length(ReplaceAllButton.Caption)), Length(CancelButton.Caption)) * 7;
   if SearchForComboBox.CanFocus then
     SearchForComboBox.SetFocus;
 end;
