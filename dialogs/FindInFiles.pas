@@ -35,7 +35,7 @@ type
     FolderBitBtn: TBitBtn;
     Panel12: TPanel;
     FolderEdit: TBCEdit;
-    Label1: TLabel;
+    CaseSensitiveLabel: TLabel;
     procedure FormDestroy(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FindWhatComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);

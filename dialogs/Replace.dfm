@@ -209,7 +209,7 @@ object ReplaceDialog: TReplaceDialog
           Top = 16
           Width = 120
           Height = 17
-          Caption = ' Case sensitivity'
+          Caption = ' Case Sensitive'
           TabOrder = 0
         end
         object WholeWordsCheckBox: TCheckBox
@@ -217,7 +217,7 @@ object ReplaceDialog: TReplaceDialog
           Top = 39
           Width = 120
           Height = 17
-          Caption = ' Whole words only'
+          Caption = ' Whole Words Only'
           TabOrder = 1
         end
       end
@@ -239,8 +239,8 @@ object ReplaceDialog: TReplaceDialog
           Caption = ' Replace in '
           ItemIndex = 0
           Items.Strings = (
-            ' Whole file'
-            ' All open files')
+            ' Whole File'
+            ' All Open Files')
           TabOrder = 0
         end
       end

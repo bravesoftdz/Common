@@ -326,13 +326,13 @@ object FindInFilesDialog: TFindInFilesDialog
       BevelOuter = bvNone
       Padding.Top = 4
       TabOrder = 3
-      object Label1: TLabel
+      object CaseSensitiveLabel: TLabel
         Left = 18
         Top = 4
-        Width = 75
+        Width = 69
         Height = 17
         Align = alLeft
-        Caption = 'C&ase sensitivity'
+        Caption = 'C&ase sensitive'
         Layout = tlCenter
         ExplicitHeight = 13
       end
@@ -345,7 +345,7 @@ object FindInFilesDialog: TFindInFilesDialog
         TabOrder = 0
       end
       object LookInSubfoldersCheckBox: TCheckBox
-        Left = 101
+        Left = 95
         Top = 4
         Width = 120
         Height = 17
@@ -354,15 +354,17 @@ object FindInFilesDialog: TFindInFilesDialog
         Checked = True
         State = cbChecked
         TabOrder = 1
+        ExplicitLeft = 101
       end
       object TPanel
-        Left = 93
+        Left = 87
         Top = 4
         Width = 8
         Height = 17
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 2
+        ExplicitLeft = 93
       end
     end
   end
