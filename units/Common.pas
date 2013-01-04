@@ -600,7 +600,7 @@ begin
       if Form.Components[i] is TAction then
       begin
         s := ReadString(Form.Name, TAction(Form.Components[i]).Name, '');
-        if s <> '' then
+        if (TAction(Form.Components[i]).Caption <> '') and (s <> '') then
           TAction(Form.Components[i]).Caption := s;
         s := ReadString(Form.Name, Format('%s:s', [TAction(Form.Components[i]).Name]), '');
         if s <> '' then
@@ -684,7 +684,7 @@ begin
       if Frame.Components[i] is TAction then
       begin
         s := ReadString(Frame.Name, TAction(Frame.Components[i]).Name, '');
-        if s <> '' then
+        if (TAction(Frame.Components[i]).Caption <> '') and (s <> '') then
           TAction(Frame.Components[i]).Caption := s;
         s := ReadString(Frame.Name, Format('%s:s', [TAction(Frame.Components[i]).Name]), '');
         if s <> '' then
