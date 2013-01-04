@@ -77,29 +77,9 @@ object LanguageDataModule: TLanguageDataModule
   object ConstantMultiStringHolder: TJvMultiStringHolder
     MultipleStrings = <
       item
-        Name = 'SearchInProgress'
+        Name = 'AnyFile'
         Strings.Strings = (
-          'Search in progress...')
-      end
-      item
-        Name = 'SearchFor'
-        Strings.Strings = (
-          'Search for '#39#39'%s'#39#39)
-      end
-      item
-        Name = 'Second'
-        Strings.Strings = (
-          's')
-      end
-      item
-        Name = 'Minute'
-        Strings.Strings = (
-          'min')
-      end
-      item
-        Name = 'OccurencesFound'
-        Strings.Strings = (
-          '%d occurence(s) have been found in %s')
+          'Any File')
       end
       item
         Name = 'DownloadCancelling'
@@ -112,49 +92,19 @@ object LanguageDataModule: TLanguageDataModule
           'Done.')
       end
       item
-        Name = 'SelectRootDirectory'
-        Strings.Strings = (
-          'Select Root Directory')
-      end
-      item
-        Name = 'PreviewPrintDocument'
-        Strings.Strings = (
-          'Print (%s)|Print the document on %s')
-      end
-      item
-        Name = 'PreviewPage'
-        Strings.Strings = (
-          ' Page: %d')
-      end
-      item
-        Name = 'VersionInfoNotFound'
-        Strings.Strings = (
-          'Version info not found.')
-      end
-      item
-        Name = 'OpenDirectory'
-        Strings.Strings = (
-          'Open Directory')
-      end
-      item
         Name = 'EditDirectory'
         Strings.Strings = (
           'Edit Directory')
       end
       item
-        Name = 'PreviewDocumentPage'
+        Name = 'InvalidName'
         Strings.Strings = (
-          'Page: $PAGENUM$ of $PAGECOUNT$')
+          'Error - Invalid Name:')
       end
       item
-        Name = 'PrintedBy'
+        Name = 'Minute'
         Strings.Strings = (
-          'Printed by %s')
-      end
-      item
-        Name = 'AnyFile'
-        Strings.Strings = (
-          'Any File')
+          'min')
       end
       item
         Name = 'Modified'
@@ -162,9 +112,44 @@ object LanguageDataModule: TLanguageDataModule
           'Modified')
       end
       item
+        Name = 'OccurencesFound'
+        Strings.Strings = (
+          '%d occurence(s) have been found in %s')
+      end
+      item
         Name = 'Open'
         Strings.Strings = (
           'Open')
+      end
+      item
+        Name = 'OpenDirectory'
+        Strings.Strings = (
+          'Open Directory')
+      end
+      item
+        Name = 'PreviewDocumentPage'
+        Strings.Strings = (
+          'Page: $PAGENUM$ of $PAGECOUNT$')
+      end
+      item
+        Name = 'PreviewPage'
+        Strings.Strings = (
+          ' Page: %d')
+      end
+      item
+        Name = 'PreviewPrintDocument'
+        Strings.Strings = (
+          'Print (%s)|Print the document on %s')
+      end
+      item
+        Name = 'PrintedBy'
+        Strings.Strings = (
+          'Printed by %s')
+      end
+      item
+        Name = 'Rename'
+        Strings.Strings = (
+          'Do you want to rename %s to %s?')
       end
       item
         Name = 'SaveAs'
@@ -172,9 +157,29 @@ object LanguageDataModule: TLanguageDataModule
           'Save As')
       end
       item
-        Name = 'InvalidName'
+        Name = 'SearchFor'
         Strings.Strings = (
-          'Error - Invalid Name:')
+          'Search for '#39#39'%s'#39#39)
+      end
+      item
+        Name = 'SearchInProgress'
+        Strings.Strings = (
+          'Search in progress...')
+      end
+      item
+        Name = 'Second'
+        Strings.Strings = (
+          's')
+      end
+      item
+        Name = 'SelectRootDirectory'
+        Strings.Strings = (
+          'Select Root Directory')
+      end
+      item
+        Name = 'VersionInfoNotFound'
+        Strings.Strings = (
+          'Version info not found.')
       end>
     Left = 88
     Top = 254

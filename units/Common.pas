@@ -44,7 +44,7 @@ function GetTextAfterChar(Separator: char; Text: string): string;
 procedure CheckForUpdates(AppName: string);
 function GetSelectedLanguage(Default: string = ''): string;
 procedure UpdateLanguage(Form: TForm; SelectedLanguage: string = ''); overload;
-procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string); overload;
+procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string = ''); overload;
 
 implementation
 
@@ -646,6 +646,10 @@ var
   s: string;
   LanguagePath: string;
 begin
+  if SelectedLanguage = '' then
+    SelectedLanguage := Common.GetSelectedLanguage;
+  if SelectedLanguage = '' then
+    Exit;
   LanguagePath := IncludeTrailingPathDelimiter(Format('%s%s', [ExtractFilePath(ParamStr(0)), 'Languages']));
   if not DirectoryExists(LanguagePath) then
     Exit;
