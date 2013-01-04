@@ -3,7 +3,7 @@ unit Language;
 interface
 
 uses
-  System.SysUtils, System.Classes, JvStringHolder, Vcl.ActnMenus;
+  System.SysUtils, System.Classes, JvStringHolder;
 
 type
   TLanguageDataModule = class(TDataModule)
@@ -19,7 +19,7 @@ type
     { Public declarations }
   end;
 
-procedure ReadLanguageFile(Language: string; ActionMainMenuBar: TActionMainMenuBar);
+procedure ReadLanguageFile(Language: string);
 
 var
   LanguageDataModule: TLanguageDataModule;
@@ -31,29 +31,10 @@ implementation
 uses
   Vcl.ActnList, Vcl.Menus, BigINI;
 
-procedure ReadLanguageFile(Language: string; ActionMainMenuBar: TActionMainMenuBar);
+procedure ReadLanguageFile(Language: string);
 var
-  i, j, k: Integer;
   LanguagePath: string;
   BigIniFile: TBigIniFile;
-  Action: TContainedAction;
-
-  procedure ReadMenuItem(Key: string);
-  var
-    MenuItem, ShortCut, Hint: string;
-  begin
-    if not Assigned(Action) then
-      Exit;
-    MenuItem := BigIniFile.ReadString('MainMenu', Key, '');
-    if MenuItem <> '' then
-      TAction(Action).Caption := MenuItem;
-    ShortCut := BigIniFile.ReadString('MainMenu', Format('%ss', [Key]), '');
-    if ShortCut <> '' then
-      TAction(Action).ShortCut := TextToShortCut(ShortCut);
-    Hint := BigIniFile.ReadString('MainMenu', Format('%sh', [Key]), '');
-    if Hint <> '' then
-      TAction(Action).Hint := Hint;
-  end;
 
   procedure SetStringHolder(MultiStringHolder: TJvMultiStringHolder; Section: string);
   var
@@ -78,21 +59,6 @@ begin
 
   BigIniFile := TBigIniFile.Create(Format('%s%s.%s', [LanguagePath, Language, 'lng']));
   try
-    { main menu  }
-    for i := 0 to ActionMainMenuBar.ActionClient.Items.Count - 1 do
-    begin
-      ActionMainMenuBar.ActionClient.Items[i].Caption := BigIniFile.ReadString('MainMenu', IntToStr(i), '');
-      for j := 0 to ActionMainMenuBar.ActionClient.Items[i].Items.Count - 1 do
-      begin
-        Action := ActionMainMenuBar.ActionClient.Items[i].Items[j].Action;
-        ReadMenuItem(Format('%d:%d', [i, j]));
-        for k := 0 to ActionMainMenuBar.ActionClient.Items[i].Items[j].Items.Count - 1 do
-        begin
-          Action := ActionMainMenuBar.ActionClient.Items[i].Items[j].Items[k].Action;
-          ReadMenuItem(Format('%d:%d:%d', [i, j, k]));
-        end;
-      end;
-    end;
     SetStringHolder(LanguageDataModule.YesOrNoMultiStringHolder, 'AskYesOrNo');
     SetStringHolder(LanguageDataModule.MessageMultiStringHolder, 'Message');
     SetStringHolder(LanguageDataModule.ErrorMessageMultiStringHolder, 'ErrorMessage');

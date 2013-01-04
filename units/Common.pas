@@ -43,7 +43,8 @@ function RemoveTokenFromStart(Separator: char; Text: string): string;
 function GetTextAfterChar(Separator: char; Text: string): string;
 procedure CheckForUpdates(AppName: string);
 function GetSelectedLanguage(Default: string = ''): string;
-procedure UpdateLanguage(Form: TForm);
+procedure UpdateLanguage(Form: TForm; SelectedLanguage: string = ''); overload;
+procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string); overload;
 
 implementation
 
@@ -548,13 +549,14 @@ begin
   end;
 end;
 
-procedure UpdateLanguage(Form: TForm);
+procedure UpdateLanguage(Form: TForm; SelectedLanguage: string);
 var
   i, j: Integer;
   s: string;
-  SelectedLanguage, LanguagePath: string;
+  LanguagePath: string;
 begin
-  SelectedLanguage := Common.GetSelectedLanguage;
+  if SelectedLanguage = '' then
+    SelectedLanguage := Common.GetSelectedLanguage;
   if SelectedLanguage = '' then
     Exit;
   LanguagePath := IncludeTrailingPathDelimiter(Format('%s%s', [ExtractFilePath(ParamStr(0)), 'Languages']));
@@ -599,6 +601,12 @@ begin
       begin
         s := ReadString(Form.Name, TAction(Form.Components[i]).Name, '');
         if s <> '' then
+          TAction(Form.Components[i]).Caption := s;
+        s := ReadString(Form.Name, Format('%s:s', [TAction(Form.Components[i]).Name]), '');
+        if s <> '' then
+          TAction(Form.Components[i]).ShortCut := TextToShortCut(s);
+        s := ReadString(Form.Name, Format('%s:h', [TAction(Form.Components[i]).Name]), '');
+        if s <> '' then
           TAction(Form.Components[i]).Hint := s
       end
       else
@@ -631,5 +639,90 @@ begin
     Free;
   end;
 end;
+
+procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string);
+var
+  i, j: Integer;
+  s: string;
+  LanguagePath: string;
+begin
+  LanguagePath := IncludeTrailingPathDelimiter(Format('%s%s', [ExtractFilePath(ParamStr(0)), 'Languages']));
+  if not DirectoryExists(LanguagePath) then
+    Exit;
+
+  with TBigIniFile.Create(Format('%s%s.%s', [LanguagePath, SelectedLanguage, 'lng'])) do
+  try
+    for i := 0 to Frame.ComponentCount - 1 do
+      if Frame.Components[i] is TButton then
+      begin
+        s := ReadString(Frame.Name, TButton(Frame.Components[i]).Name, '');
+        if s <> '' then
+          TButton(Frame.Components[i]).Caption := s
+      end
+      else
+      if Frame.Components[i] is TLabel then
+      begin
+        s := ReadString(Frame.Name, TLabel(Frame.Components[i]).Name, '');
+        if s <> '' then
+          TLabel(Frame.Components[i]).Caption := s
+      end
+      else
+      if Frame.Components[i] is TCheckBox then
+      begin
+        s := ReadString(Frame.Name, TCheckBox(Frame.Components[i]).Name, '');
+        if s <> '' then
+          TCheckBox(Frame.Components[i]).Caption := Format(' %s', [s]);
+      end
+      else
+      if Frame.Components[i] is TGroupBox then
+      begin
+        s := ReadString(Frame.Name, TGroupBox(Frame.Components[i]).Name, '');
+        if s <> '' then
+          TGroupBox(Frame.Components[i]).Caption := Format(' %s ', [s])
+      end
+      else
+      if Frame.Components[i] is TAction then
+      begin
+        s := ReadString(Frame.Name, TAction(Frame.Components[i]).Name, '');
+        if s <> '' then
+          TAction(Frame.Components[i]).Caption := s;
+        s := ReadString(Frame.Name, Format('%s:s', [TAction(Frame.Components[i]).Name]), '');
+        if s <> '' then
+          TAction(Frame.Components[i]).ShortCut := TextToShortCut(s);
+        s := ReadString(Frame.Name, Format('%s:h', [TAction(Frame.Components[i]).Name]), '');
+        if s <> '' then
+          TAction(Frame.Components[i]).Hint := s
+      end
+      else
+      if Frame.Components[i] is TTabSheet then
+      begin
+        s := ReadString(Frame.Name, TTabSheet(Frame.Components[i]).Name, '');
+        if s <> '' then
+          TTabSheet(Frame.Components[i]).Caption := s
+      end
+      else
+      if Frame.Components[i] is TRadioGroup then
+      begin
+        s := ReadString(Frame.Name, TRadioGroup(Frame.Components[i]).Name, '');
+        if s <> '' then
+        begin
+          TRadioGroup(Frame.Components[i]).Caption := s;
+          TRadioGroup(Frame.Components[i]).Items.Clear;
+          j := 0;
+          repeat
+            s := ReadString(Frame.Name, Format('%s%d', [TRadioGroup(Frame.Components[i]).Name, j]), '');
+            if s <> '' then
+              begin
+              TRadioGroup(Frame.Components[i]).Items.Add(s);
+              Inc(j);
+            end;
+          until s = '';
+        end;
+      end
+  finally
+    Free;
+  end;
+end;
+
 
 end.
