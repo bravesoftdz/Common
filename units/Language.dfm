@@ -77,9 +77,9 @@ object LanguageDataModule: TLanguageDataModule
   object ConstantMultiStringHolder: TJvMultiStringHolder
     MultipleStrings = <
       item
-        Name = 'AnyFile'
+        Name = 'AllFiles'
         Strings.Strings = (
-          'Any File')
+          'All Files')
       end
       item
         Name = 'DownloadCancelling'
