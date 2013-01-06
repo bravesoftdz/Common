@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Diff, Vcl.Dialogs, Vcl.Grids, Vcl.ExtCtrls, Vcl.StdCtrls, JvExStdCtrls,
+  Vcl.Controls, Vcl.Forms, Diff, Vcl.Grids, Vcl.ExtCtrls, Vcl.StdCtrls, JvExStdCtrls,
   Vcl.Mask, JvExMask, JvToolEdit, Vcl.Buttons, JvExControls, JvSpeedButton, BCEdit, JvStringGrid,
   BCStringGrid, Vcl.ActnList, JvScrollBar, JvExForms, JvExExtCtrls, JvSplitter, JvExtComponent,
   JvContentScroller, JvExGrids, JvEdit, JvCombobox, BCComboBox, Vcl.ImgList;
@@ -66,7 +66,6 @@ type
     BitBtn1: TJvSpeedButton;
     FilenameLeftMemo: TMemo;
     LeftDocumentButtonClickAction: TAction;
-    OpenDialog: TOpenDialog;
     FilenameRightMemo: TMemo;
     JvSpeedButton1: TJvSpeedButton;
     RightDocumentButtonClickAction: TAction;
@@ -162,7 +161,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, Hash, System.Math, System.Types, Vcl.Themes, Language;
+  Common, Hash, System.Math, System.Types, Vcl.Themes, Language, OpenSaveDialog;
 
 procedure TCompareFrame.LeftScrollBoxWindowProc(var Message: TMessage);
 begin
@@ -473,14 +472,12 @@ end;
 
 procedure TCompareFrame.LeftDocumentButtonClickActionExecute(Sender: TObject);
 begin
-  with OpenDialog do
+  if OpenSaveDialog.OpenFile(FilenameLeftMemo.Text,
+    Format('%s'#0'*.*'#0, [LanguageDataModule.ConstantMultiStringHolder.StringsByName['AllFiles'].Text]),
+    LanguageDataModule.ConstantMultiStringHolder.StringsByName['Open'].Text) then
   begin
-    InitialDir := FilenameLeftMemo.Text;
-    if Execute then
-    begin
-      FilenameLeftMemo.Text := FileName;
-      OpenFileToLeftGrid(FileName);
-    end;
+    FilenameLeftMemo.Text := OpenSaveDialog.Files[0];
+    OpenFileToLeftGrid(OpenSaveDialog.Files[0]);
   end;
 end;
 
@@ -972,14 +969,12 @@ end;
 
 procedure TCompareFrame.RightDocumentButtonClickActionExecute(Sender: TObject);
 begin
-  with OpenDialog do
+  if OpenSaveDialog.OpenFile(FilenameRightMemo.Text,
+    Format('%s'#0'*.*'#0, [LanguageDataModule.ConstantMultiStringHolder.StringsByName['AllFiles'].Text]),
+    LanguageDataModule.ConstantMultiStringHolder.StringsByName['Open'].Text) then
   begin
-    InitialDir := FilenameRightMemo.Text;
-    if Execute then
-    begin
-      FilenameRightMemo.Text := FileName;
-      OpenFileToRightGrid(FileName);
-    end;
+    FilenameRightMemo.Text := OpenSaveDialog.Files[0];
+    OpenFileToRightGrid(OpenSaveDialog.Files[0]);
   end;
 end;
 

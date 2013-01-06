@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ActnList, Vcl.StdCtrls, Vcl.ComCtrls, JvExComCtrls,
+  Vcl.Controls, Vcl.Forms, Vcl.ActnList, Vcl.StdCtrls, Vcl.ComCtrls, JvExComCtrls,
   JvProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, Dlg;
 
 type
@@ -16,7 +16,6 @@ type
     Button: TButton;
     ActionList: TActionList;
     CancelAction: TAction;
-    SaveDialog: TSaveDialog;
     OKAction: TAction;
     Panel1: TPanel;
     procedure FormDestroy(Sender: TObject);
@@ -24,6 +23,7 @@ type
     procedure OKActionExecute(Sender: TObject);
   private
     { Private declarations }
+    FCancel: Boolean;
     procedure OnURLDownloadProgress(Sender: TDownLoadURL; Progress, ProgressMax: Cardinal;
       StatusCode: TURLDownloadStatus; StatusText: String; var Cancel: Boolean);
     procedure SetInformationText(Value: string);
@@ -39,7 +39,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, Language, Vcl.Themes;
+  Common, Language, Vcl.Themes, OpenSaveDialog;
 
 var
   FDownloadURLDialog: TDownloadURLDialog;
@@ -53,6 +53,7 @@ end;
 
 procedure TDownloadURLDialog.CancelActionExecute(Sender: TObject);
 begin
+  FCancel := True;
   InformationLabel.Caption := LanguageDataModule.ConstantMultiStringHolder.StringsByName['DownloadCancelling'].Text;
   Repaint;
   Application.ProcessMessages;
@@ -73,27 +74,26 @@ end;
 
 procedure TDownloadURLDialog.Open(DefaultFileName: string; DownloadURL: string);
 begin
+  FCancel := False;
   Button.Action := CancelAction;
-  with SaveDialog do
+  if OpenSaveDialog.SaveFile(DefaultFileName, Trim(StringReplace(LanguageDataModule.FileTypesMultiStringHolder.StringsByName['Zip'].Text
+        , '|', #0, [rfReplaceAll])) + #0#0,
+        LanguageDataModule.ConstantMultiStringHolder.StringsByName['SaveAs'].Text, DefaultFileName, 'zip') then
   begin
-    FileName := DefaultFileName;
-    if Execute then
-    begin
-      SetInformationText(DownloadURL);
-      Application.ProcessMessages;
-      with TDownloadURL.Create(Self) do
-      try
-        URL := DownloadURL;
-        FileName := SaveDialog.FileName;
-        OnDownloadProgress := OnURLDownloadProgress;
-        ExecuteTarget(nil);
-      finally
-        Free;
-      end;
-    end
-    else
-      Close;
-  end;
+    SetInformationText(DownloadURL);
+    Application.ProcessMessages;
+    with TDownloadURL.Create(Self) do
+    try
+      URL := DownloadURL;
+      FileName := OpenSaveDialog.Files[0];
+      OnDownloadProgress := OnURLDownloadProgress;
+      ExecuteTarget(nil);
+    finally
+      Free;
+    end;
+  end
+  else
+    Close;
   SetInformationText(LanguageDataModule.ConstantMultiStringHolder.StringsByName['DownloadDone'].Text);
   Button.Action := OKAction;
 end;
@@ -108,6 +108,7 @@ begin
   ProgressBar.Max := ProgressMax;
   ProgressBar.Position := Progress;
   Invalidate;
+  Cancel := FCancel;
   Application.ProcessMessages;
 end;
 

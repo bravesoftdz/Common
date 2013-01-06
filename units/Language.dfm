@@ -180,6 +180,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'VersionInfoNotFound'
         Strings.Strings = (
           'Version info not found.')
+      end
+      item
+        Name = 'CompareFiles'
+        Strings.Strings = (
+          'Compare Files')
       end>
     Left = 88
     Top = 254
@@ -455,6 +460,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'Macro'
         Strings.Strings = (
           'Macro files (*.mcr)|*.mcr')
+      end
+      item
+        Name = 'Zip'
+        Strings.Strings = (
+          'Zip Files (*.zip)|*.zip')
       end>
     Left = 90
     Top = 314

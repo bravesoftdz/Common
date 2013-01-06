@@ -110,11 +110,4 @@ object DownloadURLDialog: TDownloadURLDialog
       OnExecute = OKActionExecute
     end
   end
-  object SaveDialog: TSaveDialog
-    DefaultExt = 'zip'
-    Filter = 'Zip files (*.zip)|*.zip'
-    Title = 'Save As...'
-    Left = 300
-    Top = 68
-  end
 end

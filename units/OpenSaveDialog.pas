@@ -6,7 +6,8 @@ uses
   System.Classes;
 
   function OpenFiles(const IniDirPath, Filter, Title: string): Boolean;
-  function SaveFile(const IniDirPath, AFilter, ATitle, FileName: string): Boolean;
+  function OpenFile(const IniDirPath, AFilter, ATitle: string; const DefaultExt: string = ''): Boolean;
+  function SaveFile(const IniDirPath, AFilter, ATitle: string; const FileName: string = ''; const DefaultExt: string = ''): Boolean;
 
 var
   Files: TstringList;
@@ -230,7 +231,6 @@ end;
 
 function OpenFiles(const iniDirPath, Filter, Title: string): Boolean;
 var
-  i: Integer;
   MultiRe: TMultiResult; // returned by the OpenMultiSel function
   pFileName: PChar;
 begin
@@ -239,7 +239,7 @@ begin
   {the OpenMultiSel function uses a Multi-Selection dialog, the Result
    string is different than a normal open dialog, it has null #0 delimited
    file path and names}
-  MultiRe := OpenMultiSel(0, iniDirPath, Filter, Title);
+  MultiRe := OpenMultiSel(0, IniDirPath, Filter, Title);
   { a TMultiResult is the result form a OpenMultiSel, the fOffSet will be
    -1 if it fails, or the File-Name charater offset if it succeeds}
   if MultiRe.fOffSet <> -1 then
@@ -263,9 +263,10 @@ begin
     Result := False;
 end;
 
-function SaveFile(const IniDirPath, AFilter, ATitle, FileName: string): Boolean;
+function SaveFile(const IniDirPath, AFilter, ATitle, FileName, DefaultExt: string): Boolean;
 var
   DlgSetUp: TDlgSetUp;
+  AFileName: string;
 begin
   with DlgSetUp do
   begin
@@ -274,8 +275,29 @@ begin
     iniFileName := FileName;
     Filter := AFilter;
     Title := ATitle;
-    DefExt := 'txt';
-    Options := [doSave,doPathExist,doReadOnlyCB,doOverWrite,doTrackFolder,doCusFilter];
+    //DefExt := DefaultExt;
+    Options := [doSave, doPathExist, doOverWrite, doTrackFolder];
+  end;
+  Files.Clear;
+  AFileName := OpenDlgOpt(DlgSetUp);
+  if ExtractFileExt(AFileName) = '' then
+    AFileName := Format('%s.%s', [AFileName, DefaultExt]);
+  Files.Add(AFileName);
+  Result := Files[0] <> '';
+end;
+
+function OpenFile(const IniDirPath, AFilter, ATitle, DefaultExt: string): Boolean;
+var
+  DlgSetUp: TDlgSetUp;
+begin
+  with DlgSetUp do
+  begin
+    hOwner := 0;
+    iniDirPath := IniDirPath;
+    Filter := AFilter;
+    Title := ATitle;
+    //DefExt := DefaultExt;
+    Options := [doCreatePompt];
   end;
   Files.Clear;
   Files.Add(OpenDlgOpt(DlgSetUp));
@@ -284,7 +306,7 @@ end;
 
 initialization
 
-  Files := TstringList.Create;
+  Files := TStringList.Create;
 
 finalization
 
