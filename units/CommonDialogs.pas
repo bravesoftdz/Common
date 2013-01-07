@@ -3,11 +3,12 @@ unit CommonDialogs;
 interface
 
 uses
-  System.Classes;
+  Winapi.Windows, System.Classes;
 
   function OpenFiles(const IniDirPath, Filter, Title: string): Boolean;
   function OpenFile(const IniDirPath, AFilter, ATitle: string; const DefaultExt: string = ''): Boolean;
   function SaveFile(const IniDirPath, AFilter, ATitle: string; const FileName: string = ''; const DefaultExt: string = ''): Boolean;
+  function Print(Handle: HWND): Boolean;
 
 var
   Files: TstringList;
@@ -15,7 +16,7 @@ var
 implementation
 
 uses
-  Winapi.Windows, System.SysUtils, Winapi.Messages, Winapi.CommDlg, Vcl.StdCtrls;
+  System.SysUtils, Winapi.Messages, Winapi.CommDlg, Vcl.StdCtrls;
 
 const
   Zero = 0;
@@ -302,6 +303,23 @@ begin
   Files.Clear;
   Files.Add(OpenDlgOpt(DlgSetUp));
   Result := Files[0] <> '';
+end;
+
+function Print(Handle: HWND): Boolean;
+var
+  PrintDlgRec: TPrintDlg;
+begin
+  //------------------------------
+  FillChar(PrintDlgRec, SizeOf(PrintDlgRec), 0);
+  with PrintDlgRec do
+  begin
+    lStructSize := SizeOf(PrintDlgRec);
+    hWndOwner   := Handle;
+    //------------------------------
+    Flags       := 0;
+  end;
+  //------------------------------
+  PrintDlg(PrintDlgRec);
 end;
 
 initialization
