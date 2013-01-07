@@ -164,7 +164,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, Hash, System.Math, System.Types, Vcl.Themes, Language, OpenSaveDialog;
+  Common, Hash, System.Math, System.Types, Vcl.Themes, Language, CommonDialogs;
 
 procedure TCompareFrame.LeftScrollBoxWindowProc(var Message: TMessage);
 begin
@@ -475,12 +475,12 @@ end;
 
 procedure TCompareFrame.LeftDocumentButtonClickActionExecute(Sender: TObject);
 begin
-  if OpenSaveDialog.OpenFile(FilenameLeftMemo.Text,
+  if CommonDialogs.OpenFile(FilenameLeftMemo.Text,
     Format('%s'#0'*.*'#0, [LanguageDataModule.ConstantMultiStringHolder.StringsByName['AllFiles'].Text]),
     LanguageDataModule.ConstantMultiStringHolder.StringsByName['Open'].Text) then
   begin
-    FilenameLeftMemo.Text := OpenSaveDialog.Files[0];
-    OpenFileToLeftGrid(OpenSaveDialog.Files[0]);
+    FilenameLeftMemo.Text := CommonDialogs.Files[0];
+    OpenFileToLeftGrid(CommonDialogs.Files[0]);
   end;
 end;
 
@@ -972,12 +972,12 @@ end;
 
 procedure TCompareFrame.RightDocumentButtonClickActionExecute(Sender: TObject);
 begin
-  if OpenSaveDialog.OpenFile(FilenameRightMemo.Text,
+  if CommonDialogs.OpenFile(FilenameRightMemo.Text,
     Format('%s'#0'*.*'#0, [LanguageDataModule.ConstantMultiStringHolder.StringsByName['AllFiles'].Text]),
     LanguageDataModule.ConstantMultiStringHolder.StringsByName['Open'].Text) then
   begin
-    FilenameRightMemo.Text := OpenSaveDialog.Files[0];
-    OpenFileToRightGrid(OpenSaveDialog.Files[0]);
+    FilenameRightMemo.Text := CommonDialogs.Files[0];
+    OpenFileToRightGrid(CommonDialogs.Files[0]);
   end;
 end;
 

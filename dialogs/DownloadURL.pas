@@ -39,7 +39,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, Language, Vcl.Themes, OpenSaveDialog;
+  Common, Language, Vcl.Themes, CommonDialogs;
 
 var
   FDownloadURLDialog: TDownloadURLDialog;
@@ -76,7 +76,7 @@ procedure TDownloadURLDialog.Open(DefaultFileName: string; DownloadURL: string);
 begin
   FCancel := False;
   Button.Action := CancelAction;
-  if OpenSaveDialog.SaveFile(DefaultFileName, Trim(StringReplace(LanguageDataModule.FileTypesMultiStringHolder.StringsByName['Zip'].Text
+  if CommonDialogs.SaveFile(DefaultFileName, Trim(StringReplace(LanguageDataModule.FileTypesMultiStringHolder.StringsByName['Zip'].Text
         , '|', #0, [rfReplaceAll])) + #0#0,
         LanguageDataModule.ConstantMultiStringHolder.StringsByName['SaveAs'].Text, DefaultFileName, 'zip') then
   begin
@@ -85,7 +85,7 @@ begin
     with TDownloadURL.Create(Self) do
     try
       URL := DownloadURL;
-      FileName := OpenSaveDialog.Files[0];
+      FileName := CommonDialogs.Files[0];
       OnDownloadProgress := OnURLDownloadProgress;
       ExecuteTarget(nil);
     finally

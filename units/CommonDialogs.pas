@@ -1,4 +1,4 @@
-unit OpenSaveDialog;
+unit CommonDialogs;
 
 interface
 
