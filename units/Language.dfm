@@ -185,6 +185,56 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'CompareFiles'
         Strings.Strings = (
           'Compare Files')
+      end
+      item
+        Name = 'Document'
+        Strings.Strings = (
+          'Document')
+      end
+      item
+        Name = 'InvalidHTMLTag'
+        Strings.Strings = (
+          'Invalid HTML tag '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidHTMLAttribute'
+        Strings.Strings = (
+          'Invalid HTML attribute '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidHTMLToken'
+        Strings.Strings = (
+          'Invalid HTML token '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidCSSSelector'
+        Strings.Strings = (
+          'Invalid CSS selector '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidCSSProperty'
+        Strings.Strings = (
+          'Invalid CSS property '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidCSSValue'
+        Strings.Strings = (
+          'Invalid CSS value '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidCSSToken'
+        Strings.Strings = (
+          'Invalid CSS token '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidJSToken'
+        Strings.Strings = (
+          'Invalid JS token '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidPHPToken'
+        Strings.Strings = (
+          'Invalid PHP token '#39'%s'#39)
       end>
     Left = 88
     Top = 254

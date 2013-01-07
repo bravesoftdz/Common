@@ -17,8 +17,6 @@ type
   TCompareFrame = class(TFrame)
     LeftPanel: TPanel;
     BottomPanel: TPanel;
-    LeftLabel: TLabel;
-    RightLabel: TLabel;
     ActionList: TActionList;
     RefreshAction: TAction;
     SaveLeftGridAction: TAction;
@@ -35,10 +33,6 @@ type
     CopyLeftSpeedButton: TJvSpeedButton;
     CopySelectionRightAction: TAction;
     CopySelectionLeftAction: TAction;
-    UpdateLeftSpeedButton: TJvSpeedButton;
-    CancelLeftSpeedButton: TJvSpeedButton;
-    CancelRightSpeedButton: TJvSpeedButton;
-    UpdateRightSpeedButton: TJvSpeedButton;
     UpdateLeftRowAction: TAction;
     UpdateRightRowAction: TAction;
     CancelLeftRowAction: TAction;
@@ -61,14 +55,22 @@ type
     OpenDocumentsLeftAction: TAction;
     OpenDocumentsRightAction: TAction;
     ImageList: TImageList;
-    LeftMemo: TMemo;
-    RightMemo: TMemo;
     BitBtn1: TJvSpeedButton;
     FilenameLeftMemo: TMemo;
     LeftDocumentButtonClickAction: TAction;
     FilenameRightMemo: TMemo;
     JvSpeedButton1: TJvSpeedButton;
     RightDocumentButtonClickAction: TAction;
+    LeftRightPanel: TPanel;
+    LeftLabel: TLabel;
+    RightLabel: TLabel;
+    Panel2: TPanel;
+    LeftMemo: TMemo;
+    RightMemo: TMemo;
+    UpdateLeftSpeedButton: TJvSpeedButton;
+    CancelLeftSpeedButton: TJvSpeedButton;
+    CancelRightSpeedButton: TJvSpeedButton;
+    UpdateRightSpeedButton: TJvSpeedButton;
     procedure DrawGridDrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
     procedure RefreshActionExecute(Sender: TObject);
@@ -154,6 +156,7 @@ type
     property OpenDocumentsList: TStringList write SetOpenDocumentsList;
     property ComparedFilesSet: Boolean read GetComparedFilesSet;
     procedure SetCompareFile(Filename: string);
+    procedure UpdateLanguage(SelectedLanguage: string);
   end;
 
 implementation
@@ -1253,6 +1256,12 @@ begin
     FilenameRightMemo.Text := Filename;
     OpenFileToRightGrid(FilenameRightMemo.Text);;
   end;
+end;
+
+procedure TCompareFrame.UpdateLanguage(SelectedLanguage: string);
+begin
+  Common.UpdateLanguage(Self, SelectedLanguage);
+  LeftRightPanel.Width := Max(LeftLabel.Width + 10, RightLabel.Width + 10);
 end;
 
 end.
