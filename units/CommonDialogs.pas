@@ -309,17 +309,18 @@ function Print(Handle: HWND): Boolean;
 var
   PrintDlgRec: TPrintDlg;
 begin
-  //------------------------------
+  Result := False;
+
   FillChar(PrintDlgRec, SizeOf(PrintDlgRec), 0);
   with PrintDlgRec do
   begin
     lStructSize := SizeOf(PrintDlgRec);
     hWndOwner   := Handle;
-    //------------------------------
     Flags       := 0;
   end;
-  //------------------------------
-  PrintDlg(PrintDlgRec);
+
+  if PrintDlg(PrintDlgRec) then
+    Result := True
 end;
 
 initialization
