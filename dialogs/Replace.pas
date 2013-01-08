@@ -6,7 +6,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls,
-  Vcl.Forms, Dlg, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, JvExStdCtrls, JvCombobox, BCComboBox;
+  Vcl.Forms, Dlg, Vcl.ExtCtrls, JvExStdCtrls, JvCombobox, BCComboBox, Vcl.StdCtrls;
 
 type
   TReplaceDialog = class(TDialog)

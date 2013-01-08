@@ -3,12 +3,12 @@ unit CommonDialogs;
 interface
 
 uses
-  Winapi.Windows, System.Classes;
+  Winapi.Windows, System.Classes, Winapi.CommDlg;
 
   function OpenFiles(const IniDirPath, Filter, Title: string): Boolean;
   function OpenFile(const IniDirPath, AFilter, ATitle: string; const DefaultExt: string = ''): Boolean;
   function SaveFile(const IniDirPath, AFilter, ATitle: string; const FileName: string = ''; const DefaultExt: string = ''): Boolean;
-  function Print(Handle: HWND): Boolean;
+  function Print(Handle: HWND; var PrintDlgRec: TPrintDlg; Setup: Boolean = False): Boolean;
 
 var
   Files: TstringList;
@@ -16,7 +16,7 @@ var
 implementation
 
 uses
-  System.SysUtils, Winapi.Messages, Winapi.CommDlg, Vcl.StdCtrls;
+  System.SysUtils, Winapi.Messages, Vcl.StdCtrls, Vcl.Printers;
 
 const
   Zero = 0;
@@ -305,9 +305,77 @@ begin
   Result := Files[0] <> '';
 end;
 
-function Print(Handle: HWND): Boolean;
+procedure GetPrinter(var DeviceMode, DeviceNames: HGLOBAL);
 var
-  PrintDlgRec: TPrintDlg;
+  Device, Driver, Port: array[0..1023] of char;
+  DevNames: PDevNames;
+  Offset: PChar;
+begin
+  Printer.GetPrinter(Device, Driver, Port, DeviceMode);
+  if DeviceMode <> 0 then
+  begin
+    DeviceNames := GlobalAlloc(GHND, SizeOf(TDevNames) +
+     (StrLen(Device) + StrLen(Driver) + StrLen(Port) + 3) * SizeOf(Char));
+    DevNames := PDevNames(GlobalLock(DeviceNames));
+    try
+      Offset := PChar(PByte(DevNames) + SizeOf(TDevnames));
+      with DevNames^ do
+      begin
+        wDriverOffset := Offset - PChar(DevNames);
+        Offset := StrECopy(Offset, Driver) + 1;
+        wDeviceOffset := Offset - PChar(DevNames);
+        Offset := StrECopy(Offset, Device) + 1;
+        wOutputOffset := Offset - PChar(DevNames);;
+        StrCopy(Offset, Port);
+      end;
+    finally
+      GlobalUnlock(DeviceNames);
+    end;
+  end;
+end;
+
+function CopyData(Handle: THandle): THandle;
+var
+  Src, Dest: PChar;
+  Size: Integer;
+begin
+  if Handle <> 0 then
+  begin
+    Size := GlobalSize(Handle);
+    Result := GlobalAlloc(GHND, Size);
+    if Result <> 0 then
+      try
+        Src := GlobalLock(Handle);
+        Dest := GlobalLock(Result);
+        if (Src <> nil) and (Dest <> nil) then Move(Src^, Dest^, Size);
+      finally
+        GlobalUnlock(Handle);
+        GlobalUnlock(Result);
+      end
+  end
+  else
+    Result := 0;
+end;
+
+procedure SetPrinter(DeviceMode, DeviceNames: HGLOBAL);
+var
+  DevNames: PDevNames;
+begin
+  DevNames := PDevNames(GlobalLock(DeviceNames));
+  try
+    with DevNames^ do
+      Printer.SetPrinter(PChar(DevNames) + wDeviceOffset,
+        PChar(DevNames) + wDriverOffset,
+        PChar(DevNames) + wOutputOffset, DeviceMode);
+  finally
+    GlobalUnlock(DeviceNames);
+    GlobalFree(DeviceNames);
+  end;
+end;
+
+function Print(Handle: HWND; var PrintDlgRec: TPrintDlg; Setup: Boolean): Boolean;
+var
+  DevHandle: THandle;
 begin
   Result := False;
 
@@ -315,12 +383,25 @@ begin
   with PrintDlgRec do
   begin
     lStructSize := SizeOf(PrintDlgRec);
-    hWndOwner   := Handle;
-    Flags       := 0;
-  end;
+    hWndOwner := Handle;
+    GetPrinter(DevHandle, hDevNames);
+    hDevMode := CopyData(DevHandle);
+    if Setup then
+      Flags := PD_PRINTSETUP
+    else
+      Flags := 0;
 
-  if PrintDlg(PrintDlgRec) then
-    Result := True
+    if PrintDlg(PrintDlgRec) then
+    begin
+      Result := True;
+      SetPrinter(hDevMode, hDevNames)
+    end
+    else
+    begin
+      if hDevMode <> 0 then GlobalFree(hDevMode);
+      if hDevNames <> 0 then GlobalFree(hDevNames);
+    end;
+  end;
 end;
 
 initialization

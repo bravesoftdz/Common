@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls,
   Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.ToolWin, Vcl.ActnList, Vcl.ImgList,
-  Vcl.Dialogs, SynEditPrintPreview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers, SynEditPrint,
+  SynEditPrintPreview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers, SynEditPrint,
   JvExButtons, JvBitBtn, Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, BCPopupMenu,
   JvExComCtrls, JvToolBar, BCToolBar, BCImageList;
 
@@ -32,7 +32,6 @@ type
     SynEditPrintPreview: TSynEditPrintPreview;
     LineNumbersAction: TAction;
     WordWrapAction: TAction;
-    PrinterSetupDialog: TPrinterSetupDialog;
     PrintSetupAction: TAction;
     ButtonPanel: TPanel;
     ToolBar: TBCToolBar;
@@ -84,7 +83,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Vcl.Themes, StyleHooks, Common, Language;
+  Vcl.Themes, StyleHooks, Common, Language, CommonDialogs, WinApi.CommDlg;
 
 var
   FPrintPreviewDialog: TPrintPreviewDialog;
@@ -164,9 +163,84 @@ begin
   SynEditPrintPreview.Print;
 end;
 
-procedure TPrintPreviewDialog.PrintSetupActionExecute(Sender: TObject);
+{function TQRPrintDialog.Execute: Boolean;
+const
+  PrintRanges: array[TPrintRange] of Integer =
+    (PD_ALLPAGES, PD_SELECTION, PD_PAGENUMS);
+var
+  PrintDlgRec: TPrintDlg;
+  DevHandle: THandle;
+  pDevMode: PDeviceMode;
 begin
-  if PrinterSetupDialog.Execute then
+  FillChar(PrintDlgRec, SizeOf(PrintDlgRec), 0);
+  with PrintDlgRec do
+  begin
+    lStructSize := SizeOf(PrintDlgRec);
+    hInstance := SysInit.HInstance;
+    GetPrinter(DevHandle, hDevNames);
+    hDevMode := CopyData(DevHandle);
+    Flags := PrintRanges[FPrintRange] or (PD_ENABLEPRINTHOOK or
+      PD_ENABLESETUPHOOK);
+    if FCollate<>0 then Inc(Flags, PD_COLLATE);
+    if not (poPrintToFile in FOptions) then Inc(Flags, PD_HIDEPRINTTOFILE);
+    if not (poPageNums in FOptions) then Inc(Flags, PD_NOPAGENUMS);
+    if not (poSelection in FOptions) then Inc(Flags, PD_NOSELECTION);
+    if poDisablePrintToFile in FOptions then Inc(Flags, PD_DISABLEPRINTTOFILE);
+    if FPrintToFile then Inc(Flags, PD_PRINTTOFILE);
+    if poHelp in FOptions then Inc(Flags, PD_SHOWHELP);
+    if not (poWarning in FOptions) then Inc(Flags, PD_NOWARNING);
+    nFromPage := FFromPage;
+    nToPage := FToPage;
+    nMinPage := FMinPage;
+    nMaxPage := FMaxPage;
+    HookCtl3D := Ctl3D;
+    lpfnPrintHook := DialogHook;
+    lpfnSetupHook := DialogHook;
+    hWndOwner := Application.Handle;
+    Result := TaskModalDialog(@PrintDlg, PrintDlgRec);
+    if Result then
+    begin
+      SetPrinter(hDevMode, hDevNames);
+      FPrintToFile := Flags and PD_PRINTTOFILE <> 0;
+      if Flags and PD_SELECTION <> 0 then FPrintRange := prSelection
+      else
+        if Flags and PD_PAGENUMS <> 0 then FPrintRange := prPageNums
+      else
+          FPrintRange := prAllPages;
+      FFromPage := nFromPage;
+      FToPage := nToPage;
+      if nCopies = 1 then
+        Copies := FPrinter.Copies
+      else
+        Copies := nCopies;
+      pDevMode := GlobalLock(hDevmode);
+      FdmFields := TDeviceMode(pDevmode^).dmFields;
+      FOutputBin := TDeviceMode(pDevmode^).dmDefaultSource;
+      FpaperSize := TDeviceMode(pDevmode^).dmpaperSize;
+      FPaperwidth := TDeviceMode(pDevmode^).dmpaperWidth;
+      FPaperlength := TDeviceMode(pDevmode^).dmpaperLength;
+      FOrientation := TDeviceMode(pDevmode^).dmOrientation;
+      FPrintquality := TDeviceMode(pDevmode^).dmPrintquality;
+      FColorOption := TDeviceMode(pDevmode^).dmColor;
+      FDuplexCode :=  TDeviceMode(pDevmode^).dmDuplex;
+      FDuplex :=  TDeviceMode(pDevmode^).dmDuplex <> 1;
+      FCollate := TDeviceMode(pDevmode^).dmCollate;
+      FOrientation := TDeviceMode(pDevmode^).dmOrientation;
+    end
+    else
+    begin
+      if hDevMode <> 0 then GlobalFree(hDevMode);
+      if hDevNames <> 0 then GlobalFree(hDevNames);
+    end;
+  end;
+end;}
+
+procedure TPrintPreviewDialog.PrintSetupActionExecute(Sender: TObject);
+var
+  PrintDlg: TPrintDlg;
+begin
+  //if PrinterSetupDialog.Execute then
+  if CommonDialogs.Print(SynEditPrintPreview.Handle, PrintDlg, True) then
   begin
     SynEditPrintPreview.FirstPage;
     SynEditPrintPreview.UpdatePreview;

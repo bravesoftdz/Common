@@ -354,7 +354,6 @@ object FindInFilesDialog: TFindInFilesDialog
         Checked = True
         State = cbChecked
         TabOrder = 1
-        ExplicitLeft = 101
       end
       object TPanel
         Left = 87
@@ -364,7 +363,6 @@ object FindInFilesDialog: TFindInFilesDialog
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 2
-        ExplicitLeft = 93
       end
     end
   end
