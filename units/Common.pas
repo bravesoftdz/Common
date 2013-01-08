@@ -146,7 +146,7 @@ begin
   if IncludeCancel then
     Buttons := Buttons + [mbCancel];
 
-  with CreateMessageDialog(LanguageDataModule.YesOrNoMultiStringHolder.StringsByName['SaveChanges'].Text, mtConfirmation, Buttons) do
+  with CreateMessageDialog(LanguageDataModule.GetYesOrNo('SaveChanges'), mtConfirmation, Buttons) do
   try
     HelpContext := 0;
     HelpFile := '';
@@ -528,11 +528,11 @@ begin
 
     if (Trim(Version) <> '') and (Version <> AboutDialog.Version) then
     begin
-      if Common.AskYesOrNo(Format(LanguageDataModule.YesOrNoMultiStringHolder.StringsByName['NewVersion'].Text, [Version, AppName, CHR_DOUBLE_ENTER])) then
+      if Common.AskYesOrNo(Format(LanguageDataModule.GetYesOrNo('NewVersion'), [Version, AppName, CHR_DOUBLE_ENTER])) then
         DownloadURLDialog.Open(Format('%s.zip', [AppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, AppName]))
     end
     else
-      Common.ShowMessage(LanguageDataModule.MessageMultiStringHolder.StringsByName['LatestVersion'].Text);
+      Common.ShowMessage(LanguageDataModule.GetMessage('LatestVersion'));
   except
     on E: Exception do
       Common.ShowErrorMessage(E.Message);

@@ -97,6 +97,11 @@ object LanguageDataModule: TLanguageDataModule
           'Edit Directory')
       end
       item
+        Name = 'Insert'
+        Strings.Strings = (
+          'Insert')
+      end
+      item
         Name = 'InvalidName'
         Strings.Strings = (
           'Error - Invalid Name:')
@@ -125,6 +130,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'OpenDirectory'
         Strings.Strings = (
           'Open Directory')
+      end
+      item
+        Name = 'Overwrite'
+        Strings.Strings = (
+          'Overwrite')
       end
       item
         Name = 'PreviewDocumentPage'

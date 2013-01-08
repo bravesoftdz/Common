@@ -20,6 +20,8 @@ type
     function GetConstant(Name: string): string;
     function GetPConstant(Name: string): PWideChar;
     function GetMessage(Name: string): string;
+    function GetErrorMessage(Name: string): string;
+    function GetWarningMessage(Name: string): string;
     function GetYesOrNo(Name: string): string;
     function GetFileTypes(Name: string): string;
   end;
@@ -83,6 +85,7 @@ begin
     BigIniFile.Free;
   end;
 
+  { message dialog captions and buttons }
   HookResourceString(@SMsgDlgWarning, LanguageDataModule.GetPConstant('SMsgDlgWarning'));
   HookResourceString(@SMsgDlgError, LanguageDataModule.GetPConstant('SMsgDlgError'));
   HookResourceString(@SMsgDlgInformation, LanguageDataModule.GetPConstant('SMsgDlgInformation'));
@@ -113,6 +116,16 @@ begin
   Result := Trim(MessageMultiStringHolder.StringsByName[Name].Text);
 end;
 
+function TLanguageDataModule.GetErrorMessage(Name: string): string;
+begin
+  Result := Trim(ErrorMessageMultiStringHolder.StringsByName[Name].Text);
+end;
+
+function TLanguageDataModule.GetWarningMessage(Name: string): string;
+begin
+  Result := Trim(WarningMessageMultiStringHolder.StringsByName[Name].Text);
+end;
+
 function TLanguageDataModule.GetFileTypes(Name: string): string;
 begin
   Result := Trim(FileTypesMultiStringHolder.StringsByName[Name].Text);
@@ -124,9 +137,12 @@ begin
 end;
 
 function TLanguageDataModule.GetPConstant(Name: string): PWideChar;
+var
+  Constant: string;
 begin
-  GetMem(Result, sizeof(WideChar) * Succ(Length(GetConstant(Name))));
-  StringToWideChar(GetConstant(Name), Result, Length(GetConstant(Name)) + 1);
+  Constant := GetConstant(Name);
+  GetMem(Result, SizeOf(WideChar) * Succ(Length(Constant)));
+  StringToWideChar(Constant, Result, Length(Constant) + 1);
 end;
 
 initialization

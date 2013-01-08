@@ -76,7 +76,7 @@ procedure TDownloadURLDialog.Open(DefaultFileName: string; DownloadURL: string);
 begin
   FCancel := False;
   Button.Action := CancelAction;
-  if CommonDialogs.SaveFile(DefaultFileName, Trim(StringReplace(LanguageDataModule.FileTypesMultiStringHolder.StringsByName['Zip'].Text
+  if CommonDialogs.SaveFile(DefaultFileName, Trim(StringReplace(LanguageDataModule.GetFileTypes('Zip')
         , '|', #0, [rfReplaceAll])) + #0#0,
         LanguageDataModule.GetConstant('SaveAs'), DefaultFileName, 'zip') then
   begin
