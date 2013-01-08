@@ -335,6 +335,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'SMsgDlgClose'
         Strings.Strings = (
           '&Close')
+      end
+      item
+        Name = 'SelectFile'
+        Strings.Strings = (
+          'Select File')
       end>
     Left = 88
     Top = 254
@@ -615,6 +620,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'Zip'
         Strings.Strings = (
           'Zip Files (*.zip)|*.zip')
+      end
+      item
+        Name = 'SQLNet'
+        Strings.Strings = (
+          'SQL*Net configuration files (*.ora)|*.ora')
       end>
     Left = 90
     Top = 314
