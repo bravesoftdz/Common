@@ -485,7 +485,7 @@ begin
 
   if InfoSize = 0 then
   begin
-    Result := LanguageDataModule.ConstantMultiStringHolder.StringsByName['VersionInfoNotFound'].Text;
+    Result := LanguageDataModule.GetConstant('VersionInfoNotFound');
     Exit;
   end;
 

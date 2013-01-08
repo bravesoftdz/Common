@@ -476,8 +476,8 @@ end;
 procedure TCompareFrame.LeftDocumentButtonClickActionExecute(Sender: TObject);
 begin
   if CommonDialogs.OpenFile(FilenameLeftMemo.Text,
-    Format('%s'#0'*.*'#0, [LanguageDataModule.ConstantMultiStringHolder.StringsByName['AllFiles'].Text]),
-    LanguageDataModule.ConstantMultiStringHolder.StringsByName['Open'].Text) then
+    Format('%s'#0'*.*'#0, [LanguageDataModule.GetConstant('AllFiles')]),
+    LanguageDataModule.GetConstant('Open')) then
   begin
     FilenameLeftMemo.Text := CommonDialogs.Files[0];
     OpenFileToLeftGrid(CommonDialogs.Files[0]);
@@ -973,8 +973,8 @@ end;
 procedure TCompareFrame.RightDocumentButtonClickActionExecute(Sender: TObject);
 begin
   if CommonDialogs.OpenFile(FilenameRightMemo.Text,
-    Format('%s'#0'*.*'#0, [LanguageDataModule.ConstantMultiStringHolder.StringsByName['AllFiles'].Text]),
-    LanguageDataModule.ConstantMultiStringHolder.StringsByName['Open'].Text) then
+    Format('%s'#0'*.*'#0, [LanguageDataModule.GetConstant('AllFiles')]),
+    LanguageDataModule.GetConstant('Open')) then
   begin
     FilenameRightMemo.Text := CommonDialogs.Files[0];
     OpenFileToRightGrid(CommonDialogs.Files[0]);

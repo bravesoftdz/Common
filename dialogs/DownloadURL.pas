@@ -54,7 +54,7 @@ end;
 procedure TDownloadURLDialog.CancelActionExecute(Sender: TObject);
 begin
   FCancel := True;
-  InformationLabel.Caption := LanguageDataModule.ConstantMultiStringHolder.StringsByName['DownloadCancelling'].Text;
+  InformationLabel.Caption := LanguageDataModule.GetConstant('DownloadCancelling');
   Repaint;
   Application.ProcessMessages;
   Close;
@@ -78,7 +78,7 @@ begin
   Button.Action := CancelAction;
   if CommonDialogs.SaveFile(DefaultFileName, Trim(StringReplace(LanguageDataModule.FileTypesMultiStringHolder.StringsByName['Zip'].Text
         , '|', #0, [rfReplaceAll])) + #0#0,
-        LanguageDataModule.ConstantMultiStringHolder.StringsByName['SaveAs'].Text, DefaultFileName, 'zip') then
+        LanguageDataModule.GetConstant('SaveAs'), DefaultFileName, 'zip') then
   begin
     SetInformationText(DownloadURL);
     Application.ProcessMessages;
@@ -94,7 +94,7 @@ begin
   end
   else
     Close;
-  SetInformationText(LanguageDataModule.ConstantMultiStringHolder.StringsByName['DownloadDone'].Text);
+  SetInformationText(LanguageDataModule.GetConstant('DownloadDone'));
   Button.Action := OKAction;
 end;
 

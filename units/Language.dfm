@@ -235,6 +235,96 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'InvalidPHPToken'
         Strings.Strings = (
           'Invalid PHP token '#39'%s'#39)
+      end
+      item
+        Name = 'SMsgDlgWarning'
+        Strings.Strings = (
+          'Warning')
+      end
+      item
+        Name = 'SMsgDlgError'
+        Strings.Strings = (
+          'Error')
+      end
+      item
+        Name = 'SMsgDlgInformation'
+        Strings.Strings = (
+          'Information')
+      end
+      item
+        Name = 'SMsgDlgConfirm'
+        Strings.Strings = (
+          'Confirm')
+      end
+      item
+        Name = 'SMsgDlgYes'
+        Strings.Strings = (
+          '&Yes')
+      end
+      item
+        Name = 'SMsgDlgNo'
+        Strings.Strings = (
+          '&No')
+      end
+      item
+        Name = 'SMsgDlgOK'
+        Strings.Strings = (
+          'OK')
+      end
+      item
+        Name = 'SMsgDlgCancel'
+        Strings.Strings = (
+          'Cancel')
+      end
+      item
+        Name = 'SMsgDlgHelp'
+        Strings.Strings = (
+          '&Help')
+      end
+      item
+        Name = 'SMsgDlgHelpNone'
+        Strings.Strings = (
+          'No help available')
+      end
+      item
+        Name = 'SMsgDlgHelpHelp'
+        Strings.Strings = (
+          'Help')
+      end
+      item
+        Name = 'SMsgDlgAbort'
+        Strings.Strings = (
+          '&Abort')
+      end
+      item
+        Name = 'SMsgDlgRetry'
+        Strings.Strings = (
+          '&Retry')
+      end
+      item
+        Name = 'SMsgDlgIgnore'
+        Strings.Strings = (
+          '&Ignore')
+      end
+      item
+        Name = 'SMsgDlgAll'
+        Strings.Strings = (
+          '&All')
+      end
+      item
+        Name = 'SMsgDlgNoToAll'
+        Strings.Strings = (
+          'N&o to All')
+      end
+      item
+        Name = 'SMsgDlgYesToAll'
+        Strings.Strings = (
+          'Yes to &All')
+      end
+      item
+        Name = 'SMsgDlgClose'
+        Strings.Strings = (
+          '&Close')
       end>
     Left = 88
     Top = 254
