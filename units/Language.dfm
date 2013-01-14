@@ -625,6 +625,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'SQLNet'
         Strings.Strings = (
           'SQL*Net configuration files (*.ora)|*.ora')
+      end
+      item
+        Name = 'Language'
+        Strings.Strings = (
+          'Language Files (*.lng)|*.lng')
       end>
     Left = 90
     Top = 314
