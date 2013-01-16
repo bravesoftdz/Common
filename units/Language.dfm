@@ -340,6 +340,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'SelectFile'
         Strings.Strings = (
           'Select File')
+      end
+      item
+        Name = 'LanguageEditor'
+        Strings.Strings = (
+          'Language Editor - [%s]')
       end>
     Left = 88
     Top = 254
