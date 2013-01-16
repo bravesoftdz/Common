@@ -479,7 +479,7 @@ begin
     Format('%s'#0'*.*'#0, [LanguageDataModule.GetConstant('AllFiles')]),
     LanguageDataModule.GetConstant('Open')) then
   begin
-    Application.ProcessMessages;
+    Application.ProcessMessages; { style fix }
     FilenameLeftMemo.Text := CommonDialogs.Files[0];
     OpenFileToLeftGrid(CommonDialogs.Files[0]);
   end;
@@ -977,7 +977,7 @@ begin
     Format('%s'#0'*.*'#0, [LanguageDataModule.GetConstant('AllFiles')]),
     LanguageDataModule.GetConstant('Open')) then
   begin
-    Application.ProcessMessages;
+    Application.ProcessMessages; { style fix }
     FilenameRightMemo.Text := CommonDialogs.Files[0];
     OpenFileToRightGrid(CommonDialogs.Files[0]);
   end;

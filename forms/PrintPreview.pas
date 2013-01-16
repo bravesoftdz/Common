@@ -169,6 +169,7 @@ var
 begin
   if CommonDialogs.Print(SynEditPrintPreview.Handle, PrintDlg, True) then
   begin
+    Application.ProcessMessages; { style fix }
     SynEditPrintPreview.FirstPage;
     SynEditPrintPreview.UpdatePreview;
   end;
