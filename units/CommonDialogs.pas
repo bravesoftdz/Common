@@ -5,10 +5,10 @@ interface
 uses
   Winapi.Windows, System.Classes, Winapi.CommDlg;
 
-  function OpenFiles(const ADirPath, AFilter, ATitle: string): Boolean;
-  function OpenFile(const ADirPath, AFilter, ATitle: string; const DefaultExt: string = ''): Boolean;
-  function SaveFile(const ADirPath, AFilter, ATitle: string; const FileName: string = ''; const DefaultExt: string = ''): Boolean;
-  function Print(Handle: HWND; var PrintDlgRec: TPrintDlg; Setup: Boolean = False): Boolean;
+  function OpenFiles(Owner: HWND; const ADirPath, AFilter, ATitle: string): Boolean;
+  function OpenFile(Owner: HWND; const ADirPath, AFilter, ATitle: string; const DefaultExt: string = ''): Boolean;
+  function SaveFile(Owner: HWND; const ADirPath, AFilter, ATitle: string; const FileName: string = ''; const DefaultExt: string = ''): Boolean;
+  function Print(Owner: HWND; var PrintDlgRec: TPrintDlg; Setup: Boolean = False): Boolean;
 
 var
   Files: TstringList;
@@ -230,7 +230,7 @@ begin
     Result.fNames := '';
 end;
 
-function OpenFiles(const ADirPath, AFilter, ATitle: string): Boolean;
+function OpenFiles(Owner: HWND; const ADirPath, AFilter, ATitle: string): Boolean;
 var
   MultiRe: TMultiResult; // returned by the OpenMultiSel function
   pFileName: PChar;
@@ -240,7 +240,7 @@ begin
   {the OpenMultiSel function uses a Multi-Selection dialog, the Result
    string is different than a normal open dialog, it has null #0 delimited
    file path and names}
-  MultiRe := OpenMultiSel(0, ADirPath, AFilter, ATitle);
+  MultiRe := OpenMultiSel(Owner, ADirPath, AFilter, ATitle);
   { a TMultiResult is the result form a OpenMultiSel, the fOffSet will be
    -1 if it fails, or the File-Name charater offset if it succeeds}
   if MultiRe.fOffSet <> -1 then
@@ -264,14 +264,14 @@ begin
     Result := False;
 end;
 
-function SaveFile(const ADirPath, AFilter, ATitle, FileName, DefaultExt: string): Boolean;
+function SaveFile(Owner: HWND; const ADirPath, AFilter, ATitle, FileName, DefaultExt: string): Boolean;
 var
   DlgSetUp: TDlgSetUp;
   AFileName: string;
 begin
   with DlgSetUp do
   begin
-    hOwner := 0;
+    hOwner := Owner;
     iniDirPath := ADirPath;
     iniFileName := FileName;
     Filter := AFilter;
@@ -290,13 +290,13 @@ begin
   Result := Files[0] <> '';
 end;
 
-function OpenFile(const ADirPath, AFilter, ATitle, DefaultExt: string): Boolean;
+function OpenFile(Owner: HWND; const ADirPath, AFilter, ATitle, DefaultExt: string): Boolean;
 var
   DlgSetUp: TDlgSetUp;
 begin
   with DlgSetUp do
   begin
-    hOwner := 0;
+    hOwner := Owner;
     iniDirPath := ADirPath;
     Filter := AFilter;
     Title := ATitle;
@@ -376,7 +376,7 @@ begin
   end;
 end;
 
-function Print(Handle: HWND; var PrintDlgRec: TPrintDlg; Setup: Boolean): Boolean;
+function Print(Owner: HWND; var PrintDlgRec: TPrintDlg; Setup: Boolean): Boolean;
 var
   DevHandle: THandle;
 begin
@@ -386,7 +386,7 @@ begin
   with PrintDlgRec do
   begin
     lStructSize := SizeOf(PrintDlgRec);
-    hWndOwner := Handle;
+    hWndOwner := Owner;
     GetPrinter(DevHandle, hDevNames);
     hDevMode := CopyData(DevHandle);
     if Setup then
