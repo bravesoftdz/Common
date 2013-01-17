@@ -476,7 +476,7 @@ end;
 procedure TCompareFrame.LeftDocumentButtonClickActionExecute(Sender: TObject);
 begin
   if CommonDialogs.OpenFile(Handle, FilenameLeftMemo.Text,
-    Format('%s'#0'*.*'#0, [LanguageDataModule.GetConstant('AllFiles')]),
+    Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]),
     LanguageDataModule.GetConstant('Open')) then
   begin
     Application.ProcessMessages; { style fix }
@@ -974,7 +974,7 @@ end;
 procedure TCompareFrame.RightDocumentButtonClickActionExecute(Sender: TObject);
 begin
   if CommonDialogs.OpenFile(Handle, FilenameRightMemo.Text,
-    Format('%s'#0'*.*'#0, [LanguageDataModule.GetConstant('AllFiles')]),
+    Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]),
     LanguageDataModule.GetConstant('Open')) then
   begin
     Application.ProcessMessages; { style fix }
