@@ -50,7 +50,7 @@ implementation
 
 uses
   Winapi.Windows, Winapi.ShellAPI, Vcl.StdCtrls, DownloadURL, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-  System.Character, Vcl.ActnList, System.StrUtils, About, BigINI, Language;
+  System.Character, Vcl.ActnList, System.StrUtils, About, BigINI, Language, VirtualTrees;
 
 procedure RunCommand(const Cmd, Params: String);
 var
@@ -635,6 +635,16 @@ begin
           until s = '';
         end;
       end
+      else
+      if Form.Components[i] is TVirtualDrawTree then
+      begin
+        for j := 0 to TVirtualDrawTree(Form.Components[i]).Header.Columns.Count - 1 do
+        begin
+          s := ReadString(Form.Name, Format('%s:%d', [TVirtualDrawTree(Form.Components[i]).Name, j]), '');
+          if s <> '' then
+            TVirtualDrawTree(Form.Components[i]).Header.Columns[j].Text := s;
+        end;
+      end
   finally
     Free;
   end;
@@ -716,11 +726,21 @@ begin
           repeat
             s := ReadString(Frame.Name, Format('%s%d', [TRadioGroup(Frame.Components[i]).Name, j]), '');
             if s <> '' then
-              begin
+            begin
               TRadioGroup(Frame.Components[i]).Items.Add(s);
               Inc(j);
             end;
           until s = '';
+        end
+      end
+      else
+      if Frame.Components[i] is TVirtualDrawTree then
+      begin
+        for j := 0 to TVirtualDrawTree(Frame.Components[i]).Header.Columns.Count - 1 do
+        begin
+          s := ReadString(Frame.Name, Format('%s:%d', [TVirtualDrawTree(Frame.Components[i]).Name, j]), '');
+          if s <> '' then
+            TVirtualDrawTree(Frame.Components[i]).Header.Columns[j].Text := s;
         end;
       end
   finally
