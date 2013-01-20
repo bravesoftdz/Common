@@ -824,65 +824,15 @@ end;
 procedure SetStyledFormSize(Dialog: TDialog);
 var
   w, h: Integer;
-//  StyleName: string;
 begin
- (* w := 0;
-  h := 0;
-  if Assigned(TStyleManager.ActiveStyle) then
-  begin
-    StyleName := TStyleManager.ActiveStyle.Name;
-
-    if (StyleName = STYLENAME_AURIC) or (StyleName = STYLENAME_AMAKRITS) then
-    with Dialog do
-    begin
-      w := 6;
-      h := 7;
-    end
-    else
-    if (StyleName = STYLENAME_AMETHYST_KAMRI) or (StyleName = STYLENAME_AQUA_GRAPHITE) or
-      (StyleName = STYLENAME_AQUA_LIGHT_SLATE) or (StyleName = STYLENAME_CHARCOAL_DARK_SLATE) or
-      (StyleName = STYLENAME_COBALT_XEMEDIA) or (StyleName = STYLENAME_CYAN_DUSK) or
-      (StyleName = STYLENAME_CYAN_NIGHT) or (StyleName = STYLENAME_EMERALD_LIGHT_SLATE) or
-      (StyleName = STYLENAME_GOLDEN_GRAPHITE) or (StyleName = STYLENAME_RUBY_GRAPHITE) or
-      (StyleName = STYLENAME_SAPPHIRE_KAMRI) or (StyleName = STYLENAME_SMOKEY_QUARTZ_KAMRI) then
-    with Dialog do
-    begin
-      w := 8;
-      h := 7;
-    end
-    else
-    if StyleName = STYLENAME_CARBON then
-    with Dialog do
-    begin
-      w := 4;
-      h := 5;
-    end
-    else
-    if (StyleName = STYLENAME_ICEBERG_CLASSICO) or (StyleName = STYLENAME_LAVENDER_CLASSICO) or (StyleName = STYLENAME_SLATE_CLASSICO) then
-    with Dialog do
-    begin
-      w := 8;
-      h := 8;
-    end
-    else
-    if (StyleName = STYLENAME_METRO_BLACK) or (StyleName = STYLENAME_METRO_BLUE) or (StyleName = STYLENAME_METRO_GREEN) or
-      (StyleName = STYLENAME_TURUOISE_GRAY) then
-    with Dialog do
-    begin
-      w := 10;
-      h := 10;
-    end;
-  end; *)
   w := 0;
   h := 0;
   if Assigned(TStyleManager.ActiveStyle) then
-  begin
     if TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS then
     begin
-      w := 10;
-      h := 0;
+      w := (Dialog.OrigWidth - Dialog.ClientWidth) div 2;
+      h := (Dialog.OrigHeight - Dialog.ClientHeight) div 2;
     end;
-  end;
   with Dialog do
   begin
     Width :=  Dialog.OrigWidth + w;

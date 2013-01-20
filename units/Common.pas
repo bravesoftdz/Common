@@ -41,7 +41,7 @@ function GetFileVersion(Path: string): string;
 function GetNextToken(Separator: char; Text: string): string;
 function RemoveTokenFromStart(Separator: char; Text: string): string;
 function GetTextAfterChar(Separator: char; Text: string): string;
-procedure CheckForUpdates(AppName: string);
+procedure CheckForUpdates(AppName: string; AboutVersion: string);
 function GetSelectedLanguage(Default: string = ''): string;
 procedure UpdateLanguage(Form: TForm; SelectedLanguage: string = ''); overload;
 procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string = ''); overload;
@@ -50,7 +50,7 @@ implementation
 
 uses
   Winapi.Windows, Winapi.ShellAPI, Vcl.StdCtrls, DownloadURL, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-  System.Character, Vcl.ActnList, System.StrUtils, About, BigINI, Language, VirtualTrees;
+  System.Character, Vcl.ActnList, System.StrUtils, BigINI, Language, VirtualTrees;
 
 procedure RunCommand(const Cmd, Params: String);
 var
@@ -514,19 +514,19 @@ begin
   Result := System.Copy(Text, Pos(Separator, Text) + 1, Length(Text));
 end;
 
-procedure CheckForUpdates(AppName: string);
+procedure CheckForUpdates(AppName: string; AboutVersion: string);
 var
   Version: string;
 begin
   try
     try
       Screen.Cursor := crHourGlass;
-      Version := GetAppVersion(Format('%s/newversioncheck.php?a=%s&v=%s', [BONECODE_URL, LowerCase(AppName), AboutDialog.Version]));
+      Version := GetAppVersion(Format('%s/newversioncheck.php?a=%s&v=%s', [BONECODE_URL, LowerCase(AppName), AboutVersion]));
     finally
       Screen.Cursor := crDefault;
     end;
 
-    if (Trim(Version) <> '') and (Version <> AboutDialog.Version) then
+    if (Trim(Version) <> '') and (Version <> AboutVersion) then
     begin
       if Common.AskYesOrNo(Format(LanguageDataModule.GetYesOrNo('NewVersion'), [Version, AppName, CHR_DOUBLE_ENTER])) then
         DownloadURLDialog.Open(Format('%s.zip', [AppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, AppName]))
