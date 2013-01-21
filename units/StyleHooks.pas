@@ -830,8 +830,8 @@ begin
   if Assigned(TStyleManager.ActiveStyle) then
     if TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS then
     begin
-      w := (Dialog.OrigWidth - Dialog.ClientWidth) div 2;
-      h := (Dialog.OrigHeight - Dialog.ClientHeight) div 2;
+      w := 10; // (Dialog.OrigWidth - Dialog.ClientWidth) div 2;
+      h := 0; //((Dialog.OrigHeight - Dialog.ClientHeight) div 2) - 10;
     end;
   with Dialog do
   begin
