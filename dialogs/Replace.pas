@@ -106,7 +106,7 @@ end;
 
 procedure TReplaceDialog.SearchForComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-  FindButton.Enabled := (Trim(SearchForComboBox.Text) <> '');
+  FindButton.Enabled := SearchForComboBox.Text <> '';
   ReplaceAllButton.Enabled := FindButton.Enabled;
 end;
 
