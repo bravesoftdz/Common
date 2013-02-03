@@ -277,7 +277,7 @@ begin
     Filter := AFilter;
     Title := ATitle;
     if Filename <> '' then
-      DefExt := ExtractFileExt(FileName)
+      DefExt := StringReplace(ExtractFileExt(FileName), '.', '', [])
     else
       DefExt := DefaultExt;
     Options := [doSave, doPathExist, doOverWrite, doTrackFolder];
@@ -285,7 +285,7 @@ begin
   Files.Clear;
   AFileName := OpenDlgOpt(DlgSetUp);
   if (AFileName <> '') and (ExtractFileExt(AFileName) = '') then
-    AFileName := Format('%s.%s', [AFileName, DefaultExt]);
+    AFileName := Format('%s%s', [AFileName, DefaultExt]);
   Files.Add(AFileName);
   Result := Files[0] <> '';
 end;
