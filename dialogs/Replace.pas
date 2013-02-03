@@ -76,10 +76,15 @@ begin
 end;
 
 procedure TReplaceDialog.FormShow(Sender: TObject);
+var
+  i: Integer;
 begin
+  i := ReplaceInRadioGroup.ItemIndex; { language update will set the itemindex to -1 }
   inherited;
+  ReplaceInRadioGroup.ItemIndex := i;
   LeftPanel.Width := Max(SearchForLabel.Width + 12, ReplaceWithLabel.Width + 12);
   RightPanel.Width := Max(Max(Length(FindButton.Caption), Length(ReplaceAllButton.Caption)), Length(CancelButton.Caption)) * 7;
+
   if SearchForComboBox.CanFocus then
     SearchForComboBox.SetFocus;
 end;
