@@ -491,10 +491,10 @@ var
   NextStatementContainer: IXMLElement;
 begin
   NextStatementContainer := EscapeAndLocateNextStatementContainer(True);
-  Result := Assigned(NextStatementContainer) and
+  Result := Assigned(NextStatementContainer) and (
     (NextStatementContainer.NodeName = XMLConstants.XML_SQL_ROOT) or
     ( (NextStatementContainer.NodeName = XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-      (NextStatementContainer.ParentNode.NodeName = XMLConstants.XML_DDL_AS_BLOCK) );
+      (NextStatementContainer.ParentNode.NodeName = XMLConstants.XML_DDL_AS_BLOCK) ) );
 end;
 
 end.

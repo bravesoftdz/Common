@@ -11,7 +11,7 @@ uses
 const
   CHR_ENTER = Chr(13) + Chr(10);
   CHR_DOUBLE_ENTER = CHR_ENTER + CHR_ENTER;
-  CHR_TAB = Chr(9);
+  CHR_TAB = '  ';
 
   BONECODE_URL = 'http://www.bonecode.com';
 

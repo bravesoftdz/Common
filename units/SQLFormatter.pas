@@ -590,7 +590,7 @@ begin
       State.WhiteSpaceBreakToNextLine;
     end
     else
-      State.Assimilate(innerState);
+      State.Assimilate(InnerState);
     State.AddOutputContent(FormatOperator(')'));
     if (ContentElement.NodeName = XMLConstants.XML_EXPRESSION_PARENS) then
       State.DecrementIndent;
@@ -820,7 +820,7 @@ begin
   begin
     //take note if it's a line-breaking space, but don't DO anything here
     if Regex.IsMatch(ContentElement.Text, '(\r|\n)+') then
-        State.SourceBreakPending := True;
+      State.SourceBreakPending := True;
   end
   else
     raise Exception.Create('Unrecognized element in SQL XML!');
@@ -839,6 +839,15 @@ begin
     Result := UpperCase(Result)
   else
     Result := LowerCase(Result);
+
+  if UpperCase(Keyword) = 'FROM' then
+    Result := Format('  %s', [Result]);
+  if UpperCase(Keyword) = 'WHERE' then
+    Result := Format(' %s', [Result]);
+  if UpperCase(Keyword) = 'AND' then
+    Result := Format(' %s', [Result]);
+  if UpperCase(Keyword) = 'OR' then
+    Result := Format('  %s', [Result]);
 end;
 
 function TSQLFormatter.FormatOperator(OperatorValue: string): string;

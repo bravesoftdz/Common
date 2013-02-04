@@ -166,6 +166,8 @@ begin
              (TestValue = 'UNION ALL') or
              (TestValue = 'USING') or
              (TestValue = 'AS') or
+             (TestValue = 'WHERE') or
+             (TestValue = 'BY') or
              EndsText(' APPLY', TestValue)) then
     begin
       Result := True;
@@ -1007,6 +1009,7 @@ begin
         else
         if StartsWith(SignificantTokensString, 'UNION ') or
           StartsWith(SignificantTokensString, 'INTERSECT ') or
+          StartsWith(SignificantTokensString, 'MINUS ') or
           StartsWith(SignificantTokensString, 'EXCEPT ') then
         begin
           Result.ConsiderStartingNewClause;
@@ -1165,7 +1168,7 @@ begin
               Result.CurrentContainer.ParentNode.SelectNodes(XMLConstants.XML_SQL_CLAUSE, NodeList);
               for i := 0 to NodeList.Count - 1 do
               begin
-                Node :=  IXMLElement(NodeList[i]);
+                Node := IXMLElement(NodeList[i]);
                 if ContentStartsWithKeyword(Node, 'SELECT') then
                 begin
                   ExistingSelectClauseFound := True;
@@ -1371,7 +1374,7 @@ begin
 
           NewNodeName := XMLConstants.XML_OTHERNODE;
 
-          if FKeywordList.TryGetValue(SQLToken.Value, MatchedKeywordType) then
+          if FKeywordList.TryGetValue(UpperCase(SQLToken.Value), MatchedKeywordType) then
           begin
             case MatchedKeywordType of
               ktOperatorKeyword: NewNodeName := XMLConstants.XML_ALPHAOPERATOR;
@@ -1785,6 +1788,7 @@ begin
     Add('VIEW', ktOtherKeyword);
     Add('VSIZE', ktFunctionKeyword);
     { W }
+    Add('WHERE', ktOtherKeyword);
     Add('WIDTH_BUCKET', ktFunctionKeyword);
     { X }
     Add('XMLAGG', ktFunctionKeyword);
@@ -1865,6 +1869,7 @@ begin
         (UppercaseValue = 'HAVING') or
         (UppercaseValue = 'INNER') or
         (UppercaseValue = 'INTERSECT') or
+        (UppercaseValue = 'MINUS') or
         (UppercaseValue = 'INTO') or
         (UppercaseValue = 'INSERT') or
         (UppercaseValue = 'MERGE') or
