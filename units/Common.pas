@@ -46,6 +46,7 @@ function GetSelectedLanguage(Default: string = ''): string;
 procedure UpdateLanguage(Form: TForm; SelectedLanguage: string = ''); overload;
 procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string = ''); overload;
 function RemoveWhiteSpace(const s: string): string;
+procedure PropertiesDialog(FileName: string);
 
 implementation
 
@@ -762,6 +763,20 @@ begin
     end;
   end;
   SetLength(Result, j);
+end;
+
+procedure PropertiesDialog(FileName: string);
+var
+  ShellExecuteInfo: TShellExecuteInfo;
+begin
+  if FileName = '' then
+    Exit;
+  FillChar(ShellExecuteInfo, SizeOf(ShellExecuteInfo), 0);
+  ShellExecuteInfo.cbSize := SizeOf(ShellExecuteInfo);
+  ShellExecuteInfo.lpFile := PChar(FileName);
+  ShellExecuteInfo.lpVerb := 'properties';
+  ShellExecuteInfo.fMask  := SEE_MASK_INVOKEIDLIST;
+  ShellExecuteEx(@ShellExecuteInfo);
 end;
 
 end.
