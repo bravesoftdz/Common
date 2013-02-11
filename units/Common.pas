@@ -47,12 +47,13 @@ procedure UpdateLanguage(Form: TForm; SelectedLanguage: string = ''); overload;
 procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string = ''); overload;
 function RemoveWhiteSpace(const s: string): string;
 procedure PropertiesDialog(FileName: string);
+function FormatXML(XML: string): string;
 
 implementation
 
 uses
   Winapi.Windows, Winapi.ShellAPI, Vcl.StdCtrls, DownloadURL, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-  System.Character, Vcl.ActnList, System.StrUtils, BigINI, Language, VirtualTrees;
+  System.Character, Vcl.ActnList, System.StrUtils, BigINI, Language, VirtualTrees, Xml.XMLDoc;
 
 procedure RunCommand(const Cmd, Params: String);
 var
@@ -777,6 +778,20 @@ begin
   ShellExecuteInfo.lpVerb := 'properties';
   ShellExecuteInfo.fMask  := SEE_MASK_INVOKEIDLIST;
   ShellExecuteEx(@ShellExecuteInfo);
+end;
+
+function FormatXML(XML: string): string;
+var
+  XMLDocument: TXMLDocument;
+begin
+  XMLDocument := TXMLDocument.Create(nil);
+   try
+     XMLDocument.LoadFromXML(XML);
+     XMLDocument.XML.Text := FormatXMLData(XMLDocument.XML.Text);
+     Result := XMLDocument.XML.Text;
+   finally
+     XMLDocument.Destroy;
+   end;
 end;
 
 end.
