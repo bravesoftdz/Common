@@ -134,6 +134,7 @@ begin
   SQLTokenizer := TSQLTokenizer.Create(SQL);
   try
     SQLParseTree := SQLParser.Parse(SQLTokenizer.SQLTokenList);
+    SQLParseTree.Save('C:\Temp\Test.xml');
     if Assigned(SQLParseTree) then
     begin
       if Assigned(SQLParseTree.SelectSingleNode(System.SysUtils.Format('/%s/@%s[.=1]', [XMLConstants.XML_SQL_ROOT, XMLConstants.XML_ERRORFOUND]))) then
@@ -311,7 +312,7 @@ end;
 
 constructor TSQLFormatter.Create;
 begin
-  Create(CHR_TAB, 2, 999, False, False, False, True, True, True, False, True, False);
+  Create(CHR_TAB, 2, 999, False, False, False, True, True, False, False, True, False);
 end;
 
 constructor TSQLFormatter.Create(IndentString: string; SpacesPerTab: Integer;
@@ -357,7 +358,7 @@ var
   SQLFormatterState: TSQLFormatterState;
 begin
   SQLFormatterState := TSQLFormatterState.Create(FIndentString, FSpacesPerTab, FMaxLineWidth, 0);
-  if Assigned(SQLParseTree.SelectSingleNode(System.SysUtils.Format('/%s/@%s[.=1]', [XMLConstants.XML_SQL_ROOT, XMLConstants.XML_ERRORFOUND]))) then
+  if Assigned(SQLParseTree.SelectSingleNode(System.SysUtils.Format('/%s/%s[.=1]', [XMLConstants.XML_SQL_ROOT, XMLConstants.XML_ERRORFOUND]))) then
  // if SQLParseTree.ErrorFound then
     SQLFormatterState.AddOutputContent(XMLConstants.PARSING_ERRORS_FOUND);
 
@@ -372,12 +373,12 @@ end;
 procedure TSQLFormatter.ProcessSqlNodeList(RootList: IXMLNodeList; State: TSQLFormatterState);
 var
   i: Integer;
-  XMLElement: IXMLElement;
+  //XMLElement: IXMLElement;
 begin
   for i := 0 to RootList.Count - 1 do
   begin
-    XMLElement := IXMLElement(RootList[i]);
-    ProcessSqlNode(XMLElement, State);
+    //XMLElement := IXMLElement(RootList[i]);
+    ProcessSqlNode(IXMLElement(RootList[i]), State);
   end;
 end;
 (*
@@ -625,7 +626,7 @@ begin
     ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CASE_WHEN), State);
     ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CASE_ELSE), State);
     if FExpandCaseStatements then
-        State.BreakExpected := True;
+      State.BreakExpected := True;
     ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_CLOSE), State);
     State.DecrementIndent;
   end
@@ -839,15 +840,6 @@ begin
     Result := UpperCase(Result)
   else
     Result := LowerCase(Result);
-
-  if UpperCase(Keyword) = 'FROM' then
-    Result := Format('  %s', [Result]);
-  if UpperCase(Keyword) = 'WHERE' then
-    Result := Format(' %s', [Result]);
-  if UpperCase(Keyword) = 'AND' then
-    Result := Format(' %s', [Result]);
-  if UpperCase(Keyword) = 'OR' then
-    Result := Format('  %s', [Result]);
 end;
 
 function TSQLFormatter.FormatOperator(OperatorValue: string): string;

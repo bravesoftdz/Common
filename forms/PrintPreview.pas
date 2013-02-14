@@ -229,9 +229,5 @@ begin
   SynEditPrintPreview.Refresh;
 end;
 
-initialization
-
-  TStyleManager.Engine.RegisterStyleHook(TSynEditPrintPreview, TSynEditStyleHook);
-
 end.
 

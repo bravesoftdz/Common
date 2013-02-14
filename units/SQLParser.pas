@@ -1497,6 +1497,7 @@ begin
     Add('ANALYZE', ktOtherKeyword);
     Add('ANY', ktOperatorKeyword);
     Add('AND', ktOperatorKeyword);
+    Add('ASC', ktOtherKeyword);
     Add('ASCII', ktFunctionKeyword);
     Add('ASCIISTR', ktFunctionKeyword);
     Add('ASIN', ktFunctionKeyword);
@@ -1515,6 +1516,7 @@ begin
     Add('BLOB', ktDataTypeKeyword);
     Add('BODY', ktOtherKeyword);
     Add('BOOLEAN', ktDataTypeKeyword);
+    Add('BY', ktOtherKeyword);
     { C }
     Add('CALL', ktOtherKeyword);
     Add('CASE', ktFunctionKeyword);
@@ -1555,10 +1557,12 @@ begin
     Add('DECIMAL', ktDataTypeKeyword);
     Add('DECODE', ktFunctionKeyword);
     Add('DECOMPOSE', ktFunctionKeyword);
+    Add('DEFAULT', ktOtherKeyword);
     Add('DELETE', ktOtherKeyword);
     Add('DENSE_RANK', ktFunctionKeyword);
     Add('DEPTH', ktFunctionKeyword);
     Add('DEREF', ktFunctionKeyword);
+    Add('DESC', ktOtherKeyword);
     Add('DIMENSION', ktOtherKeyword);
     Add('DIRECTORY', ktOtherKeyword);
     Add('DISSAOCIATE', ktOtherKeyword);
@@ -1568,6 +1572,7 @@ begin
     { E }
     Add('EMPTY_BLOB', ktFunctionKeyword);
     Add('EMPTY_CLOB', ktFunctionKeyword);
+    Add('END LOOP', ktOtherKeyword);
     Add('EQUALS_PATH', ktFunctionKeyword);
     Add('EXISTS', ktOperatorKeyword);
     Add('EXISTSNODE', ktFunctionKeyword);
@@ -1619,6 +1624,7 @@ begin
     Add('LOCK', ktOtherKeyword);
     Add('LOG', ktFunctionKeyword);
     Add('LONG', ktDataTypeKeyword);
+    Add('LOOP', ktOtherKeyword);
     Add('LOWER', ktFunctionKeyword);
     Add('LPAD', ktFunctionKeyword);
     Add('LTRIM', ktFunctionKeyword);
@@ -1649,6 +1655,7 @@ begin
     Add('NOAUDIT', ktOtherKeyword);
     Add('NOT', ktOperatorKeyword);
     Add('NTILE', ktFunctionKeyword);
+    Add('NULL', ktOtherKeyword);
     Add('NULLIF', ktFunctionKeyword);
     Add('NUMBER', ktDataTypeKeyword);
     Add('NUMERIC', ktDataTypeKeyword);
@@ -1661,6 +1668,7 @@ begin
     Add('OPERATOR', ktOtherKeyword);
     Add('OR', ktOperatorKeyword);
     Add('OUTLINE', ktOtherKeyword);
+    Add('ORDER', ktOtherKeyword);
     { P }
     Add('PACKAGE', ktOtherKeyword);
     Add('PATH', ktFunctionKeyword);
@@ -1689,6 +1697,7 @@ begin
     Add('RENAME', ktOtherKeyword);
     Add('REPLACE', ktFunctionKeyword);
     Add('RESOURCE', ktOtherKeyword);
+    Add('RETURN', ktOtherKeyword);
     Add('REVOKE', ktOtherKeyword);
     Add('ROLE', ktOtherKeyword);
     Add('ROLLBACK', ktOtherKeyword);
