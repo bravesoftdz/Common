@@ -780,18 +780,20 @@ begin
   ShellExecuteEx(@ShellExecuteInfo);
 end;
 
+{ Note! The default encoding for XML files is UTF-8, so if no encoding attribute is found UTF-8 is
+  assumed. If encoding is UTF-8, FormatXMLData function will remove the encoding attribute. }
 function FormatXML(XML: string): string;
 var
   XMLDocument: TXMLDocument;
 begin
   XMLDocument := TXMLDocument.Create(nil);
-   try
-     XMLDocument.LoadFromXML(XML);
-     XMLDocument.XML.Text := FormatXMLData(XMLDocument.XML.Text);
-     Result := XMLDocument.XML.Text;
-   finally
-     XMLDocument.Destroy;
-   end;
+  try
+    XMLDocument.LoadFromXML(XML);
+    XMLDocument.XML.Text := FormatXMLData(XMLDocument.XML.Text);
+    Result := XMLDocument.XML.Text;
+  finally
+    XMLDocument.Destroy;
+  end;
 end;
 
 end.
