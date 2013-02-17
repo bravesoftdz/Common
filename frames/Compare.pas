@@ -15,6 +15,7 @@ type
   TSyncKind = (skBoth, skVScroll, skHScroll);
 
   TCompareFrame = class(TFrame)
+    Panel: TPanel;
     LeftPanel: TPanel;
     BottomPanel: TPanel;
     ActionList: TActionList;
@@ -64,7 +65,7 @@ type
     LeftRightPanel: TPanel;
     LeftLabel: TLabel;
     RightLabel: TLabel;
-    Panel2: TPanel;
+    BottomRightPanel: TPanel;
     LeftMemo: TMemo;
     RightMemo: TMemo;
     UpdateLeftSpeedButton: TJvSpeedButton;
