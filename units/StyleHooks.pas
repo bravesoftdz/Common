@@ -11,7 +11,7 @@ uses
   SynHighlighterBat, SynHighlighterPerl, SynHighlighterProgress, SynHighlighterPython,
   SynHighlighterRuby, SynHighlighterSDD, SynHighlighterSML, SynHighlighterTclTk,
   SynHighlighterTex, SynHighlighterUNIXShellScript, SynHighlighterVB, SynHighlighterASM,
-  SynHighlighterSQL, SynHighlighterWeb, Dlg;
+  SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, Dlg;
 
 const
   STYLENAME_WINDOWS = 'Windows';
@@ -58,6 +58,7 @@ type
   procedure UpdateTclTkSynColors(TclTkSyn: TSynTclTkSyn; WhiteBackground: Boolean);
   procedure UpdateTexSynColors(TexSyn: TSynTexSyn; WhiteBackground: Boolean);
   procedure UpdateUNIXShellScriptSynColors(UNIXShellScriptSyn: TSynUNIXShellScriptSyn; WhiteBackground: Boolean);
+  procedure UpdateURISynColors(UriSyn: TSynUriSyn; WhiteBackground: Boolean);
   procedure UpdateVBSynColors(VBSyn: TSynVBSyn; WhiteBackground: Boolean);
   procedure UpdateASMSynColors(ASMSyn: TSynASMSyn; WhiteBackground: Boolean);
   procedure UpdateWebEngineColors(SynWebEngine: TSynWebEngine; WhiteBackground: Boolean);
@@ -546,6 +547,20 @@ begin
     TclTkSyn.CommentAttri.Foreground := clGreen
   else
     TclTkSyn.CommentAttri.Foreground := clLime;
+end;
+
+procedure UpdateURISynColors(UriSyn: TSynUriSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    UriSyn.URIAttri.Foreground := clBlue;
+    UriSyn.VisitedURIAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    UriSyn.URIAttri.Foreground := clAqua;
+    UriSyn.VisitedURIAttri.Foreground := clYellow;
+  end
 end;
 
 procedure UpdateTexSynColors(TexSyn: TSynTexSyn; WhiteBackground: Boolean);
