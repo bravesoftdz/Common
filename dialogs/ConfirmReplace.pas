@@ -10,12 +10,12 @@ type
   TConfirmReplaceDialog = class(TDialog)
     BottomPanel: TPanel;
     CancelButton: TButton;
-    YesToAllButton: TButton;
     ClientPanel: TPanel;
-    Image: TImage;
     ConfirmationLabel: TLabel;
-    YesButton: TButton;
+    Image: TImage;
     NoButton: TButton;
+    YesButton: TButton;
+    YesToAllButton: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   public

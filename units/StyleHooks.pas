@@ -29,38 +29,38 @@ type
     destructor Destroy; override;
   end;
 
-  procedure SetStyledFormSize(Dialog: TDialog);
-  procedure UpdateGutter(SynEdit: TSynEdit);
   function LightenColor(AColor: TColor; AFactor: Double = 0.2): TColor;
+  procedure SetStyledFormSize(Dialog: TDialog);
+  procedure UpdateADSP21xxSynColors(ADSP21xxSyn: TSynADSP21xxSyn; WhiteBackground: Boolean);
+  procedure UpdateASMSynColors(ASMSyn: TSynASMSyn; WhiteBackground: Boolean);
   procedure UpdateAWKSynColors(AWKSyn: TSynAWKSyn; WhiteBackground: Boolean);
+  procedure UpdateBatSynColors(BatSyn: TSynBatSyn; WhiteBackground: Boolean);
   procedure UpdateCobolSynColors(CobolSyn: TSynCobolSyn; WhiteBackground: Boolean);
-  procedure UpdateIdlSynColors(IdlSyn: TSynIdlSyn; WhiteBackground: Boolean);
   procedure UpdateCPMSynColors(CPMSyn: TSynCPMSyn; WhiteBackground: Boolean);
   procedure UpdateDOTSynColors(DOTSyn: TSynDOTSyn; WhiteBackground: Boolean);
-  procedure UpdateADSP21xxSynColors(ADSP21xxSyn: TSynADSP21xxSyn; WhiteBackground: Boolean);
   procedure UpdateDWSSynColors(DWSSyn: TSynDWSSyn; WhiteBackground: Boolean);
   procedure UpdateEiffelSynColors(EiffelSyn: TSynEiffelSyn; WhiteBackground: Boolean);
+  procedure UpdateGutter(SynEdit: TSynEdit);
+  procedure UpdateIdlSynColors(IdlSyn: TSynIdlSyn; WhiteBackground: Boolean);
   procedure UpdateIniSynColors(IniSyn: TSynIniSyn; WhiteBackground: Boolean);
   procedure UpdateInnoSynColors(InnoSyn: TSynInnoSyn; WhiteBackground: Boolean);
   procedure UpdateJavaSynColors(JavaSyn: TSynJavaSyn; WhiteBackground: Boolean);
   procedure UpdateJScriptSynColors(JScriptSyn: TSynJScriptSyn; WhiteBackground: Boolean);
   procedure UpdateLDRSynColors(LDRSyn: TSynLDRSyn; WhiteBackground: Boolean);
   procedure UpdateMsgSynColors(MsgSyn: TSynMsgSyn; WhiteBackground: Boolean);
-  procedure UpdateBatSynColors(BatSyn: TSynBatSyn; WhiteBackground: Boolean);
   procedure UpdatePerlSynColors(PerlSyn: TSynPerlSyn; WhiteBackground: Boolean);
   procedure UpdateProgressSynColors(ProgressSyn: TSynProgressSyn; WhiteBackground: Boolean);
   procedure UpdatePythonSynColors(PythonSyn: TSynPythonSyn; WhiteBackground: Boolean);
   procedure UpdateRubySynColors(RubySyn: TSynRubySyn; WhiteBackground: Boolean);
   procedure UpdateSDDSynColors(SDDSyn: TSynSDDSyn; WhiteBackground: Boolean);
+  procedure UpdateSMLSynColors(SMLSyn: TSynSMLSyn; WhiteBackground: Boolean);
   procedure UpdateSQLSynColors(SQLSyn: TSynSQLSyn); overload;
   procedure UpdateSQLSynColors(SQLSyn: TSynSQLSyn; WhiteBackground: Boolean); overload;
-  procedure UpdateSMLSynColors(SMLSyn: TSynSMLSyn; WhiteBackground: Boolean);
   procedure UpdateTclTkSynColors(TclTkSyn: TSynTclTkSyn; WhiteBackground: Boolean);
   procedure UpdateTexSynColors(TexSyn: TSynTexSyn; WhiteBackground: Boolean);
   procedure UpdateUNIXShellScriptSynColors(UNIXShellScriptSyn: TSynUNIXShellScriptSyn; WhiteBackground: Boolean);
   procedure UpdateURISynColors(UriSyn: TSynUriSyn; WhiteBackground: Boolean);
   procedure UpdateVBSynColors(VBSyn: TSynVBSyn; WhiteBackground: Boolean);
-  procedure UpdateASMSynColors(ASMSyn: TSynASMSyn; WhiteBackground: Boolean);
   procedure UpdateWebEngineColors(SynWebEngine: TSynWebEngine; WhiteBackground: Boolean);
 
 implementation

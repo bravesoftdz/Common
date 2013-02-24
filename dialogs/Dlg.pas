@@ -11,13 +11,13 @@ type
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
-    FOrigWidth: Integer;
     FOrigHeight: Integer;
+    FOrigWidth: Integer;
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
-    property OrigWidth: Integer read FOrigWidth write FOrigWidth;
     property OrigHeight: Integer read FOrigHeight write FOrigHeight;
+    property OrigWidth: Integer read FOrigWidth write FOrigWidth;
   end;
 
 implementation

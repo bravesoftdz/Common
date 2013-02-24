@@ -7,23 +7,23 @@ uses
 
 type
   TLanguageDataModule = class(TDataModule)
-    YesOrNoMultiStringHolder: TJvMultiStringHolder;
-    MessageMultiStringHolder: TJvMultiStringHolder;
-    ErrorMessageMultiStringHolder: TJvMultiStringHolder;
-    WarningMessageMultiStringHolder: TJvMultiStringHolder;
     ConstantMultiStringHolder: TJvMultiStringHolder;
+    ErrorMessageMultiStringHolder: TJvMultiStringHolder;
     FileTypesMultiStringHolder: TJvMultiStringHolder;
+    MessageMultiStringHolder: TJvMultiStringHolder;
+    WarningMessageMultiStringHolder: TJvMultiStringHolder;
+    YesOrNoMultiStringHolder: TJvMultiStringHolder;
   private
     { Private declarations }
   public
     { Public declarations }
     function GetConstant(Name: string): string;
-    function GetPConstant(Name: string): PWideChar;
-    function GetMessage(Name: string): string;
     function GetErrorMessage(Name: string): string;
+    function GetFileTypes(Name: string): string;
+    function GetMessage(Name: string): string;
+    function GetPConstant(Name: string): PWideChar;
     function GetWarningMessage(Name: string): string;
     function GetYesOrNo(Name: string): string;
-    function GetFileTypes(Name: string): string;
   end;
 
 procedure ReadLanguageFile(Language: string);

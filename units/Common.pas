@@ -15,39 +15,38 @@ const
 
   BONECODE_URL = 'http://www.bonecode.com';
 
-function BrowseURL(const URL: string): Boolean;
-function GetOSInfo: string;
-function StringBetween(Str: string; SubStr1: string; SunStr2: string): string;
-function AnsiInitCap(Str: string): string;
-function SaveChanges(IncludeCancel: Boolean = True): Integer;
-function AskYesOrNo(Msg: string): Boolean;
-function MessageDialog(const Msg: string; DlgType: TMsgDlgType;
-  Buttons: TMsgDlgButtons; Captions: array of string): Integer;
-procedure ShowMessage(Msg: string);
-procedure ShowErrorMessage(Msg: string);
-procedure ShowWarningMessage(Msg: string);
-procedure AutoSizeCol(Grid: TBCStringGrid; StartCol: Integer = 0);
 function AddSlash(Path: string): string;
-procedure InsertTextToCombo(ComboBox: TBCComboBox);
-function IsAsciiFile(Filename: string): Boolean;
-function WideUpperCase(const S: WideString): WideString;
-function GetINIFilename: string;
-function EncryptString(Data: string): string;
+function AnsiInitCap(Str: string): string;
+function AskYesOrNo(Msg: string): Boolean;
+function BrowseURL(const URL: string): Boolean;
 function DecryptString(Data: string): string;
-function WordCount(s: string): Integer;
+function EncryptString(Data: string): string;
+function FormatXML(XML: string): string;
 function GetAppVersion(const Url:string):string;
-function PointInRect(const P: TPoint; const R: TRect): Boolean;
 function GetFileVersion(Path: string): string;
+function GetINIFilename: string;
 function GetNextToken(Separator: char; Text: string): string;
-function RemoveTokenFromStart(Separator: char; Text: string): string;
-function GetTextAfterChar(Separator: char; Text: string): string;
-procedure CheckForUpdates(AppName: string; AboutVersion: string);
+function GetOSInfo: string;
 function GetSelectedLanguage(Default: string = ''): string;
+function GetTextAfterChar(Separator: char; Text: string): string;
+function IsAsciiFile(Filename: string): Boolean;
+function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; Captions: array of string): Integer;
+function PointInRect(const P: TPoint; const R: TRect): Boolean;
+function RemoveTokenFromStart(Separator: char; Text: string): string;
+function RemoveWhiteSpace(const s: string): string;
+function SaveChanges(IncludeCancel: Boolean = True): Integer;
+function StringBetween(Str: string; SubStr1: string; SunStr2: string): string;
+function WideUpperCase(const S: WideString): WideString;
+function WordCount(s: string): Integer;
+procedure AutoSizeCol(Grid: TBCStringGrid; StartCol: Integer = 0);
+procedure CheckForUpdates(AppName: string; AboutVersion: string);
+procedure InsertTextToCombo(ComboBox: TBCComboBox);
+procedure PropertiesDialog(FileName: string);
+procedure ShowErrorMessage(Msg: string);
+procedure ShowMessage(Msg: string);
+procedure ShowWarningMessage(Msg: string);
 procedure UpdateLanguage(Form: TForm; SelectedLanguage: string = ''); overload;
 procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string = ''); overload;
-function RemoveWhiteSpace(const s: string): string;
-procedure PropertiesDialog(FileName: string);
-function FormatXML(XML: string): string;
 
 implementation
 

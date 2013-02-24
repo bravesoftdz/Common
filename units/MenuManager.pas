@@ -30,31 +30,30 @@ uses
 type
   TMenuManager = class(TPersistent)
   private
-    FOwner: TComponent;
     FActionButtonsToolBar: TJvToolBar;
+    FActionMainMenuBar: TActionMainMenuBar;
+    FActionManager: TActionManager;
+    FComboBox: TBCComboBox;
     FLastToolButtonLeft: Integer;
     FMenuPanel: TJvPanel;
-    FActionManager: TActionManager;
-    FActionMainMenuBar: TActionMainMenuBar;
-    FComboBox: TBCComboBox;
-    procedure SetImageList(const Value: TImageList);
-    function GetHeight: Integer;
-    procedure SetHeight(Value: Integer);
+    FOwner: TComponent;
     function GetDummyAction(ActionEnabled: Boolean): TAction;
+    function GetHeight: Integer;
     procedure ActDummyExecute(Sender : TObject);
     procedure SetColorMap(Value: TXPColorMap);
+    procedure SetHeight(Value: Integer);
+    procedure SetImageList(const Value: TImageList);
   public
     constructor Create(aOwner: TComponent);
     destructor Destroy; override;
-    function AddRootItem(aparent: TActionClientItem; Position: Integer; CaptionText: string;
-      RootEnabled: Boolean = True): TActionClientItem;
+    function AddComboBox(DefaultText: string; PosLeft: Integer; ComboWidth: Integer = 145): TBCComboBox;
+    function AddRootItem(aparent: TActionClientItem; Position: Integer; CaptionText: string; RootEnabled: Boolean = True): TActionClientItem;
+    procedure AddActionButton(AAction: TAction);
     procedure AddMenuItem(aparent: TActionClientItem; position: integer; AAction: TAction);
     procedure AddSeparatorItem(AParent: TActionClientItem; Position: Integer);
-    function AddComboBox(DefaultText: string; PosLeft: Integer; ComboWidth: Integer = 145): TBCComboBox;
-    procedure AddActionButton(AAction: TAction);
-    property ImageList: TImageList write SetImageList;
     property ColorMap: TXPColorMap write SetColorMap;
     property Height: Integer read GetHeight write SetHeight;
+    property ImageList: TImageList write SetImageList;
   end;
 
 implementation

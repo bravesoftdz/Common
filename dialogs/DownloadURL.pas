@@ -9,17 +9,17 @@ uses
 
 type
   TDownloadURLDialog = class(TDialog)
-    TopPanel: TPanel;
-    InformationLabel: TLabel;
-    ProgressBar: TJvProgressBar;
-    ProgressPanel: TPanel;
-    Button: TButton;
     ActionList: TActionList;
+    Button: TButton;
     CancelAction: TAction;
+    InformationLabel: TLabel;
     OKAction: TAction;
     Panel1: TPanel;
-    procedure FormDestroy(Sender: TObject);
+    ProgressBar: TJvProgressBar;
+    ProgressPanel: TPanel;
+    TopPanel: TPanel;
     procedure CancelActionExecute(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure OKActionExecute(Sender: TObject);
   private
     { Private declarations }

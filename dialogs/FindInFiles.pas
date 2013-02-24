@@ -9,56 +9,56 @@ uses
 
 type
   TFindInFilesDialog = class(TDialog)
-    ButtonPanel: TPanel;
     ActionList: TActionList;
-    FolderButtonClickAction: TAction;
-    LeftPanel: TPanel;
-    Panel2: TPanel;
-    FindWhatLabel: TLabel;
-    Panel3: TPanel;
-    FileTypeLabel: TLabel;
-    Panel4: TPanel;
-    FolderLabel: TLabel;
-    Panel5: TPanel;
-    Panel6: TPanel;
-    FindWhatComboBox: TBCComboBox;
-    Panel7: TPanel;
-    FileTypeComboBox: TBCComboBox;
-    Panel8: TPanel;
-    Panel9: TPanel;
+    ButtonPanel: TPanel;
+    CancelButton: TButton;
     CaseSensitiveCheckBox: TCheckBox;
+    CaseSensitiveLabel: TLabel;
+    FileTypeComboBox: TBCComboBox;
+    FileTypeLabel: TLabel;
+    FindButton: TButton;
+    FindWhatComboBox: TBCComboBox;
+    FindWhatLabel: TLabel;
+    FolderBitBtn: TBitBtn;
+    FolderButtonClickAction: TAction;
+    FolderEdit: TBCEdit;
+    FolderLabel: TLabel;
+    LeftPanel: TPanel;
     LookInSubfoldersCheckBox: TCheckBox;
     Panel10: TPanel;
-    FindButton: TButton;
     Panel11: TPanel;
-    CancelButton: TButton;
-    FolderBitBtn: TBitBtn;
     Panel12: TPanel;
-    FolderEdit: TBCEdit;
-    CaseSensitiveLabel: TLabel;
-    procedure FormDestroy(Sender: TObject);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    Panel9: TPanel;
     procedure FindWhatComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FolderButtonClickActionExecute(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
-    procedure SetButtons;
-    function GetFindWhatText: string;
     function GetFileTypeText: string;
+    function GetFindWhatText: string;
     function GetFolderText: string;
-    procedure SetFolderText(Value: string);
-    function GetSearchCaseSensitive: Boolean;
     function GetLookInSubfolders: Boolean;
+    function GetSearchCaseSensitive: Boolean;
+    procedure SetButtons;
     procedure SetExtensions(Value: string);
+    procedure SetFolderText(Value: string);
   public
     { Public declarations }
-    property FindWhatText: string read GetFindWhatText;
-    property FileTypeText: string read GetFileTypeText;
-    property FolderText: string read GetFolderText write SetFolderText;
-    property SearchCaseSensitive: Boolean read GetSearchCaseSensitive;
-    property LookInSubfolders: Boolean read GetLookInSubfolders;
     property Extensions: string write SetExtensions;
+    property FileTypeText: string read GetFileTypeText;
+    property FindWhatText: string read GetFindWhatText;
+    property FolderText: string read GetFolderText write SetFolderText;
+    property LookInSubfolders: Boolean read GetLookInSubfolders;
+    property SearchCaseSensitive: Boolean read GetSearchCaseSensitive;
   end;
 
 function FindInFilesDialog: TFindInFilesDialog;

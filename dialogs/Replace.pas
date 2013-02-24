@@ -10,44 +10,44 @@ uses
 
 type
   TReplaceDialog = class(TDialog)
-    RightPanel: TPanel;
     CancelButton: TButton;
-    LeftPanel: TPanel;
-    Panel3: TPanel;
-    SearchForLabel: TLabel;
-    Panel5: TPanel;
-    ReplaceWithLabel: TLabel;
-    Panel4: TPanel;
-    Panel6: TPanel;
-    SearchForComboBox: TBCComboBox;
-    Panel7: TPanel;
-    ReplaceWithComboBox: TBCComboBox;
-    Panel8: TPanel;
-    OptionsGroupBox: TGroupBox;
     CaseSensitiveCheckBox: TCheckBox;
-    WholeWordsCheckBox: TCheckBox;
-    Panel9: TPanel;
-    ReplaceInRadioGroup: TRadioGroup;
-    Panel10: TPanel;
     FindButton: TButton;
+    LeftPanel: TPanel;
+    OptionsGroupBox: TGroupBox;
+    Panel10: TPanel;
     Panel11: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    Panel9: TPanel;
     ReplaceAllButton: TButton;
+    ReplaceInRadioGroup: TRadioGroup;
+    ReplaceWithComboBox: TBCComboBox;
+    ReplaceWithLabel: TLabel;
+    RightPanel: TPanel;
+    SearchForComboBox: TBCComboBox;
+    SearchForLabel: TLabel;
+    WholeWordsCheckBox: TCheckBox;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormDestroy(Sender: TObject);
-    procedure SearchForComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
+    procedure SearchForComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
+    function GetReplaceInWholeFile: Boolean;
     function GetReplaceText: string;
     function GetSearchCaseSensitive: Boolean;
     function GetSearchText: string;
     function GetSearchWholeWords: Boolean;
-    function GetReplaceInWholeFile: Boolean;
   public
-    property SearchCaseSensitive: Boolean read GetSearchCaseSensitive;
-    property SearchWholeWords: Boolean read GetSearchWholeWords;
-    property SearchText: string read GetSearchText;
-    property ReplaceText: string read GetReplaceText;
     property ReplaceInWholeFile: Boolean read GetReplaceInWholeFile;
+    property ReplaceText: string read GetReplaceText;
+    property SearchCaseSensitive: Boolean read GetSearchCaseSensitive;
+    property SearchText: string read GetSearchText;
+    property SearchWholeWords: Boolean read GetSearchWholeWords;
   end;
 
 function ReplaceDialog: TReplaceDialog;
