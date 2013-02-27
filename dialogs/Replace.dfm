@@ -4,7 +4,7 @@ object ReplaceDialog: TReplaceDialog
   BorderStyle = bsDialog
   Caption = 'Replace'
   ClientHeight = 137
-  ClientWidth = 502
+  ClientWidth = 534
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -22,7 +22,7 @@ object ReplaceDialog: TReplaceDialog
   PixelsPerInch = 96
   TextHeight = 13
   object RightPanel: TPanel
-    Left = 407
+    Left = 439
     Top = 12
     Width = 83
     Height = 125
@@ -137,7 +137,7 @@ object ReplaceDialog: TReplaceDialog
   object Panel4: TPanel
     Left = 88
     Top = 12
-    Width = 319
+    Width = 351
     Height = 125
     Align = alClient
     BevelOuter = bvNone
@@ -145,7 +145,7 @@ object ReplaceDialog: TReplaceDialog
     object Panel6: TPanel
       Left = 0
       Top = 0
-      Width = 319
+      Width = 351
       Height = 25
       Align = alTop
       BevelOuter = bvNone
@@ -153,7 +153,7 @@ object ReplaceDialog: TReplaceDialog
       object SearchForComboBox: TBCComboBox
         Left = 0
         Top = 0
-        Width = 319
+        Width = 351
         Height = 21
         Align = alTop
         ItemHeight = 13
@@ -168,7 +168,7 @@ object ReplaceDialog: TReplaceDialog
     object Panel7: TPanel
       Left = 0
       Top = 25
-      Width = 319
+      Width = 351
       Height = 25
       Align = alTop
       BevelOuter = bvNone
@@ -176,7 +176,7 @@ object ReplaceDialog: TReplaceDialog
       object ReplaceWithComboBox: TBCComboBox
         Left = 0
         Top = 0
-        Width = 319
+        Width = 351
         Height = 21
         Align = alTop
         ItemHeight = 13
@@ -190,7 +190,7 @@ object ReplaceDialog: TReplaceDialog
     object Panel8: TPanel
       Left = 0
       Top = 50
-      Width = 319
+      Width = 351
       Height = 75
       Align = alClient
       BevelOuter = bvNone
@@ -199,7 +199,7 @@ object ReplaceDialog: TReplaceDialog
       object OptionsGroupBox: TGroupBox
         Left = 0
         Top = 0
-        Width = 155
+        Width = 173
         Height = 65
         Align = alLeft
         Caption = ' Options '
@@ -207,7 +207,7 @@ object ReplaceDialog: TReplaceDialog
         object CaseSensitiveCheckBox: TCheckBox
           Left = 8
           Top = 16
-          Width = 120
+          Width = 155
           Height = 17
           Caption = ' Case Sensitive'
           TabOrder = 0
@@ -215,16 +215,16 @@ object ReplaceDialog: TReplaceDialog
         object WholeWordsCheckBox: TCheckBox
           Left = 8
           Top = 39
-          Width = 120
+          Width = 155
           Height = 17
           Caption = ' Whole Words Only'
           TabOrder = 1
         end
       end
       object Panel9: TPanel
-        Left = 155
+        Left = 173
         Top = 0
-        Width = 164
+        Width = 178
         Height = 65
         Align = alClient
         BevelOuter = bvNone
@@ -233,7 +233,7 @@ object ReplaceDialog: TReplaceDialog
         object ReplaceInRadioGroup: TRadioGroup
           Left = 8
           Top = 0
-          Width = 156
+          Width = 170
           Height = 65
           Align = alClient
           Caption = ' Replace in '

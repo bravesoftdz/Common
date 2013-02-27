@@ -96,6 +96,7 @@ procedure TFindInFilesDialog.FormShow(Sender: TObject);
 begin
   inherited;
   LeftPanel.Width := Max(Max(FindWhatLabel.Width + 12, FileTypeLabel.Width + 12), FolderLabel.Width + 12);
+  ButtonPanel.Width := Max(Max(Canvas.TextWidth(FindButton.Caption), Canvas.TextWidth(CancelButton.Caption)) + 10, 83);
   SetButtons;
   if FindWhatComboBox.CanFocus then
     FindWhatComboBox.SetFocus;

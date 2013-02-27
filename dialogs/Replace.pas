@@ -83,7 +83,7 @@ begin
   inherited;
   ReplaceInRadioGroup.ItemIndex := i;
   LeftPanel.Width := Max(SearchForLabel.Width + 12, ReplaceWithLabel.Width + 12);
-  RightPanel.Width := Max(Max(Length(FindButton.Caption), Length(ReplaceAllButton.Caption)), Length(CancelButton.Caption)) * 7;
+  RightPanel.Width := Max(Max(Canvas.TextWidth(FindButton.Caption), Max(Canvas.TextWidth(ReplaceAllButton.Caption), Canvas.TextWidth(CancelButton.Caption))) + 14, 83);
 
   if SearchForComboBox.CanFocus then
     SearchForComboBox.SetFocus;

@@ -4,7 +4,7 @@ object FindInFilesDialog: TFindInFilesDialog
   BorderStyle = bsDialog
   Caption = 'Find in Files'
   ClientHeight = 108
-  ClientWidth = 446
+  ClientWidth = 499
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -22,9 +22,9 @@ object FindInFilesDialog: TFindInFilesDialog
   PixelsPerInch = 96
   TextHeight = 13
   object ButtonPanel: TPanel
-    Left = 350
+    Left = 404
     Top = 12
-    Width = 84
+    Width = 83
     Height = 96
     Align = alRight
     BevelOuter = bvNone
@@ -33,7 +33,7 @@ object FindInFilesDialog: TFindInFilesDialog
     object Panel10: TPanel
       Left = 8
       Top = 0
-      Width = 76
+      Width = 75
       Height = 31
       Margins.Left = 2
       Margins.Top = 2
@@ -44,10 +44,11 @@ object FindInFilesDialog: TFindInFilesDialog
       BevelOuter = bvNone
       Padding.Bottom = 6
       TabOrder = 0
+      ExplicitWidth = 76
       object FindButton: TButton
         Left = 0
         Top = 0
-        Width = 76
+        Width = 75
         Height = 25
         Align = alTop
         Caption = '&Find'
@@ -55,12 +56,13 @@ object FindInFilesDialog: TFindInFilesDialog
         Enabled = False
         ModalResult = 1
         TabOrder = 0
+        ExplicitWidth = 76
       end
     end
     object Panel11: TPanel
       Left = 8
       Top = 31
-      Width = 76
+      Width = 75
       Height = 25
       Margins.Left = 2
       Margins.Top = 2
@@ -70,16 +72,18 @@ object FindInFilesDialog: TFindInFilesDialog
       AutoSize = True
       BevelOuter = bvNone
       TabOrder = 1
+      ExplicitWidth = 76
       object CancelButton: TButton
         Left = 0
         Top = 0
-        Width = 76
+        Width = 75
         Height = 25
         Align = alTop
         Cancel = True
         Caption = 'Cancel'
         ModalResult = 2
         TabOrder = 0
+        ExplicitWidth = 76
       end
     end
   end
@@ -170,7 +174,7 @@ object FindInFilesDialog: TFindInFilesDialog
   object Panel5: TPanel
     Left = 71
     Top = 12
-    Width = 279
+    Width = 333
     Height = 96
     Margins.Left = 2
     Margins.Top = 2
@@ -179,10 +183,11 @@ object FindInFilesDialog: TFindInFilesDialog
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
+    ExplicitWidth = 332
     object Panel6: TPanel
       Left = 0
       Top = 0
-      Width = 279
+      Width = 333
       Height = 24
       Margins.Left = 2
       Margins.Top = 2
@@ -191,10 +196,11 @@ object FindInFilesDialog: TFindInFilesDialog
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
+      ExplicitWidth = 332
       object FindWhatComboBox: TBCComboBox
         Left = 0
         Top = 0
-        Width = 279
+        Width = 333
         Height = 21
         Align = alTop
         ItemHeight = 13
@@ -204,12 +210,13 @@ object FindInFilesDialog: TFindInFilesDialog
         EditColor = clInfoBk
         DeniedKeyStrokes = False
         DropDownFixedWidth = 0
+        ExplicitWidth = 332
       end
     end
     object Panel7: TPanel
       Left = 0
       Top = 24
-      Width = 279
+      Width = 333
       Height = 24
       Margins.Left = 2
       Margins.Top = 2
@@ -218,10 +225,11 @@ object FindInFilesDialog: TFindInFilesDialog
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 1
+      ExplicitWidth = 332
       object FileTypeComboBox: TBCComboBox
         Left = 0
         Top = 0
-        Width = 279
+        Width = 333
         Height = 21
         Align = alTop
         DropDownCount = 20
@@ -232,12 +240,13 @@ object FindInFilesDialog: TFindInFilesDialog
         EditColor = clInfoBk
         DeniedKeyStrokes = False
         DropDownFixedWidth = 0
+        ExplicitWidth = 332
       end
     end
     object Panel8: TPanel
       Left = 0
       Top = 48
-      Width = 279
+      Width = 333
       Height = 21
       Margins.Left = 2
       Margins.Top = 2
@@ -247,8 +256,9 @@ object FindInFilesDialog: TFindInFilesDialog
       AutoSize = True
       BevelOuter = bvNone
       TabOrder = 2
+      ExplicitWidth = 332
       object FolderBitBtn: TBitBtn
-        Left = 259
+        Left = 313
         Top = 0
         Width = 20
         Height = 21
@@ -282,11 +292,12 @@ object FindInFilesDialog: TFindInFilesDialog
           FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
           00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
         TabOrder = 0
+        ExplicitLeft = 312
       end
       object Panel12: TPanel
         Left = 0
         Top = 0
-        Width = 259
+        Width = 313
         Height = 21
         Margins.Left = 2
         Margins.Top = 2
@@ -297,10 +308,11 @@ object FindInFilesDialog: TFindInFilesDialog
         BevelOuter = bvNone
         Padding.Right = 3
         TabOrder = 1
+        ExplicitWidth = 312
         object FolderEdit: TBCEdit
           Left = 0
           Top = 0
-          Width = 256
+          Width = 310
           Height = 21
           Hint = 'Folder'
           Align = alTop
@@ -310,13 +322,14 @@ object FindInFilesDialog: TFindInFilesDialog
           NumbersWithSpots = False
           EditColor = clInfoBk
           NumbersAllowNegative = False
+          ExplicitWidth = 309
         end
       end
     end
     object Panel9: TPanel
       Left = 0
       Top = 69
-      Width = 279
+      Width = 333
       Height = 21
       Margins.Left = 2
       Margins.Top = 2
@@ -326,6 +339,7 @@ object FindInFilesDialog: TFindInFilesDialog
       BevelOuter = bvNone
       Padding.Top = 4
       TabOrder = 3
+      ExplicitWidth = 332
       object CaseSensitiveLabel: TLabel
         Left = 18
         Top = 4
