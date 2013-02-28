@@ -68,9 +68,9 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, StyleHooks, System.Math,
+  Common, StyleHooks, System.Math, Language,
   {$WARNINGS OFF}
-  Vcl.FileCtrl, Language; { warning: FileCtrl is specific to a platform }
+  Vcl.FileCtrl; { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}
 
 var
