@@ -2,7 +2,7 @@ object LanguageDataModule: TLanguageDataModule
   OldCreateOrder = False
   Height = 390
   Width = 229
-  object YesOrNoMultiStringHolder: TJvMultiStringHolder
+  object YesOrNoMultiStringHolder: TBCMultiStringHolder
     MultipleStrings = <
       item
         Name = 'CloseDirectory'
@@ -39,7 +39,7 @@ object LanguageDataModule: TLanguageDataModule
     Left = 92
     Top = 22
   end
-  object MessageMultiStringHolder: TJvMultiStringHolder
+  object MessageMultiStringHolder: TBCMultiStringHolder
     MultipleStrings = <
       item
         Name = 'LatestVersion'
@@ -59,7 +59,7 @@ object LanguageDataModule: TLanguageDataModule
     Left = 90
     Top = 84
   end
-  object ErrorMessageMultiStringHolder: TJvMultiStringHolder
+  object ErrorMessageMultiStringHolder: TBCMultiStringHolder
     MultipleStrings = <
       item
         Name = 'EnterTabName'
@@ -69,12 +69,12 @@ object LanguageDataModule: TLanguageDataModule
     Left = 88
     Top = 142
   end
-  object WarningMessageMultiStringHolder: TJvMultiStringHolder
+  object WarningMessageMultiStringHolder: TBCMultiStringHolder
     MultipleStrings = <>
     Left = 90
     Top = 202
   end
-  object ConstantMultiStringHolder: TJvMultiStringHolder
+  object ConstantMultiStringHolder: TBCMultiStringHolder
     MultipleStrings = <
       item
         Name = 'AllFiles'
@@ -349,7 +349,7 @@ object LanguageDataModule: TLanguageDataModule
     Left = 88
     Top = 254
   end
-  object FileTypesMultiStringHolder: TJvMultiStringHolder
+  object FileTypesMultiStringHolder: TBCMultiStringHolder
     MultipleStrings = <
       item
         Name = '68HC11'

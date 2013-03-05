@@ -52,7 +52,8 @@ implementation
 
 uses
   Winapi.Windows, Winapi.ShellAPI, Vcl.StdCtrls, DownloadURL, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-  System.Character, Vcl.ActnList, System.StrUtils, BigINI, Language, VirtualTrees, Xml.XMLDoc;
+  System.Character, Vcl.ActnList, System.StrUtils, BigINI, Language, VirtualTrees, Xml.XMLDoc,
+  System.IniFiles;
 
 procedure RunCommand(const Cmd, Params: String);
 var
@@ -565,7 +566,7 @@ begin
   if not DirectoryExists(LanguagePath) then
     Exit;
 
-  with TBigIniFile.Create(Format('%s%s.%s', [LanguagePath, SelectedLanguage, 'lng'])) do
+  with TMemIniFile.Create(Format('%s%s.%s', [LanguagePath, SelectedLanguage, 'lng']), TEncoding.Unicode) do
   try
     s := ReadString(Form.Name, 'Caption', '');
     if s <> '' then
@@ -666,7 +667,7 @@ begin
   if not DirectoryExists(LanguagePath) then
     Exit;
 
-  with TBigIniFile.Create(Format('%s%s.%s', [LanguagePath, SelectedLanguage, 'lng'])) do
+  with TMemIniFile.Create(Format('%s%s.%s', [LanguagePath, SelectedLanguage, 'lng']), TEncoding.Unicode) do
   try
     for i := 0 to Frame.ComponentCount - 1 do
       if Frame.Components[i] is TButton then

@@ -3,16 +3,16 @@ unit Language;
 interface
 
 uses
-  System.SysUtils, System.Classes, JvStringHolder;
+  System.SysUtils, System.Classes, BCUnicodeStringHolder;
 
 type
   TLanguageDataModule = class(TDataModule)
-    ConstantMultiStringHolder: TJvMultiStringHolder;
-    ErrorMessageMultiStringHolder: TJvMultiStringHolder;
-    FileTypesMultiStringHolder: TJvMultiStringHolder;
-    MessageMultiStringHolder: TJvMultiStringHolder;
-    WarningMessageMultiStringHolder: TJvMultiStringHolder;
-    YesOrNoMultiStringHolder: TJvMultiStringHolder;
+    ConstantMultiStringHolder: TBCMultiStringHolder;
+    ErrorMessageMultiStringHolder: TBCMultiStringHolder;
+    FileTypesMultiStringHolder: TBCMultiStringHolder;
+    MessageMultiStringHolder: TBCMultiStringHolder;
+    WarningMessageMultiStringHolder: TBCMultiStringHolder;
+    YesOrNoMultiStringHolder: TBCMultiStringHolder;
   private
     { Private declarations }
   public
@@ -36,7 +36,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Windows, Consts, Vcl.ActnList, Vcl.Menus, BigINI;
+  Windows, Consts, Vcl.ActnList, Vcl.Menus, System.IniFiles;
 
 procedure HookResourceString(aResStringRec: PResStringRec; aNewStr: PChar);
 var
@@ -50,12 +50,13 @@ end;
 procedure ReadLanguageFile(Language: string);
 var
   LanguagePath: string;
-  BigIniFile: TBigIniFile;
+  BigIniFile: TMemIniFile;
 
-  procedure SetStringHolder(MultiStringHolder: TJvMultiStringHolder; Section: string);
+  procedure SetStringHolder(MultiStringHolder: TBCMultiStringHolder; Section: string);
   var
     i: Integer;
-    StringName, s: string;
+    StringName: string;
+    s: UnicodeString;
   begin
     for i := 0 to MultiStringHolder.MultipleStrings.Count - 1 do
     begin
@@ -73,7 +74,7 @@ begin
   if not DirectoryExists(LanguagePath) then
     Exit;
 
-  BigIniFile := TBigIniFile.Create(Format('%s%s.%s', [LanguagePath, Language, 'lng']));
+  BigIniFile := TMemIniFile.Create(Format('%s%s.%s', [LanguagePath, Language, 'lng']), TEncoding.Unicode);
   try
     SetStringHolder(LanguageDataModule.YesOrNoMultiStringHolder, 'AskYesOrNo');
     SetStringHolder(LanguageDataModule.MessageMultiStringHolder, 'Message');
