@@ -145,7 +145,7 @@ begin
     nMaxFile := SizeOf(FilePath);
     lpstrFile := @FilePath;
     if Length(iniFileName) > One then
-      StrCopy(lpstrFile, PChar(iniFileName)); // set first file name here
+      StrCopy(lpstrFile, PChar(iniDirPath + iniFileName)); // set first file name here
 
     if Length(iniDirPath) > One then
       lpstrInitialDir := PChar(iniDirPath)
@@ -159,8 +159,7 @@ begin
       lpstrTitle := PChar(Title); // set dlg Title to OpenSet.Title
 
     if length(DefExt) > One then
-      lpstrDefExt := PChar(DefExt); {lpstrDefExt will automatically add that file
-                                      ext to a file name with no ext}
+      lpstrDefExt := PChar(DefExt); { lpstrDefExt will automatically add that file ext to a file name with no ext}
 
     Flags := OFN_EXPLORER or OFN_ENABLESIZING or OFN_HIDEREADONLY;
     // start with default Flags for Explorer, Sizing and no CheckBox
