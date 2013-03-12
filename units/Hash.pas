@@ -15,12 +15,12 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils;
 
-function HashLine(const line: string; IgnoreCase, IgnoreBlanks: boolean): pointer;
+function HashLine(const Line: string; IgnoreCase, IgnoreBlanks: Boolean): Pointer;
 
 implementation
 
 const
-  table:  ARRAY[0..255] OF DWORD =
+  Table: ARRAY[0..255] OF DWord =
  ($00000000, $77073096, $EE0E612C, $990951BA,
   $076DC419, $706AF48F, $E963A535, $9E6495A3,
   $0EDB8832, $79DCB8A4, $E0D5E91E, $97D2D988,
@@ -91,47 +91,45 @@ const
 
 //CRC algorithm courtesy of Earl F. Glynn ...
 //(http://www.efg2.com/Lab/Mathematics/CRC.htm)
-function CalcCRC32(p: pchar; length: integer): dword;
+function CalcCRC32(p: PChar; Length: Integer): DWord;
 var
-  i: integer;
+  i: Integer;
 begin
-  result := $FFFFFFFF;
-  for i := 0 to length-1 do
+  Result := $FFFFFFFF;
+  for i := 0 to Length - 1 do
   begin
-    result := (result shr 8) xor table[ pbyte(p)^ xor (result and $000000ff) ];
-    inc(p);
+    Result := (Result shr 8) xor Table[ PByte(p)^ xor (Result and $000000ff) ];
+    Inc(p);
   end;
-  result := not result;
+  Result := not Result;
 end;
-//--------------------------------------------------------------------------
 
-function HashLine(const line: string; IgnoreCase, IgnoreBlanks: boolean): pointer;
+function HashLine(const Line: string; IgnoreCase, IgnoreBlanks: Boolean): Pointer;
 var
-  i, j, len: integer;
+  i, j, Len: Integer;
   s: string;
 begin
-  s := line;
+  s := Line;
   if IgnoreBlanks then
   begin
     i := 1;
     j := 1;
-    len := length(line);
-    while i <= len do
+    Len := Length(Line);
+    while i <= Len do
     begin
-      if not CharInSet(line[i], [#9,#32]) then
+      if not CharInSet(Line[i], [#9, #32]) then
       begin
-        s[j] := line[i];
-        inc(j);
+        s[j] := Line[i];
+        Inc(j);
       end;
-      inc(i);
+      Inc(i);
     end;
-    setlength(s,j-1);
+    SetLength(s, j - 1);
   end;
-  if IgnoreCase then s := AnsiLowerCase(s);
+  if IgnoreCase then
+    s := AnsiLowerCase(s);
   //return result as a pointer to save typecasting later...
-  result := pointer(CalcCRC32(pchar(s), length(s)));
+  Result := Pointer(CalcCRC32(PChar(s), Length(s)));
 end;
-//---------------------------------------------------------------------
-
 
 end.

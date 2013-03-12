@@ -20,7 +20,7 @@ unit Diff;
 *                   discrete acknowledgement would be appreciated (eg. in a    *
 *                   program's 'About Box').                                    *
 *                                                                              *
-* Description:      Component to list differences between two integer arrays   *
+* Description:      Component to list differences between two Integer arrays   *
 *                   using a "longest common subsequence" algorithm.            *
 *                   Typically, this component is used to diff 2 text files     *
 *                   once their individuals lines have been hashed.             *
@@ -61,69 +61,68 @@ type
 {$ENDIF}
 
   PDiags = ^TDiags;
-  TDiags = array [-MAX_DIAGONAL .. MAX_DIAGONAL] of integer;
+  TDiags = array [-MAX_DIAGONAL..MAX_DIAGONAL] of Integer;
 
   PIntArray = ^TIntArray;
-  TIntArray = array[0 .. MAXINT div sizeof(integer) -1] of Integer;
+  TIntArray = array[0 .. MAXINT div SizeOf(Integer) -1] of Integer;
   PChrArray = ^TChrArray;
-  TChrArray = array[0 .. MAXINT div sizeof(char) -1] of Char;
+  TChrArray = array[0 .. MAXINT div SizeOf(Char) -1] of Char;
 
   TChangeKind = (ckNone, ckAdd, ckDelete, ckModify);
 
   PCompareRec = ^TCompareRec;
   TCompareRec = record
-    Kind      : TChangeKind;
-    oldIndex1,
-    oldIndex2 : integer;
-    case boolean of
-      false   : (chr1, chr2 : Char);
-      true    : (int1, int2 : integer);
+    Kind: TChangeKind;
+    OldIndex1, OldIndex2: Integer;
+    case Boolean of
+      False: (chr1, chr2: Char);
+      True: (int1, int2: Integer);
   end;
 
   TDiffStats = record
-    matches  : integer;
-    adds     : integer;
-    deletes  : integer;
-    modifies : integer;
+    Matches: Integer;
+    Adds: Integer;
+    Deletes: Integer;
+    Modifies: Integer;
   end;
 
   TDiff = class(TComponent)
   private
-    fCompareList: TList;
-    fCancelled: boolean;
-    fExecuting: boolean;
-    fDiagBuffer, bDiagBuffer: pointer;
+    FCompareList: TList;
+    FCancelled: Boolean;
+    FExecuting: Boolean;
+    FDiagBuffer, bDiagBuffer: pointer;
     Chrs1, Chrs2: PChrArray;
     Ints1, Ints2: PIntArray;
     LastCompareRec: TCompareRec;
-    fDiag, bDiag: PDiags;
-    fDiffStats: TDiffStats;
-    procedure InitDiagArrays(MaxOscill, len1, len2: integer);
+    FDiag, BDiag: PDiags;
+    FDiffStats: TDiffStats;
+    procedure InitDiagArrays(MaxOscill, Len1, Len2: Integer);
     //nb: To optimize speed, separate functions are called for either
-    //integer or character compares ...
-    procedure RecursiveDiffChr(offset1, offset2, len1, len2: integer);
-    procedure AddChangeChrs(offset1, range: integer; ChangeKind: TChangeKind);
-    procedure RecursiveDiffInt(offset1, offset2, len1, len2: integer);
-    procedure AddChangeInts(offset1, range: integer; ChangeKind: TChangeKind);
+    //Integer or Character compares ...
+    procedure RecursiveDiffChr(Offset1, Offset2, len1, Len2: Integer);
+    procedure AddChangeChrs(Offset1, Range: Integer; ChangeKind: TChangeKind);
+    procedure RecursiveDiffInt(Offset1, Offset2, len1, Len2: Integer);
+    procedure AddChangeInts(Offset1, Range: Integer; ChangeKind: TChangeKind);
 
-    function GetCompareCount: integer;
-    function GetCompare(index: integer): TCompareRec;
+    function GetCompareCount: Integer;
+    function GetCompare(Index: Integer): TCompareRec;
   public
-    constructor Create(aOwner: TComponent); override;
+    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
 
-    //compare either and array of characters or an array of integers ...
-    function Execute(pints1, pints2: PInteger; len1, len2: integer): boolean; overload;
-    function Execute(pchrs1, pchrs2: PChar; len1, len2: integer): boolean; overload;
+    //compare either and array of Characters or an array of Integers ...
+    function Execute(PInts1, PInts2: PInteger; Len1, Len2: Integer): Boolean; overload;
+    function Execute(PChrs1, PChrs2: PChar; Len1, Len2: Integer): Boolean; overload;
 
     //Cancel allows interrupting excessively prolonged comparisons
     procedure Cancel;
     procedure Clear;
 
-    property Cancelled: boolean read fCancelled;
-    property Count: integer read GetCompareCount;
-    property Compares[index: integer]: TCompareRec read GetCompare; default;
-    property DiffStats: TDiffStats read fDiffStats;
+    property Cancelled: Boolean read FCancelled;
+    property Count: Integer read GetCompareCount;
+    property Compares[index: Integer]: TCompareRec read GetCompare; default;
+    property DiffStats: TDiffStats read FDiffStats;
   end;
 
 procedure Register;
@@ -132,658 +131,642 @@ implementation
 
 procedure Register;
 begin
-  RegisterComponents('Samples', [TDiff]);
+  RegisterComponents('bonecode', [TDiff]);
 end;
 
 constructor TDiff.Create(aOwner: TComponent);
 begin
   inherited;
-  fCompareList := TList.create;
+  FCompareList := TList.create;
 end;
-//------------------------------------------------------------------------------
 
 destructor TDiff.Destroy;
 begin
   Clear;
-  fCompareList.free;
+  FCompareList.free;
   inherited;
 end;
-//------------------------------------------------------------------------------
 
-function TDiff.Execute(pchrs1, pchrs2: PChar; len1, len2: integer): boolean;
+function TDiff.Execute(PChrs1, PChrs2: PChar; Len1, Len2: Integer): Boolean;
 var
-  maxOscill, x1,x2, savedLen: integer;
-  compareRec: PCompareRec;
+  MaxOscill, x1,x2, SavedLen: Integer;
+  CompareRec: PCompareRec;
 begin
-  result := not fExecuting;
-  if not result then exit;
-  fExecuting := true;
-  fCancelled := false;
+  Result := not fExecuting;
+  if not Result then
+    Exit;
+  FExecuting := True;
+  FCancelled := False;
   try
     Clear;
 
     //save first string length for later (ie for any trailing matches) ...
-    savedLen := len1-1;
+    SavedLen := Len1 - 1;
 
-    //setup the character arrays ...
-    Chrs1 := pointer(pchrs1);
-    Chrs2 := pointer(pchrs2);
+    //setup the Character arrays ...
+    Chrs1 := Pointer(PChrs1);
+    Chrs2 := Pointer(PChrs2);
 
     //ignore top matches ...
-    x1:= 0; x2 := 0;
-    while (len1 > 0) and (len2 > 0) and (Chrs1[len1-1] = Chrs2[len2-1]) do
+    x1 := 0; x2 := 0;
+    while (Len1 > 0) and (Len2 > 0) and (Chrs1[Len1-1] = Chrs2[Len2-1]) do
     begin
-      dec(len1); dec(len2);
+      Dec(Len1); Dec(Len2);
     end;
 
     //if something doesn't match ...
-    if (len1 <> 0) or (len2 <> 0) then
+    if (Len1 <> 0) or (Len2 <> 0) then
     begin
       //ignore bottom of matches too ...
-      while (len1 > 0) and (len2 > 0) and (Chrs1[x1] = Chrs2[x2]) do
+      while (Len1 > 0) and (Len2 > 0) and (Chrs1[x1] = Chrs2[x2]) do
       begin
-        dec(len1); dec(len2);
-        inc(x1); inc(x2);
+        Dec(Len1); Dec(Len2);
+        Inc(x1); Inc(x2);
       end;
 
-      maxOscill := min(max(len1,len2), MAX_DIAGONAL);
-      fCompareList.Capacity := len1 + len2;
+      MaxOscill := Min(Max(Len1, Len2), MAX_DIAGONAL);
+      FCompareList.Capacity := Len1 + Len2;
 
       //nb: the Diag arrays are extended by 1 at each end to avoid testing
       //for array limits. Hence '+3' because will also includes Diag[0] ...
-      GetMem(fDiagBuffer, sizeof(integer)*(maxOscill*2+3));
-      GetMem(bDiagBuffer, sizeof(integer)*(maxOscill*2+3));
+      GetMem(FDiagBuffer, SizeOf(Integer) * (MaxOscill * 2 + 3));
+      GetMem(BDiagBuffer, SizeOf(Integer) * (MaxOscill * 2 + 3));
       try
-        RecursiveDiffChr(x1, x2, len1, len2);
+        RecursiveDiffChr(x1, x2, Len1, Len2);
       finally
-        freeMem(fDiagBuffer);
-        freeMem(bDiagBuffer);
+        FreeMem(FDiagBuffer);
+        FreeMem(BDiagBuffer);
       end;
     end;
 
-    if fCancelled then
+    if FCancelled then
     begin
-      result := false;
+      Result := False;
       Clear;
-      exit;
+      Exit;
     end;
 
     //finally, append any trailing matches onto compareList ...
-    while (LastCompareRec.oldIndex1 < savedLen) do
+    while LastCompareRec.OldIndex1 < SavedLen do
     begin
       with LastCompareRec do
       begin
         Kind := ckNone;
-        inc(oldIndex1);
-        inc(oldIndex2);
-        chr1 := Chrs1[oldIndex1];
-        chr2 := Chrs2[oldIndex2];
+        Inc(OldIndex1);
+        Inc(OldIndex2);
+        Chr1 := Chrs1[OldIndex1];
+        Chr2 := Chrs2[OldIndex2];
       end;
-      New(compareRec);
-      compareRec^ := LastCompareRec;
-      fCompareList.Add(compareRec);
-      inc(fDiffStats.matches);
+      New(CompareRec);
+      CompareRec^ := LastCompareRec;
+      FCompareList.Add(CompareRec);
+      Inc(FDiffStats.Matches);
     end;
   finally
-    fExecuting := false;
+    FExecuting := False;
   end;
-
 end;
-//------------------------------------------------------------------------------
 
-function TDiff.Execute(pints1, pints2: PInteger; len1, len2: integer): boolean;
+function TDiff.Execute(PInts1, PInts2: PInteger; Len1, Len2: Integer): Boolean;
 var
-  maxOscill, x1,x2, savedLen: integer;
-  compareRec: PCompareRec;
+  MaxOscill, x1,x2, SavedLen: Integer;
+  CompareRec: PCompareRec;
 begin
-  result := not fExecuting;
-  if not result then exit;
-  fExecuting := true;
-  fCancelled := false;
+  Result := not FExecuting;
+  if not Result then
+    Exit;
+  FExecuting := True;
+  FCancelled := False;
   try
     Clear;
 
-    //setup the character arrays ...
-    Ints1 := pointer(pints1);
-    Ints2 := pointer(pints2);
+    //setup the Character arrays ...
+    Ints1 := Pointer(PInts1);
+    Ints2 := Pointer(PInts2);
 
     //save first string length for later (ie for any trailing matches) ...
-    savedLen := len1-1;
+    SavedLen := Len1 - 1;
 
     //ignore top matches ...
-    x1:= 0; x2 := 0;
-    while (len1 > 0) and (len2 > 0) and (Ints1[len1-1] = Ints2[len2-1]) do
+    x1 := 0; x2 := 0;
+    while (Len1 > 0) and (Len2 > 0) and (Ints1[Len1-1] = Ints2[Len2-1]) do
     begin
-      dec(len1); dec(len2);
+      Dec(Len1); Dec(Len2);
     end;
 
     //if something doesn't match ...
-    if (len1 <> 0) or (len2 <> 0) then
+    if (Len1 <> 0) or (Len2 <> 0) then
     begin
-
       //ignore bottom of matches too ...
-      while (len1 > 0) and (len2 > 0) and (Ints1[x1] = Ints2[x2]) do
+      while (Len1 > 0) and (Len2 > 0) and (Ints1[x1] = Ints2[x2]) do
       begin
-        dec(len1); dec(len2);
-        inc(x1); inc(x2);
+        Dec(Len1); Dec(Len2);
+        Inc(x1); Inc(x2);
       end;
 
-      maxOscill := min(max(len1,len2), MAX_DIAGONAL);
-      fCompareList.Capacity := len1 + len2;
+      MaxOscill := Min(Max(Len1, Len2), MAX_DIAGONAL);
+      FCompareList.Capacity := Len1 + Len2;
 
       //nb: the Diag arrays are extended by 1 at each end to avoid testing
       //for array limits. Hence '+3' because will also includes Diag[0] ...
-      GetMem(fDiagBuffer, sizeof(integer)*(maxOscill*2+3));
-      GetMem(bDiagBuffer, sizeof(integer)*(maxOscill*2+3));
+      GetMem(FDiagBuffer, SizeOf(Integer) * (MaxOscill * 2 + 3));
+      GetMem(BDiagBuffer, SizeOf(Integer) * (MaxOscill * 2 + 3));
       try
-        RecursiveDiffInt(x1, x2, len1, len2);
+        RecursiveDiffInt(x1, x2, Len1, Len2);
       finally
-        freeMem(fDiagBuffer);
-        freeMem(bDiagBuffer);
+        FreeMem(FDiagBuffer);
+        FreeMem(BDiagBuffer);
       end;
     end;
 
-    if fCancelled then
+    if FCancelled then
     begin
-      result := false;
+      Result := False;
       Clear;
-      exit;
+      Exit;
     end;
 
     //finally, append any trailing matches onto compareList ...
-    while (LastCompareRec.oldIndex1 < savedLen) do
+    while LastCompareRec.OldIndex1 < SavedLen do
     begin
       with LastCompareRec do
       begin
         Kind := ckNone;
-        inc(oldIndex1);
-        inc(oldIndex2);
-        int1 := Ints1[oldIndex1];
-        int2 := Ints2[oldIndex2];
+        Inc(OldIndex1);
+        Inc(OldIndex2);
+        int1 := Ints1[OldIndex1];
+        int2 := Ints2[OldIndex2];
       end;
-      New(compareRec);
-      compareRec^ := LastCompareRec;
-      fCompareList.Add(compareRec);
-      inc(fDiffStats.matches);
+      New(CompareRec);
+      CompareRec^ := LastCompareRec;
+      FCompareList.Add(CompareRec);
+      Inc(FDiffStats.Matches);
     end;
   finally
-    fExecuting := false;
+    FExecuting := False;
   end;
-
 end;
-//------------------------------------------------------------------------------
 
-procedure TDiff.InitDiagArrays(MaxOscill, len1, len2: integer);
+procedure TDiff.InitDiagArrays(MaxOscill, Len1, Len2: Integer);
 var
-  diag: integer;
+  Diag: Integer;
 begin
-  inc(maxOscill); //for the extra diag at each end of the arrays ...
-  P8Bits(fDiag) := P8Bits(fDiagBuffer) - sizeof(integer)*(MAX_DIAGONAL-maxOscill);
-  P8Bits(bDiag) := P8Bits(bDiagBuffer) - sizeof(integer)*(MAX_DIAGONAL-maxOscill);
+  Inc(MaxOscill); //for the extra diag at each end of the arrays ...
+  P8Bits(FDiag) := P8Bits(FDiagBuffer) - SizeOf(Integer) * (MAX_DIAGONAL - MaxOscill);
+  P8Bits(BDiag) := P8Bits(BDiagBuffer) - SizeOf(Integer) * (MAX_DIAGONAL - MaxOscill);
   //initialize Diag arrays (assumes 0 based arrays) ...
-  for diag := - maxOscill to maxOscill do fDiag[diag] := -MAXINT;
+  for diag := -MaxOscill to MaxOscill do
+    FDiag[diag] := -MAXINT;
   fDiag[0] := -1;
-  for diag := - maxOscill to maxOscill do bDiag[diag] := MAXINT;
-  bDiag[len1 - len2] := len1-1;
+  for diag := -MaxOscill to MaxOscill do
+    BDiag[diag] := MAXINT;
+  BDiag[Len1 - Len2] := Len1-1;
 end;
-//------------------------------------------------------------------------------
 
-procedure TDiff.RecursiveDiffChr(offset1, offset2, len1, len2: integer);
+procedure TDiff.RecursiveDiffChr(Offset1, Offset2, Len1, Len2: Integer);
 var
-  diag, lenDelta, Oscill, maxOscill, x1, x2: integer;
+  diag, lenDelta, Oscill, MaxOscill, x1, x2: Integer;
 begin
   //nb: the possible depth of recursion here is most unlikely to cause
   //    problems with stack overflows.
-  application.processmessages;
-  if fCancelled then exit;
+  Application.ProcessMessages;
+  if FCancelled then exit;
 
-  if (len1 = 0) then
+  if Len1 = 0 then
   begin
-    AddChangeChrs(offset1, len2, ckAdd);
-    exit;
+    AddChangeChrs(Offset1, Len2, ckAdd);
+    Exit;
   end
-  else if (len2 = 0) then
+  else if Len2 = 0 then
   begin
-    AddChangeChrs(offset1, len1, ckDelete);
-    exit;
+    AddChangeChrs(Offset1, Len1, ckDelete);
+    Exit;
   end
-  else if (len1 = 1) and (len2 = 1) then
+  else if (Len1 = 1) and (Len2 = 1) then
   begin
-    AddChangeChrs(offset1, 1, ckDelete);
-    AddChangeChrs(offset1, 1, ckAdd);
-    exit;
+    AddChangeChrs(Offset1, 1, ckDelete);
+    AddChangeChrs(Offset1, 1, ckAdd);
+    Exit;
   end;
 
-  maxOscill := min(max(len1,len2), MAX_DIAGONAL);
-  InitDiagArrays(MaxOscill, len1, len2);
-  lenDelta := len1 -len2;
+  MaxOscill := min(max(Len1,Len2), MAX_DIAGONAL);
+  InitDiagArrays(MaxOscill, Len1, Len2);
+  lenDelta := Len1 - Len2;
 
   Oscill := 1; //ie assumes prior filter of top and bottom matches
-  while Oscill <= maxOscill do
+  while Oscill <= MaxOscill do
   begin
-
     if (Oscill mod 200) = 0 then
     begin
-      application.processmessages;
-      if fCancelled then exit;
+      Application.ProcessMessages;
+      if FCancelled then
+        Exit;
     end;
 
     //do forward oscillation (keeping diag within assigned grid)...
-    diag := Oscill;
-    while diag > len1 do dec(diag,2);
-    while diag >= max(- Oscill, -len2) do
+    Diag := Oscill;
+    while Diag > Len1 do Dec(diag,2);
+    while Diag >= Max(-Oscill, -Len2) do
     begin
-      if fDiag[diag-1] < fDiag[diag+1] then
-        x1 := fDiag[diag+1] else
-        x1 := fDiag[diag-1]+1;
-      x2 := x1 - diag;
-      while (x1 < len1-1) and (x2 < len2-1) and
-        (Chrs1[offset1+x1+1] = Chrs2[offset2+x2+1]) do
+      if FDiag[diag-1] < FDiag[diag+1] then
+        x1 := FDiag[Diag+1]
+      else
+        x1 := FDiag[Diag-1]+1;
+      x2 := x1 - Diag;
+      while (x1 < Len1-1) and (x2 < Len2-1) and (Chrs1[Offset1 + x1 + 1] = Chrs2[Offset2 + x2 + 1]) do
       begin
-        inc(x1); inc(x2);
+        Inc(x1); Inc(x2);
       end;
-      fDiag[diag] := x1;
+      FDiag[diag] := x1;
 
       //nb: (fDiag[diag] is always < bDiag[diag]) here when NOT odd(lenDelta) ...
-      if odd(lenDelta) and (fDiag[diag] >= bDiag[diag]) then
+      if Odd(lenDelta) and (FDiag[Diag] >= BDiag[Diag]) then
       begin
-        inc(x1);inc(x2);
+        Inc(x1);Inc(x2);
         //save x1 & x2 for second recursive_diff() call by reusing no longer
         //needed variables (ie minimize variable allocation in recursive fn) ...
-        diag := x1; Oscill := x2;
-        while (x1 > 0) and (x2 > 0) and (Chrs1[offset1+x1-1] = Chrs2[offset2+x2-1]) do
+        Diag := x1; Oscill := x2;
+        while (x1 > 0) and (x2 > 0) and (Chrs1[Offset1 + x1 - 1] = Chrs2[Offset2 + x2 - 1]) do
         begin
-          dec(x1); dec(x2);
+          Dec(x1); Dec(x2);
         end;
-        RecursiveDiffChr(offset1, offset2, x1, x2);
-        x1 := diag; x2 := Oscill;
-        RecursiveDiffChr(offset1+x1, offset2+x2, len1-x1, len2-x2);
-        exit; //ALL DONE
+        RecursiveDiffChr(Offset1, Offset2, x1, x2);
+        x1 := Diag; x2 := Oscill;
+        RecursiveDiffChr(Offset1 + x1, Offset2 + x2, Len1 - x1, Len2 - x2);
+        Exit; //ALL DONE
       end;
-      dec(diag,2);
+      Dec(diag,2);
     end;
 
     //do backward oscillation (keeping diag within assigned grid)...
-    diag := lenDelta + Oscill;
-    while diag > len1 do dec(diag,2);
-    while diag >= max(lenDelta - Oscill, -len2)  do
+    Diag := LenDelta + Oscill;
+    while Diag > Len1 do
+      Dec(diag,2);
+    while Diag >= Max(LenDelta - Oscill, -Len2)  do
     begin
-      if bDiag[diag-1] < bDiag[diag+1] then
-        x1 := bDiag[diag-1] else
-        x1 := bDiag[diag+1]-1;
-      x2 := x1 - diag;
-      while (x1 > -1) and (x2 > -1) and (Chrs1[offset1+x1] = Chrs2[offset2+x2]) do
+      if BDiag[Diag-1] < BDiag[Diag+1] then
+        x1 := BDiag[Diag-1] else
+        x1 := BDiag[Diag+1]-1;
+      x2 := x1 - Diag;
+      while (x1 > -1) and (x2 > -1) and (Chrs1[Offset1 + x1] = Chrs2[Offset2 + x2]) do
       begin
-        dec(x1); dec(x2);
+        Dec(x1); Dec(x2);
       end;
-      bDiag[diag] := x1;
+      BDiag[diag] := x1;
 
-      if bDiag[diag] <= fDiag[diag] then
+      if BDiag[diag] <= FDiag[diag] then
       begin
         //flag return value then ...
-        inc(x1);inc(x2);
-        RecursiveDiffChr(offset1, offset2, x1, x2);
-        while (x1 < len1) and (x2 < len2) and
-          (Chrs1[offset1+x1] = Chrs2[offset2+x2]) do
+        Inc(x1); Inc(x2);
+        RecursiveDiffChr(Offset1, Offset2, x1, x2);
+        while (x1 < Len1) and (x2 < Len2) and (Chrs1[Offset1 + x1] = Chrs2[Offset2 + x2]) do
         begin
-          inc(x1); inc(x2);
+          Inc(x1); Inc(x2);
         end;
-        RecursiveDiffChr(offset1+x1, offset2+x2, len1-x1, len2-x2);
-        exit; //ALL DONE
+        RecursiveDiffChr(Offset1 + x1, Offset2 + x2, Len1 - x1, Len2 - x2);
+        Exit; //ALL DONE
       end;
-      dec(diag,2);
+      Dec(Diag,2);
     end;
-
-    inc(Oscill);
-  end; //while Oscill <= maxOscill
+    Inc(Oscill);
+  end; //while Oscill <= MaxOscill
 
   raise Exception.create('oops - error in RecursiveDiffChr()');
 end;
-//------------------------------------------------------------------------------
 
-procedure TDiff.RecursiveDiffInt(offset1, offset2, len1, len2: integer);
+procedure TDiff.RecursiveDiffInt(Offset1, Offset2, Len1, Len2: Integer);
 var
-  diag, lenDelta, Oscill, maxOscill, x1, x2: integer;
+  Diag, LenDelta, Oscill, MaxOscill, x1, x2: Integer;
 begin
   //nb: the possible depth of recursion here is most unlikely to cause
   //    problems with stack overflows.
-  application.processmessages;
-  if fCancelled then exit;
+  Application.ProcessMessages;
+  if FCancelled then
+    exit;
 
-  if (len1 = 0) then
+  if Len1 = 0 then
   begin
-    assert(len2 > 0,'oops!');
-    AddChangeInts(offset1, len2, ckAdd);
-    exit;
+    Assert(Len2 > 0, 'oops!');
+    AddChangeInts(Offset1, Len2, ckAdd);
+    Exit;
   end
-  else if (len2 = 0) then
+  else if Len2 = 0 then
   begin
-    AddChangeInts(offset1, len1, ckDelete);
-    exit;
+    AddChangeInts(Offset1, Len1, ckDelete);
+    Exit;
   end
-  else if (len1 = 1) and (len2 = 1) then
+  else if (Len1 = 1) and (Len2 = 1) then
   begin
-    assert(Ints1[offset1] <> Ints2[offset2],'oops!');
-    AddChangeInts(offset1, 1, ckDelete);
-    AddChangeInts(offset1, 1, ckAdd);
-    exit;
+    Assert(Ints1[Offset1] <> Ints2[Offset2], 'oops!');
+    AddChangeInts(Offset1, 1, ckDelete);
+    AddChangeInts(Offset1, 1, ckAdd);
+    Exit;
   end;
 
-  maxOscill := min(max(len1,len2), MAX_DIAGONAL);
-  InitDiagArrays(MaxOscill, len1, len2);
-  lenDelta := len1 -len2;
+  MaxOscill := Min(Max(Len1,Len2), MAX_DIAGONAL);
+  InitDiagArrays(MaxOscill, Len1, Len2);
+  LenDelta := Len1 - Len2;
 
   Oscill := 1; //ie assumes prior filter of top and bottom matches
-  while Oscill <= maxOscill do
+  while Oscill <= MaxOscill do
   begin
-
     if (Oscill mod 200) = 0 then
     begin
-      application.processmessages;
-      if fCancelled then exit;
+      Application.ProcessMessages;
+      if FCancelled then
+        Exit;
     end;
 
     //do forward oscillation (keeping diag within assigned grid)...
-    diag := Oscill;
-    while diag > len1 do dec(diag,2);
-    while diag >= max(- Oscill, -len2) do
+    Diag := Oscill;
+    while Diag > Len1 do
+      Dec(Diag,2);
+    while Diag >= max(-Oscill, -Len2) do
     begin
-      if fDiag[diag-1] < fDiag[diag+1] then
-        x1 := fDiag[diag+1] else
-        x1 := fDiag[diag-1]+1;
-      x2 := x1 - diag;
-      while (x1 < len1-1) and (x2 < len2-1) and
-        (Ints1[offset1+x1+1] = Ints2[offset2+x2+1]) do
+      if FDiag[Diag-1] < FDiag[Diag+1] then
+        x1 := FDiag[Diag+1] else
+        x1 := FDiag[Diag-1]+1;
+      x2 := x1 - Diag;
+      while (x1 < Len1-1) and (x2 < Len2-1) and (Ints1[Offset1 + x1 + 1] = Ints2[Offset2 + x2 + 1]) do
       begin
-        inc(x1); inc(x2);
+        Inc(x1); Inc(x2);
       end;
-      fDiag[diag] := x1;
+      FDiag[Diag] := x1;
 
       //nb: (fDiag[diag] is always < bDiag[diag]) here when NOT odd(lenDelta) ...
-      if odd(lenDelta) and (fDiag[diag] >= bDiag[diag]) then
+      if Odd(LenDelta) and (FDiag[Diag] >= BDiag[Diag]) then
       begin
-        inc(x1);inc(x2);
+        Inc(x1);Inc(x2);
         //save x1 & x2 for second recursive_diff() call by reusing no longer
         //needed variables (ie minimize variable allocation in recursive fn) ...
-        diag := x1; Oscill := x2;
-        while (x1 > 0) and (x2 > 0) and (Ints1[offset1+x1-1] = Ints2[offset2+x2-1]) do
+        Diag := x1; Oscill := x2;
+        while (x1 > 0) and (x2 > 0) and (Ints1[Offset1 + x1 - 1] = Ints2[Offset2 + x2 - 1]) do
         begin
-          dec(x1); dec(x2);
+          Dec(x1); Dec(x2);
         end;
-        RecursiveDiffInt(offset1, offset2, x1, x2);
-        x1 := diag; x2 := Oscill;
-        RecursiveDiffInt(offset1+x1, offset2+x2, len1-x1, len2-x2);
-        exit; //ALL DONE
+        RecursiveDiffInt(Offset1, Offset2, x1, x2);
+        x1 := Diag; x2 := Oscill;
+        RecursiveDiffInt(Offset1 + x1, Offset2 + x2, Len1 - x1, Len2 - x2);
+        Exit; //ALL DONE
       end;
-      dec(diag,2);
+      Dec(Diag, 2);
     end;
 
     //do backward oscillation (keeping diag within assigned grid)...
-    diag := lenDelta + Oscill;
-    while diag > len1 do dec(diag,2);
-    while diag >= max(lenDelta - Oscill, -len2)  do
+    Diag := LenDelta + Oscill;
+    while Diag > Len1 do
+      Dec(Diag, 2);
+    while Diag >= Max(LenDelta - Oscill, -Len2) do
     begin
-      if bDiag[diag-1] < bDiag[diag+1] then
-        x1 := bDiag[diag-1] else
-        x1 := bDiag[diag+1]-1;
+      if BDiag[Diag - 1] < BDiag[Diag + 1] then
+        x1 := BDiag[Diag - 1] else
+        x1 := BDiag[Diag + 1] - 1;
       x2 := x1 - diag;
-      while (x1 > -1) and (x2 > -1) and (Ints1[offset1+x1] = Ints2[offset2+x2]) do
+      while (x1 > -1) and (x2 > -1) and (Ints1[Offset1 + x1] = Ints2[Offset2 + x2]) do
       begin
-        dec(x1); dec(x2);
+        Dec(x1); Dec(x2);
       end;
-      bDiag[diag] := x1;
+      BDiag[diag] := x1;
 
-      if bDiag[diag] <= fDiag[diag] then
+      if BDiag[Diag] <= FDiag[Diag] then
       begin
         //flag return value then ...
-        inc(x1);inc(x2);
-        RecursiveDiffInt(offset1, offset2, x1, x2);
-        while (x1 < len1) and (x2 < len2) and
-          (Ints1[offset1+x1] = Ints2[offset2+x2]) do
+        Inc(x1); Inc(x2);
+        RecursiveDiffInt(Offset1, Offset2, x1, x2);
+        while (x1 < Len1) and (x2 < Len2) and (Ints1[Offset1 + x1] = Ints2[Offset2 + x2]) do
         begin
-          inc(x1); inc(x2);
+          Inc(x1); Inc(x2);
         end;
-        RecursiveDiffInt(offset1+x1, offset2+x2, len1-x1, len2-x2);
-        exit; //ALL DONE
+        RecursiveDiffInt(Offset1 + x1, Offset2 + x2, Len1 - x1, Len2 - x2);
+        Exit; //ALL DONE
       end;
-      dec(diag,2);
+      Dec(Diag, 2);
     end;
 
-    inc(Oscill);
-  end; //while Oscill <= maxOscill
+    Inc(Oscill);
+  end; //while Oscill <= MaxOscill
 
-  raise Exception.create('oops - error in RecursiveDiffInt()');
+  raise Exception.Create('oops - error in RecursiveDiffInt()');
 end;
-//------------------------------------------------------------------------------
 
 procedure TDiff.Clear;
 var
-  i: integer;
+  i: Integer;
 begin
-  for i := 0 to fCompareList.Count-1 do
-    dispose(PCompareRec(fCompareList[i]));
-  fCompareList.clear;
+  for i := 0 to FCompareList.Count-1 do
+    Dispose(PCompareRec(FCompareList[i]));
+  FCompareList.clear;
   LastCompareRec.Kind := ckNone;
-  LastCompareRec.oldIndex1 := -1;
-  LastCompareRec.oldIndex2 := -1;
-  fDiffStats.matches := 0;
-  fDiffStats.adds := 0;
-  fDiffStats.deletes :=0;
-  fDiffStats.modifies :=0;
+  LastCompareRec.OldIndex1 := -1;
+  LastCompareRec.OldIndex2 := -1;
+  FDiffStats.Matches := 0;
+  FDiffStats.Adds := 0;
+  FDiffStats.Deletes := 0;
+  FDiffStats.Modifies := 0;
   Chrs1 := nil; Chrs2 := nil; Ints1 := nil; Ints2 := nil;
 end;
-//------------------------------------------------------------------------------
 
-function TDiff.GetCompareCount: integer;
+function TDiff.GetCompareCount: Integer;
 begin
-  result := fCompareList.count;
+  Result := FCompareList.Count;
 end;
-//------------------------------------------------------------------------------
 
-function TDiff.GetCompare(index: integer): TCompareRec;
+function TDiff.GetCompare(Index: Integer): TCompareRec;
 begin
-  result := PCompareRec(fCompareList[index])^;
+  Result := PCompareRec(FCompareList[Index])^;
 end;
-//------------------------------------------------------------------------------
 
-procedure TDiff.AddChangeChrs(offset1, range: integer; ChangeKind: TChangeKind);
+procedure TDiff.AddChangeChrs(Offset1, Range: Integer; ChangeKind: TChangeKind);
 var
-  i,j: integer;
-  compareRec: PCompareRec;
+  i,j: Integer;
+  CompareRec: PCompareRec;
 begin
   //first, add any unchanged items into this list ...
-  while (LastCompareRec.oldIndex1 < offset1 -1) do
+  while LastCompareRec.OldIndex1 < Offset1 -1 do
   begin
     with LastCompareRec do
     begin
       Kind := ckNone;
-      inc(oldIndex1);
-      inc(oldIndex2);
-      chr1 := Chrs1[oldIndex1];
-      chr2 := Chrs2[oldIndex2];
+      Inc(OldIndex1);
+      Inc(OldIndex2);
+      Chr1 := Chrs1[OldIndex1];
+      Chr2 := Chrs2[OldIndex2];
     end;
-    New(compareRec);
-    compareRec^ := LastCompareRec;
-    fCompareList.Add(compareRec);
-    inc(fDiffStats.matches);
+    New(CompareRec);
+    CompareRec^ := LastCompareRec;
+    FCompareList.Add(CompareRec);
+    Inc(FDiffStats.Matches);
   end;
 
   case ChangeKind of
     ckAdd :
       begin
-        for i := 1 to range do
+        for i := 1 to Range do
         begin
           with LastCompareRec do
           begin
-
-            //check if a range of adds are following a range of deletes
+            //check if a Range of adds are following a Range of deletes
             //and convert them to modifies ...
             if Kind = ckDelete then
             begin
-              j := fCompareList.Count -1;
-              while (j > 0) and (PCompareRec(fCompareList[j-1]).Kind = ckDelete) do
-                dec(j);
-              PCompareRec(fCompareList[j]).Kind := ckModify;
-              dec(fDiffStats.deletes);
-              inc(fDiffStats.modifies);
-              inc(LastCompareRec.oldIndex2);
-              PCompareRec(fCompareList[j]).oldIndex2 := LastCompareRec.oldIndex2;
-              PCompareRec(fCompareList[j]).chr2 := Chrs2[oldIndex2];
-              if j = fCompareList.Count-1 then LastCompareRec.Kind := ckModify;
-              continue;
+              j := FCompareList.Count -1;
+              while (j > 0) and (PCompareRec(FCompareList[j-1]).Kind = ckDelete) do
+                Dec(j);
+              PCompareRec(FCompareList[j]).Kind := ckModify;
+              Dec(FDiffStats.Deletes);
+              Inc(FDiffStats.Modifies);
+              Inc(LastCompareRec.OldIndex2);
+              PCompareRec(FCompareList[j]).OldIndex2 := LastCompareRec.OldIndex2;
+              PCompareRec(FCompareList[j]).chr2 := Chrs2[OldIndex2];
+              if j = FCompareList.Count-1 then
+                LastCompareRec.Kind := ckModify;
+              Continue;
             end;
-
             Kind := ckAdd;
-            chr1 := #0;
-            inc(oldIndex2);
-            chr2 := Chrs2[oldIndex2]; //ie what we added
+            Chr1 := #0;
+            Inc(OldIndex2);
+            Chr2 := Chrs2[OldIndex2]; //ie what we added
           end;
-          New(compareRec);
-          compareRec^ := LastCompareRec;
-          fCompareList.Add(compareRec);
-          inc(fDiffStats.adds);
+          New(CompareRec);
+          CompareRec^ := LastCompareRec;
+          FCompareList.Add(CompareRec);
+          Inc(FDiffStats.Adds);
         end;
       end;
     ckDelete :
       begin
-        for i := 1 to range do
+        for i := 1 to Range do
         begin
           with LastCompareRec do
           begin
-
-            //check if a range of deletes are following a range of adds
+            //check if a Range of deletes are following a Range of adds
             //and convert them to modifies ...
             if Kind = ckAdd then
             begin
-              j := fCompareList.Count -1;
-              while (j > 0) and (PCompareRec(fCompareList[j-1]).Kind = ckAdd) do
-                dec(j);
-              PCompareRec(fCompareList[j]).Kind := ckModify;
-              dec(fDiffStats.adds);
-              inc(fDiffStats.modifies);
-              inc(LastCompareRec.oldIndex1);
-              PCompareRec(fCompareList[j]).oldIndex1 := LastCompareRec.oldIndex1;
-              PCompareRec(fCompareList[j]).chr1 := Chrs1[oldIndex1];
-              if j = fCompareList.Count-1 then LastCompareRec.Kind := ckModify;
-              continue;
+              j := FCompareList.Count -1;
+              while (j > 0) and (PCompareRec(FCompareList[j-1]).Kind = ckAdd) do
+                Dec(j);
+              PCompareRec(FCompareList[j]).Kind := ckModify;
+              Dec(FDiffStats.Adds);
+              Inc(FDiffStats.Modifies);
+              Inc(LastCompareRec.OldIndex1);
+              PCompareRec(FCompareList[j]).OldIndex1 := LastCompareRec.OldIndex1;
+              PCompareRec(FCompareList[j]).Chr1 := Chrs1[OldIndex1];
+              if j = FCompareList.Count-1 then
+                LastCompareRec.Kind := ckModify;
+              Continue;
             end;
-
             Kind := ckDelete;
-            chr2 := #0;
-            inc(oldIndex1);
-            chr1 := Chrs1[oldIndex1]; //ie what we deleted
+            Chr2 := #0;
+            Inc(OldIndex1);
+            Chr1 := Chrs1[OldIndex1]; //ie what we deleted
           end;
-          New(compareRec);
-          compareRec^ := LastCompareRec;
-          fCompareList.Add(compareRec);
-          inc(fDiffStats.deletes);
+          New(CompareRec);
+          CompareRec^ := LastCompareRec;
+          FCompareList.Add(CompareRec);
+          Inc(FDiffStats.Deletes);
         end;
       end;
   end;
 end;
-//------------------------------------------------------------------------------
 
-procedure TDiff.AddChangeInts(offset1, range: integer; ChangeKind: TChangeKind);
+procedure TDiff.AddChangeInts(Offset1, Range: Integer; ChangeKind: TChangeKind);
 var
-  i,j: integer;
-  compareRec: PCompareRec;
+  i, j: Integer;
+  CompareRec: PCompareRec;
 begin
   //first, add any unchanged items into this list ...
-  while (LastCompareRec.oldIndex1 < offset1 -1) do
+  while LastCompareRec.OldIndex1 < Offset1 - 1 do
   begin
     with LastCompareRec do
     begin
       Kind := ckNone;
-      inc(oldIndex1);
-      inc(oldIndex2);
-      int1 := Ints1[oldIndex1];
-      int2 := Ints2[oldIndex2];
+      Inc(OldIndex1);
+      Inc(OldIndex2);
+      Int1 := Ints1[OldIndex1];
+      Int2 := Ints2[OldIndex2];
     end;
-    New(compareRec);
-    compareRec^ := LastCompareRec;
-    fCompareList.Add(compareRec);
-    inc(fDiffStats.matches);
+    New(CompareRec);
+    CompareRec^ := LastCompareRec;
+    FCompareList.Add(CompareRec);
+    Inc(FDiffStats.Matches);
   end;
 
   case ChangeKind of
-    ckAdd :
+    ckAdd:
       begin
-        for i := 1 to range do
+        for i := 1 to Range do
         begin
           with LastCompareRec do
           begin
-
-            //check if a range of adds are following a range of deletes
+            //check if a Range of adds are following a Range of deletes
             //and convert them to modifies ...
             if Kind = ckDelete then
             begin
-              j := fCompareList.Count -1;
-              while (j > 0) and (PCompareRec(fCompareList[j-1]).Kind = ckDelete) do
-                dec(j);
-              PCompareRec(fCompareList[j]).Kind := ckModify;
-              dec(fDiffStats.deletes);
-              inc(fDiffStats.modifies);
-              inc(LastCompareRec.oldIndex2);
-              PCompareRec(fCompareList[j]).oldIndex2 := LastCompareRec.oldIndex2;
-              PCompareRec(fCompareList[j]).int2 := Ints2[oldIndex2];
-              if j = fCompareList.Count-1 then LastCompareRec.Kind := ckModify;
-              continue;
+              j := FCompareList.Count -1;
+              while (j > 0) and (PCompareRec(FCompareList[j-1]).Kind = ckDelete) do
+                Dec(j);
+              PCompareRec(FCompareList[j]).Kind := ckModify;
+              Dec(FDiffStats.Deletes);
+              Inc(FDiffStats.Modifies);
+              Inc(LastCompareRec.OldIndex2);
+              PCompareRec(FCompareList[j]).OldIndex2 := LastCompareRec.OldIndex2;
+              PCompareRec(FCompareList[j]).Int2 := Ints2[OldIndex2];
+              if j = FCompareList.Count-1 then
+                LastCompareRec.Kind := ckModify;
+              Continue;
             end;
-
             Kind := ckAdd;
-            int1 := $0;
-            inc(oldIndex2);
-            int2 := Ints2[oldIndex2]; //ie what we added
+            Int1 := $0;
+            Inc(OldIndex2);
+            Int2 := Ints2[OldIndex2]; //ie what we added
           end;
-          New(compareRec);
-          compareRec^ := LastCompareRec;
-          fCompareList.Add(compareRec);
-          inc(fDiffStats.adds);
+          New(CompareRec);
+          CompareRec^ := LastCompareRec;
+          FCompareList.Add(CompareRec);
+          Inc(FDiffStats.Adds);
         end;
       end;
-    ckDelete :
+    ckDelete:
       begin
-        for i := 1 to range do
+        for i := 1 to Range do
         begin
           with LastCompareRec do
           begin
-
-            //check if a range of deletes are following a range of adds
+            //check if a Range of deletes are following a Range of adds
             //and convert them to modifies ...
             if Kind = ckAdd then
             begin
-              j := fCompareList.Count -1;
-              while (j > 0) and (PCompareRec(fCompareList[j-1]).Kind = ckAdd) do
-                dec(j);
-              PCompareRec(fCompareList[j]).Kind := ckModify;
-              dec(fDiffStats.adds);
-              inc(fDiffStats.modifies);
-              inc(LastCompareRec.oldIndex1);
-              PCompareRec(fCompareList[j]).oldIndex1 := LastCompareRec.oldIndex1;
-              PCompareRec(fCompareList[j]).int1 := Ints1[oldIndex1];
-              if j = fCompareList.Count-1 then LastCompareRec.Kind := ckModify;
-              continue;
+              j := FCompareList.Count -1;
+              while (j > 0) and (PCompareRec(FCompareList[j-1]).Kind = ckAdd) do
+                Dec(j);
+              PCompareRec(FCompareList[j]).Kind := ckModify;
+              Dec(FDiffStats.Adds);
+              Inc(FDiffStats.Modifies);
+              Inc(LastCompareRec.OldIndex1);
+              PCompareRec(FCompareList[j]).OldIndex1 := LastCompareRec.OldIndex1;
+              PCompareRec(FCompareList[j]).Int1 := Ints1[OldIndex1];
+              if j = FCompareList.Count-1 then
+                LastCompareRec.Kind := ckModify;
+              Continue;
             end;
-
             Kind := ckDelete;
-            int2 := $0;
-            inc(oldIndex1);
-            int1 := Ints1[oldIndex1]; //ie what we deleted
+            Int2 := $0;
+            Inc(OldIndex1);
+            Int1 := Ints1[OldIndex1]; //ie what we deleted
           end;
-          New(compareRec);
-          compareRec^ := LastCompareRec;
-          fCompareList.Add(compareRec);
-          inc(fDiffStats.deletes);
+          New(CompareRec);
+          CompareRec^ := LastCompareRec;
+          FCompareList.Add(CompareRec);
+          Inc(FDiffStats.Deletes);
         end;
       end;
   end;
 end;
-//------------------------------------------------------------------------------
 
 procedure TDiff.Cancel;
 begin
-  fCancelled := true;
+  FCancelled := True;
 end;
-//------------------------------------------------------------------------------
 
 end.

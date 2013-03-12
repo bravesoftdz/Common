@@ -11,7 +11,7 @@ uses
   SynHighlighterBat, SynHighlighterPerl, SynHighlighterProgress, SynHighlighterPython,
   SynHighlighterRuby, SynHighlighterSDD, SynHighlighterSML, SynHighlighterTclTk,
   SynHighlighterTex, SynHighlighterUNIXShellScript, SynHighlighterVB, SynHighlighterASM,
-  SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, Dlg, System.Types;
+  SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, Dlg, System.Types, BCSynEdit;
 
 const
   STYLENAME_WINDOWS = 'Windows';
@@ -63,10 +63,12 @@ type
   procedure UpdateVBSynColors(VBSyn: TSynVBSyn; WhiteBackground: Boolean);
   procedure UpdateWebEngineColors(SynWebEngine: TSynWebEngine; WhiteBackground: Boolean);
 
+  procedure UpdateGutterAndColors(SynEdit: TBCSynEdit);
+
 implementation
 
 uses
-  Math, WinApi.Windows, System.SysUtils, BCPageControl;
+  Math, WinApi.Windows, System.SysUtils, BCPageControl, SynEditHighlighter;
 
 function LightenMoreColor(AColor: TColor): TColor;
 begin
@@ -804,5 +806,53 @@ begin
     Height := Dialog.OrigHeight + h;
   end;
 end;
+
+procedure UpdateGutterAndColors(SynEdit: TBCSynEdit);
+  var
+    LStyles: TCustomStyleServices;
+    Highlighter: TSynCustomHighlighter;
+  begin
+    LStyles := StyleServices;
+    if LStyles.Enabled then
+    begin
+      SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfHeaderSectionTextNormal);
+      SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
+      SynEdit.Gutter.Color := LStyles.GetStyleColor(scPanel);
+      SynEdit.RightEdgeColor := LStyles.GetStyleColor(scPanel);
+
+      SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
+      SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText);
+
+      Highlighter := SynEdit.Highlighter;
+
+      if Assigned(Highlighter) and
+       ( (Highlighter.Tag = 3) or (Highlighter.Tag = 4) or (Highlighter.Tag = 5) or
+         (Highlighter.Tag = 6) or (Highlighter.Tag = 7) or (Highlighter.Tag = 8) or
+         (Highlighter.Tag = 37) or (Highlighter.Tag = 38) or (Highlighter.Tag = 39) ) then
+      begin
+        if (Highlighter.Tag = 3) or (Highlighter.Tag = 6) or (Highlighter.Tag = 37) then
+          SynEdit.Color := clNavy;
+        if (Highlighter.Tag = 5) or (Highlighter.Tag = 8) or (Highlighter.Tag = 39) then
+          SynEdit.Color := clBlack;
+        if SynEdit.Color = clBlack then
+          SynEdit.Color := LStyles.GetStyleColor(scEdit);
+      end
+      else
+      begin
+        SynEdit.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
+        SynEdit.Color := LStyles.GetStyleColor(scEdit);
+      end;
+    end
+    else
+    begin
+      SynEdit.Gutter.GradientStartColor := clWindow;
+      SynEdit.Gutter.GradientEndColor := clBtnFace;
+      SynEdit.Gutter.Font.Color := clWindowText;
+      SynEdit.Gutter.BorderColor := clWindow;
+      SynEdit.Gutter.Color := clBtnFace;
+      SynEdit.Color := clWindow;
+    end;
+    SynEdit.ActiveLineColor := SynEdit.Color;
+  end;
 
 end.

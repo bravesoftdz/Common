@@ -977,7 +977,7 @@ var
 begin
   FHashListLeft.Clear;
   for i := 0 to FSourceLeft.Count - 1 do
-    FHashListLeft.Add(HashLine(FSourceLeft[i], True, True));
+    FHashListLeft.Add(HashLine(FSourceLeft[i], False, False));
 end;
 
 procedure TCompareFrame.BuildHashListRight;
@@ -986,7 +986,7 @@ var
 begin
   FHashListRight.Clear;
   for i := 0 to FSourceRight.Count - 1 do
-    FHashListRight.Add(HashLine(FSourceRight[i], True, True));
+    FHashListRight.Add(HashLine(FSourceRight[i], False, False));
 end;
 
 procedure TCompareFrame.SetMaxCounts;
