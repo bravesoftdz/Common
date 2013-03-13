@@ -152,7 +152,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, Hash, System.Math, System.Types, Vcl.Themes, Language, CommonDialogs;
+  Common, Hash, System.Math, System.Types, Vcl.Themes, Language, CommonDialogs, Options;
 
 procedure TCompareFrame.LeftScrollBoxWindowProc(var Message: TMessage);
 begin
@@ -171,14 +171,9 @@ end;
 procedure TCompareFrame.LeftGridWindowProc(var Message: TMessage);
 begin
   OldLeftGridProc(Message);
-  if ((Message.Msg = WM_VSCROLL) or //(Message.Msg = WM_HSCROLL) or
+  if ((Message.Msg = WM_VSCROLL) or
       (Message.msg = WM_Mousewheel)) then
-  begin
     OldRightGridProc(Message);
-    //OldDrawGridProc(Message);
-    //DrawGrid.Invalidate;
-
-  end;
 end;
 
 procedure TCompareFrame.RightGridWindowProc(var Message: TMessage);
@@ -291,7 +286,6 @@ begin
             begin
               lclr := clRed;
               rclr := clRed;
-             // if (ARow < FGridVisibleBottom) and (ARow >= FGridVisibleTop) then
               if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
               begin
                 lclr := PaleRed;
@@ -744,7 +738,6 @@ begin
       MoveTo(Rect.Left, 0);
       LineTo(Rect.Left, Rect.bottom);
     end;
-
   end;
 end;
 
@@ -977,7 +970,7 @@ var
 begin
   FHashListLeft.Clear;
   for i := 0 to FSourceLeft.Count - 1 do
-    FHashListLeft.Add(HashLine(FSourceLeft[i], False, False));
+    FHashListLeft.Add(HashLine(FSourceLeft[i], OptionsContainer.IgnoreCase, OptionsContainer.IgnoreBlanks));
 end;
 
 procedure TCompareFrame.BuildHashListRight;
@@ -986,7 +979,7 @@ var
 begin
   FHashListRight.Clear;
   for i := 0 to FSourceRight.Count - 1 do
-    FHashListRight.Add(HashLine(FSourceRight[i], False, False));
+    FHashListRight.Add(HashLine(FSourceRight[i], OptionsContainer.IgnoreCase, OptionsContainer.IgnoreBlanks));
 end;
 
 procedure TCompareFrame.SetMaxCounts;

@@ -197,6 +197,7 @@ object FindInFilesDialog: TFindInFilesDialog
         Width = 333
         Height = 21
         Align = alTop
+        ItemHeight = 13
         ReadOnly = False
         TabOrder = 0
         OnKeyUp = FindWhatComboBoxKeyUp
@@ -224,6 +225,7 @@ object FindInFilesDialog: TFindInFilesDialog
         Height = 21
         Align = alTop
         DropDownCount = 20
+        ItemHeight = 13
         ReadOnly = False
         TabOrder = 0
         Text = '*.*'
@@ -300,7 +302,6 @@ object FindInFilesDialog: TFindInFilesDialog
           Top = 0
           Width = 310
           Height = 21
-          Hint = 'Folder'
           Align = alTop
           TabOrder = 0
           OnlyNumbers = False
