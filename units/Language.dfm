@@ -35,6 +35,13 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'SaveChanges'
         Strings.Strings = (
           'Save changes?')
+      end
+      item
+        Name = 'SearchMatchNotFound'
+        Strings.Strings = (
+          
+            'Search Match Not Found.%sRestart search from the beginning of th' +
+            'e file?')
       end>
     Left = 92
     Top = 22
