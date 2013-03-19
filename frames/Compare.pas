@@ -141,7 +141,7 @@ type
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    procedure SetCompareFile(Filename: string);
+    procedure SetCompareFile(Filename: string; AFileDragDrop: Boolean = False);
     procedure UpdateLanguage(SelectedLanguage: string);
     property ComparedFilesSet: Boolean read GetComparedFilesSet;
     property OpenDocumentsList: TStringList write SetOpenDocumentsList;
@@ -1226,15 +1226,17 @@ begin
   Result := (FilenameLeftMemo.Text <> '') and (FilenameRightMemo.Text <> '');
 end;
 
-procedure TCompareFrame.SetCompareFile(Filename: string);
+procedure TCompareFrame.SetCompareFile(Filename: string; AFileDragDrop: Boolean);
 begin
-  if FilenameLeftMemo.Text = '' then
+  if (not AFileDragDrop and (FilenameLeftMemo.Text = '')) or
+    (AFileDragDrop and LeftScrollBox.MouseInClient) then
   begin
     FilenameLeftMemo.Text := Filename;
     OpenFileToLeftGrid(FilenameLeftMemo.Text);
   end
   else
-  if FilenameRightMemo.Text = '' then
+  if (not AFileDragDrop and (FilenameRightMemo.Text = '')) or
+    (AFileDragDrop and RightScrollBox.MouseInClient) then
   begin
     FilenameRightMemo.Text := Filename;
     OpenFileToRightGrid(FilenameRightMemo.Text);;
