@@ -117,6 +117,7 @@ type
     FResultLeft, FResultRight: TStringList;
     FSourceLeft, FSourceRight: TStringList;
     FSpecialChars: Boolean;
+    FLineNumbers: Boolean;
     OldLeftGridProc, OldRightGridProc, OldDrawGridProc, OldLeftScrollBoxProc, OldRightScrollBoxProc: TWndMethod;
     function CheckIfFileExists(Filename: string): Boolean;
     function FormatText(Text: string): string;
@@ -145,10 +146,12 @@ type
     destructor Destroy; override;
     procedure SetCompareFile(Filename: string; AFileDragDrop: Boolean = False);
     function ToggleSpecialChars: Boolean;
+    function ToggleLineNumbers: Boolean;
     procedure UpdateLanguage(SelectedLanguage: string);
     property ComparedFilesSet: Boolean read GetComparedFilesSet;
     property OpenDocumentsList: TStringList write SetOpenDocumentsList;
     property SpecialChars: Boolean write FSpecialChars;
+    property LineNumbers: Boolean write FLineNumbers;
   end;
 
 implementation
@@ -230,7 +233,16 @@ function TCompareFrame.ToggleSpecialChars: Boolean;
 begin
   FSpecialChars := not FSpecialChars;
   LeftGrid.Invalidate;
+  RightGrid.Invalidate;
   Result := FSpecialChars;
+end;
+
+function TCompareFrame.ToggleLineNumbers: Boolean;
+begin
+  FLineNumbers := not FLineNumbers;
+  LeftGrid.Invalidate;
+  RightGrid.Invalidate;
+  Result := FLineNumbers;
 end;
 
 destructor TCompareFrame.Destroy;
@@ -584,6 +596,8 @@ begin
     s := LeftGrid.Cells[ACol, ARow];
     if ACol = 1 then
       s := FormatText(s);
+    if (ACol = 0) and not FLineNumbers then
+      s := '';
     TextRect(Rect, Rect.Left + 3, Rect.top + 2, s);
 
     if FSourceLeft.Count = 0 then
@@ -741,6 +755,8 @@ begin
     s := RightGrid.Cells[ACol, ARow];
     if ACol = 1 then
       s := FormatText(s);
+    if (ACol = 0) and not FLineNumbers then
+      s := '';
     TextRect(Rect, Rect.Left + 3, Rect.top + 2, s);
 
     if FSourceRight.Count = 0 then
