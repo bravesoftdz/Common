@@ -116,8 +116,10 @@ type
     FPreviousRow: Integer;
     FResultLeft, FResultRight: TStringList;
     FSourceLeft, FSourceRight: TStringList;
+    FSpecialChars: Boolean;
     OldLeftGridProc, OldRightGridProc, OldDrawGridProc, OldLeftScrollBoxProc, OldRightScrollBoxProc: TWndMethod;
     function CheckIfFileExists(Filename: string): Boolean;
+    function FormatText(Text: string): string;
     function GetComparedFilesSet: Boolean;
     procedure BuildHashListLeft;
     procedure BuildHashListRight;
@@ -142,9 +144,11 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure SetCompareFile(Filename: string; AFileDragDrop: Boolean = False);
+    function ToggleSpecialChars: Boolean;
     procedure UpdateLanguage(SelectedLanguage: string);
     property ComparedFilesSet: Boolean read GetComparedFilesSet;
     property OpenDocumentsList: TStringList write SetOpenDocumentsList;
+    property SpecialChars: Boolean write FSpecialChars;
   end;
 
 implementation
@@ -153,6 +157,11 @@ implementation
 
 uses
   Common, Hash, System.Math, System.Types, Vcl.Themes, Language, CommonDialogs, Options;
+
+const
+  TabChar = WideChar($2192);       //'->'
+  LineBreakChar = WideChar($00B6); //'¶'
+  SpaceChar = WideChar($2219);     //'·'
 
 procedure TCompareFrame.LeftScrollBoxWindowProc(var Message: TMessage);
 begin
@@ -215,6 +224,13 @@ begin
   OldRightScrollBoxProc := RightScrollBox.WindowProc;
   LeftScrollBox.WindowProc := LeftScrollBoxWindowProc;
   RightScrollBox.WindowProc := RightScrollBoxWindowProc;
+end;
+
+function TCompareFrame.ToggleSpecialChars: Boolean;
+begin
+  FSpecialChars := not FSpecialChars;
+  LeftGrid.Invalidate;
+  Result := FSpecialChars;
 end;
 
 destructor TCompareFrame.Destroy;
@@ -479,12 +495,24 @@ begin
   end;
 end;
 
+function TCompareFrame.FormatText(Text: string): string;
+begin
+  Result := Text;
+  if FSpecialChars then
+  begin
+    Result := StringReplace(Result, #9, TabChar, [rfReplaceAll]);
+    Result := StringReplace(Result, #32, SpaceChar, [rfReplaceAll]);
+    Result := Result + LineBreakChar;
+  end;
+end;
+
 procedure TCompareFrame.LeftGridDrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 const
   PaleRed: TColor = $6666FF;
   PaleBlue: TColor = $FF6666;
 var
+  s: string;
   clr: TColor;
   LStyles: TCustomStyleServices;
   LColor: TColor;
@@ -553,7 +581,10 @@ begin
     else
       Brush.Color := clr;
     FillRect(Rect);
-    TextRect(Rect, Rect.Left + 3, Rect.top + 2, LeftGrid.Cells[ACol, ARow]);
+    s := LeftGrid.Cells[ACol, ARow];
+    if ACol = 1 then
+      s := FormatText(s);
+    TextRect(Rect, Rect.Left + 3, Rect.top + 2, s);
 
     if FSourceLeft.Count = 0 then
       Exit;
@@ -638,6 +669,7 @@ const
   PaleRed: TColor = $6666FF;
   PaleBlue: TColor = $FF6666;
 var
+  s: string;
   clr: TColor;
   LStyles: TCustomStyleServices;
   LColor: TColor;
@@ -706,7 +738,10 @@ begin
     else
       Brush.Color := clr;
     FillRect(Rect);
-    TextRect(Rect, Rect.Left + 3, Rect.top + 2, RightGrid.Cells[ACol, ARow]);
+    s := RightGrid.Cells[ACol, ARow];
+    if ACol = 1 then
+      s := FormatText(s);
+    TextRect(Rect, Rect.Left + 3, Rect.top + 2, s);
 
     if FSourceRight.Count = 0 then
       Exit;
@@ -1093,6 +1128,8 @@ begin
   if Width mod 2 <> 0 then
     RightPanel.Width := RightPanel.Width - 1;
   DrawGrid.Invalidate;
+  FilenameLeftMemo.Repaint;
+  FilenameRightMemo.Repaint;
   Invalidate;
 end;
 
