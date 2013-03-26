@@ -64,7 +64,7 @@ var
 
 function ReplaceDialog: TReplaceDialog;
 begin
-  if FReplaceDialog = nil then
+  if not Assigned(FReplaceDialog) then
     Application.CreateForm(TReplaceDialog, FReplaceDialog);
   Result := FReplaceDialog;
   StyleHooks.SetStyledFormSize(Result);

@@ -36,7 +36,7 @@ var
 
 function ConfirmReplaceDialog: TConfirmReplaceDialog;
 begin
-  if FConfirmReplaceDialog = nil then
+  if not Assigned(FConfirmReplaceDialog) then
     Application.CreateForm(TConfirmReplaceDialog, FConfirmReplaceDialog);
   Result := FConfirmReplaceDialog;
   Result.Width := Result.YesButton.Width * 4 + 40;

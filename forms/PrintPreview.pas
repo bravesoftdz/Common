@@ -88,7 +88,7 @@ var
 
 function PrintPreviewDialog: TPrintPreviewDialog;
 begin
-  if FPrintPreviewDialog = nil then
+  if not Assigned(FPrintPreviewDialog) then
     Application.CreateForm(TPrintPreviewDialog, FPrintPreviewDialog);
   Result := FPrintPreviewDialog;
 end;

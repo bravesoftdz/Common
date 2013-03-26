@@ -78,7 +78,7 @@ var
 
 function FindInFilesDialog: TFindInFilesDialog;
 begin
-  if FFindInFilesDialog = nil then
+  if not Assigned(FFindInFilesDialog) then
   begin
     Application.CreateForm(TFindInFilesDialog, FFindInFilesDialog);
     TStyleManager.Engine.RegisterStyleHook(TJvDirectoryEdit, TEditStyleHook);

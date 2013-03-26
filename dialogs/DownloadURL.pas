@@ -46,7 +46,7 @@ var
 
 function DownloadURLDialog: TDownloadURLDialog;
 begin
-  if FDownloadURLDialog = nil then
+  if not Assigned(FDownloadURLDialog) then
     Application.CreateForm(TDownloadURLDialog, FDownloadURLDialog);
   Result := FDownloadURLDialog;
 end;
