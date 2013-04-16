@@ -16,7 +16,7 @@ const
   BONECODE_URL = 'http://www.bonecode.com';
 
   TAnimationStyleStr: array[Low(TAnimationStyle)..High(TAnimationStyle)] of String = ('None',
-    'Default','Unfold', 'Slide', 'Fade');
+    'Default', 'Unfold', 'Slide', 'Fade');
 
 function AddSlash(Path: string): string;
 function AnsiInitCap(Str: string): string;
