@@ -50,6 +50,8 @@ procedure ShowMessage(Msg: string);
 procedure ShowWarningMessage(Msg: string);
 procedure UpdateLanguage(Form: TForm; SelectedLanguage: string = ''); overload;
 procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string = ''); overload;
+function IntToBin(Value: LongInt; Digits: Integer): string;
+function BinToInt(Value: String): LongInt;
 
 implementation
 
@@ -57,6 +59,30 @@ uses
   Winapi.Windows, Winapi.ShellAPI, Vcl.StdCtrls, DownloadURL, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
   System.Character, Vcl.ActnList, System.StrUtils, BigINI, Language, VirtualTrees, Xml.XMLDoc,
   System.IniFiles;
+
+function IntToBin(Value: LongInt; Digits: Integer): string;
+begin
+  Result := StringOfChar('0', Digits);
+  while Value > 0 do
+  begin
+    if (Value and 1) = 1 then
+      Result[Digits] := '1';
+    Dec(Digits);
+    Value := Value shr 1;
+  end;
+end;
+
+function BinToInt(Value: String): LongInt;
+var
+  i: Integer;
+begin
+  Result:=0;
+  while Copy(Value,1,1) = '0' do
+    Value := Copy(Value, 2, Length(Value) - 1);
+  for i := Length(Value) downto 1 do
+    if Copy(Value, i, 1) = '1' then
+      Result := Result + (1 shl (Length(Value) - i));
+end;
 
 procedure RunCommand(const Cmd, Params: String);
 var
