@@ -352,6 +352,16 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'LanguageEditor'
         Strings.Strings = (
           'Language Editor - [%s]')
+      end
+      item
+        Name = 'Bookmark'
+        Strings.Strings = (
+          'Bookmark')
+      end
+      item
+        Name = 'Line'
+        Strings.Strings = (
+          'Line')
       end>
     Left = 88
     Top = 254
