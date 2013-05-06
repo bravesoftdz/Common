@@ -145,6 +145,7 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure SetCompareFile(Filename: string; AFileDragDrop: Boolean = False);
+    procedure RepaintFrame;
     function ToggleSpecialChars: Boolean;
     function ToggleLineNumbers: Boolean;
     procedure UpdateLanguage(SelectedLanguage: string);
@@ -1300,6 +1301,16 @@ procedure TCompareFrame.UpdateLanguage(SelectedLanguage: string);
 begin
   Common.UpdateLanguage(Self, SelectedLanguage);
   LeftRightPanel.Width := Max(LeftLabel.Width + 10, RightLabel.Width + 10);
+end;
+
+procedure TCompareFrame.RepaintFrame;
+begin
+  FilenameLeftMemo.Repaint;
+  FilenameRightMemo.Repaint;
+  LeftGrid.Repaint;
+  RightGrid.Repaint;
+  LeftMemo.Repaint;
+  RightMemo.Repaint;
 end;
 
 end.

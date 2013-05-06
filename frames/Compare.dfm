@@ -305,6 +305,7 @@ object CompareFrame: TCompareFrame
           BevelInner = bvNone
           BevelOuter = bvNone
           Anchors = [akLeft, akTop, akRight]
+          ItemHeight = 13
           ReadOnly = False
           Sorted = True
           TabOrder = 1
@@ -1008,6 +1009,7 @@ object CompareFrame: TCompareFrame
           BevelInner = bvNone
           BevelOuter = bvNone
           Anchors = [akLeft, akTop, akRight]
+          ItemHeight = 13
           ReadOnly = False
           TabOrder = 1
           OnChange = RightComboBoxChangeActionExecute
@@ -1350,7 +1352,7 @@ object CompareFrame: TCompareFrame
     Left = 144
     Top = 136
     Bitmap = {
-      494C010101000800B00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800B40010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
