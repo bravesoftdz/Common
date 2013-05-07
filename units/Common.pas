@@ -17,6 +17,8 @@ const
 
   TAnimationStyleStr: array[Low(TAnimationStyle)..High(TAnimationStyle)] of String = ('None',
     'Default', 'Unfold', 'Slide', 'Fade');
+  TSynEditCaretTypeStr: array[0..3] of String =
+    ('Vertical Line', 'Horizontal Line', 'Half Block', 'Block');
 
 function AddSlash(Path: string): string;
 function AnsiInitCap(Str: string): string;

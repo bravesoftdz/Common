@@ -89,6 +89,21 @@ object LanguageDataModule: TLanguageDataModule
           'All Files')
       end
       item
+        Name = 'Bookmark'
+        Strings.Strings = (
+          'Bookmark')
+      end
+      item
+        Name = 'CompareFiles'
+        Strings.Strings = (
+          'Compare Files')
+      end
+      item
+        Name = 'Document'
+        Strings.Strings = (
+          'Document')
+      end
+      item
         Name = 'DownloadCancelling'
         Strings.Strings = (
           'Cancelling...')
@@ -109,9 +124,64 @@ object LanguageDataModule: TLanguageDataModule
           'Insert')
       end
       item
+        Name = 'InvalidCSSProperty'
+        Strings.Strings = (
+          'Invalid CSS property '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidCSSSelector'
+        Strings.Strings = (
+          'Invalid CSS selector '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidCSSToken'
+        Strings.Strings = (
+          'Invalid CSS token '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidCSSValue'
+        Strings.Strings = (
+          'Invalid CSS value '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidHTMLAttribute'
+        Strings.Strings = (
+          'Invalid HTML attribute '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidHTMLTag'
+        Strings.Strings = (
+          'Invalid HTML tag '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidHTMLToken'
+        Strings.Strings = (
+          'Invalid HTML token '#39'%s'#39)
+      end
+      item
+        Name = 'InvalidJSToken'
+        Strings.Strings = (
+          'Invalid JS token '#39'%s'#39)
+      end
+      item
         Name = 'InvalidName'
         Strings.Strings = (
           'Error - Invalid Name:')
+      end
+      item
+        Name = 'InvalidPHPToken'
+        Strings.Strings = (
+          'Invalid PHP token '#39'%s'#39)
+      end
+      item
+        Name = 'LanguageEditor'
+        Strings.Strings = (
+          'Language Editor - [%s]')
+      end
+      item
+        Name = 'Line'
+        Strings.Strings = (
+          'Line')
       end
       item
         Name = 'Minute'
@@ -189,69 +259,14 @@ object LanguageDataModule: TLanguageDataModule
           's')
       end
       item
+        Name = 'SelectFile'
+        Strings.Strings = (
+          'Select File')
+      end
+      item
         Name = 'SelectRootDirectory'
         Strings.Strings = (
           'Select Root Directory')
-      end
-      item
-        Name = 'VersionInfoNotFound'
-        Strings.Strings = (
-          'Version info not found.')
-      end
-      item
-        Name = 'CompareFiles'
-        Strings.Strings = (
-          'Compare Files')
-      end
-      item
-        Name = 'Document'
-        Strings.Strings = (
-          'Document')
-      end
-      item
-        Name = 'InvalidHTMLTag'
-        Strings.Strings = (
-          'Invalid HTML tag '#39'%s'#39)
-      end
-      item
-        Name = 'InvalidHTMLAttribute'
-        Strings.Strings = (
-          'Invalid HTML attribute '#39'%s'#39)
-      end
-      item
-        Name = 'InvalidHTMLToken'
-        Strings.Strings = (
-          'Invalid HTML token '#39'%s'#39)
-      end
-      item
-        Name = 'InvalidCSSSelector'
-        Strings.Strings = (
-          'Invalid CSS selector '#39'%s'#39)
-      end
-      item
-        Name = 'InvalidCSSProperty'
-        Strings.Strings = (
-          'Invalid CSS property '#39'%s'#39)
-      end
-      item
-        Name = 'InvalidCSSValue'
-        Strings.Strings = (
-          'Invalid CSS value '#39'%s'#39)
-      end
-      item
-        Name = 'InvalidCSSToken'
-        Strings.Strings = (
-          'Invalid CSS token '#39'%s'#39)
-      end
-      item
-        Name = 'InvalidJSToken'
-        Strings.Strings = (
-          'Invalid JS token '#39'%s'#39)
-      end
-      item
-        Name = 'InvalidPHPToken'
-        Strings.Strings = (
-          'Invalid PHP token '#39'%s'#39)
       end
       item
         Name = 'SMsgDlgWarning'
@@ -344,24 +359,44 @@ object LanguageDataModule: TLanguageDataModule
           '&Close')
       end
       item
-        Name = 'SelectFile'
+        Name = 'VersionInfoNotFound'
         Strings.Strings = (
-          'Select File')
+          'Version info not found.')
       end
       item
-        Name = 'LanguageEditor'
+        Name = 'Classic'
         Strings.Strings = (
-          'Language Editor - [%s]')
+          'Classic')
       end
       item
-        Name = 'Bookmark'
+        Name = 'Default'
         Strings.Strings = (
-          'Bookmark')
+          'Default')
       end
       item
-        Name = 'Line'
+        Name = 'Twilight'
         Strings.Strings = (
-          'Line')
+          'Twilight')
+      end
+      item
+        Name = 'VerticalLine'
+        Strings.Strings = (
+          'Vertical Line')
+      end
+      item
+        Name = 'HorizontalLine'
+        Strings.Strings = (
+          'Horizontal Line')
+      end
+      item
+        Name = 'HalfBlock'
+        Strings.Strings = (
+          'Half Block')
+      end
+      item
+        Name = 'Block'
+        Strings.Strings = (
+          'Block')
       end>
     Left = 88
     Top = 254
