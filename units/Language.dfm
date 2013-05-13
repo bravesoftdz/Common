@@ -659,6 +659,11 @@ object LanguageDataModule: TLanguageDataModule
           'Vrml97/X3D World (*.wrl;*.wrml;*.vrl;*.vrml;*.x3d)')
       end
       item
+        Name = 'WebIDL'
+        Strings.Strings = (
+          'Web IDL (*.idl)')
+      end
+      item
         Name = 'x86'
         Strings.Strings = (
           'x86 Assembly Files (*.asm)')
@@ -667,6 +672,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'XML'
         Strings.Strings = (
           'XML Files (*.xml;*.xsd;*.xsl;*.xslt;*.dtd)')
+      end
+      item
+        Name = 'YAML'
+        Strings.Strings = (
+          'YAML files (*.yaml)')
       end
       item
         Name = 'Macro'

@@ -9,9 +9,10 @@ uses
   SynHighlighterDWS, SynHighlighterEiffel, SynHighlighterIni, SynHighlighterInno,
   SynHighlighterJava, SynHighlighterJScript, SynHighlighterLDraw, SynHighlighterMsg,
   SynHighlighterBat, SynHighlighterPerl, SynHighlighterProgress, SynHighlighterPython,
-  SynHighlighterRuby, SynHighlighterSDD, SynHighlighterSML, SynHighlighterTclTk,
+  SynHighlighterRuby, SynHighlighterSDD, SynHighlighterSML, SynHighlighterTclTk, SynHighlighterYAML,
   SynHighlighterTex, SynHighlighterUNIXShellScript, SynHighlighterVB, SynHighlighterASM,
-  SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, Dlg, System.Types, BCSynEdit;
+  SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, Dlg, System.Types, BCSynEdit,
+  SynHighlighterWebIDL;
 
 const
   STYLENAME_WINDOWS = 'Windows';
@@ -61,6 +62,8 @@ type
   procedure UpdateUNIXShellScriptSynColors(UNIXShellScriptSyn: TSynUNIXShellScriptSyn; WhiteBackground: Boolean);
   procedure UpdateURISynColors(UriSyn: TSynUriSyn; WhiteBackground: Boolean);
   procedure UpdateVBSynColors(VBSyn: TSynVBSyn; WhiteBackground: Boolean);
+  procedure UpdateYAMLSynColors(YAMLSyn: TSynYAMLSyn; WhiteBackground: Boolean);
+  procedure UpdateWebIDLSynColors(WebIDLSyn: TSynWebIDLSyn; WhiteBackground: Boolean);
   procedure UpdateWebEngineColors(SynWebEngine: TSynWebEngine; WhiteBackground: Boolean);
 
   procedure UpdateGutterAndColors(SynEdit: TBCSynEdit);
@@ -632,6 +635,62 @@ begin
     ASMSyn.CommentAttri.Foreground := clLime;
     ASMSyn.KeyAttri.Foreground := clAqua;
     ASMSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateWebIDLSynColors(WebIDLSyn: TSynWebIDLSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    WebIDLSyn.ArgumentsAttri.Foreground := clNavy;
+    WebIDLSyn.CommentAttri.Foreground := clGreen;
+    WebIDLSyn.ExtendedAttri.Foreground := clMaroon;
+    WebIDLSyn.KeyAttri.Foreground := clNavy;
+    WebIDLSyn.NumberAttri.Foreground := clBlue;
+    WebIDLSyn.StringAttri.Foreground := clPurple;
+    WebIDLSyn.SymbolAttri.Foreground := clMaroon;
+    WebIDLSyn.TypesAttri.Foreground := clNavy;
+  end
+  else
+  begin
+    WebIDLSyn.ArgumentsAttri.Foreground := clAqua;
+    WebIDLSyn.CommentAttri.Foreground := clLime;
+    WebIDLSyn.ExtendedAttri.Foreground := clTeal;
+    WebIDLSyn.KeyAttri.Foreground := clAqua;
+    WebIDLSyn.NumberAttri.Foreground := clAqua;
+    WebIDLSyn.StringAttri.Foreground := clYellow;
+    WebIDLSyn.SymbolAttri.Foreground := clTeal;
+    WebIDLSyn.TypesAttri.Foreground := clAqua;
+  end;
+end;
+
+procedure UpdateYAMLSynColors(YAMLSyn: TSynYAMLSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    YAMLSyn.AnchorAttri.Foreground := clMaroon;
+    YAMLSyn.CommentAttri.Foreground := clGray;
+    YAMLSyn.DirectiveAttri.Foreground := clGreen;
+    YAMLSyn.DocDelimiterAttri.Background := clPurple;
+    YAMLSyn.DocDelimiterAttri.Foreground := clWhite;
+    YAMLSyn.KeyAttri.Foreground := clTeal;
+    YAMLSyn.NumericValueAttri.Foreground := $00000058;
+    YAMLSyn.StringAttri.Foreground := clBlue;
+    YAMLSyn.SymbolAttri.Foreground := clBlue;
+    YAMLSyn.TagAttri.Foreground := clNavy;
+  end
+  else
+  begin
+    YAMLSyn.AnchorAttri.Foreground := clTeal;
+    YAMLSyn.CommentAttri.Foreground := clSilver;
+    YAMLSyn.DirectiveAttri.Foreground := clLime;
+    YAMLSyn.DocDelimiterAttri.Background := clYellow;
+    YAMLSyn.DocDelimiterAttri.Foreground := clBlack;
+    YAMLSyn.KeyAttri.Foreground := LightenColor(clTeal);
+    YAMLSyn.NumericValueAttri.Foreground := clTeal;
+    YAMLSyn.StringAttri.Foreground := clAqua;
+    YAMLSyn.SymbolAttri.Foreground := clAqua;
+    YAMLSyn.TagAttri.Foreground := clAqua;
   end;
 end;
 

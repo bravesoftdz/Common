@@ -563,7 +563,12 @@ begin
     if (Trim(Version) <> '') and (Version <> AboutVersion) then
     begin
       if Common.AskYesOrNo(Format(LanguageDataModule.GetYesOrNo('NewVersion'), [Version, AppName, CHR_DOUBLE_ENTER])) then
+      begin
+        {$IFDEF WIN64}
+        AppName := AppName + '64';
+        {$ENDIF}
         DownloadURLDialog.Open(Format('%s.zip', [AppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, AppName]))
+      end;
     end
     else
       Common.ShowMessage(LanguageDataModule.GetMessage('LatestVersion'));
