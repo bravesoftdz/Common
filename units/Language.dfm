@@ -549,6 +549,11 @@ object LanguageDataModule: TLanguageDataModule
           'LEGO LDraw Files (*.ldr)')
       end
       item
+        Name = 'LLVM'
+        Strings.Strings = (
+          'LLVM IR Files (*.ll)')
+      end
+      item
         Name = 'Modelica'
         Strings.Strings = (
           'Modelica Files (*.mo)')
@@ -661,7 +666,7 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'WebIDL'
         Strings.Strings = (
-          'Web IDL (*.idl)')
+          'Web IDL Files (*.idl)')
       end
       item
         Name = 'x86'
@@ -676,7 +681,7 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'YAML'
         Strings.Strings = (
-          'YAML files (*.yaml)')
+          'YAML Files (*.yaml)')
       end
       item
         Name = 'Macro'

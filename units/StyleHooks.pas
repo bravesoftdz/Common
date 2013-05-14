@@ -12,7 +12,7 @@ uses
   SynHighlighterRuby, SynHighlighterSDD, SynHighlighterSML, SynHighlighterTclTk, SynHighlighterYAML,
   SynHighlighterTex, SynHighlighterUNIXShellScript, SynHighlighterVB, SynHighlighterASM,
   SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, Dlg, System.Types, BCSynEdit,
-  SynHighlighterWebIDL;
+  SynHighlighterWebIDL, SynHighlighterLLVM;
 
 const
   STYLENAME_WINDOWS = 'Windows';
@@ -48,6 +48,7 @@ type
   procedure UpdateJavaSynColors(JavaSyn: TSynJavaSyn; WhiteBackground: Boolean);
   procedure UpdateJScriptSynColors(JScriptSyn: TSynJScriptSyn; WhiteBackground: Boolean);
   procedure UpdateLDRSynColors(LDRSyn: TSynLDRSyn; WhiteBackground: Boolean);
+  procedure UpdateLLVMSynColors(LLVMSyn: TSynLLVMIRSyn; WhiteBackground: Boolean);
   procedure UpdateMsgSynColors(MsgSyn: TSynMsgSyn; WhiteBackground: Boolean);
   procedure UpdatePerlSynColors(PerlSyn: TSynPerlSyn; WhiteBackground: Boolean);
   procedure UpdateProgressSynColors(ProgressSyn: TSynProgressSyn; WhiteBackground: Boolean);
@@ -365,6 +366,36 @@ begin
   end;
   LDRSyn.SecondTriAttri.Foreground := LDRSyn.FourthTriAttri.Foreground;
   LDRSyn.ThirdTriAttri.Foreground := LDRSyn.FirstTriAttri.Foreground;
+end;
+
+procedure UpdateLLVMSynColors(LLVMSyn: TSynLLVMIRSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    LLVMSyn.BooleanAttribute.Foreground := clNavy;
+    LLVMSyn.CommentAttribute.Foreground := $00B0A060;
+    LLVMSyn.ConstantAttribute.Foreground := clNavy;
+    LLVMSyn.IdentifierAttribute.Foreground := $00D560BB;
+    LLVMSyn.InstructionAttribute.Foreground := $00207000;
+    LLVMSyn.KeywordAttribute.Foreground := $00207000;
+    LLVMSyn.LabelAttribute.Foreground := $00702000;
+    LLVMSyn.NumberAttribute.Foreground := $0070A040;
+    LLVMSyn.StringAttribute.Foreground := $00A07040;
+    LLVMSyn.TypesAttribute.Foreground := $00002090;
+  end
+  else
+  begin
+    LLVMSyn.BooleanAttribute.Foreground := clAqua;
+    LLVMSyn.CommentAttribute.Foreground := LightenColor($00B0A060);
+    LLVMSyn.ConstantAttribute.Foreground := clAqua;
+    LLVMSyn.IdentifierAttribute.Foreground := LightenColor($00D560BB);
+    LLVMSyn.InstructionAttribute.Foreground := LightenColor($00207000);
+    LLVMSyn.KeywordAttribute.Foreground := LightenColor($00207000);
+    LLVMSyn.LabelAttribute.Foreground := LightenColor($00702000);
+    LLVMSyn.NumberAttribute.Foreground := LightenColor($0070A040);
+    LLVMSyn.StringAttribute.Foreground := LightenColor($00A07040);
+    LLVMSyn.TypesAttribute.Foreground := LightenColor($00002090);
+  end;
 end;
 
 procedure UpdateMsgSynColors(MsgSyn: TSynMsgSyn; WhiteBackground: Boolean);
@@ -887,11 +918,11 @@ procedure UpdateGutterAndColors(SynEdit: TBCSynEdit);
       if Assigned(Highlighter) and
        ( (Highlighter.Tag = 3) or (Highlighter.Tag = 4) or (Highlighter.Tag = 5) or
          (Highlighter.Tag = 6) or (Highlighter.Tag = 7) or (Highlighter.Tag = 8) or
-         (Highlighter.Tag = 37) or (Highlighter.Tag = 38) or (Highlighter.Tag = 39) ) then
+         (Highlighter.Tag = 38) or (Highlighter.Tag = 39) or (Highlighter.Tag = 40) ) then
       begin
-        if (Highlighter.Tag = 3) or (Highlighter.Tag = 6) or (Highlighter.Tag = 37) then
+        if (Highlighter.Tag = 3) or (Highlighter.Tag = 6) or (Highlighter.Tag = 38) then
           SynEdit.Color := clNavy;
-        if (Highlighter.Tag = 5) or (Highlighter.Tag = 8) or (Highlighter.Tag = 39) then
+        if (Highlighter.Tag = 5) or (Highlighter.Tag = 8) or (Highlighter.Tag = 40) then
           SynEdit.Color := clBlack;
         if SynEdit.Color = clBlack then
           SynEdit.Color := LStyles.GetStyleColor(scEdit);
