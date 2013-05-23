@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Diff, Vcl.Grids, Vcl.ExtCtrls, Vcl.StdCtrls, JvExStdCtrls,
   Vcl.Mask, JvExMask, JvToolEdit, Vcl.Buttons, JvExControls, JvSpeedButton, BCEdit, JvStringGrid,
   BCStringGrid, Vcl.ActnList, JvScrollBar, JvExForms, JvExExtCtrls, JvSplitter, JvExtComponent,
-  JvContentScroller, JvExGrids, JvEdit, JvCombobox, BCComboBox, Vcl.ImgList;
+  JvContentScroller, JvExGrids, JvEdit, JvCombobox, BCComboBox, Vcl.ImgList, System.Generics.Collections;
 
 type
   TGridEventType = (etNone, etMouse, etKey);
@@ -1159,9 +1159,10 @@ begin
   FDiff.Clear;
   Screen.Cursor := crHourGlass;
   try
-    FDiff.Execute(PInteger(FHashListLeft.List), PInteger(FHashListRight.List),
+    //FDiff.Execute(PInteger(FHashListLeft.List), PInteger(FHashListRight.List),
+    //  FHashListLeft.Count, FHashListRight.Count);
+    FDiff.Execute(FHashListLeft.List, FHashListRight.List,
       FHashListLeft.Count, FHashListRight.Count);
-
     if FDiff.Cancelled then
       Exit;
 
