@@ -898,51 +898,51 @@ begin
 end;
 
 procedure UpdateGutterAndColors(SynEdit: TBCSynEdit);
-  var
-    LStyles: TCustomStyleServices;
-    Highlighter: TSynCustomHighlighter;
+var
+  LStyles: TCustomStyleServices;
+  Highlighter: TSynCustomHighlighter;
+begin
+  LStyles := StyleServices;
+  if LStyles.Enabled then
   begin
-    LStyles := StyleServices;
-    if LStyles.Enabled then
+    SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfHeaderSectionTextNormal);
+    SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
+    SynEdit.Gutter.Color := LStyles.GetStyleColor(scPanel);
+    SynEdit.RightEdgeColor := LStyles.GetStyleColor(scPanel);
+
+    SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
+    SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText);
+
+    Highlighter := SynEdit.Highlighter;
+
+    if Assigned(Highlighter) and
+     ( (Highlighter.Tag = 3) or (Highlighter.Tag = 4) or (Highlighter.Tag = 5) or
+       (Highlighter.Tag = 6) or (Highlighter.Tag = 7) or (Highlighter.Tag = 8) or
+       (Highlighter.Tag = 38) or (Highlighter.Tag = 39) or (Highlighter.Tag = 40) ) then
     begin
-      SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfHeaderSectionTextNormal);
-      SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
-      SynEdit.Gutter.Color := LStyles.GetStyleColor(scPanel);
-      SynEdit.RightEdgeColor := LStyles.GetStyleColor(scPanel);
-
-      SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
-      SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText);
-
-      Highlighter := SynEdit.Highlighter;
-
-      if Assigned(Highlighter) and
-       ( (Highlighter.Tag = 3) or (Highlighter.Tag = 4) or (Highlighter.Tag = 5) or
-         (Highlighter.Tag = 6) or (Highlighter.Tag = 7) or (Highlighter.Tag = 8) or
-         (Highlighter.Tag = 38) or (Highlighter.Tag = 39) or (Highlighter.Tag = 40) ) then
-      begin
-        if (Highlighter.Tag = 3) or (Highlighter.Tag = 6) or (Highlighter.Tag = 38) then
-          SynEdit.Color := clNavy;
-        if (Highlighter.Tag = 5) or (Highlighter.Tag = 8) or (Highlighter.Tag = 40) then
-          SynEdit.Color := clBlack;
-        if SynEdit.Color = clBlack then
-          SynEdit.Color := LStyles.GetStyleColor(scEdit);
-      end
-      else
-      begin
-        SynEdit.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
+      if (Highlighter.Tag = 3) or (Highlighter.Tag = 6) or (Highlighter.Tag = 38) then
+        SynEdit.Color := clNavy;
+      if (Highlighter.Tag = 5) or (Highlighter.Tag = 8) or (Highlighter.Tag = 40) then
+        SynEdit.Color := clBlack;
+      if SynEdit.Color = clBlack then
         SynEdit.Color := LStyles.GetStyleColor(scEdit);
-      end;
     end
     else
     begin
-      SynEdit.Gutter.GradientStartColor := clWindow;
-      SynEdit.Gutter.GradientEndColor := clBtnFace;
-      SynEdit.Gutter.Font.Color := clWindowText;
-      SynEdit.Gutter.BorderColor := clWindow;
-      SynEdit.Gutter.Color := clBtnFace;
-      SynEdit.Color := clWindow;
+      SynEdit.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
+      SynEdit.Color := LStyles.GetStyleColor(scEdit);
     end;
-    SynEdit.ActiveLineColor := SynEdit.Color;
+  end
+  else
+  begin
+    SynEdit.Gutter.GradientStartColor := clWindow;
+    SynEdit.Gutter.GradientEndColor := clBtnFace;
+    SynEdit.Gutter.Font.Color := clWindowText;
+    SynEdit.Gutter.BorderColor := clWindow;
+    SynEdit.Gutter.Color := clBtnFace;
+    SynEdit.Color := clWindow;
   end;
+  SynEdit.ActiveLineColor := SynEdit.Color;
+end;
 
 end.
