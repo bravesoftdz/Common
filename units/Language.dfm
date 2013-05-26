@@ -42,6 +42,11 @@ object LanguageDataModule: TLanguageDataModule
           
             'Search Match Not Found.%sRestart search from the beginning of th' +
             'e file?')
+      end
+      item
+        Name = 'SearchStringNotFound'
+        Strings.Strings = (
+          'Search string '#39'%s'#39' not found')
       end>
     Left = 92
     Top = 22
@@ -77,7 +82,12 @@ object LanguageDataModule: TLanguageDataModule
     Top = 142
   end
   object WarningMessageMultiStringHolder: TBCMultiStringHolder
-    MultipleStrings = <>
+    MultipleStrings = <
+      item
+        Name = 'FileAccessError'
+        Strings.Strings = (
+          'File %s access error.')
+      end>
     Left = 90
     Top = 202
   end
