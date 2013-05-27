@@ -4,7 +4,11 @@ interface
 
 uses
   Vcl.StdCtrls, Winapi.Messages, Vcl.Controls, SynEdit, Vcl.Styles, Vcl.Themes, Vcl.ComCtrls,
-  Vcl.ExtCtrls, Vcl.Graphics, Vcl.Forms, JvProgressBar, SynHighlighterAWK, SynHighlighterCobol,
+  Vcl.ExtCtrls, Vcl.Graphics, Vcl.Forms, JvProgressBar,
+  SynHighlighterHC11, SynHighlighterBaan, SynHighlighterCAC, SynHighlighterCache, SynHighlighterFortran,
+  SynHighlighterAWK, SynHighlighterCobol, SynHighlighterFoxpro, SynHighlighterGalaxy,
+  SynHighlighterGWS, SynHighlighterHaskell, SynHighlighterKix, SynHighlighterModelica,
+  SynHighlighterM3, SynHighlighterRC, SynHighlighterST, SynHighlighterVBScript,
   SynHighlighterIdl, SynHighlighterCPM, SynHighlighterDOT, SynHighlighterADSP21xx,
   SynHighlighterDWS, SynHighlighterEiffel, SynHighlighterIni, SynHighlighterInno,
   SynHighlighterJava, SynHighlighterJScript, SynHighlighterLDraw, SynHighlighterMsg,
@@ -32,37 +36,52 @@ type
 
   function LightenColor(AColor: TColor; AFactor: Double = 0.2): TColor;
   procedure SetStyledFormSize(Dialog: TDialog);
+  procedure UpdateHC11SynColors(HC11Syn: TSynHC11Syn; WhiteBackground: Boolean);
   procedure UpdateADSP21xxSynColors(ADSP21xxSyn: TSynADSP21xxSyn; WhiteBackground: Boolean);
   procedure UpdateASMSynColors(ASMSyn: TSynASMSyn; WhiteBackground: Boolean);
   procedure UpdateAWKSynColors(AWKSyn: TSynAWKSyn; WhiteBackground: Boolean);
+  procedure UpdateBaanSynColors(BaanSyn: TSynBaanSyn; WhiteBackground: Boolean);
   procedure UpdateBatSynColors(BatSyn: TSynBatSyn; WhiteBackground: Boolean);
+  procedure UpdateCACSynColors(CACSyn: TSynCACSyn; WhiteBackground: Boolean);
+  procedure UpdateCacheSynColors(CacheSyn: TSynCacheSyn; WhiteBackground: Boolean);
   procedure UpdateCobolSynColors(CobolSyn: TSynCobolSyn; WhiteBackground: Boolean);
   procedure UpdateCPMSynColors(CPMSyn: TSynCPMSyn; WhiteBackground: Boolean);
   procedure UpdateDOTSynColors(DOTSyn: TSynDOTSyn; WhiteBackground: Boolean);
   procedure UpdateDWSSynColors(DWSSyn: TSynDWSSyn; WhiteBackground: Boolean);
   procedure UpdateEiffelSynColors(EiffelSyn: TSynEiffelSyn; WhiteBackground: Boolean);
+  procedure UpdateFortranSynColors(FortranSyn: TSynFortranSyn; WhiteBackground: Boolean);
+  procedure UpdateFoxproSynColors(FoxproSyn: TSynFoxproSyn; WhiteBackground: Boolean);
+  procedure UpdateGalaxySynColors(GalaxySyn: TSynGalaxySyn; WhiteBackground: Boolean);
   procedure UpdateGutter(SynEdit: TSynEdit);
+  procedure UpdateGWScriptSynColors(GWScriptSyn: TSynGWScriptSyn; WhiteBackground: Boolean);
+  procedure UpdateHaskellSynColors(HaskellSyn: TSynHaskellSyn; WhiteBackground: Boolean);
   procedure UpdateIdlSynColors(IdlSyn: TSynIdlSyn; WhiteBackground: Boolean);
   procedure UpdateIniSynColors(IniSyn: TSynIniSyn; WhiteBackground: Boolean);
   procedure UpdateInnoSynColors(InnoSyn: TSynInnoSyn; WhiteBackground: Boolean);
   procedure UpdateJavaSynColors(JavaSyn: TSynJavaSyn; WhiteBackground: Boolean);
   procedure UpdateJScriptSynColors(JScriptSyn: TSynJScriptSyn; WhiteBackground: Boolean);
+  procedure UpdateKixSynColors(KixSyn: TSynKixSyn; WhiteBackground: Boolean);
   procedure UpdateLDRSynColors(LDRSyn: TSynLDRSyn; WhiteBackground: Boolean);
   procedure UpdateLLVMSynColors(LLVMSyn: TSynLLVMIRSyn; WhiteBackground: Boolean);
+  procedure UpdateModelicaSynColors(ModelicaSyn: TSynModelicaSyn; WhiteBackground: Boolean);
+  procedure UpdateM3SynColors(M3Syn: TSynM3Syn; WhiteBackground: Boolean);
   procedure UpdateMsgSynColors(MsgSyn: TSynMsgSyn; WhiteBackground: Boolean);
   procedure UpdatePerlSynColors(PerlSyn: TSynPerlSyn; WhiteBackground: Boolean);
   procedure UpdateProgressSynColors(ProgressSyn: TSynProgressSyn; WhiteBackground: Boolean);
   procedure UpdatePythonSynColors(PythonSyn: TSynPythonSyn; WhiteBackground: Boolean);
+  procedure UpdateRCSynColors(RCSyn: TSynRCSyn; WhiteBackground: Boolean);
   procedure UpdateRubySynColors(RubySyn: TSynRubySyn; WhiteBackground: Boolean);
   procedure UpdateSDDSynColors(SDDSyn: TSynSDDSyn; WhiteBackground: Boolean);
   procedure UpdateSMLSynColors(SMLSyn: TSynSMLSyn; WhiteBackground: Boolean);
   procedure UpdateSQLSynColors(SQLSyn: TSynSQLSyn); overload;
   procedure UpdateSQLSynColors(SQLSyn: TSynSQLSyn; WhiteBackground: Boolean); overload;
+  procedure UpdateSTSynColors(STSyn: TSynSTSyn; WhiteBackground: Boolean);
   procedure UpdateTclTkSynColors(TclTkSyn: TSynTclTkSyn; WhiteBackground: Boolean);
   procedure UpdateTexSynColors(TexSyn: TSynTexSyn; WhiteBackground: Boolean);
   procedure UpdateUNIXShellScriptSynColors(UNIXShellScriptSyn: TSynUNIXShellScriptSyn; WhiteBackground: Boolean);
   procedure UpdateURISynColors(UriSyn: TSynUriSyn; WhiteBackground: Boolean);
   procedure UpdateVBSynColors(VBSyn: TSynVBSyn; WhiteBackground: Boolean);
+  procedure UpdateVBScriptSynColors(VBScriptSyn: TSynVBScriptSyn; WhiteBackground: Boolean);
   procedure UpdateYAMLSynColors(YAMLSyn: TSynYAMLSyn; WhiteBackground: Boolean);
   procedure UpdateWebIDLSynColors(WebIDLSyn: TSynWebIDLSyn; WhiteBackground: Boolean);
   procedure UpdateWebEngineColors(SynWebEngine: TSynWebEngine; WhiteBackground: Boolean);
@@ -128,6 +147,70 @@ begin
   SynEdit.ActiveLineColor := SynEdit.Color;
 end;
 
+procedure UpdateHC11SynColors(HC11Syn: TSynHC11Syn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    HC11Syn.CommentAttri.Foreground := clGreen;
+    HC11Syn.KeyAttri.Foreground := clBlue;
+    HC11Syn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    HC11Syn.CommentAttri.Foreground := clLime;
+    HC11Syn.KeyAttri.Foreground := clAqua;
+    HC11Syn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateBaanSynColors(BaanSyn: TSynBaanSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    BaanSyn.CommentAttri.Foreground := clGreen;
+    BaanSyn.KeyAttri.Foreground := clBlue;
+    BaanSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    BaanSyn.CommentAttri.Foreground := clLime;
+    BaanSyn.KeyAttri.Foreground := clAqua;
+    BaanSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateCACSynColors(CACSyn: TSynCACSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    CACSyn.CommentAttri.Foreground := clGreen;
+    CACSyn.KeyAttri.Foreground := clBlue;
+    CACSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    CACSyn.CommentAttri.Foreground := clLime;
+    CACSyn.KeyAttri.Foreground := clAqua;
+    CACSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateCacheSynColors(CacheSyn: TSynCacheSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    CacheSyn.CommentAttri.Foreground := clGreen;
+    CacheSyn.KeyAttri.Foreground := clBlue;
+    CacheSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    CacheSyn.CommentAttri.Foreground := clLime;
+    CacheSyn.KeyAttri.Foreground := clAqua;
+    CacheSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
 procedure UpdateAWKSynColors(AWKSyn: TSynAWKSyn; WhiteBackground: Boolean);
 begin
   if WhiteBackground then
@@ -167,6 +250,180 @@ begin
   CobolSyn.NumberAttri.Foreground := CobolSyn.BooleanAttri.Foreground;
   { clMaroon }
   CobolSyn.TagAreaAttri.Foreground := CobolSyn.PreprocessorAttri.Foreground;
+end;
+
+procedure UpdateFortranSynColors(FortranSyn: TSynFortranSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    FortranSyn.CommentAttri.Foreground := clGreen;
+    FortranSyn.KeyAttri.Foreground := clBlue;
+    FortranSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    FortranSyn.CommentAttri.Foreground := clLime;
+    FortranSyn.KeyAttri.Foreground := clAqua;
+    FortranSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateFoxproSynColors(FoxproSyn: TSynFoxproSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    FoxproSyn.CommentAttri.Foreground := clGreen;
+    FoxproSyn.KeyAttri.Foreground := clBlue;
+    FoxproSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    FoxproSyn.CommentAttri.Foreground := clLime;
+    FoxproSyn.KeyAttri.Foreground := clAqua;
+    FoxproSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateGalaxySynColors(GalaxySyn: TSynGalaxySyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    GalaxySyn.CommentAttri.Foreground := clGreen;
+    GalaxySyn.KeyAttri.Foreground := clBlue;
+  end
+  else
+  begin
+    GalaxySyn.CommentAttri.Foreground := clLime;
+    GalaxySyn.KeyAttri.Foreground := clAqua;
+  end;
+end;
+
+procedure UpdateGWScriptSynColors(GWScriptSyn: TSynGWScriptSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    GWScriptSyn.CommentAttri.Foreground := clGreen;
+    GWScriptSyn.KeyAttri.Foreground := clBlue;
+    GWScriptSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    GWScriptSyn.CommentAttri.Foreground := clLime;
+    GWScriptSyn.KeyAttri.Foreground := clAqua;
+    GWScriptSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateHaskellSynColors(HaskellSyn: TSynHaskellSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    HaskellSyn.CommentAttri.Foreground := clGreen;
+    HaskellSyn.KeyAttri.Foreground := clBlue;
+    HaskellSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    HaskellSyn.CommentAttri.Foreground := clLime;
+    HaskellSyn.KeyAttri.Foreground := clAqua;
+    HaskellSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateKixSynColors(KixSyn: TSynKixSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    KixSyn.CommentAttri.Foreground := clGreen;
+    KixSyn.KeyAttri.Foreground := clBlue;
+    KixSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    KixSyn.CommentAttri.Foreground := clLime;
+    KixSyn.KeyAttri.Foreground := clAqua;
+    KixSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateModelicaSynColors(ModelicaSyn: TSynModelicaSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    ModelicaSyn.CommentAttri.Foreground := clGreen;
+    ModelicaSyn.KeyAttri.Foreground := clBlue;
+    ModelicaSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    ModelicaSyn.CommentAttri.Foreground := clLime;
+    ModelicaSyn.KeyAttri.Foreground := clAqua;
+    ModelicaSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateM3SynColors(M3Syn: TSynM3Syn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    M3Syn.CommentAttri.Foreground := clGreen;
+    M3Syn.KeyAttri.Foreground := clBlue;
+    M3Syn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    M3Syn.CommentAttri.Foreground := clLime;
+    M3Syn.KeyAttri.Foreground := clAqua;
+    M3Syn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateRCSynColors(RCSyn: TSynRCSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    RCSyn.CommentAttri.Foreground := clGreen;
+    RCSyn.KeyAttri.Foreground := clBlue;
+    RCSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    RCSyn.CommentAttri.Foreground := clLime;
+    RCSyn.KeyAttri.Foreground := clAqua;
+    RCSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateSTSynColors(STSyn: TSynSTSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    STSyn.CommentAttri.Foreground := clGreen;
+    STSyn.KeyAttri.Foreground := clBlue;
+    STSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    STSyn.CommentAttri.Foreground := clLime;
+    STSyn.KeyAttri.Foreground := clAqua;
+    STSyn.StringAttri.Foreground := clYellow;
+  end;
+end;
+
+procedure UpdateVBScriptSynColors(VBScriptSyn: TSynVBScriptSyn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    VBScriptSyn.CommentAttri.Foreground := clGreen;
+    VBScriptSyn.KeyAttri.Foreground := clBlue;
+    VBScriptSyn.StringAttri.Foreground := clPurple;
+  end
+  else
+  begin
+    VBScriptSyn.CommentAttri.Foreground := clLime;
+    VBScriptSyn.KeyAttri.Foreground := clAqua;
+    VBScriptSyn.StringAttri.Foreground := clYellow;
+  end;
 end;
 
 procedure UpdateIdlSynColors(IdlSyn: TSynIdlSyn; WhiteBackground: Boolean);
@@ -580,9 +837,17 @@ end;
 procedure UpdateTclTkSynColors(TclTkSyn: TSynTclTkSyn; WhiteBackground: Boolean);
 begin
   if WhiteBackground then
-    TclTkSyn.CommentAttri.Foreground := clGreen
+  begin
+    TclTkSyn.CommentAttri.Foreground := clGreen;
+    TclTkSyn.KeyAttri.Foreground := clBlue;
+    TclTkSyn.StringAttri.Foreground := clPurple;
+  end
   else
+  begin
     TclTkSyn.CommentAttri.Foreground := clLime;
+    TclTkSyn.KeyAttri.Foreground := clAqua;
+    TclTkSyn.StringAttri.Foreground := clYellow;
+  end;
 end;
 
 procedure UpdateURISynColors(UriSyn: TSynUriSyn; WhiteBackground: Boolean);
