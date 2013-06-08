@@ -28,6 +28,7 @@ function DecryptString(Data: string): string;
 function EncryptString(Data: string): string;
 function FormatXML(XML: string): string;
 function GetAppVersion(const Url:string):string;
+function GetFileNamesFromFolder(Folder: string): TStrings;
 function GetFileVersion(Path: string): string;
 function GetINIFilename: string;
 function GetNextToken(Separator: char; Text: string): string;
@@ -829,6 +830,21 @@ begin
     Result := XMLDocument.XML.Text;
   finally
     XMLDocument.Destroy;
+  end;
+end;
+
+function GetFileNamesFromFolder(Folder: string): TStrings;
+var
+  SearchRec: TSearchRec;
+begin
+  Result := TStringList.Create;
+  if FindFirst(AddSlash(Folder) + '*.*', faAnyFile, SearchRec) = 0 then
+  begin
+    repeat
+      if SearchRec.Attr <> faDirectory then
+        Result.Add(SearchRec.Name);
+    until FindNext(SearchRec) <> 0;
+    System.SysUtils.FindClose(SearchRec);
   end;
 end;
 
