@@ -10,11 +10,11 @@ type
   private
     FLine: string;
     FLineNumber: Integer;
-	  FHashHigh: Int64;
-    FHashLow: Int64;
+    FHash: LongWord;
   public
     constructor Create(Line: string; LineNumber: Integer);
     function Equals(Line: TSourceLine): Boolean;
+    property Hash: LongWord read FHash;
     property Line: string read FLine;
     property LineNumber: Integer read FLineNumber;
   end;
@@ -24,12 +24,13 @@ type
     FFileType: string;
     FMinChars: Word;
     FSourceLines: TList;
-   	function IsSourceLine(Line: string): Boolean;
-   	function GetCleanLine(Line: string): string;
+    function IsSourceLine(Line: string): Boolean;
+    function GetCleanLine(Line: string): string;
+    function GetRowCount: Integer;
   public
     constructor Create(FileName: string; MinChars: Word);
-    function Count: Integer;
     function GetLine(Index: Integer): TSourceLine;
+    property RowCount: Integer read GetRowCount;
   end;
 
   TDuplicateChecker = class
@@ -48,7 +49,52 @@ type
 implementation
 
 uses
-  System.SysUtils, Common;
+  System.SysUtils, Hash, Common;
+
+{ TSourceLine }
+
+constructor TSourceLine.Create(Line: string; LineNumber: Integer);
+begin
+  inherited Create;
+
+  FLine := RemoveWhiteSpace(Line);
+  FLineNumber := LineNumber;
+  FHash := FNV1aHash(FLine);
+end;
+
+function TSourceLine.Equals(Line: TSourceLine): Boolean;
+begin
+  Result := FHash = Line.Hash;
+end;
+
+{ TSourceFile }
+
+function TSourceFile.IsSourceLine(Line: string): Boolean;
+begin
+
+end;
+
+function TSourceFile.GetCleanLine(Line: string): string;
+begin
+
+end;
+
+function TSourceFile.GetRowCount: Integer;
+begin
+
+end;
+
+constructor TSourceFile.Create(FileName: string; MinChars: Word);
+begin
+  inherited Create;
+end;
+
+function TSourceFile.GetLine(Index: Integer): TSourceLine;
+begin
+
+end;
+
+{ TDuplicateChecker }
 
 constructor TDuplicateChecker.Create(InputFolder: string; OutputFileName: string; MinBlockSize: Byte; MinChars: Byte);
 begin

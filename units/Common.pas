@@ -23,6 +23,7 @@ const
 function AddSlash(Path: string): string;
 function AnsiInitCap(Str: string): string;
 function AskYesOrNo(Msg: string): Boolean;
+function BinToInt(Value: String): LongInt;
 function BrowseURL(const URL: string): Boolean;
 function DecryptString(Data: string): string;
 function EncryptString(Data: string): string;
@@ -35,7 +36,7 @@ function GetNextToken(Separator: char; Text: string): string;
 function GetOSInfo: string;
 function GetSelectedLanguage(Default: string = ''): string;
 function GetTextAfterChar(Separator: char; Text: string): string;
-function IsAsciiFile(Filename: string): Boolean;
+function IntToBin(Value: LongInt; Digits: Integer): string;
 function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; Captions: array of string): Integer;
 function PointInRect(const P: TPoint; const R: TRect): Boolean;
 function RemoveTokenFromStart(Separator: char; Text: string): string;
@@ -53,8 +54,6 @@ procedure ShowMessage(Msg: string);
 procedure ShowWarningMessage(Msg: string);
 procedure UpdateLanguage(Form: TForm; SelectedLanguage: string = ''); overload;
 procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string = ''); overload;
-function IntToBin(Value: LongInt; Digits: Integer): string;
-function BinToInt(Value: String): LongInt;
 
 implementation
 
@@ -332,46 +331,6 @@ begin
       else
         Items.Insert(0, s);
     end;
-  end;
-end;
-
-function IsAsciiFile(Filename: string): Boolean;
-const
-  Sett = 2048;
-var
-  i: Integer;
-  F: file;
-  TotalSize, IncSize, ReadSize: Integer;
-  c: array[0..Sett] of Byte;
-begin
-  {$I-}
-  try
-    AssignFile(F, Filename);
-    Reset(F, 1);
-    TotalSize := FileSize(F);
-
-    IncSize := 0;
-    Result := true;
-
-    while (IncSize < TotalSize) and Result do
-    begin
-      ReadSize := Sett;
-      if IncSize + ReadSize > TotalSize then
-        ReadSize := TotalSize - IncSize;
-      IncSize := IncSize + ReadSize;
-      BlockRead(F, c, ReadSize);
-      for i := 0 to ReadSize - 1 do
-        if (c[i]<32) and (not (c[i] in [9, 10, 13, 26])) then
-        begin
-          Result := False;
-          Exit;
-        end;
-    end;
-  finally
-    CloseFile(F);
-    {$I+}
-    if IOResult <> 0 then
-      Result := False
   end;
 end;
 
@@ -794,12 +753,12 @@ var
 begin
   SetLength(Result, Length(s));
   j := 0;
-  for i := 1 to Length(s) do begin
-    if not TCharacter.IsWhiteSpace(s[i]) then begin
+  for i := 1 to Length(s) do
+    if not TCharacter.IsWhiteSpace(s[i]) then
+    begin
       inc(j);
       Result[j] := s[i];
     end;
-  end;
   SetLength(Result, j);
 end;
 

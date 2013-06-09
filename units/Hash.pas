@@ -6,10 +6,11 @@ uses
   System.AnsiStrings, System.SysUtils;
 
 function HashLine(const Line: string; IgnoreCase, IgnoreBlanks: Boolean): PLongWord;
+function FNV1aHash(const Line: AnsiString): LongWord;
 
 implementation
 
-function FNV1aHash(const s: AnsiString): LongWord;
+function FNV1aHash(const Line: AnsiString): LongWord;
 var
   i: Integer;
 const
@@ -17,8 +18,8 @@ const
   FNV_prime = 16777619;
 begin
   Result := FNV_offset_basis;
-  for i := 1 to Length(s) do
-    Result := (Result xor Byte(s[i])) * FNV_prime;
+  for i := 1 to Length(Line) do
+    Result := (Result xor Byte(Line[i])) * FNV_prime;
 end;
 
 function HashLine(const Line: string; IgnoreCase, IgnoreBlanks: Boolean): PLongWord;
