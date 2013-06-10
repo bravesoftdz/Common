@@ -3,7 +3,7 @@ unit DuplicateChecker;
 interface
 
 uses
-  System.Classes;
+  System.Classes, Common;
 
 type
   TSourceLine = class
@@ -13,7 +13,7 @@ type
     FHash: LongWord;
   public
     constructor Create(Line: string; LineNumber: Integer);
-    function Equals(Line: TSourceLine): Boolean;
+    function IsEqual(Line: TSourceLine): Boolean;
     property Hash: LongWord read FHash;
     property Line: string read FLine;
     property LineNumber: Integer read FLineNumber;
@@ -21,7 +21,7 @@ type
 
   TSourceFile = class
   private
-    FFileType: string;
+    FFileType: TFileType;
     FMinChars: Word;
     FSourceLines: TList;
     function IsSourceLine(Line: string): Boolean;
@@ -49,7 +49,7 @@ type
 implementation
 
 uses
-  System.SysUtils, Hash, Common;
+  System.SysUtils, Hash;
 
 { TSourceLine }
 
@@ -59,19 +59,26 @@ begin
 
   FLine := RemoveWhiteSpace(Line);
   FLineNumber := LineNumber;
-  FHash := FNV1aHash(FLine);
+  FHash := HashLine(FLine);
 end;
 
-function TSourceLine.Equals(Line: TSourceLine): Boolean;
+function TSourceLine.IsEqual(Line: TSourceLine): Boolean;
 begin
   Result := FHash = Line.Hash;
 end;
 
 { TSourceFile }
 
+constructor TSourceFile.Create(FileName: string; MinChars: Word);
+begin
+  inherited Create;
+
+  FFileType := GetFileType(FileName);
+end;
+
 function TSourceFile.IsSourceLine(Line: string): Boolean;
 begin
-
+  Result := Length(Line) >= FMinChars;
 end;
 
 function TSourceFile.GetCleanLine(Line: string): string;
@@ -82,11 +89,6 @@ end;
 function TSourceFile.GetRowCount: Integer;
 begin
 
-end;
-
-constructor TSourceFile.Create(FileName: string; MinChars: Word);
-begin
-  inherited Create;
 end;
 
 function TSourceFile.GetLine(Index: Integer): TSourceLine;

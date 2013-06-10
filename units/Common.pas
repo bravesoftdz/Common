@@ -20,6 +20,14 @@ const
   TSynEditCaretTypeStr: array[0..3] of String =
     ('Vertical Line', 'Horizontal Line', 'Half Block', 'Block');
 
+type
+  TFileType = (ftHC11, ftAWK, ftBaan, ftCS, ftCPP, ftCAC, ftCache, ftCss, ftCobol, ftIdl,
+    ftCPM, ftDOT, ftADSP21xx, ftDWScript, ftEiffel, ftFortran, ftFoxpro, ftGalaxy, ftDml, ftGWScript, ftHaskell,
+    ftHP48, ftHTML, ftIni, ftInno, ftJava, ftJScript, ftKix, ftLDR, ftLLVM, ftModelica, ftM3,
+    ftMsg, ftBat, ftPas, ftPerl, ftPHP, ftProgress, ftPython, ftRC, ftRuby, ftSDD,
+    ftSQL, ftSML, ftST, ftTclTk, ftTeX, ftText, ftUNIXShellScript, ftVB, ftVBScript, ftVrml97,
+    ftWebIDL, ftAsm, ftXML, ftYAML);
+
 function AddSlash(Path: string): string;
 function AnsiInitCap(Str: string): string;
 function AskYesOrNo(Msg: string): Boolean;
@@ -30,6 +38,7 @@ function EncryptString(Data: string): string;
 function FormatXML(XML: string): string;
 function GetAppVersion(const Url:string):string;
 function GetFileNamesFromFolder(Folder: string): TStrings;
+function GetFileType(FileName: string): TFileType;
 function GetFileVersion(Path: string): string;
 function GetINIFilename: string;
 function GetNextToken(Separator: char; Text: string): string;
@@ -61,6 +70,30 @@ uses
   Winapi.Windows, Winapi.ShellAPI, Vcl.StdCtrls, DownloadURL, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
   System.Character, Vcl.ActnList, System.StrUtils, BigINI, Language, VirtualTrees, Xml.XMLDoc,
   System.IniFiles;
+
+function GetFileType(FileName: string): TFileType;
+var
+  FileExt: string;
+begin
+  FileExt := ExtractFileExt(FileName);
+
+  if (FileExt = '.c') or (FileExt = '.cpp') or (FileExt = '.h') or (FileExt = '.hpp') then
+    Result := ftCPP
+  else
+  if FileExt = '.cs' then
+    Result := ftCS
+  else
+  if FileExt = '.java' then
+    Result := ftJava
+  else
+  if (FileExt = '.pas') or (FileExt = '.dfm') or (FileExt = '.dpr') or (FileExt = '.dproj') then
+    Result := ftPas
+  else
+  if (FileExt = '.vb') or (FileExt = '.bas') then
+    Result := ftVB
+  else
+    Result := ftText
+end;
 
 function IntToBin(Value: LongInt; Digits: Integer): string;
 begin
