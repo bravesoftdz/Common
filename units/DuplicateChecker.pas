@@ -25,7 +25,6 @@ type
     FMinChars: Word;
     FSourceLines: TList;
     function IsSourceLine(Line: string): Boolean;
-    function GetCleanLine(Line: string): string;
     function GetRowCount: Integer;
   public
     constructor Create(FileName: string; MinChars: Word);
@@ -74,6 +73,7 @@ begin
   inherited Create;
 
   FFileType := GetFileType(FileName);
+  { read file and remove comments }
 end;
 
 function TSourceFile.IsSourceLine(Line: string): Boolean;
@@ -81,19 +81,19 @@ begin
   Result := Length(Line) >= FMinChars;
 end;
 
-function TSourceFile.GetCleanLine(Line: string): string;
-begin
-
-end;
-
 function TSourceFile.GetRowCount: Integer;
 begin
-
+  Result := 0;
+  if Assigned(FSourceLines) then
+    Result := FSourceLines.Count;
 end;
 
 function TSourceFile.GetLine(Index: Integer): TSourceLine;
 begin
-
+  Result := nil;
+  if Assigned(FSourceLines) then
+    if (FSourceLines.Count > 0) and (Index >= 0) and (Index < FSourceLines.Count) then
+      Result := TSourceLine(FSourceLines.Items[Index]);
 end;
 
 { TDuplicateChecker }
