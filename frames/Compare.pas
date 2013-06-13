@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Diff, Vcl.Grids, Vcl.ExtCtrls, Vcl.StdCtrls, JvExStdCtrls,
   Vcl.Mask, JvExMask, JvToolEdit, Vcl.Buttons, JvExControls, JvSpeedButton, BCEdit, JvStringGrid,
   BCStringGrid, Vcl.ActnList, JvScrollBar, JvExForms, JvExExtCtrls, JvSplitter, JvExtComponent,
-  JvContentScroller, JvExGrids, JvEdit, JvCombobox, BCComboBox, Vcl.ImgList, System.Generics.Collections;
+  JvContentScroller, JvExGrids, JvEdit, JvCombobox, BCComboBox, Vcl.ImgList, System.Generics.Collections,
+  System.Actions;
 
 type
   TGridEventType = (etNone, etMouse, etKey);

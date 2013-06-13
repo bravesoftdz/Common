@@ -688,7 +688,7 @@ var
   s: string;
   LanguagePath: string;
 begin
-  if Assigned(Frame) then
+  if not Assigned(Frame) then
     Exit;
   if SelectedLanguage = '' then
     SelectedLanguage := Common.GetSelectedLanguage;
