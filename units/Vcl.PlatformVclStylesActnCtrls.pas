@@ -44,6 +44,7 @@ uses
   Vcl.Menus,
   Winapi.Windows,
   System.SysUtils,
+  System.UITypes,
   Vcl.ActnMenus,
   Vcl.ActnCtrls,
   Vcl.ThemedActnCtrls,

@@ -437,7 +437,7 @@ begin
   Result := 0;
   for i := 0 to Length(s) - 1 do
   begin
-    IsWhite := IsWhiteSpace(s[i]);
+    IsWhite := s[i].IsWhiteSpace;
     if IsWhiteOld and not IsWhite then
       Inc(Result);
     IsWhiteOld := IsWhite;
@@ -688,6 +688,8 @@ var
   s: string;
   LanguagePath: string;
 begin
+  if Assigned(Frame) then
+    Exit;
   if SelectedLanguage = '' then
     SelectedLanguage := Common.GetSelectedLanguage;
   if SelectedLanguage = '' then
@@ -787,7 +789,7 @@ begin
   SetLength(Result, Length(s));
   j := 0;
   for i := 1 to Length(s) do
-    if not TCharacter.IsWhiteSpace(s[i]) then
+    if not s[i].IsWhiteSpace then
     begin
       inc(j);
       Result[j] := s[i];
