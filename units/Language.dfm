@@ -441,12 +441,12 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'CAClipper'
         Strings.Strings = (
-          'CA-Clipper Files (*.prg;*.ch;*.inc)')
+          'CA-Clipper Files (*.prg;*.ch)')
       end
       item
         Name = 'Cache'
         Strings.Strings = (
-          'Cache Files (*.mac;*.inc;*.int)')
+          'Cache Files (*.mac;*.int)')
       end
       item
         Name = 'CSS'
@@ -476,7 +476,7 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'DSP'
         Strings.Strings = (
-          'DSP Files (*.dsp;*.inc)')
+          'DSP Files (*.dsp)')
       end
       item
         Name = 'DWScript'
