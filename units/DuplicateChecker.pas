@@ -12,7 +12,7 @@ type
     FLineNumber: Integer;
     FHash: LongWord;
   public
-    constructor Create(Line: string; LineNumber: Integer);
+    constructor Create(Line: string; LineNumber: Integer); overload;
     function IsEqual(Line: TSourceLine): Boolean;
     property Hash: LongWord read FHash;
     property Line: string read FLine;
@@ -26,8 +26,11 @@ type
     FSourceLines: TList;
     function IsSourceLine(Line: string): Boolean;
     function GetRowCount: Integer;
+    procedure RemoveComments(var StringList: TStrings);
+    procedure TrimLines(var StringList: TStrings);
   public
-    constructor Create(FileName: string; MinChars: Word);
+    constructor Create(FileName: string; MinChars: Word; RemoveComments: Boolean); overload;
+    destructor Destroy; override;
     function GetLine(Index: Integer): TSourceLine;
     property RowCount: Integer read GetRowCount;
   end;
@@ -38,9 +41,10 @@ type
     FOutputFile: TextFile;
     FMinBlockSize: Byte;
     FMinChars: Byte;
+    FRemoveComments: Boolean;
     function ProcessFiles(FileName1: string; FileName2: string): Integer;
   public
-    constructor Create(InputFolder: string; OutputFileName: string; MinBlockSize: Byte; MinChars: Byte);
+    constructor Create(InputFolder: string; OutputFileName: string; MinBlockSize: Byte; MinChars: Byte; RemoveComments: Boolean); overload;
     destructor Destroy; override;
     procedure Run;
   end;
@@ -56,7 +60,7 @@ constructor TSourceLine.Create(Line: string; LineNumber: Integer);
 begin
   inherited Create;
 
-  FLine := RemoveWhiteSpace(Line);
+  FLine := Line;
   FLineNumber := LineNumber;
   FHash := HashLine(FLine);
 end;
@@ -68,17 +72,110 @@ end;
 
 { TSourceFile }
 
-constructor TSourceFile.Create(FileName: string; MinChars: Word);
+constructor TSourceFile.Create(FileName: string; MinChars: Word; RemoveComments: Boolean);
+var
+  i: Integer;
+  StringList: TStrings;
 begin
   inherited Create;
 
+  FSourceLines := TList.Create;
   FFileType := GetFileType(FileName);
-  { read file and remove comments }
+  { read file }
+  StringList := TStringList.Create;
+  try
+    StringList.LoadFromFile(FileName);
+    if RemoveComments then
+      Self.RemoveComments(StringList);
+    TrimLines(StringList);
+    for i := 0 to StringList.Count - 1 do
+      FSourceLines.Add(TSourceLine.Create(StringList.Strings[i], i));
+  finally
+    StringList.Free;
+  end;
+end;
+
+destructor TSourceFile.Destroy;
+var
+  SourceLine: TSourceLine;
+begin
+  while FSourceLines.Count > 0 do
+  begin
+    SourceLine := TSourceLine(FSourceLines.Items[0]);
+    FreeAndNil(SourceLine);
+  end;
+  FSourceLines.Free;
+
+  inherited;
+end;
+
+procedure TSourceFile.TrimLines(var StringList: TStrings);
+var
+  i: Integer;
+begin
+  for i := StringList.Count - 1 downto 0 do
+  begin
+    if not IsSourceLine(StringList.Strings[i]) then
+      StringList.delete(i)
+    else
+      StringList.Strings[i] := RemoveWhiteSpace(StringList.Strings[i]);
+  end;
+end;
+
+procedure TSourceFile.RemoveComments(var StringList: TStrings);
+var
+  i: Integer;
+  s: string;
+
+  procedure RemoveRowComment(Index: Integer; CommentChars: string);
+  var
+    p: Integer;
+  begin
+    p := Pos(CommentChars, StringList[i]);
+    if p > 0 then
+      StringList[Index] := Copy(StringList[Index], 1, p - 1);
+  end;
+
+  procedure RemoveBlockComments(var Text: string; BeginChars: string; EndChars: string);
+  var
+    p, e: Integer;
+  begin
+    p := Pos(BeginChars, Text);
+    while p > 0 do
+    begin
+      e := Pos(EndChars, Text);
+      Text := Copy(Text, 1, p - 1) + Copy(Text, e + Length(BeginChars), Length(Text) - e - Length(EndChars) + 1);
+      p := Pos(BeginChars, Text);
+    end;
+  end;
+
+begin
+  { remove row comments }
+  for i := 0 to StringList.Count - 1 do
+  begin
+    if FFileType in [ftVB] then
+      RemoveRowComment(i, '''');
+    if FFileType in [ftCPP, ftCS, ftJava, ftPas] then
+      RemoveRowComment(i, '//');
+  end;
+
+  { remove block comments }
+  s := StringList.Text;
+
+  if FFileType in [ftPas] then
+  begin
+    RemoveBlockComments(s, '{', '}');
+    RemoveBlockComments(s, '(*', '*)');
+  end;
+  if FFileType in [ftCPP, ftCS, ftJava, ftPas] then
+    RemoveBlockComments(s, '/*', '*/');
+
+  StringList.Text := s;
 end;
 
 function TSourceFile.IsSourceLine(Line: string): Boolean;
 begin
-  Result := Length(Line) >= FMinChars;
+  Result := (Length(Line) >= FMinChars) and (Trim(Line) <> '');
 end;
 
 function TSourceFile.GetRowCount: Integer;
@@ -98,12 +195,14 @@ end;
 
 { TDuplicateChecker }
 
-constructor TDuplicateChecker.Create(InputFolder: string; OutputFileName: string; MinBlockSize: Byte; MinChars: Byte);
+constructor TDuplicateChecker.Create(InputFolder: string; OutputFileName: string; MinBlockSize: Byte; MinChars: Byte;
+  RemoveComments: Boolean);
 begin
   inherited Create;
 
   FMinBlockSize := MinBlockSize;
   FMinChars := MinChars;
+  FRemoveComments := RemoveComments;
   FFileNames := Common.GetFileNamesFromFolder(InputFolder);
   AssignFile(FOutputFile, OutputFileName);
 end;
@@ -115,33 +214,25 @@ begin
   if Assigned(FFileNames) then
     FFileNames.Free;
 end;
- {
-function LoadFileToStr(const FileName: TFileName): AnsiString;
-var
-  FileStream : TFileStream;
-begin
-  FileStream:= TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
-  try
-    if FileStream.Size>0 then
-    begin
-      SetLength(Result, FileStream.Size);
-      FileStream.Read(Pointer(Result)^, FileStream.Size);
-    end;
-  finally
-    FileStream.Free;
-  end;
-end;  }
 
 function TDuplicateChecker.ProcessFiles(FileName1: string; FileName2: string): Integer;
 var
   SourceFile1, SourceFile2: TSourceFile;
 begin
   { Create source files }
-  SourceFile1 := TSourceFile.Create(FileName1, FMinChars);
-  SourceFile2 := TSourceFile.Create(FileName2, FMinChars);
+  SourceFile1 := TSourceFile.Create(FileName1, FMinChars, FRemoveComments);
+  SourceFile2 := TSourceFile.Create(FileName2, FMinChars, FRemoveComments);
   try
     { Compute matrix }
-
+    (*
+    for(int y=0; y<m; y++){
+	    SourceLine* pSLine = pSource1->getLine(y);
+        for(int x=0; x<n; x++){
+            if(pSLine->equals(pSource2->getLine(x))){
+                m_pMatrix[x+n*y] = MATCH;
+            }
+        }
+    } *)
     { Scan vertical part }
 
     { Scan horizontal part }
