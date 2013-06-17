@@ -21,9 +21,11 @@ type
 
   TSourceFile = class
   private
+    FFileName: string;
     FFileType: TFileType;
     FMinChars: Word;
     FSourceLines: TList;
+    function GetFilename: string;
     function IsSourceLine(Line: string): Boolean;
     function GetRowCount: Integer;
     procedure RemoveComments(var StringList: TStrings);
@@ -32,6 +34,7 @@ type
     constructor Create(FileName: string; MinChars: Word; RemoveComments: Boolean); overload;
     destructor Destroy; override;
     function GetLine(Index: Integer): TSourceLine;
+    property FileName: string read GetFilename;
     property RowCount: Integer read GetRowCount;
   end;
 
@@ -42,7 +45,10 @@ type
     FMinBlockSize: Byte;
     FMinChars: Byte;
     FRemoveComments: Boolean;
+    FDuplicateLines: Integer;
+    FTotalLineCount: Integer;
     function ProcessFiles(FileName1: string; FileName2: string): Integer;
+    procedure WriteOutput(Line1: Integer; Line2: Integer; Count: Integer; SourceFile1, SourceFile2: TSourceFile);
   public
     constructor Create(InputFolder: string; OutputFileName: string; MinBlockSize: Byte; MinChars: Byte; RemoveComments: Boolean); overload;
     destructor Destroy; override;
@@ -52,7 +58,7 @@ type
 implementation
 
 uses
-  System.SysUtils, Hash;
+  System.SysUtils, System.Math, Hash;
 
 { TSourceLine }
 
@@ -78,7 +84,7 @@ var
   StringList: TStrings;
 begin
   inherited Create;
-
+  FFileName := FileName;
   FSourceLines := TList.Create;
   FFileType := GetFileType(FileName);
   { read file }
@@ -107,6 +113,11 @@ begin
   FSourceLines.Free;
 
   inherited;
+end;
+
+function TSourceFile.GetFilename: string;
+begin
+  Result := FFileName;
 end;
 
 procedure TSourceFile.TrimLines(var StringList: TStrings);
@@ -204,6 +215,8 @@ begin
   FMinChars := MinChars;
   FRemoveComments := RemoveComments;
   FFileNames := Common.GetFileNamesFromFolder(InputFolder);
+  FDuplicateLines := 0;
+  FTotalLineCount := 0;
   AssignFile(FOutputFile, OutputFileName);
 end;
 
@@ -215,31 +228,109 @@ begin
     FFileNames.Free;
 end;
 
+procedure TDuplicateChecker.WriteOutput(Line1: Integer; Line2: Integer; Count: Integer;
+  SourceFile1, SourceFile2: TSourceFile);
+var
+  i: Integer;
+begin
+  WriteLn(FOutputFile, Format('%s (%d)', [SourceFile1.FileName, SourceFile1.GetLine(Line1).LineNumber]));
+  WriteLn(FOutputFile, Format('%s (%d)', [SourceFile2.FileName, SourceFile2.GetLine(Line2).LineNumber]));
+
+  for i := 0 to Count - 1 do
+  begin
+    WriteLn(FOutputFile, SourceFile1.GetLine(i + Line1).Line);
+    Inc(FDuplicateLines);
+	end;
+end;
+
 function TDuplicateChecker.ProcessFiles(FileName1: string; FileName2: string): Integer;
 var
   SourceFile1, SourceFile2: TSourceFile;
+  i, x, y, Count1, Count2, SequenceLength, MaxX, MaxY: Integer;
+  MatchArray: array of Boolean;
+  SourceLine: TSourceLine;
 begin
   { Create source files }
   SourceFile1 := TSourceFile.Create(FileName1, FMinChars, FRemoveComments);
   SourceFile2 := TSourceFile.Create(FileName2, FMinChars, FRemoveComments);
   try
-    { Compute matrix }
-    (*
-    for(int y=0; y<m; y++){
-	    SourceLine* pSLine = pSource1->getLine(y);
-        for(int x=0; x<n; x++){
-            if(pSLine->equals(pSource2->getLine(x))){
-                m_pMatrix[x+n*y] = MATCH;
-            }
-        }
-    } *)
+    Count1 := SourceFile1.GetRowCount;
+    Count2 := SourceFile2.GetRowCount;
+    FTotalLineCount := FTotalLineCount + Count1 + Count2;
+    SetLength(MatchArray, Count1 * Count2);
+
+    { Reset match array }
+    for i := 0 to Length(MatchArray) - 1 do
+      MatchArray[i] := False;
+    { Compute match array }
+    for y := 0 to Count1 - 1 do
+    begin
+      SourceLine := SourceFile1.GetLine(y);
+      for x := 0 to Count2 - 1 do
+        if SourceLine.Equals(SourceFile2.GetLine(x)) then
+          MatchArray[x + Count2 * y] := True;
+    end;
+
+    Result := 0;
     { Scan vertical part }
+    for y := 0 to Count1 - 1 do
+    begin
+      SequenceLength := 0;
+      MaxX := Min(Count2, Count1 - y);
+      for x := 0 to MaxX - 1 do
+      begin
+        if MatchArray[x + Count2 * (y + x)] then
+          Inc(SequenceLength)
+        else
+        begin
+          if SequenceLength >= FMinBlockSize then
+          begin
+            WriteOutput(y + x - SequenceLength, x - SequenceLength, SequenceLength, SourceFile1,
+              SourceFile2);
+            Inc(Result);
+          end;
+          SequenceLength := 0;
+        end;
+      end;
+      if SequenceLength >= FMinBlockSize then
+      begin
+        WriteOutput(Count1 - SequenceLength, Count2 - SequenceLength, SequenceLength,
+          SourceFile1, SourceFile2);
+        Inc(Result);
+      end;
+    end;
 
     { Scan horizontal part }
-
+    for x := 1 to Count2 - 1 do
+    begin
+      SequenceLength := 0;
+      MaxY := Min(Count1, Count2 - x);
+      for y := 0 to MaxY - 1 do
+      begin
+        if MatchArray[x + y + Count2 * y] then
+          Inc(SequenceLength)
+        else
+        begin
+          if SequenceLength >= FMinBlockSize then
+          begin
+            WriteOutput(y - SequenceLength, x + y - SequenceLength, SequenceLength, SourceFile1,
+              SourceFile2);
+            Inc(Result);
+          end;
+          SequenceLength := 0;
+        end;
+      end;
+      if SequenceLength >= FMinBlockSize then
+      begin
+        WriteOutput(Count1 - SequenceLength, Count2 - SequenceLength, SequenceLength,
+          SourceFile1, SourceFile2);
+        Inc(Result);
+      end;
+    end;
   finally
     SourceFile1.Free;
     SourceFile2.Free;
+    SetLength(MatchArray, 0);
   end;
 end;
 
@@ -249,6 +340,7 @@ var
   StartTime: TDateTime;
 begin
   StartTime := Now;
+  BlockCount := 0;
   try
     ReWrite(FOutputFile);
     { Compare each file with each other }
@@ -263,6 +355,12 @@ begin
             WriteLn(FOutputFile, 'Nothing found.');
           WriteLn(FOutputFile, Format('Time Elapsed: %s', [System.SysUtils.FormatDateTime('hh:nn:ss.zzz', Now - StartTime)]));
         end;
+    { Statistics }
+    WriteLn(FOutputFile, '---');
+    WriteLn(FOutputFile, Format('Duplicate Blocks: %d', [BlockCount]));
+    WriteLn(FOutputFile, Format('Duplicate Lines: %d', [FDuplicateLines]));
+    WriteLn(FOutputFile, Format('Total Line Count: %d', [FTotalLineCount]));
+    WriteLn(FOutputFile, Format('Time Elapsed: %s', [System.SysUtils.FormatDateTime('hh:nn:ss.zzz', Now - StartTime)]));
   finally
     CloseFile(FOutputFile);
   end;
