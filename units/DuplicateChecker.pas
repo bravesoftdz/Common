@@ -356,10 +356,10 @@ begin
           WriteLn(FOutputFile, Format('Time Elapsed: %s', [System.SysUtils.FormatDateTime('hh:nn:ss.zzz', Now - StartTime)]));
         end;
     { Statistics }
-    WriteLn(FOutputFile, '---');
+    WriteLn(FOutputFile, '--- Summary ---');
     WriteLn(FOutputFile, Format('Duplicate Blocks: %d', [BlockCount]));
-    WriteLn(FOutputFile, Format('Duplicate Lines: %d', [FDuplicateLines]));
-    WriteLn(FOutputFile, Format('Total Line Count: %d', [FTotalLineCount]));
+    WriteLn(FOutputFile, Format('Duplicate Lines of Code: %d', [FDuplicateLines]));
+    WriteLn(FOutputFile, Format('Total Lines of Code: %d', [FTotalLineCount]));
     WriteLn(FOutputFile, Format('Time Elapsed: %s', [System.SysUtils.FormatDateTime('hh:nn:ss.zzz', Now - StartTime)]));
   finally
     CloseFile(FOutputFile);
