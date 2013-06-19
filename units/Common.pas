@@ -836,7 +836,7 @@ begin
   begin
     repeat
       if SearchRec.Attr <> faDirectory then
-        Result.Add(SearchRec.Name);
+        Result.Add(AddSlash(Folder) + SearchRec.Name);
     until FindNext(SearchRec) <> 0;
     System.SysUtils.FindClose(SearchRec);
   end;
