@@ -109,6 +109,7 @@ begin
   begin
     SourceLine := TSourceLine(FSourceLines.Items[0]);
     FreeAndNil(SourceLine);
+    FSourceLines.Delete(0);
   end;
   FSourceLines.Free;
 
