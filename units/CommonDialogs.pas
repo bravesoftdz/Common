@@ -7,7 +7,7 @@ uses
 
   function OpenFiles(Owner: HWND; const ADirPath, AFilter, ATitle: string): Boolean;
   function OpenFile(Owner: HWND; const ADirPath, AFilter, ATitle: string; const DefaultExt: string = ''): Boolean;
-  function SaveFile(Owner: HWND; const ADirPath, AFilter, ATitle: string; const FileName: string = ''; const DefaultExt: string = ''): Boolean;
+  function SaveFile(Owner: HWND; const ADirPath, AFilter, ATitle: string; var FilterIndex: Cardinal; const FileName: string = ''; const DefaultExt: string = ''): Boolean;
   function Print(Owner: HWND; var PrintDlgRec: TPrintDlg; Setup: Boolean = False): Boolean;
 
 var
@@ -17,10 +17,6 @@ implementation
 
 uses
   System.SysUtils, Winapi.Messages, Vcl.StdCtrls, Vcl.Printers;
-
-const
-  Zero = 0;
-  One = 1;
 
 type
   { TDlgOptions are the 11 members which control the dialog creation Flags
@@ -68,7 +64,7 @@ var
 function OpenSavDlg(hOwner: Cardinal; const iniDirPath, Filter: string; Open: BOOL): string;
 var
   OFName : TOpenFileName;
-  FileName: Array[Zero..2047] of Char;
+  FileName: Array[0..2047] of Char;
 begin
   // basic open-save dialog creation
   ZeroMemory(@FileName, SizeOf(FileName));
@@ -80,11 +76,11 @@ begin
     hwndowner := hOwner;
     nMaxFile := SizeOf(FileName);
     lpstrFile := @FileName;
-    nFilterIndex := One;
-    if Length(iniDirPath) > One then
+    nFilterIndex := 1;
+    if Length(iniDirPath) > 1 then
       lpstrInitialDir := PChar(iniDirPath)
     else
-      lpstrInitialDir := PChar(ExtractFilePath(ParamStr(Zero)));
+      lpstrInitialDir := PChar(ExtractFilePath(ParamStr(0)));
 
     lpstrFilter := PChar(Filter);
 
@@ -106,21 +102,24 @@ begin
     Result := FileName;
 end;
 
-function OpenDlgOpt(var DlgSetUp: TDlgSetUp; FilterIndex: Cardinal = One): string;
+function OpenDlgOpt(var DlgSetUp: TDlgSetUp; FilterIndex: Cardinal = 1): string;
 const
   // this FlagValues holds some of the constants for the OFName.Flags
-  FlagValues: array[TDlgOptions] of Cardinal = (Zero, Zero, OFN_READONLY, OFN_FILEMUSTEXIST,
+  FlagValues: array[TDlgOptions] of Cardinal = (0, 0, OFN_READONLY, OFN_FILEMUSTEXIST,
     OFN_PATHMUSTEXIST, OFN_OVERWRITEPROMPT, OFN_CREATEPROMPT, OFN_NODEREFERENCELINKS,
-    OFN_NOCHANGEDIR, Zero, Zero);
+    OFN_NOCHANGEDIR, 0, 0);
 var
   OFName : TOpenFileName;
-  FilePath: array[Zero..2047] of Char;
+  FilePath: array[0..2047] of Char;
   i: TDlgOptions;
 
   procedure SetResult;
   begin
     { this procedure is used to set Result for both the Open and Save dialogs }
     Result := FilePath;
+
+    if ExtractFileExt(FilePath) = '' then
+      Result := Result + OFName.lpstrCustomFilter;
     { place the current Filter Index into the hOwner incase you need to reset it to user's Index}
     DlgSetUp.hOwner := OFName.nFilterIndex;
     { the doTrackFolder will record the folder path, so you can open the next
@@ -128,7 +127,7 @@ var
     if doTrackFolder in DlgSetUp.Options then
       OpenFolder := ExtractFilePath(Result);
     { the OFName.Flags will have the OFN_READONLY bit if the check box was checked }
-    if OFName.Flags and OFN_READONLY <> Zero then
+    if OFName.Flags and OFN_READONLY <> 0 then
       DlgSetUp.Options := [doCheckRead];
   end;
 
@@ -144,10 +143,10 @@ begin
     hwndOwner := hOwner; // the owner is set to DlgSetUp.hOwner
     nMaxFile := SizeOf(FilePath);
     lpstrFile := @FilePath;
-    if Length(iniFileName) > One then
+    if Length(iniFileName) > 1 then
       StrCopy(lpstrFile, PChar(iniDirPath + iniFileName)); // set first file name here
 
-    if Length(iniDirPath) > One then
+    if Length(iniDirPath) > 1 then
       lpstrInitialDir := PChar(iniDirPath)
     else // set default initial Folder to this programs folder
       lpstrInitialDir := PChar(ExtractFilePath(ParamStr(0)));
@@ -155,10 +154,10 @@ begin
     lpstrFilter := PChar(Filter);
     nFilterIndex := FilterIndex;
 
-    if length(Title) > Zero then
+    if length(Title) > 0 then
       lpstrTitle := PChar(Title); // set dlg Title to OpenSet.Title
 
-    if length(DefExt) > One then
+    if length(DefExt) > 1 then
       lpstrDefExt := PChar(DefExt); { lpstrDefExt will automatically add that file ext to a file name with no ext}
 
     Flags := OFN_EXPLORER or OFN_ENABLESIZING or OFN_HIDEREADONLY;
@@ -203,7 +202,7 @@ begin
    fOffSet element, used to extract the file names from the #0 delimited result
    string in Result.fNames}
   SetLength(Result.fNames, 3070); // larger file name buffer for multi files
-  ZeroMemory(@Result.fNames[One], Length(Result.fNames));
+  ZeroMemory(@Result.fNames[1], Length(Result.fNames));
   Result.fOffSet := -1; // set Result.fOffSet to an error result of -1
   ZeroMemory(@OFName, SizeOf(OFName));
 
@@ -219,7 +218,7 @@ begin
       OFN_HIDEREADONLY;
     lpstrFilter := PChar(Filter);
     lpstrTitle := PChar(Title);
-    nFilterIndex := One;
+    nFilterIndex := 1;
     lpstrInitialDir:= PChar(iniDirPath);
   end;
 
@@ -263,7 +262,7 @@ begin
     Result := False;
 end;
 
-function SaveFile(Owner: HWND; const ADirPath, AFilter, ATitle, FileName, DefaultExt: string): Boolean;
+function SaveFile(Owner: HWND; const ADirPath, AFilter, ATitle: string; var FilterIndex: Cardinal; const FileName: string; const DefaultExt: string): Boolean;
 var
   DlgSetUp: TDlgSetUp;
   AFileName: string;
@@ -282,10 +281,11 @@ begin
     Options := [doSave, doPathExist, doOverWrite, doTrackFolder];
   end;
   Files.Clear;
-  AFileName := OpenDlgOpt(DlgSetUp);
-  if (AFileName <> '') and (ExtractFileExt(AFileName) = '') then
+  AFileName := OpenDlgOpt(DlgSetUp, FilterIndex);
+  if (ExtractFileExt(AFileName) = '') and (DefaultExt <> '') then
     AFileName := Format('%s%s', [AFileName, DefaultExt]);
   Files.Add(AFileName);
+  FilterIndex := DlgSetUp.hOwner;
   Result := Files[0] <> '';
 end;
 

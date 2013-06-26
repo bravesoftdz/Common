@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.ActnList, Vcl.StdCtrls, Vcl.ComCtrls, JvExComCtrls,
-  JvProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, Dlg;
+  JvProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, Dlg, System.Actions;
 
 type
   TDownloadURLDialog = class(TDialog)
@@ -73,12 +73,14 @@ begin
 end;
 
 procedure TDownloadURLDialog.Open(DefaultFileName: string; DownloadURL: string);
+var
+  FilterIndex: Cardinal;
 begin
   FCancel := False;
   Button.Action := CancelAction;
   if CommonDialogs.SaveFile(Handle, '', Trim(StringReplace(LanguageDataModule.GetFileTypes('Zip')
         , '|', #0, [rfReplaceAll])) + #0#0,
-        LanguageDataModule.GetConstant('SaveAs'), DefaultFileName, 'zip') then
+        LanguageDataModule.GetConstant('SaveAs'), FilterIndex, DefaultFileName, 'zip') then
   begin
     SetInformationText(DownloadURL);
     Application.ProcessMessages;
