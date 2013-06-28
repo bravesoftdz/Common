@@ -1166,6 +1166,7 @@ procedure UpdateGutterAndColors(SynEdit: TBCSynEdit);
 var
   LStyles: TCustomStyleServices;
   Highlighter: TSynCustomHighlighter;
+  EditColor: TColor;
 begin
   LStyles := StyleServices;
   if LStyles.Enabled then
@@ -1189,7 +1190,12 @@ begin
         SynEdit.Color := clNavy;
       if (Highlighter.Tag = 5) or (Highlighter.Tag = 8) or (Highlighter.Tag = 40) then
         SynEdit.Color := clBlack;
-      if SynEdit.Color = clBlack then
+
+      EditColor := clNone;
+      if LStyles.Enabled then
+        EditColor := LStyles.GetStyleColor(scEdit);
+      if LStyles.Enabled and
+       (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) < 500) then
         SynEdit.Color := LStyles.GetStyleColor(scEdit);
     end
     else
