@@ -3,7 +3,7 @@ unit BCCommon;
 interface
 
 uses
-  Vcl.ActnMenus, System.Types, BCStringGrid, BCComboBox;
+  Vcl.ActnMenus, System.Types, BCControls.BCStringGrid, BCControls.BCComboBox;
 
 const
   CHR_ENTER = Chr(13) + Chr(10);

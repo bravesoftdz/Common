@@ -15,7 +15,7 @@ uses
   SynHighlighterBat, SynHighlighterPerl, SynHighlighterProgress, SynHighlighterPython,
   SynHighlighterRuby, SynHighlighterSDD, SynHighlighterSML, SynHighlighterTclTk, SynHighlighterYAML,
   SynHighlighterTex, SynHighlighterUNIXShellScript, SynHighlighterVB, SynHighlighterASM,
-  SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, BCDialogs.Dlg, System.Types, BCSynEdit,
+  SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, BCDialogs.Dlg, System.Types, BCControls.BCSynEdit,
   SynHighlighterWebIDL, SynHighlighterLLVM;
 
 const
@@ -91,7 +91,7 @@ type
 implementation
 
 uses
-  Math, WinApi.Windows, System.SysUtils, BCPageControl, SynEditHighlighter;
+  Math, WinApi.Windows, System.SysUtils, BCControls.BCPageControl, SynEditHighlighter;
 
 function LightenMoreColor(AColor: TColor): TColor;
 begin

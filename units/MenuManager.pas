@@ -25,7 +25,7 @@ interface
 
 uses
   Classes, Controls, JvCoolBar, JvPanel, ActnMan, ActnMenus, ActnList,
-  ActnColorMaps, BCComboBox, JvToolBar;
+  ActnColorMaps, BCControls.BCComboBox, JvToolBar;
 
 type
   TMenuManager = class(TPersistent)
