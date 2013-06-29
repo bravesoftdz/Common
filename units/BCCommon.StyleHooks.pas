@@ -15,7 +15,7 @@ uses
   SynHighlighterBat, SynHighlighterPerl, SynHighlighterProgress, SynHighlighterPython,
   SynHighlighterRuby, SynHighlighterSDD, SynHighlighterSML, SynHighlighterTclTk, SynHighlighterYAML,
   SynHighlighterTex, SynHighlighterUNIXShellScript, SynHighlighterVB, SynHighlighterASM,
-  SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, Dlg, System.Types, BCSynEdit,
+  SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, BCDialogs.Dlg, System.Types, BCSynEdit,
   SynHighlighterWebIDL, SynHighlighterLLVM;
 
 const

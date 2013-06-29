@@ -17,6 +17,9 @@ function WordCount(s: string): Integer;
 
 implementation
 
+uses
+  System.SysUtils, System.Character, Xml.XMLDoc;
+
 function AnsiInitCap(Str: string): string;
 begin
   Result := Concat(AnsiUpperCase(Copy(Str, 1, 1)), AnsiLowerCase(Copy(Str, 2, Length(Str))));

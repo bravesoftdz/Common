@@ -17,7 +17,7 @@ var
 implementation
 
 uses
-  System.SysUtils, Winapi.Messages, Vcl.StdCtrls, Vcl.Printers;
+  System.SysUtils, Winapi.Messages, Vcl.StdCtrls, Vcl.Printers, Winapi.ShellApi;
 
 type
   { TDlgOptions are the 11 members which control the dialog creation Flags

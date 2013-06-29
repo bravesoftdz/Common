@@ -2,12 +2,26 @@ unit BCCommon.Files;
 
 interface
 
+uses
+  System.Classes;
+
+type
+  TFileType = (ftHC11, ftAWK, ftBaan, ftCS, ftCPP, ftCAC, ftCache, ftCss, ftCobol, ftIdl,
+    ftCPM, ftDOT, ftADSP21xx, ftDWScript, ftEiffel, ftFortran, ftFoxpro, ftGalaxy, ftDml, ftGWScript, ftHaskell,
+    ftHP48, ftHTML, ftIni, ftInno, ftJava, ftJScript, ftKix, ftLDR, ftLLVM, ftModelica, ftM3,
+    ftMsg, ftBat, ftPas, ftPerl, ftPHP, ftProgress, ftPython, ftRC, ftRuby, ftSDD,
+    ftSQL, ftSML, ftST, ftTclTk, ftTeX, ftText, ftUNIXShellScript, ftVB, ftVBScript, ftVrml97,
+    ftWebIDL, ftAsm, ftXML, ftYAML);
+
 function GetFileNamesFromFolder(Folder: string): TStrings;
 function GetFileType(FileName: string): TFileType;
 function GetFileVersion(Path: string): string;
 function GetINIFilename: string;
 
 implementation
+
+uses
+  System.SysUtils, Winapi.Windows, BCCommon.Language, BCCommon.StringUtils, Vcl.Forms;
 
 function GetFileType(FileName: string): TFileType;
 var

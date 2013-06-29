@@ -1,12 +1,9 @@
 unit BCCommon;
 
-{$WARN SYMBOL_PLATFORM OFF}
-
 interface
 
-{uses
-  System.SysUtils, System.Classes, Vcl.Controls, Vcl.Forms, Dlg, BCStringGrid,
-  BCComboBox, Vcl.Dialogs, Vcl.ActnMan, Vcl.ActnMenus, Winapi.WinInet, System.Types; }
+uses
+  Vcl.ActnMenus, System.Types, BCStringGrid, BCComboBox;
 
 const
   CHR_ENTER = Chr(13) + Chr(10);
@@ -19,14 +16,6 @@ const
     'Default', 'Unfold', 'Slide', 'Fade');
   TSynEditCaretTypeStr: array[0..3] of String =
     ('Vertical Line', 'Horizontal Line', 'Half Block', 'Block');
-
-type
-  TFileType = (ftHC11, ftAWK, ftBaan, ftCS, ftCPP, ftCAC, ftCache, ftCss, ftCobol, ftIdl,
-    ftCPM, ftDOT, ftADSP21xx, ftDWScript, ftEiffel, ftFortran, ftFoxpro, ftGalaxy, ftDml, ftGWScript, ftHaskell,
-    ftHP48, ftHTML, ftIni, ftInno, ftJava, ftJScript, ftKix, ftLDR, ftLLVM, ftModelica, ftM3,
-    ftMsg, ftBat, ftPas, ftPerl, ftPHP, ftProgress, ftPython, ftRC, ftRuby, ftSDD,
-    ftSQL, ftSML, ftST, ftTclTk, ftTeX, ftText, ftUNIXShellScript, ftVB, ftVBScript, ftVrml97,
-    ftWebIDL, ftAsm, ftXML, ftYAML);
 
 function BinToInt(Value: String): LongInt;
 function BrowseURL(const URL: string): Boolean;
@@ -41,10 +30,9 @@ procedure RunCommand(const Cmd, Params: String);
 
 implementation
 
-{uses
-  Winapi.Windows, Winapi.ShellAPI, Vcl.StdCtrls, DownloadURL, Vcl.Menus, Vcl.ExtCtrls, Vcl.ComCtrls,
-  System.Character, Vcl.ActnList, System.StrUtils, BigINI, Language, VirtualTrees, Xml.XMLDoc,
-  System.IniFiles; }
+uses
+  System.SysUtils, System.IOUtils, Winapi.Windows, Winapi.ShellApi, Winapi.WinInet, System.StrUtils, Vcl.Forms,
+  System.UITypes, BCCommon.Messages, BCCommon.Language, BCDialogs.DownloadURL;
 
 function BinToInt(Value: String): LongInt;
 var
@@ -65,9 +53,9 @@ var
   tmp : PChar;
 begin
   Result := True;
-  tmp := StrAlloc(255);
-  GetTempPath(255,tmp);
-  TempFileName := Format('%s%s', [tmp, 'bonecode-default.html']);
+  //tmp := StrAlloc(255);
+  //GetTempPath(255, tmp);
+  TempFileName := Format('%s%s', [TPath.GetTempPath, 'bonecode-default.html']);
   CloseHandle(CreateFile(PWideChar(TempFileName), GENERIC_WRITE, FILE_SHARE_WRITE, nil, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0));
   FindExecutable(PWideChar(TempFileName), nil, Path); //Find the executable (default browser) associated with the html file.
   DeleteFile(PWideChar(TempFileName));
@@ -208,7 +196,7 @@ begin
 
     if (Trim(Version) <> '') and (Version <> AboutVersion) then
     begin
-      if Common.AskYesOrNo(Format(LanguageDataModule.GetYesOrNo('NewVersion'), [Version, AppName, CHR_DOUBLE_ENTER])) then
+      if AskYesOrNo(Format(LanguageDataModule.GetYesOrNo('NewVersion'), [Version, AppName, CHR_DOUBLE_ENTER])) then
       begin
         {$IFDEF WIN64}
         AppName := AppName + '64';
@@ -217,10 +205,10 @@ begin
       end;
     end
     else
-      Common.ShowMessage(LanguageDataModule.GetMessage('LatestVersion'));
+      ShowMessage(LanguageDataModule.GetMessage('LatestVersion'));
   except
     on E: Exception do
-      Common.ShowErrorMessage(E.Message);
+      ShowErrorMessage(E.Message);
   end;
 end;
 

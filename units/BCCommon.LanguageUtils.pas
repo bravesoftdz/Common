@@ -2,15 +2,22 @@ unit BCCommon.LanguageUtils;
 
 interface
 
+uses
+  Vcl.Forms;
+
 function GetSelectedLanguage(Default: string = ''): string;
 procedure UpdateLanguage(Form: TForm; SelectedLanguage: string = ''); overload;
 procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string = ''); overload;
 
 implementation
 
+uses
+  BigIni, BCCommon.Files, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
+  Vcl.ExtCtrls, VirtualTrees;
+
 function GetSelectedLanguage(Default: string): string;
 begin
-  with TBigIniFile.Create(Common.GetINIFilename) do
+  with TBigIniFile.Create(GetINIFilename) do
   try
     Result := ReadString('Options', 'Language', Default);
   finally
@@ -25,7 +32,7 @@ var
   LanguagePath: string;
 begin
   if SelectedLanguage = '' then
-    SelectedLanguage := Common.GetSelectedLanguage;
+    SelectedLanguage := GetSelectedLanguage;
   if SelectedLanguage = '' then
     Exit;
   LanguagePath := IncludeTrailingPathDelimiter(Format('%s%s', [ExtractFilePath(ParamStr(0)), 'Languages']));
@@ -128,7 +135,7 @@ begin
   if not Assigned(Frame) then
     Exit;
   if SelectedLanguage = '' then
-    SelectedLanguage := Common.GetSelectedLanguage;
+    SelectedLanguage := GetSelectedLanguage;
   if SelectedLanguage = '' then
     Exit;
   LanguagePath := IncludeTrailingPathDelimiter(Format('%s%s', [ExtractFilePath(ParamStr(0)), 'Languages']));

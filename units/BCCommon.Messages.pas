@@ -2,6 +2,9 @@ unit BCCommon.Messages;
 
 interface
 
+uses
+  System.UITypes;
+
 function AskYesOrNo(Msg: string): Boolean;
 function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; Captions: array of string): Integer;
 function SaveChanges(IncludeCancel: Boolean = True): Integer;
@@ -10,6 +13,9 @@ procedure ShowMessage(Msg: string);
 procedure ShowWarningMessage(Msg: string);
 
 implementation
+
+uses
+  Vcl.Dialogs, Vcl.Forms, Vcl.StdCtrls, BCCommon.Language;
 
 function AskYesOrNo(Msg: string): Boolean;
 begin
