@@ -118,7 +118,7 @@ type
 implementation
 
 uses
-  SQLParser, SQLTokenizer, StrUtils, Common, XMLConstants;
+  SQLParser, SQLTokenizer, System.StrUtils, XMLConstants, BCCommon;
 
 
 function FormatSQL(SQL: string): string;

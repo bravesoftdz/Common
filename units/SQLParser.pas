@@ -37,7 +37,7 @@ type
 implementation
 
 uses
-  Windows, XMLConstants, System.SysUtils, System.StrUtils, Common;
+  Winapi.Windows, XMLConstants, System.SysUtils, System.StrUtils, BCCommon.StringUtils;
 
 constructor TSQLParser.Create;
 begin
