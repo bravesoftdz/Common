@@ -3,7 +3,7 @@ unit BCCommon.DuplicateChecker;
 interface
 
 uses
-  System.Classes, Common;
+  System.Classes, BCCommon.Files;
 
 type
   TSourceLine = class
@@ -58,7 +58,7 @@ type
 implementation
 
 uses
-  System.SysUtils, System.Math, Hash;
+  System.SysUtils, System.Math, BCCommon.Hash, BCCommon.StringUtils;
 
 { TSourceLine }
 
@@ -215,7 +215,7 @@ begin
   FMinBlockSize := MinBlockSize;
   FMinChars := MinChars;
   FRemoveComments := RemoveComments;
-  FFileNames := Common.GetFileNamesFromFolder(InputFolder);
+  FFileNames := GetFileNamesFromFolder(InputFolder);
   FDuplicateLines := 0;
   FTotalLineCount := 0;
   AssignFile(FOutputFile, OutputFileName);

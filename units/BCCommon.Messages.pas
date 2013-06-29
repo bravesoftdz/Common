@@ -8,6 +8,7 @@ uses
 function AskYesOrNo(Msg: string): Boolean;
 function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; Captions: array of string): Integer;
 function SaveChanges(IncludeCancel: Boolean = True): Integer;
+procedure MessageBeep;
 procedure ShowErrorMessage(Msg: string);
 procedure ShowMessage(Msg: string);
 procedure ShowWarningMessage(Msg: string);
@@ -15,7 +16,7 @@ procedure ShowWarningMessage(Msg: string);
 implementation
 
 uses
-  Vcl.Dialogs, Vcl.Forms, Vcl.StdCtrls, BCCommon.Language;
+  Winapi.Windows, Vcl.Dialogs, Vcl.Forms, Vcl.StdCtrls, BCCommon.Language;
 
 function AskYesOrNo(Msg: string): Boolean;
 begin
@@ -80,6 +81,11 @@ begin
   finally
     Free;
   end
+end;
+
+procedure MessageBeep;
+begin
+  Winapi.Windows.MessageBeep(MB_ICONASTERISK);
 end;
 
 procedure ShowMessage(Msg: string);
