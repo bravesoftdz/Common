@@ -1,4 +1,4 @@
-unit DuplicateChecker;
+unit BCCommon.DuplicateChecker;
 
 interface
 

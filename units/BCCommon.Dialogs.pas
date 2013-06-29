@@ -1,4 +1,4 @@
-unit CommonDialogs;
+unit BCCommon.Dialogs;
 
 interface
 
@@ -9,6 +9,7 @@ uses
   function OpenFile(Owner: HWND; const ADirPath, AFilter, ATitle: string; const DefaultExt: string = ''): Boolean;
   function SaveFile(Owner: HWND; const ADirPath, AFilter, ATitle: string; var FilterIndex: Cardinal; const FileName: string = ''; const DefaultExt: string = ''): Boolean;
   function Print(Owner: HWND; var PrintDlgRec: TPrintDlg; Setup: Boolean = False): Boolean;
+  procedure PropertiesDialog(FileName: string);
 
 var
   Files: TstringList;
@@ -404,6 +405,20 @@ begin
       if hDevNames <> 0 then GlobalFree(hDevNames);
     end;
   end;
+end;
+
+procedure PropertiesDialog(FileName: string);
+var
+  ShellExecuteInfo: TShellExecuteInfo;
+begin
+  if FileName = '' then
+    Exit;
+  FillChar(ShellExecuteInfo, SizeOf(ShellExecuteInfo), 0);
+  ShellExecuteInfo.cbSize := SizeOf(ShellExecuteInfo);
+  ShellExecuteInfo.lpFile := PChar(FileName);
+  ShellExecuteInfo.lpVerb := 'properties';
+  ShellExecuteInfo.fMask  := SEE_MASK_INVOKEIDLIST;
+  ShellExecuteEx(@ShellExecuteInfo);
 end;
 
 initialization

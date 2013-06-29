@@ -1,4 +1,4 @@
-unit StyleHooks;
+unit BCCommon.StyleHooks;
 
 interface
 

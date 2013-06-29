@@ -1,4 +1,4 @@
-unit Hash;
+unit BCCommon.Hash;
 
 interface
 

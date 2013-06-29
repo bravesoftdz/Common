@@ -1,4 +1,4 @@
-unit Encoding;
+unit BCCommon.Encoding;
 
 interface
 
