@@ -24,7 +24,7 @@ interface
 
 uses
   Windows, ActiveX, ShDocVw,
-  BaseWebBrowserContainer, IntfDocHostUIHandler;
+  WebBrowser.BaseContainer, WebBrowser.IntfDocHostUIHandler;
 
 type
 

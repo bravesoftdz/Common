@@ -23,15 +23,12 @@ interface
 
 
 uses
-  Windows, ActiveX, SHDocVw,
-  IntfDocHostUIHandler;
+  Windows, ActiveX, SHDocVw, WebBrowser.IntfDocHostUIHandler;
 
 type
-
-  TBaseWBContainer = class(TObject,
-    IUnknown, IOleClientSite, IDocHostUIHandler)
+  TBaseWBContainer = class(TObject, IUnknown, IOleClientSite, IDocHostUIHandler)
   private
-    fHostedBrowser: TWebBrowser;
+    FHostedBrowser: TWebBrowser;
     // Registration method
     procedure SetBrowserOleClientSite(const Site: IOleClientSite);
   protected
@@ -80,7 +77,7 @@ type
   public
     constructor Create(const HostedBrowser: TWebBrowser);
     destructor Destroy; override;
-    property HostedBrowser: TWebBrowser read fHostedBrowser;
+    property HostedBrowser: TWebBrowser read FHostedBrowser;
   end;
 
 
@@ -95,7 +92,7 @@ constructor TBaseWBContainer.Create(const HostedBrowser: TWebBrowser);
 begin
   Assert(Assigned(HostedBrowser));
   inherited Create;
-  fHostedBrowser := HostedBrowser;
+  FHostedBrowser := HostedBrowser;
   SetBrowserOleClientSite(Self as IOleClientSite);
 end;
 
@@ -237,7 +234,7 @@ var
 begin
   Assert((Site = Self as IOleClientSite) or (Site = nil));
   if not Supports(
-    fHostedBrowser.DefaultInterface, IOleObject, OleObj
+    FHostedBrowser.DefaultInterface, IOleObject, OleObj
   ) then
     raise Exception.Create(
       'Browser''s Default interface does not support IOleObject'
