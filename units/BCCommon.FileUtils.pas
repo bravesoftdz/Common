@@ -1,4 +1,4 @@
-unit BCCommon.Files;
+unit BCCommon.FileUtils;
 
 interface
 

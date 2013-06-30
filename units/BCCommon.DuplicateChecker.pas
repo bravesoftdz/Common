@@ -3,7 +3,7 @@ unit BCCommon.DuplicateChecker;
 interface
 
 uses
-  System.Classes, BCCommon.Files;
+  System.Classes, BCCommon.FileUtils;
 
 type
   TSourceLine = class

@@ -12,7 +12,7 @@ procedure UpdateLanguage(Frame: TFrame; SelectedLanguage: string = ''); overload
 implementation
 
 uses
-  BigIni, BCCommon.Files, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
+  BigIni, BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
   Vcl.ExtCtrls, VirtualTrees;
 
 function GetSelectedLanguage(Default: string): string;
