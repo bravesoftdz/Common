@@ -52,7 +52,7 @@
 {$WARN UNSAFE_TYPE OFF}
 
 
-unit IntfDocHostUIHandler;
+unit WebBrowser.IntfDocHostUIHandler;
 
 interface
 

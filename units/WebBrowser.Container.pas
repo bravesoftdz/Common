@@ -18,7 +18,7 @@
 {$WARN UNSAFE_CODE OFF}
 
 
-unit WebBrowserContainer;
+unit WebBrowser.Container;
 
 interface
 

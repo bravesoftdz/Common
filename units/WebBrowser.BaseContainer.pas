@@ -17,7 +17,7 @@
 {$WARN UNSAFE_TYPE OFF}
 
 
-unit BaseWebBrowserContainer;
+unit WebBrowser.BaseContainer;
 
 interface
 
