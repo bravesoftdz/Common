@@ -1,4 +1,4 @@
-unit SQLParseTree;
+unit BCSQL.ParseTree;
 
 interface
 

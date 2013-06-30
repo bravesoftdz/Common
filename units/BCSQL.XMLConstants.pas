@@ -1,4 +1,4 @@
-unit XMLConstants;
+unit BCSQL.XMLConstants;
 
 interface
 

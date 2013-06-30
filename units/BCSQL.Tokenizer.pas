@@ -1,4 +1,4 @@
-unit SQLTokenizer;
+unit BCSQL.Tokenizer;
 
 interface
 

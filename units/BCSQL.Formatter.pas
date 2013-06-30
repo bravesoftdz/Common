@@ -1,4 +1,4 @@
-unit SQLFormatter;
+unit BCSQL.Formatter;
 
 interface
 

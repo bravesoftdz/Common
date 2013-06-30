@@ -1,4 +1,4 @@
-unit SQLParser;
+unit BCSQL.Parser;
 
 interface
 
