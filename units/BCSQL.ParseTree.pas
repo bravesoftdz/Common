@@ -54,7 +54,7 @@ type
 implementation
 
 uses
-  XMLConstants, System.RegularExpressions;
+  BCSQL.XMLConstants, System.RegularExpressions;
 
 constructor TSQLParseTree.Create(RootName: string);
 var
@@ -85,8 +85,8 @@ var
   NewStatement: IXMLElement;
 begin
   NewStatementDue := False;
-  NewStatement := SaveNewElement(XMLConstants.XML_SQL_STATEMENT, '', TargetNode);
-  CurrentContainer := SaveNewElement(XMLConstants.XML_SQL_CLAUSE, '', NewStatement);
+  NewStatement := SaveNewElement(BCSQL.XMLConstants.XML_SQL_STATEMENT, '', TargetNode);
+  CurrentContainer := SaveNewElement(BCSQL.XMLConstants.XML_SQL_CLAUSE, '', NewStatement);
 end;
 
 function TSQLParseTree.SaveNewElement(NewElementName: string; NewElementValue: string): IXMLElement;
@@ -113,9 +113,9 @@ end;
 
 function TSQLParseTree.IsCommentOrWhiteSpace(TargetNodeName: string): Boolean;
 begin
-  Result := (TargetNodeName = XMLConstants.XML_WHITESPACE) or
-            (TargetNodeName = XMLConstants.XML_COMMENT_SINGLELINE) or
-            (TargetNodeName = XMLConstants.XML_COMMENT_MULTILINE);
+  Result := (TargetNodeName = BCSQL.XMLConstants.XML_WHITESPACE) or
+            (TargetNodeName = BCSQL.XMLConstants.XML_COMMENT_SINGLELINE) or
+            (TargetNodeName = BCSQL.XMLConstants.XML_COMMENT_MULTILINE);
 end;
 
 function TSQLParseTree.GetFirstNonWhitespaceNonCommentChildElement(TargetElement: IXMLNode): IXMLElement;
@@ -157,47 +157,47 @@ end;
 
 procedure TSQLParseTree.EscapeAnySelectionTarget;
 begin
-  if PathNameMatches(0, XMLConstants.XML_SELECTIONTARGET) then
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_SELECTIONTARGET) then
     CurrentContainer := IXMLElement(CurrentContainer.ParentNode);
 end;
 
 procedure TSQLParseTree.EscapeAnyBetweenConditions;
 begin
-  if PathNameMatches(0, XMLConstants.XML_BETWEEN_UPPERBOUND) and
-    PathNameMatches(1, XMLConstants.XML_BETWEEN_CONDITION) then
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_BETWEEN_UPPERBOUND) and
+    PathNameMatches(1, BCSQL.XMLConstants.XML_BETWEEN_CONDITION) then
     //we just ended the upper bound of a "BETWEEN" condition, need to pop back to the enclosing context
     MoveToAncestorContainer(2);
 end;
 
 procedure TSQLParseTree.EscapePartialStatementContainers;
 begin
-  if PathNameMatches(0, XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
-    PathNameMatches(0, XMLConstants.XML_DDL_OTHER_BLOCK) or
-    PathNameMatches(0, XMLConstants.XML_DDL_DECLARE_BLOCK) then
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
+    PathNameMatches(0, BCSQL.XMLConstants.XML_DDL_OTHER_BLOCK) or
+    PathNameMatches(0, BCSQL.XMLConstants.XML_DDL_DECLARE_BLOCK) then
     MoveToAncestorContainer(1)
   else
-  if PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-    PathNameMatches(1, XMLConstants.XML_CURSOR_FOR_OPTIONS) then
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+    PathNameMatches(1, BCSQL.XMLConstants.XML_CURSOR_FOR_OPTIONS) then
     MoveToAncestorContainer(3)
   else
-  if PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-    PathNameMatches(1, XMLConstants.XML_PERMISSIONS_RECIPIENT) then
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+    PathNameMatches(1, BCSQL.XMLConstants.XML_PERMISSIONS_RECIPIENT) then
     MoveToAncestorContainer(3)
   else
-  if PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-    PathNameMatches(1, XMLConstants.XML_DDL_WITH_CLAUSE) and
-    (PathNameMatches(2, XMLConstants.XML_PERMISSIONS_BLOCK) or
-     PathNameMatches(2, XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
-     PathNameMatches(2, XMLConstants.XML_DDL_OTHER_BLOCK) or
-     PathNameMatches(2, XMLConstants.XML_DDL_DECLARE_BLOCK)) then
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+    PathNameMatches(1, BCSQL.XMLConstants.XML_DDL_WITH_CLAUSE) and
+    (PathNameMatches(2, BCSQL.XMLConstants.XML_PERMISSIONS_BLOCK) or
+     PathNameMatches(2, BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
+     PathNameMatches(2, BCSQL.XMLConstants.XML_DDL_OTHER_BLOCK) or
+     PathNameMatches(2, BCSQL.XMLConstants.XML_DDL_DECLARE_BLOCK)) then
     MoveToAncestorContainer(3)
   else
-  if PathNameMatches(0, XMLConstants.XML_MERGE_WHEN) then
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_MERGE_WHEN) then
     MoveToAncestorContainer(2)
   else
-  if PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-    (PathNameMatches(1, XMLConstants.XML_CTE_WITH_CLAUSE) or
-     PathNameMatches(1, XMLConstants.XML_DDL_DECLARE_BLOCK)) then
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+    (PathNameMatches(1, BCSQL.XMLConstants.XML_CTE_WITH_CLAUSE) or
+     PathNameMatches(1, BCSQL.XMLConstants.XML_DDL_DECLARE_BLOCK)) then
     MoveToAncestorContainer(2);
 end;
 
@@ -225,8 +225,8 @@ end;
 
 procedure TSQLParseTree.EscapeJoinCondition;
 begin
-  if PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-    PathNameMatches(1, XMLConstants.XML_JOIN_ON_SECTION) then
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+    PathNameMatches(1, BCSQL.XMLConstants.XML_JOIN_ON_SECTION) then
     MoveToAncestorContainer(2);
 end;
 
@@ -241,9 +241,9 @@ begin
 
   ContainerNode.SelectNodes('*', XMLNodeList);
   for i := 0 to XMLNodeList.Count - 1 do
-    if (XMLNodeList.Item[i].NodeName <> XMLConstants.XML_WHITESPACE) and
-       (XMLNodeList.Item[i].NodeName <> XMLConstants.XML_COMMENT_SINGLELINE) and
-       ( (XMLNodeList.Item[i].NodeName <> XMLConstants.XML_COMMENT_MULTILINE) or
+    if (XMLNodeList.Item[i].NodeName <> BCSQL.XMLConstants.XML_WHITESPACE) and
+       (XMLNodeList.Item[i].NodeName <> BCSQL.XMLConstants.XML_COMMENT_SINGLELINE) and
+       ( (XMLNodeList.Item[i].NodeName <> BCSQL.XMLConstants.XML_COMMENT_MULTILINE) or
          Regex.IsMatch(XMLNodeList.Item[i].Text) ) then
     begin
       Result := True;
@@ -267,22 +267,22 @@ begin
   while Assigned(MigrationCandidate) do
   begin
     if //(MigrationCandidate.NodeType = XmlNodeType.Whitespace
-       MigrationCandidate.NodeName = XMLConstants.XML_WHITESPACE then
+       MigrationCandidate.NodeName = BCSQL.XMLConstants.XML_WHITESPACE then
     begin
       MigrationCandidate := MigrationCandidate.PreviousSibling;
       Continue;
     end
     else
     if Assigned(MigrationCandidate.PreviousSibling) and
-      ( (MigrationCandidate.NodeName = XMLConstants.XML_COMMENT_SINGLELINE) or
-        (MigrationCandidate.NodeName = XMLConstants.XML_COMMENT_MULTILINE) ) and
+      ( (MigrationCandidate.NodeName = BCSQL.XMLConstants.XML_COMMENT_SINGLELINE) or
+        (MigrationCandidate.NodeName = BCSQL.XMLConstants.XML_COMMENT_MULTILINE) ) and
       ( //(MigrationCandidate.PreviousSibling.NodeType = XmlNodeType.Whitespace)
-        (MigrationCandidate.PreviousSibling.NodeName = XMLConstants.XML_WHITESPACE) or
-        (MigrationCandidate.PreviousSibling.NodeName = XMLConstants.XML_COMMENT_SINGLELINE) or
-        (MigrationCandidate.PreviousSibling.NodeName = XMLConstants.XML_COMMENT_MULTILINE) ) then
+        (MigrationCandidate.PreviousSibling.NodeName = BCSQL.XMLConstants.XML_WHITESPACE) or
+        (MigrationCandidate.PreviousSibling.NodeName = BCSQL.XMLConstants.XML_COMMENT_SINGLELINE) or
+        (MigrationCandidate.PreviousSibling.NodeName = BCSQL.XMLConstants.XML_COMMENT_MULTILINE) ) then
     begin
       if //(migrationCandidate.PreviousSibling.NodeType == XmlNodeType.Whitespace or
-        (MigrationCandidate.PreviousSibling.NodeName = XMLConstants.XML_WHITESPACE) and
+        (MigrationCandidate.PreviousSibling.NodeName = BCSQL.XMLConstants.XML_WHITESPACE) and
         Regex.IsMatch(MigrationCandidate.PreviousSibling.Text) then
       begin
         //we have a match, so migrate everything considered so far (backwards from the end). need to keep track of where we're inserting.
@@ -326,20 +326,20 @@ begin
   EscapePartialStatementContainers;
   EscapeJoinCondition;
 
-  if (CurrentContainer.NodeName = XMLConstants.XML_SQL_CLAUSE) and
+  if (CurrentContainer.NodeName = BCSQL.XMLConstants.XML_SQL_CLAUSE) and
     HasNonWhiteSpaceNonSingleCommentContent(CurrentContainer) then
   begin
     //complete current clause, start a new one in the same container
     PreviousContainerElement := CurrentContainer;
-    CurrentContainer := SaveNewElement(XMLConstants.XML_SQL_CLAUSE, '', IXMLElement(CurrentContainer.ParentNode));
+    CurrentContainer := SaveNewElement(BCSQL.XMLConstants.XML_SQL_CLAUSE, '', IXMLElement(CurrentContainer.ParentNode));
     MigrateApplicableCommentsFromContainer(PreviousContainerElement);
   end
   else
-  if (CurrentContainer.NodeName = XMLConstants.XML_EXPRESSION_PARENS) or
-    (CurrentContainer.NodeName = XMLConstants.XML_SELECTIONTARGET_PARENS) or
-    (CurrentContainer.NodeName = XMLConstants.XML_SQL_STATEMENT) then
+  if (CurrentContainer.NodeName = BCSQL.XMLConstants.XML_EXPRESSION_PARENS) or
+    (CurrentContainer.NodeName = BCSQL.XMLConstants.XML_SELECTIONTARGET_PARENS) or
+    (CurrentContainer.NodeName = BCSQL.XMLConstants.XML_SQL_STATEMENT) then
     //create new clause and set context to it.
-    CurrentContainer := SaveNewElement(XMLConstants.XML_SQL_CLAUSE, '');
+    CurrentContainer := SaveNewElement(BCSQL.XMLConstants.XML_SQL_CLAUSE, '');
 end;
 
 function TSQLParseTree.HasNonWhiteSpaceNonCommentContent(ContainerNode: IXMLElement): Boolean;
@@ -360,10 +360,10 @@ end;
 
 procedure TSQLParseTree.EscapeCursorForBlock;
 begin
-  if PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-     PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
-     PathNameMatches(2, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-     PathNameMatches(3, XMLConstants.XML_CURSOR_FOR_BLOCK) and
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+     PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
+     PathNameMatches(2, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+     PathNameMatches(3, BCSQL.XMLConstants.XML_CURSOR_FOR_BLOCK) and
      HasNonWhiteSpaceNonCommentContent(CurrentContainer) then
       //we just ended the one select statement in a cursor declaration, and need to pop out to the same level as the cursor
       MoveToAncestorContainer(5);
@@ -371,9 +371,9 @@ end;
 
 procedure TSQLParseTree.EscapeMergeAction;
 begin
-  if PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-    PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
-    PathNameMatches(2, XMLConstants.XML_MERGE_ACTION) and
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+    PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
+    PathNameMatches(2, BCSQL.XMLConstants.XML_MERGE_ACTION) and
     HasNonWhiteSpaceNonCommentContent(CurrentContainer) then
     MoveToAncestorContainer(4);
 end;
@@ -394,12 +394,12 @@ begin
 
     while True do
     begin
-      if PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-         PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
-         PathNameMatches(2, XMLConstants.XML_CONTAINER_SINGLESTATEMENT) then
+      if PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+         PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
+         PathNameMatches(2, BCSQL.XMLConstants.XML_CONTAINER_SINGLESTATEMENT) then
       begin
         CurrentSingleContainer := CurrentContainer.ParentNode.ParentNode;
-        if PathNameMatches(CurrentSingleContainer, 1, XMLConstants.XML_ELSE_CLAUSE) then
+        if PathNameMatches(CurrentSingleContainer, 1, BCSQL.XMLConstants.XML_ELSE_CLAUSE) then
         //we just ended the one and only statement in an else clause, and need to pop out to the same level as its parent if
         // singleContainer.else.if.CANDIDATE
           CurrentContainer := IXMLElement(CurrentSingleContainer.ParentNode.ParentNode.ParentNode)
@@ -422,16 +422,16 @@ end;
 
 procedure TSQLParseTree.SetError;
 begin
-  CurrentContainer.SetAttribute(XMLConstants.XML_HASERROR, '1');
+  CurrentContainer.SetAttribute(BCSQL.XMLConstants.XML_HASERROR, '1');
   ErrorFound := True;
 end;
 
 procedure TSQLParseTree.SetErrorFound(Value: Boolean);
 begin
   if Value then
-    DocumentElement.SetAttribute(XMLConstants.XML_ERRORFOUND, '1')
+    DocumentElement.SetAttribute(BCSQL.XMLConstants.XML_ERRORFOUND, '1')
   else
-    DocumentElement.RemoveAttribute(XMLConstants.XML_ERRORFOUND);
+    DocumentElement.RemoveAttribute(BCSQL.XMLConstants.XML_ERRORFOUND);
 end;
 
 procedure TSQLParseTree.StartNewContainer(NewElementName: string; ContainerOpenValue: string; ContainerType: string);
@@ -439,8 +439,8 @@ var
   ContainerOpen: IXMLElement;
 begin
   CurrentContainer := SaveNewElement(newElementName, '');
-  ContainerOpen := SaveNewElement(XMLConstants.XML_CONTAINER_OPEN, '');
-  SaveNewElement(XMLConstants.XML_OTHERKEYWORD, ContainerOpenValue, ContainerOpen);
+  ContainerOpen := SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_OPEN, '');
+  SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, ContainerOpenValue, ContainerOpen);
   CurrentContainer := SaveNewElement(containerType, '');
 end;
 
@@ -448,13 +448,13 @@ function TSQLParseTree.EscapeAndLocateNextStatementContainer(EscapeEmptyContaine
 begin
   EscapeAnySingleOrPartialStatementContainers;
 
-  if PathNameMatches(0, XMLConstants.XML_BOOLEAN_EXPRESSION) and
-    (PathNameMatches(1, XMLConstants.XML_IF_STATEMENT) or PathNameMatches(1, XMLConstants.XML_WHILE_LOOP)) then
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_BOOLEAN_EXPRESSION) and
+    (PathNameMatches(1, BCSQL.XMLConstants.XML_IF_STATEMENT) or PathNameMatches(1, BCSQL.XMLConstants.XML_WHILE_LOOP)) then
     //we just ended the boolean clause of an if or while, and need to pop to the single-statement container.
-    Result := SaveNewElement(XMLConstants.XML_CONTAINER_SINGLESTATEMENT, '', IXMLElement(CurrentContainer.ParentNode))
+    Result := SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_SINGLESTATEMENT, '', IXMLElement(CurrentContainer.ParentNode))
   else
-  if PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-     PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
+  if PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+     PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
      (EscapeEmptyContainer or HasNonWhiteSpaceNonSingleCommentContent(CurrentContainer)) then
     Result := IXMLElement(CurrentContainer.ParentNode.ParentNode)
   else
@@ -492,9 +492,9 @@ var
 begin
   NextStatementContainer := EscapeAndLocateNextStatementContainer(True);
   Result := Assigned(NextStatementContainer) and (
-    (NextStatementContainer.NodeName = XMLConstants.XML_SQL_ROOT) or
-    ( (NextStatementContainer.NodeName = XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-      (NextStatementContainer.ParentNode.NodeName = XMLConstants.XML_DDL_AS_BLOCK) ) );
+    (NextStatementContainer.NodeName = BCSQL.XMLConstants.XML_SQL_ROOT) or
+    ( (NextStatementContainer.NodeName = BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+      (NextStatementContainer.ParentNode.NodeName = BCSQL.XMLConstants.XML_DDL_AS_BLOCK) ) );
 end;
 
 end.

@@ -3,7 +3,7 @@ unit BCSQL.Parser;
 interface
 
 uses
-  SQLTokenizer, SQLParseTree, Generics.Collections, OmniXML, RegularExpressions;
+  BCSQL.Tokenizer, BCSQL.ParseTree, Generics.Collections, OmniXML, RegularExpressions;
 
 type
   TKeywordType = (ktOperatorKeyword, ktFunctionKeyword, ktDataTypeKeyword, ktOtherKeyword);
@@ -37,7 +37,7 @@ type
 implementation
 
 uses
-  Winapi.Windows, XMLConstants, System.SysUtils, System.StrUtils, BCCommon.StringUtils;
+  Winapi.Windows, BCSQL.XMLConstants, System.SysUtils, System.StrUtils, BCCommon.StringUtils;
 
 constructor TSQLParser.Create;
 begin
@@ -68,21 +68,21 @@ end;
 function TSQLParser.GetEquivalentSQLName(SQLTokenType: TSQLTokenType): string;
 begin
   case SQLTokenType of
-    ttWhiteSpace: Result := XMLConstants.XML_WHITESPACE;
-    ttSingleLineComment: Result := XMLConstants.XML_COMMENT_SINGLELINE;
-    ttMultiLineComment: Result := XMLConstants.XML_COMMENT_MULTILINE;
-    ttBracketQuotedName: Result := XMLConstants.XML_BRACKET_QUOTED_NAME;
-    ttAsterisk: Result := XMLConstants.XML_ASTERISK;
-    ttComma: Result := XMLConstants.XML_COMMA;
-    ttPeriod: Result := XMLConstants.XML_PERIOD;
-    ttNationalString: Result := XMLConstants.XML_NSTRING;
-    ttString: Result := XMLConstants.XML_STRING;
-    ttQuotedString: Result := XMLConstants.XML_QUOTED_STRING;
-    ttOtherOperator: Result := XMLConstants.XML_OTHEROPERATOR;
-    ttNumber: Result := XMLConstants.XML_NUMBER_VALUE;
-    ttMonetaryValue: Result := XMLConstants.XML_MONETARY_VALUE;
-    ttBinaryValue: Result := XMLConstants.XML_BINARY_VALUE;
-    ttPseudoName: Result := XMLConstants.XML_PSEUDONAME;
+    ttWhiteSpace: Result := BCSQL.XMLConstants.XML_WHITESPACE;
+    ttSingleLineComment: Result := BCSQL.XMLConstants.XML_COMMENT_SINGLELINE;
+    ttMultiLineComment: Result := BCSQL.XMLConstants.XML_COMMENT_MULTILINE;
+    ttBracketQuotedName: Result := BCSQL.XMLConstants.XML_BRACKET_QUOTED_NAME;
+    ttAsterisk: Result := BCSQL.XMLConstants.XML_ASTERISK;
+    ttComma: Result := BCSQL.XMLConstants.XML_COMMA;
+    ttPeriod: Result := BCSQL.XMLConstants.XML_PERIOD;
+    ttNationalString: Result := BCSQL.XMLConstants.XML_NSTRING;
+    ttString: Result := BCSQL.XMLConstants.XML_STRING;
+    ttQuotedString: Result := BCSQL.XMLConstants.XML_QUOTED_STRING;
+    ttOtherOperator: Result := BCSQL.XMLConstants.XML_OTHEROPERATOR;
+    ttNumber: Result := BCSQL.XMLConstants.XML_NUMBER_VALUE;
+    ttMonetaryValue: Result := BCSQL.XMLConstants.XML_MONETARY_VALUE;
+    ttBinaryValue: Result := BCSQL.XMLConstants.XML_BINARY_VALUE;
+    ttPseudoName: Result := BCSQL.XMLConstants.XML_PSEUDONAME;
     else
       raise Exception.Create('Mapping not found for provided Token type.');
   end;
@@ -97,13 +97,13 @@ begin
   CurrentNode := SQLParseTree.CurrentContainer.LastChild;
   while Assigned(CurrentNode) do
   begin
-    if (CurrentNode.NodeName = XMLConstants.XML_OTHERKEYWORD) or
-      (CurrentNode.NodeName = XMLConstants.XML_DATATYPE_KEYWORD) or
-      (CurrentNode.NodeName = XMLConstants.XML_COMPOUNDKEYWORD) then
+    if (CurrentNode.NodeName = BCSQL.XMLConstants.XML_OTHERKEYWORD) or
+      (CurrentNode.NodeName = BCSQL.XMLConstants.XML_DATATYPE_KEYWORD) or
+      (CurrentNode.NodeName = BCSQL.XMLConstants.XML_COMPOUNDKEYWORD) then
     begin
       UppercaseText := '';
-      if CurrentNode.NodeName = XMLConstants.XML_COMPOUNDKEYWORD then
-        UppercaseText := CurrentNode.Attributes[XMLConstants.XML_SIMPLETEXT]
+      if CurrentNode.NodeName = BCSQL.XMLConstants.XML_COMPOUNDKEYWORD then
+        UppercaseText := CurrentNode.Attributes[BCSQL.XMLConstants.XML_SIMPLETEXT]
       else
         UppercaseText := UpperCase(CurrentNode.Text);
 
@@ -144,9 +144,9 @@ begin
   while Assigned(CurrentNode) do
   begin
     TestValue := UpperCase(CurrentNode.Text);
-    if (CurrentNode.NodeName = XMLConstants.XML_BRACKET_QUOTED_NAME) or
-       ((CurrentNode.NodeName = XMLConstants.XML_OTHERNODE) or
-        (CurrentNode.NodeName = XMLConstants.XML_FUNCTION_KEYWORD)) and
+    if (CurrentNode.NodeName = BCSQL.XMLConstants.XML_BRACKET_QUOTED_NAME) or
+       ((CurrentNode.NodeName = BCSQL.XMLConstants.XML_OTHERNODE) or
+        (CurrentNode.NodeName = BCSQL.XMLConstants.XML_FUNCTION_KEYWORD)) and
         not ((TestValue = 'AND') or
              (TestValue = 'OR') or
              (TestValue = 'NOT') or
@@ -262,13 +262,13 @@ begin
   FirstEntryOfProvidedContainer := ParentDoc.GetFirstNonWhitespaceNonCommentChildElement(ProvidedContainer);
 
   if Assigned(FirstEntryOfProvidedContainer) and
-    (FirstEntryOfProvidedContainer.NodeName = XMLConstants.XML_OTHERKEYWORD) and
+    (FirstEntryOfProvidedContainer.NodeName = BCSQL.XMLConstants.XML_OTHERKEYWORD) and
     (FirstEntryOfProvidedContainer.Text <> '') then
     KeywordUpperValue := UpperCase(FirstEntryOfProvidedContainer.Text);
 
   if Assigned(FirstEntryOfProvidedContainer) and
-    (FirstEntryOfProvidedContainer.NodeName = XMLConstants.XML_COMPOUNDKEYWORD) then
-    KeywordUpperValue := FirstEntryOfProvidedContainer.GetAttribute(XMLConstants.XML_SIMPLETEXT);
+    (FirstEntryOfProvidedContainer.NodeName = BCSQL.XMLConstants.XML_COMPOUNDKEYWORD) then
+    KeywordUpperValue := FirstEntryOfProvidedContainer.GetAttribute(BCSQL.XMLConstants.XML_SIMPLETEXT);
 
   if KeywordUpperValue <> '' then
     Result := (KeywordUpperValue = ContentToMatch) or StartsWith(KeywordUpperValue, ContentToMatch + ' ')
@@ -282,11 +282,11 @@ var
   CompoundKeyword: IXMLElement;
   TargetText: string;
 begin
-  CompoundKeyword := SQLParseTree.SaveNewElement(XMLConstants.XML_COMPOUNDKEYWORD, '', targetContainer);
+  CompoundKeyword := SQLParseTree.SaveNewElement(BCSQL.XMLConstants.XML_COMPOUNDKEYWORD, '', targetContainer);
   TargetText := Trim(ExtractTokensString(SQLTokenList, SignificantTokenPositions.GetRange(0, KeywordCount)));
-  CompoundKeyword.SetAttribute(XMLConstants.XML_SIMPLETEXT, targetText);
+  CompoundKeyword.SetAttribute(BCSQL.XMLConstants.XML_SIMPLETEXT, targetText);
   AppendNodesWithMapping(SQLParseTree, SQLTokenList.GetRangeByIndex(SignificantTokenPositions[0],
-    SignificantTokenPositions[keywordCount - 1]), XMLConstants.XML_OTHERKEYWORD, CompoundKeyword);
+    SignificantTokenPositions[keywordCount - 1]), BCSQL.XMLConstants.XML_OTHERKEYWORD, CompoundKeyword);
   TokenID := SignificantTokenPositions[keywordCount - 1];
 end;
 
@@ -341,7 +341,7 @@ begin
   CurrentNode := SQLParseTree.CurrentContainer.LastChild;
   while Assigned(CurrentNode) do
   begin
-    if CurrentNode.NodeName = XMLConstants.XML_COMMA then
+    if CurrentNode.NodeName = BCSQL.XMLConstants.XML_COMMA then
     begin
       Result := True;
       Break;
@@ -374,7 +374,7 @@ var
   NextKeywordType, MatchedKeywordType: TKeywordType;
   NodeList: IXMLNodeList;
 begin
-  Result := TSQLParseTree.Create(XMLConstants.XML_SQL_ROOT);
+  Result := TSQLParseTree.Create(BCSQL.XMLConstants.XML_SQL_ROOT);
   Result.StartNewStatement;
 
   TokenCount := SQLTokenList.Count;
@@ -388,49 +388,49 @@ begin
       begin
         FirstNonCommentParensSibling := Result.GetFirstNonWhitespaceNonCommentChildElement(Result.CurrentContainer);
         IsInsertOrValuesClause := Assigned(FirstNonCommentParensSibling) and
-          ( (FirstNonCommentParensSibling.NodeName = XMLConstants.XML_OTHERKEYWORD) and
+          ( (FirstNonCommentParensSibling.NodeName = BCSQL.XMLConstants.XML_OTHERKEYWORD) and
              StartsWith(FirstNonCommentParensSibling.Text, 'INSERT') or
-            (FirstNonCommentParensSibling.NodeName = XMLConstants.XML_COMPOUNDKEYWORD) and
-             StartsWith(FirstNonCommentParensSibling.GetAttribute(XMLConstants.XML_SIMPLETEXT), 'INSERT ') or
-            (FirstNonCommentParensSibling.NodeName = XMLConstants.XML_OTHERKEYWORD) and
+            (FirstNonCommentParensSibling.NodeName = BCSQL.XMLConstants.XML_COMPOUNDKEYWORD) and
+             StartsWith(FirstNonCommentParensSibling.GetAttribute(BCSQL.XMLConstants.XML_SIMPLETEXT), 'INSERT ') or
+            (FirstNonCommentParensSibling.NodeName = BCSQL.XMLConstants.XML_OTHERKEYWORD) and
              StartsWith(FirstNonCommentParensSibling.Text, 'VALUES') );
 
-        if (Result.CurrentContainer.NodeName = XMLConstants.XML_CTE_ALIAS) and
-          (Result.CurrentContainer.ParentNode.NodeName = XMLConstants.XML_CTE_WITH_CLAUSE) then
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_DDL_PARENS, '')
+        if (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_CTE_ALIAS) and
+          (Result.CurrentContainer.ParentNode.NodeName = BCSQL.XMLConstants.XML_CTE_WITH_CLAUSE) then
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_DDL_PARENS, '')
         else
-        if (Result.CurrentContainer.NodeName = XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-          (Result.CurrentContainer.ParentNode.NodeName = XMLConstants.XML_CTE_AS_BLOCK) then
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_SELECTIONTARGET_PARENS, '')
+        if (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+          (Result.CurrentContainer.ParentNode.NodeName = BCSQL.XMLConstants.XML_CTE_AS_BLOCK) then
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_SELECTIONTARGET_PARENS, '')
         else
         if not Assigned(FirstNonCommentParensSibling) and
-          (Result.CurrentContainer.NodeName = XMLConstants.XML_SELECTIONTARGET) then
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_SELECTIONTARGET_PARENS, '')
+          (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_SELECTIONTARGET) then
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_SELECTIONTARGET_PARENS, '')
         else
         if Assigned(FirstNonCommentParensSibling) and
-          (FirstNonCommentParensSibling.NodeName = XMLConstants.XML_SET_OPERATOR_CLAUSE) then
+          (FirstNonCommentParensSibling.NodeName = BCSQL.XMLConstants.XML_SET_OPERATOR_CLAUSE) then
         begin
           Result.ConsiderStartingNewClause;
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_SELECTIONTARGET_PARENS, '');
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_SELECTIONTARGET_PARENS, '');
         end
         else
         if IsLatestTokenADDLDetailValue(Result) then
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_DDLDETAIL_PARENS, '')
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_DDLDETAIL_PARENS, '')
         else
-        if (Result.CurrentContainer.NodeName = XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
-           (Result.CurrentContainer.NodeName = XMLConstants.XML_DDL_OTHER_BLOCK) or
-           (Result.CurrentContainer.NodeName = XMLConstants.XML_DDL_DECLARE_BLOCK) or
-           (Result.CurrentContainer.NodeName = XMLConstants.XML_SQL_CLAUSE) and
+        if (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
+           (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_DDL_OTHER_BLOCK) or
+           (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_DDL_DECLARE_BLOCK) or
+           (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_SQL_CLAUSE) and
            ( Assigned(FirstNonCommentParensSibling) and
-            (FirstNonCommentParensSibling.NodeName = XMLConstants.XML_OTHERKEYWORD) and
+            (FirstNonCommentParensSibling.NodeName = BCSQL.XMLConstants.XML_OTHERKEYWORD) and
              StartsWith(FirstNonCommentParensSibling.Text, 'OPTION') ) or
            IsInsertOrValuesClause then
-           Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_DDL_PARENS, '')
+           Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_DDL_PARENS, '')
         else
         if IsLatestTokenAMiscName(Result) then
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_FUNCTION_PARENS, '')
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_FUNCTION_PARENS, '')
         else
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_EXPRESSION_PARENS, '');
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_EXPRESSION_PARENS, '');
       end;
 
       ttCloseParens:
@@ -440,28 +440,28 @@ begin
         Result.EscapeAnySingleOrPartialStatementContainers;
 
         //check whether we expected to end the parens...
-        if (Result.CurrentContainer.NodeName = XMLConstants.XML_DDLDETAIL_PARENS) or
-          (Result.CurrentContainer.NodeName = XMLConstants.XML_DDL_PARENS) or
-          (Result.CurrentContainer.NodeName = XMLConstants.XML_FUNCTION_PARENS) or
-          (Result.CurrentContainer.NodeName = XMLConstants.XML_EXPRESSION_PARENS) or
-          (Result.CurrentContainer.NodeName = XMLConstants.XML_SELECTIONTARGET_PARENS) then
+        if (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_DDLDETAIL_PARENS) or
+          (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_DDL_PARENS) or
+          (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_FUNCTION_PARENS) or
+          (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_EXPRESSION_PARENS) or
+          (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_SELECTIONTARGET_PARENS) then
             Result.MoveToAncestorContainer(1) //unspecified parent node...
         else
-        if (Result.CurrentContainer.NodeName = XMLConstants.XML_SQL_CLAUSE) and
-          (Result.CurrentContainer.ParentNode.NodeName = XMLConstants.XML_SELECTIONTARGET_PARENS) and
-          (Result.CurrentContainer.ParentNode.ParentNode.NodeName = XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-          (Result.CurrentContainer.ParentNode.ParentNode.ParentNode.NodeName = XMLConstants.XML_CTE_AS_BLOCK) then
+        if (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+          (Result.CurrentContainer.ParentNode.NodeName = BCSQL.XMLConstants.XML_SELECTIONTARGET_PARENS) and
+          (Result.CurrentContainer.ParentNode.ParentNode.NodeName = BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+          (Result.CurrentContainer.ParentNode.ParentNode.ParentNode.NodeName = BCSQL.XMLConstants.XML_CTE_AS_BLOCK) then
         begin
-            Result.MoveToAncestorContainer(4, XMLConstants.XML_CTE_WITH_CLAUSE);
-            Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_CONTAINER_GENERALCONTENT, '');
+            Result.MoveToAncestorContainer(4, BCSQL.XMLConstants.XML_CTE_WITH_CLAUSE);
+            Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT, '');
         end
         else
-        if (Result.CurrentContainer.NodeName = XMLConstants.XML_SQL_CLAUSE) and
-          ( (Result.CurrentContainer.ParentNode.NodeName = XMLConstants.XML_EXPRESSION_PARENS) or
-            (Result.CurrentContainer.ParentNode.NodeName = XMLConstants.XML_SELECTIONTARGET_PARENS) ) then
+        if (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+          ( (Result.CurrentContainer.ParentNode.NodeName = BCSQL.XMLConstants.XML_EXPRESSION_PARENS) or
+            (Result.CurrentContainer.ParentNode.NodeName = BCSQL.XMLConstants.XML_SELECTIONTARGET_PARENS) ) then
           Result.MoveToAncestorContainer(2) //unspecified grandfather node.
         else
-          Result.SaveNewElementWithError(XMLConstants.XML_OTHERNODE, ')');
+          Result.SaveNewElementWithError(BCSQL.XMLConstants.XML_OTHERNODE, ')');
       end;
 
       ttOtherNode:
@@ -470,26 +470,26 @@ begin
         SignificantTokenPositions := GetSignificantTokenPositions(SQLTokenList, TokenID, 7);
         SignificantTokensString := ExtractTokensString(SQLTokenList, SignificantTokenPositions);
 
-        if Result.PathNameMatches(0, XMLConstants.XML_PERMISSIONS_DETAIL) then
+        if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_PERMISSIONS_DETAIL) then
         begin
           //if we're in a permissions detail clause, we can expect all sorts of statements
           // starters and should ignore them all; the only possible keywords to escape are
           // 'ON' and 'TO'.
           if StartsWith(SignificantTokensString, 'ON ') then
           begin
-            Result.MoveToAncestorContainer(1, XMLConstants.XML_PERMISSIONS_BLOCK);
-            Result.StartNewContainer(XMLConstants.XML_PERMISSIONS_TARGET, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_PERMISSIONS_BLOCK);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_PERMISSIONS_TARGET, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
           if StartsWith(SignificantTokensString, 'TO ') or
              StartsWith(SignificantTokensString, 'FROM ') then
           begin
-            Result.MoveToAncestorContainer(1, XMLConstants.XML_PERMISSIONS_BLOCK);
-            Result.StartNewContainer(XMLConstants.XML_PERMISSIONS_RECIPIENT, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_PERMISSIONS_BLOCK);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_PERMISSIONS_RECIPIENT, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
             //default to 'some classification of permission'
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'CREATE PROC') or
@@ -502,40 +502,40 @@ begin
            StartsWith(SignificantTokensString, 'ALTER VIEW ') then
         begin
           Result.ConsiderStartingNewStatement;
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_DDL_PROCEDURAL_BLOCK, '');
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK, '');
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if FCursorDetector.IsMatch(SignificantTokensString) then
         begin
           Result.ConsiderStartingNewStatement;
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_CURSOR_DECLARATION, '');
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_CURSOR_DECLARATION, '');
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
-        if Result.PathNameMatches(0, XMLConstants.XML_DDL_PROCEDURAL_BLOCK) and
+        if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) and
           FTriggerConditionDetector.IsMatch(significantTokensString) then
         begin
           //horrible complicated forward-search, to avoid having to keep a different 'Trigger Condition' state for Update, Insert and Delete statement-starting keywords
           TriggerConditions := FTriggerConditionDetector.Match(SignificantTokensString);
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_TRIGGER_CONDITION, '');
-          TriggerConditionType := Result.SaveNewElement(XMLConstants.XML_COMPOUNDKEYWORD, '');
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_TRIGGER_CONDITION, '');
+          TriggerConditionType := Result.SaveNewElement(BCSQL.XMLConstants.XML_COMPOUNDKEYWORD, '');
 
           //first set the 'trigger condition type': FOR, INSTEAD OF, AFTER
           TriggerConditionTypeSimpleText := TriggerConditions.Groups[1].Value;
-          TriggerConditionType.SetAttribute(XMLConstants.XML_SIMPLETEXT, TriggerConditionTypeSimpleText);
+          TriggerConditionType.SetAttribute(BCSQL.XMLConstants.XML_SIMPLETEXT, TriggerConditionTypeSimpleText);
           TriggerConditionTypeNodeCount := WordCount(TriggerConditionTypeSimpleText); //TriggerConditionTypeSimpleText.Split(new char[] begin ' ' end;).Length; //there's probably a better way of counting words...
           AppendNodesWithMapping(Result, SQLTokenList.GetRangeByIndex(SignificantTokenPositions[0],
             SignificantTokenPositions[TriggerConditionTypeNodeCount - 1]),
-            XMLConstants.XML_OTHERKEYWORD, triggerConditionType);
+            BCSQL.XMLConstants.XML_OTHERKEYWORD, triggerConditionType);
 
           //then get the count of conditions (INSERT, UPDATE, DELETE) and add those too...
           TriggerConditionNodeCount := WordCount(TriggerConditionTypeSimpleText); //TriggerConditions.Groups[2].Value.Split(new char[] begin ' ' end;).Length - 2; //there's probably a better way of counting words...
           AppendNodesWithMapping(Result, SQLTokenList.GetRangeByIndex(SignificantTokenPositions[TriggerConditionTypeNodeCount - 1] + 1,
             SignificantTokenPositions[TriggerConditionTypeNodeCount + triggerConditionNodeCount - 1]),
-            XMLConstants.XML_OTHERKEYWORD, Result.CurrentContainer);
+            BCSQL.XMLConstants.XML_OTHERKEYWORD, Result.CurrentContainer);
           TokenID := SignificantTokenPositions[TriggerConditionTypeNodeCount + TriggerConditionNodeCount - 1];
-          Result.MoveToAncestorContainer(1, XMLConstants.XML_DDL_PROCEDURAL_BLOCK);
+          Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK);
         end
         else
         if StartsWith(significantTokensString, 'FOR ') then
@@ -544,19 +544,19 @@ begin
           Result.EscapeAnySelectionTarget;
           Result.EscapeJoinCondition;
 
-          if Result.PathNameMatches(0, XMLConstants.XML_CURSOR_DECLARATION) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CURSOR_DECLARATION) then
           begin
-            Result.StartNewContainer(XMLConstants.XML_CURSOR_FOR_BLOCK, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_CURSOR_FOR_BLOCK, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
             Result.StartNewStatement;
           end
           else
-          if Result.PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-            Result.PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
-            Result.PathNameMatches(2, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(3, XMLConstants.XML_CURSOR_FOR_BLOCK) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
+            Result.PathNameMatches(2, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(3, BCSQL.XMLConstants.XML_CURSOR_FOR_BLOCK) then
           begin
-            Result.MoveToAncestorContainer(4, XMLConstants.XML_CURSOR_DECLARATION);
-            Result.StartNewContainer(XMLConstants.XML_CURSOR_FOR_OPTIONS, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.MoveToAncestorContainer(4, BCSQL.XMLConstants.XML_CURSOR_DECLARATION);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_CURSOR_FOR_OPTIONS, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
           begin
@@ -564,22 +564,22 @@ begin
             // (otherwise, eg in OPTIMIZE FOR UNKNOWN, this will just not do anything)
             Result.ConsiderStartingNewClause();
 
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
           end;
         end
         else
         if StartsWith(SignificantTokensString, 'DECLARE ') then
         begin
           Result.ConsiderStartingNewStatement();
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_DDL_DECLARE_BLOCK, '');
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_DDL_DECLARE_BLOCK, '');
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'CREATE ') or StartsWith(SignificantTokensString, 'ALTER ') then
         begin
           Result.ConsiderStartingNewStatement;
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_DDL_OTHER_BLOCK, '');
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_DDL_OTHER_BLOCK, '');
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'GRANT ') or
@@ -587,26 +587,26 @@ begin
            StartsWith(SignificantTokensString, 'REVOKE ') then
         begin
           if StartsWith(SignificantTokensString, 'GRANT ') and
-            Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_DDL_WITH_CLAUSE) and
-            Result.PathNameMatches(2, XMLConstants.XML_PERMISSIONS_BLOCK) and
+            Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_DDL_WITH_CLAUSE) and
+            Result.PathNameMatches(2, BCSQL.XMLConstants.XML_PERMISSIONS_BLOCK) and
             not Assigned(Result.GetFirstNonWhitespaceNonCommentChildElement(Result.CurrentContainer)) then
               //this MUST be a 'WITH GRANT OPTION' option...
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value)
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value)
           else
           begin
             Result.ConsiderStartingNewStatement;
-            Result.StartNewContainer(XMLConstants.XML_PERMISSIONS_BLOCK, SQLToken.Value, XMLConstants.XML_PERMISSIONS_DETAIL);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_PERMISSIONS_BLOCK, SQLToken.Value, BCSQL.XMLConstants.XML_PERMISSIONS_DETAIL);
           end;
         end
         else
-        if (Result.CurrentContainer.NodeName = XMLConstants.XML_DDL_PROCEDURAL_BLOCK) and
+        if (Result.CurrentContainer.NodeName = BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) and
           StartsWith(SignificantTokensString, 'RETURNS ') then
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(XMLConstants.XML_DDL_RETURNS, ''))
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(BCSQL.XMLConstants.XML_DDL_RETURNS, ''))
         else
         if StartsWith(SignificantTokensString, 'AS ') then
         begin
-          if Result.PathNameMatches(0, XMLConstants.XML_DDL_PROCEDURAL_BLOCK) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) then
           begin
             IsDataTypeDefinition := False;
             if (SignificantTokenPositions.Count > 1) and
@@ -616,53 +616,53 @@ begin
 
             if IsDataTypeDefinition then
               //this is actually a data type declaration (redundant 'AS'...), save as regular token.
-              Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value)
+              Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value)
             else
             begin
               //this is the start of the object content definition
-              Result.StartNewContainer(XMLConstants.XML_DDL_AS_BLOCK, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+              Result.StartNewContainer(BCSQL.XMLConstants.XML_DDL_AS_BLOCK, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
               Result.StartNewStatement;
             end;
           end
           else
-          if Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_DDL_WITH_CLAUSE) and
-            Result.PathNameMatches(2, XMLConstants.XML_DDL_PROCEDURAL_BLOCK) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_DDL_WITH_CLAUSE) and
+            Result.PathNameMatches(2, BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) then
           begin
-            Result.MoveToAncestorContainer(2, XMLConstants.XML_DDL_PROCEDURAL_BLOCK);
-            Result.StartNewContainer(XMLConstants.XML_DDL_AS_BLOCK, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.MoveToAncestorContainer(2, BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_DDL_AS_BLOCK, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
             Result.StartNewStatement;
           end
           else
-          if Result.PathNameMatches(0, XMLConstants.XML_CTE_ALIAS) and
-            Result.PathNameMatches(1, XMLConstants.XML_CTE_WITH_CLAUSE) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CTE_ALIAS) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_CTE_WITH_CLAUSE) then
           begin
-            Result.MoveToAncestorContainer(1, XMLConstants.XML_CTE_WITH_CLAUSE);
-            Result.StartNewContainer(XMLConstants.XML_CTE_AS_BLOCK, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_CTE_WITH_CLAUSE);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_CTE_AS_BLOCK, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'BEGIN DISTRIBUTED TRANSACTION ') or
           StartsWith(SignificantTokensString, 'BEGIN DISTRIBUTED TRAN ') then
         begin
           Result.ConsiderStartingNewStatement;
-          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(XMLConstants.XML_BEGIN_TRANSACTION, ''), TokenID, SignificantTokenPositions, 3);
+          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(BCSQL.XMLConstants.XML_BEGIN_TRANSACTION, ''), TokenID, SignificantTokenPositions, 3);
         end
         else
         if StartsWith(SignificantTokensString, 'BEGIN TRANSACTION ') or
           StartsWith(SignificantTokensString, 'BEGIN TRAN ') then
         begin
           Result.ConsiderStartingNewStatement;
-          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(XMLConstants.XML_BEGIN_TRANSACTION, ''), TokenID, SignificantTokenPositions, 2);
+          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(BCSQL.XMLConstants.XML_BEGIN_TRANSACTION, ''), TokenID, SignificantTokenPositions, 2);
         end
         else
         if StartsWith(SignificantTokensString, 'SAVE TRANSACTION ') or
           StartsWith(SignificantTokensString, 'SAVE TRAN ') then
         begin
           Result.ConsiderStartingNewStatement;
-          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(XMLConstants.XML_SAVE_TRANSACTION, ''), TokenID, SignificantTokenPositions, 2);
+          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(BCSQL.XMLConstants.XML_SAVE_TRANSACTION, ''), TokenID, SignificantTokenPositions, 2);
         end
         else
         if StartsWith(SignificantTokensString, 'COMMIT TRANSACTION ') or
@@ -670,13 +670,13 @@ begin
           StartsWith(SignificantTokensString, 'COMMIT WORK ') then
         begin
           Result.ConsiderStartingNewStatement;
-          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(XMLConstants.XML_COMMIT_TRANSACTION, ''), TokenID, SignificantTokenPositions, 2);
+          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(BCSQL.XMLConstants.XML_COMMIT_TRANSACTION, ''), TokenID, SignificantTokenPositions, 2);
         end
         else
         if StartsWith(SignificantTokensString, 'COMMIT ') then
         begin
           Result.ConsiderStartingNewStatement;
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(XMLConstants.XML_COMMIT_TRANSACTION, SQLToken.Value));
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(BCSQL.XMLConstants.XML_COMMIT_TRANSACTION, SQLToken.Value));
         end
         else
         if StartsWith(SignificantTokensString, 'ROLLBACK TRANSACTION ') or
@@ -684,39 +684,39 @@ begin
           StartsWith(SignificantTokensString, 'ROLLBACK WORK ') then
         begin
           Result.ConsiderStartingNewStatement;
-          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(XMLConstants.XML_ROLLBACK_TRANSACTION, ''), TokenID, SignificantTokenPositions, 2);
+          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(BCSQL.XMLConstants.XML_ROLLBACK_TRANSACTION, ''), TokenID, SignificantTokenPositions, 2);
         end
         else
         if StartsWith(SignificantTokensString, 'ROLLBACK ') then
         begin
           Result.ConsiderStartingNewStatement;
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(XMLConstants.XML_ROLLBACK_TRANSACTION, SQLToken.Value));
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(BCSQL.XMLConstants.XML_ROLLBACK_TRANSACTION, SQLToken.Value));
         end
         else
         if StartsWith(SignificantTokensString, 'BEGIN TRY ') then
         begin
           Result.ConsiderStartingNewStatement;
-          NewTryBlock := Result.SaveNewElement(XMLConstants.XML_TRY_BLOCK, '');
-          TryContainerOpen := Result.SaveNewElement(XMLConstants.XML_CONTAINER_OPEN, '', newTryBlock);
+          NewTryBlock := Result.SaveNewElement(BCSQL.XMLConstants.XML_TRY_BLOCK, '');
+          TryContainerOpen := Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_OPEN, '', newTryBlock);
           ProcessCompoundKeyword(SQLTokenList, Result, tryContainerOpen, TokenID, SignificantTokenPositions, 2);
-          TryMultiContainer := Result.SaveNewElement(XMLConstants.XML_CONTAINER_MULTISTATEMENT, '', newTryBlock);
+          TryMultiContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_MULTISTATEMENT, '', newTryBlock);
           Result.StartNewStatement(tryMultiContainer);
         end
         else
         if StartsWith(SignificantTokensString, 'BEGIN CATCH ') then
         begin
           Result.ConsiderStartingNewStatement;
-          NewCatchBlock := Result.SaveNewElement(XMLConstants.XML_CATCH_BLOCK, '');
-          CatchContainerOpen := Result.SaveNewElement(XMLConstants.XML_CONTAINER_OPEN, '', newCatchBlock);
+          NewCatchBlock := Result.SaveNewElement(BCSQL.XMLConstants.XML_CATCH_BLOCK, '');
+          CatchContainerOpen := Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_OPEN, '', newCatchBlock);
           ProcessCompoundKeyword(SQLTokenList, Result, catchContainerOpen, TokenID, SignificantTokenPositions, 2);
-          CatchMultiContainer := Result.SaveNewElement(XMLConstants.XML_CONTAINER_MULTISTATEMENT, '', newCatchBlock);
+          CatchMultiContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_MULTISTATEMENT, '', newCatchBlock);
           Result.StartNewStatement(catchMultiContainer);
         end
         else
         if StartsWith(SignificantTokensString, 'BEGIN ') then
         begin
           Result.ConsiderStartingNewStatement;
-          Result.StartNewContainer(XMLConstants.XML_BEGIN_END_BLOCK, SQLToken.Value, XMLConstants.XML_CONTAINER_MULTISTATEMENT);
+          Result.StartNewContainer(BCSQL.XMLConstants.XML_BEGIN_END_BLOCK, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_MULTISTATEMENT);
           Result.StartNewStatement;
         end
         else
@@ -725,94 +725,94 @@ begin
           //According to BOL, MERGE is a fully reserved keyword from compat 100 onwards, for the MERGE statement only.
           Result.ConsiderStartingNewStatement;
           Result.ConsiderStartingNewClause;
-          Result.StartNewContainer(XMLConstants.XML_MERGE_CLAUSE, SQLToken.Value, XMLConstants.XML_MERGE_TARGET);
+          Result.StartNewContainer(BCSQL.XMLConstants.XML_MERGE_CLAUSE, SQLToken.Value, BCSQL.XMLConstants.XML_MERGE_TARGET);
         end
         else
         if StartsWith(SignificantTokensString, 'USING ') then
         begin
-          if Result.PathNameMatches(0, XMLConstants.XML_MERGE_TARGET) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_MERGE_TARGET) then
           begin
-            Result.MoveToAncestorContainer(1, XMLConstants.XML_MERGE_CLAUSE);
-            Result.StartNewContainer(XMLConstants.XML_MERGE_USING, SQLToken.Value, XMLConstants.XML_SELECTIONTARGET);
+            Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_MERGE_CLAUSE);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_MERGE_USING, SQLToken.Value, BCSQL.XMLConstants.XML_SELECTIONTARGET);
           end
           else
-            Result.SaveNewElementWithError(XMLConstants.XML_OTHERNODE, SQLToken.Value);
+            Result.SaveNewElementWithError(BCSQL.XMLConstants.XML_OTHERNODE, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'ON ') then
         begin
           Result.EscapeAnySelectionTarget;
 
-          if Result.PathNameMatches(0, XMLConstants.XML_MERGE_USING) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_MERGE_USING) then
           begin
-            Result.MoveToAncestorContainer(1, XMLConstants.XML_MERGE_CLAUSE);
-            Result.StartNewContainer(XMLConstants.XML_MERGE_CONDITION, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_MERGE_CLAUSE);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_MERGE_CONDITION, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
-          if not Result.PathNameMatches(0, XMLConstants.XML_DDL_PROCEDURAL_BLOCK) and
-            not Result.PathNameMatches(0, XMLConstants.XML_DDL_OTHER_BLOCK) and
-            not Result.PathNameMatches(1, XMLConstants.XML_DDL_WITH_CLAUSE) and
-            not Result.PathNameMatches(0, XMLConstants.XML_EXPRESSION_PARENS) and
+          if not Result.PathNameMatches(0, BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) and
+            not Result.PathNameMatches(0, BCSQL.XMLConstants.XML_DDL_OTHER_BLOCK) and
+            not Result.PathNameMatches(1, BCSQL.XMLConstants.XML_DDL_WITH_CLAUSE) and
+            not Result.PathNameMatches(0, BCSQL.XMLConstants.XML_EXPRESSION_PARENS) and
             not ContentStartsWithKeyword(Result.CurrentContainer, 'SET') then
-            Result.StartNewContainer(XMLConstants.XML_JOIN_ON_SECTION, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT)
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_JOIN_ON_SECTION, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT)
           else
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'CASE ') then
-          Result.StartNewContainer(XMLConstants.XML_CASE_STATEMENT, SQLToken.Value, XMLConstants.XML_CASE_INPUT)
+          Result.StartNewContainer(BCSQL.XMLConstants.XML_CASE_STATEMENT, SQLToken.Value, BCSQL.XMLConstants.XML_CASE_INPUT)
         else
         if StartsWith(SignificantTokensString, 'WHEN ') then
         begin
           Result.EscapeMergeAction;
 
-          if Result.PathNameMatches(0, XMLConstants.XML_CASE_INPUT) or
-            (Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-             Result.PathNameMatches(1, XMLConstants.XML_CASE_THEN)) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CASE_INPUT) or
+            (Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+             Result.PathNameMatches(1, BCSQL.XMLConstants.XML_CASE_THEN)) then
           begin
-            if Result.PathNameMatches(0, XMLConstants.XML_CASE_INPUT) then
-              Result.MoveToAncestorContainer(1, XMLConstants.XML_CASE_STATEMENT)
+            if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CASE_INPUT) then
+              Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_CASE_STATEMENT)
             else
-              Result.MoveToAncestorContainer(3, XMLConstants.XML_CASE_STATEMENT);
+              Result.MoveToAncestorContainer(3, BCSQL.XMLConstants.XML_CASE_STATEMENT);
 
-            Result.StartNewContainer(XMLConstants.XML_CASE_WHEN, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_CASE_WHEN, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
-          if (Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-              Result.PathNameMatches(1, XMLConstants.XML_MERGE_CONDITION)) or
-              Result.PathNameMatches(0, XMLConstants.XML_MERGE_WHEN) then
+          if (Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+              Result.PathNameMatches(1, BCSQL.XMLConstants.XML_MERGE_CONDITION)) or
+              Result.PathNameMatches(0, BCSQL.XMLConstants.XML_MERGE_WHEN) then
           begin
-            if Result.PathNameMatches(1, XMLConstants.XML_MERGE_CONDITION) then
-              Result.MoveToAncestorContainer(2, XMLConstants.XML_MERGE_CLAUSE)
+            if Result.PathNameMatches(1, BCSQL.XMLConstants.XML_MERGE_CONDITION) then
+              Result.MoveToAncestorContainer(2, BCSQL.XMLConstants.XML_MERGE_CLAUSE)
             else
-              Result.MoveToAncestorContainer(1, XMLConstants.XML_MERGE_CLAUSE);
+              Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_MERGE_CLAUSE);
 
-            Result.StartNewContainer(XMLConstants.XML_MERGE_WHEN, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_MERGE_WHEN, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
-            Result.SaveNewElementWithError(XMLConstants.XML_OTHERNODE, SQLToken.Value);
+            Result.SaveNewElementWithError(BCSQL.XMLConstants.XML_OTHERNODE, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'THEN ') then
         begin
           Result.EscapeAnyBetweenConditions;
 
-          if Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_CASE_WHEN) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_CASE_WHEN) then
           begin
-            Result.MoveToAncestorContainer(1, XMLConstants.XML_CASE_WHEN);
-            Result.StartNewContainer(XMLConstants.XML_CASE_THEN, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_CASE_WHEN);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_CASE_THEN, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
-          if Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_MERGE_WHEN) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_MERGE_WHEN) then
           begin
-            Result.MoveToAncestorContainer(1, XMLConstants.XML_MERGE_WHEN);
-            Result.StartNewContainer(XMLConstants.XML_MERGE_THEN, SQLToken.Value, XMLConstants.XML_MERGE_ACTION);
+            Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_MERGE_WHEN);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_MERGE_THEN, SQLToken.Value, BCSQL.XMLConstants.XML_MERGE_ACTION);
             Result.StartNewStatement;
           end
           else
-            Result.SaveNewElementWithError(XMLConstants.XML_OTHERNODE, SQLToken.Value);
+            Result.SaveNewElementWithError(BCSQL.XMLConstants.XML_OTHERNODE, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'OUTPUT ') then
@@ -820,15 +820,15 @@ begin
           IsSprocArgument := False;
 
           //We're looking for sproc calls - they can't be nested inside anything else (as far as I know)
-          if Result.PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-            Result.PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
             (ContentStartsWithKeyword(Result.CurrentContainer, 'EXEC') or
              ContentStartsWithKeyword(Result.CurrentContainer, 'EXECUTE') or
              ContentStartsWithKeyword(Result.CurrentContainer, '')) then
             IsSprocArgument := True;
 
           //Also proc definitions - argument lists without parens
-          if Result.PathNameMatches(0, XMLConstants.XML_DDL_PROCEDURAL_BLOCK) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) then
             IsSprocArgument := True;
 
           if not IsSprocArgument then
@@ -837,13 +837,13 @@ begin
             Result.ConsiderStartingNewClause;
           end;
 
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'OPTION ') then
         begin
-          if Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_DDL_WITH_CLAUSE) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_DDL_WITH_CLAUSE) then
           begin
               //'OPTION' keyword here is NOT indicative of a new clause.
           end
@@ -852,21 +852,21 @@ begin
             Result.EscapeMergeAction;
             Result.ConsiderStartingNewClause;
           end;
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'END TRY ') then
         begin
           Result.EscapeAnySingleOrPartialStatementContainers;
 
-          if Result.PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-            Result.PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
-            Result.PathNameMatches(2, XMLConstants.XML_CONTAINER_MULTISTATEMENT) and
-            Result.PathNameMatches(3, XMLConstants.XML_TRY_BLOCK) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
+            Result.PathNameMatches(2, BCSQL.XMLConstants.XML_CONTAINER_MULTISTATEMENT) and
+            Result.PathNameMatches(3, BCSQL.XMLConstants.XML_TRY_BLOCK) then
           begin
             //clause.statement.multicontainer.try
             TryBlock := IXMLElement(Result.CurrentContainer.ParentNode.ParentNode.ParentNode);
-            TryContainerClose := Result.SaveNewElement(XMLConstants.XML_CONTAINER_CLOSE, '', tryBlock);
+            TryContainerClose := Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_CLOSE, '', tryBlock);
             ProcessCompoundKeyword(SQLTokenList, Result, tryContainerClose, TokenID, SignificantTokenPositions, 2);
             Result.CurrentContainer := IXMLElement(TryBlock.ParentNode);
           end
@@ -878,14 +878,14 @@ begin
         begin
           Result.EscapeAnySingleOrPartialStatementContainers;
 
-          if Result.PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-             Result.PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
-             Result.PathNameMatches(2, XMLConstants.XML_CONTAINER_MULTISTATEMENT) and
-             Result.PathNameMatches(3, XMLConstants.XML_CATCH_BLOCK) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+             Result.PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
+             Result.PathNameMatches(2, BCSQL.XMLConstants.XML_CONTAINER_MULTISTATEMENT) and
+             Result.PathNameMatches(3, BCSQL.XMLConstants.XML_CATCH_BLOCK) then
           begin
             //clause.statement.multicontainer.catch
             CatchBlock := IXMLElement(Result.CurrentContainer.ParentNode.ParentNode.ParentNode);
-            CatchContainerClose := Result.SaveNewElement(XMLConstants.XML_CONTAINER_CLOSE, '', catchBlock);
+            CatchContainerClose := Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_CLOSE, '', catchBlock);
             ProcessCompoundKeyword(SQLTokenList, Result, catchContainerClose, TokenID, SignificantTokenPositions, 2);
             Result.CurrentContainer := IXMLElement(CatchBlock.ParentNode);
           end
@@ -895,19 +895,19 @@ begin
         else
         if StartsWith(SignificantTokensString, 'END ') then
         begin
-          if Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_CASE_THEN) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_CASE_THEN) then
           begin
-            Result.MoveToAncestorContainer(3, XMLConstants.XML_CASE_STATEMENT);
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(XMLConstants.XML_CONTAINER_CLOSE, ''));
+            Result.MoveToAncestorContainer(3, BCSQL.XMLConstants.XML_CASE_STATEMENT);
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_CLOSE, ''));
             Result.MoveToAncestorContainer(1); //unnamed container
           end
           else
-          if Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_CASE_ELSE) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_CASE_ELSE) then
           begin
-            Result.MoveToAncestorContainer(2, XMLConstants.XML_CASE_STATEMENT);
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(XMLConstants.XML_CONTAINER_CLOSE, ''));
+            Result.MoveToAncestorContainer(2, BCSQL.XMLConstants.XML_CASE_STATEMENT);
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_CLOSE, ''));
             Result.MoveToAncestorContainer(1); //unnamed container
           end
           else
@@ -915,18 +915,18 @@ begin
             //Begin/End block handling
             Result.EscapeAnySingleOrPartialStatementContainers;
 
-            if Result.PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-               Result.PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
-               Result.PathNameMatches(2, XMLConstants.XML_CONTAINER_MULTISTATEMENT) and
-               Result.PathNameMatches(3, XMLConstants.XML_BEGIN_END_BLOCK) then
+            if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+               Result.PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
+               Result.PathNameMatches(2, BCSQL.XMLConstants.XML_CONTAINER_MULTISTATEMENT) and
+               Result.PathNameMatches(3, BCSQL.XMLConstants.XML_BEGIN_END_BLOCK) then
             begin
               BeginBlock := IXMLElement(Result.CurrentContainer.ParentNode.ParentNode.ParentNode);
-              BeginContainerClose := Result.SaveNewElement(XMLConstants.XML_CONTAINER_CLOSE, '', BeginBlock);
-              Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, beginContainerClose);
+              BeginContainerClose := Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_CLOSE, '', BeginBlock);
+              Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, beginContainerClose);
               Result.CurrentContainer := IXMLElement(BeginBlock.ParentNode);
             end
             else
-              Result.SaveNewElementWithError(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+              Result.SaveNewElementWithError(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
           end;
         end
         else
@@ -941,22 +941,22 @@ begin
             if Result.FindValidBatchEnd then
             begin
               SQLRoot := Result.DocumentElement;
-              BatchSeparator := Result.SaveNewElement(XMLConstants.XML_BATCH_SEPARATOR, '', SQLRoot);
-              Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, batchSeparator);
+              BatchSeparator := Result.SaveNewElement(BCSQL.XMLConstants.XML_BATCH_SEPARATOR, '', SQLRoot);
+              Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, batchSeparator);
               Result.StartNewStatement(sqlRoot);
             end
             else
-              Result.SaveNewElementWithError(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+              Result.SaveNewElementWithError(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
           end
           else
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'EXECUTE AS ') then
         begin
           ExecuteAsInWithOptions := False;
-          if Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_DDL_WITH_CLAUSE) and
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_DDL_WITH_CLAUSE) and
             (IsLatestTokenAComma(Result) or
              not Result.HasNonWhiteSpaceNonCommentContent(Result.CurrentContainer)) then
             ExecuteAsInWithOptions := True;
@@ -975,12 +975,12 @@ begin
         begin
           ExecShouldntTryToStartNewStatement := False;
 
-          if Result.PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-             Result.PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+             Result.PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
              (ContentStartsWithKeyword(Result.CurrentContainer, 'INSERT') or
               ContentStartsWithKeyword(Result.CurrentContainer, 'INSERT INTO')) then
           begin
-            ExistingClauseCount := Result.CurrentContainer.SelectNodes(Format('../%s;', [XMLConstants.XML_SQL_CLAUSE])).Count;
+            ExistingClauseCount := Result.CurrentContainer.SelectNodes(Format('../%s;', [BCSQL.XMLConstants.XML_SQL_CLAUSE])).Count;
             ExecShouldntTryToStartNewStatement := ExistingClauseCount = 1;
           end;
 
@@ -989,7 +989,7 @@ begin
 
           Result.ConsiderStartingNewClause;
 
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if FJoinDetector.IsMatch(SignificantTokensString) then
@@ -998,13 +998,13 @@ begin
           JoinText := FJoinDetector.Match(SignificantTokensString).Value;
           TargetKeywordCount :=  WordCount(JoinText); //joinText.Split(new char[] begin ' ' end;, StringSplitOptions.RemoveEmptyEntries).Length;
           ProcessCompoundKeyword(SQLTokenList, Result, Result.CurrentContainer, TokenID, SignificantTokenPositions, targetKeywordCount);
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_SELECTIONTARGET, '');
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_SELECTIONTARGET, '');
         end
         else
         if StartsWith(SignificantTokensString, 'UNION ALL ') then
         begin
           Result.ConsiderStartingNewClause;
-          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(XMLConstants.XML_SET_OPERATOR_CLAUSE, ''), TokenID, SignificantTokenPositions, 2);
+          ProcessCompoundKeyword(SQLTokenList, Result, Result.SaveNewElement(BCSQL.XMLConstants.XML_SET_OPERATOR_CLAUSE, ''), TokenID, SignificantTokenPositions, 2);
         end
         else
         if StartsWith(SignificantTokensString, 'UNION ') or
@@ -1013,23 +1013,23 @@ begin
           StartsWith(SignificantTokensString, 'EXCEPT ') then
         begin
           Result.ConsiderStartingNewClause;
-          UnionClause := Result.SaveNewElement(XMLConstants.XML_SET_OPERATOR_CLAUSE, '');
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, UnionClause);
+          UnionClause := Result.SaveNewElement(BCSQL.XMLConstants.XML_SET_OPERATOR_CLAUSE, '');
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, UnionClause);
         end
         else
         if StartsWith(SignificantTokensString, 'WHILE ') then
         begin
           Result.ConsiderStartingNewStatement;
-          NewWhileLoop := Result.SaveNewElement(XMLConstants.XML_WHILE_LOOP, '');
-          WhileContainerOpen := Result.SaveNewElement(XMLConstants.XML_CONTAINER_OPEN, '', NewWhileLoop);
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, WhileContainerOpen);
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_BOOLEAN_EXPRESSION, '', NewWhileLoop);
+          NewWhileLoop := Result.SaveNewElement(BCSQL.XMLConstants.XML_WHILE_LOOP, '');
+          WhileContainerOpen := Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_OPEN, '', NewWhileLoop);
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, WhileContainerOpen);
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_BOOLEAN_EXPRESSION, '', NewWhileLoop);
         end
         else
         if StartsWith(SignificantTokensString, 'IF ') then
         begin
           Result.ConsiderStartingNewStatement;
-          Result.StartNewContainer(XMLConstants.XML_IF_STATEMENT, SQLToken.Value, XMLConstants.XML_BOOLEAN_EXPRESSION);
+          Result.StartNewContainer(BCSQL.XMLConstants.XML_IF_STATEMENT, SQLToken.Value, BCSQL.XMLConstants.XML_BOOLEAN_EXPRESSION);
         end
         else
         if StartsWith(SignificantTokensString, 'ELSE ') then
@@ -1038,19 +1038,19 @@ begin
           Result.EscapeAnySelectionTarget;
           Result.EscapeJoinCondition;
 
-          if Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_CASE_THEN) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_CASE_THEN) then
           begin
-            Result.MoveToAncestorContainer(3, XMLConstants.XML_CASE_STATEMENT);
-            Result.StartNewContainer(XMLConstants.XML_CASE_ELSE, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.MoveToAncestorContainer(3, BCSQL.XMLConstants.XML_CASE_STATEMENT);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_CASE_ELSE, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
           begin
             Result.EscapePartialStatementContainers;
 
-            if Result.PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-              Result.PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
-              Result.PathNameMatches(2, XMLConstants.XML_CONTAINER_SINGLESTATEMENT) then
+            if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+              Result.PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
+              Result.PathNameMatches(2, BCSQL.XMLConstants.XML_CONTAINER_SINGLESTATEMENT) then
             begin
               //we need to pop up the single-statement containers stack to the next 'if' that doesn't have an 'else' (if any; else error).
               // LOCAL SEARCH - we're not actually changing the 'CurrentContainer' until we decide to start a statement.
@@ -1058,34 +1058,34 @@ begin
               StopSearching := False;
               while not StopSearching do
               begin
-                if Result.PathNameMatches(currentNode, 1, XMLConstants.XML_IF_STATEMENT) then
+                if Result.PathNameMatches(currentNode, 1, BCSQL.XMLConstants.XML_IF_STATEMENT) then
                 begin
                   //if this is in an 'If', then the 'Else' must still be available - yay!
                   Result.CurrentContainer := IXMLElement(CurrentNode.ParentNode);
-                  Result.StartNewContainer(XMLConstants.XML_ELSE_CLAUSE, SQLToken.Value, XMLConstants.XML_CONTAINER_SINGLESTATEMENT);
+                  Result.StartNewContainer(BCSQL.XMLConstants.XML_ELSE_CLAUSE, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_SINGLESTATEMENT);
                   Result.StartNewStatement;
                   stopSearching := true;
                 end
                 else
-                if Result.PathNameMatches(currentNode, 1, XMLConstants.XML_ELSE_CLAUSE) then
+                if Result.PathNameMatches(currentNode, 1, BCSQL.XMLConstants.XML_ELSE_CLAUSE) then
                   //If this is in an 'Else', we should skip its parent 'IF' altogether, and go to the next singlestatementcontainer candidate.
                   //singlestatementcontainer.else.if.clause.statement.NEWCANDIDATE
                   CurrentNode := IXMLElement(CurrentNode.ParentNode.ParentNode.ParentNode.ParentNode.ParentNode)
                 else
-                if Result.PathNameMatches(CurrentNode, 1, XMLConstants.XML_WHILE_LOOP) then
+                if Result.PathNameMatches(CurrentNode, 1, BCSQL.XMLConstants.XML_WHILE_LOOP) then
                   //If this is in a 'While', we should skip to the next singlestatementcontainer candidate.
                   //singlestatementcontainer.while.clause.statement.NEWCANDIDATE
                   CurrentNode := IXMLElement(CurrentNode.ParentNode.ParentNode.ParentNode.ParentNode)
                 else
                 begin
                   //if this isn't a known single-statement container, then we're lost.
-                  Result.SaveNewElementWithError(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+                  Result.SaveNewElementWithError(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
                   StopSearching := True;
                 end;
               end;
             end
             else
-              Result.SaveNewElementWithError(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+              Result.SaveNewElementWithError(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
           end;
         end
         else
@@ -1128,7 +1128,7 @@ begin
         begin
           Result.ConsiderStartingNewStatement;
           Result.ConsiderStartingNewClause;
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'BULK INSERT ') then
@@ -1145,13 +1145,13 @@ begin
 
           SelectShouldntTryToStartNewStatement := False;
 
-          if Result.PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) then
           begin
             FirstStatementClause := Result.GetFirstNonWhitespaceNonCommentChildElement(Result.CurrentContainer.ParentNode);
 
             IsPrecededByInsertStatement := False;
 
-            Result.CurrentContainer.ParentNode.SelectNodes(XMLConstants.XML_SQL_CLAUSE, NodeList);
+            Result.CurrentContainer.ParentNode.SelectNodes(BCSQL.XMLConstants.XML_SQL_CLAUSE, NodeList);
             for i := 0 to NodeList.Count - 1 do
             begin
               Node := IXMLElement(NodeList[i]);
@@ -1165,7 +1165,7 @@ begin
             if isPrecededByInsertStatement then
             begin
               ExistingSelectClauseFound := False;
-              Result.CurrentContainer.ParentNode.SelectNodes(XMLConstants.XML_SQL_CLAUSE, NodeList);
+              Result.CurrentContainer.ParentNode.SelectNodes(BCSQL.XMLConstants.XML_SQL_CLAUSE, NodeList);
               for i := 0 to NodeList.Count - 1 do
               begin
                 Node := IXMLElement(NodeList[i]);
@@ -1177,7 +1177,7 @@ begin
               end;
 
               ExistingValuesClauseFound := False;
-              Result.CurrentContainer.ParentNode.SelectNodes(XMLConstants.XML_SQL_CLAUSE, NodeList);
+              Result.CurrentContainer.ParentNode.SelectNodes(BCSQL.XMLConstants.XML_SQL_CLAUSE, NodeList);
               for i := 0 to NodeList.Count - 1 do
               begin
                 Node :=  IXMLElement(NodeList[i]);
@@ -1189,7 +1189,7 @@ begin
               end;
 
               ExistingExecClauseFound := False;
-              Result.CurrentContainer.ParentNode.SelectNodes(XMLConstants.XML_SQL_CLAUSE, NodeList);
+              Result.CurrentContainer.ParentNode.SelectNodes(BCSQL.XMLConstants.XML_SQL_CLAUSE, NodeList);
               for i := 0 to NodeList.Count - 1 do
               begin
                 Node :=  IXMLElement(NodeList[i]);
@@ -1208,7 +1208,7 @@ begin
             end;
 
             FirstEntryOfThisClause := Result.GetFirstNonWhitespaceNonCommentChildElement(Result.CurrentContainer);
-            if Assigned(FirstEntryOfThisClause) and (FirstEntryOfThisClause.NodeName = XMLConstants.XML_SET_OPERATOR_CLAUSE) then
+            if Assigned(FirstEntryOfThisClause) and (FirstEntryOfThisClause.NodeName = BCSQL.XMLConstants.XML_SET_OPERATOR_CLAUSE) then
               SelectShouldntTryToStartNewStatement := True;
           end;
 
@@ -1217,7 +1217,7 @@ begin
 
           Result.ConsiderStartingNewClause;
 
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'UPDATE ') then
@@ -1225,96 +1225,96 @@ begin
           if Result.NewStatementDue then
             Result.ConsiderStartingNewStatement;
 
-          if not (Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-                  Result.PathNameMatches(1, XMLConstants.XML_CURSOR_FOR_OPTIONS)) then
+          if not (Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+                  Result.PathNameMatches(1, BCSQL.XMLConstants.XML_CURSOR_FOR_OPTIONS)) then
           begin
             Result.ConsiderStartingNewStatement;
             Result.ConsiderStartingNewClause;
           end;
 
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'TO ') then
         begin
-          if Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_PERMISSIONS_TARGET) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_PERMISSIONS_TARGET) then
           begin
-            Result.MoveToAncestorContainer(2, XMLConstants.XML_PERMISSIONS_BLOCK);
-            Result.StartNewContainer(XMLConstants.XML_PERMISSIONS_RECIPIENT, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.MoveToAncestorContainer(2, BCSQL.XMLConstants.XML_PERMISSIONS_BLOCK);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_PERMISSIONS_RECIPIENT, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
           begin
             //I don't currently know whether there is any other place where 'TO' can be used in T-SQL...
             // TODO: look into that.
             // -> for now, we'll just save as a random keyword without raising an error.
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
           end;
         end
         else
         if StartsWith(SignificantTokensString, 'FROM ') then
         begin
-          if Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_PERMISSIONS_TARGET) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_PERMISSIONS_TARGET) then
           begin
-            Result.MoveToAncestorContainer(2, XMLConstants.XML_PERMISSIONS_BLOCK);
-            Result.StartNewContainer(XMLConstants.XML_PERMISSIONS_RECIPIENT, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.MoveToAncestorContainer(2, BCSQL.XMLConstants.XML_PERMISSIONS_BLOCK);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_PERMISSIONS_RECIPIENT, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
           begin
             Result.ConsiderStartingNewClause;
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
-            Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_SELECTIONTARGET, '');
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+            Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_SELECTIONTARGET, '');
           end;
         end
         else
         if StartsWith(SignificantTokensString, 'CASCADE ') and
-          Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-          Result.PathNameMatches(1, XMLConstants.XML_PERMISSIONS_RECIPIENT) then
+          Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+          Result.PathNameMatches(1, BCSQL.XMLConstants.XML_PERMISSIONS_RECIPIENT) then
         begin
-          Result.MoveToAncestorContainer(2, XMLConstants.XML_PERMISSIONS_BLOCK);
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_CONTAINER_GENERALCONTENT, '', Result.SaveNewElement(XMLConstants.XML_DDL_WITH_CLAUSE, ''));
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.MoveToAncestorContainer(2, BCSQL.XMLConstants.XML_PERMISSIONS_BLOCK);
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT, '', Result.SaveNewElement(BCSQL.XMLConstants.XML_DDL_WITH_CLAUSE, ''));
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'SET ') then
         begin
           FirstNonCommentSibling2 := Result.GetFirstNonWhitespaceNonCommentChildElement(Result.CurrentContainer);
           if not (Assigned(FirstNonCommentSibling2) and
-                  (FirstNonCommentSibling2.NodeName = XMLConstants.XML_OTHERKEYWORD) and
+                  (FirstNonCommentSibling2.NodeName = BCSQL.XMLConstants.XML_OTHERKEYWORD) and
                   StartsWith(FirstNonCommentSibling2.Text, 'UPDATE')) then
               Result.ConsiderStartingNewStatement;
 
           Result.ConsiderStartingNewClause;
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
         end
         else
         if StartsWith(SignificantTokensString, 'BETWEEN ') then
         begin
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_BETWEEN_CONDITION, '');
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(XMLConstants.XML_CONTAINER_OPEN, ''));
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_BETWEEN_LOWERBOUND, '');
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_BETWEEN_CONDITION, '');
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_OPEN, ''));
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_BETWEEN_LOWERBOUND, '');
         end
         else
         if StartsWith(SignificantTokensString, 'AND ') then
         begin
-          if Result.PathNameMatches(0, XMLConstants.XML_BETWEEN_LOWERBOUND) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_BETWEEN_LOWERBOUND) then
           begin
-            Result.MoveToAncestorContainer(1, XMLConstants.XML_BETWEEN_CONDITION);
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(XMLConstants.XML_CONTAINER_CLOSE, ''));
-            Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_BETWEEN_UPPERBOUND, '');
+            Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_BETWEEN_CONDITION);
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_CLOSE, ''));
+            Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_BETWEEN_UPPERBOUND, '');
           end
           else
           begin
             Result.EscapeAnyBetweenConditions;
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(XMLConstants.XML_AND_OPERATOR, ''));
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(BCSQL.XMLConstants.XML_AND_OPERATOR, ''));
           end;
         end
         else
         if StartsWith(SignificantTokensString, 'OR ') then
         begin
           Result.EscapeAnyBetweenConditions;
-          Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(XMLConstants.XML_OR_OPERATOR, ''));
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(BCSQL.XMLConstants.XML_OR_OPERATOR, ''));
         end
         else
         if StartsWith(SignificantTokensString, 'WITH ') then
@@ -1322,32 +1322,32 @@ begin
           if Result.NewStatementDue then
             Result.ConsiderStartingNewStatement;
 
-          if Result.PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-            Result.PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
             not Result.HasNonWhiteSpaceNonCommentContent(Result.CurrentContainer) then
           begin
-            Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_CTE_WITH_CLAUSE, '');
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(XMLConstants.XML_CONTAINER_OPEN, ''));
-            Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_CTE_ALIAS, '');
+            Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_CTE_WITH_CLAUSE, '');
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value, Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_OPEN, ''));
+            Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_CTE_ALIAS, '');
           end
           else
-          if Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-            Result.PathNameMatches(1, XMLConstants.XML_PERMISSIONS_RECIPIENT) then
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+            Result.PathNameMatches(1, BCSQL.XMLConstants.XML_PERMISSIONS_RECIPIENT) then
           begin
-            Result.MoveToAncestorContainer(2, XMLConstants.XML_PERMISSIONS_BLOCK);
-            Result.StartNewContainer(XMLConstants.XML_DDL_WITH_CLAUSE, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT);
+            Result.MoveToAncestorContainer(2, BCSQL.XMLConstants.XML_PERMISSIONS_BLOCK);
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_DDL_WITH_CLAUSE, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT);
           end
           else
-          if Result.PathNameMatches(0, XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
-            Result.PathNameMatches(0, XMLConstants.XML_DDL_OTHER_BLOCK) then
-            Result.StartNewContainer(XMLConstants.XML_DDL_WITH_CLAUSE, SQLToken.Value, XMLConstants.XML_CONTAINER_GENERALCONTENT)
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
+            Result.PathNameMatches(0, BCSQL.XMLConstants.XML_DDL_OTHER_BLOCK) then
+            Result.StartNewContainer(BCSQL.XMLConstants.XML_DDL_WITH_CLAUSE, SQLToken.Value, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT)
           else
-          if Result.PathNameMatches(0, XMLConstants.XML_SELECTIONTARGET) then
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value)
+          if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_SELECTIONTARGET) then
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value)
           else
           begin
             Result.ConsiderStartingNewClause;
-            Result.SaveNewElement(XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
+            Result.SaveNewElement(BCSQL.XMLConstants.XML_OTHERKEYWORD, SQLToken.Value);
           end;
         end
         else
@@ -1357,7 +1357,7 @@ begin
           (SQLTokenList[tokenID + 2].TokenType = ttColon) then
         begin
           Result.ConsiderStartingNewStatement;
-          Result.SaveNewElement(XMLConstants.XML_LABEL, SQLToken.Value + SQLTokenList[tokenID + 1].Value);
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_LABEL, SQLToken.Value + SQLTokenList[tokenID + 1].Value);
           Inc(TokenID);
         end
         else
@@ -1372,18 +1372,18 @@ begin
           if IsClauseStarter(SQLToken) then
             Result.ConsiderStartingNewClause;
 
-          NewNodeName := XMLConstants.XML_OTHERNODE;
+          NewNodeName := BCSQL.XMLConstants.XML_OTHERNODE;
 
           if FKeywordList.TryGetValue(UpperCase(SQLToken.Value), MatchedKeywordType) then
           begin
             case MatchedKeywordType of
-              ktOperatorKeyword: NewNodeName := XMLConstants.XML_ALPHAOPERATOR;
-              ktFunctionKeyword: NewNodeName := XMLConstants.XML_FUNCTION_KEYWORD;
-              ktDataTypeKeyword: NewNodeName := XMLConstants.XML_DATATYPE_KEYWORD;
+              ktOperatorKeyword: NewNodeName := BCSQL.XMLConstants.XML_ALPHAOPERATOR;
+              ktFunctionKeyword: NewNodeName := BCSQL.XMLConstants.XML_FUNCTION_KEYWORD;
+              ktDataTypeKeyword: NewNodeName := BCSQL.XMLConstants.XML_DATATYPE_KEYWORD;
               ktOtherKeyword:
               begin
                 Result.EscapeAnySelectionTarget;
-                NewNodeName := XMLConstants.XML_OTHERKEYWORD;
+                NewNodeName := BCSQL.XMLConstants.XML_OTHERKEYWORD;
               end
               else
                 raise Exception.Create('Unrecognized Keyword Type!');
@@ -1396,7 +1396,7 @@ begin
 
       ttSemicolon:
       begin
-        Result.SaveNewElement(XMLConstants.XML_SEMICOLON, SQLToken.Value);
+        Result.SaveNewElement(BCSQL.XMLConstants.XML_SEMICOLON, SQLToken.Value);
         Result.NewStatementDue := true;
       end;
 
@@ -1405,32 +1405,32 @@ begin
         if (SQLTokenList.Count > TokenID + 1) and
           (SQLTokenList[tokenID + 1].TokenType = ttColon) then
         begin
-          Result.SaveNewElement(XMLConstants.XML_SCOPERESOLUTIONOPERATOR, SQLToken.Value + SQLTokenList[tokenID + 1].Value);
+          Result.SaveNewElement(BCSQL.XMLConstants.XML_SCOPERESOLUTIONOPERATOR, SQLToken.Value + SQLTokenList[tokenID + 1].Value);
           Inc(TokenID);
         end
         else
-          Result.SaveNewElementWithError(XMLConstants.XML_OTHEROPERATOR, SQLToken.Value);
+          Result.SaveNewElementWithError(BCSQL.XMLConstants.XML_OTHEROPERATOR, SQLToken.Value);
       end;
 
       ttComma:
       begin
-        IsCTESplitter := Result.PathNameMatches(0, XMLConstants.XML_CONTAINER_GENERALCONTENT) and
-          Result.PathNameMatches(1, XMLConstants.XML_CTE_WITH_CLAUSE);
+        IsCTESplitter := Result.PathNameMatches(0, BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) and
+          Result.PathNameMatches(1, BCSQL.XMLConstants.XML_CTE_WITH_CLAUSE);
 
         Result.SaveNewElement(GetEquivalentSQLName(SQLToken.TokenType), SQLToken.Value);
 
         if isCTESplitter then
         begin
-          Result.MoveToAncestorContainer(1, XMLConstants.XML_CTE_WITH_CLAUSE);
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_CTE_ALIAS, '');
+          Result.MoveToAncestorContainer(1, BCSQL.XMLConstants.XML_CTE_WITH_CLAUSE);
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_CTE_ALIAS, '');
         end;
       end;
 
       ttEqualsSign:
       begin
-        Result.SaveNewElement(XMLConstants.XML_EQUALSSIGN, SQLToken.Value);
-        if Result.PathNameMatches(0, XMLConstants.XML_DDL_DECLARE_BLOCK) then
-          Result.CurrentContainer := Result.SaveNewElement(XMLConstants.XML_CONTAINER_GENERALCONTENT, '');
+        Result.SaveNewElement(BCSQL.XMLConstants.XML_EQUALSSIGN, SQLToken.Value);
+        if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_DDL_DECLARE_BLOCK) then
+          Result.CurrentContainer := Result.SaveNewElement(BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT, '');
       end;
 
       ttMultiLineComment,
@@ -1438,8 +1438,8 @@ begin
       ttWhiteSpace:
       begin
         //create in statement rather than clause if there are no siblings yet
-        if Result.PathNameMatches(0, XMLConstants.XML_SQL_CLAUSE) and
-          Result.PathNameMatches(1, XMLConstants.XML_SQL_STATEMENT) and
+        if Result.PathNameMatches(0, BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+          Result.PathNameMatches(1, BCSQL.XMLConstants.XML_SQL_STATEMENT) and
           not Assigned(Result.CurrentContainer.SelectSingleNode('*')) then
           Result.SaveNewElementAsPriorSibling(GetEquivalentSQLName(SQLToken.TokenType), SQLToken.Value, Result.CurrentContainer)
         else

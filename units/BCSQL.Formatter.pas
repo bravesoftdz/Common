@@ -3,7 +3,7 @@ unit BCSQL.Formatter;
 interface
 
 uses
-  SysUtils, RegularExpressions, Classes, Generics.Collections, SQLParseTree, OmniXML;
+  SysUtils, RegularExpressions, Classes, Generics.Collections, BCSQL.ParseTree, OmniXML;
 
 type
   TSQLFormatterState = class
@@ -118,7 +118,7 @@ type
 implementation
 
 uses
-  SQLParser, SQLTokenizer, System.StrUtils, XMLConstants, BCCommon;
+  BCSQL.Parser, BCSQL.Tokenizer, System.StrUtils, BCSQL.XMLConstants, BCCommon;
 
 
 function FormatSQL(SQL: string): string;
@@ -137,7 +137,7 @@ begin
     SQLParseTree.Save('C:\Temp\Test.xml');
     if Assigned(SQLParseTree) then
     begin
-      if Assigned(SQLParseTree.SelectSingleNode(System.SysUtils.Format('/%s/@%s[.=1]', [XMLConstants.XML_SQL_ROOT, XMLConstants.XML_ERRORFOUND]))) then
+      if Assigned(SQLParseTree.SelectSingleNode(System.SysUtils.Format('/%s/@%s[.=1]', [BCSQL.XMLConstants.XML_SQL_ROOT, BCSQL.XMLConstants.XML_ERRORFOUND]))) then
         Result := PARSING_ERRORS_FOUND + SQL
       else
         Result := SQLFormatter.FormatSQLTree(SQLParseTree);
@@ -358,11 +358,11 @@ var
   SQLFormatterState: TSQLFormatterState;
 begin
   SQLFormatterState := TSQLFormatterState.Create(FIndentString, FSpacesPerTab, FMaxLineWidth, 0);
-  if Assigned(SQLParseTree.SelectSingleNode(System.SysUtils.Format('/%s/%s[.=1]', [XMLConstants.XML_SQL_ROOT, XMLConstants.XML_ERRORFOUND]))) then
+  if Assigned(SQLParseTree.SelectSingleNode(System.SysUtils.Format('/%s/%s[.=1]', [BCSQL.XMLConstants.XML_SQL_ROOT, BCSQL.XMLConstants.XML_ERRORFOUND]))) then
  // if SQLParseTree.ErrorFound then
-    SQLFormatterState.AddOutputContent(XMLConstants.PARSING_ERRORS_FOUND);
+    SQLFormatterState.AddOutputContent(BCSQL.XMLConstants.PARSING_ERRORS_FOUND);
 
-  RootList := SQLParseTree.SelectNodes(SysUtils.Format('/%s/*', [XMLConstants.XML_SQL_ROOT]));
+  RootList := SQLParseTree.SelectNodes(SysUtils.Format('/%s/*', [BCSQL.XMLConstants.XML_SQL_ROOT]));
 
   ProcessSqlNodeList(RootList, SQLFormatterState);
   WhiteSpaceBreakAsExpected(SQLFormatterState);
@@ -400,7 +400,7 @@ var
 begin
   InitialIndent := State.IndentLevel;
 
-  if ContentElement.NodeName = XMLConstants.XML_SQL_STATEMENT then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_SQL_STATEMENT then
   begin
     WhiteSpaceSeparateStatements(ContentElement, State);
     State.ResetKeywords();
@@ -408,7 +408,7 @@ begin
     State.StatementBreakExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_SQL_CLAUSE then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_SQL_CLAUSE then
   begin
     State.UnIndentInitialBreak := True;
     ProcessSqlNodeList(ContentElement.ChildNodes, State.IncrementIndent);
@@ -416,7 +416,7 @@ begin
     State.BreakExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_SET_OPERATOR_CLAUSE then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_SET_OPERATOR_CLAUSE then
   begin
     State.DecrementIndent;
     State.WhiteSpaceBreakToNextLine; //this is the one already recommended by the start of the clause
@@ -426,7 +426,7 @@ begin
     State.AdditionalBreakExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_BATCH_SEPARATOR then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_BATCH_SEPARATOR then
   begin
     //newline regardless of whether previous element recommended a break or not.
     State.WhiteSpaceBreakToNextLine;
@@ -434,40 +434,40 @@ begin
     State.BreakExpected := True;
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
-     (ContentElement.NodeName = XMLConstants.XML_DDL_OTHER_BLOCK) or
-     (ContentElement.NodeName = XMLConstants.XML_CURSOR_DECLARATION) or
-     (ContentElement.NodeName = XMLConstants.XML_BEGIN_TRANSACTION) or
-     (ContentElement.NodeName = XMLConstants.XML_SAVE_TRANSACTION) or
-     (ContentElement.NodeName = XMLConstants.XML_COMMIT_TRANSACTION) or
-     (ContentElement.NodeName = XMLConstants.XML_ROLLBACK_TRANSACTION) or
-     (ContentElement.NodeName = XMLConstants.XML_CONTAINER_OPEN) or
-     (ContentElement.NodeName = XMLConstants.XML_CONTAINER_CLOSE) or
-     (ContentElement.NodeName = XMLConstants.XML_WHILE_LOOP) or
-     (ContentElement.NodeName = XMLConstants.XML_IF_STATEMENT) or
-     (ContentElement.NodeName = XMLConstants.XML_SELECTIONTARGET) or
-     (ContentElement.NodeName = XMLConstants.XML_CONTAINER_GENERALCONTENT) or
-     (ContentElement.NodeName = XMLConstants.XML_CTE_WITH_CLAUSE) or
-     (ContentElement.NodeName = XMLConstants.XML_PERMISSIONS_BLOCK) or
-     (ContentElement.NodeName = XMLConstants.XML_PERMISSIONS_DETAIL) or
-     (ContentElement.NodeName = XMLConstants.XML_MERGE_CLAUSE) or
-     (ContentElement.NodeName = XMLConstants.XML_MERGE_TARGET) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_DDL_OTHER_BLOCK) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_CURSOR_DECLARATION) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_BEGIN_TRANSACTION) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_SAVE_TRANSACTION) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_COMMIT_TRANSACTION) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_ROLLBACK_TRANSACTION) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_CONTAINER_OPEN) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_CONTAINER_CLOSE) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_WHILE_LOOP) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_IF_STATEMENT) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_SELECTIONTARGET) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_CTE_WITH_CLAUSE) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_PERMISSIONS_BLOCK) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_PERMISSIONS_DETAIL) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_MERGE_CLAUSE) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_MERGE_TARGET) then
   begin
     ProcessSqlNodeList(ContentElement.SelectNodes('*'), State)
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_CASE_INPUT) or
-     (ContentElement.NodeName = XMLConstants.XML_BOOLEAN_EXPRESSION) or
-     (ContentElement.NodeName = XMLConstants.XML_BETWEEN_LOWERBOUND) or
-     (ContentElement.NodeName = XMLConstants.XML_BETWEEN_UPPERBOUND) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_CASE_INPUT) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_BOOLEAN_EXPRESSION) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_BETWEEN_LOWERBOUND) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_BETWEEN_UPPERBOUND) then
   begin
     WhiteSpaceSeparateWords(State);
     ProcessSqlNodeList(ContentElement.SelectNodes('*'), State);
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_CONTAINER_SINGLESTATEMENT) or
-     (ContentElement.NodeName = XMLConstants.XML_CONTAINER_MULTISTATEMENT) or
-     (ContentElement.NodeName = XMLConstants.XML_MERGE_ACTION) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_CONTAINER_SINGLESTATEMENT) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_CONTAINER_MULTISTATEMENT) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_MERGE_ACTION) then
   begin
     State.BreakExpected := True;
     ProcessSqlNodeList(ContentElement.SelectNodes('*'), State);
@@ -475,11 +475,11 @@ begin
     State.UnIndentInitialBreak := False; //if there was no word spacing after the last content Statement's clause starter, doesn't mean the unIndent should propagate to the following content!
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_PERMISSIONS_TARGET) or
-     (ContentElement.NodeName = XMLConstants.XML_PERMISSIONS_RECIPIENT) or
-     (ContentElement.NodeName = XMLConstants.XML_DDL_WITH_CLAUSE) or
-     (ContentElement.NodeName = XMLConstants.XML_MERGE_CONDITION) or
-     (ContentElement.NodeName = XMLConstants.XML_MERGE_THEN) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_PERMISSIONS_TARGET) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_PERMISSIONS_RECIPIENT) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_DDL_WITH_CLAUSE) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_MERGE_CONDITION) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_MERGE_THEN) then
   begin
     State.BreakExpected := True;
     State.UnIndentInitialBreak := True;
@@ -487,79 +487,79 @@ begin
     State.DecrementIndent;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_JOIN_ON_SECTION then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_JOIN_ON_SECTION then
   begin
     if FBreakJoinOnSections then
       State.BreakExpected := True;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_OPEN), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_OPEN), State);
     if FBreakJoinOnSections then
       State.IncrementIndent;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_GENERALCONTENT), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT), State);
     if FBreakJoinOnSections then
       State.DecrementIndent;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_CTE_ALIAS then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_CTE_ALIAS then
   begin
     State.UnIndentInitialBreak := True;
     ProcessSqlNodeList(ContentElement.SelectNodes('*'), State);
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_ELSE_CLAUSE then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_ELSE_CLAUSE then
   begin
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_OPEN), State.DecrementIndent);
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_SINGLESTATEMENT), State.IncrementIndent);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_OPEN), State.DecrementIndent);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_SINGLESTATEMENT), State.IncrementIndent);
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_DDL_AS_BLOCK) or
-     (ContentElement.NodeName = XMLConstants.XML_CURSOR_FOR_BLOCK) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_DDL_AS_BLOCK) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_CURSOR_FOR_BLOCK) then
   begin
     State.BreakExpected := True;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_OPEN), State.DecrementIndent);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_OPEN), State.DecrementIndent);
     State.BreakExpected := True;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_GENERALCONTENT), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT), State);
     State.IncrementIndent;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_TRIGGER_CONDITION then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_TRIGGER_CONDITION then
   begin
     State.DecrementIndent;
     State.WhiteSpaceBreakToNextLine;
     ProcessSqlNodeList(ContentElement.SelectNodes('*'), State.IncrementIndent);
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_CURSOR_FOR_OPTIONS) or
-     (ContentElement.NodeName = XMLConstants.XML_CTE_AS_BLOCK) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_CURSOR_FOR_OPTIONS) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_CTE_AS_BLOCK) then
   begin
     State.BreakExpected := True;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_OPEN), State.DecrementIndent);
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_GENERALCONTENT), State.IncrementIndent);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_OPEN), State.DecrementIndent);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT), State.IncrementIndent);
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_DDL_RETURNS) or
-     (ContentElement.NodeName = XMLConstants.XML_MERGE_USING) or
-     (ContentElement.NodeName = XMLConstants.XML_MERGE_WHEN) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_DDL_RETURNS) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_MERGE_USING) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_MERGE_WHEN) then
   begin
     State.BreakExpected := True;
     State.UnIndentInitialBreak := True;
     ProcessSqlNodeList(ContentElement.SelectNodes('*'), State);
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_BETWEEN_CONDITION then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_BETWEEN_CONDITION then
   begin
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_OPEN), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_OPEN), State);
     State.IncrementIndent;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_BETWEEN_LOWERBOUND), State.IncrementIndent);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_BETWEEN_LOWERBOUND), State.IncrementIndent);
     if FExpandBetweenConditions then
       State.BreakExpected := True;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_CLOSE), State.DecrementIndent);
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_BETWEEN_UPPERBOUND), State.IncrementIndent);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_CLOSE), State.DecrementIndent);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_BETWEEN_UPPERBOUND), State.IncrementIndent);
     State.DecrementIndent;
     State.DecrementIndent;
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_DDLDETAIL_PARENS) or
-     (ContentElement.NodeName = XMLConstants.XML_FUNCTION_PARENS) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_DDLDETAIL_PARENS) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_FUNCTION_PARENS) then
   begin
     //simply process sub-nodes - don't add space or expect any linebreaks (but respect linebreaks if necessary)
     State.WordSeparatorExpected := False;
@@ -572,12 +572,12 @@ begin
     State.WordSeparatorExpected := True;
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_DDL_PARENS) or
-     (ContentElement.NodeName = XMLConstants.XML_EXPRESSION_PARENS) or
-     (ContentElement.NodeName = XMLConstants.XML_SELECTIONTARGET_PARENS) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_DDL_PARENS) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_EXPRESSION_PARENS) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_SELECTIONTARGET_PARENS) then
   begin
     WhiteSpaceSeparateWords(State);
-    if (ContentElement.NodeName = XMLConstants.XML_EXPRESSION_PARENS) then
+    if (ContentElement.NodeName = BCSQL.XMLConstants.XML_EXPRESSION_PARENS) then
       State.IncrementIndent;
     State.AddOutputContent(FormatOperator('('));
     InnerState := TSQLFormatterState.Create(State);
@@ -593,73 +593,73 @@ begin
     else
       State.Assimilate(InnerState);
     State.AddOutputContent(FormatOperator(')'));
-    if (ContentElement.NodeName = XMLConstants.XML_EXPRESSION_PARENS) then
+    if (ContentElement.NodeName = BCSQL.XMLConstants.XML_EXPRESSION_PARENS) then
       State.DecrementIndent;
     State.WordSeparatorExpected := True;
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_BEGIN_END_BLOCK) or
-     (ContentElement.NodeName = XMLConstants.XML_TRY_BLOCK) or
-     (ContentElement.NodeName = XMLConstants.XML_CATCH_BLOCK) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_BEGIN_END_BLOCK) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_TRY_BLOCK) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_CATCH_BLOCK) then
   begin
-    if (ContentElement.ParentNode.NodeName = XMLConstants.XML_SQL_CLAUSE) and
-       (ContentElement.ParentNode.ParentNode.NodeName = XMLConstants.XML_SQL_STATEMENT) and
-       (ContentElement.ParentNode.ParentNode.ParentNode.NodeName = XMLConstants.XML_CONTAINER_SINGLEStateMENT) then
+    if (ContentElement.ParentNode.NodeName = BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+       (ContentElement.ParentNode.ParentNode.NodeName = BCSQL.XMLConstants.XML_SQL_STATEMENT) and
+       (ContentElement.ParentNode.ParentNode.ParentNode.NodeName = BCSQL.XMLConstants.XML_CONTAINER_SINGLEStateMENT) then
       State.DecrementIndent;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_OPEN), State);
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_MULTISTATEMENT), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_OPEN), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_MULTISTATEMENT), State);
     State.DecrementIndent;
     State.BreakExpected := True;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_CLOSE), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_CLOSE), State);
     State.IncrementIndent;
-    if (ContentElement.ParentNode.NodeName = XMLConstants.XML_SQL_CLAUSE) and
-       (ContentElement.ParentNode.ParentNode.NodeName = XMLConstants.XML_SQL_STATEMENT)  and
-       (ContentElement.ParentNode.ParentNode.ParentNode.NodeName = XMLConstants.XML_CONTAINER_SINGLEStateMENT) then
+    if (ContentElement.ParentNode.NodeName = BCSQL.XMLConstants.XML_SQL_CLAUSE) and
+       (ContentElement.ParentNode.ParentNode.NodeName = BCSQL.XMLConstants.XML_SQL_STATEMENT)  and
+       (ContentElement.ParentNode.ParentNode.ParentNode.NodeName = BCSQL.XMLConstants.XML_CONTAINER_SINGLEStateMENT) then
       State.IncrementIndent;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_CASE_STATEMENT then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_CASE_STATEMENT then
   begin
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_OPEN), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_OPEN), State);
     State.IncrementIndent;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CASE_INPUT), State);
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CASE_WHEN), State);
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CASE_ELSE), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CASE_INPUT), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CASE_WHEN), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CASE_ELSE), State);
     if FExpandCaseStatements then
       State.BreakExpected := True;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_CLOSE), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_CLOSE), State);
     State.DecrementIndent;
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_CASE_WHEN) or
-     (ContentElement.NodeName = XMLConstants.XML_CASE_THEN) or
-     (ContentElement.NodeName = XMLConstants.XML_CASE_ELSE) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_CASE_WHEN) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_CASE_THEN) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_CASE_ELSE) then
   begin
     if FExpandCaseStatements then
       State.BreakExpected := True;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_OPEN), State);
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CONTAINER_GENERALCONTENT), State.IncrementIndent);
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_CASE_THEN), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_OPEN), State);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CONTAINER_GENERALCONTENT), State.IncrementIndent);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_CASE_THEN), State);
     State.DecrementIndent;
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_AND_OPERATOR) or
-     (ContentElement.NodeName = XMLConstants.XML_OR_OPERATOR) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_AND_OPERATOR) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_OR_OPERATOR) then
   begin
     if FExpandBooleanExpressions then
       State.BreakExpected := True;
     ProcessSqlNodeList(ContentElement.SelectNodes('*'), State);
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_COMMENT_MULTILINE then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_COMMENT_MULTILINE then
   begin
     WhiteSpaceSeparateComment(ContentElement, State);
     State.AddOutputContent('/*' + ContentElement.Text + '*/');
     RegEx := TRegEx.Create('(\r|\n)+');
     TempNode := ContentElement.NextSibling;
-    if (ContentElement.ParentNode.NodeName = XMLConstants.XML_SQL_STATEMENT) or
+    if (ContentElement.ParentNode.NodeName = BCSQL.XMLConstants.XML_SQL_STATEMENT) or
        ( Assigned(TempNode) and
-        (TempNode.NodeName = XMLConstants.XML_WHITESPACE) and
+        (TempNode.NodeName = BCSQL.XMLConstants.XML_WHITESPACE) and
         Regex.IsMatch(TempNode.Text) ) then
         //if this block comment is at the start or end of a Statement, or if it was followed by a
         // linebreak before any following content, then break here.
@@ -668,7 +668,7 @@ begin
       State.WordSeparatorExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_COMMENT_SINGLELINE then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_COMMENT_SINGLELINE then
   begin
     WhiteSpaceSeparateComment(ContentElement, State);
     State.AddOutputContent('--' + ContentElement.Text); // StringReplace(StringReplace(ContentElement.Text, '\r', '', [rfReplaceAll]), '\n', '', [rfReplaceAll]));
@@ -676,33 +676,33 @@ begin
     State.SourceBreakPending := True;
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_STRING) or
-     (ContentElement.NodeName = XMLConstants.XML_NSTRING) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_STRING) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_NSTRING) then
   begin
     WhiteSpaceSeparateWords(State);
     OutValue := '';
-    if ContentElement.NodeName = XMLConstants.XML_NSTRING then
+    if ContentElement.NodeName = BCSQL.XMLConstants.XML_NSTRING then
       OutValue := 'N';
     OutValue := OutValue + ContentElement.Text;
     State.AddOutputContent(OutValue);
     State.WordSeparatorExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_BRACKET_QUOTED_NAME then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_BRACKET_QUOTED_NAME then
   begin
     WhiteSpaceSeparateWords(State);
     State.AddOutputContent(ContentElement.Text);
     State.WordSeparatorExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_QUOTED_STRING then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_QUOTED_STRING then
   begin
     WhiteSpaceSeparateWords(State);
     State.AddOutputContent(ContentElement.Text);
     State.WordSeparatorExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_COMMA then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_COMMA then
   begin
     //comma always ignores requested word spacing
     if FTrailingCommas then
@@ -711,8 +711,8 @@ begin
       State.AddOutputContent(FormatOperator(','));
 
       if FExpandCommaLists and
-        not (Assigned(ContentElement.ParentNode) and ((ContentElement.ParentNode.NodeName = XMLConstants.XML_DDLDETAIL_PARENS) or
-             (ContentElement.ParentNode.NodeName = XMLConstants.XML_FUNCTION_PARENS))) then
+        not (Assigned(ContentElement.ParentNode) and ((ContentElement.ParentNode.NodeName = BCSQL.XMLConstants.XML_DDLDETAIL_PARENS) or
+             (ContentElement.ParentNode.NodeName = BCSQL.XMLConstants.XML_FUNCTION_PARENS))) then
         State.BreakExpected := True
       else
         State.WordSeparatorExpected := True;
@@ -720,8 +720,8 @@ begin
     else
     begin
       if FExpandCommaLists and
-        not (Assigned(ContentElement.ParentNode) and ((ContentElement.ParentNode.NodeName = XMLConstants.XML_DDLDETAIL_PARENS) or
-             (ContentElement.ParentNode.NodeName = XMLConstants.XML_FUNCTION_PARENS))) then
+        not (Assigned(ContentElement.ParentNode) and ((ContentElement.ParentNode.NodeName = BCSQL.XMLConstants.XML_DDLDETAIL_PARENS) or
+             (ContentElement.ParentNode.NodeName = BCSQL.XMLConstants.XML_FUNCTION_PARENS))) then
       begin
         State.WhiteSpaceBreakToNextLine;
         State.AddOutputContent(FormatOperator(','));
@@ -737,9 +737,9 @@ begin
     end
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_PERIOD) or
-     (ContentElement.NodeName = XMLConstants.XML_SEMICOLON) or
-     (ContentElement.NodeName = XMLConstants.XML_SCOPERESOLUTIONOPERATOR) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_PERIOD) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_SEMICOLON) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_SCOPERESOLUTIONOPERATOR) then
   begin
     //always ignores requested word spacing, and doesn't request a following space either.
     State.WordSeparatorExpected := False;
@@ -747,30 +747,30 @@ begin
     State.AddOutputContent(FormatOperator(ContentElement.Text));
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_ASTERISK) or
-     (ContentElement.NodeName = XMLConstants.XML_EQUALSSIGN) or
-     (ContentElement.NodeName = XMLConstants.XML_ALPHAOPERATOR) or
-     (ContentElement.NodeName = XMLConstants.XML_OTHEROPERATOR) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_ASTERISK) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_EQUALSSIGN) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_ALPHAOPERATOR) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_OTHEROPERATOR) then
   begin
     WhiteSpaceSeparateWords(State);
     State.AddOutputContent(FormatOperator(ContentElement.Text));
     State.WordSeparatorExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_COMPOUNDKEYWORD then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_COMPOUNDKEYWORD then
   begin
     WhiteSpaceSeparateWords(State);
-    State.SetRecentKeyword(ContentElement.Attributes[XMLConstants.XML_SIMPLETEXT]);
-    State.AddOutputContent(FormatKeyword(contentElement.Attributes[XMLConstants.XML_SIMPLETEXT]));
+    State.SetRecentKeyword(ContentElement.Attributes[BCSQL.XMLConstants.XML_SIMPLETEXT]);
+    State.AddOutputContent(FormatKeyword(contentElement.Attributes[BCSQL.XMLConstants.XML_SIMPLETEXT]));
 
     State.WordSeparatorExpected := True;
-    ProcessSqlNodeList(ContentElement.SelectNodes(XMLConstants.XML_COMMENT_MULTILINE + ' | ' + XMLConstants.XML_COMMENT_SINGLELINE), State.IncrementIndent);
+    ProcessSqlNodeList(ContentElement.SelectNodes(BCSQL.XMLConstants.XML_COMMENT_MULTILINE + ' | ' + BCSQL.XMLConstants.XML_COMMENT_SINGLELINE), State.IncrementIndent);
     State.DecrementIndent;
     State.WordSeparatorExpected := True;
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_OTHERKEYWORD) or
-     (ContentElement.NodeName = XMLConstants.XML_DATATYPE_KEYWORD) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_OTHERKEYWORD) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_DATATYPE_KEYWORD) then
   begin
     WhiteSpaceSeparateWords(State);
     State.SetRecentKeyword(ContentElement.Text);
@@ -778,14 +778,14 @@ begin
     State.WordSeparatorExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_PSEUDONAME then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_PSEUDONAME then
   begin
     WhiteSpaceSeparateWords(State);
     State.AddOutputContent(FormatKeyword(ContentElement.Text));
     State.WordSeparatorExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_FUNCTION_KEYWORD then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_FUNCTION_KEYWORD then
   begin
     WhiteSpaceSeparateWords(State);
     State.SetRecentKeyword(ContentElement.Text);
@@ -793,23 +793,23 @@ begin
     State.WordSeparatorExpected := True;
   end
   else
-  if (ContentElement.NodeName = XMLConstants.XML_OTHERNODE) or
-     (ContentElement.NodeName = XMLConstants.XML_MONETARY_VALUE) or
-     (ContentElement.NodeName = XMLConstants.XML_LABEL) then
+  if (ContentElement.NodeName = BCSQL.XMLConstants.XML_OTHERNODE) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_MONETARY_VALUE) or
+     (ContentElement.NodeName = BCSQL.XMLConstants.XML_LABEL) then
   begin
     WhiteSpaceSeparateWords(State);
     State.AddOutputContent(ContentElement.Text);
     State.WordSeparatorExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_NUMBER_VALUE then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_NUMBER_VALUE then
   begin
     WhiteSpaceSeparateWords(State);
     State.AddOutputContent(LowerCase(ContentElement.Text));
     State.WordSeparatorExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_BINARY_VALUE then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_BINARY_VALUE then
   begin
     WhiteSpaceSeparateWords(State);
     State.AddOutputContent('0x');
@@ -817,7 +817,7 @@ begin
     State.WordSeparatorExpected := True;
   end
   else
-  if ContentElement.NodeName = XMLConstants.XML_WHITESPACE then
+  if ContentElement.NodeName = BCSQL.XMLConstants.XML_WHITESPACE then
   begin
     //take note if it's a line-breaking space, but don't DO anything here
     if Regex.IsMatch(ContentElement.Text, '(\r|\n)+') then
@@ -860,7 +860,7 @@ begin
     //check whether this is a DECLARE/SET clause with similar precedent, and therefore exempt from double-linebreak.
     ThisClauseStarter := FirstSemanticElementChild(ContentElement);
     if not (Assigned(ThisClauseStarter) and
-        (ThisClauseStarter.NodeName = XMLConstants.XML_OTHERKEYWORD) and
+        (ThisClauseStarter.NodeName = BCSQL.XMLConstants.XML_OTHERKEYWORD) and
         (State.GetRecentKeyword <> '') and
         ( ((UpperCase(ThisClauseStarter.Text) = 'SET') and (State.GetRecentKeyword = 'SET')) or
           ((UpperCase(ThisClauseStarter.Text) = 'DECLARE') and (State.GetRecentKeyword = 'DECLARE')) or
@@ -882,13 +882,13 @@ begin
   while Assigned(ContentElement) do
   begin
     Result := IXMLElement(ContentElement.SelectSingleNode(SysUtils.Format('*[local-name != ''%s'' and local-name != ''%s'' and local-name != ''%s'']',
-      [XMLConstants.XML_WHITESPACE, XMLConstants.XML_COMMENT_MULTILINE, XMLConstants.XML_COMMENT_SINGLELINE])));
+      [BCSQL.XMLConstants.XML_WHITESPACE, BCSQL.XMLConstants.XML_COMMENT_MULTILINE, BCSQL.XMLConstants.XML_COMMENT_SINGLELINE])));
 
     if Assigned(Result) and
-      ( (Result.NodeName = XMLConstants.XML_SQL_CLAUSE) or
-        (Result.NodeName = XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
-        (Result.NodeName = XMLConstants.XML_DDL_OTHER_BLOCK) or
-        (Result.NodeName = XMLConstants.XML_DDL_DECLARE_BLOCK)) then
+      ( (Result.NodeName = BCSQL.XMLConstants.XML_SQL_CLAUSE) or
+        (Result.NodeName = BCSQL.XMLConstants.XML_DDL_PROCEDURAL_BLOCK) or
+        (Result.NodeName = BCSQL.XMLConstants.XML_DDL_OTHER_BLOCK) or
+        (Result.NodeName = BCSQL.XMLConstants.XML_DDL_DECLARE_BLOCK)) then
       ContentElement := Result
     else
       ContentElement := nil;
