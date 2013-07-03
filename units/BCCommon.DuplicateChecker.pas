@@ -42,6 +42,7 @@ type
   private
     FFileNames: TStrings;
     FOutputFile: TextFile;
+    FFileType: string;
     FMinBlockSize: Byte;
     FMinChars: Byte;
     FRemoveComments: Boolean;
@@ -50,7 +51,7 @@ type
     function ProcessFiles(FileName1: string; FileName2: string): Integer;
     procedure WriteOutput(Line1: Integer; Line2: Integer; Count: Integer; SourceFile1, SourceFile2: TSourceFile);
   public
-    constructor Create(InputFolder: string; OutputFileName: string; MinBlockSize: Byte; MinChars: Byte; RemoveComments: Boolean); overload;
+    constructor Create(InputFolder: string; FileType: string; OutputFileName: string; MinBlockSize: Byte; MinChars: Byte; RemoveComments: Boolean); overload;
     destructor Destroy; override;
     procedure Run;
   end;
@@ -207,7 +208,7 @@ end;
 
 { TDuplicateChecker }
 
-constructor TDuplicateChecker.Create(InputFolder: string; OutputFileName: string; MinBlockSize: Byte; MinChars: Byte;
+constructor TDuplicateChecker.Create(InputFolder: string; FileType: string; OutputFileName: string; MinBlockSize: Byte; MinChars: Byte;
   RemoveComments: Boolean);
 begin
   inherited Create;
@@ -216,6 +217,7 @@ begin
   FMinChars := MinChars;
   FRemoveComments := RemoveComments;
   FFileNames := GetFileNamesFromFolder(InputFolder);
+  FFileType := FileType;
   FDuplicateLines := 0;
   FTotalLineCount := 0;
   AssignFile(FOutputFile, OutputFileName);
