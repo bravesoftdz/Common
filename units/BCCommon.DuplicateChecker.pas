@@ -41,7 +41,6 @@ type
   TDuplicateChecker = class
   private
     FFileNames: TStrings;
-    FFileType: string;
     FOutputFile: TextFile;
     FMinBlockSize: Byte;
     FMinChars: Byte;
@@ -216,8 +215,7 @@ begin
   FMinBlockSize := MinBlockSize;
   FMinChars := MinChars;
   FRemoveComments := RemoveComments;
-  FFileNames := GetFileNamesFromFolder(InputFolder);
-  FFileType := FileType;
+  FFileNames := GetFileNamesFromFolder(InputFolder, FileType);
   FDuplicateLines := 0;
   FTotalLineCount := 0;
   AssignFile(FOutputFile, OutputFileName);
@@ -346,14 +344,14 @@ begin
   BlockCount := 0;
   try
     ReWrite(FOutputFile);
-    WriteLn(FOutputFile, '--- Comparing each file with each other ---');
+    WriteLn(FOutputFile, '--- Duplicate Checker ---');
     WriteLn(FOutputFile, '');
     { Compare each file with each other }
     for i := 0 to FFileNames.Count - 1 do
       for j := 0 to FFileNames.Count - 1 do
         if i <> j then
         begin
-          WriteLn(FOutputFile, Format('Files: %s and %s', [FFileNames[i], FFileNames[j]]));
+          WriteLn(FOutputFile, Format('Checking Files: %s and %s', [FFileNames[i], FFileNames[j]]));
           BlockCount := ProcessFiles(FFileNames[i], FFileNames[j]);
           if BlockCount > 0 then
             WriteLn(FOutputFile, Format('Found %d duplicate block(s).', [BlockCount]))

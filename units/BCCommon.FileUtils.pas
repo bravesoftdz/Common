@@ -13,10 +13,11 @@ type
     ftSQL, ftSML, ftST, ftTclTk, ftTeX, ftText, ftUNIXShellScript, ftVB, ftVBScript, ftVrml97,
     ftWebIDL, ftAsm, ftXML, ftYAML);
 
-function GetFileNamesFromFolder(Folder: string): TStrings;
+function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
 function GetFileType(FileName: string): TFileType;
 function GetFileVersion(Path: string): string;
 function GetINIFilename: string;
+function IsExtInFileType(Ext: string; FileType: string): Boolean;
 
 implementation
 
@@ -79,16 +80,20 @@ begin
   FreeMem(VerInfo, InfoSize);
 end;
 
-function GetFileNamesFromFolder(Folder: string): TStrings;
+function GetFileNamesFromFolder(Folder: string; FileType: string): TStrings;
 var
   SearchRec: TSearchRec;
 begin
   Result := TStringList.Create;
-  if FindFirst(AddSlash(Folder) + '*.*', faAnyFile, SearchRec) = 0 then
+  {$WARNINGS OFF} { faHidden is specific to a platform }
+  if FindFirst(AddSlash(Folder) + '*.*', faAnyFile - faHidden, SearchRec) = 0 then
+  {$WARNINGS ON}
   begin
     repeat
       if SearchRec.Attr <> faDirectory then
-        Result.Add(AddSlash(Folder) + SearchRec.Name);
+        if (FileType = '') or (FileType = '*.*') or
+          ((FileType <> '') and IsExtInFileType(ExtractFileExt(SearchRec.Name), FileType)) then
+          Result.Add(AddSlash(Folder) + SearchRec.Name);
     until FindNext(SearchRec) <> 0;
     System.SysUtils.FindClose(SearchRec);
   end;
@@ -97,6 +102,24 @@ end;
 function GetINIFilename: string;
 begin
   Result := ChangeFileExt(Application.EXEName, '.ini');
+end;
+
+function IsExtInFileType(Ext: string; FileType: string): Boolean;
+var
+  s, FileTypes: string;
+begin
+  Ext := '*' + Ext;
+  FileTypes := FileType;
+  if Pos(';', FileTypes) <> 0 then
+    while Pos(';', FileTypes) <> 0 do
+    begin
+      s := System.Copy(FileTypes, 1,  Pos(';', FileTypes) - 1);
+      Result := LowerCase(Ext) = LowerCase(s);
+      if Result then
+        Exit;
+      FileTypes := System.Copy(FileTypes, Pos(';', FileTypes) + 1, Length(FileTypes));
+    end;
+  Result := LowerCase(Ext) = LowerCase(FileTypes);
 end;
 
 end.
