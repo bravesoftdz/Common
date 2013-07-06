@@ -32,7 +32,7 @@ implementation
 
 uses
   System.SysUtils, System.IOUtils, Winapi.Windows, Winapi.ShellApi, Winapi.WinInet, System.StrUtils, Vcl.Forms,
-  System.UITypes, BCCommon.Messages, BCCommon.Language, BCDialogs.DownloadURL;
+  System.UITypes, BCCommon.Messages, BCCommon.LanguageStrings, BCDialogs.DownloadURL;
 
 function BinToInt(Value: String): LongInt;
 var

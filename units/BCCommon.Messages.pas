@@ -16,7 +16,7 @@ procedure ShowWarningMessage(Msg: string);
 implementation
 
 uses
-  Winapi.Windows, Vcl.Dialogs, Vcl.Forms, Vcl.StdCtrls, BCCommon.Language;
+  Winapi.Windows, Vcl.Dialogs, Vcl.Forms, Vcl.StdCtrls, BCCommon.LanguageStrings;
 
 function AskYesOrNo(Msg: string): Boolean;
 begin

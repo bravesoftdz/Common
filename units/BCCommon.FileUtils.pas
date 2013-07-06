@@ -22,7 +22,7 @@ function IsExtInFileType(Ext: string; FileType: string): Boolean;
 implementation
 
 uses
-  System.SysUtils, Winapi.Windows, BCCommon.Language, BCCommon.StringUtils, Vcl.Forms;
+  System.SysUtils, Winapi.Windows, BCCommon.LanguageStrings, BCCommon.StringUtils, Vcl.Forms;
 
 function GetFileType(FileName: string): TFileType;
 var
