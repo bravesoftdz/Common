@@ -58,7 +58,7 @@ type
 implementation
 
 uses
-  System.SysUtils, System.Math, BCCommon.Hash, BCCommon.StringUtils;
+  System.SysUtils, System.Math, BCCommon.Messages, BCCommon.Hash, BCCommon.StringUtils;
 
 { TSourceLine }
 
@@ -343,31 +343,36 @@ begin
   StartTime := Now;
   BlockCount := 0;
   try
-    ReWrite(FOutputFile);
-    WriteLn(FOutputFile, '--- Duplicate Checker ---');
-    WriteLn(FOutputFile, '');
-    { Compare each file with each other }
-    for i := 0 to FFileNames.Count - 1 do
-      for j := 0 to FFileNames.Count - 1 do
-        if i <> j then
-        begin
-          WriteLn(FOutputFile, Format('Checking Files: %s and %s', [FFileNames[i], FFileNames[j]]));
-          BlockCount := ProcessFiles(FFileNames[i], FFileNames[j]);
-          if BlockCount > 0 then
-            WriteLn(FOutputFile, Format('Found %d duplicate block(s).', [BlockCount]))
-          else
-            WriteLn(FOutputFile, 'Nothing found.');
-          WriteLn(FOutputFile, Format('Time Elapsed: %s', [System.SysUtils.FormatDateTime('hh:nn:ss.zzz', Now - StartTime)]));
-          WriteLn(FOutputFile, '');
-        end;
-    { Statistics }
-    WriteLn(FOutputFile, '--- Summary ---');
-    WriteLn(FOutputFile, Format('Duplicate Blocks: %d', [BlockCount]));
-    WriteLn(FOutputFile, Format('Duplicate Lines of Code: %d', [FDuplicateLines]));
-    WriteLn(FOutputFile, Format('Total Lines of Code: %d', [FTotalLineCount]));
-    WriteLn(FOutputFile, Format('Time Elapsed: %s', [System.SysUtils.FormatDateTime('hh:nn:ss.zzz', Now - StartTime)]));
-  finally
-    CloseFile(FOutputFile);
+    try
+      ReWrite(FOutputFile);
+      WriteLn(FOutputFile, '--- Duplicate Checker ---');
+      WriteLn(FOutputFile, '');
+      { Compare each file with each other }
+      for i := 0 to FFileNames.Count - 1 do
+        for j := 0 to FFileNames.Count - 1 do
+          //if i <> j then
+          begin
+            WriteLn(FOutputFile, Format('Checking Files: %s and %s', [FFileNames[i], FFileNames[j]]));
+            BlockCount := ProcessFiles(FFileNames[i], FFileNames[j]);
+            if BlockCount > 0 then
+              WriteLn(FOutputFile, Format('Found %d duplicate block(s).', [BlockCount]))
+            else
+              WriteLn(FOutputFile, 'Nothing found.');
+            WriteLn(FOutputFile, Format('Time Elapsed: %s', [System.SysUtils.FormatDateTime('hh:nn:ss.zzz', Now - StartTime)]));
+            WriteLn(FOutputFile, '');
+          end;
+      { Statistics }
+      WriteLn(FOutputFile, '--- Summary ---');
+      WriteLn(FOutputFile, Format('Duplicate Blocks: %d', [BlockCount]));
+      WriteLn(FOutputFile, Format('Duplicate Lines: %d', [FDuplicateLines]));
+      WriteLn(FOutputFile, Format('Total Lines: %d', [FTotalLineCount]));
+      WriteLn(FOutputFile, Format('Time Elapsed: %s', [System.SysUtils.FormatDateTime('hh:nn:ss.zzz', Now - StartTime)]));
+    finally
+      CloseFile(FOutputFile);
+    end;
+  except
+    on E: Exception do
+      ShowErrorMessage(E.Message);
   end;
 end;
 
