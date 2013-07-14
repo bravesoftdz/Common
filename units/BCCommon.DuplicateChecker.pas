@@ -268,7 +268,7 @@ begin
     begin
       SourceLine := SourceFile1.GetLine(y);
       for x := 0 to Count2 - 1 do
-        if SourceLine.Equals(SourceFile2.GetLine(x)) then
+        if SourceLine.IsEqual(SourceFile2.GetLine(x)) then
           MatchArray[x + Count2 * y] := True;
     end;
 
@@ -350,7 +350,7 @@ begin
       { Compare each file with each other }
       for i := 0 to FFileNames.Count - 1 do
         for j := 0 to FFileNames.Count - 1 do
-          //if i <> j then
+          if i <> j then
           begin
             WriteLn(FOutputFile, Format('Checking Files: %s and %s', [FFileNames[i], FFileNames[j]]));
             BlockCount := ProcessFiles(FFileNames[i], FFileNames[j]);
