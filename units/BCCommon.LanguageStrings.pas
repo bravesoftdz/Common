@@ -3,7 +3,7 @@ unit BCCommon.LanguageStrings;
 interface
 
 uses
-  System.SysUtils, System.Classes, BCControls.BCUnicodeStringHolder;
+  System.SysUtils, System.Classes, BCControls.UnicodeStringHolder;
 
 type
   TLanguageDataModule = class(TDataModule)
