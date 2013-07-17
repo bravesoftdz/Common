@@ -34,6 +34,7 @@ type
     destructor Destroy; override;
   end;
 
+  function GetRightPadding: Integer;
   function LightenColor(AColor: TColor; AFactor: Double = 0.2): TColor;
   procedure SetStyledFormSize(Dialog: TDialog);
   procedure UpdateHC11SynColors(HC11Syn: TSynHC11Syn; WhiteBackground: Boolean);
@@ -1226,6 +1227,24 @@ begin
       SynEdit.Color := clWindow;
   end;
   SynEdit.ActiveLineColor := SynEdit.Color;
+end;
+
+function GetRightPadding: Integer;
+var
+  LStyles: TCustomStyleServices;
+  PanelColor: TColor;
+begin
+  Result := 1;
+  LStyles := StyleServices;
+  PanelColor := clNone;
+  if LStyles.Enabled then
+    PanelColor := LStyles.GetStyleColor(scPanel);
+  if TStyleManager.ActiveStyle.Name = STYLENAME_WINDOWS then
+    Result := 3
+  else
+  if LStyles.Enabled and
+    (GetRValue(PanelColor) + GetGValue(PanelColor) + GetBValue(PanelColor) > 500) then
+    Result := 2;
 end;
 
 end.
