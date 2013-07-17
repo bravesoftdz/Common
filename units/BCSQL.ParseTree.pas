@@ -9,7 +9,7 @@ type
   { Note! For some reason TXMLNode in OmniXML does not add and release ref. This causes problems
     because the TXMLDocument will be destroyed as soon as possible.
 
-    Fix this by adding _AddRef to TXMLNode.Create and _Release to TXMLNode.Destroy.  }
+    Fix this by adding _AddRef to TXMLNode.Create and _Release to TXMLNode.Free.  }
   TSQLParseTree = class(TXMLDocument)
   private
     FCurrentContainer: IXMLElement;

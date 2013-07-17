@@ -140,7 +140,7 @@ begin
     XMLDocument.XML.Text := FormatXMLData(XMLDocument.XML.Text);
     Result := XMLDocument.XML.Text;
   finally
-    XMLDocument.Destroy;
+    XMLDocument.Free;
   end;
 end;
 
