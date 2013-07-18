@@ -13,6 +13,7 @@ type
     ftSQL, ftSML, ftST, ftTclTk, ftTeX, ftText, ftUNIXShellScript, ftVB, ftVBScript, ftVrml97,
     ftWebIDL, ftAsm, ftXML, ftYAML);
 
+function FormatFileName(FileName: string; Modified: Boolean = False): string;
 function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
 function GetFileType(FileName: string): TFileType;
 function GetFileVersion(Path: string): string;
@@ -120,6 +121,15 @@ begin
       FileTypes := System.Copy(FileTypes, Pos(';', FileTypes) + 1, Length(FileTypes));
     end;
   Result := LowerCase(Ext) = LowerCase(FileTypes);
+end;
+
+function FormatFileName(FileName: string; Modified: Boolean): string;
+begin
+  Result := Trim(FileName);
+  if Pos('~', Result) = Length(Result) then
+    Result := System.Copy(FileName, 0, Length(FileName) - 1);
+  if Modified then
+    Result := Format('%s~', [Result]);
 end;
 
 end.
