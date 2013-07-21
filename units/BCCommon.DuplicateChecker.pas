@@ -73,7 +73,7 @@ end;
 
 function TSourceLine.IsEqual(Line: TSourceLine): Boolean;
 begin
-  Result := FHash = Line.Hash;
+  Result := (FLine <> '') and (FHash = Line.Hash);
 end;
 
 { TSourceFile }
@@ -125,10 +125,10 @@ procedure TSourceFile.TrimLines(var StringList: TStrings);
 var
   i: Integer;
 begin
-  for i := StringList.Count - 1 downto 0 do
+  for i := 0 to StringList.Count do
   begin
     if not IsSourceLine(StringList.Strings[i]) then
-      StringList.delete(i)
+      StringList.Strings[i] := ''
     else
       StringList.Strings[i] := RemoveWhiteSpace(StringList.Strings[i]);
   end;
@@ -137,7 +137,6 @@ end;
 procedure TSourceFile.RemoveComments(var StringList: TStrings);
 var
   i: Integer;
-  s: string;
 
   procedure RemoveRowComment(Index: Integer; CommentChars: string);
   var
@@ -148,16 +147,33 @@ var
       StringList[Index] := Copy(StringList[Index], 1, p - 1);
   end;
 
-  procedure RemoveBlockComments(var Text: string; BeginChars: string; EndChars: string);
+  procedure RemoveBlockComments(BeginChars: string; EndChars: string);
   var
-    p, e: Integer;
+    i, BeginChar, EndChar: Integer;
+    InsideComment: Boolean;
   begin
-    p := Pos(BeginChars, Text);
-    while p > 0 do
+    InsideComment := False;
+    for i := 0 to StringList.Count - 1 do
     begin
-      e := Pos(EndChars, Text);
-      Text := Copy(Text, 1, p - 1) + Copy(Text, e + Length(BeginChars), Length(Text) - e - Length(EndChars) + 1);
-      p := Pos(BeginChars, Text);
+      BeginChar := Pos(BeginChars, StringList[i]);
+      EndChar := Pos(EndChars, StringList[i]);
+      if InsideComment and (BeginChar = -1) and (EndChar = -1) then
+        StringList[i] := '';
+      while (BeginChar <> 0) or (EndChar <> 0) do { for example: /* something */ something /* something else */ }
+      begin
+        if not InsideComment and (BeginChar <> 0) then
+        begin
+          InsideComment := True;
+          StringList[i] := Copy(StringList[i], 1, BeginChar - 1);
+        end;
+        if InsideComment and (EndChar <> 0) then
+        begin
+          InsideComment := False;
+          StringList[i] := StringList[i] + Copy(StringList[i], EndChar + 1, Length(StringList[i]));
+        end;
+        BeginChar := Pos(BeginChars, StringList[i]);
+        EndChar := Pos(EndChars, StringList[i]);
+      end;
     end;
   end;
 
@@ -172,22 +188,18 @@ begin
   end;
 
   { remove block comments }
-  s := StringList.Text;
-
   if FFileType in [ftPas] then
   begin
-    RemoveBlockComments(s, '{', '}');
-    RemoveBlockComments(s, '(*', '*)');
+    RemoveBlockComments('{', '}');
+    RemoveBlockComments('(*', '*)');
   end;
   if FFileType in [ftCPP, ftCS, ftJava, ftPas] then
-    RemoveBlockComments(s, '/*', '*/');
-
-  StringList.Text := s;
+    RemoveBlockComments('/*', '*/');
 end;
 
 function TSourceFile.IsSourceLine(Line: string): Boolean;
 begin
-  Result := (Length(Line) >= FMinChars) and (Trim(Line) <> '');
+  Result := Length(Line) >= FMinChars;
 end;
 
 function TSourceFile.GetRowCount: Integer;
@@ -302,7 +314,7 @@ begin
     end;
 
     { Scan horizontal part }
-    for x := 1 to Count2 - 1 do
+    for x := 0{1} to Count2 - 1 do
     begin
       SequenceLength := 0;
       MaxY := Min(Count1, Count2 - x);
@@ -337,33 +349,34 @@ end;
 
 procedure TDuplicateChecker.Run;
 var
-  i, j, BlockCount: Integer;
+  i, j, BlockCount, BlockCountSum: Integer;
   StartTime: TDateTime;
 begin
   StartTime := Now;
   BlockCount := 0;
+  BlockCountSum := 0;
   try
     try
       ReWrite(FOutputFile);
       WriteLn(FOutputFile, '--- Duplicate Checker ---');
       WriteLn(FOutputFile, '');
       { Compare each file with each other }
-      for i := 0 to FFileNames.Count - 1 do
-        for j := 0 to FFileNames.Count - 1 do
-          if i <> j then
-          begin
-            WriteLn(FOutputFile, Format('Checking Files: %s and %s', [FFileNames[i], FFileNames[j]]));
-            BlockCount := ProcessFiles(FFileNames[i], FFileNames[j]);
-            if BlockCount > 0 then
-              WriteLn(FOutputFile, Format('Found %d duplicate block(s).', [BlockCount]))
-            else
-              WriteLn(FOutputFile, 'Nothing found.');
-            WriteLn(FOutputFile, Format('Time Elapsed: %s', [System.SysUtils.FormatDateTime('hh:nn:ss.zzz', Now - StartTime)]));
-            WriteLn(FOutputFile, '');
-          end;
+      for i := 0 to FFileNames.Count - 2 do
+        for j := i + 1 to FFileNames.Count - 1 do
+        begin
+          WriteLn(FOutputFile, Format('Checking Files: %s and %s', [FFileNames[i], FFileNames[j]]));
+          BlockCount := ProcessFiles(FFileNames[i], FFileNames[j]);
+          BlockCountSum := BlockCountSum + BlockCount;
+          if BlockCount > 0 then
+            WriteLn(FOutputFile, Format('Found %d duplicate block(s).', [BlockCount]))
+          else
+            WriteLn(FOutputFile, 'Nothing found.');
+          WriteLn(FOutputFile, Format('Time Elapsed: %s', [System.SysUtils.FormatDateTime('hh:nn:ss.zzz', Now - StartTime)]));
+          WriteLn(FOutputFile, '');
+        end;
       { Statistics }
       WriteLn(FOutputFile, '--- Summary ---');
-      WriteLn(FOutputFile, Format('Duplicate Blocks: %d', [BlockCount]));
+      WriteLn(FOutputFile, Format('Duplicate Blocks: %d', [BlockCountSum]));
       WriteLn(FOutputFile, Format('Duplicate Lines: %d', [FDuplicateLines]));
       WriteLn(FOutputFile, Format('Total Lines: %d', [FTotalLineCount]));
       WriteLn(FOutputFile, Format('Time Elapsed: %s', [System.SysUtils.FormatDateTime('hh:nn:ss.zzz', Now - StartTime)]));
