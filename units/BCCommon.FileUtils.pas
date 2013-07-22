@@ -127,7 +127,7 @@ function FormatFileName(FileName: string; Modified: Boolean): string;
 begin
   Result := Trim(FileName);
   if Pos('~', Result) = Length(Result) then
-    Result := System.Copy(FileName, 0, Length(FileName) - 1);
+    Result := System.Copy(Result, 0, Length(Result) - 1);
   if Modified then
     Result := Format('%s~', [Result]);
 end;
