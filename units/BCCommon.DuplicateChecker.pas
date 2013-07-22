@@ -353,7 +353,6 @@ var
   StartTime: TDateTime;
 begin
   StartTime := Now;
-  BlockCount := 0;
   BlockCountSum := 0;
   try
     try
