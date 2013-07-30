@@ -7,9 +7,8 @@ function AnsiInitCap(Str: string): string;
 function DecryptString(Data: string): string;
 function EncryptString(Data: string): string;
 function FormatXML(XML: string): string;
-function GetNextToken(Separator: char; Text: string): string;
-function GetTextAfterChar(Separator: char; Text: string): string;
-function RemoveTokenFromStart(Separator: char; Text: string): string;
+function GetNextToken(Separator: Char; Text: string): string;
+function RemoveTokenFromStart(Separator: Char; Text: string): string;
 function RemoveWhiteSpace(const s: string): string;
 function StringBetween(Str: string; SubStr1: string; SunStr2: string): string;
 function WideUpperCase(const S: WideString): WideString;
@@ -98,19 +97,26 @@ begin
     end;
 end;
 
-function GetNextToken(Separator: char; Text: string): string;
+function GetNextToken(Separator: Char; Text: string): string;
+var
+  i: Integer;
 begin
-  Result := System.Copy(Text, 1, Pos(Separator, Text) - 1);
+  i := Pos(Separator, Text);
+  if i <> 0 then
+    Result := System.Copy(Text, 1, i - 1)
+  else
+    Result := Text;
 end;
 
-function RemoveTokenFromStart(Separator: char; Text: string): string;
+function RemoveTokenFromStart(Separator: Char; Text: string): string;
+var
+  i: Integer;
 begin
-  Result := System.Copy(Text, Pos(Separator, Text) + 1, Length(Text));
-end;
-
-function GetTextAfterChar(Separator: char; Text: string): string;
-begin
-  Result := System.Copy(Text, Pos(Separator, Text) + 1, Length(Text));
+  i := Pos(Separator, Text);
+  if i <> 0 then
+    Result := System.Copy(Text, i + 1, Length(Text))
+  else
+    Result := '';
 end;
 
 function RemoveWhiteSpace(const s: string): string;
