@@ -407,6 +407,21 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'Block'
         Strings.Strings = (
           'Block')
+      end
+      item
+        Name = 'Hide'
+        Strings.Strings = (
+          'Hide')
+      end
+      item
+        Name = 'Bottom'
+        Strings.Strings = (
+          'Bottom')
+      end
+      item
+        Name = 'Top'
+        Strings.Strings = (
+          'Top')
       end>
     Left = 88
     Top = 254
