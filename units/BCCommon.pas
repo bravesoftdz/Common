@@ -250,7 +250,7 @@ begin
   //Set up command line
   CmdLine := Cmd;
   if Length(Params) > 0 then
-    CmdLine := CmdLine + #32 + Params;
+    CmdLine := CmdLine + #32 + '"' + Params + '"';
   //Try and launch child process. Raise exception on failure
   {$WARNINGS OFF}
   Win32Check(CreateProcess(nil, PChar(CmdLine), nil, nil, False, 0, nil, nil, SI, PI));
