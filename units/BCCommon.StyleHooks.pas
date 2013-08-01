@@ -35,6 +35,7 @@ type
   end;
 
   function GetRightPadding: Integer;
+  function GetSplitterSize: Integer;
   function LightenColor(AColor: TColor; AFactor: Double = 0.2): TColor;
   procedure SetStyledFormSize(Dialog: TDialog);
   procedure UpdateHC11SynColors(HC11Syn: TSynHC11Syn; WhiteBackground: Boolean);
@@ -1245,6 +1246,17 @@ begin
   if LStyles.Enabled and
     (GetRValue(PanelColor) + GetGValue(PanelColor) + GetBValue(PanelColor) > 500) then
     Result := 2;
+end;
+
+function GetSplitterSize: Integer;
+var
+  LStyles: TCustomStyleServices;
+begin
+  LStyles := StyleServices;
+  if LStyles.Enabled then
+    Result := 3
+  else
+    Result := 4;
 end;
 
 end.
