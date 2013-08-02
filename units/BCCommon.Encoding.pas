@@ -6,39 +6,45 @@ uses
   System.SysUtils;
 
 type
-  TUTF8EncodingWithoutBOM = class(TUTF8Encoding)
+  TUTF8WithoutBOM = class(TUTF8Encoding)
   public
     function GetPreamble: TBytes; override;
   end;
 
-  function GetUTF8WithoutBOM: TEncoding;
+  TEncoding = class(System.SysUtils.TEncoding)
+  strict private
+  class var
+    FUTF8WithoutBOM: TEncoding;
+    class function GetUTF8WithoutBOM: TEncoding; static;
+  public
+    class property UTF8WithoutBOM: TEncoding read GetUTF8WithoutBOM;
+  end;
 
 implementation
 
 uses
   Winapi.Windows;
 
-var
-  FUTF8EncodingWithoutBOM: TEncoding;
+{ TUTF8WithoutBOM }
 
-{ TUTF8EncodingWithoutBOM }
-
-function TUTF8EncodingWithoutBOM.GetPreamble: TBytes;
+function TUTF8WithoutBOM.GetPreamble: TBytes;
 begin
   SetLength(Result, 0);
 end;
 
-function GetUTF8WithoutBOM: TEncoding;
+{ TEncoding }
+
+class function TEncoding.GetUTF8WithoutBOM: TEncoding;
 var
-  LEncoding: TEncoding;
+  LEncoding: System.SysUtils.TEncoding;
 begin
-  if not Assigned(FUTF8EncodingWithoutBOM) then
+  if not Assigned(FUTF8WithoutBOM) then
   begin
-    LEncoding := TUTF8EncodingWithoutBOM.Create;
-    if Assigned(InterlockedCompareExchangePointer(Pointer(FUTF8EncodingWithoutBOM), LEncoding, nil)) then
+    LEncoding := TUTF8WithoutBOM.Create;
+    if Assigned(AtomicCmpExchange(Pointer(FUTF8WithoutBOM), Pointer(LEncoding), nil)) then
       LEncoding.Free;
   end;
-  Result := FUTF8EncodingWithoutBOM;
+  Result := FUTF8WithoutBOM;
 end;
 
 

@@ -148,6 +148,10 @@ end;
 
 initialization
 
-  LanguageDataModule := TLanguageDataModule.Create(Nil);
+  LanguageDataModule := TLanguageDataModule.Create(nil);
+
+finalization
+
+  LanguageDataModule.Free;
 
 end.
