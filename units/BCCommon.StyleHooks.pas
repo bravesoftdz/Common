@@ -1228,6 +1228,7 @@ begin
       SynEdit.Color := clWindow;
   end;
   SynEdit.ActiveLineColor := SynEdit.Color;
+  SynEdit.Invalidate;
 end;
 
 function GetRightPadding: Integer;
