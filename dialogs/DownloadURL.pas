@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.ActnList, Vcl.StdCtrls, Vcl.ComCtrls, JvExComCtrls,
-  JvProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, Dlg, System.Actions;
+  BCControls.ProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, Dlg, System.Actions;
 
 type
   TDownloadURLDialog = class(TDialog)
@@ -15,7 +15,7 @@ type
     InformationLabel: TLabel;
     OKAction: TAction;
     Panel1: TPanel;
-    ProgressBar: TJvProgressBar;
+    ProgressBar: TBCProgressBar;
     ProgressPanel: TPanel;
     TopPanel: TPanel;
     procedure CancelActionExecute(Sender: TObject);

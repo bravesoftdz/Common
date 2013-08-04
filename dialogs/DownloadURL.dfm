@@ -48,7 +48,7 @@ object DownloadURLDialog: TDownloadURLDialog
       ExplicitTop = 18
       ExplicitWidth = 372
     end
-    object ProgressBar: TJvProgressBar
+    object ProgressBar: TBCProgressBar
       Left = 11
       Top = 46
       Width = 342
