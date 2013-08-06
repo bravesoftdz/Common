@@ -1,14 +1,14 @@
-unit Compare;
+unit BCFrames.Compare;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Diff, Vcl.Grids, Vcl.ExtCtrls, Vcl.StdCtrls, JvExStdCtrls,
-  Vcl.Mask, JvExMask, JvToolEdit, Vcl.Buttons, JvExControls, JvSpeedButton, BCEdit, JvStringGrid,
-  BCStringGrid, Vcl.ActnList, JvScrollBar, JvExForms, JvExExtCtrls, JvSplitter, JvExtComponent,
-  JvContentScroller, JvExGrids, JvEdit, JvCombobox, BCComboBox, Vcl.ImgList, System.Generics.Collections,
-  System.Actions;
+  Vcl.Mask, Vcl.Buttons, JvSpeedButton, BCControls.Edit, JvStringGrid,
+  BCControls.StringGrid, Vcl.ActnList, JvScrollBar, JvExForms, JvExExtCtrls, JvSplitter, JvExtComponent,
+  JvContentScroller, JvExGrids, JvEdit, JvCombobox, BCControls.ComboBox, Vcl.ImgList, System.Generics.Collections,
+  System.Actions, JvExControls;
 
 type
   TGridEventType = (etNone, etMouse, etKey);
@@ -161,7 +161,8 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, Hash, System.Math, System.Types, Vcl.Themes, Language, CommonDialogs, Options;
+  BCCommon.Hash, System.Math, System.Types, Vcl.Themes, BCCommon.LanguageStrings, BCCommon.Dialogs, Options,
+  BCCommon.Messages, BCCommon, BCCommon.LanguageUtils, BCCommon.StyleUtils;
 
 const
   TabChar = WideChar($2192);       //'->'
@@ -229,6 +230,8 @@ begin
   OldRightScrollBoxProc := RightScrollBox.WindowProc;
   LeftScrollBox.WindowProc := LeftScrollBoxWindowProc;
   RightScrollBox.WindowProc := RightScrollBoxWindowProc;
+
+  Panel.Padding.Right := GetRightPadding;
 end;
 
 function TCompareFrame.ToggleSpecialChars: Boolean;
@@ -487,13 +490,13 @@ end;
 
 procedure TCompareFrame.LeftDocumentButtonClickActionExecute(Sender: TObject);
 begin
-  if CommonDialogs.OpenFile(Handle, FilenameLeftMemo.Text,
+  if BCCommon.Dialogs.OpenFile(Handle, FilenameLeftMemo.Text,
     Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]),
     LanguageDataModule.GetConstant('Open')) then
   begin
     Application.ProcessMessages; { style fix }
-    FilenameLeftMemo.Text := CommonDialogs.Files[0];
-    OpenFileToLeftGrid(CommonDialogs.Files[0]);
+    FilenameLeftMemo.Text := BCCommon.Dialogs.Files[0];
+    OpenFileToLeftGrid(BCCommon.Dialogs.Files[0]);
   end;
 end;
 
@@ -828,10 +831,10 @@ end;
 procedure TCompareFrame.SaveGridChanges;
 begin
   if SaveLeftGridAction.Enabled then
-    if Common.SaveChanges(False) = mrYes then
+    if SaveChanges(False) = mrYes then
       SaveLeftGridAction.Execute;
   if SaveRightGridAction.Enabled then
-    if Common.SaveChanges(False) = mrYes then
+    if SaveChanges(False) = mrYes then
       SaveRightGridAction.Execute;
 end;
 
@@ -872,7 +875,7 @@ function TCompareFrame.CheckIfFileExists(Filename: string): Boolean;
 begin
   Result := FileExists(Filename);
   if not Result then
-    Common.ShowErrorMessage(Format(LanguageDataModule.GetErrorMessage('FileNotFound'), [Filename]))
+    ShowErrorMessage(Format(LanguageDataModule.GetErrorMessage('FileNotFound'), [Filename]))
 end;
 
 procedure TCompareFrame.OpenDocumentsLeftActionExecute(Sender: TObject);
@@ -911,7 +914,7 @@ begin
   RefreshAction.Enabled := (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);
   CopySelectionRightAction.Enabled := (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);
   CopySelectionLeftAction.Enabled := (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);
-  Common.AutoSizeCol(LeftGrid);
+  AutoSizeCol(LeftGrid);
   if FSourceRight.Count <> 0 then
     AutoSizeCol(RightGrid);
 
@@ -1007,13 +1010,13 @@ end;
 
 procedure TCompareFrame.RightDocumentButtonClickActionExecute(Sender: TObject);
 begin
-  if CommonDialogs.OpenFile(Handle, FilenameRightMemo.Text,
+  if BCCommon.Dialogs.OpenFile(Handle, FilenameRightMemo.Text,
     Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]),
     LanguageDataModule.GetConstant('Open')) then
   begin
     Application.ProcessMessages; { style fix }
-    FilenameRightMemo.Text := CommonDialogs.Files[0];
-    OpenFileToRightGrid(CommonDialogs.Files[0]);
+    FilenameRightMemo.Text := BCCommon.Dialogs.Files[0];
+    OpenFileToRightGrid(BCCommon.Dialogs.Files[0]);
   end;
 end;
 
@@ -1301,7 +1304,7 @@ end;
 
 procedure TCompareFrame.UpdateLanguage(SelectedLanguage: string);
 begin
-  Common.UpdateLanguage(Self, SelectedLanguage);
+  BCCommon.LanguageUtils.UpdateLanguage(TForm(Self), SelectedLanguage);
   LeftRightPanel.Width := Max(LeftLabel.Width + 10, RightLabel.Width + 10);
 end;
 

@@ -305,15 +305,14 @@ object CompareFrame: TCompareFrame
           BevelInner = bvNone
           BevelOuter = bvNone
           Anchors = [akLeft, akTop, akRight]
-          ReadOnly = False
           Sorted = True
           TabOrder = 1
-          Text = ''
           Visible = False
           OnChange = LeftComboBoxChangeActionExecute
           OnKeyPress = LeftComboBoxKeyPress
           EditColor = clInfoBk
           DeniedKeyStrokes = False
+          ReadOnly = False
           DropDownFixedWidth = 0
         end
         object FilenameLeftMemo: TMemo
@@ -400,15 +399,15 @@ object CompareFrame: TCompareFrame
         object LeftLabel: TLabel
           Left = 3
           Top = 3
-          Width = 52
-          Height = 16
+          Width = 44
+          Height = 13
           Caption = 'Left row:'
         end
         object RightLabel: TLabel
           Left = 3
           Top = 24
-          Width = 60
-          Height = 16
+          Width = 50
+          Height = 13
           Caption = 'Right row:'
         end
       end
@@ -1009,13 +1008,12 @@ object CompareFrame: TCompareFrame
           BevelInner = bvNone
           BevelOuter = bvNone
           Anchors = [akLeft, akTop, akRight]
-          ReadOnly = False
           TabOrder = 1
-          Text = ''
           OnChange = RightComboBoxChangeActionExecute
           OnKeyPress = LeftComboBoxKeyPress
           EditColor = clInfoBk
           DeniedKeyStrokes = False
+          ReadOnly = False
           DropDownFixedWidth = 0
         end
         object FilenameRightMemo: TMemo
@@ -1352,7 +1350,7 @@ object CompareFrame: TCompareFrame
     Left = 144
     Top = 136
     Bitmap = {
-      494C010101000800C00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800E00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
