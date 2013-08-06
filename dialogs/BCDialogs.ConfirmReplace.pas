@@ -1,10 +1,10 @@
-unit ConfirmReplace;
+unit BCDialogs.ConfirmReplace;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls,
-  Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, Dlg;
+  Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, BCDialogs.Dlg;
 
 type
   TConfirmReplaceDialog = class(TDialog)
@@ -29,7 +29,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Common, Vcl.Themes, StyleHooks, Language;
+  Vcl.Themes, BCCommon.StyleUtils, BCCommon.LanguageStrings;
 
 var
   FConfirmReplaceDialog: TConfirmReplaceDialog;
@@ -40,7 +40,7 @@ begin
     Application.CreateForm(TConfirmReplaceDialog, FConfirmReplaceDialog);
   Result := FConfirmReplaceDialog;
   Result.Width := Result.YesButton.Width * 4 + 40;
-  StyleHooks.SetStyledFormSize(Result);
+  SetStyledFormSize(Result);
 end;
 
 procedure TConfirmReplaceDialog.FormCreate(Sender: TObject);

@@ -1,11 +1,12 @@
-unit FindInFiles;
+unit BCDialogs.FindInFiles;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, JvExMask, JvToolEdit,
-  BCComboBox, JvExStdCtrls, JvCombobox, Vcl.Themes, Vcl.ActnList, Vcl.Buttons, JvEdit, BCEdit, Dlg, System.Actions;
+  BCControls.ComboBox, Vcl.Themes, Vcl.ActnList, Vcl.Buttons,
+  BCDialogs.Dlg, System.Actions, BCControls.Edit, JvExStdCtrls, JvEdit;
 
 type
   TFindInFilesDialog = class(TDialog)
@@ -25,17 +26,17 @@ type
     FolderLabel: TLabel;
     LeftPanel: TPanel;
     LookInSubfoldersCheckBox: TCheckBox;
-    Panel10: TPanel;
-    Panel11: TPanel;
-    Panel12: TPanel;
-    Panel2: TPanel;
-    Panel3: TPanel;
-    Panel4: TPanel;
-    Panel5: TPanel;
-    Panel6: TPanel;
-    Panel7: TPanel;
-    Panel8: TPanel;
-    Panel9: TPanel;
+    FindButtonPanel: TPanel;
+    CancelButtonPanel: TPanel;
+    FolderEdit2Panel: TPanel;
+    FindWhatPanel: TPanel;
+    FileTypePanel: TPanel;
+    FolderPanel: TPanel;
+    MiddlePanel: TPanel;
+    FindWhatComboPanel: TPanel;
+    FileTypeComboPanel: TPanel;
+    FolderEditPanel: TPanel;
+    CheckBoxPanel: TPanel;
     procedure FindWhatComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FolderButtonClickActionExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -68,7 +69,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, StyleHooks, System.Math, Language,
+  BCCommon.StyleUtils, System.Math, BCCommon.LanguageStrings, BCCommon.StringUtils, BCCommon,
   {$WARNINGS OFF}
   Vcl.FileCtrl; { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}
@@ -84,7 +85,7 @@ begin
     TStyleManager.Engine.RegisterStyleHook(TJvDirectoryEdit, TEditStyleHook);
   end;
   Result := FFindInFilesDialog;
-  StyleHooks.SetStyledFormSize(Result);
+  SetStyledFormSize(Result);
 end;
 
 procedure TFindInFilesDialog.FormDestroy(Sender: TObject);
@@ -114,7 +115,7 @@ end;
 
 function TFindInFilesDialog.GetFolderText: string;
 begin
-  Result := Common.AddSlash(FolderEdit.Text);
+  Result := AddSlash(FolderEdit.Text);
 end;
 
 procedure TFindInFilesDialog.SetFolderText(Value: string);
@@ -156,7 +157,7 @@ end;
 procedure TFindInFilesDialog.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   if ModalResult = mrOK then
-    Common.InsertTextToCombo(FindWhatComboBox);
+    InsertTextToCombo(FindWhatComboBox);
 end;
 
 procedure TFindInFilesDialog.SetExtensions(Value: string);

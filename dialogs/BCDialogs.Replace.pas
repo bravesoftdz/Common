@@ -1,4 +1,4 @@
-unit Replace;
+unit BCDialogs.Replace;
 
 {$I SynEdit.inc}
 
@@ -6,7 +6,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls,
-  Vcl.Forms, Dlg, Vcl.ExtCtrls, JvExStdCtrls, JvCombobox, BCComboBox, Vcl.StdCtrls;
+  Vcl.Forms, BCDialogs.Dlg, Vcl.ExtCtrls, BCControls.ComboBox, Vcl.StdCtrls;
 
 type
   TReplaceDialog = class(TDialog)
@@ -57,7 +57,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Common, Lib, Vcl.Themes, StyleHooks, System.Math;
+  Lib, Vcl.Themes, BCCommon.StyleUtils, System.Math, BCCommon;
 
 var
   FReplaceDialog: TReplaceDialog;
@@ -67,7 +67,7 @@ begin
   if not Assigned(FReplaceDialog) then
     Application.CreateForm(TReplaceDialog, FReplaceDialog);
   Result := FReplaceDialog;
-  StyleHooks.SetStyledFormSize(Result);
+  SetStyledFormSize(Result);
 end;
 
 procedure TReplaceDialog.FormDestroy(Sender: TObject);
@@ -126,8 +126,8 @@ begin
   inherited;
   if ModalResult = mrOK then
   begin
-    Common.InsertTextToCombo(SearchForComboBox);
-    Common.InsertTextToCombo(ReplaceWithComboBox);
+    InsertTextToCombo(SearchForComboBox);
+    InsertTextToCombo(ReplaceWithComboBox);
   end;
 end;
 

@@ -1,11 +1,11 @@
-unit DownloadURL;
+unit BCDialogs.DownloadURL;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.ActnList, Vcl.StdCtrls, Vcl.ComCtrls, JvExComCtrls,
-  BCControls.ProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, Dlg, System.Actions;
+  BCControls.ProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, BCDialogs.Dlg, System.Actions;
 
 type
   TDownloadURLDialog = class(TDialog)
@@ -39,7 +39,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common, Language, Vcl.Themes, CommonDialogs;
+  BCCommon.LanguageStrings, Vcl.Themes, BCCommon.Dialogs;
 
 var
   FDownloadURLDialog: TDownloadURLDialog;
@@ -78,7 +78,7 @@ var
 begin
   FCancel := False;
   Button.Action := CancelAction;
-  if CommonDialogs.SaveFile(Handle, '', Trim(StringReplace(LanguageDataModule.GetFileTypes('Zip')
+  if BCCommon.Dialogs.SaveFile(Handle, '', Trim(StringReplace(LanguageDataModule.GetFileTypes('Zip')
         , '|', #0, [rfReplaceAll])) + #0#0,
         LanguageDataModule.GetConstant('SaveAs'), FilterIndex, DefaultFileName, 'zip') then
   begin
@@ -87,7 +87,7 @@ begin
     with TDownloadURL.Create(Self) do
     try
       URL := DownloadURL;
-      FileName := CommonDialogs.Files[0];
+      FileName := BCCommon.Dialogs.Files[0];
       OnDownloadProgress := OnURLDownloadProgress;
       ExecuteTarget(nil);
     finally

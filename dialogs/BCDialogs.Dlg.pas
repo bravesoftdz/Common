@@ -1,4 +1,4 @@
-unit Dlg;
+unit BCDialogs.Dlg;
 
 interface
 
@@ -9,6 +9,7 @@ uses
 type
   TDialog = class(TForm)
     procedure FormShow(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     FOrigHeight: Integer;
@@ -25,7 +26,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Common;
+  BCCommon.LanguageUtils;
 
 constructor TDialog.Create(AOwner: TComponent);
 begin
@@ -34,9 +35,18 @@ begin
   FOrigHeight := Height;
 end;
 
+procedure TDialog.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #27 then
+  begin
+    Key := #0; { no beep }
+    Close;
+  end;
+end;
+
 procedure TDialog.FormShow(Sender: TObject);
 begin
-  Common.UpdateLanguage(Self);
+  BCCommon.LanguageUtils.UpdateLanguage(Self);
 end;
 
 end.

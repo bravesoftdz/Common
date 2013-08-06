@@ -30,7 +30,7 @@ object FindInFilesDialog: TFindInFilesDialog
     BevelOuter = bvNone
     Padding.Left = 8
     TabOrder = 0
-    object Panel10: TPanel
+    object FindButtonPanel: TPanel
       Left = 8
       Top = 0
       Width = 75
@@ -57,7 +57,7 @@ object FindInFilesDialog: TFindInFilesDialog
         TabOrder = 0
       end
     end
-    object Panel11: TPanel
+    object CancelButtonPanel: TPanel
       Left = 8
       Top = 31
       Width = 75
@@ -96,7 +96,7 @@ object FindInFilesDialog: TFindInFilesDialog
     BevelOuter = bvNone
     Padding.Right = 9
     TabOrder = 1
-    object Panel2: TPanel
+    object FindWhatPanel: TPanel
       Left = 0
       Top = 0
       Width = 50
@@ -119,7 +119,7 @@ object FindInFilesDialog: TFindInFilesDialog
         ExplicitHeight = 13
       end
     end
-    object Panel3: TPanel
+    object FileTypePanel: TPanel
       Left = 0
       Top = 24
       Width = 50
@@ -143,7 +143,7 @@ object FindInFilesDialog: TFindInFilesDialog
         ExplicitHeight = 13
       end
     end
-    object Panel4: TPanel
+    object FolderPanel: TPanel
       Left = 0
       Top = 49
       Width = 50
@@ -167,7 +167,7 @@ object FindInFilesDialog: TFindInFilesDialog
       end
     end
   end
-  object Panel5: TPanel
+  object MiddlePanel: TPanel
     Left = 71
     Top = 12
     Width = 333
@@ -179,7 +179,7 @@ object FindInFilesDialog: TFindInFilesDialog
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
-    object Panel6: TPanel
+    object FindWhatComboPanel: TPanel
       Left = 0
       Top = 0
       Width = 333
@@ -205,7 +205,7 @@ object FindInFilesDialog: TFindInFilesDialog
         DropDownFixedWidth = 0
       end
     end
-    object Panel7: TPanel
+    object FileTypeComboPanel: TPanel
       Left = 0
       Top = 24
       Width = 333
@@ -232,7 +232,7 @@ object FindInFilesDialog: TFindInFilesDialog
         DropDownFixedWidth = 0
       end
     end
-    object Panel8: TPanel
+    object FolderEditPanel: TPanel
       Left = 0
       Top = 48
       Width = 333
@@ -281,7 +281,7 @@ object FindInFilesDialog: TFindInFilesDialog
           00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
         TabOrder = 0
       end
-      object Panel12: TPanel
+      object FolderEdit2Panel: TPanel
         Left = 0
         Top = 0
         Width = 313
@@ -307,11 +307,12 @@ object FindInFilesDialog: TFindInFilesDialog
           NumbersWithDots = False
           NumbersWithSpots = False
           EditColor = clInfoBk
+          ErrorColor = clBlack
           NumbersAllowNegative = False
         end
       end
     end
-    object Panel9: TPanel
+    object CheckBoxPanel: TPanel
       Left = 0
       Top = 69
       Width = 333
