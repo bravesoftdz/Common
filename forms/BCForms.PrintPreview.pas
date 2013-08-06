@@ -1,4 +1,4 @@
-unit PrintPreview;
+unit BCForms.PrintPreview;
 
 interface
 
@@ -6,8 +6,8 @@ uses
   Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls,
   Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.ToolWin, Vcl.ActnList, Vcl.ImgList,
   SynEditPrintPreview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers, SynEditPrint,
-  JvExButtons, JvBitBtn, Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, BCPopupMenu,
-  JvExComCtrls, JvToolBar, BCToolBar, BCImageList;
+  JvExButtons, JvBitBtn, Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, BCControls.PopupMenu,
+  JvExComCtrls, JvToolBar, BCControls.ToolBar, BCControls.ImageList, System.Actions;
 
 type
   TPrintPreviewDialog = class(TForm)
@@ -81,7 +81,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Vcl.Themes, StyleHooks, Common, Language, CommonDialogs, WinApi.CommDlg;
+  Vcl.Themes, BCCommon.StyleUtils, BCCommon.LanguageUtils, BCCommon.Dialogs, WinApi.CommDlg, BCCommon.LanguageStrings;
 
 var
   FPrintPreviewDialog: TPrintPreviewDialog;
@@ -121,7 +121,7 @@ begin
   StatusBar.Font.Name := 'Tahoma'; // IDE is losing this for some reason... :/
   StatusBar.Font.Size := 8;
 
-  Common.UpdateLanguage(Self);
+  UpdateLanguage(Self);
 end;
 
 procedure TPrintPreviewDialog.FirstActionExecute(Sender: TObject);
@@ -165,7 +165,7 @@ procedure TPrintPreviewDialog.PrintSetupActionExecute(Sender: TObject);
 var
   PrintDlg: TPrintDlg;
 begin
-  if CommonDialogs.Print(SynEditPrintPreview.Handle, PrintDlg, True) then
+  if BCCommon.Dialogs.Print(SynEditPrintPreview.Handle, PrintDlg, True) then
   begin
     Application.ProcessMessages; { style fix }
     SynEditPrintPreview.FirstPage;
