@@ -133,7 +133,7 @@ begin
     Font.Name := 'Tahoma';
     Font.Style := [];
     Text := DefaultText;
-    EditColor := clWindow;
+    FocusOnColor := clWindow;
     DeniedKeyStrokes := True;
     //TextCompletion := False;
     ReadOnly := False;

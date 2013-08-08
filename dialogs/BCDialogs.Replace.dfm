@@ -157,11 +157,11 @@ object ReplaceDialog: TReplaceDialog
         Height = 21
         Align = alTop
         TabOrder = 0
+        StyleElements = [seFont, seBorder]
         OnKeyUp = SearchForComboBoxKeyUp
         DeniedKeyStrokes = False
         ReadOnly = False
-        FocusOnColor = clInfoBk
-        FocusOffColor = clWindow
+        EditColor = clInfoBk
         UseColoring = True
         DropDownFixedWidth = 0
       end
@@ -181,10 +181,10 @@ object ReplaceDialog: TReplaceDialog
         Height = 21
         Align = alTop
         TabOrder = 0
+        StyleElements = [seFont, seBorder]
         DeniedKeyStrokes = False
         ReadOnly = False
-        FocusOnColor = clInfoBk
-        FocusOffColor = clWindow
+        EditColor = clInfoBk
         UseColoring = True
         DropDownFixedWidth = 0
       end
