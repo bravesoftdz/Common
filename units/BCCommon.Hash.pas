@@ -3,7 +3,7 @@ unit BCCommon.Hash;
 interface
 
 uses
-  System.AnsiStrings, System.SysUtils;
+  System.SysUtils;
 
 function HashLine(const Line: string; IgnoreCase, IgnoreBlanks: Boolean): PLongWord; overload;
 function HashLine(const Line: string): LongWord; overload;
