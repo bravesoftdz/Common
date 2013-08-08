@@ -264,8 +264,8 @@ end;
 procedure TCompareFrame.DrawGridDrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 const
-  PaleRed: TColor = $6666FF;
-  PaleBlue: TColor = $FF6666;
+  PaleRed: TColor = $9999FF;
+  PaleBlue: TColor = $FF9999;
   PaleGray: TColor = $D0D0D0;
 var
   lclr, rclr: TColor;
@@ -291,13 +291,13 @@ begin
             begin
               if LStyles.Enabled then
               begin
-                lclr := LStyles.GetStyleColor(scEdit);
-                rclr := LStyles.GetStyleColor(scEdit);
+                lclr := LStyles.GetStyleColor(scPanel);
+                rclr := LStyles.GetStyleColor(scPanel);
               end
               else
               begin
-                lclr := clSilver;
-                rclr := clSilver;
+                lclr := clWhite;
+                rclr := clWhite;
               end;
 
               //if (ARow < FGridVisibleBottom) and (ARow >= FGridVisibleTop) then
@@ -305,56 +305,56 @@ begin
               begin
                 if LStyles.Enabled then
                 begin
-                  lclr := LStyles.GetStyleColor(scPanel);
-                  rclr := LStyles.GetStyleColor(scPanel);
+                  lclr := LStyles.GetStyleColor(scEdit);
+                  rclr := LStyles.GetStyleColor(scEdit);
                 end
                 else
                 begin
-                  lclr := clWhite;
-                  rclr := clWhite;
+                  lclr := clSilver;
+                  rclr := clSilver;
                 end;
               end;
             end;
           ckModify:
             begin
-              lclr := clRed;
-              rclr := clRed;
+              lclr := PaleRed;
+              rclr := PaleRed;
               if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
               begin
-                lclr := PaleRed;
-                rclr := PaleRed;
+                lclr := clRed;
+                rclr := clRed;
               end;
             end;
           ckDelete:
             begin
               if LStyles.Enabled then
-                rclr := LStyles.GetStyleColor(scPanel)
+                rclr := LStyles.GetStyleColor(scEdit)
               else
-                rclr := clBtnShadow;
-              lclr := clBlue;
+                rclr := PaleGray;
+              lclr := PaleBlue;
               if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
               begin
-                lclr := PaleBlue;
+                lclr := clBlue;
                 if LStyles.Enabled then
-                  rclr := LStyles.GetStyleColor(scEdit)
+                  rclr := LStyles.GetStyleColor(scPanel)
                 else
-                  rclr := PaleGray;
+                  rclr := clBtnShadow;
               end;
             end;
           ckAdd:
             begin
               if LStyles.Enabled then
-                  lclr := LStyles.GetStyleColor(scPanel)
-                else
-                  lclr := clBtnShadow;
-              rclr := clBlue;
+                lclr := LStyles.GetStyleColor(scEdit)
+              else
+                lclr := PaleGray;
+              rclr := PaleBlue;
               if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
               begin
                 if LStyles.Enabled then
-                  lclr := LStyles.GetStyleColor(scEdit)
+                  lclr := LStyles.GetStyleColor(scPanel)
                 else
-                  lclr := PaleGray;
-                rclr := PaleBlue;
+                  lclr := clBtnShadow;
+                rclr := clBlue;
               end;
             end;
         end;
