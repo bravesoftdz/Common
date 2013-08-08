@@ -199,9 +199,11 @@ object FindInFilesDialog: TFindInFilesDialog
         Align = alTop
         TabOrder = 0
         OnKeyUp = FindWhatComboBoxKeyUp
-        EditColor = clInfoBk
         DeniedKeyStrokes = False
         ReadOnly = False
+        FocusOnColor = clInfoBk
+        FocusOffColor = clWindow
+        UseColoring = True
         DropDownFixedWidth = 0
       end
     end
@@ -226,9 +228,11 @@ object FindInFilesDialog: TFindInFilesDialog
         DropDownCount = 20
         TabOrder = 0
         Text = '*.*'
-        EditColor = clInfoBk
         DeniedKeyStrokes = False
         ReadOnly = False
+        FocusOnColor = clInfoBk
+        FocusOffColor = clWindow
+        UseColoring = True
         DropDownFixedWidth = 0
       end
     end
@@ -303,12 +307,15 @@ object FindInFilesDialog: TFindInFilesDialog
           Align = alTop
           TabOrder = 0
           Text = ''
+          EnterToTab = False
           OnlyNumbers = False
           NumbersWithDots = False
           NumbersWithSpots = False
-          EditColor = clInfoBk
           ErrorColor = clBlack
           NumbersAllowNegative = False
+          FocusOnColor = clInfoBk
+          FocusOffColor = clWindow
+          UseColoring = True
         end
       end
     end

@@ -310,9 +310,11 @@ object CompareFrame: TCompareFrame
           Visible = False
           OnChange = LeftComboBoxChangeActionExecute
           OnKeyPress = LeftComboBoxKeyPress
-          EditColor = clInfoBk
           DeniedKeyStrokes = False
           ReadOnly = False
+          FocusOnColor = clInfoBk
+          FocusOffColor = clWindow
+          UseColoring = True
           DropDownFixedWidth = 0
         end
         object FilenameLeftMemo: TMemo
@@ -1011,9 +1013,11 @@ object CompareFrame: TCompareFrame
           TabOrder = 1
           OnChange = RightComboBoxChangeActionExecute
           OnKeyPress = LeftComboBoxKeyPress
-          EditColor = clInfoBk
           DeniedKeyStrokes = False
           ReadOnly = False
+          FocusOnColor = clInfoBk
+          FocusOffColor = clWindow
+          UseColoring = True
           DropDownFixedWidth = 0
         end
         object FilenameRightMemo: TMemo
@@ -1350,7 +1354,7 @@ object CompareFrame: TCompareFrame
     Left = 144
     Top = 136
     Bitmap = {
-      494C010101000800E00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000500040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

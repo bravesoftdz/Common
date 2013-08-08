@@ -108,9 +108,10 @@ object ReplaceDialog: TReplaceDialog
         Left = 0
         Top = 2
         Width = 50
-        Height = 13
+        Height = 23
         Align = alLeft
         Caption = 'Search for'
+        ExplicitHeight = 13
       end
     end
     object Panel5: TPanel
@@ -126,9 +127,10 @@ object ReplaceDialog: TReplaceDialog
         Left = 0
         Top = 2
         Width = 61
-        Height = 13
+        Height = 23
         Align = alLeft
         Caption = 'Replace with'
+        ExplicitHeight = 13
       end
     end
   end
@@ -156,9 +158,11 @@ object ReplaceDialog: TReplaceDialog
         Align = alTop
         TabOrder = 0
         OnKeyUp = SearchForComboBoxKeyUp
-        EditColor = clInfoBk
         DeniedKeyStrokes = False
         ReadOnly = False
+        FocusOnColor = clInfoBk
+        FocusOffColor = clWindow
+        UseColoring = True
         DropDownFixedWidth = 0
       end
     end
@@ -177,9 +181,11 @@ object ReplaceDialog: TReplaceDialog
         Height = 21
         Align = alTop
         TabOrder = 0
-        EditColor = clInfoBk
         DeniedKeyStrokes = False
         ReadOnly = False
+        FocusOnColor = clInfoBk
+        FocusOffColor = clWindow
+        UseColoring = True
         DropDownFixedWidth = 0
       end
     end
