@@ -3,7 +3,7 @@ unit BCCommon.FileUtils;
 interface
 
 uses
-  System.Classes;
+  Winapi.Windows, System.Classes;
 
 type
   TFileType = (ftHC11, ftAWK, ftBaan, ftCS, ftCPP, ftCAC, ftCache, ftCss, ftCobol, ftIdl,
@@ -17,13 +17,42 @@ function FormatFileName(FileName: string; Modified: Boolean = False): string;
 function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
 function GetFileType(FileName: string): TFileType;
 function GetFileVersion(Path: string): string;
+function GetIconIndex(Path: string; Flags: Cardinal = 0): Integer;
 function GetINIFilename: string;
+function FileIconInit(FullInit: BOOL): BOOL; stdcall;
 function IsExtInFileType(Ext: string; FileType: string): Boolean;
 
 implementation
 
 uses
-  System.SysUtils, Winapi.Windows, BCCommon.LanguageStrings, BCCommon.StringUtils, Vcl.Forms;
+  System.SysUtils, Winapi.ShellAPI, BCCommon.LanguageStrings, BCCommon.StringUtils, Vcl.Forms;
+
+function GetIconIndex(Path: string; Flags: Cardinal): Integer;
+var
+  SHFileInfo: TSHFileInfo;
+begin
+  if SHGetFileInfo(PChar(Path), 0, SHFileInfo, SizeOf(SHFileInfo), SHGFI_SYSICONINDEX or SHGFI_SMALLICON or Flags) = 0 then
+    Result := -1
+  else
+    Result := SHFileInfo.iIcon;
+end;
+
+function FileIconInit(FullInit: BOOL): BOOL; stdcall;
+type
+  TFileIconInit = function(FullInit: BOOL): BOOL; stdcall;
+var
+  ShellDLL: HMODULE;
+  PFileIconInit: TFileIconInit;
+begin
+  Result := False;
+  if Win32Platform = VER_PLATFORM_WIN32_NT then
+  begin
+    ShellDLL := LoadLibrary(PChar('shell32.dll'));
+    PFileIconInit := GetProcAddress(ShellDLL, PChar(660));
+    if Assigned(PFileIconInit) then
+      Result := PFileIconInit(FullInit);
+  end;
+end;
 
 function GetFileType(FileName: string): TFileType;
 var
