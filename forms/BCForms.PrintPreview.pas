@@ -27,7 +27,6 @@ type
     ModeToolBar: TBCToolBar;
     NextAction: TAction;
     NextToolButton: TToolButton;
-    PagewidthMenuItem: TMenuItem;
     Percent100MenuItem: TMenuItem;
     Percent200MenuItem: TMenuItem;
     Percent25MenuItem: TMenuItem;
@@ -41,7 +40,6 @@ type
     PrintSetupToolButton: TToolButton;
     PrintToolBar: TBCToolBar;
     PrintToolButton: TToolButton;
-    SeparatorMenuItem: TMenuItem;
     StatusBar: TStatusBar;
     SynEditPrintPreview: TSynEditPrintPreview;
     ToolBar: TBCToolBar;
@@ -66,6 +64,7 @@ type
     procedure SynEditPrintPreviewPreviewPage(Sender: TObject; PageNumber: Integer);
     procedure WordWrapActionExecute(Sender: TObject);
     procedure ZoomActionExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     FLeft: Integer;
@@ -81,7 +80,8 @@ implementation
 {$R *.DFM}
 
 uses
-  Vcl.Themes, BCCommon.StyleUtils, BCCommon.LanguageUtils, BCCommon.Dialogs, WinApi.CommDlg, BCCommon.LanguageStrings;
+  Vcl.Themes, BCCommon.StyleUtils, BCCommon.LanguageUtils, BCCommon.Dialogs, WinApi.CommDlg, BCCommon.LanguageStrings,
+  BCControls.StyleHooks;
 
 var
   FPrintPreviewDialog: TPrintPreviewDialog;
@@ -97,6 +97,12 @@ procedure TPrintPreviewDialog.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   Action := caFree;
+end;
+
+procedure TPrintPreviewDialog.FormCreate(Sender: TObject);
+begin
+  if Assigned(TStyleManager.Engine) then
+    TStyleManager.Engine.RegisterStyleHook(TSynEditPrintPreview, TSynEditStyleHook);
 end;
 
 procedure TPrintPreviewDialog.FormDestroy(Sender: TObject);
