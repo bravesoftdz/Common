@@ -308,13 +308,10 @@ object CompareFrame: TCompareFrame
           Sorted = True
           TabOrder = 1
           Visible = False
-          StyleElements = [seFont, seBorder]
           OnChange = LeftComboBoxChangeActionExecute
           OnKeyPress = LeftComboBoxKeyPress
           DeniedKeyStrokes = False
           ReadOnly = False
-          EditColor = clInfoBk
-          UseColoring = True
           DropDownFixedWidth = 0
         end
         object FilenameLeftMemo: TMemo
@@ -1011,13 +1008,10 @@ object CompareFrame: TCompareFrame
           BevelOuter = bvNone
           Anchors = [akLeft, akTop, akRight]
           TabOrder = 1
-          StyleElements = [seFont, seBorder]
           OnChange = RightComboBoxChangeActionExecute
           OnKeyPress = LeftComboBoxKeyPress
           DeniedKeyStrokes = False
           ReadOnly = False
-          EditColor = clInfoBk
-          UseColoring = True
           DropDownFixedWidth = 0
         end
         object FilenameRightMemo: TMemo
