@@ -278,9 +278,9 @@ begin
     with DrawGrid.Canvas do
     begin
       if LStyles.Enabled then
-        Brush.Color := LStyles.GetSystemColor(clBtnFace)
+        Brush.Color := LStyles.GetStyleColor(scPanel)
       else
-        Brush.Color := clBtnFace;
+        Brush.Color := clWhite;
       FillRect(Rect);
     end
     else
