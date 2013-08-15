@@ -138,12 +138,13 @@ object ConvertForm: TConvertForm
     Height = 41
     Align = alBottom
     BevelOuter = bvNone
+    Padding.Left = 8
     Padding.Top = 8
     Padding.Right = 6
     Padding.Bottom = 8
     TabOrder = 5
     object ConvertButton: TButton
-      Left = 236
+      Left = 319
       Top = 8
       Width = 75
       Height = 25
@@ -155,9 +156,10 @@ object ConvertForm: TConvertForm
       Align = alRight
       Default = True
       TabOrder = 0
+      ExplicitLeft = 236
     end
     object CancelButton: TButton
-      Left = 319
+      Left = 8
       Top = 8
       Width = 75
       Height = 25
@@ -166,17 +168,9 @@ object ConvertForm: TConvertForm
       Margins.Right = 4
       Margins.Bottom = 4
       Action = ResetAction
-      Align = alRight
+      Align = alLeft
       TabOrder = 1
-    end
-    object ButtonDividerPanel: TPanel
-      Left = 311
-      Top = 8
-      Width = 8
-      Height = 25
-      Align = alRight
-      BevelOuter = bvNone
-      TabOrder = 2
+      ExplicitLeft = 9
     end
   end
   object TypeComboBox: TBCComboBox

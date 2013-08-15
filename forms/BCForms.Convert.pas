@@ -16,7 +16,6 @@ type
     ButtonPanel: TPanel;
     ConvertButton: TButton;
     CancelButton: TButton;
-    ButtonDividerPanel: TPanel;
     TypeLabel: TLabel;
     TypeComboBox: TBCComboBox;
     FromLabel: TLabel;
@@ -72,7 +71,7 @@ end;
 
 procedure TConvertForm.ConvertActionExecute(Sender: TObject);
 begin
-  if TypeComboBox.ItemIndex = -1 then
+  if (TypeComboBox.ItemIndex = -1) or (FromComboBox.ItemIndex = -1) or (ToComboBox.ItemIndex = -1) then
     Exit;
   try
     if TypeComboBox.ItemIndex <> NumeralSystemItemIndex then
@@ -162,211 +161,37 @@ begin
 end;
 
 procedure TConvertForm.AddConvertTypes(ComboBox: TComboBox);
+var
+  i: Integer;
+  LTypes: TConvTypeArray;
+  ConvFamily: TConvFamily;
 begin
   with ComboBox.Items do
   begin
     Clear;
     case TypeComboBox.ItemIndex of
-    DistanceItemIndex:
-      begin
-        AddObject(LanguageDataModule.GetConvertConstant('Micromicrons'), TObject(duMicromicrons));
-        AddObject(LanguageDataModule.GetConvertConstant('Angstroms'), TObject(duAngstroms));
-        AddObject(LanguageDataModule.GetConvertConstant('Millimicrons'), TObject(duMillimicrons));
-        AddObject(LanguageDataModule.GetConvertConstant('Microns'), TObject(duMicrons));
-        AddObject(LanguageDataModule.GetConvertConstant('Millimeters'), TObject(duMillimeters));
-        AddObject(LanguageDataModule.GetConvertConstant('Centimeters'), TObject(duCentimeters));
-        AddObject(LanguageDataModule.GetConvertConstant('Decimeters'), TObject(duDecimeters));
-        AddObject(LanguageDataModule.GetConvertConstant('Meters'), TObject(duMeters));
-        AddObject(LanguageDataModule.GetConvertConstant('Decameters'), TObject(duDecameters));
-        AddObject(LanguageDataModule.GetConvertConstant('Hectometers'), TObject(duHectometers));
-        AddObject(LanguageDataModule.GetConvertConstant('Kilometers'), TObject(duKilometers));
-        AddObject(LanguageDataModule.GetConvertConstant('Megameters'), TObject(duMegameters));
-        AddObject(LanguageDataModule.GetConvertConstant('Gigameters'), TObject(duGigameters));
-        AddObject(LanguageDataModule.GetConvertConstant('Inches'), TObject(duInches));
-        AddObject(LanguageDataModule.GetConvertConstant('Feet'), TObject(duFeet));
-        AddObject(LanguageDataModule.GetConvertConstant('Yards'), TObject(duYards));
-        AddObject(LanguageDataModule.GetConvertConstant('Miles'), TObject(duMiles));
-         {
-          duNauticalMiles: TConvType;
-          duAstronomicalUnits: TConvType;
-          duLightYears: TConvType;
-          duParsecs: TConvType;
-          duCubits: TConvType;
-          duFathoms: TConvType;
-          duFurlongs: TConvType;
-          duHands: TConvType;
-          duPaces: TConvType;
-          duRods: TConvType;
-          duChains: TConvType;
-          duLinks: TConvType;
-          duPicas: TConvType;
-          duPoints: TConvType; }
-        end;
-      AreaItemIndex:
-        begin
-          {auSquareMillimeters: TConvType;
-  auSquareCentimeters: TConvType;
-  auSquareDecimeters: TConvType;
-  auSquareMeters: TConvType;
-  auSquareDecameters: TConvType;
-  auSquareHectometers: TConvType;
-  auSquareKilometers: TConvType;
-  auSquareInches: TConvType;
-  auSquareFeet: TConvType;
-  auSquareYards: TConvType;
-  auSquareMiles: TConvType;
-  auAcres: TConvType;
-  auCentares: TConvType;
-  auAres: TConvType;
-  auHectares: TConvType;
-  auSquareRods: TConvType;}
-        end;
-      VolumeItemIndex:
-        begin
-          (*vuCubicMillimeters: TConvType;
-  vuCubicCentimeters: TConvType;
-  vuCubicDecimeters: TConvType;
-  vuCubicMeters: TConvType;
-  vuCubicDecameters: TConvType;
-  vuCubicHectometers: TConvType;
-  vuCubicKilometers: TConvType;
-  vuCubicInches: TConvType;
-  vuCubicFeet: TConvType;
-  vuCubicYards: TConvType;
-  vuCubicMiles: TConvType;
-  vuMilliLiters: TConvType;
-  vuCentiLiters: TConvType;
-  vuDeciLiters: TConvType;
-  vuLiters: TConvType;
-  vuDecaLiters: TConvType;
-  vuHectoLiters: TConvType;
-  vuKiloLiters: TConvType;
-  vuAcreFeet: TConvType;
-  vuAcreInches: TConvType;
-  vuCords: TConvType;
-  vuCordFeet: TConvType;
-  vuDecisteres: TConvType;
-  vuSteres: TConvType;
-  vuDecasteres: TConvType;
-
-  vuFluidGallons: TConvType; { American Fluid Units }
-  vuFluidQuarts: TConvType;
-  vuFluidPints: TConvType;
-  vuFluidCups: TConvType;
-  vuFluidGills: TConvType;
-  vuFluidOunces: TConvType;
-  vuFluidTablespoons: TConvType;
-  vuFluidTeaspoons: TConvType;
-
-  vuDryGallons: TConvType; { American Dry Units }
-  vuDryQuarts: TConvType;
-  vuDryPints: TConvType;
-  vuDryPecks: TConvType;
-  vuDryBuckets: TConvType;
-  vuDryBushels: TConvType;
-
-  vuUKGallons: TConvType; { English Imperial Fluid/Dry Units }
-  vuUKPottles: TConvType;
-  vuUKQuarts: TConvType;
-  vuUKPints: TConvType;
-  vuUKGills: TConvType;
-  vuUKOunces: TConvType;
-  vuUKPecks: TConvType;
-  vuUKBuckets: TConvType;
-  vuUKBushels: TConvType;*)
-        end;
-      MassItemIndex:
-        begin
-          {muNanograms: TConvType;
-  muMicrograms: TConvType;
-  muMilligrams: TConvType;
-  muCentigrams: TConvType;
-  muDecigrams: TConvType;
-  muGrams: TConvType;
-  muDecagrams: TConvType;
-  muHectograms: TConvType;
-  muKilograms: TConvType;
-  muMetricTons: TConvType;
-  muDrams: TConvType; // Avoirdupois Units
-  muGrains: TConvType;
-  muLongTons: TConvType;
-  muTons: TConvType;
-  muOunces: TConvType;
-  muPounds: TConvType;
-  muStones: TConvType;}
-        end;
+      DistanceItemIndex: ConvFamily := cbDistance;
+      AreaItemIndex: ConvFamily := cbArea;
+      VolumeItemIndex: ConvFamily := cbVolume;
+      MassItemIndex: ConvFamily := cbMass;
       NumeralSystemItemIndex:
         begin
-        {Binary
-          Decimal
-          Hexadecimal}
+          Add(LanguageDataModule.GetConvertConstant('Binary'));
+          Add(LanguageDataModule.GetConvertConstant('Decimal'));
+          Add(LanguageDataModule.GetConvertConstant('Hexadecimal'));
+        end;
+      TempereatureItemIndex: ConvFamily := cbTemperature;
+      TimeItemIndex: ConvFamily := cbTime;
+    end;
 
-        end;
-      TempereatureItemIndex:
-        begin
-          {tuCelsius: TConvType;
-  tuKelvin: TConvType;
-  tuFahrenheit: TConvType;
-  tuRankine: TConvType;
-  tuReaumur: TConvType;}
-        end;
-      TimeItemIndex:
-        begin
-          {tuMilliSeconds: TConvType;
-  tuSeconds: TConvType;
-  tuMinutes: TConvType;
-  tuHours: TConvType;
-  tuDays: TConvType;
-  tuWeeks: TConvType;
-  tuFortnights: TConvType;
-  tuMonths: TConvType;
-  tuYears: TConvType;
-  tuDecades: TConvType;
-  tuCenturies: TConvType;
-  tuMillennia: TConvType;
-  tuDateTime: TConvType;
-  tuJulianDate: TConvType;
-  tuModifiedJulianDate: TConvType; }
-        end;
+    if TypeComboBox.ItemIndex <> NumeralSystemItemIndex then
+    begin
+      GetConvTypes(ConvFamily, LTypes);
+      for i := 0 to Length(LTypes) - 1 do
+        AddObject(LanguageDataModule.GetConvertConstant(ConvTypeToDescription(LTypes[i])), TObject(LTypes[i]));
     end;
   end;
+  ComboBox.DropDownCount := ComboBox.Items.Count;
 end;
-
-{procedure SetConvertTypes(ComboBox TBCComboBox);
-begin
-  if ConvertType = ctDistance then
-
-  duMicromicrons: TConvType;
-  duAngstroms: TConvType;
-  duMillimicrons: TConvType;
-  duMicrons: TConvType;
-  duMillimeters: TConvType;
-  duCentimeters: TConvType;
-  duDecimeters: TConvType;
-  duMeters: TConvType;
-  duDecameters: TConvType;
-  duHectometers: TConvType;
-  duKilometers: TConvType;
-  duMegameters: TConvType;
-  duGigameters: TConvType;
-  duInches: TConvType;
-  duFeet: TConvType;
-  duYards: TConvType;
-  duMiles: TConvType;
-  duNauticalMiles: TConvType;
-  duAstronomicalUnits: TConvType;
-  duLightYears: TConvType;
-  duParsecs: TConvType;
-  duCubits: TConvType;
-  duFathoms: TConvType;
-  duFurlongs: TConvType;
-  duHands: TConvType;
-  duPaces: TConvType;
-  duRods: TConvType;
-  duChains: TConvType;
-  duLinks: TConvType;
-  duPicas: TConvType;
-  duPoints: TConvType;
-end; }
 
 end.

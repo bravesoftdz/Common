@@ -824,9 +824,159 @@ object LanguageDataModule: TLanguageDataModule
           'Miles')
       end
       item
+        Name = 'NauticalMiles'
+        Strings.Strings = (
+          'Nautical Miles')
+      end
+      item
+        Name = 'AstronomicalUnits'
+        Strings.Strings = (
+          'Astronomical Units')
+      end
+      item
+        Name = 'LightYears'
+        Strings.Strings = (
+          'Light Years')
+      end
+      item
+        Name = 'Parsecs'
+        Strings.Strings = (
+          'Parsecs')
+      end
+      item
+        Name = 'Cubits'
+        Strings.Strings = (
+          'Cubits')
+      end
+      item
+        Name = 'Fathoms'
+        Strings.Strings = (
+          'Fathoms')
+      end
+      item
+        Name = 'Furlongs'
+        Strings.Strings = (
+          'Furlongs')
+      end
+      item
+        Name = 'Hands'
+        Strings.Strings = (
+          'Hands')
+      end
+      item
+        Name = 'Paces'
+        Strings.Strings = (
+          'Paces')
+      end
+      item
+        Name = 'Rods'
+        Strings.Strings = (
+          'Rods')
+      end
+      item
+        Name = 'Chains'
+        Strings.Strings = (
+          'Chains')
+      end
+      item
+        Name = 'Links'
+        Strings.Strings = (
+          'Links')
+      end
+      item
+        Name = 'Picas'
+        Strings.Strings = (
+          'Picas')
+      end
+      item
+        Name = 'Points'
+        Strings.Strings = (
+          'Points')
+      end
+      item
         Name = 'Area'
         Strings.Strings = (
           'Area')
+      end
+      item
+        Name = 'SquareMillimeters'
+        Strings.Strings = (
+          'Square Millimeters')
+      end
+      item
+        Name = 'SquareCentimeters'
+        Strings.Strings = (
+          'Square Centimeters')
+      end
+      item
+        Name = 'SquareDecimeters'
+        Strings.Strings = (
+          'Square Decimeters')
+      end
+      item
+        Name = 'SquareMeters'
+        Strings.Strings = (
+          'Square Meters')
+      end
+      item
+        Name = 'SquareDecameters'
+        Strings.Strings = (
+          'Square Decameters')
+      end
+      item
+        Name = 'SquareHectometers'
+        Strings.Strings = (
+          'Square Hectometers')
+      end
+      item
+        Name = 'SquareKilometers'
+        Strings.Strings = (
+          'Square Kilometers')
+      end
+      item
+        Name = 'SquareInches'
+        Strings.Strings = (
+          'Square Inches')
+      end
+      item
+        Name = 'SquareFeet'
+        Strings.Strings = (
+          'Square Feet')
+      end
+      item
+        Name = 'SquareYards'
+        Strings.Strings = (
+          'Square Yards')
+      end
+      item
+        Name = 'SquareMiles'
+        Strings.Strings = (
+          'Square Miles')
+      end
+      item
+        Name = 'Acres'
+        Strings.Strings = (
+          'Acres')
+      end
+      item
+        Name = 'Centares'
+        Strings.Strings = (
+          'Centares')
+      end
+      item
+        Name = 'Ares'
+        Strings.Strings = (
+          'Ares')
+      end
+      item
+        Name = 'Hectares'
+        Strings.Strings = (
+          'Hectares')
+      end
+      item
+        Name = 'SquareRods'
+        Strings.Strings = (
+          'Square Rods')
       end
       item
         Name = 'Volume'
@@ -834,9 +984,334 @@ object LanguageDataModule: TLanguageDataModule
           'Volume')
       end
       item
+        Name = 'CubicMillimeters'
+        Strings.Strings = (
+          'Cubic Millimeters')
+      end
+      item
+        Name = 'CubicCentimeters'
+        Strings.Strings = (
+          'Cubic Centimeters')
+      end
+      item
+        Name = 'CubicDecimeters'
+        Strings.Strings = (
+          'Cubic Decimeters')
+      end
+      item
+        Name = 'CubicMeters'
+        Strings.Strings = (
+          'Cubic Meters')
+      end
+      item
+        Name = 'CubicDecameters'
+        Strings.Strings = (
+          'Cubic Decameters')
+      end
+      item
+        Name = 'CubicHectometers'
+        Strings.Strings = (
+          'Cubic Hectometers')
+      end
+      item
+        Name = 'CubicKilometers'
+        Strings.Strings = (
+          'Cubic Kilometers')
+      end
+      item
+        Name = 'CubicInches'
+        Strings.Strings = (
+          'Cubic Inches')
+      end
+      item
+        Name = 'CubicFeet'
+        Strings.Strings = (
+          'Cubic Feet')
+      end
+      item
+        Name = 'CubicYards'
+        Strings.Strings = (
+          'Cubic Yards')
+      end
+      item
+        Name = 'CubicMiles'
+        Strings.Strings = (
+          'Cubic Miles')
+      end
+      item
+        Name = 'MilliLiters'
+        Strings.Strings = (
+          'Milli Liters')
+      end
+      item
+        Name = 'CentiLiters'
+        Strings.Strings = (
+          'Centi Liters')
+      end
+      item
+        Name = 'DeciLiters'
+        Strings.Strings = (
+          'Deci Liters')
+      end
+      item
+        Name = 'Liters'
+        Strings.Strings = (
+          'Liters')
+      end
+      item
+        Name = 'DecaLiters'
+        Strings.Strings = (
+          'Deca Liters')
+      end
+      item
+        Name = 'HectoLiters'
+        Strings.Strings = (
+          'Hecto Liters')
+      end
+      item
+        Name = 'KiloLiters'
+        Strings.Strings = (
+          'Kilo Liters')
+      end
+      item
+        Name = 'AcreFeet'
+        Strings.Strings = (
+          'Acre Feet')
+      end
+      item
+        Name = 'AcreInches'
+        Strings.Strings = (
+          'Acre Inches')
+      end
+      item
+        Name = 'Cords'
+        Strings.Strings = (
+          'Cords')
+      end
+      item
+        Name = 'CordFeet'
+        Strings.Strings = (
+          'Cord Feet')
+      end
+      item
+        Name = 'Decisteres'
+        Strings.Strings = (
+          'Decisteres')
+      end
+      item
+        Name = 'Steres'
+        Strings.Strings = (
+          'Steres')
+      end
+      item
+        Name = 'Decasteres'
+        Strings.Strings = (
+          'Decasteres')
+      end
+      item
+        Name = 'FluidGallons'
+        Strings.Strings = (
+          'Fluid Gallons')
+      end
+      item
+        Name = 'FluidPints'
+        Strings.Strings = (
+          'Fluid Pints')
+      end
+      item
+        Name = 'FluidQuarts'
+        Strings.Strings = (
+          'Fluid Quarts')
+      end
+      item
+        Name = 'FluidCups'
+        Strings.Strings = (
+          'Fluid Cups')
+      end
+      item
+        Name = 'FluidGills'
+        Strings.Strings = (
+          'Fluid Gills')
+      end
+      item
+        Name = 'FluidOunces'
+        Strings.Strings = (
+          'Fluid Ounces')
+      end
+      item
+        Name = 'FluidTablespoons'
+        Strings.Strings = (
+          'Fluid Tablespoons')
+      end
+      item
+        Name = 'FluidTeaspoons'
+        Strings.Strings = (
+          'Fluid Teaspoons')
+      end
+      item
+        Name = 'DryGallons'
+        Strings.Strings = (
+          'Dry Gallons')
+      end
+      item
+        Name = 'DryQuarts'
+        Strings.Strings = (
+          'Dry Quarts')
+      end
+      item
+        Name = 'DryPints'
+        Strings.Strings = (
+          'Dry Pints')
+      end
+      item
+        Name = 'DryPecks'
+        Strings.Strings = (
+          'Dry Pecks')
+      end
+      item
+        Name = 'DryBuckets'
+        Strings.Strings = (
+          'Dry Buckets')
+      end
+      item
+        Name = 'DryBushels'
+        Strings.Strings = (
+          'Dry Bushels')
+      end
+      item
+        Name = 'UKGallons'
+        Strings.Strings = (
+          'UK Gallons')
+      end
+      item
+        Name = 'UKPottle'
+        Strings.Strings = (
+          'UK Pottles')
+      end
+      item
+        Name = 'UKQuarts'
+        Strings.Strings = (
+          'UK Quarts')
+      end
+      item
+        Name = 'UKPints'
+        Strings.Strings = (
+          'UK Pints')
+      end
+      item
+        Name = 'UKGill'
+        Strings.Strings = (
+          'UK Gills')
+      end
+      item
+        Name = 'UKOunces'
+        Strings.Strings = (
+          'UK Ounces')
+      end
+      item
+        Name = 'UKPecks'
+        Strings.Strings = (
+          'UK Pecks')
+      end
+      item
+        Name = 'UKBuckets'
+        Strings.Strings = (
+          'UK Buckets')
+      end
+      item
+        Name = 'UKBushels'
+        Strings.Strings = (
+          'UK Bushels')
+      end
+      item
         Name = 'Mass'
         Strings.Strings = (
           'Mass')
+      end
+      item
+        Name = 'Nanograms'
+        Strings.Strings = (
+          'Nanograms')
+      end
+      item
+        Name = 'Micrograms'
+        Strings.Strings = (
+          'Micrograms')
+      end
+      item
+        Name = 'Milligrams'
+        Strings.Strings = (
+          'Milligrams')
+      end
+      item
+        Name = 'Centigrams'
+        Strings.Strings = (
+          'Centigrams')
+      end
+      item
+        Name = 'Decigrams'
+        Strings.Strings = (
+          'Decigrams')
+      end
+      item
+        Name = 'Grams'
+        Strings.Strings = (
+          'Grams')
+      end
+      item
+        Name = 'Decagrams'
+        Strings.Strings = (
+          'Decagrams')
+      end
+      item
+        Name = 'Hectograms'
+        Strings.Strings = (
+          'Hectograms')
+      end
+      item
+        Name = 'Kilograms'
+        Strings.Strings = (
+          'Kilograms')
+      end
+      item
+        Name = 'MetricTons'
+        Strings.Strings = (
+          'Metric Tons')
+      end
+      item
+        Name = 'Drams'
+        Strings.Strings = (
+          'Drams')
+      end
+      item
+        Name = 'Grains'
+        Strings.Strings = (
+          'Grains')
+      end
+      item
+        Name = 'LongTons'
+        Strings.Strings = (
+          'Long Tons')
+      end
+      item
+        Name = 'Tons'
+        Strings.Strings = (
+          'Tons')
+      end
+      item
+        Name = 'Ounces'
+        Strings.Strings = (
+          'Ounces')
+      end
+      item
+        Name = 'Pounds'
+        Strings.Strings = (
+          'Pounds')
+      end
+      item
+        Name = 'Stones'
+        Strings.Strings = (
+          'Stones')
       end
       item
         Name = 'NumeralSystem'
@@ -844,14 +1319,129 @@ object LanguageDataModule: TLanguageDataModule
           'Numeral System')
       end
       item
+        Name = 'Binary'
+        Strings.Strings = (
+          'Binary')
+      end
+      item
+        Name = 'Decimal'
+        Strings.Strings = (
+          'Decimal')
+      end
+      item
+        Name = 'Hexadecimal'
+        Strings.Strings = (
+          'Hexadecimal')
+      end
+      item
         Name = 'Temperature'
         Strings.Strings = (
           'Temperature')
       end
       item
+        Name = 'Celsius'
+        Strings.Strings = (
+          'Celsius')
+      end
+      item
+        Name = 'Kelvin'
+        Strings.Strings = (
+          'Kelvin')
+      end
+      item
+        Name = 'Fahrenheit'
+        Strings.Strings = (
+          'Fahrenheit')
+      end
+      item
         Name = 'Time'
         Strings.Strings = (
           'Time')
+      end
+      item
+        Name = 'Reaumur'
+        Strings.Strings = (
+          'Reaumur')
+      end
+      item
+        Name = 'Rankine'
+        Strings.Strings = (
+          'Rankine')
+      end
+      item
+        Name = 'MilliSeconds'
+        Strings.Strings = (
+          'Milli Seconds')
+      end
+      item
+        Name = 'Seconds'
+        Strings.Strings = (
+          'Seconds')
+      end
+      item
+        Name = 'Minutes'
+        Strings.Strings = (
+          'Minutes')
+      end
+      item
+        Name = 'Hours'
+        Strings.Strings = (
+          'Hours')
+      end
+      item
+        Name = 'Days'
+        Strings.Strings = (
+          'Days')
+      end
+      item
+        Name = 'Weeks'
+        Strings.Strings = (
+          'Weeks')
+      end
+      item
+        Name = 'Fortnights'
+        Strings.Strings = (
+          'Fortnights')
+      end
+      item
+        Name = 'Months'
+        Strings.Strings = (
+          'Months')
+      end
+      item
+        Name = 'Years'
+        Strings.Strings = (
+          'Years')
+      end
+      item
+        Name = 'Decades'
+        Strings.Strings = (
+          'Decades')
+      end
+      item
+        Name = 'Centuries'
+        Strings.Strings = (
+          'Centuries')
+      end
+      item
+        Name = 'Millennia'
+        Strings.Strings = (
+          'Millennia')
+      end
+      item
+        Name = 'DateTime'
+        Strings.Strings = (
+          'Date Time')
+      end
+      item
+        Name = 'JulianDate'
+        Strings.Strings = (
+          'Julian Date')
+      end
+      item
+        Name = 'ModifiedJulianDate'
+        Strings.Strings = (
+          'Modified Julian Date')
       end>
     Left = 92
     Top = 380
