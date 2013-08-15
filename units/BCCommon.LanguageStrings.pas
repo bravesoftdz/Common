@@ -13,11 +13,13 @@ type
     MessageMultiStringHolder: TBCMultiStringHolder;
     WarningMessageMultiStringHolder: TBCMultiStringHolder;
     YesOrNoMultiStringHolder: TBCMultiStringHolder;
+    ConvertConstantMultiStringHolder: TBCMultiStringHolder;
   private
     { Private declarations }
   public
     { Public declarations }
     function GetConstant(Name: string): string;
+    function GetConvertConstant(Name: string): string;
     function GetErrorMessage(Name: string): string;
     function GetFileTypes(Name: string): string;
     function GetMessage(Name: string): string;
@@ -135,6 +137,11 @@ end;
 function TLanguageDataModule.GetConstant(Name: string): string;
 begin
   Result := Trim(ConstantMultiStringHolder.StringsByName[Name].Text);
+end;
+
+function TLanguageDataModule.GetConvertConstant(Name: string): string;
+begin
+  Result := Trim(ConvertConstantMultiStringHolder.StringsByName[Name].Text);
 end;
 
 function TLanguageDataModule.GetPConstant(Name: string): PWideChar;

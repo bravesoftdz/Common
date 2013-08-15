@@ -1,7 +1,7 @@
 object LanguageDataModule: TLanguageDataModule
   OldCreateOrder = False
-  Height = 390
-  Width = 229
+  Height = 492
+  Width = 257
   object YesOrNoMultiStringHolder: TBCMultiStringHolder
     MultipleStrings = <
       item
@@ -730,5 +730,70 @@ object LanguageDataModule: TLanguageDataModule
       end>
     Left = 90
     Top = 314
+  end
+  object ConvertConstantMultiStringHolder: TBCMultiStringHolder
+    MultipleStrings = <
+      item
+        Name = 'Distance'
+        Strings.Strings = (
+          'Distance')
+      end
+      item
+        Name = 'Micromicrons'
+        Strings.Strings = (
+          'Micromicrons')
+      end
+      item
+        Name = 'Angstroms'
+        Strings.Strings = (
+          'Angstroms')
+      end
+      item
+        Name = 'Millimicrons'
+        Strings.Strings = (
+          'Millimicrons')
+      end
+      item
+        Name = 'Microns'
+        Strings.Strings = (
+          'Microns')
+      end
+      item
+        Name = 'Millimeters'
+        Strings.Strings = (
+          'Millimeters')
+      end
+      item
+        Name = 'Area'
+        Strings.Strings = (
+          'Area')
+      end
+      item
+        Name = 'Volume'
+        Strings.Strings = (
+          'Volume')
+      end
+      item
+        Name = 'Mass'
+        Strings.Strings = (
+          'Mass')
+      end
+      item
+        Name = 'NumeralSystem'
+        Strings.Strings = (
+          'Numeral System')
+      end
+      item
+        Name = 'Temperature'
+        Strings.Strings = (
+          'Temperature')
+      end
+      item
+        Name = 'Time'
+        Strings.Strings = (
+          'Time')
+      end>
+    Left = 92
+    Top = 380
   end
 end
