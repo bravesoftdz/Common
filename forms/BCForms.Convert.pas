@@ -32,11 +32,19 @@ type
     procedure ResetActionExecute(Sender: TObject);
   private
     { Private declarations }
+    function BinToHex(BinStr: string): string; overload;
+    function HexToBin(HexStr: string): string; overload;
     procedure AddConvertFamilies;
     procedure AddConvertTypes; overload;
     procedure AddConvertTypes(ComboBox: TComboBox); overload;
     procedure ReadIniFile;
     procedure WriteIniFile;
+    procedure DecToHex;
+    procedure HexToDec;
+    procedure DecToBin;
+    procedure BinToDec;
+    procedure HexToBin; overload;
+    procedure BinToHex; overload;
   public
     { Public declarations }
     procedure Open;
@@ -49,7 +57,8 @@ implementation
 {$R *.dfm}
 
 uses
-  System.IniFiles, BCCommon.FileUtils, System.ConvUtils, System.StdConvs, BCCommon.LanguageStrings;
+  System.IniFiles, BCCommon.FileUtils, System.ConvUtils, System.StdConvs, BCCommon.LanguageStrings, BCCommon,
+  BCCommon.Messages;
 
 const
   DistanceItemIndex = 0;
@@ -81,7 +90,20 @@ begin
         TConvType(ToComboBox.Items.Objects[ToComboBox.ItemIndex])))
     else
     begin
-      { binary decimal hexadecimal }
+      case FromComboBox.ItemIndex of
+        0: case ToComboBox.ItemIndex of
+             1: BinToDec;
+             2: BinToHex;
+           end;
+        1: case ToComboBox.ItemIndex of
+             0: DecToBin;
+             2: DecToHex;
+           end;
+        2: case ToComboBox.ItemIndex of
+             0: HexToBin;
+             1: HexToDec;
+           end;
+      end;
     end;
   except
     ResultEdit.Text := '###';
@@ -210,6 +232,103 @@ begin
     end;
   end;
   ComboBox.DropDownCount := ComboBox.Items.Count;
+end;
+
+procedure TConvertForm.DecToHex;
+begin
+  ResultEdit.Text := IntToHex(StrToInt(ValueEdit.Text), 2);
+end;
+
+procedure TConvertForm.HexToDec;
+begin
+  ResultEdit.Text := IntToStr(StrToInt('$' + ValueEdit.Text));
+end;
+
+procedure TConvertForm.DecToBin;
+begin
+  ResultEdit.Text := IntToBin(StrToInt(ValueEdit.Text), Length(ValueEdit.Text) * 4);
+end;
+
+procedure TConvertForm.BinToDec;
+begin
+  ResultEdit.Text := IntToStr(BinToInt(ValueEdit.Text));
+end;
+
+function TConvertForm.HexToBin(HexStr: string): string;
+const
+  BinArray: array[0..15, 0..1] of string =
+    (('0000', '0'), ('0001', '1'), ('0010', '2'), ('0011', '3'),
+     ('0100', '4'), ('0101', '5'), ('0110', '6'), ('0111', '7'),
+     ('1000', '8'), ('1001', '9'), ('1010', 'A'), ('1011', 'B'),
+     ('1100', 'C'), ('1101', 'D'), ('1110', 'E'), ('1111', 'F'));
+  HexAlpha: set of AnsiChar = ['0'..'9', 'A'..'F'];
+var
+  i, j: Integer;
+begin
+  Result := '';
+  HexStr := AnsiUpperCase(HexStr);
+  for i:= 1 to Length(HexStr) do
+    if CharInSet(HexStr[i], HexAlpha) then
+    begin
+      for j := 1 to 16 do
+        if HexStr[i] = BinArray[j - 1, 1] then
+          Result := Result + BinArray[j - 1, 0];
+    end
+    else
+    begin
+      Result := '';
+      ShowErrorMessage('This is not hexadecimal number.');
+      Exit;
+    end;
+  if Result <> '' then
+    while (Result[1] = '0') and (Length(Result) > 1) do
+      Delete(Result, 1, 1);
+end;
+
+procedure TConvertForm.HexToBin;
+begin
+  ResultEdit.Text := HexToBin(ValueEdit.Text);
+end;
+
+function TConvertForm.BinToHex(BinStr: string): string;
+const
+  BinArray: array[0..15, 0..1] of string =
+    (('0000', '0'), ('0001', '1'), ('0010', '2'), ('0011', '3'),
+     ('0100', '4'), ('0101', '5'), ('0110', '6'), ('0111', '7'),
+     ('1000', '8'), ('1001', '9'), ('1010', 'A'), ('1011', 'B'),
+     ('1100', 'C'), ('1101', 'D'), ('1110', 'E'), ('1111', 'F'));
+var
+  j: Integer;
+  BinPart: string;
+begin
+  Result := '';
+
+  for j := 1 to Length(BinStr) do
+    if not CharInSet(BinStr[j], ['0', '1']) then
+    begin
+      ShowErrorMessage('This is not binary number');
+      Exit;
+    end;
+
+  case Length(BinStr) mod 4 of
+    1: BinStr := '000'+BinStr;
+    2: BinStr := '00'+BinStr;
+    3: BinStr := '0'+BinStr;
+  end;
+
+  while Length(BinStr) > 0 do
+  begin
+    BinPart := Copy(BinStr, Length(BinStr) - 3, 4);
+    Delete(BinStr, Length(BinStr) - 3, 4);
+    for j := 1 to 16 do
+      if BinPart = BinArray[j - 1, 0] then
+        Result := BinArray[j - 1, 1] + Result;
+  end;
+end;
+
+procedure TConvertForm.BinToHex;
+begin
+  ResultEdit.Text := BinToHex(ValueEdit.Text);
 end;
 
 end.
