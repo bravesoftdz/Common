@@ -764,6 +764,66 @@ object LanguageDataModule: TLanguageDataModule
           'Millimeters')
       end
       item
+        Name = 'Centimeters'
+        Strings.Strings = (
+          'Centimeters')
+      end
+      item
+        Name = 'Decimeters'
+        Strings.Strings = (
+          'Decimeters')
+      end
+      item
+        Name = 'Meters'
+        Strings.Strings = (
+          'Meters')
+      end
+      item
+        Name = 'Decameters'
+        Strings.Strings = (
+          'Decameters')
+      end
+      item
+        Name = 'Hectometers'
+        Strings.Strings = (
+          'Hectometers')
+      end
+      item
+        Name = 'Kilometers'
+        Strings.Strings = (
+          'Kilometers')
+      end
+      item
+        Name = 'Megameters'
+        Strings.Strings = (
+          'Megameters')
+      end
+      item
+        Name = 'Gigameters'
+        Strings.Strings = (
+          'Gigameters')
+      end
+      item
+        Name = 'Inches'
+        Strings.Strings = (
+          'Inches')
+      end
+      item
+        Name = 'Feet'
+        Strings.Strings = (
+          'Feet')
+      end
+      item
+        Name = 'Yards'
+        Strings.Strings = (
+          'Yards')
+      end
+      item
+        Name = 'Miles'
+        Strings.Strings = (
+          'Miles')
+      end
+      item
         Name = 'Area'
         Strings.Strings = (
           'Area')

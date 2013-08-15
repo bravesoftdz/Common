@@ -72,10 +72,17 @@ end;
 
 procedure TConvertForm.ConvertActionExecute(Sender: TObject);
 begin
+  if TypeComboBox.ItemIndex = -1 then
+    Exit;
   try
-    ResultEdit.Text := FormatFloat('#,0.00', System.ConvUtils.Convert(StrToFloat(ValueEdit.Text),
-      TConvType(FromComboBox.Items.Objects[FromComboBox.ItemIndex]),
-      TConvType(ToComboBox.Items.Objects[ToComboBox.ItemIndex])));
+    if TypeComboBox.ItemIndex <> NumeralSystemItemIndex then
+      ResultEdit.Text := FloatToStr(System.ConvUtils.Convert(StrToFloat(ValueEdit.Text),
+        TConvType(FromComboBox.Items.Objects[FromComboBox.ItemIndex]),
+        TConvType(ToComboBox.Items.Objects[ToComboBox.ItemIndex])))
+    else
+    begin
+      { binary decimal hexadecimal }
+    end;
   except
     ResultEdit.Text := '###';
   end;
@@ -159,7 +166,6 @@ begin
   with ComboBox.Items do
   begin
     Clear;
-    {}
     case TypeComboBox.ItemIndex of
     DistanceItemIndex:
       begin
@@ -168,19 +174,19 @@ begin
         AddObject(LanguageDataModule.GetConvertConstant('Millimicrons'), TObject(duMillimicrons));
         AddObject(LanguageDataModule.GetConvertConstant('Microns'), TObject(duMicrons));
         AddObject(LanguageDataModule.GetConvertConstant('Millimeters'), TObject(duMillimeters));
+        AddObject(LanguageDataModule.GetConvertConstant('Centimeters'), TObject(duCentimeters));
+        AddObject(LanguageDataModule.GetConvertConstant('Decimeters'), TObject(duDecimeters));
+        AddObject(LanguageDataModule.GetConvertConstant('Meters'), TObject(duMeters));
+        AddObject(LanguageDataModule.GetConvertConstant('Decameters'), TObject(duDecameters));
+        AddObject(LanguageDataModule.GetConvertConstant('Hectometers'), TObject(duHectometers));
+        AddObject(LanguageDataModule.GetConvertConstant('Kilometers'), TObject(duKilometers));
+        AddObject(LanguageDataModule.GetConvertConstant('Megameters'), TObject(duMegameters));
+        AddObject(LanguageDataModule.GetConvertConstant('Gigameters'), TObject(duGigameters));
+        AddObject(LanguageDataModule.GetConvertConstant('Inches'), TObject(duInches));
+        AddObject(LanguageDataModule.GetConvertConstant('Feet'), TObject(duFeet));
+        AddObject(LanguageDataModule.GetConvertConstant('Yards'), TObject(duYards));
+        AddObject(LanguageDataModule.GetConvertConstant('Miles'), TObject(duMiles));
          {
-          duCentimeters: TConvType;
-          duDecimeters: TConvType;
-          duMeters: TConvType;
-          duDecameters: TConvType;
-          duHectometers: TConvType;
-          duKilometers: TConvType;
-          duMegameters: TConvType;
-          duGigameters: TConvType;
-          duInches: TConvType;
-          duFeet: TConvType;
-          duYards: TConvType;
-          duMiles: TConvType;
           duNauticalMiles: TConvType;
           duAstronomicalUnits: TConvType;
           duLightYears: TConvType;
@@ -196,7 +202,7 @@ begin
           duPicas: TConvType;
           duPoints: TConvType; }
         end;
-      AreaItemIndex: ;
+      AreaItemIndex:
         begin
           {auSquareMillimeters: TConvType;
   auSquareCentimeters: TConvType;
@@ -291,6 +297,9 @@ begin
         end;
       NumeralSystemItemIndex:
         begin
+        {Binary
+          Decimal
+          Hexadecimal}
 
         end;
       TempereatureItemIndex:
