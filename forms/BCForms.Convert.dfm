@@ -156,7 +156,6 @@ object ConvertForm: TConvertForm
       Align = alRight
       Default = True
       TabOrder = 0
-      ExplicitLeft = 236
     end
     object CancelButton: TButton
       Left = 8
@@ -170,7 +169,6 @@ object ConvertForm: TConvertForm
       Action = ResetAction
       Align = alLeft
       TabOrder = 1
-      ExplicitLeft = 9
     end
   end
   object TypeComboBox: TBCComboBox

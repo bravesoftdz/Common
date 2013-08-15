@@ -33,7 +33,8 @@ type
   private
     { Private declarations }
     procedure AddConvertFamilies;
-    procedure AddConvertTypes(ComboBox: TComboBox);
+    procedure AddConvertTypes; overload;
+    procedure AddConvertTypes(ComboBox: TComboBox); overload;
     procedure ReadIniFile;
     procedure WriteIniFile;
   public
@@ -105,18 +106,6 @@ begin
   Show;
 end;
 
-procedure TConvertForm.ReadIniFile;
-begin
-  with TMemIniFile.Create(GetINIFilename) do
-  try
-    { Position }
-    Left := ReadInteger('ConvertPosition', 'Left', (Screen.Width - Width) div 2);
-    Top := ReadInteger('ConvertPosition', 'Top', (Screen.Height - Height) div 2);
-  finally
-    Free;
-  end;
-end;
-
 procedure TConvertForm.ResetActionExecute(Sender: TObject);
 begin
   TypeComboBox.ItemIndex := -1;
@@ -125,10 +114,33 @@ begin
   ResultEdit.Text := '';
 end;
 
-procedure TConvertForm.TypeComboBoxChange(Sender: TObject);
+procedure TConvertForm.AddConvertTypes;
 begin
   AddConvertTypes(FromComboBox);
   AddConvertTypes(ToComboBox);
+end;
+
+procedure TConvertForm.TypeComboBoxChange(Sender: TObject);
+begin
+  AddConvertTypes;
+end;
+
+procedure TConvertForm.ReadIniFile;
+begin
+  with TMemIniFile.Create(GetINIFilename) do
+  try
+    { Position }
+    Left := ReadInteger('ConvertPosition', 'Left', (Screen.Width - Width) div 2);
+    Top := ReadInteger('ConvertPosition', 'Top', (Screen.Height - Height) div 2);
+    TypeComboBox.ItemIndex := ReadInteger('ConvertPosition', 'TypeItemIndex', -1);
+    AddConvertTypes;
+    FromComboBox.ItemIndex := ReadInteger('ConvertPosition', 'FromItemIndex', -1);
+    ToComboBox.ItemIndex := ReadInteger('ConvertPosition', 'ToItemIndex', -1);
+    ValueEdit.Text := ReadString('ConvertPosition', 'Value', '');
+    ResultEdit.Text := ReadString('ConvertPosition', 'Result', '');
+  finally
+    Free;
+  end;
 end;
 
 procedure TConvertForm.WriteIniFile;
@@ -139,6 +151,11 @@ begin
     { Position }
     WriteInteger('ConvertPosition', 'Left', Left);
     WriteInteger('ConvertPosition', 'Top', Top);
+    WriteInteger('ConvertPosition', 'TypeItemIndex', TypeComboBox.ItemIndex);
+    WriteInteger('ConvertPosition', 'FromItemIndex', FromComboBox.ItemIndex);
+    WriteInteger('ConvertPosition', 'ToItemIndex', ToComboBox.ItemIndex);
+    WriteString('ConvertPosition', 'Value', ValueEdit.Text);
+    WriteString('ConvertPosition', 'Result', ResultEdit.Text);
   finally
     UpdateFile;
     Free;
@@ -166,6 +183,7 @@ var
   LTypes: TConvTypeArray;
   ConvFamily: TConvFamily;
 begin
+  ConvFamily := 0;
   with ComboBox.Items do
   begin
     Clear;
