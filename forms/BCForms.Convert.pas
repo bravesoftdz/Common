@@ -45,6 +45,7 @@ type
     procedure BinToDec;
     procedure HexToBin; overload;
     procedure BinToHex; overload;
+    procedure SameSame;
   public
     { Public declarations }
     procedure Open;
@@ -92,16 +93,19 @@ begin
     begin
       case FromComboBox.ItemIndex of
         0: case ToComboBox.ItemIndex of
+             0: SameSame;
              1: BinToDec;
              2: BinToHex;
            end;
         1: case ToComboBox.ItemIndex of
              0: DecToBin;
+             1: SameSame;
              2: DecToHex;
            end;
         2: case ToComboBox.ItemIndex of
              0: HexToBin;
              1: HexToDec;
+             2: SameSame;
            end;
       end;
     end;
@@ -329,6 +333,11 @@ end;
 procedure TConvertForm.BinToHex;
 begin
   ResultEdit.Text := BinToHex(ValueEdit.Text);
+end;
+
+procedure TConvertForm.SameSame;
+begin
+  ResultEdit.Text := ValueEdit.Text;
 end;
 
 end.
