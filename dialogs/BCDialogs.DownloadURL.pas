@@ -29,7 +29,7 @@ type
     procedure SetInformationText(Value: string);
   public
     { Public declarations }
-    procedure Open(DefaultFileName: string; DownloadURL: string);
+    function Open(DefaultFileName: string; DownloadURL: string): string;
   end;
 
 function DownloadURLDialog: TDownloadURLDialog;
@@ -72,12 +72,14 @@ begin
   Application.ProcessMessages;
 end;
 
-procedure TDownloadURLDialog.Open(DefaultFileName: string; DownloadURL: string);
+function TDownloadURLDialog.Open(DefaultFileName: string; DownloadURL: string): string;
 var
   FilterIndex: Cardinal;
 begin
   FCancel := False;
+  Result := '';
   Button.Action := CancelAction;
+  Application.ProcessMessages;
   if BCCommon.Dialogs.SaveFile(Handle, '', Trim(StringReplace(LanguageDataModule.GetFileTypes('Zip')
         , '|', #0, [rfReplaceAll])) + #0#0,
         LanguageDataModule.GetConstant('SaveAs'), FilterIndex, DefaultFileName, 'zip') then
@@ -88,6 +90,7 @@ begin
     try
       URL := DownloadURL;
       FileName := BCCommon.Dialogs.Files[0];
+      Result := FileName;
       OnDownloadProgress := OnURLDownloadProgress;
       ExecuteTarget(nil);
     finally

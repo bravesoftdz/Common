@@ -296,6 +296,7 @@ end;
 procedure CheckForUpdates(AppName: string; AboutVersion: string);
 var
   Version: string;
+  FileName: string;
 begin
   try
     try
@@ -312,7 +313,8 @@ begin
         {$IFDEF WIN64}
         AppName := AppName + '64';
         {$ENDIF}
-        DownloadURLDialog.Open(Format('%s.zip', [AppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, AppName]))
+        FileName := DownloadURLDialog.Open(Format('%s.zip', [AppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, AppName]));
+        ShellExecute(Application.Handle, PChar('explore'), nil, nil, PChar(ExtractFilePath(FileName)), SW_SHOWNORMAL);
       end;
     end
     else
