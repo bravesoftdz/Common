@@ -14,18 +14,25 @@ type
     ftWebIDL, ftAsm, ftXML, ftYAML);
 
 const
-  FILE_READ_DATA = $0001;
-  FILE_WRITE_DATA = $0002;
-  FILE_APPEND_DATA = $0004;
-  FILE_READ_EA = $0008;
-  FILE_WRITE_EA = $0010;
-  FILE_EXECUTE = $0020;
-  FILE_READ_ATTRIBUTES = $0080;
-  FILE_WRITE_ATTRIBUTES = $0100;
-  FILE_GENERIC_READ = (STANDARD_RIGHTS_READ or FILE_READ_DATA or FILE_READ_ATTRIBUTES or FILE_READ_EA or SYNCHRONIZE);
-  FILE_GENERIC_WRITE = (STANDARD_RIGHTS_WRITE or FILE_WRITE_DATA or FILE_WRITE_ATTRIBUTES or FILE_WRITE_EA or FILE_APPEND_DATA or SYNCHRONIZE);
-  FILE_GENERIC_EXECUTE = (STANDARD_RIGHTS_EXECUTE or FILE_READ_ATTRIBUTES or FILE_EXECUTE or SYNCHRONIZE);
-  FILE_ALL_ACCESS = STANDARD_RIGHTS_REQUIRED or SYNCHRONIZE or $1FF;
+  FILE_READ_DATA         = $0001; // file & pipe
+  FILE_LIST_DIRECTORY    = $0001; // directory
+  FILE_WRITE_DATA        = $0002; // file & pipe
+  FILE_ADD_FILE          = $0002; // directory
+  FILE_APPEND_DATA       = $0004; // file
+  FILE_ADD_SUBDIRECTORY  = $0004; // directory
+  FILE_CREATE_PIPE_INSTANCE = $0004; // named pipe
+  FILE_READ_EA           = $0008; // file & directory
+  FILE_WRITE_EA          = $0010; // file & directory
+  FILE_EXECUTE           = $0020; // file
+  FILE_TRAVERSE          = $0020; // directory
+  FILE_DELETE_CHILD      = $0040; // directory
+  FILE_READ_ATTRIBUTES   = $0080; // all
+  FILE_WRITE_ATTRIBUTES  = $0100; // all
+  FILE_ALL_ACCESS        = STANDARD_RIGHTS_REQUIRED or SYNCHRONIZE or $1FF;
+  FILE_GENERIC_READ      = STANDARD_RIGHTS_READ or FILE_READ_DATA or FILE_READ_ATTRIBUTES or FILE_READ_EA or SYNCHRONIZE;
+  FILE_GENERIC_WRITE     = STANDARD_RIGHTS_WRITE or FILE_WRITE_DATA or FILE_WRITE_ATTRIBUTES or FILE_WRITE_EA or
+    FILE_APPEND_DATA or SYNCHRONIZE;
+  FILE_GENERIC_EXECUTE   = STANDARD_RIGHTS_EXECUTE or FILE_READ_ATTRIBUTES or FILE_EXECUTE or SYNCHRONIZE;
 
 function FormatFileName(FileName: string; Modified: Boolean = False): string;
 function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
@@ -35,7 +42,7 @@ function GetIconIndex(Path: string; Flags: Cardinal = 0): Integer;
 function GetINIFilename: string;
 function FileIconInit(FullInit: BOOL): BOOL; stdcall;
 function IsExtInFileType(Ext: string; FileType: string): Boolean;
-function CheckFileAccess(const FileName: string; const CheckedAccess: Cardinal): Cardinal;
+function CheckAccessToFile(DesiredAccess: DWORD; const FileName: WideString): Boolean;
 
 implementation
 
@@ -176,42 +183,64 @@ begin
     Result := Format('%s~', [Result]);
 end;
 
-function CheckFileAccess(const FileName: string; const CheckedAccess: Cardinal): Cardinal;
+function CheckAccessToFile(DesiredAccess: DWORD; const FileName: WideString): Boolean;
+const
+  GenericFileMapping     : TGenericMapping = (
+    GenericRead: FILE_GENERIC_READ;
+    GenericWrite: FILE_GENERIC_WRITE;
+    GenericExecute: FILE_GENERIC_EXECUTE;
+    GenericAll: FILE_ALL_ACCESS
+    );
 var
-  Token: THandle;
-  Status: LongBool;
-  Access: Cardinal;
-  SecDescSize: Cardinal;
-  PrivSetSize: Cardinal;
-  PrivSet: PRIVILEGE_SET;
-  Mapping: GENERIC_MAPPING;
-  SecDesc: PSECURITY_DESCRIPTOR;
+  LastError              : DWORD;
+  LengthNeeded           : DWORD;
+  SecurityDescriptor     : PSecurityDescriptor;
+  ClientToken            : THandle;
+  AccessMask             : DWORD;
+  PrivilegeSet           : TPrivilegeSet;
+  PrivilegeSetLength     : DWORD;
+  GrantedAccess          : DWORD;
+  AccessStatus           : BOOL;
 begin
-  Result := 0;
-  GetFileSecurity(PChar(Filename), OWNER_SECURITY_INFORMATION or GROUP_SECURITY_INFORMATION or DACL_SECURITY_INFORMATION, nil, 0, SecDescSize);
-  SecDesc := GetMemory(SecDescSize);
-
-  if GetFileSecurity(PChar(Filename), OWNER_SECURITY_INFORMATION or GROUP_SECURITY_INFORMATION or DACL_SECURITY_INFORMATION, SecDesc, SecDescSize, SecDescSize) then
-  begin
-    ImpersonateSelf(SecurityImpersonation);
-    OpenThreadToken(GetCurrentThread, TOKEN_QUERY, False, Token);
-    if Token <> 0 then
-    begin
-      Mapping.GenericRead := FILE_GENERIC_READ;
-      Mapping.GenericWrite := FILE_GENERIC_WRITE;
-      Mapping.GenericExecute := FILE_GENERIC_EXECUTE;
-      Mapping.GenericAll := FILE_ALL_ACCESS;
-
-      MapGenericMask(Access, Mapping);
-      PrivSetSize := SizeOf(PrivSet);
-      AccessCheck(SecDesc, Token, CheckedAccess, Mapping, PrivSet, PrivSetSize, Access, Status);
-      CloseHandle(Token);
-      if Status then
-        Result := Access;
+  Result := False;
+  LastError := GetLastError;
+  if not GetFileSecurityW(PWideChar(FileName), OWNER_SECURITY_INFORMATION or
+    GROUP_SECURITY_INFORMATION or DACL_SECURITY_INFORMATION, nil, 0,
+    LengthNeeded) and (GetLastError <> ERROR_INSUFFICIENT_BUFFER) then
+    Exit;
+  SetLastError(LastError);
+  Inc(LengthNeeded, $1000);
+  SecurityDescriptor := PSecurityDescriptor(LocalAlloc(LPTR, LengthNeeded));
+  if not Assigned(SecurityDescriptor) then
+    Exit;
+  try
+    if not GetFileSecurityW(PWideChar(FileName), OWNER_SECURITY_INFORMATION or
+      GROUP_SECURITY_INFORMATION or DACL_SECURITY_INFORMATION,
+      SecurityDescriptor, LengthNeeded, LengthNeeded) then
+      Exit;
+    if not ImpersonateSelf(SecurityImpersonation) then
+      Exit;
+    try
+      if not OpenThreadToken(GetCurrentThread, TOKEN_QUERY or
+        TOKEN_IMPERSONATE or TOKEN_DUPLICATE, False, ClientToken) then
+        Exit;
+      try
+        AccessMask := DesiredAccess;
+        MapGenericMask(AccessMask, GenericFileMapping);
+        PrivilegeSetLength := SizeOf(TPrivilegeSet);
+        if AccessCheck(SecurityDescriptor, ClientToken, AccessMask,
+          GenericFileMapping, PrivilegeSet, PrivilegeSetLength, GrantedAccess,
+          AccessStatus) then
+          Result := AccessStatus;
+      finally
+        CloseHandle(ClientToken);
+      end;
+    finally
+      RevertToSelf;
     end;
+  finally
+    LocalFree(HLOCAL(SecurityDescriptor));
   end;
-
-  FreeMem(SecDesc, SecDescSize);
 end;
 
 end.
