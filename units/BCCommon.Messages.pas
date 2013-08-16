@@ -3,20 +3,20 @@ unit BCCommon.Messages;
 interface
 
 uses
-  System.UITypes, Vcl.Dialogs;
+  System.UITypes;
 
 function AskYesOrNo(Msg: string): Boolean;
 function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons): Integer;
 function SaveChanges(IncludeCancel: Boolean = True): Integer;
 procedure MessageBeep;
 procedure ShowErrorMessage(Msg: string);
-procedure ShowMessage(Msg: string; MsgDlgType: TMsgDlgType = mtInformation);
+procedure ShowMessage(Msg: string);
 procedure ShowWarningMessage(Msg: string);
 
 implementation
 
 uses
-  Winapi.Windows, Vcl.Forms, Vcl.StdCtrls, BCCommon.LanguageStrings;
+  Winapi.Windows, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCCommon.LanguageStrings;
 
 procedure MessageBeep;
 begin
@@ -25,7 +25,6 @@ end;
 
 function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons): Integer;
 begin
-  { Create the Dialog }
   with CreateMessageDialog(Msg, DlgType, Buttons) do
   try
     HelpContext := 0;
@@ -53,7 +52,7 @@ begin
   Result := MessageDialog(LanguageDataModule.GetYesOrNo('SaveChanges'), mtConfirmation, Buttons);
 end;
 
-procedure ShowMessage(Msg: string; MsgDlgType: TMsgDlgType);
+procedure ShowMessage(Msg: string);
 begin
   MessageDialog(Msg, mtInformation, [mbOK]);
 end;
