@@ -88,8 +88,8 @@ object ConvertForm: TConvertForm
     Caption = 'From'
   end
   object ToLabel: TLabel
-    Left = 205
-    Top = 52
+    Left = 202
+    Top = 48
     Width = 12
     Height = 13
     Caption = 'To'
@@ -157,7 +157,7 @@ object ConvertForm: TConvertForm
       Default = True
       TabOrder = 0
     end
-    object CancelButton: TButton
+    object ResetButton: TButton
       Left = 8
       Top = 8
       Width = 75
@@ -225,10 +225,12 @@ object ConvertForm: TConvertForm
     Top = 104
     object ConvertAction: TAction
       Caption = '&Convert'
+      Hint = 'Convert value to selected unit'
       OnExecute = ConvertActionExecute
     end
     object ResetAction: TAction
       Caption = '&Reset'
+      Hint = 'Reset fields'
       OnExecute = ResetActionExecute
     end
   end

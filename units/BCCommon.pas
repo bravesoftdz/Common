@@ -308,7 +308,7 @@ begin
 
     if (Trim(Version) <> '') and (Version <> AboutVersion) then
     begin
-      if AskYesOrNo(Format(LanguageDataModule.GetYesOrNo('NewVersion'), [Version, AppName, CHR_DOUBLE_ENTER])) then
+      if AskYesOrNo(Format(LanguageDataModule.GetYesOrNoMessage('NewVersion'), [Version, AppName, CHR_DOUBLE_ENTER])) then
       begin
         {$IFDEF WIN64}
         AppName := AppName + '64';

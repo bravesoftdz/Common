@@ -58,7 +58,7 @@ procedure TConfirmReplaceDialog.PrepareShow(AEditorRect: TRect;
 var
   nW, nH: integer;
 begin
-  ConfirmationLabel.Caption := Format(LanguageDataModule.GetYesOrNo('ReplaceOccurence'), [AReplaceText]);
+  ConfirmationLabel.Caption := Format(LanguageDataModule.GetYesOrNoMessage('ReplaceOccurence'), [AReplaceText]);
   nW := AEditorRect.Right - AEditorRect.Left;
   nH := AEditorRect.Bottom - AEditorRect.Top;
 

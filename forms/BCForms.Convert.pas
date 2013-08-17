@@ -15,7 +15,7 @@ type
     ResultEdit: TBCEdit;
     ButtonPanel: TPanel;
     ConvertButton: TButton;
-    CancelButton: TButton;
+    ResetButton: TButton;
     TypeLabel: TLabel;
     TypeComboBox: TBCComboBox;
     FromLabel: TLabel;

@@ -47,6 +47,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'SearchStringNotFound'
         Strings.Strings = (
           'Search string '#39'%s'#39' not found')
+      end
+      item
+        Name = 'CancelSearch'
+        Strings.Strings = (
+          'Cancel search, are you sure?')
       end>
     Left = 92
     Top = 22
@@ -67,6 +72,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'CannotFindString'
         Strings.Strings = (
           'Cannot find the string '#39#39'%s'#39#39)
+      end
+      item
+        Name = 'SearchCanceled'
+        Strings.Strings = (
+          'Search canceled')
       end>
     Left = 90
     Top = 84

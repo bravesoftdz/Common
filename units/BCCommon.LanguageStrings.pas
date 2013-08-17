@@ -25,7 +25,7 @@ type
     function GetMessage(Name: string): string;
     function GetPConstant(Name: string): PWideChar;
     function GetWarningMessage(Name: string): string;
-    function GetYesOrNo(Name: string): string;
+    function GetYesOrNoMessage(Name: string): string;
   end;
 
 procedure ReadLanguageFile(Language: string);
@@ -109,7 +109,7 @@ begin
   HookResourceString(@SMsgDlgClose, LanguageDataModule.GetPConstant('SMsgDlgClose'));
 end;
 
-function TLanguageDataModule.GetYesOrNo(Name: string): string;
+function TLanguageDataModule.GetYesOrNoMessage(Name: string): string;
 begin
   Result := Trim(YesOrNoMultiStringHolder.StringsByName[Name].Text);
 end;

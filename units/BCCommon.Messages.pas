@@ -49,7 +49,7 @@ begin
   if IncludeCancel then
     Buttons := Buttons + [mbCancel];
 
-  Result := MessageDialog(LanguageDataModule.GetYesOrNo('SaveChanges'), mtConfirmation, Buttons);
+  Result := MessageDialog(LanguageDataModule.GetYesOrNoMessage('SaveChanges'), mtConfirmation, Buttons);
 end;
 
 procedure ShowMessage(Msg: string);
