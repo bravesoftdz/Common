@@ -6,7 +6,8 @@ uses
   System.UITypes;
 
 function AskYesOrNo(Msg: string): Boolean;
-function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons): Integer;
+function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons): Integer; overload;
+function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; Captions: array of string): Integer; overload;
 function SaveChanges(IncludeCancel: Boolean = True): Integer;
 procedure MessageBeep;
 procedure ShowErrorMessage(Msg: string);
@@ -29,6 +30,37 @@ begin
   try
     HelpContext := 0;
     HelpFile := '';
+    Position := poMainFormCenter;
+    Result := ShowModal;
+  finally
+    Free;
+  end;
+end;
+
+function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; Captions: array of string): Integer;
+var
+  i: Integer;
+  dlgButton: TButton;
+  CaptionIndex: Integer;
+begin
+  with CreateMessageDialog(Msg, DlgType, Buttons) do
+  try
+    HelpContext := 0;
+    HelpFile := '';
+    CaptionIndex := 0;
+    { Loop through Objects in Dialog }
+    for i := 0 to ComponentCount - 1 do
+    begin
+     { If the object is of type TButton, then }
+      if (Components[i] is TButton) then
+      begin
+        dlgButton := TButton(Components[i]);
+        if CaptionIndex > High(Captions) then Break;
+        { Give a new caption from our Captions array}
+        dlgButton.Caption := Captions[CaptionIndex];
+        Inc(CaptionIndex);
+      end;
+    end;
     Position := poMainFormCenter;
     Result := ShowModal;
   finally
