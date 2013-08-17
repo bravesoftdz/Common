@@ -84,6 +84,7 @@ begin
     SetStringHolder(LanguageDataModule.WarningMessageMultiStringHolder, 'WarningMessage');
     SetStringHolder(LanguageDataModule.ConstantMultiStringHolder, 'Constant');
     SetStringHolder(LanguageDataModule.FileTypesMultiStringHolder, 'FileTypes');
+    SetStringHolder(LanguageDataModule.ConvertConstantMultiStringHolder, 'ConvertConstant');
   finally
     BigIniFile.Free;
   end;
