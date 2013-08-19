@@ -64,7 +64,6 @@ type
     procedure SynEditPrintPreviewPreviewPage(Sender: TObject; PageNumber: Integer);
     procedure WordWrapActionExecute(Sender: TObject);
     procedure ZoomActionExecute(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     FLeft: Integer;
@@ -99,12 +98,6 @@ begin
   Action := caFree;
 end;
 
-procedure TPrintPreviewDialog.FormCreate(Sender: TObject);
-begin
-  if Assigned(TStyleManager.Engine) then
-    TStyleManager.Engine.RegisterStyleHook(TSynEditPrintPreview, TSynEditStyleHook);
-end;
-
 procedure TPrintPreviewDialog.FormDestroy(Sender: TObject);
 begin
   FPrintPreviewDialog := nil;
@@ -128,6 +121,7 @@ begin
   StatusBar.Font.Size := 8;
 
   UpdateLanguage(Self);
+  Caption := Format('%s - [%s]', [Caption, SynEditPrintPreview.SynEditPrint.Title]);
 end;
 
 procedure TPrintPreviewDialog.FirstActionExecute(Sender: TObject);
@@ -232,6 +226,11 @@ begin
   SynEditPrintPreview.SynEditPrint.Wrap := not SynEditPrintPreview.SynEditPrint.Wrap;
   SynEditPrintPreview.Refresh;
 end;
+
+initialization
+
+  if Assigned(TStyleManager.Engine) then
+    TStyleManager.Engine.RegisterStyleHook(TSynEditPrintPreview, TSynEditStyleHook);
 
 end.
 

@@ -59,7 +59,7 @@ implementation
 
 uses
   System.IniFiles, BCCommon.FileUtils, System.ConvUtils, System.StdConvs, BCCommon.LanguageStrings, BCCommon,
-  BCCommon.Messages;
+  BCCommon.Messages, BCCommon.LanguageUtils;
 
 const
   DistanceItemIndex = 0;
@@ -78,6 +78,7 @@ begin
   if FConvertForm = nil then
     Application.CreateForm(TConvertForm, FConvertForm);
   Result := FConvertForm;
+  UpdateLanguage(FConvertForm, GetSelectedLanguage);
 end;
 
 procedure TConvertForm.ConvertActionExecute(Sender: TObject);
