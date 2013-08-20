@@ -304,8 +304,9 @@ end;
 initialization
   PlatformVclStylesStyle := TPlatformVclStylesStyle.Create;
   RegisterActnBarStyle(PlatformVclStylesStyle);
-  DefaultActnBarStyle :=PlatformVclStylesStyle.GetStyleName;
+  DefaultActnBarStyle := PlatformVclStylesStyle.GetStyleName;
 finalization
   UnregisterActnBarStyle(PlatformVclStylesStyle);
   PlatformVclStylesStyle.Free;
+
 end.
