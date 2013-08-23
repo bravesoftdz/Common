@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, JvExMask, JvToolEdit,
   BCControls.ComboBox, Vcl.Themes, Vcl.ActnList, Vcl.Buttons,
-  BCDialogs.Dlg, System.Actions, BCControls.Edit, JvExStdCtrls, JvEdit;
+  BCDialogs.Dlg, System.Actions, BCControls.Edit, JvExStdCtrls, JvEdit, Vcl.ComCtrls, Vcl.ToolWin, BCControls.ToolBar,
+  Vcl.ImgList, BCControls.ImageList, JvExControls, JvSpeedButton;
 
 type
   TFindInFilesDialog = class(TDialog)
@@ -20,7 +21,6 @@ type
     FindButton: TButton;
     FindWhatComboBox: TBCComboBox;
     FindWhatLabel: TLabel;
-    FolderBitBtn: TBitBtn;
     FolderButtonClickAction: TAction;
     FolderEdit: TBCEdit;
     FolderLabel: TLabel;
@@ -37,6 +37,7 @@ type
     FileTypeComboPanel: TPanel;
     FolderEditPanel: TPanel;
     CheckBoxPanel: TPanel;
+    BitBtn1: TJvSpeedButton;
     procedure FindWhatComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FolderButtonClickActionExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);

@@ -13,9 +13,6 @@ type
     ValueEdit: TBCEdit;
     ResultLabel: TLabel;
     ResultEdit: TBCEdit;
-    ButtonPanel: TPanel;
-    ConvertButton: TButton;
-    ResetButton: TButton;
     TypeLabel: TLabel;
     TypeComboBox: TBCComboBox;
     FromLabel: TLabel;
@@ -29,7 +26,6 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ConvertActionExecute(Sender: TObject);
     procedure TypeComboBoxChange(Sender: TObject);
-    procedure ResetActionExecute(Sender: TObject);
   private
     { Private declarations }
     function BinToHex(BinStr: string): string; overload;
@@ -131,14 +127,6 @@ begin
   AddConvertFamilies;
   ReadIniFile;
   Show;
-end;
-
-procedure TConvertForm.ResetActionExecute(Sender: TObject);
-begin
-  TypeComboBox.ItemIndex := -1;
-  TypeComboBoxChange(nil);
-  ValueEdit.Text := '';
-  ResultEdit.Text := '';
 end;
 
 procedure TConvertForm.AddConvertTypes;

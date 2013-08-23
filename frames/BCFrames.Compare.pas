@@ -8,7 +8,7 @@ uses
   Vcl.Mask, Vcl.Buttons, JvSpeedButton, BCControls.Edit, JvStringGrid,
   BCControls.StringGrid, Vcl.ActnList, JvScrollBar, JvExForms, JvExExtCtrls, JvSplitter, JvExtComponent,
   JvContentScroller, JvExGrids, JvEdit, JvCombobox, BCControls.ComboBox, Vcl.ImgList, System.Generics.Collections,
-  System.Actions, JvExControls;
+  System.Actions, JvExControls, BCControls.ImageList;
 
 type
   TGridEventType = (etNone, etMouse, etKey);
@@ -34,7 +34,6 @@ type
     FilenameRightMemo: TMemo;
     FindNextDifferenceAction: TAction;
     FindNextDifferenceSpeedButton: TJvSpeedButton;
-    ImageList: TImageList;
     JvSpeedButton1: TJvSpeedButton;
     LeftComboBox: TBCComboBox;
     LeftComboBoxChangeAction: TAction;

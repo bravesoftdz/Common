@@ -3,7 +3,7 @@ object ConvertForm: TConvertForm
   Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'Convert Between Numerical Units'
-  ClientHeight = 181
+  ClientHeight = 150
   ClientWidth = 400
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -104,6 +104,7 @@ object ConvertForm: TConvertForm
     Margins.Right = 4
     Margins.Bottom = 4
     TabOrder = 3
+    OnChange = ConvertActionExecute
     EnterToTab = False
     OnlyNumbers = False
     NumbersWithDots = False
@@ -130,46 +131,6 @@ object ConvertForm: TConvertForm
     NumbersWithSpots = False
     ErrorColor = 14803198
     NumbersAllowNegative = False
-  end
-  object ButtonPanel: TPanel
-    Left = 0
-    Top = 140
-    Width = 400
-    Height = 41
-    Align = alBottom
-    BevelOuter = bvNone
-    Padding.Left = 8
-    Padding.Top = 8
-    Padding.Right = 6
-    Padding.Bottom = 8
-    TabOrder = 5
-    object ConvertButton: TButton
-      Left = 319
-      Top = 8
-      Width = 75
-      Height = 25
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Action = ConvertAction
-      Align = alRight
-      Default = True
-      TabOrder = 0
-    end
-    object ResetButton: TButton
-      Left = 8
-      Top = 8
-      Width = 75
-      Height = 25
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Action = ResetAction
-      Align = alLeft
-      TabOrder = 1
-    end
   end
   object TypeComboBox: TBCComboBox
     Left = 9
@@ -200,6 +161,7 @@ object ConvertForm: TConvertForm
     Style = csDropDownList
     DropDownCount = 9
     TabOrder = 1
+    OnChange = ConvertActionExecute
     DeniedKeyStrokes = True
     ReadOnly = False
     DropDownFixedWidth = 0
@@ -216,6 +178,7 @@ object ConvertForm: TConvertForm
     Style = csDropDownList
     DropDownCount = 9
     TabOrder = 2
+    OnChange = ConvertActionExecute
     DeniedKeyStrokes = True
     ReadOnly = False
     DropDownFixedWidth = 0
@@ -231,7 +194,6 @@ object ConvertForm: TConvertForm
     object ResetAction: TAction
       Caption = '&Reset'
       Hint = 'Reset fields'
-      OnExecute = ResetActionExecute
     end
   end
 end
