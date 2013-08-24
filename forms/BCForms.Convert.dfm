@@ -88,8 +88,8 @@ object ConvertForm: TConvertForm
     Caption = 'From'
   end
   object ToLabel: TLabel
-    Left = 202
-    Top = 48
+    Left = 205
+    Top = 52
     Width = 12
     Height = 13
     Caption = 'To'
