@@ -437,6 +437,31 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'Top'
         Strings.Strings = (
           'Top')
+      end
+      item
+        Name = 'TopLine'
+        Strings.Strings = (
+          'Top Line: %d')
+      end
+      item
+        Name = 'FooterLeft'
+        Strings.Strings = (
+          'Footer - Left')
+      end
+      item
+        Name = 'FooterRight'
+        Strings.Strings = (
+          'Footer - Right')
+      end
+      item
+        Name = 'HeaderLeft'
+        Strings.Strings = (
+          'Header - Left')
+      end
+      item
+        Name = 'HeaderRight'
+        Strings.Strings = (
+          'Header - Right')
       end>
     Left = 88
     Top = 254
