@@ -39,7 +39,8 @@ function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings
 function GetFileType(FileName: string): TFileType;
 function GetFileVersion(Path: string): string;
 function GetIconIndex(Path: string; Flags: Cardinal = 0): Integer;
-function GetINIFilename: string;
+function GetIniFilename: string;
+function GetOutFilename: string;
 function FileIconInit(FullInit: BOOL): BOOL; stdcall;
 function IsExtInFileType(Ext: string; FileType: string): Boolean;
 function CheckAccessToFile(DesiredAccess: DWORD; const FileName: WideString): Boolean;
@@ -151,9 +152,14 @@ begin
   end;
 end;
 
-function GetINIFilename: string;
+function GetIniFilename: string;
 begin
   Result := ChangeFileExt(Application.EXEName, '.ini');
+end;
+
+function GetOutFilename: string;
+begin
+  Result := ChangeFileExt(Application.EXEName, '.out');
 end;
 
 function IsExtInFileType(Ext: string; FileType: string): Boolean;

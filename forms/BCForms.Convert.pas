@@ -79,8 +79,14 @@ end;
 
 procedure TConvertForm.ConvertActionExecute(Sender: TObject);
 begin
-  if (TypeComboBox.ItemIndex = -1) or (FromComboBox.ItemIndex = -1) or (ToComboBox.ItemIndex = -1) then
+  if (TypeComboBox.ItemIndex = -1) or
+     (FromComboBox.ItemIndex = -1) or
+     (ToComboBox.ItemIndex = -1) or
+     (ValueEdit.Text = '') then
+  begin
+    ResultEdit.Text := '';
     Exit;
+  end;
   try
     if TypeComboBox.ItemIndex <> NumeralSystemItemIndex then
       ResultEdit.Text := FloatToStr(System.ConvUtils.Convert(StrToFloat(ValueEdit.Text),
@@ -138,11 +144,13 @@ end;
 procedure TConvertForm.TypeComboBoxChange(Sender: TObject);
 begin
   AddConvertTypes;
+  ValueEdit.Text := '';
+  ResultEdit.Text := '';
 end;
 
 procedure TConvertForm.ReadIniFile;
 begin
-  with TMemIniFile.Create(GetINIFilename) do
+  with TMemIniFile.Create(GetIniFilename) do
   try
     { Position }
     Left := ReadInteger('ConvertPosition', 'Left', (Screen.Width - Width) div 2);
@@ -161,7 +169,7 @@ end;
 procedure TConvertForm.WriteIniFile;
 begin
   if Windowstate = wsNormal then
-  with TMemIniFile.Create(GetINIFilename) do
+  with TMemIniFile.Create(GetIniFilename) do
   try
     { Position }
     WriteInteger('ConvertPosition', 'Left', Left);

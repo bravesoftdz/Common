@@ -16,7 +16,7 @@ uses
 
 function GetSelectedLanguage(Default: string): string;
 begin
-  with TBigIniFile.Create(GetINIFilename) do
+  with TBigIniFile.Create(GetIniFilename) do
   try
     Result := ReadString('Options', 'Language', Default);
   finally

@@ -139,6 +139,11 @@ object LanguageDataModule: TLanguageDataModule
           'Edit Directory')
       end
       item
+        Name = 'Errors'
+        Strings.Strings = (
+          'Errors')
+      end
+      item
         Name = 'Insert'
         Strings.Strings = (
           'Insert')
