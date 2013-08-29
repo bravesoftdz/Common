@@ -7,9 +7,14 @@ uses
   Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.ToolWin, Vcl.ActnList, Vcl.ImgList,
   SynEditPrintPreview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers, SynEditPrint,
   JvExButtons, JvBitBtn, Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, BCControls.PopupMenu,
-  JvExComCtrls, JvToolBar, BCControls.ToolBar, BCControls.ImageList, System.Actions;
+  JvExComCtrls, JvToolBar, BCControls.ToolBar, BCControls.ImageList, System.Actions, Vcl.Grids;
 
 type
+  TDrawGrid = class(Vcl.Grids.TDrawGrid)
+  public
+    property OnResize;
+  end;
+
   TPrintPreviewDialog = class(TForm)
     ActionList: TActionList;
     ApplicationEvents: TApplicationEvents;

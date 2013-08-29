@@ -2,8 +2,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
   Left = 192
   Top = 148
   Caption = 'Print Preview'
-  ClientHeight = 385
-  ClientWidth = 508
+  ClientHeight = 523
+  ClientWidth = 726
   Color = clBtnFace
   ParentFont = True
   Icon.Data = {
@@ -51,8 +51,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
   TextHeight = 13
   object StatusBar: TStatusBar
     Left = 0
-    Top = 366
-    Width = 508
+    Top = 504
+    Width = 726
     Height = 19
     Panels = <
       item
@@ -67,16 +67,18 @@ object PrintPreviewDialog: TPrintPreviewDialog
   object SynEditPrintPreview: TSynEditPrintPreview
     Left = 0
     Top = 27
-    Width = 508
-    Height = 339
+    Width = 726
+    Height = 477
     ScaleMode = pscWholePage
     OnMouseDown = SynEditPrintPreviewMouseDown
     OnPreviewPage = SynEditPrintPreviewPreviewPage
+    ExplicitLeft = 188
+    ExplicitWidth = 538
   end
   object ButtonPanel: TPanel
     Left = 0
     Top = 0
-    Width = 508
+    Width = 726
     Height = 27
     Align = alTop
     AutoSize = True
@@ -85,7 +87,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Padding.Top = 2
     Padding.Right = 2
     Padding.Bottom = 2
-    TabOrder = 2
+    TabOrder = 1
     object Bevel7: TBevel
       AlignWithMargins = True
       Left = 156
