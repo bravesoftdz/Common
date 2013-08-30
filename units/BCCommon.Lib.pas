@@ -1,4 +1,4 @@
-unit BCCommon;
+unit BCCommon.Lib;
 
 interface
 
@@ -11,6 +11,8 @@ const
   CHR_TAB = '  ';
 
   BONECODE_URL = 'http://www.bonecode.com';
+
+  OUTPUT_FILE_SEPARATOR = '@#/%&';
 
   TAnimationStyleStr: array[Low(TAnimationStyle)..High(TAnimationStyle)] of String = ('None',
     'Default', 'Unfold', 'Slide', 'Fade');

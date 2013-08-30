@@ -54,7 +54,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.IniFiles, BCCommon.FileUtils, System.ConvUtils, System.StdConvs, BCCommon.LanguageStrings, BCCommon,
+  System.IniFiles, BCCommon.FileUtils, System.ConvUtils, System.StdConvs, BCCommon.LanguageStrings, BCCommon.Lib,
   BCCommon.Messages, BCCommon.LanguageUtils;
 
 const

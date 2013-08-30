@@ -118,7 +118,7 @@ type
 implementation
 
 uses
-  BCSQL.Parser, BCSQL.Tokenizer, System.StrUtils, BCSQL.XMLConstants, BCCommon;
+  BCSQL.Parser, BCSQL.Tokenizer, System.StrUtils, BCSQL.XMLConstants, BCCommon.Lib;
 
 
 function FormatSQL(SQL: string): string;

@@ -57,7 +57,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Lib, Vcl.Themes, BCCommon.StyleUtils, System.Math, BCCommon;
+  Lib, Vcl.Themes, BCCommon.StyleUtils, System.Math, BCCommon.Lib;
 
 var
   FReplaceDialog: TReplaceDialog;

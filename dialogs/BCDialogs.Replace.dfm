@@ -108,10 +108,9 @@ object ReplaceDialog: TReplaceDialog
         Left = 0
         Top = 2
         Width = 50
-        Height = 23
+        Height = 13
         Align = alLeft
         Caption = 'Search for'
-        ExplicitHeight = 13
       end
     end
     object Panel5: TPanel
@@ -127,10 +126,9 @@ object ReplaceDialog: TReplaceDialog
         Left = 0
         Top = 2
         Width = 61
-        Height = 23
+        Height = 13
         Align = alLeft
         Caption = 'Replace with'
-        ExplicitHeight = 13
       end
     end
   end
