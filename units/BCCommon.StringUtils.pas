@@ -2,22 +2,27 @@ unit BCCommon.StringUtils;
 
 interface
 
-function AddSlash(Path: string): string;
-function AnsiInitCap(Str: string): string;
-function DecryptString(Data: string): string;
-function EncryptString(Data: string): string;
-function FormatXML(XML: string): string;
-function GetNextToken(Separator: string; Text: string): string;
-function RemoveTokenFromStart(Separator: string; Text: string): string;
-function RemoveWhiteSpace(const s: string): string;
-function StringBetween(Str: string; SubStr1: string; SunStr2: string): string;
-function WideUpperCase(const S: WideString): WideString;
-function WordCount(s: string): Integer;
+uses
+  SynEdit, SynCompletionProposal;
+
+  function AddSlash(Path: string): string;
+  function AnsiInitCap(Str: string): string;
+  function DecryptString(Data: string): string;
+  function EncryptString(Data: string): string;
+  function FormatXML(XML: string): string;
+  function GetNextToken(Separator: string; Text: string): string;
+  function RemoveTokenFromStart(Separator: string; Text: string): string;
+  function RemoveWhiteSpace(const s: string): string;
+  function StringBetween(Str: string; SubStr1: string; SunStr2: string): string;
+  function WideUpperCase(const S: WideString): WideString;
+  function WordCount(s: string): Integer;
+
+  function SplitTextIntoWords(SynCompletionProposal: TSynCompletionProposal; SynEdit: TSynEdit; CaseSensitive: Boolean): string;
 
 implementation
 
 uses
-  System.SysUtils, System.Character, Xml.XMLDoc;
+  Winapi.Windows, System.Classes, System.SysUtils, System.Character, Xml.XMLDoc;
 
 function AnsiInitCap(Str: string): string;
 begin
@@ -163,6 +168,59 @@ begin
     if IsWhiteOld and not IsWhite then
       Inc(Result);
     IsWhiteOld := IsWhite;
+  end;
+end;
+
+function SplitTextIntoWords(SynCompletionProposal: TSynCompletionProposal; SynEdit: TSynEdit; CaseSensitive: Boolean): string;
+var
+  i: Integer;
+  S, Word: string;
+  StringList: TStringList;
+  startpos, endpos: Integer;
+  KeywordStringList: TStrings;
+begin
+  Result := '';
+  S := SynEdit.Text;
+  SynCompletionProposal.ItemList.Clear;
+  startpos := 1;
+  KeywordStringList := TStringList.Create;
+  StringList := TStringList.Create;
+  StringList.CaseSensitive := CaseSensitive;
+  try
+    { add document words }
+    while startpos <= Length(S) do
+    begin
+      while (startpos <= Length(S)) and not IsCharAlpha(S[startpos]) do
+        Inc(startpos);
+      if startpos <= Length(S) then
+      begin
+        endpos := startpos + 1;
+        while (endpos <= Length(S)) and IsCharAlpha(S[endpos]) do
+          Inc(endpos);
+        Word := Copy(S, startpos, endpos - startpos);
+        if endpos - startpos > Length(Result) then
+          Result := Word;
+        if StringList.IndexOf(Word) = -1 then { no duplicates }
+          StringList.Add(Word);
+        startpos := endpos + 1;
+      end;
+    end;
+    { add highlighter keywords }
+    SynEdit.Highlighter.AddKeywords(KeywordStringList);
+    for i := 0 to KeywordStringList.Count - 1 do
+    begin
+      Word := KeywordStringList.Strings[i];
+      if Length(Word) > Length(Result) then
+        Result := Word;
+      if StringList.IndexOf(Word) = -1 then { no duplicates }
+        StringList.Add(Word);
+    end;
+  finally
+    StringList.Sort;
+    SynCompletionProposal.ItemList.Assign(StringList);
+    StringList.Free;
+    if Assigned(KeywordStringList) then
+      KeywordStringList.Free;
   end;
 end;
 
