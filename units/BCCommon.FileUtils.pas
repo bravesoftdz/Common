@@ -34,21 +34,22 @@ const
     FILE_APPEND_DATA or SYNCHRONIZE;
   FILE_GENERIC_EXECUTE   = STANDARD_RIGHTS_EXECUTE or FILE_READ_ATTRIBUTES or FILE_EXECUTE or SYNCHRONIZE;
 
-function FormatFileName(FileName: string; Modified: Boolean = False): string;
-function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
-function GetFileType(FileName: string): TFileType;
-function GetFileVersion(Path: string): string;
-function GetIconIndex(Path: string; Flags: Cardinal = 0): Integer;
-function GetIniFilename: string;
-function GetOutFilename: string;
-function FileIconInit(FullInit: BOOL): BOOL; stdcall;
-function IsExtInFileType(Ext: string; FileType: string): Boolean;
-function CheckAccessToFile(DesiredAccess: DWORD; const FileName: WideString): Boolean;
+  function AddSlash(Path: string): string;
+  function FormatFileName(FileName: string; Modified: Boolean = False): string;
+  function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
+  function GetFileType(FileName: string): TFileType;
+  function GetFileVersion(Path: string): string;
+  function GetIconIndex(Path: string; Flags: Cardinal = 0): Integer;
+  function GetIniFilename: string;
+  function GetOutFilename: string;
+  function FileIconInit(FullInit: BOOL): BOOL; stdcall;
+  function IsExtInFileType(Ext: string; FileType: string): Boolean;
+  function CheckAccessToFile(DesiredAccess: DWORD; const FileName: WideString): Boolean;
 
 implementation
 
 uses
-  System.SysUtils, Winapi.ShellAPI, BCCommon.LanguageStrings, BCCommon.StringUtils, Vcl.Forms;
+  System.SysUtils, Winapi.ShellAPI, BCCommon.LanguageStrings, Vcl.Forms;
 
 function GetIconIndex(Path: string; Flags: Cardinal): Integer;
 var
@@ -131,6 +132,16 @@ begin
     Result := Format('%d.%d.%d', [dwFileVersionMS shr 16, dwFileVersionMS and $FFFF,
       dwFileVersionLS shr 16]);
   FreeMem(VerInfo, InfoSize);
+end;
+
+function AddSlash(Path: string): string;
+begin
+  if Path = '' then
+    Exit;
+  if Path[Length(Path)] <> '\' then
+    Result := Format('%s\', [Path])
+  else
+    Result := Path;
 end;
 
 function GetFileNamesFromFolder(Folder: string; FileType: string): TStrings;

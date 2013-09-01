@@ -70,7 +70,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StyleUtils, System.Math, BCCommon.LanguageStrings, BCCommon.StringUtils, BCCommon.Lib,
+  BCCommon.StyleUtils, System.Math, BCCommon.LanguageStrings, BCCommon.FileUtils, BCCommon.Lib,
   {$WARNINGS OFF}
   Vcl.FileCtrl; { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}

@@ -5,7 +5,6 @@ interface
 uses
   SynEdit, SynCompletionProposal;
 
-  function AddSlash(Path: string): string;
   function AnsiInitCap(Str: string): string;
   function DecryptString(Data: string): string;
   function EncryptString(Data: string): string;
@@ -34,16 +33,6 @@ begin
   Result := Str;
   Result := Copy(Result, Pos(SubStr1, Result) + 1, Length(Result));
   Result := Copy(Result, 1, Pos(SunStr2, Result) - 1);
-end;
-
-function AddSlash(Path: string): string;
-begin
-  if Path = '' then
-    Exit;
-  if Path[Length(Path)] <> '\' then
-    Result := Format('%s\', [Path])
-  else
-    Result := Path;
 end;
 
 function WideUpperCase(const S: WideString): WideString;
