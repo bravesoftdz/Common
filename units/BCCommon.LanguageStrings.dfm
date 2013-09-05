@@ -72,11 +72,6 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'CannotFindString'
         Strings.Strings = (
           'Cannot find the string '#39#39'%s'#39#39)
-      end
-      item
-        Name = 'SearchCanceled'
-        Strings.Strings = (
-          'Search canceled')
       end>
     Left = 90
     Top = 84
@@ -87,6 +82,16 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'EnterTabName'
         Strings.Strings = (
           'Enter Tab Name.')
+      end
+      item
+        Name = 'FileNotFound'
+        Strings.Strings = (
+          'File '#39'%s'#39' not found.')
+      end
+      item
+        Name = 'RootDirectoryNotExist'
+        Strings.Strings = (
+          'Root Directory does not exist')
       end>
     Left = 88
     Top = 142
