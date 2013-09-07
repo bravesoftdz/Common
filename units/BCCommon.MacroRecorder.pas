@@ -85,6 +85,7 @@ type
     FMacroMessageList: TMacroMessageList;
     FNextMacroMessage: TMacroMessage;
     FIsRecording: Boolean;
+    FIsPaused: Boolean;
     FHookHandle: hHook;
   public
     constructor Create(WinControl: TWinControl); overload;
@@ -92,6 +93,7 @@ type
 
     procedure Start;
     procedure Stop;
+    procedure Pause;
 
     property HookHandle: hHook read FHookHandle;
     property MacroMessageList: TMacroMessageList read FMacroMessageList;
@@ -128,7 +130,7 @@ function TMacroWinControl.ScreenX: Integer;
 begin
   with FWinControl do
     Result:= ClientToScreen(Point(Left, Top)).X;
-end; // f_screen_x
+end;
 
 function TMacroWinControl.ScreenY: Integer;
 begin
@@ -279,6 +281,10 @@ end;
 constructor TMacroRecorder.Create(WinControl: TWinControl);
 begin
   inherited Create;
+
+  FIsRecording := False;
+  FIsPaused := False;
+
   FMacroMessageList := TMacroMessageList.Create(WinControl);
 
   FNextMacroMessage := TMacroMessage.Create;
@@ -325,10 +331,12 @@ procedure TMacroRecorder.Start;
 begin
   if not FIsRecording then
   begin
-    FMacroMessageList.Clear;
+    if not FIsPaused then
+      FMacroMessageList.Clear;
     FHookHandle := SetWindowsHookEx(WH_JOURNALRECORD, JournalRecordHookProc, hInstance, 0);
   end;
   FIsRecording := True;
+  FIsPaused := False;
 end;
 
 procedure TMacroRecorder.Stop;
@@ -338,7 +346,13 @@ begin
 
   FMacroMessageList.UpdateRelative;
 
-  FIsRecording:= False;
+  FIsRecording := False;
+end;
+
+procedure TMacroRecorder.Pause;
+begin
+  Stop;
+  FIsPaused := True;
 end;
 
 end.
