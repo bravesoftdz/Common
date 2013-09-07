@@ -7,7 +7,7 @@ uses
 
 type
   TSourceLine = class
-  private
+  strict private
     FLine: string;
     FLineNumber: Integer;
     FHash: LongWord;
@@ -20,26 +20,26 @@ type
   end;
 
   TSourceFile = class
-  private
+  strict private
     FFileName: string;
     FFileType: TFileType;
     FMinChars: Word;
     FSourceLines: TList;
     function GetFilename: string;
     function IsSourceLine(Line: string): Boolean;
-    function GetRowCount: Integer;
     procedure RemoveComments(var StringList: TStrings);
     procedure TrimLines(var StringList: TStrings);
   public
     constructor Create(FileName: string; MinChars: Word; RemoveComments: Boolean); overload;
     destructor Destroy; override;
     function GetLine(Index: Integer): TSourceLine;
+    function GetRowCount: Integer;
     property FileName: string read GetFilename;
     property RowCount: Integer read GetRowCount;
   end;
 
   TDuplicateChecker = class
-  private
+  strict private
     FFileNames: TStrings;
     FOutputFile: TextFile;
     FMinBlockSize: Byte;
