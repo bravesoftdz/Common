@@ -77,15 +77,23 @@ type
     procedure Add(Name: string; MacroMessage: TMacroMessage); overload;
     function Add(Name: string): TMacroMessage; overload;
     function Add(WindowsMessage: PWindowsMessage): TMacroMessage; overload;
+    function GetMessage(Index: Integer): TMacroMessage;
+    function Count: Integer;
+    procedure SaveToFile(const FileName: string);
+    procedure LoadFromFile(const FileName: string);
     procedure UpdateRelative;
+    property StartTickCount: Integer read FStartTickCount write FStartTickCount;
+    property WinControlList: TMacroWinControlList read FWinControlList;
   end;
 
   TMacroRecorder = class
   strict private
+    FMessageIndex: Integer;
     FMacroMessageList: TMacroMessageList;
     FNextMacroMessage: TMacroMessage;
     FIsRecording: Boolean;
     FIsPaused: Boolean;
+    FIsPlaying: Boolean;
     FHookHandle: hHook;
   public
     constructor Create(WinControl: TWinControl); overload;
@@ -94,9 +102,14 @@ type
     procedure Start;
     procedure Stop;
     procedure Pause;
+    procedure Play;
+    procedure StopPlayback;
+    procedure GetMessage(Index: Integer);
 
     property HookHandle: hHook read FHookHandle;
     property MacroMessageList: TMacroMessageList read FMacroMessageList;
+    property MessageIndex: Integer read FMessageIndex write FMessageIndex;
+    property NextMacroMessage: TMacroMessage read FNextMacroMessage;
   end;
 
   function MacroRecorder(WinControl: TWinControl): TMacroRecorder;
@@ -258,6 +271,16 @@ begin
   Result.WindowsMessage := WindowsMessage^;
 end;
 
+function TMacroMessageList.GetMessage(Index: Integer): TMacroMessage;
+begin
+  Result := FMessageList.Objects[Index] as TMacroMessage;
+end;
+
+function TMacroMessageList.Count: Integer;
+begin
+  Result := FMessageList.Count;
+end;
+
 procedure TMacroMessageList.UpdateRelative;
 var
   i: Integer;
@@ -274,6 +297,16 @@ begin
       Dec(LParam, ScreenY);
     end;
   end;
+end;
+
+procedure TMacroMessageList.SaveToFile(const FileName: string);
+begin
+  { TODO }
+end;
+
+procedure TMacroMessageList.LoadFromFile(const FileName: string);
+begin
+  { TODO }
 end;
 
 { TMacroRecorder }
@@ -294,7 +327,6 @@ end;
 destructor TMacroRecorder.Destroy;
 begin
   FMacroMessageList.Free;
-  //FNextMacroMessage.Free;
   inherited;
 end;
 
@@ -327,6 +359,30 @@ begin
   end;
 end;
 
+function JournalPlaybackHookProc(code: Integer; wparam: WPARAM; lparam: LPARAM): LRESULT; stdcall;
+begin
+  with MacroRecorder(nil) do
+  case code of
+    HC_SKIP:
+      begin
+        MessageIndex := MessageIndex + 1; { MessageIndex is a property, can't use Inc(MessageIndex); }
+
+        if MessageIndex >= MacroMessageList.Count then
+          StopPlayback
+        else
+          GetMessage(MessageIndex);
+        Result:= 0;
+      end;
+    HC_GETNEXT:
+      begin
+        PWindowsMessage(lparam)^ := NextMacroMessage.WindowsMessage;
+        Result:= 0;
+      end
+  else
+    Result:= CallNextHookEx(HookHandle, code, wparam, lparam);
+  end;
+end;
+
 procedure TMacroRecorder.Start;
 begin
   if not FIsRecording then
@@ -344,15 +400,55 @@ begin
   if FIsRecording then
     UnhookWindowsHookEx(FHookHandle);
 
-  FMacroMessageList.UpdateRelative;
+  if not FIsPaused then
+    FMacroMessageList.UpdateRelative;
 
   FIsRecording := False;
 end;
 
 procedure TMacroRecorder.Pause;
 begin
-  Stop;
   FIsPaused := True;
+  Stop;
+end;
+
+procedure TMacroRecorder.Play;
+begin
+  if FIsPlaying then
+    Exit;
+
+  FMessageIndex := 0;
+  FMacroMessageList.StartTickCount := GetTickCount; { TODO: Needed? }
+
+  FHookHandle := SetWindowsHookEx(WH_JOURNALPLAYBACK, JournalPlaybackHookProc, hInstance, 0);
+  if FHookHandle = 0 then
+    Exit;
+
+  FIsPlaying:= True;
+end;
+
+procedure TMacroRecorder.StopPlayback;
+begin
+  if FIsPlaying then
+    UnhookWindowsHookEx(FHookHandle);
+  FIsPlaying := False;
+end;
+
+procedure TMacroRecorder.GetMessage(Index: Integer);
+begin
+  with MacroMessageList.GetMessage(Index) do
+    NextMacroMessage.WindowsMessage := WindowsMessage;
+
+  with NextMacroMessage, WindowsMessage do
+  begin
+    if IsMouseMessage then
+    with MacroMessageList.WinControlList.FindWinControlByHandle(WindowHandle) do
+    begin
+      Inc(WParam, ScreenX);
+      Inc(LParam, ScreenY);
+    end;
+    Inc(Time, MacroMessageList.StartTickCount);
+  end;
 end;
 
 end.
