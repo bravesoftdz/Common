@@ -393,6 +393,8 @@ object CompareFrame: TCompareFrame
           OnKeyUp = LeftGridKeyUp
           OnMouseDown = LeftGridMouseDown
           OnMouseMove = LeftGridMouseMove
+          OnMouseWheelDown = LeftGridMouseWheelDown
+          OnMouseWheelUp = LeftGridMouseWheelUp
           Alignment = taLeftJustify
           FixedFont.Charset = DEFAULT_CHARSET
           FixedFont.Color = clWindowText
@@ -515,7 +517,6 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
-          ExplicitLeft = 405
         end
         object CancelLeftSpeedButton: TJvSpeedButton
           Left = 428
@@ -586,7 +587,6 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
-          ExplicitLeft = 429
         end
         object CancelRightSpeedButton: TJvSpeedButton
           Left = 428
@@ -657,7 +657,6 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
-          ExplicitLeft = 429
         end
         object UpdateRightSpeedButton: TJvSpeedButton
           Left = 404
@@ -728,7 +727,6 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
-          ExplicitLeft = 405
         end
         object LeftMemo: TMemo
           Left = 0
@@ -1119,6 +1117,8 @@ object CompareFrame: TCompareFrame
           OnKeyUp = RightGridKeyUp
           OnMouseDown = RightGridMouseDown
           OnMouseMove = RightGridMouseMove
+          OnMouseWheelDown = RightGridMouseWheelDown
+          OnMouseWheelUp = RightGridMouseWheelUp
           Alignment = taLeftJustify
           FixedFont.Charset = DEFAULT_CHARSET
           FixedFont.Color = clWindowText
@@ -1284,7 +1284,7 @@ object CompareFrame: TCompareFrame
           Spacing = 0
         end
       end
-      object DrawGrid: TJvStringGrid
+      object DrawGrid: TBCStringGrid
         Left = 3
         Top = 26
         Width = 44
@@ -1300,13 +1300,14 @@ object CompareFrame: TCompareFrame
         FixedRows = 0
         GridLineWidth = 0
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goThumbTracking, goFixedHotTrack]
-        ParentColor = True
         ScrollBars = ssVertical
         TabOrder = 1
         OnDrawCell = DrawGridDrawCell
         OnKeyDown = DrawGridKeyDown
         OnMouseDown = DrawGridMouseDown
         OnMouseMove = DrawGridMouseMove
+        OnMouseWheelDown = DrawGridMouseWheelDown
+        OnMouseWheelUp = DrawGridMouseWheelUp
         Alignment = taLeftJustify
         FixedFont.Charset = DEFAULT_CHARSET
         FixedFont.Color = clWindowText

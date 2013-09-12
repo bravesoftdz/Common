@@ -11,8 +11,6 @@ uses
   System.Actions, JvExControls, BCControls.ImageList;
 
 type
-  TGridEventType = (etNone, etMouse, etKey);
-
   TSyncKind = (skBoth, skVScroll, skHScroll);
 
   TCompareFrame = class(TFrame)
@@ -29,7 +27,7 @@ type
     CopySelectionLeftAction: TAction;
     CopySelectionRightAction: TAction;
     DrawBarPanel: TPanel;
-    DrawGrid: TJvStringGrid;
+    DrawGrid: TBCStringGrid;
     FilenameLeftMemo: TMemo;
     FilenameRightMemo: TMemo;
     FindNextDifferenceAction: TAction;
@@ -108,7 +106,12 @@ type
     procedure SaveRightGridActionExecute(Sender: TObject);
     procedure UpdateLeftRowActionExecute(Sender: TObject);
     procedure UpdateRightRowActionExecute(Sender: TObject);
-    procedure VerticalScrollBarScroll(Sender: TObject; ScrollCode: TScrollCode; var ScrollPos: Integer);
+    procedure DrawGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+    procedure DrawGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+    procedure LeftGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+    procedure LeftGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+    procedure RightGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+    procedure RightGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
   private
     { Private declarations }
     FDiff: TDiff;
@@ -137,7 +140,7 @@ type
     procedure RightGridWindowProc(var Message: TMessage);
     procedure RightScrollBoxWindowProc(var Message: TMessage);
     procedure SaveGridChanges;
-    procedure ScrollGrids(Row: Integer; EventType: TGridEventType = etNone);
+    procedure ScrollGrids(Row: Integer);
     procedure SetMaxCounts;
     procedure SetOpenDocumentsList(Value: TStringList);
   public
@@ -417,51 +420,47 @@ begin
     ScrollGrids(DrawGrid.Row);
 end;
 
-procedure TCompareFrame.VerticalScrollBarScroll(Sender: TObject; ScrollCode: TScrollCode;
-  var ScrollPos: Integer);
+procedure TCompareFrame.ScrollGrids(Row: Integer);
 begin
+  //if Row = FPreviousRow then
+  //  Exit;
   if (LeftGrid.RowCount = 1) and (RightGrid.RowCount = 1) then
     Exit;
+  //if LeftGrid.RowCount <> RightGrid.RowCount then
+  //  Exit;
 
-  DrawGrid.Row := ScrollPos;
+  DrawGrid.Row := Row;
   DrawGrid.Invalidate;
-  LeftGrid.Row := ScrollPos;
-  RightGrid.Row := ScrollPos;
-end;
-
-procedure TCompareFrame.ScrollGrids(Row: Integer; EventType: TGridEventType);
-begin
-  if Row = FPreviousRow then
-    Exit;
-  if LeftGrid.RowCount <> RightGrid.RowCount then
-    Exit;
-
   LeftGrid.Row := Row;
   RightGrid.Row := Row;
-  DrawGrid.Row := Row;
 
   LeftMemo.Text := LeftGrid.Cells[1, Row];
   RightMemo.Text := RightGrid.Cells[1, Row];
-
-  DrawGrid.Invalidate;
-  FPreviousRow := Row;
+  //FPreviousRow := Row;
 end;
 
-procedure TCompareFrame.DrawGridMouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TCompareFrame.DrawGridMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  if (LeftGrid.RowCount = 1) and (RightGrid.RowCount = 1) then
-    Exit;
   ScrollGrids(DrawGrid.Row);
 end;
 
 procedure TCompareFrame.DrawGridMouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: Integer);
 begin
-  if (LeftGrid.RowCount = 1) and (RightGrid.RowCount = 1) then
-    Exit;
   if Shift = [ssLeft] then
     ScrollGrids(DrawGrid.Row);
+end;
+
+procedure TCompareFrame.DrawGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+  ScrollGrids(DrawGrid.Row);
+end;
+
+procedure TCompareFrame.DrawGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+  ScrollGrids(DrawGrid.Row);
 end;
 
 procedure TCompareFrame.FilenameEditLeftKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -647,26 +646,40 @@ begin
   if (Key = VK_PRIOR) or (Key = VK_NEXT) then 
     Key := 0;
   if (Key = VK_UP) or (Key = VK_DOWN) or (Key = VK_PRIOR) or (Key = VK_NEXT) then  
-    ScrollGrids(LeftGrid.Row, etKey);
+    ScrollGrids(LeftGrid.Row);
 end;
 
 procedure TCompareFrame.LeftGridKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if (Key = VK_UP) or (Key = VK_DOWN) or (Key = VK_PRIOR) or (Key = VK_NEXT) then 
-    ScrollGrids(LeftGrid.Row, etKey);
+    ScrollGrids(LeftGrid.Row);
 end;
 
 procedure TCompareFrame.LeftGridMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  ScrollGrids(LeftGrid.Row, etMouse);
+  ScrollGrids(LeftGrid.Row);
 end;
 
 procedure TCompareFrame.LeftGridMouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: Integer);
 begin
   if Shift = [ssLeft] then
-    ScrollGrids(LeftGrid.Row, etMouse);
+    ScrollGrids(LeftGrid.Row);
+end;
+
+procedure TCompareFrame.LeftGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+  ScrollGrids(LeftGrid.Row);
+  Handled := True;
+end;
+
+procedure TCompareFrame.LeftGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+  ScrollGrids(LeftGrid.Row);
+  Handled := True;
 end;
 
 procedure TCompareFrame.RightMemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -805,26 +818,40 @@ begin
   if (Key = VK_PRIOR) or (Key = VK_NEXT) then 
     Key := 0;
   if (Key = VK_UP) or (Key = VK_DOWN) or (Key = VK_PRIOR) or (Key = VK_NEXT) then 
-    ScrollGrids(RightGrid.Row, etKey);
+    ScrollGrids(RightGrid.Row);
 end;
 
 procedure TCompareFrame.RightGridKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if (Key = VK_UP) or (Key = VK_DOWN) or (Key = VK_PRIOR) or (Key = VK_NEXT) then 
-    ScrollGrids(RightGrid.Row, etKey);
+    ScrollGrids(RightGrid.Row);
 end;
 
 procedure TCompareFrame.RightGridMouseDown
   (Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  ScrollGrids(RightGrid.Row, etMouse);
+  ScrollGrids(RightGrid.Row);
 end;
 
 procedure TCompareFrame.RightGridMouseMove(Sender: TObject; Shift: TShiftState;
   X, Y: Integer);
 begin
   if Shift = [ssLeft] then
-    ScrollGrids(RightGrid.Row, etMouse); 
+    ScrollGrids(RightGrid.Row);
+end;
+
+procedure TCompareFrame.RightGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+  ScrollGrids(RightGrid.Row);
+  Handled := True;
+end;
+
+procedure TCompareFrame.RightGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+  ScrollGrids(RightGrid.Row);
+  Handled := True;
 end;
 
 procedure TCompareFrame.SaveGridChanges;
@@ -1138,7 +1165,7 @@ begin
   while (Row < LeftGrid.RowCount - 1) and (FDiff.Compares[Row].Kind = ckNone) do
     Inc(Row);
   if FDiff.Compares[Row].Kind <> ckNone then
-    ScrollGrids(Row, etMouse);
+    ScrollGrids(Row);
 end;
 
 procedure TCompareFrame.FrameResize(Sender: TObject);
