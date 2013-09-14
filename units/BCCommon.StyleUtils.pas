@@ -41,7 +41,7 @@ const
   procedure UpdateFortranSynColors(FortranSyn: TSynFortranSyn; WhiteBackground: Boolean);
   procedure UpdateFoxproSynColors(FoxproSyn: TSynFoxproSyn; WhiteBackground: Boolean);
   procedure UpdateGalaxySynColors(GalaxySyn: TSynGalaxySyn; WhiteBackground: Boolean);
-  procedure UpdateGutter(SynEdit: TSynEdit);
+  procedure UpdateMargin(SynEdit: TSynEdit);
   procedure UpdateGWScriptSynColors(GWScriptSyn: TSynGWScriptSyn; WhiteBackground: Boolean);
   procedure UpdateHaskellSynColors(HaskellSyn: TSynHaskellSyn; WhiteBackground: Boolean);
   procedure UpdateIdlSynColors(IdlSyn: TSynIdlSyn; WhiteBackground: Boolean);
@@ -75,7 +75,7 @@ const
   procedure UpdateWebIDLSynColors(WebIDLSyn: TSynWebIDLSyn; WhiteBackground: Boolean);
   procedure UpdateWebEngineColors(SynWebEngine: TSynWebEngine; WhiteBackground: Boolean);
 
-  procedure UpdateGutterAndColors(SynEdit: TBCSynEdit);
+  procedure UpdateMarginAndColors(SynEdit: TBCSynEdit);
 
 implementation
 
@@ -106,7 +106,7 @@ begin
                 or Max(Min(Round(r), 255),0));
 end;
 
-procedure UpdateGutter(SynEdit: TSynEdit);
+procedure UpdateMargin(SynEdit: TSynEdit);
 var
   LStyles: TCustomStyleServices;
 begin
@@ -1074,7 +1074,7 @@ begin
   end;
 end;
 
-procedure UpdateGutterAndColors(SynEdit: TBCSynEdit);
+procedure UpdateMarginAndColors(SynEdit: TBCSynEdit);
 var
   LStyles: TCustomStyleServices;
   Highlighter: TSynCustomHighlighter;

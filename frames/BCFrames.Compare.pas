@@ -116,7 +116,6 @@ type
     { Private declarations }
     FDiff: TDiff;
     FHashListLeft, FHashListRight: TList;
-    FPreviousRow: Integer;
     FResultLeft, FResultRight: TStringList;
     FSourceLeft, FSourceRight: TStringList;
     FSpecialChars: Boolean;
