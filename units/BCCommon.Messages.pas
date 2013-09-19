@@ -6,6 +6,7 @@ uses
   System.UITypes;
 
 function AskYesOrNo(Msg: string): Boolean;
+function AskYesOrNoAll(Msg: string): Integer;
 function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons): Integer; overload;
 function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; Captions: array of string): Integer; overload;
 function SaveChanges(IncludeCancel: Boolean = True): Integer;
@@ -71,6 +72,11 @@ end;
 function AskYesOrNo(Msg: string): Boolean;
 begin
   Result := MessageDialog(Msg, mtConfirmation, [mbYes, mbNo]) = mrYes;
+end;
+
+function AskYesOrNoAll(Msg: string): Integer;
+begin
+  Result := MessageDialog(Msg, mtConfirmation, [mbYes, mbYesToAll, mbNo, mbNoToAll]);
 end;
 
 function SaveChanges(IncludeCancel: Boolean): Integer;

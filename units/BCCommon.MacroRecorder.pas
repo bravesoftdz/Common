@@ -25,7 +25,7 @@ type
     constructor CreateList;
     destructor Destroy; override;
     function Add(Name: string): TMacroWinControl; overload;
-    function FindWinControlByHandle(HandleParam: THandle): TMacroWinControl;
+    function WinControlByHandle(HandleParam: THandle): TMacroWinControl;
     procedure Add(Name: string; WinControl: TWinControl); overload;
     procedure BuildList(WinControl: TWinControl);
   end;
@@ -119,6 +119,14 @@ implementation
 uses
   System.Types;
 
+const
+  MAXCONTROLLENGTH = 50;
+
+type
+  TMacroFile = packed record
+    WindowsMessage: TWindowsMessage;
+  end;
+
 var
   FMacroRecorder: TMacroRecorder = nil;
 
@@ -204,7 +212,7 @@ begin
   BuildListRecursive(0, WinControl, 0, 0);
 end;
 
-function TMacroWinControlList.FindWinControlByHandle(HandleParam: THandle): TMacroWinControl;
+function TMacroWinControlList.WinControlByHandle(HandleParam: THandle): TMacroWinControl;
 var
   i: Integer;
 begin
@@ -291,7 +299,7 @@ begin
     Dec(WindowsMessage.Time, FStartTickCount);
 
     if IsMouseMessage then
-    with FWinControlList.FindWinControlByHandle(WindowsMessage.WindowHandle) do
+    with FWinControlList.WinControlByHandle(WindowsMessage.WindowHandle) do
     begin
       Dec(WParam, ScreenX);
       Dec(LParam, ScreenY);
@@ -300,13 +308,36 @@ begin
 end;
 
 procedure TMacroMessageList.SaveToFile(const FileName: string);
+var
+  i: Integer;
+  F: File of TMacroFile;
+  MacroFile: TMacroFile;
 begin
-  { TODO }
+  AssignFile(F, FileName);
+  Reset(F);
+  for i := 0 to FMessageList.Count - 1 do
+  with GetMessage(i) do
+  begin
+    MacroFile.WindowsMessage := WindowsMessage;
+    write(F, MacroFile);
+  end;
+  Close(F);
 end;
 
 procedure TMacroMessageList.LoadFromFile(const FileName: string);
+var
+  F: File of TMacroFile;
+  MacroFile: TMacroFile;
 begin
-  { TODO }
+  Clear;
+  AssignFile(F, FileName);
+  Reset(F);
+  while not Eof(F) do
+  begin
+    Read(F, MacroFile);
+    Add(@MacroFile.WindowsMessage)
+  end;
+  Close(F);
 end;
 
 { TMacroRecorder }
@@ -442,7 +473,7 @@ begin
   with NextMacroMessage, WindowsMessage do
   begin
     if IsMouseMessage then
-    with MacroMessageList.WinControlList.FindWinControlByHandle(WindowHandle) do
+    with MacroMessageList.WinControlList.WinControlByHandle(WindowHandle) do
     begin
       Inc(WParam, ScreenX);
       Inc(LParam, ScreenY);

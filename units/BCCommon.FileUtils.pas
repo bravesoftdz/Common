@@ -36,6 +36,7 @@ const
 
   function AddSlash(Path: string): string;
   function FormatFileName(FileName: string; Modified: Boolean = False): string;
+  function GetFileDateTime(FileName: string): TDateTime;
   function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
   function GetFileType(FileName: string): TFileType;
   function GetFileVersion(Path: string): string;
@@ -76,6 +77,14 @@ begin
     if Assigned(PFileIconInit) then
       Result := PFileIconInit(FullInit);
   end;
+end;
+
+function GetFileDateTime(FileName: string): TDateTime;
+var
+  SearchRec: TSearchRec;
+begin
+  FindFirst(FileName, faAnyFile, SearchRec);
+  Result := SearchRec.TimeStamp;
 end;
 
 function GetFileType(FileName: string): TFileType;
