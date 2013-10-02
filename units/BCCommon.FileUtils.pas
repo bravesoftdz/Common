@@ -34,7 +34,6 @@ const
     FILE_APPEND_DATA or SYNCHRONIZE;
   FILE_GENERIC_EXECUTE   = STANDARD_RIGHTS_EXECUTE or FILE_READ_ATTRIBUTES or FILE_EXECUTE or SYNCHRONIZE;
 
-  function AddSlash(Path: string): string;
   function FormatFileName(FileName: string; Modified: Boolean = False): string;
   function GetFileDateTime(FileName: string): TDateTime;
   function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
@@ -143,30 +142,22 @@ begin
   FreeMem(VerInfo, InfoSize);
 end;
 
-function AddSlash(Path: string): string;
-begin
-  if Path = '' then
-    Exit;
-  if Path[Length(Path)] <> '\' then
-    Result := Format('%s\', [Path])
-  else
-    Result := Path;
-end;
-
 function GetFileNamesFromFolder(Folder: string; FileType: string): TStrings;
 var
   SearchRec: TSearchRec;
 begin
   Result := TStringList.Create;
   {$WARNINGS OFF} { faHidden is specific to a platform }
-  if FindFirst(AddSlash(Folder) + '*.*', faAnyFile - faHidden, SearchRec) = 0 then
+  if FindFirst(IncludeTrailingBackslash(Folder) + '*.*', faAnyFile - faHidden, SearchRec) = 0 then
   {$WARNINGS ON}
   begin
     repeat
       if SearchRec.Attr <> faDirectory then
         if (FileType = '') or (FileType = '*.*') or
           ((FileType <> '') and IsExtInFileType(ExtractFileExt(SearchRec.Name), FileType)) then
-          Result.Add(AddSlash(Folder) + SearchRec.Name);
+          {$WARNINGS OFF} { IncludeTrailingBackslash is specific to a platform }
+          Result.Add(IncludeTrailingBackslash(Folder) + SearchRec.Name);
+          {$WARNINGS ON}
     until FindNext(SearchRec) <> 0;
     System.SysUtils.FindClose(SearchRec);
   end;

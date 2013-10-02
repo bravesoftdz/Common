@@ -116,7 +116,9 @@ end;
 
 function TFindInFilesDialog.GetFolderText: string;
 begin
-  Result := AddSlash(FolderEdit.Text);
+  {$WARNINGS OFF} { IncludeTrailingBackslash is specific to a platform }
+  Result := IncludeTrailingBackslash(FolderEdit.Text);
+  {$WARNINGS ON}
 end;
 
 procedure TFindInFilesDialog.SetFolderText(Value: string);

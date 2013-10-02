@@ -304,8 +304,6 @@ object FindInFilesDialog: TFindInFilesDialog
         HotTrackFont.Name = 'Tahoma'
         HotTrackFont.Style = []
         NumGlyphs = 2
-        ExplicitLeft = 150
-        ExplicitHeight = 21
       end
       object FolderEdit2Panel: TPanel
         Left = 0
