@@ -3,7 +3,7 @@ object SearchForFilesForm: TSearchForFilesForm
   Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'Search for Files'
-  ClientHeight = 327
+  ClientHeight = 401
   ClientWidth = 298
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -35,12 +35,12 @@ object SearchForFilesForm: TSearchForFilesForm
     OnChange = SearchActionExecute
     OnRightButtonClick = ClearActionExecute
   end
-  object VirtualDrawTree1: TVirtualDrawTree
+  object SearchVirtualDrawTree: TVirtualDrawTree
     AlignWithMargins = True
     Left = 3
     Top = 27
     Width = 292
-    Height = 297
+    Height = 371
     Align = alClient
     Header.AutoSizeIndex = 0
     Header.Font.Charset = DEFAULT_CHARSET
@@ -50,6 +50,13 @@ object SearchForFilesForm: TSearchForFilesForm
     Header.Font.Style = []
     Header.MainColumn = -1
     TabOrder = 1
+    TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoSort, toAutoTristateTracking, toAutoDeleteMovedNodes]
+    TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning]
+    TreeOptions.PaintOptions = [toShowRoot, toThemeAware, toUseBlendedImages]
+    OnDrawNode = SearchVirtualDrawTreeDrawNode
+    OnFreeNode = SearchVirtualDrawTreeFreeNode
+    OnGetImageIndex = SearchVirtualDrawTreeGetImageIndex
+    OnGetNodeWidth = SearchVirtualDrawTreeGetNodeWidth
     Columns = <>
   end
   object ActionList: TActionList
