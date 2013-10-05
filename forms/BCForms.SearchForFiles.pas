@@ -15,6 +15,7 @@ type
     ImageList: TBCImageList;
     ClearAction: TAction;
     SearchAction: TAction;
+    SearchingFilesPanel: TPanel;
     procedure ClearActionExecute(Sender: TObject);
     procedure SearchActionExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -25,6 +26,9 @@ type
     procedure SearchVirtualDrawTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure SearchVirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind;
       Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
+    procedure FormCreate(Sender: TObject);
+    procedure SearchVirtualDrawTreeCompareNodes(Sender: TBaseVirtualTree; Node1, Node2: PVirtualNode;
+      Column: TColumnIndex; var Result: Integer);
   private
     { Private declarations }
     procedure ReadIniFile;
@@ -42,7 +46,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.LanguageUtils, System.IniFiles, BCCommon.FileUtils, Vcl.Themes;
+  BCCommon.LanguageUtils, System.IniFiles, BCCommon.FileUtils, Vcl.Themes, Winapi.ShellAPI;
 
 type
   PSearchRec = ^TSearchRec;
@@ -50,6 +54,7 @@ type
     FileName: string;
     FilePath: string;
     ImageIndex: Integer;
+    Visible: Boolean;
   end;
 
 var
@@ -71,6 +76,25 @@ end;
 procedure TSearchForFilesForm.SearchActionExecute(Sender: TObject);
 begin
   SearchForEdit.RightButton.Visible := Trim(SearchForEdit.Text) <> '';
+end;
+
+procedure TSearchForFilesForm.SearchVirtualDrawTreeCompareNodes(Sender: TBaseVirtualTree; Node1, Node2: PVirtualNode;
+  Column: TColumnIndex; var Result: Integer);
+var
+  Data1, Data2: PSearchRec;
+begin
+  if Result = 0 then
+  begin
+    Data1 := SearchVirtualDrawTree.GetNodeData(Node1);
+    Data2 := SearchVirtualDrawTree.GetNodeData(Node2);
+
+    Result := -1;
+
+    if not Assigned(Data1) or not Assigned(Data2) then
+      Exit;
+
+    Result := AnsiCompareText(Data1.FileName, Data2.FileName);
+  end;
 end;
 
 procedure TSearchForFilesForm.SearchVirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
@@ -136,7 +160,7 @@ begin
 
       DrawTextW(Canvas.Handle, PWideChar(S), Length(S), R, Format);
       R.Left := R.Left + Canvas.TextWidth(S);
-      S := Format(' (%s)', [Data.FilePath]);
+      S := System.SysUtils.Format(' (%s)', [Data.FilePath]);
       if LStyles.Enabled then
         Canvas.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextDisabled)
       else
@@ -161,22 +185,26 @@ end;
 
 procedure TSearchForFilesForm.SearchVirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
   Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
+var
+  Data: PSearchRec;
 begin
-  // todo
+  Data := SearchVirtualDrawTree.GetNodeData(Node);
+  if Assigned(Data) then
+    ImageIndex := Data.ImageIndex;
 end;
 
 procedure TSearchForFilesForm.SearchVirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas;
   Node: PVirtualNode; Column: TColumnIndex; var NodeWidth: Integer);
 var
   Data: PSearchRec;
-  AMargin, BoldWidth: Integer;
-  S: string;
+  AMargin: Integer;
 begin
   with Sender as TVirtualDrawTree do
   begin
     AMargin := TextMargin;
-    Data := Sender.GetNodeData(Node);
-    NodeWidth := Canvas.TextWidth(Trim(Format('%s (%s)', [Data.FileName, Data.FilePath]))) + 2 * AMargin;
+    Data := GetNodeData(Node);
+    if Assigned(Data) then
+      NodeWidth := Canvas.TextWidth(Format('%s (%s)', [Data.FileName, Data.FilePath])) + 2 * AMargin;
   end;
 end;
 
@@ -186,16 +214,41 @@ begin
   Action := caFree;
 end;
 
+procedure TSearchForFilesForm.FormCreate(Sender: TObject);
+var
+  SHFileInfo: TSHFileInfo;
+  PathInfo: String;
+  SysImageList: THandle;
+begin
+  SearchVirtualDrawTree.NodeDataSize := SizeOf(TSearchRec);
+  SearchVirtualDrawTree.Images := TBCImageList.Create(Self);
+  SysImageList := SHGetFileInfo(PChar(PathInfo), 0, SHFileInfo, SizeOf(SHFileInfo), SHGFI_SYSICONINDEX or SHGFI_SMALLICON);
+  if SysImageList <> 0 then
+  begin
+    SearchVirtualDrawTree.Images.Handle := SysImageList;
+    SearchVirtualDrawTree.Images.BkColor := ClNone;
+    SearchVirtualDrawTree.Images.ShareImages := True;
+  end;
+end;
+
 procedure TSearchForFilesForm.FormDestroy(Sender: TObject);
 begin
+  SearchVirtualDrawTree.Images.Free;
   FSearchForFilesForm := nil;
 end;
 
 procedure TSearchForFilesForm.Open(RootDirectory: string);
 begin
+  SearchingFilesPanel.Visible := True;
+  SearchForEdit.ReadOnly := True;
   ReadIniFile;
   Show;
+  SearchVirtualDrawTree.BeginUpdate;
   ReadFiles(RootDirectory);
+  SearchVirtualDrawTree.Sort(nil, 0, sdAscending, False);
+  SearchVirtualDrawTree.EndUpdate;
+  SearchingFilesPanel.Visible := False;
+  SearchForEdit.ReadOnly := False;
 end;
 
 procedure TSearchForFilesForm.ReadIniFile;
@@ -269,7 +322,11 @@ begin
           Node := SearchVirtualDrawTree.AddChild(nil);
           NodeData := SearchVirtualDrawTree.GetNodeData(Node);
           NodeData.FileName := FName;
-          NodeData.FilePath := RootDirectory;
+          {$WARNINGS OFF} { ExcludeTrailingBackslash is specific to a platform }
+          NodeData.FilePath := ExcludeTrailingBackslash(RootDirectory);
+          {$WARNINGS ON}
+          NodeData.Visible := True;
+          NodeData.ImageIndex := GetIconIndex(IncludeTrailingBackslash(RootDirectory) + FName);
         end;
       end;
     until not FindNextFile(shFindFile, sWin32FD);

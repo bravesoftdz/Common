@@ -4,7 +4,7 @@ object SearchForFilesForm: TSearchForFilesForm
   BorderIcons = [biSystemMenu]
   Caption = 'Search for Files'
   ClientHeight = 401
-  ClientWidth = 298
+  ClientWidth = 383
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,14 +13,27 @@ object SearchForFilesForm: TSearchForFilesForm
   Font.Style = []
   OldCreateOrder = False
   OnClose = FormClose
+  OnCreate = FormCreate
   OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
+  object SearchingFilesPanel: TPanel
+    Left = 0
+    Top = 24
+    Width = 383
+    Height = 377
+    Align = alClient
+    BevelOuter = bvNone
+    Caption = 'Searching files...'
+    ParentColor = True
+    TabOrder = 2
+    Visible = False
+  end
   object SearchForEdit: TButtonedEdit
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 292
+    Width = 377
     Height = 21
     Margins.Bottom = 0
     Align = alTop
@@ -28,9 +41,9 @@ object SearchForFilesForm: TSearchForFilesForm
     Images = ImageList
     LeftButton.Enabled = False
     ParentDoubleBuffered = False
-    RightButton.HotImageIndex = 3
-    RightButton.ImageIndex = 2
-    RightButton.PressedImageIndex = 4
+    RightButton.HotImageIndex = 1
+    RightButton.ImageIndex = 0
+    RightButton.PressedImageIndex = 2
     TabOrder = 0
     OnChange = SearchActionExecute
     OnRightButtonClick = ClearActionExecute
@@ -39,7 +52,7 @@ object SearchForFilesForm: TSearchForFilesForm
     AlignWithMargins = True
     Left = 3
     Top = 27
-    Width = 292
+    Width = 377
     Height = 371
     Align = alClient
     Header.AutoSizeIndex = 0
@@ -49,10 +62,11 @@ object SearchForFilesForm: TSearchForFilesForm
     Header.Font.Name = 'Tahoma'
     Header.Font.Style = []
     Header.MainColumn = -1
+    Indent = 0
     TabOrder = 1
-    TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoSort, toAutoTristateTracking, toAutoDeleteMovedNodes]
     TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning]
-    TreeOptions.PaintOptions = [toShowRoot, toThemeAware, toUseBlendedImages]
+    TreeOptions.PaintOptions = [toShowRoot, toThemeAware]
+    OnCompareNodes = SearchVirtualDrawTreeCompareNodes
     OnDrawNode = SearchVirtualDrawTreeDrawNode
     OnFreeNode = SearchVirtualDrawTreeFreeNode
     OnGetImageIndex = SearchVirtualDrawTreeGetImageIndex
