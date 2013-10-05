@@ -72,6 +72,13 @@ begin
           TGroupBox(Form.Components[i]).Caption := Format(' %s ', [s])
       end
       else
+      if Form.Components[i] is TPanel then
+      begin
+        s := ReadString(Form.Name, TPanel(Form.Components[i]).Name, '');
+        if s <> '' then
+          TPanel(Form.Components[i]).Caption := Format(' %s ', [s])
+      end
+      else
       if Form.Components[i] is TAction then
       begin
         s := ReadString(Form.Name, TAction(Form.Components[i]).Name, '');
