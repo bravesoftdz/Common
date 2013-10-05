@@ -34,6 +34,7 @@ type
     procedure ReadIniFile;
     procedure WriteIniFile;
     procedure ReadFiles(RootDirectory: string);
+    procedure SetVisibleRows;
   public
     { Public declarations }
     procedure Open(RootDirectory: string);
@@ -54,7 +55,6 @@ type
     FileName: string;
     FilePath: string;
     ImageIndex: Integer;
-    Visible: Boolean;
   end;
 
 var
@@ -68,6 +68,23 @@ begin
   UpdateLanguage(FSearchForFilesForm, GetSelectedLanguage);
 end;
 
+procedure TSearchForFilesForm.SetVisibleRows;
+var
+  CurNode: PVirtualNode;
+  Data: PSearchRec;
+begin
+  with SearchVirtualDrawTree do
+  begin
+    CurNode := GetFirst;
+    while Assigned(CurNode) do
+    begin
+      Data := GetNodeData(CurNode);
+      IsVisible[CurNode] := (Pos(UpperCase(SearchForEdit.Text), UpperCase(Data.FileName)) <> 0) or (SearchForEdit.Text = '');
+      CurNode := CurNode.NextSibling;
+    end;
+  end;
+end;
+
 procedure TSearchForFilesForm.ClearActionExecute(Sender: TObject);
 begin
   SearchForEdit.Text := '';
@@ -76,6 +93,7 @@ end;
 procedure TSearchForFilesForm.SearchActionExecute(Sender: TObject);
 begin
   SearchForEdit.RightButton.Visible := Trim(SearchForEdit.Text) <> '';
+  SetVisibleRows;
 end;
 
 procedure TSearchForFilesForm.SearchVirtualDrawTreeCompareNodes(Sender: TBaseVirtualTree; Node1, Node2: PVirtualNode;
@@ -325,7 +343,6 @@ begin
           {$WARNINGS OFF} { ExcludeTrailingBackslash is specific to a platform }
           NodeData.FilePath := ExcludeTrailingBackslash(RootDirectory);
           {$WARNINGS ON}
-          NodeData.Visible := True;
           NodeData.ImageIndex := GetIconIndex(IncludeTrailingBackslash(RootDirectory) + FName);
         end;
       end;
