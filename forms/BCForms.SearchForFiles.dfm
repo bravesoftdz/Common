@@ -102,6 +102,7 @@ object SearchForFilesForm: TSearchForFilesForm
     TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning]
     TreeOptions.PaintOptions = [toShowRoot, toThemeAware]
     OnCompareNodes = SearchVirtualDrawTreeCompareNodes
+    OnDblClick = SearchVirtualDrawTreeDblClick
     OnDrawNode = SearchVirtualDrawTreeDrawNode
     OnFreeNode = SearchVirtualDrawTreeFreeNode
     OnGetImageIndex = SearchVirtualDrawTreeGetImageIndex

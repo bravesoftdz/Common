@@ -8,6 +8,8 @@ uses
   Vcl.StdCtrls, VirtualTrees;
 
 type
+  TOpenFileEvent = procedure(var FileName: string);
+
   TSearchForFilesForm = class(TForm)
     SearchForEdit: TButtonedEdit;
     ActionList: TActionList;
@@ -29,8 +31,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure SearchVirtualDrawTreeCompareNodes(Sender: TBaseVirtualTree; Node1, Node2: PVirtualNode;
       Column: TColumnIndex; var Result: Integer);
+    procedure SearchVirtualDrawTreeDblClick(Sender: TObject);
   private
     { Private declarations }
+    FOpenFile: TOpenFileEvent;
     procedure ReadIniFile;
     procedure WriteIniFile;
     procedure ReadFiles(RootDirectory: string);
@@ -38,6 +42,7 @@ type
   public
     { Public declarations }
     procedure Open(RootDirectory: string);
+     property OnOpenFile: TOpenFileEvent read FOpenFile write FOpenFile;
   end;
 
 function SearchForFilesForm: TSearchForFilesForm;
@@ -113,6 +118,24 @@ begin
 
     Result := AnsiCompareText(Data1.FileName, Data2.FileName);
   end;
+end;
+
+procedure TSearchForFilesForm.SearchVirtualDrawTreeDblClick(Sender: TObject);
+var
+  S: string;
+  Node: PVirtualNode;
+  Data: PSearchRec;
+begin
+  Node := SearchVirtualDrawTree.GetFirstSelected;
+  Data := SearchVirtualDrawTree.GetNodeData(Node);
+  if Assigned(Data) then
+    if Assigned(FOpenFile) then
+    begin
+      {$WARNINGS OFF} { IncludeTrailingBackslash is specific to a platform }
+      S := IncludeTrailingBackslash(Data.FilePath) + Data.FileName;
+      {$WARNINGS ON}
+      FOpenFile(S);
+    end;
 end;
 
 procedure TSearchForFilesForm.SearchVirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
@@ -342,8 +365,8 @@ begin
           NodeData.FileName := FName;
           {$WARNINGS OFF} { ExcludeTrailingBackslash is specific to a platform }
           NodeData.FilePath := ExcludeTrailingBackslash(RootDirectory);
-          {$WARNINGS ON}
           NodeData.ImageIndex := GetIconIndex(IncludeTrailingBackslash(RootDirectory) + FName);
+          {$WARNINGS ON}
         end;
       end;
     until not FindNextFile(shFindFile, sWin32FD);
