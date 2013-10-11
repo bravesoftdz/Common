@@ -173,22 +173,21 @@ const
 procedure TCompareFrame.LeftScrollBoxWindowProc(var Message: TMessage);
 begin
   OldLeftScrollBoxProc(Message);
-  if  (Message.Msg = WM_HSCROLL) or (Message.msg = WM_Mousewheel) then
+  if (Message.Msg = WM_HSCROLL) or (Message.msg = WM_Mousewheel) then
     OldRightScrollBoxProc(Message);
 end;
 
 procedure TCompareFrame.RightScrollBoxWindowProc(var Message: TMessage);
 begin
   OldRightScrollBoxProc(Message);
-  if  (Message.Msg = WM_HSCROLL) or (Message.msg = WM_Mousewheel) then
+  if (Message.Msg = WM_HSCROLL) or (Message.msg = WM_Mousewheel) then
     OldLeftScrollBoxProc(Message);
 end;
 
 procedure TCompareFrame.LeftGridWindowProc(var Message: TMessage);
 begin
   OldLeftGridProc(Message);
-  if ((Message.Msg = WM_VSCROLL) or
-      (Message.msg = WM_Mousewheel)) then
+  if (Message.Msg = WM_VSCROLL) or (Message.msg = WM_Mousewheel) then
     OldRightGridProc(Message);
 end;
 
