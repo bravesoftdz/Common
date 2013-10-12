@@ -130,11 +130,9 @@ const
     VK_BACK or scAlt,
     VK_BACK or scShift or scAlt);
 
-function BinToInt(Value: String): LongInt;
 function BrowseURL(const URL: string): Boolean;
 function GetAppVersion(const Url:string):string;
 function GetOSInfo: string;
-function IntToBin(Value: LongInt; Digits: Integer): string;
 function PointInRect(const P: TPoint; const R: TRect): Boolean;
 procedure AutoSizeCol(Grid: TBCStringGrid; StartCol: Integer = 0);
 procedure CheckForUpdates(AppName: string; AboutVersion: string);
@@ -146,18 +144,6 @@ implementation
 uses
   System.SysUtils, System.IOUtils, Winapi.ShellApi, Winapi.WinInet, System.StrUtils, Vcl.Forms,
   System.UITypes, BCCommon.Messages, BCCommon.LanguageStrings, BCDialogs.DownloadURL;
-
-function BinToInt(Value: String): LongInt;
-var
-  i: Integer;
-begin
-  Result:=0;
-  while Copy(Value,1,1) = '0' do
-    Value := Copy(Value, 2, Length(Value) - 1);
-  for i := Length(Value) downto 1 do
-    if Copy(Value, i, 1) = '1' then
-      Result := Result + (1 shl (Length(Value) - i));
-end;
 
 function BrowseURL(const URL: string): Boolean;
 var
@@ -249,18 +235,6 @@ begin
           OS.dwBuildNumber, OS.szCSDVersion])
     else
       Result := Format('Windows %d.%d %s', [OS.dwMajorVersion, OS.dwMinorVersion, OS.szCSDVersion]);
-  end;
-end;
-
-function IntToBin(Value: LongInt; Digits: Integer): string;
-begin
-  Result := StringOfChar('0', Digits);
-  while Value > 0 do
-  begin
-    if (Value and 1) = 1 then
-      Result[Digits] := '1';
-    Dec(Digits);
-    Value := Value shr 1;
   end;
 end;
 

@@ -55,7 +55,7 @@ implementation
 
 uses
   System.IniFiles, BCCommon.FileUtils, System.ConvUtils, System.StdConvs, BCCommon.LanguageStrings, BCCommon.Lib,
-  BCCommon.Messages, BCCommon.LanguageUtils;
+  BCCommon.Messages, BCCommon.LanguageUtils, BCCommon.Math;
 
 const
   DistanceItemIndex = 0;
