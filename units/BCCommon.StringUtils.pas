@@ -11,6 +11,7 @@ uses
   function FormatXML(XML: string): string;
   function GetNextToken(Separator: string; Text: string): string;
   function RemoveTokenFromStart(Separator: string; Text: string): string;
+  function RemoveNonAlpha(Source: string): string;
   function RemoveWhiteSpace(const s: string): string;
   function StringBetween(Str: string; SubStr1: string; SunStr2: string): string;
   function WideUpperCase(const S: WideString): WideString;
@@ -211,6 +212,16 @@ begin
     if Assigned(KeywordStringList) then
       KeywordStringList.Free;
   end;
+end;
+
+function RemoveNonAlpha(Source: string): string;
+var
+  i: integer;
+begin
+  Result := '';
+  for i :=0 to Length(Source) - 1 do
+    if isCharAlpha(Source[i]) then
+      Result := Result + Source[i];
 end;
 
 end.
