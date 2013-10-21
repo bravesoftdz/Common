@@ -3,12 +3,9 @@ unit BCFrames.Compare;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Diff, Vcl.Grids, Vcl.ExtCtrls, Vcl.StdCtrls, JvExStdCtrls,
-  Vcl.Mask, Vcl.Buttons, JvSpeedButton, BCControls.Edit, JvStringGrid,
-  BCControls.StringGrid, Vcl.ActnList, JvScrollBar, JvExForms, JvExExtCtrls, JvSplitter, JvExtComponent,
-  JvContentScroller, JvExGrids, JvEdit, JvCombobox, BCControls.ComboBox, Vcl.ImgList, System.Generics.Collections,
-  System.Actions, JvExControls, BCControls.ImageList;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Diff,
+  Vcl.Grids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, JvSpeedButton, JvStringGrid, BCControls.StringGrid, Vcl.ActnList,
+  JvExGrids, BCControls.ComboBox, System.Actions, JvExControls, BCControls.ImageList;
 
 type
   TSyncKind = (skBoth, skVScroll, skHScroll);

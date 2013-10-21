@@ -72,8 +72,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
     ScaleMode = pscWholePage
     OnMouseDown = SynEditPrintPreviewMouseDown
     OnPreviewPage = SynEditPrintPreviewPreviewPage
-    ExplicitLeft = 188
-    ExplicitWidth = 538
   end
   object ButtonPanel: TPanel
     Left = 0
@@ -99,9 +97,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
       Margins.Bottom = 2
       Align = alLeft
       Shape = bsLeftLine
-      ExplicitLeft = 143
-      ExplicitTop = 3
-      ExplicitHeight = 21
     end
     object Bevel1: TBevel
       AlignWithMargins = True
@@ -114,9 +109,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
       Margins.Bottom = 2
       Align = alLeft
       Shape = bsLeftLine
-      ExplicitLeft = 200
-      ExplicitTop = 3
-      ExplicitHeight = 21
     end
     object Bevel2: TBevel
       AlignWithMargins = True
@@ -129,9 +121,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
       Margins.Bottom = 2
       Align = alLeft
       Shape = bsLeftLine
-      ExplicitLeft = 90
-      ExplicitTop = 3
-      ExplicitHeight = 21
     end
     object ToolBar: TBCToolBar
       Left = 2

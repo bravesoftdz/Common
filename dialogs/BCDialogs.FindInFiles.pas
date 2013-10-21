@@ -3,11 +3,9 @@ unit BCDialogs.FindInFiles;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, JvExMask, JvToolEdit,
-  BCControls.ComboBox, Vcl.Themes, Vcl.ActnList, Vcl.Buttons,
-  BCDialogs.Dlg, System.Actions, BCControls.Edit, JvExStdCtrls, JvEdit, Vcl.ComCtrls, Vcl.ToolWin, BCControls.ToolBar,
-  Vcl.ImgList, BCControls.ImageList, JvExControls, JvSpeedButton;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, JvToolEdit,
+  BCControls.ComboBox, Vcl.Themes, Vcl.ActnList, Vcl.Buttons, BCDialogs.Dlg, System.Actions, BCControls.Edit,
+  Vcl.ComCtrls, JvExControls, JvSpeedButton;
 
 type
   TFindInFilesDialog = class(TDialog)
@@ -70,7 +68,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StyleUtils, System.Math, BCCommon.LanguageStrings, BCCommon.FileUtils, BCCommon.Lib,
+  BCCommon.StyleUtils, System.Math, BCCommon.LanguageStrings, BCCommon.Lib,
   {$WARNINGS OFF}
   Vcl.FileCtrl; { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}

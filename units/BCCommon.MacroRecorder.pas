@@ -137,7 +137,7 @@ begin
     Assert(not Assigned(WinControl), 'MacroRecorder: WinControl not assigned.');
     FMacroRecorder := TMacroRecorder.Create(WinControl);
   end;
-  Result:= FMacroRecorder;
+  Result := FMacroRecorder;
 end;
 
 { TMacroWinControl }
@@ -361,39 +361,47 @@ begin
   inherited;
 end;
 
-function JournalRecordHookProc(code: Integer; wparam: WPARAM; lparam: LPARAM): LRESULT; stdcall;
+function JournalRecordHookProc(Code: Integer; WParam: Integer; var EventStrut: TEventMsg): Integer; stdcall;
 var
   WindowsMessage: PWindowsMessage;
 begin
-  Result := 0;
-
+  Result:= 0;
+  if Code < 0 then
+    Exit;
+  if Code = HC_SYSMODALON then
+    Exit;
   with MacroRecorder(nil) do
   begin
     if GetKeyState(vk_Pause) < 0 then
     begin
       Stop;
-      Result := CallNextHookEx(HookHandle, code, wparam, lparam);
+      Result := CallNextHookEx(HookHandle, Code, WParam, Longint(@EventStrut));
       Exit;
     end;
 
-    case code of
+    case Code of
       HC_ACTION:
         begin
-          WindowsMessage := PWindowsMessage(lparam);
+          WindowsMessage := PWindowsMessage(EventStrut.ParamL);
           with WindowsMessage^ do
             if (Msg <> wm_MouseMove) and (Msg <> $FF) then
               MacroMessageList.Add(WindowsMessage);
         end;
     else
-      Result := CallNextHookEx(HookHandle, code, wparam, lparam);
+      Result := CallNextHookEx(HookHandle, Code, WParam, Longint(@EventStrut));
     end;
   end;
 end;
 
-function JournalPlaybackHookProc(code: Integer; wparam: WPARAM; lparam: LPARAM): LRESULT; stdcall;
+function JournalPlaybackHookProc(Code: Integer; WParam: Integer; var EventStrut: TEventMsg): Integer; stdcall;
 begin
+  Result:= 0;
+  if Code < 0 then
+    Exit;
+  if Code = HC_SYSMODALON then
+    Exit;
   with MacroRecorder(nil) do
-  case code of
+  case Code of
     HC_SKIP:
       begin
         MessageIndex := MessageIndex + 1; { MessageIndex is a property, can't use Inc(MessageIndex); }
@@ -402,15 +410,13 @@ begin
           StopPlayback
         else
           GetMessage(MessageIndex);
-        Result:= 0;
       end;
     HC_GETNEXT:
       begin
-        PWindowsMessage(lparam)^ := NextMacroMessage.WindowsMessage;
-        Result:= 0;
+        PWindowsMessage(EventStrut.ParamL)^ := NextMacroMessage.WindowsMessage;
       end
   else
-    Result:= CallNextHookEx(HookHandle, code, wparam, lparam);
+    Result:= CallNextHookEx(HookHandle, Code, WParam, Longint(@EventStrut));
   end;
 end;
 
@@ -420,7 +426,7 @@ begin
   begin
     if not FIsPaused then
       FMacroMessageList.Clear;
-    FHookHandle := SetWindowsHookEx(WH_JOURNALRECORD, JournalRecordHookProc, hInstance, 0);
+    FHookHandle := SetWindowsHookEx(WH_JOURNALRECORD, @JournalRecordHookProc, hInstance, 0);
   end;
   FIsRecording := True;
   FIsPaused := False;
@@ -451,7 +457,7 @@ begin
   FMessageIndex := 0;
   FMacroMessageList.StartTickCount := GetTickCount; { TODO: Needed? }
 
-  FHookHandle := SetWindowsHookEx(WH_JOURNALPLAYBACK, JournalPlaybackHookProc, hInstance, 0);
+  FHookHandle := SetWindowsHookEx(WH_JOURNALPLAYBACK, @JournalPlaybackHookProc, hInstance, 0);
   if FHookHandle = 0 then
     Exit;
 

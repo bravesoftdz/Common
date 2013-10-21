@@ -50,7 +50,7 @@ uses
   Vcl.ThemedActnCtrls,
   Vcl.Forms,
   Vcl.ListActns,
-  Vcl.ActnColorMaps,
+
   Vcl.Themes,
   Vcl.XPActnCtrls,
   Vcl.StdActnMenus,

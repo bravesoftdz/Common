@@ -44,9 +44,6 @@ object DownloadURLDialog: TDownloadURLDialog
       Alignment = taCenter
       AutoSize = False
       Caption = 'InformationLabel'
-      ExplicitLeft = -4
-      ExplicitTop = 18
-      ExplicitWidth = 372
     end
     object ProgressBar: TBCProgressBar
       Left = 11

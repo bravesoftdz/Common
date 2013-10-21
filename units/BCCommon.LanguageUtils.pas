@@ -12,7 +12,7 @@ implementation
 
 uses
   BigIni, BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
-  Vcl.ExtCtrls, VirtualTrees, SynEdit, BCCommon.LanguageStrings;
+  Vcl.ExtCtrls, VirtualTrees, BCCommon.LanguageStrings;
 
 function GetSelectedLanguage(Default: string): string;
 begin

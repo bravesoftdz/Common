@@ -22,9 +22,6 @@ type
 
 implementation
 
-uses
-  Winapi.Windows;
-
 { TUTF8WithoutBOM }
 
 function TUTF8WithoutBOM.GetPreamble: TBytes;

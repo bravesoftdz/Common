@@ -3,7 +3,7 @@ unit BCDialogs.ConfirmReplace;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls,
+  Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls,
   Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, BCDialogs.Dlg;
 
 type
@@ -29,7 +29,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Vcl.Themes, BCCommon.StyleUtils, BCCommon.LanguageStrings;
+  BCCommon.StyleUtils, BCCommon.LanguageStrings;
 
 var
   FConfirmReplaceDialog: TConfirmReplaceDialog;

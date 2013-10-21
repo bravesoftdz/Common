@@ -3,9 +3,8 @@ unit BCForms.Convert;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.ComboBox, Vcl.ExtCtrls, BCControls.Edit,
-  System.Actions, Vcl.ActnList;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  BCControls.ComboBox, BCControls.Edit, System.Actions, Vcl.ActnList;
 
 type
   TConvertForm = class(TForm)
@@ -54,7 +53,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.IniFiles, BCCommon.FileUtils, System.ConvUtils, System.StdConvs, BCCommon.LanguageStrings, BCCommon.Lib,
+  System.IniFiles, BCCommon.FileUtils, System.ConvUtils, System.StdConvs, BCCommon.LanguageStrings,
   BCCommon.Messages, BCCommon.LanguageUtils, BCCommon.Math;
 
 const

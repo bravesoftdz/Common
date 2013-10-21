@@ -3,9 +3,8 @@ unit BCDialogs.DownloadURL;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.ActnList, Vcl.StdCtrls, Vcl.ComCtrls, JvExComCtrls,
-  BCControls.ProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, BCDialogs.Dlg, System.Actions, JvProgressBar;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ActnList, Vcl.StdCtrls, Vcl.ComCtrls,
+  JvExComCtrls, BCControls.ProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, BCDialogs.Dlg, System.Actions, JvProgressBar;
 
 type
   TDownloadURLDialog = class(TDialog)
@@ -39,7 +38,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.LanguageStrings, Vcl.Themes, BCCommon.Dialogs;
+  BCCommon.LanguageStrings, BCCommon.Dialogs;
 
 var
   FDownloadURLDialog: TDownloadURLDialog;

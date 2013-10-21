@@ -3,8 +3,7 @@ unit BCDialogs.Dlg;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms;
 
 type
   TDialog = class(TForm)

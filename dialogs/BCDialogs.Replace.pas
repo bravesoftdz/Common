@@ -5,8 +5,8 @@ unit BCDialogs.Replace;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls,
-  Vcl.Forms, BCDialogs.Dlg, Vcl.ExtCtrls, BCControls.ComboBox, Vcl.StdCtrls;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCDialogs.Dlg, Vcl.ExtCtrls,
+  BCControls.ComboBox, Vcl.StdCtrls;
 
 type
   TReplaceDialog = class(TDialog)
@@ -57,7 +57,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Lib, Vcl.Themes, BCCommon.StyleUtils, System.Math, BCCommon.Lib;
+  BCCommon.StyleUtils, System.Math, BCCommon.Lib;
 
 var
   FReplaceDialog: TReplaceDialog;

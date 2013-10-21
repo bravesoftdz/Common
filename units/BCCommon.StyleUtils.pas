@@ -3,8 +3,7 @@ unit BCCommon.StyleUtils;
 interface
 
 uses
-  Vcl.StdCtrls, Winapi.Messages, Vcl.Controls, SynEdit, Vcl.Styles, Vcl.Themes, Vcl.ComCtrls,
-  Vcl.ExtCtrls, Vcl.Graphics, Vcl.Forms, JvProgressBar,
+  Vcl.Controls, SynEdit, Vcl.Styles, Vcl.Themes, Vcl.ComCtrls, Vcl.Graphics, Vcl.Forms,
   SynHighlighterHC11, SynHighlighterBaan, SynHighlighterCAC, SynHighlighterCache, SynHighlighterFortran,
   SynHighlighterAWK, SynHighlighterCobol, SynHighlighterFoxpro, SynHighlighterGalaxy,
   SynHighlighterGWS, SynHighlighterHaskell, SynHighlighterKix, SynHighlighterModelica,
@@ -15,7 +14,7 @@ uses
   SynHighlighterBat, SynHighlighterPerl, SynHighlighterProgress, SynHighlighterPython,
   SynHighlighterRuby, SynHighlighterSDD, SynHighlighterSML, SynHighlighterTclTk, SynHighlighterYAML,
   SynHighlighterTex, SynHighlighterUNIXShellScript, SynHighlighterVB, SynHighlighterASM,
-  SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, BCDialogs.Dlg, System.Types, BCControls.SynEdit,
+  SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, BCDialogs.Dlg, BCControls.SynEdit,
   SynHighlighterWebIDL, SynHighlighterLLVM;
 
 const
@@ -80,7 +79,7 @@ const
 implementation
 
 uses
-  Math, WinApi.Windows, System.SysUtils, BCControls.PageControl, SynEditHighlighter;
+  Math, WinApi.Windows, System.SysUtils, SynEditHighlighter;
 
 function LightenMoreColor(AColor: TColor): TColor;
 begin
