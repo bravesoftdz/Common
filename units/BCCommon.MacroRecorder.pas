@@ -361,7 +361,22 @@ begin
   inherited;
 end;
 
-function JournalRecordHookProc(Code: Integer; WParam: Integer; var EventStrut: TEventMsg): Integer; stdcall;
+{ The JournalRecordProc hook procedure is an application-defined or library-defined callback function used with the
+  SetWindowsHookEx function. The function records messages the system removes from the system message queue.
+  A JournalRecordProc hook procedure does not need to live in a dynamic-link library. A JournalRecordProc hook
+  procedure can live in the application itself.
+
+  WH_JOURNALPLAYBACK Hook Function
+
+  Syntax
+
+  JournalPlaybackProc(
+  nCode: Integer;  // a hook code
+  wParam: WPARAM;  // this parameter is not used
+  lParam: LPARAM   // a pointer to a TEventMsg structure
+  ): LRESULT;      // returns a wait time in clock ticks }
+
+function JournalRecordHookProc(Code: Integer; WParam: WPARAM; LParam: LPARAM): LRESULT; stdcall;
 var
   WindowsMessage: PWindowsMessage;
 begin
@@ -375,25 +390,25 @@ begin
     if GetKeyState(vk_Pause) < 0 then
     begin
       Stop;
-      Result := CallNextHookEx(HookHandle, Code, WParam, Longint(@EventStrut));
+      Result := CallNextHookEx(HookHandle, Code, WParam, LParam);
       Exit;
     end;
 
     case Code of
       HC_ACTION:
         begin
-          WindowsMessage := PWindowsMessage(EventStrut.ParamL);
+          WindowsMessage := PWindowsMessage(LParam);
           with WindowsMessage^ do
             if (Msg <> wm_MouseMove) and (Msg <> $FF) then
               MacroMessageList.Add(WindowsMessage);
         end;
     else
-      Result := CallNextHookEx(HookHandle, Code, WParam, Longint(@EventStrut));
+      Result := CallNextHookEx(HookHandle, Code, WParam, LParam);
     end;
   end;
 end;
 
-function JournalPlaybackHookProc(Code: Integer; WParam: Integer; var EventStrut: TEventMsg): Integer; stdcall;
+function JournalPlaybackHookProc(Code: Integer; WParam: WPARAM; LParam: LPARAM): LRESULT; stdcall;
 begin
   Result:= 0;
   if Code < 0 then
@@ -413,10 +428,10 @@ begin
       end;
     HC_GETNEXT:
       begin
-        PWindowsMessage(EventStrut.ParamL)^ := NextMacroMessage.WindowsMessage;
+        PWindowsMessage(LParam)^ := NextMacroMessage.WindowsMessage;
       end
   else
-    Result:= CallNextHookEx(HookHandle, Code, WParam, Longint(@EventStrut));
+    Result:= CallNextHookEx(HookHandle, Code, WParam, LParam);
   end;
 end;
 
