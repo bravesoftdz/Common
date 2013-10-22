@@ -96,7 +96,7 @@ type
     FIsPlaying: Boolean;
     FHookHandle: hHook;
   public
-    constructor Create(WinControl: TWinControl); overload;
+    class function ClassCreate(WinControl: TWinControl): TMacroRecorder;
     destructor Destroy; override;
 
     procedure Start;
@@ -111,8 +111,6 @@ type
     property MessageIndex: Integer read FMessageIndex write FMessageIndex;
     property NextMacroMessage: TMacroMessage read FNextMacroMessage;
   end;
-
-function GetMacroRecorder(WinControl: TWinControl): TMacroRecorder;
 
 implementation
 
@@ -129,13 +127,6 @@ type
 
 var
   FMacroRecorder: TMacroRecorder = nil;
-
-function GetMacroRecorder(WinControl: TWinControl): TMacroRecorder;
-begin
-  if not Assigned(FMacroRecorder) then
-    FMacroRecorder := TMacroRecorder.Create(WinControl);
-  Result := FMacroRecorder;
-end;
 
 { TMacroWinControl }
 
@@ -339,17 +330,20 @@ end;
 
 { TMacroRecorder }
 
-constructor TMacroRecorder.Create(WinControl: TWinControl);
+class function TMacroRecorder.ClassCreate(WinControl: TWinControl): TMacroRecorder;
 begin
-  inherited Create;
+  FMacroRecorder := TMacroRecorder.Create;
+  with FMacroRecorder do
+  begin
+    FIsRecording := False;
+    FIsPaused := False;
 
-  FIsRecording := False;
-  FIsPaused := False;
+    FMacroMessageList := TMacroMessageList.Create(WinControl);
 
-  FMacroMessageList := TMacroMessageList.Create(WinControl);
-
-  FNextMacroMessage := TMacroMessage.Create;
-  FNextMacroMessage.ParentMessageList := FMacroMessageList;
+    FNextMacroMessage := TMacroMessage.Create;
+    FNextMacroMessage.ParentMessageList := FMacroMessageList;
+  end;
+  Result := FMacroRecorder;
 end;
 
 destructor TMacroRecorder.Destroy;
@@ -377,12 +371,8 @@ function JournalRecordHookProc(Code: Integer; WParam: WPARAM; LParam: LPARAM): L
 var
   WindowsMessage: PWindowsMessage;
 begin
-  Result:= 0;
-  if Code < 0 then
-    Exit;
-  if Code = HC_SYSMODALON then
-    Exit;
-  with GetMacroRecorder(nil) do
+  Result := 0;
+  with FMacroRecorder do
   begin
     if GetKeyState(vk_Pause) < 0 then
     begin
@@ -407,12 +397,8 @@ end;
 
 function JournalPlaybackHookProc(Code: Integer; WParam: WPARAM; LParam: LPARAM): LRESULT; stdcall;
 begin
-  Result:= 0;
-  if Code < 0 then
-    Exit;
-  if Code = HC_SYSMODALON then
-    Exit;
-  with GetMacroRecorder(nil) do
+  Result := 0;
+  with FMacroRecorder do
   case Code of
     HC_SKIP:
       begin
@@ -424,9 +410,7 @@ begin
           GetMessage(MessageIndex);
       end;
     HC_GETNEXT:
-      begin
-        PWindowsMessage(LParam)^ := NextMacroMessage.WindowsMessage;
-      end
+      PWindowsMessage(LParam)^ := NextMacroMessage.WindowsMessage;
   else
     Result:= CallNextHookEx(HookHandle, Code, WParam, LParam);
   end;
