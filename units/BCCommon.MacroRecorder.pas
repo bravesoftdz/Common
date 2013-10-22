@@ -112,7 +112,7 @@ type
     property NextMacroMessage: TMacroMessage read FNextMacroMessage;
   end;
 
-  function MacroRecorder(WinControl: TWinControl): TMacroRecorder;
+function GetMacroRecorder(WinControl: TWinControl): TMacroRecorder;
 
 implementation
 
@@ -130,13 +130,10 @@ type
 var
   FMacroRecorder: TMacroRecorder = nil;
 
-function MacroRecorder(WinControl: TWinControl): TMacroRecorder;
+function GetMacroRecorder(WinControl: TWinControl): TMacroRecorder;
 begin
   if not Assigned(FMacroRecorder) then
-  begin
-    Assert(not Assigned(WinControl), 'MacroRecorder: WinControl not assigned.');
     FMacroRecorder := TMacroRecorder.Create(WinControl);
-  end;
   Result := FMacroRecorder;
 end;
 
@@ -385,7 +382,7 @@ begin
     Exit;
   if Code = HC_SYSMODALON then
     Exit;
-  with MacroRecorder(nil) do
+  with GetMacroRecorder(nil) do
   begin
     if GetKeyState(vk_Pause) < 0 then
     begin
@@ -415,7 +412,7 @@ begin
     Exit;
   if Code = HC_SYSMODALON then
     Exit;
-  with MacroRecorder(nil) do
+  with GetMacroRecorder(nil) do
   case Code of
     HC_SKIP:
       begin
