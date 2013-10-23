@@ -422,7 +422,7 @@ begin
   begin
     if not FIsPaused then
       FMacroMessageList.Clear;
-    FHookHandle := SetWindowsHookEx(WH_JOURNALRECORD, @JournalRecordHookProc, hInstance, 0);
+    FHookHandle := SetWindowsHookEx(WH_JOURNALRECORD, JournalRecordHookProc, hInstance, 0);
   end;
   FIsRecording := True;
   FIsPaused := False;
@@ -451,13 +451,13 @@ begin
     Exit;
 
   FMessageIndex := 0;
-  FMacroMessageList.StartTickCount := GetTickCount; { TODO: Needed? }
+  FMacroMessageList.StartTickCount := GetTickCount;
 
-  FHookHandle := SetWindowsHookEx(WH_JOURNALPLAYBACK, @JournalPlaybackHookProc, hInstance, 0);
+  FHookHandle := SetWindowsHookEx(WH_JOURNALPLAYBACK, JournalPlaybackHookProc, hInstance, 0);
   if FHookHandle = 0 then
     Exit;
 
-  FIsPlaying:= True;
+  FIsPlaying := True;
 end;
 
 procedure TMacroRecorder.StopPlayback;
