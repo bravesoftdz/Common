@@ -73,12 +73,13 @@ type
     constructor Create(WinControl: TWinControl); overload;
     destructor Destroy; override;
 
-    procedure Clear;
-    procedure Add(Name: string; MacroMessage: TMacroMessage); overload;
     function Add(Name: string): TMacroMessage; overload;
     function Add(WindowsMessage: PWindowsMessage): TMacroMessage; overload;
     function GetMessage(Index: Integer): TMacroMessage;
     function Count: Integer;
+    procedure Add(Name: string; MacroMessage: TMacroMessage); overload;
+    procedure Clear;
+    procedure DeleteLast;
     procedure SaveToFile(const FileName: string);
     procedure LoadFromFile(const FileName: string);
     procedure UpdateRelative;
@@ -218,8 +219,8 @@ end;
 function TMacroMessage.IsMouseMessage: Boolean;
 begin
   with WindowsMessage do
-    Result:= (Msg = wm_lButtonDown) or (Msg = wm_lButtonUp) or (Msg = wm_rButtonUp) or
-      (Msg = wm_rButtonUp) or (Msg = wm_mButtonUp) or (Msg = wm_mButtonUp)
+    Result:= (Msg = WM_LBUTTONDOWN) or (Msg = WM_LBUTTONUP) or (Msg = WM_RBUTTONUP) or (Msg = WM_RBUTTONUP) or
+      (Msg = WM_MBUTTONUP) or (Msg = WM_MBUTTONUP)
 end;
 
 { TMacroMessageList }
@@ -264,6 +265,12 @@ function TMacroMessageList.Add(WindowsMessage: PWindowsMessage): TMacroMessage;
 begin
   Result := Add('');
   Result.WindowsMessage := WindowsMessage^;
+end;
+
+procedure TMacroMessageList.DeleteLast;
+begin
+  GetMessage(FMessageList.Count - 1).Free;
+  FMessageList.Delete(FMessageList.Count - 1);
 end;
 
 function TMacroMessageList.GetMessage(Index: Integer): TMacroMessage;
@@ -436,6 +443,10 @@ begin
     FMacroMessageList.UpdateRelative;
 
   FIsRecording := False;
+
+  { remove the stop click message }
+  FMacroMessageList.DeleteLast;
+  FMacroMessageList.DeleteLast;
 end;
 
 procedure TMacroRecorder.Pause;
