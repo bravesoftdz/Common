@@ -88,7 +88,6 @@ type
 
   TMacroRecorder = class
   strict private
-    FMessageIndex: Integer;
     FMacroMessageList: TMacroMessageList;
     FNextMacroMessage: TMacroMessage;
     FIsRecording: Boolean;
@@ -96,6 +95,7 @@ type
     FIsPlaying: Boolean;
     FHookHandle: hHook;
   public
+    MessageIndex: Integer;
     class function ClassCreate(WinControl: TWinControl): TMacroRecorder;
     destructor Destroy; override;
 
@@ -108,7 +108,6 @@ type
 
     property HookHandle: hHook read FHookHandle;
     property MacroMessageList: TMacroMessageList read FMacroMessageList;
-    property MessageIndex: Integer read FMessageIndex write FMessageIndex;
     property NextMacroMessage: TMacroMessage read FNextMacroMessage;
   end;
 
@@ -361,7 +360,7 @@ end;
 
   Syntax
 
-  JournalPlaybackProc(
+  JournalRecordProc(
   nCode: Integer;  // a hook code
   wParam: WPARAM;  // this parameter is not used
   lParam: LPARAM   // a pointer to a TEventMsg structure
@@ -402,17 +401,17 @@ begin
   case Code of
     HC_SKIP:
       begin
-        MessageIndex := MessageIndex + 1; { MessageIndex is a property, can't use Inc(MessageIndex); }
+        Inc(MessageIndex);
 
-        if MessageIndex >= MacroMessageList.Count then
-          StopPlayback
+        if MessageIndex < MacroMessageList.Count then
+          GetMessage(MessageIndex)
         else
-          GetMessage(MessageIndex);
+          StopPlayback;
       end;
     HC_GETNEXT:
       PWindowsMessage(LParam)^ := NextMacroMessage.WindowsMessage;
   else
-    Result:= CallNextHookEx(HookHandle, Code, WParam, LParam);
+    Result := CallNextHookEx(HookHandle, Code, WParam, LParam);
   end;
 end;
 
@@ -450,7 +449,7 @@ begin
   if FIsPlaying then
     Exit;
 
-  FMessageIndex := 0;
+  MessageIndex := 0;
   FMacroMessageList.StartTickCount := GetTickCount;
 
   FHookHandle := SetWindowsHookEx(WH_JOURNALPLAYBACK, JournalPlaybackHookProc, hInstance, 0);
