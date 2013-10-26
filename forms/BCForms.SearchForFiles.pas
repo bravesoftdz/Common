@@ -41,7 +41,7 @@ type
   public
     { Public declarations }
     procedure Open(RootDirectory: string);
-     property OnOpenFile: TOpenFileEvent read FOpenFile write FOpenFile;
+    property OnOpenFile: TOpenFileEvent read FOpenFile write FOpenFile;
   end;
 
 function SearchForFilesForm: TSearchForFilesForm;
