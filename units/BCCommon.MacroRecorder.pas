@@ -61,6 +61,7 @@ type
       there is a write attribute. }
     WindowsMessage: TWindowsMessage;
     function IsMouseMessage: Boolean;
+    function ToString: string; override;
     property ParentMessageList: TMacroMessageList read FParentMessageList write FParentMessageList;
   end;
 
@@ -75,8 +76,9 @@ type
 
     function Add(Name: string): TMacroMessage; overload;
     function Add(WindowsMessage: PWindowsMessage): TMacroMessage; overload;
-    function GetMessage(Index: Integer): TMacroMessage;
     function Count: Integer;
+    function GetMessage(Index: Integer): TMacroMessage;
+    function ToString: string; override;
     procedure Add(Name: string; MacroMessage: TMacroMessage); overload;
     procedure Clear;
     procedure DeleteLast;
@@ -115,7 +117,7 @@ type
 implementation
 
 uses
-  System.Types;
+  System.Types, System.SysUtils;
 
 const
   MAXCONTROLLENGTH = 50;
@@ -223,6 +225,105 @@ begin
       (Msg = WM_MBUTTONUP) or (Msg = WM_MBUTTONUP)
 end;
 
+function TMacroMessage.ToString: string;
+var
+  WLParam: string;
+
+  function VirtualKeyCodeToName(KeyCode: Word): string;
+  begin
+    case KeyCode of
+      VK_RIGHT: Result := 'vkRight';
+      VK_LEFT: Result := 'vkLeft';
+      VK_UP: Result := 'vkUp';
+      VK_DOWN: Result := 'vkDown';
+      VK_PRIOR: Result := 'vkPageUp';
+      VK_NEXT: Result := 'vkPageDown';
+      VK_HOME: Result := 'vkHome';
+      VK_END: Result := 'vkEnd';
+      VK_INSERT: Result := 'vkInsert';
+      VK_DELETE: Result := 'vkDelete';
+      VK_SHIFT: Result := 'vkShift';
+      VK_CONTROL: Result := 'vkControl';
+      VK_MENU: Result := 'vkAlt';
+      VK_CAPITAL: Result := 'vkCapsLock';
+      VK_NUMLOCK: Result := 'vkNumLock';
+      VK_NUMPAD0..VK_NUMPAD9: Result := 'vkNumPad'+ IntToStr(KeyCode - vk_Numpad0);
+      VK_TAB: Result := 'vktab';
+      VK_RETURN: Result := 'vkReturn';
+      VK_BACK: Result := 'vkBackspace';
+      VK_ESCAPE: Result := 'vkEscape';
+      VK_SPACE: Result := 'vkSpace';
+      VK_F1..VK_F24 : Result := 'vkF'+ IntToStr(KeyCode - VK_F1);
+      VK_SELECT: Result := 'vkSelect';
+      VK_PRINT: Result := 'vkPrint';
+      VK_EXECUTE: Result := 'vkExecute';
+      VK_SNAPSHOT: Result := 'vkPrintScreen';
+      VK_HELP: Result := 'vkHelp';
+      VK_LBUTTON: Result := 'vkLeftMouseButton';
+      VK_RBUTTON: Result := 'vkRightMouseButton';
+      VK_CANCEL: Result := 'vkControl_Break';
+      VK_MBUTTON:  Result := 'vkMiddleMouseButton';
+      VK_CLEAR: Result := 'vkClear';
+      VK_PAUSE: Result := 'vkPause';
+      VK_SCROLL: Result := 'vkScrollLock';
+      VK_MULTIPLY: Result := 'vkMultiply';
+      VK_ADD: Result := 'vkAdd';
+      VK_SEPARATOR: Result := 'vkSeparator';
+      VK_SUBTRACT: Result := 'vkSubtract';
+      VK_DECIMAL: Result := 'vkDecimal';
+      VK_DIVIDE: Result := 'vkDivide';
+      Ord('A')..Ord('Z'): Result := 'vk'+ Chr(KeyCode);
+    else
+      Result:= 'vk'+ Chr(KeyCode);
+    end;
+  end;
+
+  function MessageName(Msg: Cardinal): string;
+
+    function IntegerToHex(Value: Integer): string;
+    var
+      i: Integer;
+    begin
+      Result := IntToHex(Value, 4);
+      for i := Length(Result) + 1 to 8 do
+        Result := '0' + Result;
+      Insert('.', Result, 5);
+    end;
+
+  begin
+    case Msg of
+      WM_LBUTTONDOWN: Result:= 'Left Mouse Button Down';
+      WM_MOUSEMOVE: Result:= 'Mouse Move';
+      WM_LBUTTONUP: Result:= 'Left Mouse Button Up';
+      WM_KEYDOWN: Result:= 'Key Down';
+      WM_KEYUP: Result:= 'Key Up';
+      WM_CHAR: Result:= 'Char (Key Press)';
+    else
+      Result:= 'WM_' + IntegerToHex(Integer(Msg));
+    end;
+  end;
+
+begin
+  with WindowsMessage do
+  begin
+    case Msg of
+      WM_LBUTTONDOWN, WM_LBUTTONUP:
+          WLParam := Format('X: %4d Y: %4d ', [WParamLo, LParamLo]);
+      WM_KEYDOWN, WM_KEYUP :
+          WLParam := Format('Virtual Keycode=%s ', [VirtualKeyCodeToName(WParamBytes[0])]);
+    end;
+
+    Result := Format('%-15s %-15s Time=%10d Handle=%8x Control=', [MessageName(Msg), WLParam, Time, WindowHandle]);
+
+    Assert(not Assigned(FParentMessageList), 'Parent message list is not assigned');
+    Assert(not Assigned(FParentMessageList.WinControlList), 'Win control list is not assigned');
+    if Assigned(FParentMessageList.WinControlList) then
+      Result:= Result + FParentMessageList.WinControlList.WinControlByHandle(WindowHandle).WinControl.Name // f_handle_to_name(m_window_handle)
+    else
+      Result:= Result + '-';
+  end;
+end;
+
 { TMacroMessageList }
 
 constructor TMacroMessageList.Create(WinControl: TWinControl);
@@ -313,7 +414,7 @@ begin
   with GetMessage(i) do
   begin
     MacroFile.WindowsMessage := WindowsMessage;
-    write(F, MacroFile);
+    Write(F, MacroFile);
   end;
   Close(F);
 end;
@@ -332,6 +433,15 @@ begin
     Add(@MacroFile.WindowsMessage)
   end;
   Close(F);
+end;
+
+function TMacroMessageList.ToString: string;
+var
+  i: Integer;
+begin
+  Result := '';
+  for i := 0 to FMessageList.Count - 1 do
+    Result := Result + GetMessage(i).ToString + Chr(10) + Chr(13);
 end;
 
 { TMacroRecorder }
@@ -371,9 +481,9 @@ end;
   nCode: Integer;  // a hook code
   wParam: WPARAM;  // this parameter is not used
   lParam: LPARAM   // a pointer to a TEventMsg structure
-  ): LRESULT;      // returns a wait time in clock ticks }
+  ): LResult;      // returns a wait time in clock ticks }
 
-function JournalRecordHookProc(Code: Integer; WParam: WPARAM; LParam: LPARAM): LRESULT; stdcall;
+function JournalRecordHookProc(Code: Integer; WParam: WPARAM; LParam: LPARAM): LResult; stdcall;
 var
   WindowsMessage: PWindowsMessage;
 begin
@@ -401,7 +511,7 @@ begin
   end;
 end;
 
-function JournalPlaybackHookProc(Code: Integer; WParam: WPARAM; LParam: LPARAM): LRESULT; stdcall;
+function JournalPlaybackHookProc(Code: Integer; WParam: WPARAM; LParam: LPARAM): LResult; stdcall;
 begin
   Result := 0;
   with FMacroRecorder do
