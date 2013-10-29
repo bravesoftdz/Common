@@ -228,6 +228,7 @@ end;
 function TMacroMessage.ToString: string;
 var
   WLParam: string;
+  MacroWinControl: TMacroWinControl;
 
   function VirtualKeyCodeToName(KeyCode: Word): string;
   begin
@@ -313,12 +314,18 @@ begin
           WLParam := Format('Virtual Keycode=%s ', [VirtualKeyCodeToName(WParamBytes[0])]);
     end;
 
-    Result := Format('%-15s %-15s Time=%10d Handle=%8x Control=', [MessageName(Msg), WLParam, Time, WindowHandle]);
+    Result := Format('%-22s %-35s Time=%10d Handle=%8x Control=', [MessageName(Msg), WLParam, Time, WindowHandle]);
 
-    Assert(not Assigned(FParentMessageList), 'Parent message list is not assigned');
-    Assert(not Assigned(FParentMessageList.WinControlList), 'Win control list is not assigned');
-    if Assigned(FParentMessageList.WinControlList) then
-      Result:= Result + FParentMessageList.WinControlList.WinControlByHandle(WindowHandle).WinControl.Name // f_handle_to_name(m_window_handle)
+    //Assert(not Assigned(FParentMessageList), 'Parent message list is not assigned');
+    //Assert(not Assigned(FParentMessageList.WinControlList), 'Win control list is not assigned');
+    if Assigned(FParentMessageList) and Assigned(FParentMessageList.WinControlList) then
+    begin
+      MacroWinControl := FParentMessageList.WinControlList.WinControlByHandle(WindowHandle);
+      if Assigned(MacroWinControl)  then
+        Result:= Result + MacroWinControl.WinControl.Name // f_handle_to_name(m_window_handle)
+      else
+        Result := Result + 'Not found';
+    end
     else
       Result:= Result + '-';
   end;
@@ -441,7 +448,7 @@ var
 begin
   Result := '';
   for i := 0 to FMessageList.Count - 1 do
-    Result := Result + GetMessage(i).ToString + Chr(10) + Chr(13);
+    Result := Result + GetMessage(i).ToString + Chr(13) + Chr(10);
 end;
 
 { TMacroRecorder }
@@ -490,7 +497,7 @@ begin
   Result := 0;
   with FMacroRecorder do
   begin
-    if GetKeyState(vk_Pause) < 0 then
+    if GetKeyState(VK_PAUSE) < 0 then
     begin
       Stop;
       Result := CallNextHookEx(HookHandle, Code, WParam, LParam);
@@ -502,7 +509,7 @@ begin
         begin
           WindowsMessage := PWindowsMessage(LParam);
           with WindowsMessage^ do
-            if (Msg <> wm_MouseMove) and (Msg <> $FF) then
+            if (Msg <> WM_MOUSEMOVE) and (Msg <> $FF) then
               MacroMessageList.Add(WindowsMessage);
         end;
     else
@@ -555,8 +562,8 @@ begin
   FIsRecording := False;
 
   { remove the stop click message }
-  FMacroMessageList.DeleteLast;
-  FMacroMessageList.DeleteLast;
+  FMacroMessageList.DeleteLast; { mouse down }
+  FMacroMessageList.DeleteLast; { mouse up }
 end;
 
 procedure TMacroRecorder.Pause;
