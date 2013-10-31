@@ -233,46 +233,46 @@ var
   function VirtualKeyCodeToName(KeyCode: Word): string;
   begin
     case KeyCode of
-      VK_RIGHT: Result := 'vkRight';
-      VK_LEFT: Result := 'vkLeft';
-      VK_UP: Result := 'vkUp';
-      VK_DOWN: Result := 'vkDown';
-      VK_PRIOR: Result := 'vkPageUp';
-      VK_NEXT: Result := 'vkPageDown';
-      VK_HOME: Result := 'vkHome';
-      VK_END: Result := 'vkEnd';
-      VK_INSERT: Result := 'vkInsert';
-      VK_DELETE: Result := 'vkDelete';
-      VK_SHIFT: Result := 'vkShift';
-      VK_CONTROL: Result := 'vkControl';
-      VK_MENU: Result := 'vkAlt';
+      VK_ADD: Result := 'vkAdd';
+      VK_BACK: Result := 'vkBackspace';
+      VK_CANCEL: Result := 'vkControl_Break';
       VK_CAPITAL: Result := 'vkCapsLock';
+      VK_CLEAR: Result := 'vkClear';
+      VK_CONTROL: Result := 'vkControl';
+      VK_DECIMAL: Result := 'vkDecimal';
+      VK_DELETE: Result := 'vkDelete';
+      VK_DIVIDE: Result := 'vkDivide';
+      VK_DOWN: Result := 'vkDown';
+      VK_END: Result := 'vkEnd';
+      VK_ESCAPE: Result := 'vkEscape';
+      VK_EXECUTE: Result := 'vkExecute';
+      VK_F1..VK_F24 : Result := 'vkF'+ IntToStr(KeyCode - VK_F1);
+      VK_HELP: Result := 'vkHelp';
+      VK_HOME: Result := 'vkHome';
+      VK_INSERT: Result := 'vkInsert';
+      VK_LBUTTON: Result := 'vkLeftMouseButton';
+      VK_LEFT: Result := 'vkLeft';
+      VK_MBUTTON:  Result := 'vkMiddleMouseButton';
+      VK_MENU: Result := 'vkAlt';
+      VK_MULTIPLY: Result := 'vkMultiply';
+      VK_NEXT: Result := 'vkPageDown';
       VK_NUMLOCK: Result := 'vkNumLock';
       VK_NUMPAD0..VK_NUMPAD9: Result := 'vkNumPad'+ IntToStr(KeyCode - vk_Numpad0);
-      VK_TAB: Result := 'vktab';
-      VK_RETURN: Result := 'vkReturn';
-      VK_BACK: Result := 'vkBackspace';
-      VK_ESCAPE: Result := 'vkEscape';
-      VK_SPACE: Result := 'vkSpace';
-      VK_F1..VK_F24 : Result := 'vkF'+ IntToStr(KeyCode - VK_F1);
-      VK_SELECT: Result := 'vkSelect';
-      VK_PRINT: Result := 'vkPrint';
-      VK_EXECUTE: Result := 'vkExecute';
-      VK_SNAPSHOT: Result := 'vkPrintScreen';
-      VK_HELP: Result := 'vkHelp';
-      VK_LBUTTON: Result := 'vkLeftMouseButton';
-      VK_RBUTTON: Result := 'vkRightMouseButton';
-      VK_CANCEL: Result := 'vkControl_Break';
-      VK_MBUTTON:  Result := 'vkMiddleMouseButton';
-      VK_CLEAR: Result := 'vkClear';
       VK_PAUSE: Result := 'vkPause';
+      VK_PRINT: Result := 'vkPrint';
+      VK_PRIOR: Result := 'vkPageUp';
+      VK_RBUTTON: Result := 'vkRightMouseButton';
+      VK_RETURN: Result := 'vkReturn';
+      VK_RIGHT: Result := 'vkRight';
       VK_SCROLL: Result := 'vkScrollLock';
-      VK_MULTIPLY: Result := 'vkMultiply';
-      VK_ADD: Result := 'vkAdd';
+      VK_SELECT: Result := 'vkSelect';
       VK_SEPARATOR: Result := 'vkSeparator';
+      VK_SHIFT: Result := 'vkShift';
+      VK_SNAPSHOT: Result := 'vkPrintScreen';
+      VK_SPACE: Result := 'vkSpace';
       VK_SUBTRACT: Result := 'vkSubtract';
-      VK_DECIMAL: Result := 'vkDecimal';
-      VK_DIVIDE: Result := 'vkDivide';
+      VK_TAB: Result := 'vktab';
+      VK_UP: Result := 'vkUp';
       Ord('A')..Ord('Z'): Result := 'vk'+ Chr(KeyCode);
     else
       Result:= 'vk'+ Chr(KeyCode);
@@ -293,12 +293,12 @@ var
 
   begin
     case Msg of
-      WM_LBUTTONDOWN: Result:= 'Left Mouse Button Down';
-      WM_MOUSEMOVE: Result:= 'Mouse Move';
-      WM_LBUTTONUP: Result:= 'Left Mouse Button Up';
+      WM_CHAR: Result:= 'Char (Key Press)';
       WM_KEYDOWN: Result:= 'Key Down';
       WM_KEYUP: Result:= 'Key Up';
-      WM_CHAR: Result:= 'Char (Key Press)';
+      WM_LBUTTONDOWN: Result:= 'Left Mouse Button Down';
+      WM_LBUTTONUP: Result:= 'Left Mouse Button Up';
+      WM_MOUSEMOVE: Result:= 'Mouse Move';
     else
       Result:= 'WM_' + IntegerToHex(Integer(Msg));
     end;
@@ -316,8 +316,6 @@ begin
 
     Result := Format('%-22s %-35s Time=%10d Handle=%8x Control=', [MessageName(Msg), WLParam, Time, WindowHandle]);
 
-    //Assert(not Assigned(FParentMessageList), 'Parent message list is not assigned');
-    //Assert(not Assigned(FParentMessageList.WinControlList), 'Win control list is not assigned');
     if Assigned(FParentMessageList) and Assigned(FParentMessageList.WinControlList) then
     begin
       MacroWinControl := FParentMessageList.WinControlList.WinControlByHandle(WindowHandle);

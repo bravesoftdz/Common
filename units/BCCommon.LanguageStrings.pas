@@ -38,7 +38,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Windows, Consts, Vcl.ActnList, Vcl.Menus, System.IniFiles;
+  Windows, Consts, Vcl.ActnList, System.IniFiles;
 
 procedure HookResourceString(aResStringRec: PResStringRec; aNewStr: PChar);
 var
