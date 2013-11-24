@@ -108,16 +108,24 @@ end;
 procedure UpdateMargin(SynEdit: TSynEdit);
 var
   LStyles: TCustomStyleServices;
+  EditColor: TColor;
 begin
   LStyles := StyleServices;
   SynEdit.Gutter.Gradient := False;
   if LStyles.Enabled then
   begin
+    EditColor := SynEdit.Color;
+    if (TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS) and
+       (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) > 500) then
+      EditColor := clWindowText
+    else
+      EditColor := LStyles.GetStyleColor(scPanel);
     SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
     SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText);
-    SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfHeaderSectionTextNormal);
+    SynEdit.Gutter.Font.Color := LightenColor(EditColor); //LStyles.GetStyleFontColor(sfEditBoxTextNormal);
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
-    SynEdit.Gutter.Color := LStyles.GetStyleColor(scPanel);
+    SynEdit.Gutter.Color := SynEdit.Color; //SynEdit.Color;
+    SynEdit.Gutter.LeftOffsetColor := LStyles.GetStyleColor(scPanel);
     SynEdit.RightEdge.Color := LStyles.GetStyleColor(scPanel);
     SynEdit.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
     SynEdit.Color := LStyles.GetStyleColor(scEdit);
@@ -1082,9 +1090,17 @@ begin
   LStyles := StyleServices;
   if LStyles.Enabled then //Assigned(LStyles) and (TStyleManager.ActiveStyle.Name = STYLENAME_WINDOWS) then
   begin
-    SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfHeaderSectionTextNormal);
+    EditColor := SynEdit.Color;
+    if (TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS) and
+       (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) > 500) then
+      EditColor := clWindowText
+    else
+      EditColor := LStyles.GetStyleColor(scPanel);
+
+    SynEdit.Gutter.Font.Color := LightenColor(EditColor); //LStyles.GetStyleFontColor(sfEditBoxTextNormal);
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
-    SynEdit.Gutter.Color := LStyles.GetStyleColor(scPanel);
+    SynEdit.Gutter.Color := SynEdit.Color; // Color;
+    SynEdit.Gutter.LeftOffsetColor := LStyles.GetStyleColor(scPanel);
     SynEdit.RightEdge.Color := LStyles.GetStyleColor(scPanel);
 
     SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
@@ -1097,17 +1113,21 @@ begin
        (Highlighter.Tag = 6) or (Highlighter.Tag = 7) or (Highlighter.Tag = 8) or
        (Highlighter.Tag = 38) or (Highlighter.Tag = 39) or (Highlighter.Tag = 40) ) then
     begin
+      if (Highlighter.Tag = 4) or (Highlighter.Tag = 7) or (Highlighter.Tag = 39) then
+        SynEdit.Color := clWhite
+      else
       if (Highlighter.Tag = 3) or (Highlighter.Tag = 6) or (Highlighter.Tag = 38) then
-        SynEdit.Color := clNavy;
+        SynEdit.Color := clNavy
+      else
       if (Highlighter.Tag = 5) or (Highlighter.Tag = 8) or (Highlighter.Tag = 40) then
-        SynEdit.Color := clBlack;
-
-      EditColor := clNone;
-      if LStyles.Enabled then
+        SynEdit.Color := clBlack
+      else
+      begin
         EditColor := LStyles.GetStyleColor(scEdit);
-      if LStyles.Enabled and (TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS) and
-       (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) < 500) then
-        SynEdit.Color := LStyles.GetStyleColor(scEdit);
+        if (TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS) and
+         (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) < 500) then
+          SynEdit.Color := LStyles.GetStyleColor(scEdit);
+      end;
     end
     else
     begin
