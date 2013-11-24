@@ -118,7 +118,7 @@ begin
     SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfHeaderSectionTextNormal);
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
     SynEdit.Gutter.Color := LStyles.GetStyleColor(scPanel);
-    SynEdit.RightEdgeColor := LStyles.GetStyleColor(scPanel);
+    SynEdit.RightEdge.Color := LStyles.GetStyleColor(scPanel);
     SynEdit.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
     SynEdit.Color := LStyles.GetStyleColor(scEdit);
   end
@@ -1085,7 +1085,7 @@ begin
     SynEdit.Gutter.Font.Color := LStyles.GetStyleFontColor(sfHeaderSectionTextNormal);
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
     SynEdit.Gutter.Color := LStyles.GetStyleColor(scPanel);
-    SynEdit.RightEdgeColor := LStyles.GetStyleColor(scPanel);
+    SynEdit.RightEdge.Color := LStyles.GetStyleColor(scPanel);
 
     SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
     SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText);
