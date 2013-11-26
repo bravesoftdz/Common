@@ -1156,15 +1156,16 @@ begin
     else
       SynEdit.Color := clWindow;
   end;
-  SynEdit.Gutter.Color := SynEdit.Color;
   EditColor := SynEdit.Color;
   if (TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS) and
      (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) > 500) then
     EditColor := clWindowText
   else
     EditColor := LStyles.GetStyleColor(scPanel);
-
   SynEdit.Gutter.Font.Color := LightenColor(EditColor);
+  SynEdit.Gutter.Color := SynEdit.Color;
+  if EditColor = clWindowText then
+    SynEdit.Gutter.Color := LightenColor(SynEdit.Color, 0.2);
   SynEdit.ActiveLineColor := SynEdit.Color;
   SynEdit.Invalidate;
 end;
