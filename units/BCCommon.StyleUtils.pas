@@ -1090,16 +1090,16 @@ begin
   LStyles := StyleServices;
   if LStyles.Enabled then //Assigned(LStyles) and (TStyleManager.ActiveStyle.Name = STYLENAME_WINDOWS) then
   begin
-    EditColor := SynEdit.Color;
+   { EditColor := SynEdit.Color;
     if (TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS) and
        (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) > 500) then
       EditColor := clWindowText
     else
       EditColor := LStyles.GetStyleColor(scPanel);
 
-    SynEdit.Gutter.Font.Color := LightenColor(EditColor); //LStyles.GetStyleFontColor(sfEditBoxTextNormal);
+    SynEdit.Gutter.Font.Color := LightenColor(EditColor); }//LStyles.GetStyleFontColor(sfEditBoxTextNormal);
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
-    SynEdit.Gutter.Color := SynEdit.Color; // Color;
+    //SynEdit.Gutter.Color := SynEdit.Color; // Color;
     SynEdit.Gutter.LeftOffsetColor := LStyles.GetStyleColor(scPanel);
     SynEdit.RightEdge.Color := LStyles.GetStyleColor(scPanel);
 
@@ -1141,7 +1141,7 @@ begin
     SynEdit.Gutter.GradientEndColor := clBtnFace;
     SynEdit.Gutter.Font.Color := clWindowText;
     SynEdit.Gutter.BorderColor := clWindow;
-    SynEdit.Gutter.Color := clBtnFace;
+    //SynEdit.Gutter.Color := clBtnFace;
     Highlighter := SynEdit.Highlighter;
     if Assigned(Highlighter) and
      ( (Highlighter.Tag = 3) or (Highlighter.Tag = 4) or (Highlighter.Tag = 5) or
@@ -1156,6 +1156,15 @@ begin
     else
       SynEdit.Color := clWindow;
   end;
+  SynEdit.Gutter.Color := SynEdit.Color;
+  EditColor := SynEdit.Color;
+  if (TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS) and
+     (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) > 500) then
+    EditColor := clWindowText
+  else
+    EditColor := LStyles.GetStyleColor(scPanel);
+
+  SynEdit.Gutter.Font.Color := LightenColor(EditColor);
   SynEdit.ActiveLineColor := SynEdit.Color;
   SynEdit.Invalidate;
 end;
