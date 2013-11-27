@@ -1157,11 +1157,14 @@ begin
       SynEdit.Color := clWindow;
   end;
   EditColor := SynEdit.Color;
+  if (SynEdit.Color = clNavy) or (SynEdit.Color = clBlack) then // TODO: Rubbish... Remove when UniHighlighter
+    EditColor := clWhite
+  else
   if (TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS) and
      (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) > 500) then
     EditColor := clWindowText
   else
-    EditColor := LStyles.GetStyleColor(scPanel);
+    EditColor := LStyles.GetStyleFontColor(sfEditBoxTextNormal); //LStyles.GetStyleColor(scPanel);
   SynEdit.Gutter.Font.Color := LightenColor(EditColor);
   SynEdit.Gutter.Color := SynEdit.Color;
   if EditColor = clWindowText then
