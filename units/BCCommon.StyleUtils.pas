@@ -79,7 +79,7 @@ const
 implementation
 
 uses
-  Math, WinApi.Windows, System.SysUtils, SynEditHighlighter;
+  Math, WinApi.Windows, System.SysUtils, SynEditHighlighter, SynEditMiscClasses;
 
 function LightenMoreColor(AColor: TColor): TColor;
 begin
@@ -112,19 +112,24 @@ var
 begin
   LStyles := StyleServices;
   SynEdit.Gutter.Gradient := False;
+  SynEdit.Gutter.BorderStyle := gbsNone;
   if LStyles.Enabled then
   begin
+    SynEdit.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
+    SynEdit.Color := LStyles.GetStyleColor(scEdit);
     EditColor := SynEdit.Color;
     if (TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS) and
        (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) > 500) then
       EditColor := clWindowText
     else
-      EditColor := LStyles.GetStyleColor(scPanel);
+      EditColor := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
     SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
     SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText);
     SynEdit.Gutter.Font.Color := LightenColor(EditColor); //LStyles.GetStyleFontColor(sfEditBoxTextNormal);
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
     SynEdit.Gutter.Color := SynEdit.Color; //SynEdit.Color;
+    if EditColor = clWindowText then
+      SynEdit.Gutter.Color := LightenColor(SynEdit.Color, 0.2);
     SynEdit.Gutter.LeftOffsetColor := LStyles.GetStyleColor(scPanel);
     SynEdit.RightEdge.Color := LStyles.GetStyleColor(scPanel);
     SynEdit.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
@@ -1088,18 +1093,9 @@ var
   EditColor: TColor;
 begin
   LStyles := StyleServices;
-  if LStyles.Enabled then //Assigned(LStyles) and (TStyleManager.ActiveStyle.Name = STYLENAME_WINDOWS) then
+  if LStyles.Enabled then
   begin
-   { EditColor := SynEdit.Color;
-    if (TStyleManager.ActiveStyle.Name <> STYLENAME_WINDOWS) and
-       (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) > 500) then
-      EditColor := clWindowText
-    else
-      EditColor := LStyles.GetStyleColor(scPanel);
-
-    SynEdit.Gutter.Font.Color := LightenColor(EditColor); }//LStyles.GetStyleFontColor(sfEditBoxTextNormal);
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
-    //SynEdit.Gutter.Color := SynEdit.Color; // Color;
     SynEdit.Gutter.LeftOffsetColor := LStyles.GetStyleColor(scPanel);
     SynEdit.RightEdge.Color := LStyles.GetStyleColor(scPanel);
 
@@ -1141,7 +1137,6 @@ begin
     SynEdit.Gutter.GradientEndColor := clBtnFace;
     SynEdit.Gutter.Font.Color := clWindowText;
     SynEdit.Gutter.BorderColor := clWindow;
-    //SynEdit.Gutter.Color := clBtnFace;
     Highlighter := SynEdit.Highlighter;
     if Assigned(Highlighter) and
      ( (Highlighter.Tag = 3) or (Highlighter.Tag = 4) or (Highlighter.Tag = 5) or
