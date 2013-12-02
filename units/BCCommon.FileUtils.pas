@@ -45,11 +45,39 @@ const
   function FileIconInit(FullInit: BOOL): BOOL; stdcall;
   function IsExtInFileType(Ext: string; FileType: string): Boolean;
   function CheckAccessToFile(DesiredAccess: DWORD; const FileName: WideString): Boolean;
+  function RemoveDirectory(const Directory: String): Boolean;
 
 implementation
 
 uses
   System.SysUtils, Winapi.ShellAPI, BCCommon.LanguageStrings, Vcl.Forms;
+
+function RemoveDirectory(const Directory: String): Boolean;
+var
+  s: String;
+  Rec: TSearchRec;
+begin
+  Result := True;
+  {$WARNINGS OFF} { IncludeTrailingPathDelimiter is specific to a platform }
+  s := IncludeTrailingPathDelimiter(Directory);
+  {$WARNINGS ON}
+  if FindFirst(s + '*.*', faAnyFile, Rec) = 0 then
+  try
+    repeat
+      if (Rec.Attr and faDirectory) = faDirectory then
+      begin
+        if (Rec.Name <> '.') and (Rec.Name <> '..') then
+          RemoveDirectory(s + Rec.Name);
+      end
+      else
+        Result := DeleteFile(s + Rec.Name);
+    until Result and (FindNext(Rec) <> 0);
+  finally
+    FindClose(Rec);
+  end;
+  if Result then
+    Result := RemoveDir(s);
+end;
 
 function GetIconIndex(Path: string; Flags: Cardinal): Integer;
 var

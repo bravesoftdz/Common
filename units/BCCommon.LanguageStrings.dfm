@@ -52,6 +52,16 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'CancelSearch'
         Strings.Strings = (
           'Cancel search, are you sure?')
+      end
+      item
+        Name = 'DeleteDirectory'
+        Strings.Strings = (
+          'Delete directory %s, are you sure?')
+      end
+      item
+        Name = 'DeleteFile'
+        Strings.Strings = (
+          'Delete file %s, are you sure?')
       end>
     Left = 92
     Top = 22
