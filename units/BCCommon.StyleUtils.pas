@@ -1093,6 +1093,7 @@ var
   EditColor: TColor;
 begin
   LStyles := StyleServices;
+  SynEdit.Gutter.BorderStyle := gbsNone;
   if LStyles.Enabled then
   begin
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
