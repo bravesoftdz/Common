@@ -477,6 +477,271 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'HeaderRight'
         Strings.Strings = (
           'Header - Right')
+      end
+      item
+        Name = 'SColorBoxCustomCaption'
+        Strings.Strings = (
+          'Custom...')
+      end
+      item
+        Name = 'SNameBlack'
+        Strings.Strings = (
+          'Black')
+      end
+      item
+        Name = 'SNameMaroon'
+        Strings.Strings = (
+          'Maroon')
+      end
+      item
+        Name = 'SNameGreen'
+        Strings.Strings = (
+          'Green')
+      end
+      item
+        Name = 'SNameOlive'
+        Strings.Strings = (
+          'Olive')
+      end
+      item
+        Name = 'SNameNavy'
+        Strings.Strings = (
+          'Navy')
+      end
+      item
+        Name = 'SNamePurple'
+        Strings.Strings = (
+          'Purple')
+      end
+      item
+        Name = 'SNameTeal'
+        Strings.Strings = (
+          'Teal')
+      end
+      item
+        Name = 'SNameGray'
+        Strings.Strings = (
+          'Gray')
+      end
+      item
+        Name = 'SNameSilver'
+        Strings.Strings = (
+          'Silver')
+      end
+      item
+        Name = 'SNameRed'
+        Strings.Strings = (
+          'Red')
+      end
+      item
+        Name = 'SNameLime'
+        Strings.Strings = (
+          'Lime')
+      end
+      item
+        Name = 'SNameYellow'
+        Strings.Strings = (
+          'Yellow')
+      end
+      item
+        Name = 'SNameBlue'
+        Strings.Strings = (
+          'Blue')
+      end
+      item
+        Name = 'SNameFuchsia'
+        Strings.Strings = (
+          'Fuchsia')
+      end
+      item
+        Name = 'SNameAqua'
+        Strings.Strings = (
+          'Aqua')
+      end
+      item
+        Name = 'SNameWhite'
+        Strings.Strings = (
+          'White')
+      end
+      item
+        Name = 'SNameMoneyGreen'
+        Strings.Strings = (
+          'Money Green')
+      end
+      item
+        Name = 'SNameSkyBlue'
+        Strings.Strings = (
+          'Sky Blue')
+      end
+      item
+        Name = 'SNameCream'
+        Strings.Strings = (
+          'Cream')
+      end
+      item
+        Name = 'SNameMedGray'
+        Strings.Strings = (
+          'Medium Gray')
+      end
+      item
+        Name = 'SNameActiveBorder'
+        Strings.Strings = (
+          'Active Border')
+      end
+      item
+        Name = 'SNameActiveCaption'
+        Strings.Strings = (
+          'Active Caption')
+      end
+      item
+        Name = 'SNameAppWorkSpace'
+        Strings.Strings = (
+          'Application Workspace')
+      end
+      item
+        Name = 'SNameBackground'
+        Strings.Strings = (
+          'Background')
+      end
+      item
+        Name = 'SNameBtnFace'
+        Strings.Strings = (
+          'Button Face')
+      end
+      item
+        Name = 'SNameBtnHighlight'
+        Strings.Strings = (
+          'Button Highlight')
+      end
+      item
+        Name = 'SNameBtnShadow'
+        Strings.Strings = (
+          'Button Shadow')
+      end
+      item
+        Name = 'SNameBtnText'
+        Strings.Strings = (
+          'Button Text')
+      end
+      item
+        Name = 'SNameCaptionText'
+        Strings.Strings = (
+          'Caption Text')
+      end
+      item
+        Name = 'SNameDefault'
+        Strings.Strings = (
+          'Default')
+      end
+      item
+        Name = 'SNameGradientActiveCaption'
+        Strings.Strings = (
+          'Gradient Active Caption')
+      end
+      item
+        Name = 'SNameGradientInactiveCaption'
+        Strings.Strings = (
+          'Gradien Inactive Caption')
+      end
+      item
+        Name = 'SNameGrayText'
+        Strings.Strings = (
+          'Gray Text')
+      end
+      item
+        Name = 'SNameHighlight'
+        Strings.Strings = (
+          'Highlight Background')
+      end
+      item
+        Name = 'SNameHighlightText'
+        Strings.Strings = (
+          'Highlight Text')
+      end
+      item
+        Name = 'SNameHotLight'
+        Strings.Strings = (
+          'Hot Light')
+      end
+      item
+        Name = 'SNameInactiveBorder'
+        Strings.Strings = (
+          'Inactive Border')
+      end
+      item
+        Name = 'SNameInactiveCaption'
+        Strings.Strings = (
+          'Inactive Caption')
+      end
+      item
+        Name = 'SNameInactiveCaptionText'
+        Strings.Strings = (
+          'Inactive Caption Text')
+      end
+      item
+        Name = 'SNameInfoBk'
+        Strings.Strings = (
+          'Info Background')
+      end
+      item
+        Name = 'SNameInfoText'
+        Strings.Strings = (
+          'Info Text')
+      end
+      item
+        Name = 'SNameMenu'
+        Strings.Strings = (
+          'Menu Background')
+      end
+      item
+        Name = 'SNameMenuBar'
+        Strings.Strings = (
+          'Menu Bar')
+      end
+      item
+        Name = 'SNameMenuHighlight'
+        Strings.Strings = (
+          'Menu Highlight')
+      end
+      item
+        Name = 'SNameMenuText'
+        Strings.Strings = (
+          'Menu Text')
+      end
+      item
+        Name = 'SNameNone'
+        Strings.Strings = (
+          'None')
+      end
+      item
+        Name = 'SNameScrollBar'
+        Strings.Strings = (
+          'Scroll Bar')
+      end
+      item
+        Name = 'SName3DDkShadow'
+        Strings.Strings = (
+          '3D Dark Shadow')
+      end
+      item
+        Name = 'SName3DLight'
+        Strings.Strings = (
+          '3D Light')
+      end
+      item
+        Name = 'SNameWindow'
+        Strings.Strings = (
+          'Window Background')
+      end
+      item
+        Name = 'SNameWindowFrame'
+        Strings.Strings = (
+          'Window Frame')
+      end
+      item
+        Name = 'SNameWindowText'
+        Strings.Strings = (
+          'Window Text')
       end>
     Left = 88
     Top = 254
