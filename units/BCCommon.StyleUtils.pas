@@ -130,7 +130,7 @@ begin
     SynEdit.Gutter.Color := SynEdit.Color; //SynEdit.Color;
     if EditColor = clWindowText then
       SynEdit.Gutter.Color := LightenColor(SynEdit.Color, 0.2);
-    SynEdit.Gutter.LeftOffsetColor := LStyles.GetStyleColor(scPanel);
+    SynEdit.Gutter.BookmarkPanelColor := LStyles.GetStyleColor(scPanel);
     SynEdit.RightEdge.Color := LStyles.GetStyleColor(scPanel);
     SynEdit.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
     SynEdit.Color := LStyles.GetStyleColor(scEdit);
@@ -1097,7 +1097,7 @@ begin
   if LStyles.Enabled then
   begin
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
-    SynEdit.Gutter.LeftOffsetColor := LStyles.GetStyleColor(scPanel);
+    SynEdit.Gutter.BookmarkPanelColor := LStyles.GetStyleColor(scPanel);
     SynEdit.RightEdge.Color := LStyles.GetStyleColor(scPanel);
 
     SynEdit.SelectedColor.Background := LStyles.GetSystemColor(clHighlight);
