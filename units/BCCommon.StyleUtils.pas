@@ -145,7 +145,7 @@ begin
     SynEdit.Color := clWindow;
   end;
 
-  SynEdit.ActiveLineColor := SynEdit.Color;
+  //SynEdit.ActiveLineColor := SynEdit.Color;
 end;
 
 procedure UpdateHC11SynColors(HC11Syn: TSynHC11Syn; WhiteBackground: Boolean);
@@ -1165,7 +1165,7 @@ begin
   SynEdit.Gutter.Color := SynEdit.Color;
   if EditColor = clWindowText then
     SynEdit.Gutter.Color := LightenColor(SynEdit.Color, 0.2);
-  SynEdit.ActiveLineColor := SynEdit.Color;
+  //SynEdit.ActiveLineColor := SynEdit.Color;
   SynEdit.Invalidate;
 end;
 
