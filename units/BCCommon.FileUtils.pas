@@ -46,11 +46,36 @@ const
   function IsExtInFileType(Ext: string; FileType: string): Boolean;
   function CheckAccessToFile(DesiredAccess: DWORD; const FileName: WideString): Boolean;
   function RemoveDirectory(const Directory: String): Boolean;
+  function CountFilesInFolder(FilePath: string; Count: Integer = 0): Integer;
 
 implementation
 
 uses
   System.SysUtils, Winapi.ShellAPI, BCCommon.LanguageStrings, Vcl.Forms;
+
+function CountFilesInFolder(FilePath: string; Count: Integer = 0): Integer;
+var
+  SearhcRec: TSearchRec;
+begin
+  Result := Count;
+  FilePath := IncludeTrailingPathDelimiter(FilePath);
+  {$WARNINGS OFF}
+  if FindFirst(IncludeTrailingBackslash(FilePath) + '*.*', faAnyFile, SearhcRec) = 0 then
+  {$WARNINGS ON}
+  begin
+    repeat
+      if (SearhcRec.Name <> '.') and (SearhcRec.Name <> '..') then
+      begin
+        if SearhcRec.Attr and faDirectory = 0 then
+          Inc(Result)
+        else
+          Result := CountFilesInFolder(FilePath + SearhcRec.Name, Result);
+      end;
+    until FindNext (SearhcRec) <> 0;
+    FindClose (SearhcRec);
+  end;
+end;
+
 
 function RemoveDirectory(const Directory: String): Boolean;
 var
