@@ -4,31 +4,31 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.ComboBox,
-  BCControls.CheckBox, BCControls.Edit, Vcl.ComCtrls;
+  BCControls.CheckBox, BCControls.Edit, Vcl.ComCtrls, JvEdit;
 
 type
   TEditorOptionsFrame = class(TFrame)
     Panel: TPanel;
-    LineSpacingLabel: TLabel;
-    TabWidthLabel: TLabel;
-    ActiveLineColorBrightnessLabel: TLabel;
-    InsertCaretLabel: TLabel;
-    NonblinkingCaretColorLabel: TLabel;
     AutoIndentCheckBox: TBCCheckBox;
     TrimTrailingSpacesCheckBox: TBCCheckBox;
     ScrollPastEofCheckBox: TBCCheckBox;
     ScrollPastEolCheckBox: TBCCheckBox;
+    LineSpacingLabel: TLabel;
     LineSpacingEdit: TBCEdit;
+    TabWidthLabel: TLabel;
     TabWidthEdit: TBCEdit;
     BrightnessTrackBar: TTrackBar;
+    ActiveLineColorBrightnessLabel: TLabel;
     TabsToSpacesCheckBox: TBCCheckBox;
     AutoSaveCheckBox: TBCCheckBox;
+    InsertCaretLabel: TLabel;
     InsertCaretComboBox: TBCComboBox;
     UndoAfterSaveCheckBox: TBCCheckBox;
     SmartTabsCheckBox: TBCCheckBox;
     SmartTabDeleteCheckBox: TBCCheckBox;
     TripleClickRowSelectCheckBox: TBCCheckBox;
     NonblinkingCaretCheckBox: TBCCheckBox;
+    NonblinkingCaretColorLabel: TLabel;
     NonblinkingCaretColorBox: TColorBox;
   private
     { Private declarations }
