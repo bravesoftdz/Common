@@ -1,4 +1,4 @@
-object StatusBarFrame: TStatusBarFrame
+object OptionsStatusBarFrame: TOptionsStatusBarFrame
   Left = 0
   Top = 0
   Width = 320

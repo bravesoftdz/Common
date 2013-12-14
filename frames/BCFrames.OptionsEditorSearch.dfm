@@ -1,4 +1,4 @@
-object EditorSearchFrame: TEditorSearchFrame
+object OptionsEditorSearchFrame: TOptionsEditorSearchFrame
   Left = 0
   Top = 0
   Width = 320

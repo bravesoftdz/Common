@@ -1,4 +1,4 @@
-object EditorCompletionProposalFrame: TEditorCompletionProposalFrame
+object OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
   Left = 0
   Top = 0
   Width = 320

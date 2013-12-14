@@ -7,7 +7,7 @@ uses
   BCControls.CheckBox, BCControls.Edit, Vcl.ComCtrls, JvEdit, BCCommon.OptionsContainer;
 
 type
-  TEditorOptionsFrame = class(TFrame)
+  TOptionsEditorOptionsFrame = class(TFrame)
     Panel: TPanel;
     AutoIndentCheckBox: TBCCheckBox;
     TrimTrailingSpacesCheckBox: TBCCheckBox;
@@ -46,7 +46,7 @@ implementation
 uses
   System.SysUtils, SynEdit, BCCommon.LanguageStrings;
 
-constructor TEditorOptionsFrame.Create(AOwner: TComponent);
+constructor TOptionsEditorOptionsFrame.Create(AOwner: TComponent);
 begin
   inherited;
   with InsertCaretComboBox.Items do
@@ -58,7 +58,7 @@ begin
   end;
 end;
 
-procedure TEditorOptionsFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorOptionsFrame.PutData(OptionsContainer: TOptionsContainer);
 begin
   OptionsContainer.AutoIndent := AutoIndentCheckBox.Checked;
   OptionsContainer.AutoSave := AutoSaveCheckBox.Checked;
@@ -78,7 +78,7 @@ begin
   OptionsContainer.NonblinkingCaretColor := ColorToString(NonblinkingCaretColorBox.Selected);
 end;
 
-procedure TEditorOptionsFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorOptionsFrame.GetData(OptionsContainer: TOptionsContainer);
 begin
   AutoIndentCheckBox.Checked := OptionsContainer.AutoIndent;
   AutoSaveCheckBox.Checked := OptionsContainer.AutoSave;

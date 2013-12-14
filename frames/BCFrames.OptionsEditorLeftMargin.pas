@@ -8,7 +8,7 @@ uses
 
 type
 
-  TEditorLeftMarginFrame = class(TFrame)
+  TOptionsEditorLeftMarginFrame = class(TFrame)
     Panel: TPanel;
     VisibleCheckBox: TBCCheckBox;
     AutoSizeCheckBox: TBCCheckBox;
@@ -38,7 +38,7 @@ implementation
 uses
   System.SysUtils;
 
-procedure TEditorLeftMarginFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorLeftMarginFrame.PutData(OptionsContainer: TOptionsContainer);
 begin
   OptionsContainer.MarginVisibleLeftMargin := VisibleCheckBox.Checked;
   OptionsContainer.MarginLeftMarginAutoSize := AutoSizeCheckBox.Checked;
@@ -52,7 +52,7 @@ begin
   OptionsContainer.MarginLeftMarginWidth := StrToIntDef(LeftMarginWidthEdit.Text, 30);
 end;
 
-procedure TEditorLeftMarginFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorLeftMarginFrame.GetData(OptionsContainer: TOptionsContainer);
 begin
   AutoSizeCheckBox.Checked := OptionsContainer.MarginLeftMarginAutoSize;
   VisibleCheckBox.Checked := OptionsContainer.MarginVisibleLeftMargin;

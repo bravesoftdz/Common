@@ -8,7 +8,7 @@ uses
   BCControls.ImageList, SynEditHighlighter, SynHighlighterURI, SynURIOpener, BCControls.Edit, BCCommon.OptionsContainer;
 
 type
-  TEditorFontFrame = class(TFrame)
+  TOptionsEditorFontFrame = class(TFrame)
     Panel: TPanel;
     FontDialog: TFontDialog;
     ActionList: TActionList;
@@ -48,12 +48,12 @@ implementation
 
 {$R *.dfm}
 
-procedure TEditorFontFrame.MinimapWidthEditChange(Sender: TObject);
+procedure TOptionsEditorFontFrame.MinimapWidthEditChange(Sender: TObject);
 begin
   SynEdit.Minimap.Width := StrToInt(MinimapWidthEdit.Text);
 end;
 
-procedure TEditorFontFrame.SelectEditorFontActionExecute(Sender: TObject);
+procedure TOptionsEditorFontFrame.SelectEditorFontActionExecute(Sender: TObject);
 begin
   FontDialog.Font.Name := EditorFontLabel.Font.Name;
   FontDialog.Font.Size := EditorFontLabel.Font.Size;
@@ -66,7 +66,7 @@ begin
   end;
 end;
 
-procedure TEditorFontFrame.SelectMarginFontActionExecute(Sender: TObject);
+procedure TOptionsEditorFontFrame.SelectMarginFontActionExecute(Sender: TObject);
 begin
   FontDialog.Font.Name := MarginFontLabel.Font.Name;
   FontDialog.Font.Size := MarginFontLabel.Font.Size;
@@ -78,7 +78,7 @@ begin
   end;
 end;
 
-procedure TEditorFontFrame.SelectMinimapFontActionExecute(Sender: TObject);
+procedure TOptionsEditorFontFrame.SelectMinimapFontActionExecute(Sender: TObject);
 begin
   FontDialog.Font.Name := MinimapFontLabel.Font.Name;
   FontDialog.Font.Size := MinimapFontLabel.Font.Size;
@@ -91,7 +91,7 @@ begin
   end;
 end;
 
-procedure TEditorFontFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorFontFrame.PutData(OptionsContainer: TOptionsContainer);
 begin
   OptionsContainer.FontName := EditorFontLabel.Font.Name;
   OptionsContainer.FontSize := EditorFontLabel.Font.Size;
@@ -102,7 +102,7 @@ begin
   OptionsContainer.MinimapWidth := StrToIntDef(MinimapWidthEdit.Text, 100);
 end;
 
-procedure TEditorFontFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorFontFrame.GetData(OptionsContainer: TOptionsContainer);
 begin
   EditorFontLabel.Font.Name := OptionsContainer.FontName;
   EditorFontLabel.Font.Size := OptionsContainer.FontSize;

@@ -7,7 +7,7 @@ uses
   BCControls.ComboBox, BCCommon.OptionsContainer;
 
 type
-  TEditorCompletionProposalFrame = class(TFrame)
+  TOptionsEditorCompletionProposalFrame = class(TFrame)
     Panel: TPanel;
     EnabledCheckBox: TBCCheckBox;
     CaseSensitiveCheckBox: TBCCheckBox;
@@ -29,7 +29,7 @@ implementation
 uses
   Vcl.Menus, BCCommon.Lib;
 
-constructor TEditorCompletionProposalFrame.Create(AOwner: TComponent);
+constructor TOptionsEditorCompletionProposalFrame.Create(AOwner: TComponent);
 var
   i: Integer;
 begin
@@ -38,14 +38,14 @@ begin
     ShortcutComboBox.Items.Add(ShortCutToText(ShortCuts[i]));
 end;
 
-procedure TEditorCompletionProposalFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorCompletionProposalFrame.PutData(OptionsContainer: TOptionsContainer);
 begin
   OptionsContainer.CompletionProposalEnabled := EnabledCheckBox.Checked;
   OptionsContainer.CompletionProposalCaseSensitive := CaseSensitiveCheckBox.Checked;
   OptionsContainer.CompletionProposalShortcut := ShortcutComboBox.Text;
 end;
 
-procedure TEditorCompletionProposalFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorCompletionProposalFrame.GetData(OptionsContainer: TOptionsContainer);
 begin
   EnabledCheckBox.Checked := OptionsContainer.CompletionProposalEnabled;
   CaseSensitiveCheckBox.Checked := OptionsContainer.CompletionProposalCaseSensitive;

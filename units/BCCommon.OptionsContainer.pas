@@ -197,7 +197,6 @@ type
     FOutputDoubleBuffered: Boolean;
     FOutputMultiLine: Boolean;
     FOutputRightClickSelect: Boolean;
-    FOutputSaveTabs: Boolean;
     FOutputShowCloseButton: Boolean;
     FOutputShowImage: Boolean;
     FPollingInterval: Integer;
@@ -213,7 +212,6 @@ type
     FToolBarTransaction: Boolean;
   public
     constructor Create(AOwner: TComponent); override;
-    procedure AssignTo(Dest: TPersistent); override;
   published
     property ConnectionCloseTabByDblClick: Boolean read FConnectionCloseTabByDblClick write FConnectionCloseTabByDblClick default False;
     property ConnectionCloseTabByMiddleClick: Boolean read FConnectionCloseTabByMiddleClick write FConnectionCloseTabByMiddleClick default False;

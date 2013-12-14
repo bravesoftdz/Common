@@ -1,4 +1,4 @@
-object EditorRightMarginFrame: TEditorRightMarginFrame
+object OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
   Left = 0
   Top = 0
   Width = 451

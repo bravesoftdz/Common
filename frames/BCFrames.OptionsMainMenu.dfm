@@ -1,4 +1,4 @@
-object MainMenuFrame: TMainMenuFrame
+object OptionsMainMenuFrame: TOptionsMainMenuFrame
   Left = 0
   Top = 0
   Width = 451

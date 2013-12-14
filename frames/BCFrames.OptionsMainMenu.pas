@@ -8,7 +8,7 @@ uses
   BCCommon.OptionsContainer;
 
 type
-  TMainMenuFrame = class(TFrame)
+  TOptionsMainMenuFrame = class(TFrame)
     Panel: TPanel;
     PersistentHotKeysCheckBox: TBCCheckBox;
     ShadowsCheckBox: TBCCheckBox;
@@ -39,7 +39,7 @@ implementation
 uses
   BCCommon.Lib, Vcl.ActnMenus;
 
-constructor TMainMenuFrame.Create(AOwner: TComponent);
+constructor TOptionsMainMenuFrame.Create(AOwner: TComponent);
 var
   i: TAnimationStyle;
 begin
@@ -48,7 +48,7 @@ begin
     AnimationStyleComboBox.Items.Add(TAnimationStyleStr[TAnimationStyle(i)]);
 end;
 
-procedure TMainMenuFrame.SelectFontActionExecute(Sender: TObject);
+procedure TOptionsMainMenuFrame.SelectFontActionExecute(Sender: TObject);
 begin
   FontDialog.Font.Name := FontLabel.Font.Name;
   FontDialog.Font.Size := FontLabel.Font.Size;
@@ -59,7 +59,7 @@ begin
   end;
 end;
 
-procedure TMainMenuFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsMainMenuFrame.PutData(OptionsContainer: TOptionsContainer);
 begin
   OptionsContainer.PersistentHotKeys := PersistentHotKeysCheckBox.Checked;
   OptionsContainer.Shadows := ShadowsCheckBox.Checked;
@@ -70,7 +70,7 @@ begin
   OptionsContainer.AnimationDuration := StrToIntDef(AnimationDurationEdit.Text, 150);
 end;
 
-procedure TMainMenuFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsMainMenuFrame.GetData(OptionsContainer: TOptionsContainer);
 begin
   PersistentHotKeysCheckBox.Checked := OptionsContainer.PersistentHotKeys;
   ShadowsCheckBox.Checked := OptionsContainer.Shadows;

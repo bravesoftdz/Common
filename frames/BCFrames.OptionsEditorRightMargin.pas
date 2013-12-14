@@ -7,7 +7,7 @@ uses
   BCControls.Edit, Vcl.Buttons, JvEdit, BCCommon.OptionsContainer;
 
 type
-  TEditorRightMarginFrame = class(TFrame)
+  TOptionsEditorRightMarginFrame = class(TFrame)
     Panel: TPanel;
     PositionLabel: TLabel;
     PositionEdit: TBCEdit;
@@ -28,14 +28,14 @@ implementation
 uses
   System.SysUtils;
 
-procedure TEditorRightMarginFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorRightMarginFrame.PutData(OptionsContainer: TOptionsContainer);
 begin
   OptionsContainer.MarginVisibleRightMargin := VisibleCheckBox.Checked;
   OptionsContainer.MarginRightMargin := StrToIntDef(PositionEdit.Text, 80);
   OptionsContainer.MarginLeftMarginMouseMove := MouseMoveCheckBox.Checked;
 end;
 
-procedure TEditorRightMarginFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorRightMarginFrame.GetData(OptionsContainer: TOptionsContainer);
 begin
   VisibleCheckBox.Checked := OptionsContainer.MarginVisibleRightMargin;
   PositionEdit.Text := IntToStr(OptionsContainer.MarginRightMargin);

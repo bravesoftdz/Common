@@ -7,7 +7,7 @@ uses
   BCCommon.OptionsContainer;
 
 type
-  TEditorSearchFrame = class(TFrame)
+  TOptionsEditorSearchFrame = class(TFrame)
     Panel: TPanel;
     ShowSearchStringNotFoundCheckBox: TBCCheckBox;
     BeepIfSearchStringNotFoundCheckBox: TBCCheckBox;
@@ -23,13 +23,13 @@ implementation
 
 {$R *.dfm}
 
-procedure TEditorSearchFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorSearchFrame.PutData(OptionsContainer: TOptionsContainer);
 begin
   OptionsContainer.ShowSearchStringNotFound := ShowSearchStringNotFoundCheckBox.Checked;
   OptionsContainer.BeepIfSearchStringNotFound := BeepIfSearchStringNotFoundCheckBox.Checked;
 end;
 
-procedure TEditorSearchFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorSearchFrame.GetData(OptionsContainer: TOptionsContainer);
 begin
   ShowSearchStringNotFoundCheckBox.Checked := OptionsContainer.ShowSearchStringNotFound;
   BeepIfSearchStringNotFoundCheckBox.Checked := OptionsContainer.BeepIfSearchStringNotFound;

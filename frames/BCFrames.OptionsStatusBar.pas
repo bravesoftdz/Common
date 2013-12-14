@@ -7,7 +7,7 @@ uses
   BCControls.CheckBox, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ActnList, System.Actions, BCCommon.OptionsContainer;
 
 type
-  TStatusBarFrame = class(TFrame)
+  TOptionsStatusBarFrame = class(TFrame)
     Panel: TPanel;
     SelectFontSpeedButton: TSpeedButton;
     FontLabel: TLabel;
@@ -28,7 +28,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TStatusBarFrame.SelectFontActionExecute(Sender: TObject);
+procedure TOptionsStatusBarFrame.SelectFontActionExecute(Sender: TObject);
 begin
   FontDialog.Font.Name := FontLabel.Font.Name;
   FontDialog.Font.Size := FontLabel.Font.Size;
@@ -39,14 +39,14 @@ begin
   end;
 end;
 
-procedure TStatusBarFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsStatusBarFrame.PutData(OptionsContainer: TOptionsContainer);
 begin
   OptionsContainer.StatusBarUseSystemFont := UseSystemFontCheckBox.Checked;
   OptionsContainer.StatusBarFontName := FontLabel.Font.Name;
   OptionsContainer.StatusBarFontSize := FontLabel.Font.Size;
 end;
 
-procedure TStatusBarFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsStatusBarFrame.GetData(OptionsContainer: TOptionsContainer);
 begin
   UseSystemFontCheckBox.Checked := OptionsContainer.StatusBarUseSystemFont;
   FontLabel.Font.Name := OptionsContainer.StatusBarFontName;
