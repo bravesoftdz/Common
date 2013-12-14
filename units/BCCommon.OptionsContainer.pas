@@ -786,6 +786,7 @@ end;
 
 procedure TOraBoneOptionsContainer.WriteIniFile;
 begin
+  inherited;
   with TBigIniFile.Create(GetINIFilename) do
   try
     WriteBool('Options', 'EditorCloseTabByDblClick', OptionsContainer.EditorCloseTabByDblClick);
@@ -906,6 +907,7 @@ end;
 
 procedure TEditBoneOptionsContainer.WriteIniFile;
 begin
+  inherited;
   with TBigIniFile.Create(GetIniFilename) do
   try
     { Options }
