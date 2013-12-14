@@ -1786,17 +1786,17 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'BeforeComma'
         Strings.Strings = (
-          'Before Comma ')
+          'Before Comma')
       end
       item
         Name = 'BeforeCommaWithSpace'
         Strings.Strings = (
-          'Befor eComma With Space')
+          'Before Comma With Space')
       end
       item
-        Name = 'NoLineBreakComma'
+        Name = 'NoLineBreak'
         Strings.Strings = (
-          'No Line Break Comma')
+          'No Line Break')
       end>
     Left = 90
     Top = 438

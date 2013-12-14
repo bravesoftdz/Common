@@ -5,17 +5,17 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCSQL.Formatter,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.CheckBox, Vcl.ExtCtrls,
-  BCControls.ComboBox;
+  BCControls.ComboBox, BCControls.Edit;
 
 type
   TOptionsSQLSelectColumnListFrame = class(TFrame)
     Panel: TPanel;
     AlignAliasCheckBox: TBCCheckBox;
-    ItemInNewLineCheckBox: TBCCheckBox;
+    ColumnInNewLineCheckBox: TBCCheckBox;
     ColumnListStyleLabel: TLabel;
     ColumnListStyleComboBox: TBCComboBox;
-    ColumnListCommaComboBox: TBCComboBox;
-    ColumnListCommaLabel: TLabel;
+    LineBreakComboBox: TBCComboBox;
+    LineBreakLabel: TLabel;
     TreatDistinctAsVirtualColumnCheckBox: TBCCheckBox;
   private
     { Private declarations }
@@ -41,20 +41,20 @@ begin
     Add(LanguageDatamodule.GetSQLFormatter('Stacked'));
     Add(LanguageDatamodule.GetSQLFormatter('Wrapped'));
   end;
-  with ColumnListCommaComboBox.Items do
+  with LineBreakComboBox.Items do
   begin
     Add(LanguageDatamodule.GetSQLFormatter('AfterComma'));
     Add(LanguageDatamodule.GetSQLFormatter('BeforeComma'));
     Add(LanguageDatamodule.GetSQLFormatter('BeforeCommaWithSpace'));
-    Add(LanguageDatamodule.GetSQLFormatter('NoLineBreakComma'));
+    Add(LanguageDatamodule.GetSQLFormatter('NoLineBreak'));
   end;
 end;
 
 procedure TOptionsSQLSelectColumnListFrame.GetData(SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper);
 begin
   ColumnListStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectColumnListStyle;
-  ColumnListCommaComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectColumnListComma;
-  ItemInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectItemInNewLine;
+  LineBreakComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectLineBreak;
+  ColumnInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectColumnInNewLine;
   AlignAliasCheckBox.Checked := SQLFormatterOptionsWrapper.AlignAliasInSelectList;
   TreatDistinctAsVirtualColumnCheckBox.Checked := SQLFormatterOptionsWrapper.TreatDistinctAsVirtualColumn;
 end;
@@ -62,8 +62,8 @@ end;
 procedure TOptionsSQLSelectColumnListFrame.PutData(var SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper);
 begin
   SQLFormatterOptionsWrapper.SelectColumnListStyle := ColumnListStyleComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.SelectColumnListComma := ColumnListCommaComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.SelectItemInNewLine := ItemInNewLineCheckBox.Checked;
+  SQLFormatterOptionsWrapper.SelectLineBreak := LineBreakComboBox.ItemIndex;
+  SQLFormatterOptionsWrapper.SelectColumnInNewLine := ColumnInNewLineCheckBox.Checked;
   SQLFormatterOptionsWrapper.AlignAliasInSelectList := AlignAliasCheckBox.Checked;
   SQLFormatterOptionsWrapper.TreatDistinctAsVirtualColumn := TreatDistinctAsVirtualColumnCheckBox.Checked;
 end;

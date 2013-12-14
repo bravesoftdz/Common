@@ -20,10 +20,10 @@ type
     { Select Column List }
     function GetSelectColumnlistStyle: Integer;
     procedure SetSelectColumnlistStyle(Value: Integer);
-    function GetSelectColumnlistComma: Integer;
-    procedure SetSelectColumnlistComma(Value: Integer);
-    function GetSelectItemInNewLine: Boolean;
-    procedure SetSelectItemInNewLine(Value: Boolean);
+    function GetSelectLineBreak: Integer;
+    procedure SetSelectLineBreak(Value: Integer);
+    function GetSelectColumnInNewLine: Boolean;
+    procedure SetSelectColumnInNewLine(Value: Boolean);
     function GetAlignAliasInSelectList: Boolean;
     procedure SetAlignAliasInSelectList(Value: Boolean);
     function GetTreatDistinctAsVirtualColumn: Boolean;
@@ -42,8 +42,8 @@ type
   public
     { Select Column List }
     property SelectColumnListStyle: Integer read GetSelectColumnListStyle write SetSelectColumnListStyle;
-    property SelectColumnListComma: Integer read GetSelectColumnListComma write SetSelectColumnListComma;
-    property SelectItemInNewLine: Boolean read GetSelectItemInNewLine write SetSelectItemInNewLine;
+    property SelectLineBreak: Integer read GetSelectLineBreak write SetSelectLineBreak;
+    property SelectColumnInNewLine: Boolean read GetSelectColumnInNewLine write SetSelectColumnInNewLine;
     property AlignAliasInSelectList: Boolean read GetAlignAliasInSelectList write SetAlignAliasInSelectList;
     property TreatDistinctAsVirtualColumn: Boolean read GetTreatDistinctAsVirtualColumn write SetTreatDistinctAsVirtualColumn;
     { Select Subquery }
@@ -77,15 +77,26 @@ end;
 
 { Select Column List }
 
+function TSQLFormatterOptionsWrapper.GetSelectColumnListStyle: Integer;
+begin
+  //Result := gFmtOpt.Select_ListitemFitInOneLine;
+  case gFmtOpt.Select_ColumnList_Style of
+    asStacked: Result := 0;
+  else
+    Result := 1 { asWrapped }
+  end;
+end;
+
 procedure TSQLFormatterOptionsWrapper.SetSelectColumnListStyle(Value: Integer);
 begin
+  //gFmtOpt.Select_ListitemFitInOneLine := Value;
   case Value of
-    0: gFmtOpt.Select_ColumnList_Style := asStacked;
+    0: gFmtOpt.Select_ColumnList_Style := asStacked; //Select_ColumnList_Style
     1: gFmtOpt.Select_ColumnList_Style := asWrapped;
   end;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectColumnListComma: Integer;
+function TSQLFormatterOptionsWrapper.GetSelectLineBreak: Integer;
 begin
   case gFmtOpt.Select_ColumnList_Comma of
     lfAfterComma: Result := 0;
@@ -96,7 +107,7 @@ begin
   end;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectColumnListComma(Value: Integer);
+procedure TSQLFormatterOptionsWrapper.SetSelectLineBreak(Value: Integer);
 begin
   case Value of
     0: gFmtOpt.Select_ColumnList_Comma := lfAfterComma;
@@ -106,12 +117,12 @@ begin
   end;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectItemInNewLine: Boolean;
+function TSQLFormatterOptionsWrapper.GetSelectColumnInNewLine: Boolean;
 begin
   Result := gFmtOpt.SelectItemInNewLine;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectItemInNewLine(Value: Boolean);
+procedure TSQLFormatterOptionsWrapper.SetSelectColumnInNewLine(Value: Boolean);
 begin
   gFmtOpt.SelectItemInNewLine := Value;
 end;
@@ -144,15 +155,6 @@ begin
     0: gFmtOpt.Select_keywords_alignOption := aloLeft;
     1: gFmtOpt.Select_keywords_alignOption := aloRight;
     2: gFmtOpt.Select_keywords_alignOption := aloNone;
-  end;
-end;
-
-function TSQLFormatterOptionsWrapper.GetSelectColumnListStyle: Integer;
-begin
-  case gFmtOpt.Select_ColumnList_Style of
-    asStacked: Result := 0;
-  else
-    Result := 1 { asWrapped }
   end;
 end;
 
