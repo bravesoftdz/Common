@@ -1,6 +1,6 @@
 object LanguageDataModule: TLanguageDataModule
   OldCreateOrder = False
-  Height = 492
+  Height = 535
   Width = 257
   object YesOrNoMultiStringHolder: TBCMultiStringHolder
     MultipleStrings = <
@@ -1765,5 +1765,10 @@ object LanguageDataModule: TLanguageDataModule
       end>
     Left = 92
     Top = 380
+  end
+  object SQLFormatterMultiStringHolder: TBCMultiStringHolder
+    MultipleStrings = <>
+    Left = 90
+    Top = 438
   end
 end

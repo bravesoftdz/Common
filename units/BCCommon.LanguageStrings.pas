@@ -14,6 +14,7 @@ type
     WarningMessageMultiStringHolder: TBCMultiStringHolder;
     YesOrNoMultiStringHolder: TBCMultiStringHolder;
     ConvertConstantMultiStringHolder: TBCMultiStringHolder;
+    SQLFormatterMultiStringHolder: TBCMultiStringHolder;
   private
     { Private declarations }
   public
