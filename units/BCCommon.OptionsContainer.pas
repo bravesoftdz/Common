@@ -3,7 +3,7 @@ unit BCCommon.OptionsContainer;
 interface
 
 uses
-  System.Classes, Vcl.ActnMenus, SynEdit{$ifdef EDITBONE}, Lib, BCCommon.FileUtils, SynHighlighterWebData,
+  System.Classes, Vcl.ActnMenus, SynEdit, BCCommon.FileUtils{$ifdef EDITBONE}, Lib, SynHighlighterWebData,
   SynHighlighterWeb, SynHighlighterSQL{$endif};
 
 type
@@ -91,6 +91,7 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure AssignTo(Dest: TPersistent); override;
+    procedure ReadIniFile; virtual;
   published
     property AnimationDuration: Integer read FAnimationDuration write FAnimationDuration default 150;
     property AnimationStyle: TAnimationStyle read FAnimationStyle write FAnimationStyle default asDefault;
@@ -212,6 +213,7 @@ type
     FToolBarTransaction: Boolean;
   public
     constructor Create(AOwner: TComponent); override;
+    procedure ReadIniFile; override;
   published
     property ConnectionCloseTabByDblClick: Boolean read FConnectionCloseTabByDblClick write FConnectionCloseTabByDblClick default False;
     property ConnectionCloseTabByMiddleClick: Boolean read FConnectionCloseTabByMiddleClick write FConnectionCloseTabByMiddleClick default False;
@@ -311,6 +313,7 @@ type
     function GetFilterIndex(FileExt: string): Cardinal;
     function SupportedFileExts(Refresh: Boolean = False): string;
     procedure AssignTo(Dest: TPersistent); override;
+    procedure ReadIniFile; override;
   published
     property CPASHighlighter: TCPASHighlighter read FCPASHighlighter write FCPASHighlighter;
     property CSSVersion: TSynWebCssVersion read FCSSVersion write FCSSVersion;
@@ -367,7 +370,7 @@ implementation
 
 uses
   System.SysUtils, Vcl.Forms, Vcl.ComCtrls, Vcl.Graphics, Vcl.Menus, SynEditTypes, SynCompletionProposal,
-  BCCommon.StringUtils, BCCommon.LanguageStrings;
+  BCCommon.StringUtils, BCCommon.LanguageStrings, BigIni;
 
 {$ifdef ORABONE}
 var
@@ -391,6 +394,95 @@ begin
   Result := FOptionsContainer;
 end;
 {$endif}
+
+procedure TOptionsContainer.ReadIniFile;
+begin
+  with TBigIniFile.Create(GetIniFilename) do
+  try
+    { Options }
+    DeleteKey('Options', 'UseSystemFont'); { deprecated }
+    OptionsContainer.AnimationDuration := StrToInt(ReadString('Options', 'AnimationDuration', '150'));
+    OptionsContainer.AnimationStyle := TAnimationStyle(StrToInt(ReadString('Options', 'AnimationStyle', '1')));
+    OptionsContainer.AutoIndent := ReadBool('Options', 'AutoIndent', True);
+    OptionsContainer.AutoSave := ReadBool('Options', 'AutoSave', False);
+    OptionsContainer.BeepIfSearchStringNotFound := ReadBool('Options', 'BeepIfSearchStringNotFound', True);
+    OptionsContainer.ColorBrightness := StrToInt(ReadString('Options', 'ActiveLineColorBrightness', '2'));
+    OptionsContainer.CompletionProposalCaseSensitive := ReadBool('Options', 'CompletionProposalCaseSensitive', True);
+    OptionsContainer.CompletionProposalEnabled := ReadBool('Options', 'CompletionProposalEnabled', True);
+    OptionsContainer.CompletionProposalShortcut := ReadString('Options', 'CompletionProposalShortcut', 'Ctrl+Space');
+    OptionsContainer.EnableLineNumbers := ReadBool('Options', 'EnableLineNumbers', True);
+    OptionsContainer.EnableSelectionMode := ReadBool('Options', 'EnableSelectionMode', False);
+    OptionsContainer.EnableSpecialChars := ReadBool('Options', 'EnableSpecialChars', False);
+    OptionsContainer.EnableWordWrap := ReadBool('Options', 'EnableWordWrap', False);
+    OptionsContainer.FontName := ReadString('Options', 'FontName', 'Courier New');
+    OptionsContainer.FontSize := StrToInt(ReadString('Options', 'FontSize', '9'));
+    OptionsContainer.IgnoreBlanks := ReadBool('Options', 'IgnoreBlanks', True);
+    OptionsContainer.IgnoreCase := ReadBool('Options', 'IgnoreCase', True);
+    OptionsContainer.InsertCaret := TSynEditCaretType(StrToInt(ReadString('Options', 'InsertCaret', '0')));
+    OptionsContainer.LineSpacing := StrToInt(ReadString('Options', 'LineSpacing', '0'));
+    OptionsContainer.MainMenuFontName := ReadString('Options', 'MainMenuFontName', 'Tahoma');
+    OptionsContainer.MainMenuFontSize := StrToInt(ReadString('Options', 'MainMenuFontSize', '8'));
+    OptionsContainer.MainMenuSystemFontName := ReadString('Options', 'MainMenuSystemFontName', Screen.MenuFont.Name);
+    OptionsContainer.MainMenuSystemFontSize := StrToInt(ReadString('Options', 'MainMenuSystemFontSize', IntToStr(Screen.MenuFont.Size)));
+    OptionsContainer.MainMenuUseSystemFont := ReadBool('Options', 'MainMenuUseSystemFont', False);
+    OptionsContainer.MarginFontName := ReadString('Options', 'MarginFontName', 'Courier New');
+    OptionsContainer.MarginFontSize := StrToInt(ReadString('Options', 'MarginFontSize', '9'));
+    OptionsContainer.MarginInTens := ReadBool('Options', 'MarginInTens', True);
+    OptionsContainer.MarginLeftMarginAutoSize := ReadBool('Options', 'MarginLeftMarginAutoSize', True);
+    OptionsContainer.MarginLeftMarginMouseMove := ReadBool('Options', 'MarginLeftMarginMouseMove', True);
+    OptionsContainer.MarginLeftMarginWidth := StrToInt(ReadString('Options', 'MarginLeftMarginWidth', '48'));
+    OptionsContainer.MarginLineModified := ReadBool('Options', 'MarginLineModified', True);
+    OptionsContainer.MarginModifiedColor := ReadString('Options', 'MarginModifiedColor', 'clYellow');
+    OptionsContainer.MarginNormalColor := ReadString('Options', 'MarginNormalColor', 'clGreen');
+    OptionsContainer.MarginRightMargin := StrToInt(ReadString('Options', 'RightMargin', '80'));
+    OptionsContainer.MarginShowBookmarks := ReadBool('Options', 'MarginShowBookmarks', True);
+    OptionsContainer.MarginShowBookmarkPanel := ReadBool('Options', 'MarginShowBookmarkPanel', True);
+    OptionsContainer.MarginVisibleLeftMargin := ReadBool('Options', 'MarginVisibleLeftMargin', True);
+    OptionsContainer.MarginVisibleRightMargin := ReadBool('Options', 'MarginVisibleRightMargin', True);
+    OptionsContainer.MarginZeroStart := ReadBool('Options', 'MarginZeroStart', False);
+    OptionsContainer.MinimapFontName :=  ReadString('Options', 'MinimapFontName', 'Courier New');
+    OptionsContainer.MinimapFontSize :=  StrToInt(ReadString('Options', 'MinimapFontSize', '1'));
+    OptionsContainer.MinimapWidth :=  StrToInt(ReadString('Options', 'MinimapWidth', '100'));
+    OptionsContainer.NonblinkingCaret := ReadBool('Options', 'NonblinkingCaret', False);
+    OptionsContainer.NonblinkingCaretColor := ReadString('Options', 'NonblinkingCaretColor', 'clBlack');
+    OptionsContainer.OutputIndent := StrToInt(ReadString('Options', 'OutputIndent', '20'));
+    OptionsContainer.OutputShowTreeLines:= ReadBool('Options', 'OutputShowTreeLines', False);
+    OptionsContainer.PersistentHotKeys := ReadBool('Options', 'PersistentHotKeys', False);
+    OptionsContainer.PrintDateTime :=  StrToInt(ReadString('Options', 'PrintDateTime', '1'));
+    OptionsContainer.PrintDocumentName := StrToInt(ReadString('Options', 'PrintDocumentName', '2'));
+    OptionsContainer.PrintPageNumber := StrToInt(ReadString('Options', 'PrintPageNumber', '3'));
+    OptionsContainer.PrintPrintedBy := StrToInt(ReadString('Options', 'PrintPrintedBy', '0'));
+    OptionsContainer.PrintShowFooterLine := ReadBool('Options', 'PrintShowFooterLine', True);
+    OptionsContainer.PrintShowHeaderLine := ReadBool('Options', 'PrintShowHeaderLine', True);
+    OptionsContainer.PrintShowLineNumbers := ReadBool('Options', 'PrintShowLineNumbers', False);
+    OptionsContainer.PrintWordWrapLine := ReadBool('Options', 'PrintWordWrapLine', False);
+    OptionsContainer.ScrollPastEof := ReadBool('Options', 'ScrollPastEof', False);
+    OptionsContainer.ScrollPastEol := ReadBool('Options', 'ScrollPastEol', True);
+    OptionsContainer.Shadows := ReadBool('Options', 'Shadows', True);
+    OptionsContainer.ShowSearchStringNotFound := ReadBool('Options', 'ShowSearchStringNotFound', True);
+    OptionsContainer.SmartTabDelete := ReadBool('Options', 'SmartTabDelete', False);
+    OptionsContainer.SmartTabs := ReadBool('Options', 'SmartTabs', False);
+    OptionsContainer.StatusBarFontName := ReadString('Options', 'StatusBarFontName', 'Tahoma');
+    OptionsContainer.StatusBarFontSize := StrToInt(ReadString('Options', 'StatusBarFontSize', '8'));
+    OptionsContainer.StatusBarUseSystemFont := ReadBool('Options', 'StatusBarUseSystemFont', False);
+    OptionsContainer.TabsToSpaces := ReadBool('Options', 'TabsToSpaces', True);
+    OptionsContainer.TabWidth := StrToInt(ReadString('Options', 'TabWidth', '2'));
+    OptionsContainer.TrimTrailingSpaces := ReadBool('Options', 'TrimTrailingSpaces', True);
+    OptionsContainer.TripleClickRowSelect := ReadBool('Options', 'TripleClickRowSelect', True);
+    OptionsContainer.UndoAfterSave := ReadBool('Options', 'UnfoAfterSave', False);
+    OptionsContainer.ToolBarStandard := ReadBool('ActionToolBar', 'Standard', True);
+    OptionsContainer.ToolBarPrint := ReadBool('ActionToolBar', 'Print', True);
+    OptionsContainer.ToolBarIndent := ReadBool('ActionToolBar', 'Indent', True);
+    OptionsContainer.ToolBarSort := ReadBool('ActionToolBar', 'Sort', True);
+    OptionsContainer.ToolBarCase := ReadBool('ActionToolBar', 'Case', True);
+    OptionsContainer.ToolBarCommand := ReadBool('ActionToolBar', 'Command', True);
+    OptionsContainer.ToolBarSearch := ReadBool('ActionToolBar', 'Search', True);
+    OptionsContainer.ToolBarMode := ReadBool('ActionToolBar', 'Mode', True);
+    OptionsContainer.ToolBarTools := ReadBool('ActionToolBar', 'Tools', True);
+  finally
+    Free;
+  end;
+end;
 
 procedure TOptionsContainer.AssignTo(Dest: TPersistent);
 begin
@@ -564,10 +656,129 @@ begin
   FStatusBarFontName := 'Tahoma';
   FTimeFormat := 'HH24:MI:SS';
 end;
+
+procedure TOraBoneOptionsContainer.ReadIniFile;
+begin
+  inherited;
+  with TBigIniFile.Create(GetINIFilename) do
+  try
+    { Options }
+    OptionsContainer.ConnectionCloseTabByDblClick := ReadBool('Options', 'ConnectionCloseTabByDblClick', False);
+    OptionsContainer.ConnectionCloseTabByMiddleClick := ReadBool('Options', 'ConnectionCloseTabByMiddleClick', False);
+    OptionsContainer.ConnectionMultiLine := ReadBool('Options', 'ConnectionMultiLine', False);
+    OptionsContainer.ConnectionDoubleBuffered := ReadBool('Options', 'ConnectionDoubleBuffered', True);
+    OptionsContainer.ConnectionShowCloseButton := ReadBool('Options', 'ConnectionShowCloseButton', False);
+    OptionsContainer.ConnectionRightClickSelect := ReadBool('Options', 'ConnectionRightClickSelect', True);
+    OptionsContainer.ConnectionShowImage := ReadBool('Options', 'ConnectionShowImage', True);
+    OptionsContainer.EditorCloseTabByDblClick := ReadBool('Options', 'EditorCloseTabByDblClick', False);
+    OptionsContainer.EditorCloseTabByMiddleClick := ReadBool('Options', 'EditorCloseTabByMiddleClick', False);
+    OptionsContainer.EditorMultiLine := ReadBool('Options', 'EditorMultiLine', False);
+    OptionsContainer.EditorDoubleBuffered := ReadBool('Options', 'EditorDoubleBuffered', True);
+    OptionsContainer.EditorShowCloseButton := ReadBool('Options', 'EditorShowCloseButton', False);
+    OptionsContainer.EditorRightClickSelect := ReadBool('Options', 'EditorRightClickSelect', True);
+    OptionsContainer.EditorShowImage := ReadBool('Options', 'EditorShowImage', True);
+    OptionsContainer.OutputCloseTabByDblClick := ReadBool('Options', 'OutputCloseTabByDblClick', False);
+    OptionsContainer.OutputCloseTabByMiddleClick := ReadBool('Options', 'OutputCloseTabByMiddleClick', False);
+    OptionsContainer.OutputMultiLine := ReadBool('Options', 'OutputMultiLine', False);
+    OptionsContainer.OutputDoubleBuffered := ReadBool('Options', 'OutputDoubleBuffered', True);
+    OptionsContainer.OutputShowCloseButton := ReadBool('Options', 'OutputShowCloseButton', False);
+    OptionsContainer.OutputRightClickSelect := ReadBool('Options', 'OutputRightClickSelect', True);
+    OptionsContainer.OutputShowImage := ReadBool('Options', 'OutputShowImage', True);
+    OptionsContainer.PollingInterval := ReadInteger('Options', 'PollingInterval', 1);
+    OptionsContainer.DateFormat := ReadString('Options', 'DateFormat', 'DD.MM.YYYY');
+    OptionsContainer.TimeFormat := ReadString('Options', 'TimeFormat', 'HH24:MI:SS');
+    OptionsContainer.SchemaBrowserAlign := ReadString('Options', 'SchemaBrowserAlign', 'Bottom');
+    OptionsContainer.SchemaBrowserShowTreeLines:= ReadBool('Options', 'SchemaBrowserShowTreeLines', False);
+    OptionsContainer.SchemaBrowserIndent := StrToInt(ReadString('Options', 'SchemaBrowserIndent', '16'));
+    OptionsContainer.ObjectFrameAlign := ReadString('Options', 'ObjectFrameAlign', 'Bottom');
+    OptionsContainer.ShowObjectCreationAndModificationTimestamp := ReadBool('Options', 'ShowObjectCreationAndModificationTimestamp',
+      ReadBool('Options', 'ObjectCreationAndModificationTimestamp', False));
+    DeleteKey('Options', 'ObjectCreationAndModificationTimestamp'); { deprecated }
+    OptionsContainer.ShowDataSearchPanel := ReadBool('Options', 'ShowDataSearchPanel', True);
+    OptionsContainer.FilterOnTyping := ReadBool('Options', 'FilterOnTyping', True);
+  finally
+    Free;
+  end;
+end;
 {$endif}
 
 { TEditBoneOptionsContainer }
 {$ifdef EDITBONE}
+
+procedure TEditBoneOptionsContainer.ReadIniFile;
+var
+  i, j: Integer;
+  s: string;
+  FileTypes: TStrings;
+begin
+  inherited;
+  FileTypes := TStringList.Create;
+  with TBigIniFile.Create(GetIniFilename) do
+  try
+    { Options }
+    OptionsContainer.DirCloseTabByDblClick := ReadBool('Options', 'DirCloseTabByDblClick', False);
+    OptionsContainer.DirCloseTabByMiddleClick := ReadBool('Options', 'DirCloseTabByMiddleClick', False);
+    OptionsContainer.DirDoubleBuffered := ReadBool('Options', 'DirDoubleBuffered', True);
+    OptionsContainer.DirIndent := StrToInt(ReadString('Options', 'DirIndent', '20'));
+    OptionsContainer.DirMultiLine := ReadBool('Options', 'DirMultiLine', False);
+    OptionsContainer.DirRightClickSelect := ReadBool('Options', 'DirRightClickSelect', True);
+    OptionsContainer.DirSaveTabs:= ReadBool('Options', 'DirSaveTabs', True);
+    OptionsContainer.DirShowArchiveFiles:= ReadBool('Options', 'DirShowArchiveFiles', True);
+    OptionsContainer.DirShowCloseButton := ReadBool('Options', 'DirShowCloseButton', False);
+    OptionsContainer.DirShowHiddenFiles:= ReadBool('Options', 'DirShowHiddenFiles', False);
+    OptionsContainer.DirShowImage := ReadBool('Options', 'DirShowImage', True);
+    OptionsContainer.DirShowSystemFiles:= ReadBool('Options', 'DirShowSystemFiles', False);
+    OptionsContainer.DirShowTreeLines:= ReadBool('Options', 'DirShowTreeLines', False);
+    OptionsContainer.DocCloseTabByDblClick := ReadBool('Options', 'DocCloseTabByDblClick', False);
+    OptionsContainer.DocCloseTabByMiddleClick := ReadBool('Options', 'DocCloseTabByMiddleClick', False);
+    OptionsContainer.DocDoubleBuffered := ReadBool('Options', 'DocDoubleBuffered', True);
+    OptionsContainer.DocMultiLine := ReadBool('Options', 'DocMultiLine', False);
+    OptionsContainer.DocRightClickSelect := ReadBool('Options', 'DocRightClickSelect', True);
+    OptionsContainer.DocSaveTabs:= ReadBool('Options', 'DocSaveTabs', True);
+    OptionsContainer.DocShowCloseButton := ReadBool('Options', 'DocShowCloseButton', False);
+    OptionsContainer.DocShowImage := ReadBool('Options', 'DocShowImage', True);
+    OptionsContainer.HTMLErrorChecking := ReadBool('Options', 'HTMLErrorChecking', True);
+    OptionsContainer.HtmlVersion := TSynWebHtmlVersion(StrToInt(ReadString('Options', 'HTMLVersion', '4'))); { default: HTML5 }
+    OptionsContainer.OutputCloseTabByDblClick := ReadBool('Options', 'OutputCloseTabByDblClick', False);
+    OptionsContainer.OutputCloseTabByMiddleClick := ReadBool('Options', 'OutputCloseTabByMiddleClick', False);
+    OptionsContainer.OutputDoubleBuffered := ReadBool('Options', 'OutputDoubleBuffered', True);
+    OptionsContainer.OutputMultiLine := ReadBool('Options', 'OutputMultiLine', False);
+    OptionsContainer.OutputRightClickSelect := ReadBool('Options', 'OutputRightClickSelect', True);
+    OptionsContainer.OutputSaveTabs:= ReadBool('Options', 'OutputSaveTabs', True);
+    OptionsContainer.OutputShowCloseButton := ReadBool('Options', 'OutputShowCloseButton', False);
+    OptionsContainer.OutputShowImage := ReadBool('Options', 'OutputShowImage', True);
+    OptionsContainer.ShowXMLTree := ReadBool('Options', 'ShowXMLTree', True);
+    { FileTypes }
+    ReadSectionValues('FileTypes', FileTypes);
+    for i := 0 to FileTypes.Count - 1 do
+    begin
+      j := Pos('=', FileTypes.Strings[i]);
+      s := System.Copy(FileTypes.Strings[i], j + 1, Pos('(', FileTypes.Strings[i]) - j - 2);
+      { search file type }
+      for j := 0 to OptionsContainer.FileTypes.Count - 1 do
+        if Pos(s, OptionsContainer.FileTypes.Strings[j]) = 1 then
+        begin
+          OptionsContainer.FileTypes.Strings[j] := System.Copy(FileTypes.Strings[i],
+            Pos('=', FileTypes.Strings[i]) + 1, Length(FileTypes.Strings[i]));
+          Break;
+        end;
+    end;
+    OptionsContainer.SQLDialect := TSQLDialect(StrToInt(ReadString('Options', 'SQLDialect', '0')));
+    OptionsContainer.CPASHighlighter := TCPASHighlighter(StrToInt(ReadString('Options', 'CPASHighlighter', '0')));
+    OptionsContainer.CSSVersion := TSynWebCssVersion(StrToInt(ReadString('Options', 'CSSVersion', '2')));
+    OptionsContainer.PHPVersion := TSynWebPhpVersion(StrToInt(ReadString('Options', 'PHPVersion', '1')));
+    OptionsContainer.DefaultEncoding := StrToInt(ReadString('Options', 'DefaultEncoding', '1'));
+    OptionsContainer.DefaultHighlighter := StrToInt(ReadString('Options', 'DefaultHighlighter', '52'));
+    { Tool Bar }
+    OptionsContainer.ToolBarDirectory := ReadBool('ActionToolBar', 'Directory', True);
+    OptionsContainer.ToolBarMacro := ReadBool('ActionToolBar', 'Macro', True);
+    OptionsContainer.ToolBarDocument := ReadBool('ActionToolBar', 'Document', True);
+  finally
+    FileTypes.Free;
+    Free;
+  end;
+end;
+
 function TEditBoneOptionsContainer.FileType(FileType: TFileType): string;
 begin
   if FileType = ftHC11 then
