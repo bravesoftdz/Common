@@ -20,6 +20,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    procedure GetData(OptionsContainer: TOptionsContainer);
     procedure PutData(OptionsContainer: TOptionsContainer);
   end;
 
@@ -43,6 +44,14 @@ begin
   OptionsContainer.StatusBarUseSystemFont := UseSystemFontCheckBox.Checked;
   OptionsContainer.StatusBarFontName := FontLabel.Font.Name;
   OptionsContainer.StatusBarFontSize := FontLabel.Font.Size;
+end;
+
+procedure TStatusBarFrame.GetData(OptionsContainer: TOptionsContainer);
+begin
+  UseSystemFontCheckBox.Checked := OptionsContainer.StatusBarUseSystemFont;
+  FontLabel.Font.Name := OptionsContainer.StatusBarFontName;
+  FontLabel.Font.Size := OptionsContainer.StatusBarFontSize;
+  FontLabel.Caption := Format('%s %dpt', [FontLabel.Font.Name, FontLabel.Font.Size]);
 end;
 
 end.

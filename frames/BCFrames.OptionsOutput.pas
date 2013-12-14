@@ -16,6 +16,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    procedure GetData(OptionsContainer: TOptionsContainer);
     procedure PutData(OptionsContainer: TOptionsContainer);
   end;
 
@@ -30,6 +31,12 @@ procedure TOptionsOutputFrame.PutData(OptionsContainer: TOptionsContainer);
 begin
   OptionsContainer.OutputShowTreeLines := ShowTreeLinesCheckBox.Checked;
   OptionsContainer.OutputIndent := StrToIntDef(IndentEdit.Text, 16);
+end;
+
+procedure TOptionsOutputFrame.GetData(OptionsContainer: TOptionsContainer);
+begin
+  ShowTreeLinesCheckBox.Checked := OptionsContainer.OutputShowTreeLines;
+  IndentEdit.Text := IntToStr(OptionsContainer.OutputIndent);
 end;
 
 end.

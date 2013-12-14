@@ -18,6 +18,7 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
+    procedure GetData(OptionsContainer: TOptionsContainer);
     procedure PutData(OptionsContainer: TOptionsContainer);
   end;
 
@@ -42,6 +43,13 @@ begin
   OptionsContainer.CompletionProposalEnabled := EnabledCheckBox.Checked;
   OptionsContainer.CompletionProposalCaseSensitive := CaseSensitiveCheckBox.Checked;
   OptionsContainer.CompletionProposalShortcut := ShortcutComboBox.Text;
+end;
+
+procedure TEditorCompletionProposalFrame.GetData(OptionsContainer: TOptionsContainer);
+begin
+  EnabledCheckBox.Checked := OptionsContainer.CompletionProposalEnabled;
+  CaseSensitiveCheckBox.Checked := OptionsContainer.CompletionProposalCaseSensitive;
+  ShortcutComboBox.Text := OptionsContainer.CompletionProposalShortcut;
 end;
 
 end.

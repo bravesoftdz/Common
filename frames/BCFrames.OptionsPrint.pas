@@ -26,6 +26,7 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
+    procedure GetData(OptionsContainer: TOptionsContainer);
     procedure PutData(OptionsContainer: TOptionsContainer);
   end;
 
@@ -62,6 +63,18 @@ begin
   OptionsContainer.PrintShowFooterLine := ShowFooterLineCheckBox.Checked;
   OptionsContainer.PrintShowLineNumbers := ShowLineNumbersCheckBox.Checked;
   OptionsContainer.PrintWordWrapLine := WordWrapCheckBox.Checked;
+end;
+
+procedure TOptionsPrintFrame.GetData(OptionsContainer: TOptionsContainer);
+begin
+  DocumentNameComboBox.ItemIndex := OptionsContainer.PrintDocumentName;
+  PageNumberComboBox.ItemIndex := OptionsContainer.PrintPageNumber;
+  PrintedByComboBox.ItemIndex := OptionsContainer.PrintPrintedBy;
+  DateTimeComboBox.ItemIndex := OptionsContainer.PrintDateTime;
+  ShowHeaderLineCheckBox.Checked := OptionsContainer.PrintShowHeaderLine;
+  ShowFooterLineCheckBox.Checked := OptionsContainer.PrintShowFooterLine;
+  ShowLineNumbersCheckBox.Checked := OptionsContainer.PrintShowLineNumbers;
+  WordWrapCheckBox.Checked := OptionsContainer.PrintWordWrapLine;
 end;
 
 end.

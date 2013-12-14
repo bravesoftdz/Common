@@ -28,6 +28,7 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
+    procedure GetData(OptionsContainer: TOptionsContainer);
     procedure PutData(OptionsContainer: TOptionsContainer);
   end;
 
@@ -67,6 +68,18 @@ begin
   OptionsContainer.MainMenuFontSize := FontLabel.Font.Size;
   OptionsContainer.AnimationStyle := TAnimationStyle(AnimationStyleComboBox.ItemIndex);
   OptionsContainer.AnimationDuration := StrToIntDef(AnimationDurationEdit.Text, 150);
+end;
+
+procedure TMainMenuFrame.GetData(OptionsContainer: TOptionsContainer);
+begin
+  PersistentHotKeysCheckBox.Checked := OptionsContainer.PersistentHotKeys;
+  ShadowsCheckBox.Checked := OptionsContainer.Shadows;
+  UseSystemFontCheckBox.Checked := OptionsContainer.MainMenuUseSystemFont;
+  FontLabel.Font.Name := OptionsContainer.MainMenuFontName;
+  FontLabel.Font.Size := OptionsContainer.MainMenuFontSize;
+  FontLabel.Caption := Format('%s %dpt', [FontLabel.Font.Name, FontLabel.Font.Size]);
+  AnimationStyleComboBox.ItemIndex := Ord(OptionsContainer.AnimationStyle);
+  AnimationDurationEdit.Text := IntToStr(OptionsContainer.AnimationDuration);
 end;
 
 end.
