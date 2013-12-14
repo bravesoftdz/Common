@@ -92,6 +92,7 @@ type
     destructor Destroy; override;
     procedure AssignTo(Dest: TPersistent); override;
     procedure ReadIniFile; virtual;
+    procedure WriteIniFile; virtual;
   published
     property AnimationDuration: Integer read FAnimationDuration write FAnimationDuration default 150;
     property AnimationStyle: TAnimationStyle read FAnimationStyle write FAnimationStyle default asDefault;
@@ -214,6 +215,7 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     procedure ReadIniFile; override;
+    procedure WriteIniFile; override;
   published
     property ConnectionCloseTabByDblClick: Boolean read FConnectionCloseTabByDblClick write FConnectionCloseTabByDblClick default False;
     property ConnectionCloseTabByMiddleClick: Boolean read FConnectionCloseTabByMiddleClick write FConnectionCloseTabByMiddleClick default False;
@@ -314,6 +316,7 @@ type
     function SupportedFileExts(Refresh: Boolean = False): string;
     procedure AssignTo(Dest: TPersistent); override;
     procedure ReadIniFile; override;
+    procedure WriteIniFile; override;
   published
     property CPASHighlighter: TCPASHighlighter read FCPASHighlighter write FCPASHighlighter;
     property CSSVersion: TSynWebCssVersion read FCSSVersion write FCSSVersion;
@@ -479,6 +482,86 @@ begin
     OptionsContainer.ToolBarSearch := ReadBool('ActionToolBar', 'Search', True);
     OptionsContainer.ToolBarMode := ReadBool('ActionToolBar', 'Mode', True);
     OptionsContainer.ToolBarTools := ReadBool('ActionToolBar', 'Tools', True);
+  finally
+    Free;
+  end;
+end;
+
+procedure TOptionsContainer.WriteIniFile;
+begin
+  with TBigIniFile.Create(GetIniFilename) do
+  try
+    { Options }
+    DeleteKey('Options', 'ExtraLineSpacing'); { deprecated }
+    DeleteKey('Options', 'MarginAutoSize');
+    DeleteKey('Options', 'MarginWidth');
+    DeleteKey('Options', 'MarginVisible');
+    DeleteKey('Options', 'MinimapFontFactor');
+    WriteBool('Options', 'AutoIndent', OptionsContainer.AutoIndent);
+    WriteBool('Options', 'AutoSave', OptionsContainer.AutoSave);
+    WriteBool('Options', 'BeepIfSearchStringNotFound', OptionsContainer.BeepIfSearchStringNotFound);
+    WriteBool('Options', 'CompletionProposalCaseSensitive', OptionsContainer.CompletionProposalCaseSensitive);
+    WriteBool('Options', 'CompletionProposalEnabled', OptionsContainer.CompletionProposalEnabled);
+    WriteBool('Options', 'IgnoreBlanks', OptionsContainer.IgnoreBlanks);
+    WriteBool('Options', 'IgnoreCase', OptionsContainer.IgnoreCase);
+    WriteBool('Options', 'MainMenuUseSystemFont', OptionsContainer.MainMenuUseSystemFont);
+    WriteBool('Options', 'MarginInTens', OptionsContainer.MarginInTens);
+    WriteBool('Options', 'MarginLeftMarginAutoSize', OptionsContainer.MarginLeftMarginAutoSize);
+    WriteBool('Options', 'MarginLeftMarginMouseMove', OptionsContainer.MarginLeftMarginMouseMove);
+    WriteBool('Options', 'MarginLineModified', OptionsContainer.MarginLineModified);
+    WriteBool('Options', 'MarginShowBookmarks', OptionsContainer.MarginShowBookmarks);
+    WriteBool('Options', 'MarginShowBookmarkPanel', OptionsContainer.MarginShowBookmarkPanel);
+    WriteBool('Options', 'MarginVisibleLeftMargin', OptionsContainer.MarginVisibleLeftMargin);
+    WriteBool('Options', 'MarginVisibleRightMargin', OptionsContainer.MarginVisibleRightMargin);
+    WriteBool('Options', 'MarginZeroStart', OptionsContainer.MarginZeroStart);
+    WriteBool('Options', 'NonblinkingCaret', OptionsContainer.NonblinkingCaret);
+    WriteBool('Options', 'OutputShowTreeLines', OptionsContainer.OutputShowTreeLines);
+    WriteBool('Options', 'PersistentHotKeys', OptionsContainer.PersistentHotKeys);
+    WriteBool('Options', 'PrintShowFooterLine', OptionsContainer.PrintShowFooterLine);
+    WriteBool('Options', 'PrintShowHeaderLine', OptionsContainer.PrintShowHeaderLine);
+    WriteBool('Options', 'PrintShowLineNumbers', OptionsContainer.PrintShowLineNumbers);
+    WriteBool('Options', 'PrintWordWrapLine', OptionsContainer.PrintWordWrapLine);
+    WriteBool('Options', 'ScrollPastEof', OptionsContainer.ScrollPastEof);
+    WriteBool('Options', 'ScrollPastEol', OptionsContainer.ScrollPastEol);
+    WriteBool('Options', 'Shadows', OptionsContainer.Shadows);
+    WriteBool('Options', 'ShowSearchStringNotFound', OptionsContainer.ShowSearchStringNotFound);
+    WriteBool('Options', 'SmartTabDelete', OptionsContainer.SmartTabDelete);
+    WriteBool('Options', 'SmartTabs', OptionsContainer.SmartTabs);
+    WriteBool('Options', 'StatusBarUseSystemFont', OptionsContainer.StatusBarUseSystemFont);
+    WriteBool('Options', 'TabsToSpaces', OptionsContainer.TabsToSpaces);
+    WriteBool('Options', 'TrimTrailingSpaces', OptionsContainer.TrimTrailingSpaces);
+    WriteBool('Options', 'TripleClickRowSelect', OptionsContainer.TripleClickRowSelect);
+    WriteBool('Options', 'UndoAfterSave', OptionsContainer.UndoAfterSave);
+    WriteString('Options', 'ActiveLineColorBrightness', IntToStr(OptionsContainer.ColorBrightness));
+    WriteString('Options', 'AnimationDuration', IntToStr(OptionsContainer.AnimationDuration));
+    WriteString('Options', 'AnimationStyle', IntToStr(Ord(OptionsContainer.AnimationStyle)));
+    WriteString('Options', 'CompletionProposalShortcut', OptionsContainer.CompletionProposalShortcut);
+    WriteString('Options', 'FontName', OptionsContainer.FontName);
+    WriteString('Options', 'FontSize', IntToStr(OptionsContainer.FontSize));
+    WriteString('Options', 'InsertCaret', IntToStr(Ord(OptionsContainer.InsertCaret)));
+    WriteString('Options', 'LineSpacing', IntToStr(OptionsContainer.LineSpacing));
+    WriteString('Options', 'MainMenuFontName', OptionsContainer.MainMenuFontName);
+    WriteString('Options', 'MainMenuFontSize', IntToStr(OptionsContainer.MainMenuFontSize));
+    WriteString('Options', 'MainMenuSystemFontName', OptionsContainer.MainMenuSystemFontName);
+    WriteString('Options', 'MainMenuSystemFontSize', IntToStr(OptionsContainer.MainMenuSystemFontSize));
+    WriteString('Options', 'MarginFontName', OptionsContainer.MarginFontName);
+    WriteString('Options', 'MarginFontSize', IntToStr(OptionsContainer.MarginFontSize));
+    WriteString('Options', 'MarginLeftMarginWidth', IntToStr(OptionsContainer.MarginLeftMarginWidth));
+    WriteString('Options', 'MarginModifiedColor', OptionsContainer.MarginModifiedColor);
+    WriteString('Options', 'MarginNormalColor', OptionsContainer.MarginNormalColor);
+    WriteString('Options', 'MinimapFontName', OptionsContainer.MinimapFontName);
+    WriteString('Options', 'MinimapFontSize', IntToStr(OptionsContainer.MinimapFontSize));
+    WriteString('Options', 'MinimapWidth', IntToStr(OptionsContainer.MinimapWidth));
+    WriteString('Options', 'NonblinkingCaretColor', OptionsContainer.NonblinkingCaretColor);
+    WriteString('Options', 'OutputIndent', IntToStr(OptionsContainer.OutputIndent));
+    WriteString('Options', 'PrintDateTime', IntToStr(OptionsContainer.PrintDateTime));
+    WriteString('Options', 'PrintDocumentName', IntToStr(OptionsContainer.PrintDocumentName));
+    WriteString('Options', 'PrintPageNumber', IntToStr(OptionsContainer.PrintPageNumber));
+    WriteString('Options', 'PrintPrintedBy', IntToStr(OptionsContainer.PrintPrintedBy));
+    WriteString('Options', 'RightMargin', IntToStr(OptionsContainer.MarginRightMargin));
+    WriteString('Options', 'StatusBarFontName', OptionsContainer.StatusBarFontName);
+    WriteString('Options', 'StatusBarFontSize', IntToStr(OptionsContainer.StatusBarFontSize));
+    WriteString('Options', 'TabWidth', IntToStr(OptionsContainer.TabWidth));
   finally
     Free;
   end;
@@ -700,6 +783,48 @@ begin
     Free;
   end;
 end;
+
+procedure TOraBoneOptionsContainer.WriteIniFile;
+begin
+  with TBigIniFile.Create(GetINIFilename) do
+  try
+    WriteBool('Options', 'EditorCloseTabByDblClick', OptionsContainer.EditorCloseTabByDblClick);
+    WriteBool('Options', 'EditorCloseTabByMiddleClick', OptionsContainer.EditorCloseTabByMiddleClick);
+    WriteBool('Options', 'EditorMultiLine', OptionsContainer.EditorMultiLine);
+    WriteBool('Options', 'EditorDoubleBuffered', OptionsContainer.EditorDoubleBuffered);
+    WriteBool('Options', 'EditorShowCloseButton', OptionsContainer.EditorShowCloseButton);
+    WriteBool('Options', 'EditorRightClickSelect', OptionsContainer.EditorRightClickSelect);
+    WriteBool('Options', 'EditorShowImage', OptionsContainer.EditorShowImage);
+    WriteBool('Options', 'ConnectionCloseTabByDblClick', OptionsContainer.ConnectionCloseTabByDblClick);
+    WriteBool('Options', 'ConnectionCloseTabByMiddleClick', OptionsContainer.ConnectionCloseTabByMiddleClick);
+    WriteBool('Options', 'ConnectionMultiLine', OptionsContainer.ConnectionMultiLine);
+    WriteBool('Options', 'ConnectionDoubleBuffered', OptionsContainer.ConnectionDoubleBuffered);
+    WriteBool('Options', 'ConnectionShowCloseButton', OptionsContainer.ConnectionShowCloseButton);
+    WriteBool('Options', 'ConnectionRightClickSelect', OptionsContainer.ConnectionRightClickSelect);
+    WriteBool('Options', 'ConnectionShowImage', OptionsContainer.ConnectionShowImage);
+    WriteBool('Options', 'OutputCloseTabByDblClick', OptionsContainer.OutputCloseTabByDblClick);
+    WriteBool('Options', 'OutputCloseTabByMiddleClick', OptionsContainer.OutputCloseTabByMiddleClick);
+    WriteBool('Options', 'OutputMultiLine', OptionsContainer.OutputMultiLine);
+    WriteBool('Options', 'OutputDoubleBuffered', OptionsContainer.OutputDoubleBuffered);
+    WriteBool('Options', 'OutputShowCloseButton', OptionsContainer.OutputShowCloseButton);
+    WriteBool('Options', 'OutputRightClickSelect', OptionsContainer.OutputRightClickSelect);
+    WriteBool('Options', 'OutputShowImage', OptionsContainer.OutputShowImage);
+    WriteString('Options', 'PollingInterval', IntToStr(OptionsContainer.PollingInterval));
+    WriteString('Options', 'DateFormat', OptionsContainer.DateFormat);
+    WriteString('Options', 'TimeFormat', OptionsContainer.TimeFormat);
+    WriteString('Options', 'SchemaBrowserAlign', OptionsContainer.SchemaBrowserAlign);
+    WriteBool('Options', 'SchemaBrowserShowTreeLines', OptionsContainer.SchemaBrowserShowTreeLines);
+    WriteString('Options', 'SchemaBrowserIndent', IntToStr(OptionsContainer.SchemaBrowserIndent));
+    WriteString('Options', 'ObjectFrameAlign', OptionsContainer.ObjectFrameAlign);
+    WriteBool('Options', 'ShowObjectCreationAndModificationTimestamp', OptionsContainer.ShowObjectCreationAndModificationTimestamp);
+    WriteBool('Options', 'ShowDataSearchPanel', OptionsContainer.ShowDataSearchPanel);
+    WriteBool('Options', 'FilterOnTyping', OptionsContainer.FilterOnTyping);
+    DeleteKey('Options', 'MarginLineNumbers'); { deprecated }
+  finally
+    Free
+  end;
+end;
+
 {$endif}
 
 { TEditBoneOptionsContainer }
@@ -775,6 +900,53 @@ begin
     OptionsContainer.ToolBarDocument := ReadBool('ActionToolBar', 'Document', True);
   finally
     FileTypes.Free;
+    Free;
+  end;
+end;
+
+procedure TEditBoneOptionsContainer.WriteIniFile;
+begin
+  with TBigIniFile.Create(GetIniFilename) do
+  try
+    { Options }
+    WriteBool('Options', 'DirCloseTabByDblClick', OptionsContainer.DirCloseTabByDblClick);
+    WriteBool('Options', 'DirCloseTabByMiddleClick', OptionsContainer.DirCloseTabByMiddleClick);
+    WriteBool('Options', 'DirDoubleBuffered', OptionsContainer.DirDoubleBuffered);
+    WriteBool('Options', 'DirMultiLine', OptionsContainer.DirMultiLine);
+    WriteBool('Options', 'DirRightClickSelect', OptionsContainer.DirRightClickSelect);
+    WriteBool('Options', 'DirSaveTabs', OptionsContainer.DirSaveTabs);
+    WriteBool('Options', 'DirShowArchiveFiles', OptionsContainer.DirShowArchiveFiles);
+    WriteBool('Options', 'DirShowCloseButton', OptionsContainer.DirShowCloseButton);
+    WriteBool('Options', 'DirShowHiddenFiles', OptionsContainer.DirShowHiddenFiles);
+    WriteBool('Options', 'DirShowImage', OptionsContainer.DirShowImage);
+    WriteBool('Options', 'DirShowSystemFiles', OptionsContainer.DirShowSystemFiles);
+    WriteBool('Options', 'DirShowTreeLines', OptionsContainer.DirShowTreeLines);
+    WriteBool('Options', 'DocCloseTabByDblClick', OptionsContainer.DocCloseTabByDblClick);
+    WriteBool('Options', 'DocCloseTabByMiddleClick', OptionsContainer.DocCloseTabByMiddleClick);
+    WriteBool('Options', 'DocDoubleBuffered', OptionsContainer.DocDoubleBuffered);
+    WriteBool('Options', 'DocMultiLine', OptionsContainer.DocMultiLine);
+    WriteBool('Options', 'DocRightClickSelect', OptionsContainer.DocRightClickSelect);
+    WriteBool('Options', 'DocSaveTabs', OptionsContainer.DocSaveTabs);
+    WriteBool('Options', 'DocShowCloseButton', OptionsContainer.DocShowCloseButton);
+    WriteBool('Options', 'DocShowImage', OptionsContainer.DocShowImage);
+    WriteBool('Options', 'HTMLErrorChecking', OptionsContainer.HTMLErrorChecking);
+    WriteBool('Options', 'OutputCloseTabByDblClick', OptionsContainer.OutputCloseTabByDblClick);
+    WriteBool('Options', 'OutputCloseTabByMiddleClick', OptionsContainer.OutputCloseTabByMiddleClick);
+    WriteBool('Options', 'OutputDoubleBuffered', OptionsContainer.OutputDoubleBuffered);
+    WriteBool('Options', 'OutputMultiLine', OptionsContainer.OutputMultiLine);
+    WriteBool('Options', 'OutputRightClickSelect', OptionsContainer.OutputRightClickSelect);
+    WriteBool('Options', 'OutputSaveTabs', OptionsContainer.OutputSaveTabs);
+    WriteBool('Options', 'OutputShowCloseButton', OptionsContainer.OutputShowCloseButton);
+    WriteBool('Options', 'OutputShowImage', OptionsContainer.OutputShowImage);
+    WriteString('Options', 'DirIndent', IntToStr(OptionsContainer.DirIndent));
+    WriteString('Options', 'HTMLVersion', IntToStr(Ord(OptionsContainer.HtmlVersion)));
+    WriteString('Options', 'SQLDialect', IntToStr(Ord(OptionsContainer.SQLDialect)));
+    WriteString('Options', 'CPASHighlighter', IntToStr(Ord(OptionsContainer.CPASHighlighter)));
+    WriteString('Options', 'CSSVersion', IntToStr(Ord(OptionsContainer.CSSVersion)));
+    WriteString('Options', 'PHPVersion', IntToStr(Ord(OptionsContainer.PHPVersion)));
+    WriteString('Options', 'DefaultEncoding', IntToStr(OptionsContainer.DefaultEncoding));
+    WriteString('Options', 'DefaultHighlighter', IntToStr(OptionsContainer.DefaultHighlighter));
+  finally
     Free;
   end;
 end;
