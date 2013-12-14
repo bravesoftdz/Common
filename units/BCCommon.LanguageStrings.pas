@@ -27,6 +27,7 @@ type
     function GetPConstant(Name: string): PWideChar;
     function GetWarningMessage(Name: string): string;
     function GetYesOrNoMessage(Name: string): string;
+    function GetSQLFormatter(Name: string): string;
   end;
 
 procedure ReadLanguageFile(Language: string);
@@ -198,6 +199,11 @@ end;
 function TLanguageDataModule.GetConvertConstant(Name: string): string;
 begin
   Result := Trim(ConvertConstantMultiStringHolder.StringsByName[Name].Text);
+end;
+
+function TLanguageDataModule.GetSQLFormatter(Name: string): string;
+begin
+  Result := Trim(SQLFormatterMultiStringHolder.StringsByName[Name].Text);
 end;
 
 function TLanguageDataModule.GetPConstant(Name: string): PWideChar;

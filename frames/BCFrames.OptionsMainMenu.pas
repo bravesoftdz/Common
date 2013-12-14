@@ -4,7 +4,8 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  BCControls.CheckBox, Vcl.Buttons, BCControls.ComboBox, BCControls.Edit, Vcl.ActnList, System.Actions;
+  BCControls.CheckBox, Vcl.Buttons, BCControls.ComboBox, BCControls.Edit, Vcl.ActnList, System.Actions,
+  BCCommon.OptionsContainer;
 
 type
   TMainMenuFrame = class(TFrame)
@@ -27,6 +28,7 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
+    procedure PutData(OptionsContainer: TOptionsContainer);
   end;
 
 implementation
@@ -54,6 +56,17 @@ begin
     FontLabel.Font.Assign(FontDialog.Font);
     FontLabel.Caption := Format('%s %dpt', [FontLabel.Font.Name, FontLabel.Font.Size]);
   end;
+end;
+
+procedure TMainMenuFrame.PutData(OptionsContainer: TOptionsContainer);
+begin
+  OptionsContainer.PersistentHotKeys := PersistentHotKeysCheckBox.Checked;
+  OptionsContainer.Shadows := ShadowsCheckBox.Checked;
+  OptionsContainer.MainMenuUseSystemFont := UseSystemFontCheckBox.Checked;
+  OptionsContainer.MainMenuFontName := FontLabel.Font.Name;
+  OptionsContainer.MainMenuFontSize := FontLabel.Font.Size;
+  OptionsContainer.AnimationStyle := TAnimationStyle(AnimationStyleComboBox.ItemIndex);
+  OptionsContainer.AnimationDuration := StrToIntDef(AnimationDurationEdit.Text, 150);
 end;
 
 end.

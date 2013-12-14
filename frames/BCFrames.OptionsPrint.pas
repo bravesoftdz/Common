@@ -4,7 +4,7 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.ComboBox, Vcl.ExtCtrls,
-  BCControls.CheckBox;
+  BCControls.CheckBox, BCCommon.OptionsContainer;
 
 type
   TOptionsPrintFrame = class(TFrame)
@@ -26,6 +26,7 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
+    procedure PutData(OptionsContainer: TOptionsContainer);
   end;
 
 implementation
@@ -49,6 +50,18 @@ begin
   PageNumberComboBox.Items.Text := DocumentNameComboBox.Items.Text;
   PrintedByComboBox.Items.Text := DocumentNameComboBox.Items.Text;
   DateTimeComboBox.Items.Text := DocumentNameComboBox.Items.Text;
+end;
+
+procedure TOptionsPrintFrame.PutData(OptionsContainer: TOptionsContainer);
+begin
+  OptionsContainer.PrintDocumentName := DocumentNameComboBox.ItemIndex;
+  OptionsContainer.PrintPageNumber := PageNumberComboBox.ItemIndex;
+  OptionsContainer.PrintPrintedBy := PrintedByComboBox.ItemIndex;
+  OptionsContainer.PrintDateTime := DateTimeComboBox.ItemIndex;
+  OptionsContainer.PrintShowHeaderLine := ShowHeaderLineCheckBox.Checked;
+  OptionsContainer.PrintShowFooterLine := ShowFooterLineCheckBox.Checked;
+  OptionsContainer.PrintShowLineNumbers := ShowLineNumbersCheckBox.Checked;
+  OptionsContainer.PrintWordWrapLine := WordWrapCheckBox.Checked;
 end;
 
 end.

@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons,
   Vcl.StdCtrls, Vcl.ActnList, BCControls.SynEdit, System.Actions, SynEdit, Vcl.ComCtrls, Vcl.ImgList,
-  BCControls.ImageList, SynEditHighlighter, SynHighlighterURI, SynURIOpener, BCControls.Edit;
+  BCControls.ImageList, SynEditHighlighter, SynHighlighterURI, SynURIOpener, BCControls.Edit, BCCommon.OptionsContainer;
 
 type
   TEditorFontFrame = class(TFrame)
@@ -40,6 +40,8 @@ type
     { Private declarations }
   public
     { Public declarations }
+    procedure GetData(OptionsContainer: TOptionsContainer);
+    procedure PutData(OptionsContainer: TOptionsContainer);
   end;
 
 implementation
@@ -87,6 +89,32 @@ begin
     SynEdit.Minimap.Font.Assign(FontDialog.Font);
     SynEdit.Invalidate;
   end;
+end;
+
+procedure TEditorFontFrame.PutData(OptionsContainer: TOptionsContainer);
+begin
+  OptionsContainer.FontName := EditorFontLabel.Font.Name;
+  OptionsContainer.FontSize := EditorFontLabel.Font.Size;
+  OptionsContainer.MarginFontName := MarginFontLabel.Font.Name;
+  OptionsContainer.MarginFontSize := MarginFontLabel.Font.Size;
+  OptionsContainer.MinimapFontName := MinimapFontLabel.Font.Name;
+  OptionsContainer.MinimapFontSize := MinimapFontLabel.Font.Size;
+  OptionsContainer.MinimapWidth := StrToIntDef(MinimapWidthEdit.Text, 100);
+end;
+
+procedure TEditorFontFrame.GetData(OptionsContainer: TOptionsContainer);
+begin
+  EditorFontLabel.Font.Name := OptionsContainer.FontName;
+  EditorFontLabel.Font.Size := OptionsContainer.FontSize;
+  EditorFontLabel.Caption := Format('%s %dpt', [EditorFontLabel.Font.Name, EditorFontLabel.Font.Size]);
+  SynEdit.Text := EditorFontLabel.Caption;
+  MarginFontLabel.Font.Name := OptionsContainer.MarginFontName;
+  MarginFontLabel.Font.Size := OptionsContainer.MarginFontSize;
+  MarginFontLabel.Caption := Format('%s %dpt', [MarginFontLabel.Font.Name, MarginFontLabel.Font.Size]);
+  MinimapFontLabel.Font.Name := OptionsContainer.MinimapFontName;
+  MinimapFontLabel.Font.Size := OptionsContainer.MinimapFontSize;
+  MinimapFontLabel.Caption := Format('%s %dpt', [MinimapFontLabel.Font.Name, MinimapFontLabel.Font.Size]);
+  MinimapWidthEdit.Text := IntToStr(OptionsContainer.MinimapWidth);
 end;
 
 end.

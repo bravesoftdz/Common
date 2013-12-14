@@ -1767,7 +1767,37 @@ object LanguageDataModule: TLanguageDataModule
     Top = 380
   end
   object SQLFormatterMultiStringHolder: TBCMultiStringHolder
-    MultipleStrings = <>
+    MultipleStrings = <
+      item
+        Name = 'Stacked'
+        Strings.Strings = (
+          'Stacked')
+      end
+      item
+        Name = 'Wrapped'
+        Strings.Strings = (
+          'Wrapped')
+      end
+      item
+        Name = 'AfterComma'
+        Strings.Strings = (
+          'After Comma')
+      end
+      item
+        Name = 'BeforeComma'
+        Strings.Strings = (
+          'Before Comma ')
+      end
+      item
+        Name = 'BeforeCommaWithSpace'
+        Strings.Strings = (
+          'Befor eComma With Space')
+      end
+      item
+        Name = 'NoLineBreakComma'
+        Strings.Strings = (
+          'No Line Break Comma')
+      end>
     Left = 90
     Top = 438
   end

@@ -159,8 +159,8 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Hash, System.Math, System.Types, Vcl.Themes, BCCommon.LanguageStrings, BCCommon.Dialogs, Options,
-  BCCommon.Messages, BCCommon.Lib, BCCommon.LanguageUtils, BCCommon.StyleUtils;
+  BCCommon.Hash, System.Math, System.Types, Vcl.Themes, BCCommon.LanguageStrings, BCCommon.Dialogs,
+  BCCommon.OptionsContainer, BCCommon.Messages, BCCommon.Lib, BCCommon.LanguageUtils, BCCommon.StyleUtils;
 
 const
   TabChar = WideChar($2192);       //'->'

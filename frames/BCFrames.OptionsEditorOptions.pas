@@ -4,7 +4,7 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.ComboBox,
-  BCControls.CheckBox, BCControls.Edit, Vcl.ComCtrls, JvEdit;
+  BCControls.CheckBox, BCControls.Edit, Vcl.ComCtrls, JvEdit, BCCommon.OptionsContainer;
 
 type
   TEditorOptionsFrame = class(TFrame)
@@ -35,6 +35,8 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
+    procedure GetData(OptionsContainer: TOptionsContainer);
+    procedure PutData(OptionsContainer: TOptionsContainer);
   end;
 
 implementation
@@ -42,7 +44,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.LanguageStrings;
+  System.SysUtils, SynEdit, BCCommon.LanguageStrings;
 
 constructor TEditorOptionsFrame.Create(AOwner: TComponent);
 begin
@@ -54,6 +56,46 @@ begin
     Add(LanguageDatamodule.GetConstant('HalfBlock'));
     Add(LanguageDatamodule.GetConstant('Block'));
   end;
+end;
+
+procedure TEditorOptionsFrame.PutData(OptionsContainer: TOptionsContainer);
+begin
+  OptionsContainer.AutoIndent := AutoIndentCheckBox.Checked;
+  OptionsContainer.AutoSave := AutoSaveCheckBox.Checked;
+  OptionsContainer.NonblinkingCaret := NonblinkingCaretCheckBox.Checked;
+  OptionsContainer.UndoAfterSave := UndoAfterSaveCheckBox.Checked;
+  OptionsContainer.TrimTrailingSpaces := TrimTrailingSpacesCheckBox.Checked;
+  OptionsContainer.TripleClickRowSelect := TripleClickRowSelectCheckBox.Checked;
+  OptionsContainer.ScrollPastEof := ScrollPastEofCheckBox.Checked;
+  OptionsContainer.ScrollPastEol := ScrollPastEolCheckBox.Checked;
+  OptionsContainer.TabsToSpaces := TabsToSpacesCheckBox.Checked;
+  OptionsContainer.SmartTabs := SmartTabsCheckBox.Checked;
+  OptionsContainer.SmartTabDelete := SmartTabDeleteCheckBox.Checked;
+  OptionsContainer.LineSpacing := StrToIntDef(LineSpacingEdit.Text, 0);
+  OptionsContainer.TabWidth := StrToIntDef(TabWidthEdit.Text, 8);
+  OptionsContainer.ColorBrightness := BrightnessTrackBar.Position;
+  OptionsContainer.InsertCaret := TSynEditCaretType(InsertCaretComboBox.ItemIndex);
+  OptionsContainer.NonblinkingCaretColor := ColorToString(NonblinkingCaretColorBox.Selected);
+end;
+
+procedure TEditorOptionsFrame.GetData(OptionsContainer: TOptionsContainer);
+begin
+  AutoIndentCheckBox.Checked := OptionsContainer.AutoIndent;
+  AutoSaveCheckBox.Checked := OptionsContainer.AutoSave;
+  NonblinkingCaretCheckBox.Checked := OptionsContainer.NonblinkingCaret;
+  UndoAfterSaveCheckBox.Checked := OptionsContainer.UndoAfterSave;
+  TrimTrailingSpacesCheckBox.Checked := OptionsContainer.TrimTrailingSpaces;
+  TripleClickRowSelectCheckBox.Checked := OptionsContainer.TripleClickRowSelect;
+  ScrollPastEofCheckBox.Checked := OptionsContainer.ScrollPastEof;
+  ScrollPastEolCheckBox.Checked := OptionsContainer.ScrollPastEol;
+  TabsToSpacesCheckBox.Checked := OptionsContainer.TabsToSpaces;
+  SmartTabsCheckBox.Checked := OptionsContainer.SmartTabs;
+  SmartTabDeleteCheckBox.Checked := OptionsContainer.SmartTabDelete;
+  LineSpacingEdit.Text := IntToStr(OptionsContainer.LineSpacing);
+  TabWidthEdit.Text := IntToStr(OptionsContainer.TabWidth);
+  BrightnessTrackBar.Position := OptionsContainer.ColorBrightness;
+  InsertCaretComboBox.ItemIndex := Ord(OptionsContainer.InsertCaret);
+  NonblinkingCaretColorBox.Selected := StringToColor(OptionsContainer.NonblinkingCaretColor);
 end;
 
 end.
