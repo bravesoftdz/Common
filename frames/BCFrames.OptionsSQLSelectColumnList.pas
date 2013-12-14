@@ -53,19 +53,19 @@ end;
 procedure TOptionsSQLSelectColumnListFrame.GetData(SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper);
 begin
   ColumnListStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectColumnListStyle;
-  LineBreakComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectLineBreak;
-  ColumnInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectColumnInNewLine;
-  AlignAliasCheckBox.Checked := SQLFormatterOptionsWrapper.AlignAliasInSelectList;
-  TreatDistinctAsVirtualColumnCheckBox.Checked := SQLFormatterOptionsWrapper.TreatDistinctAsVirtualColumn;
+  LineBreakComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectColumnListLineBreak;
+  ColumnInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectColumnListColumnInNewLine;
+  AlignAliasCheckBox.Checked := SQLFormatterOptionsWrapper.SelectColumnListAlignAlias;
+  TreatDistinctAsVirtualColumnCheckBox.Checked := SQLFormatterOptionsWrapper.SelectColumnListTreatDistinctAsVirtualColumn;
 end;
 
 procedure TOptionsSQLSelectColumnListFrame.PutData(var SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper);
 begin
   SQLFormatterOptionsWrapper.SelectColumnListStyle := ColumnListStyleComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.SelectLineBreak := LineBreakComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.SelectColumnInNewLine := ColumnInNewLineCheckBox.Checked;
-  SQLFormatterOptionsWrapper.AlignAliasInSelectList := AlignAliasCheckBox.Checked;
-  SQLFormatterOptionsWrapper.TreatDistinctAsVirtualColumn := TreatDistinctAsVirtualColumnCheckBox.Checked;
+  SQLFormatterOptionsWrapper.SelectColumnListLineBreak := LineBreakComboBox.ItemIndex;
+  SQLFormatterOptionsWrapper.SelectColumnListColumnInNewLine := ColumnInNewLineCheckBox.Checked;
+  SQLFormatterOptionsWrapper.SelectColumnListAlignAlias := AlignAliasCheckBox.Checked;
+  SQLFormatterOptionsWrapper.SelectColumnListTreatDistinctAsVirtualColumn := TreatDistinctAsVirtualColumnCheckBox.Checked;
 end;
 
 end.

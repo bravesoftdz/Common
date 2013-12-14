@@ -20,15 +20,23 @@ type
     { Select Column List }
     function GetSelectColumnlistStyle: Integer;
     procedure SetSelectColumnlistStyle(Value: Integer);
-    function GetSelectLineBreak: Integer;
-    procedure SetSelectLineBreak(Value: Integer);
-    function GetSelectColumnInNewLine: Boolean;
-    procedure SetSelectColumnInNewLine(Value: Boolean);
-    function GetAlignAliasInSelectList: Boolean;
-    procedure SetAlignAliasInSelectList(Value: Boolean);
-    function GetTreatDistinctAsVirtualColumn: Boolean;
-    procedure SetTreatDistinctAsVirtualColumn(Value: Boolean);
+    function GetSelectColumnListLineBreak: Integer;
+    procedure SetSelectColumnListLineBreak(Value: Integer);
+    function GetSelectColumnListColumnInNewLine: Boolean;
+    procedure SetSelectColumnListColumnInNewLine(Value: Boolean);
+    function GetSelectColumnListAlignAlias: Boolean;
+    procedure SetSelectColumnListAlignAlias(Value: Boolean);
+    function GetSelectColumnListTreatDistinctAsVirtualColumn: Boolean;
+    procedure SetSelectColumnListTreatDistinctAsVirtualColumn(Value: Boolean);
     { Select Subquery }
+    function GetSelectSubqueryNewLineAfterIn: Boolean;
+    procedure SetSelectSubqueryNewLineAfterIn(Value: Boolean);
+    function GetSelectSubqueryNewLineAfterExists: Boolean;
+    procedure SetSelectSubqueryNewLineAfterExists(Value: Boolean);
+    function GetSelectSubqueryNewLineAfterComparisonOperator: Boolean;
+    procedure SetSelectSubqueryNewLineAfterComparisonOperator(Value: Boolean);
+    function GetSelectSubqueryNewLineBeforeComparisonOperator: Boolean;
+    procedure SetSelectSubqueryNewLineBeforeComparisonOperator(Value: Boolean);
     { Select Into Clause }
     { Select From/Join Clause }
     { Select And/Or Clause }
@@ -42,11 +50,15 @@ type
   public
     { Select Column List }
     property SelectColumnListStyle: Integer read GetSelectColumnListStyle write SetSelectColumnListStyle;
-    property SelectLineBreak: Integer read GetSelectLineBreak write SetSelectLineBreak;
-    property SelectColumnInNewLine: Boolean read GetSelectColumnInNewLine write SetSelectColumnInNewLine;
-    property AlignAliasInSelectList: Boolean read GetAlignAliasInSelectList write SetAlignAliasInSelectList;
-    property TreatDistinctAsVirtualColumn: Boolean read GetTreatDistinctAsVirtualColumn write SetTreatDistinctAsVirtualColumn;
+    property SelectColumnListLineBreak: Integer read GetSelectColumnListLineBreak write SetSelectColumnListLineBreak;
+    property SelectColumnListColumnInNewLine: Boolean read GetSelectColumnListColumnInNewLine write SetSelectColumnListColumnInNewLine;
+    property SelectColumnListAlignAlias: Boolean read GetSelectColumnListAlignAlias write SetSelectColumnListAlignAlias;
+    property SelectColumnListTreatDistinctAsVirtualColumn: Boolean read GetSelectColumnListTreatDistinctAsVirtualColumn write SetSelectColumnListTreatDistinctAsVirtualColumn;
     { Select Subquery }
+    property SelectSubqueryNewLineAfterIn: Boolean read GetSelectSubqueryNewLineAfterIn write SetSelectSubqueryNewLineAfterIn;
+    property SelectSubqueryNewLineAfterExists: Boolean read GetSelectSubqueryNewLineAfterExists write SetSelectSubqueryNewLineAfterExists;
+    property SelectSubqueryNewLineAfterComparisonOperator: Boolean read GetSelectSubqueryNewLineAfterComparisonOperator write SetSelectSubqueryNewLineAfterComparisonOperator;
+    property SelectSubqueryNewLineBeforeComparisonOperator: Boolean read GetSelectSubqueryNewLineBeforeComparisonOperator write SetSelectSubqueryNewLineBeforeComparisonOperator;
     { Select Into Clause }
     { Select From/Join Clause }
     { Select And/Or Clause }
@@ -96,7 +108,7 @@ begin
   end;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectLineBreak: Integer;
+function TSQLFormatterOptionsWrapper.GetSelectColumnListLineBreak: Integer;
 begin
   case gFmtOpt.Select_ColumnList_Comma of
     lfAfterComma: Result := 0;
@@ -107,7 +119,7 @@ begin
   end;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectLineBreak(Value: Integer);
+procedure TSQLFormatterOptionsWrapper.SetSelectColumnListLineBreak(Value: Integer);
 begin
   case Value of
     0: gFmtOpt.Select_ColumnList_Comma := lfAfterComma;
@@ -117,34 +129,76 @@ begin
   end;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectColumnInNewLine: Boolean;
+function TSQLFormatterOptionsWrapper.GetSelectColumnListColumnInNewLine: Boolean;
 begin
   Result := gFmtOpt.SelectItemInNewLine;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectColumnInNewLine(Value: Boolean);
+procedure TSQLFormatterOptionsWrapper.SetSelectColumnListColumnInNewLine(Value: Boolean);
 begin
   gFmtOpt.SelectItemInNewLine := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetAlignAliasInSelectList: Boolean;
+function TSQLFormatterOptionsWrapper.GetSelectColumnListAlignAlias: Boolean;
 begin
   Result := gFmtOpt.AlignAliasInSelectList;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetAlignAliasInSelectList(Value: Boolean);
+procedure TSQLFormatterOptionsWrapper.SetSelectColumnListAlignAlias(Value: Boolean);
 begin
   gFmtOpt.AlignAliasInSelectList := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetTreatDistinctAsVirtualColumn: Boolean;
+function TSQLFormatterOptionsWrapper.GetSelectColumnListTreatDistinctAsVirtualColumn: Boolean;
 begin
   Result := gFmtOpt.TreatDistinctAsVirtualColumn;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetTreatDistinctAsVirtualColumn(Value: Boolean);
+procedure TSQLFormatterOptionsWrapper.SetSelectColumnListTreatDistinctAsVirtualColumn(Value: Boolean);
 begin
   gFmtOpt.TreatDistinctAsVirtualColumn := Value;
+end;
+
+{ SubQuery }
+
+function TSQLFormatterOptionsWrapper.GetSelectSubqueryNewLineAfterIn: Boolean;
+begin
+  Result := gFmtOpt.Subquery_NewLine_After_IN;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectSubqueryNewLineAfterIn(Value: Boolean);
+begin
+  gFmtOpt.Subquery_NewLine_After_IN := Value;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectSubqueryNewLineAfterExists: Boolean;
+begin
+  Result := gFmtOpt.Subquery_NewLine_After_EXISTS;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectSubqueryNewLineAfterExists(Value: Boolean);
+begin
+  gFmtOpt.Subquery_NewLine_After_EXISTS := Value;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectSubqueryNewLineAfterComparisonOperator: Boolean;
+begin
+  Result := gFmtOpt.Subquery_NewLine_After_ComparisonOperator;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectSubqueryNewLineAfterComparisonOperator(Value: Boolean);
+begin
+  gFmtOpt.Subquery_NewLine_After_ComparisonOperator := Value;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectSubqueryNewLineBeforeComparisonOperator: Boolean;
+begin
+  Result := gFmtOpt.Subquery_NewLine_Before_ComparisonOperator;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectSubqueryNewLineBeforeComparisonOperator(Value: Boolean);
+begin
+  gFmtOpt.Subquery_NewLine_Before_ComparisonOperator := Value;
 end;
 
 { Alignments }
