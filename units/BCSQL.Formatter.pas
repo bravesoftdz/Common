@@ -3,7 +3,7 @@ unit BCSQL.Formatter;
 interface
 
 uses
-  System.Classes, GSQLParser, LZBaseType;
+  System.Classes, GSQLParser, LZBaseType, IniPersist;
 
 type
   TSQLFormatter = class
@@ -81,50 +81,89 @@ type
     function GetKeywordAlignmentLeftJustify: Boolean;
     procedure SetKeywordAlignmentLeftJustify(Value: Boolean);
   public
+    procedure ReadIniFile;
+    procedure WriteIniFile;
     { Select Column List }
+    [IniValue('SQLFormatter','SelectColumnListStyle', '0')]
     property SelectColumnListStyle: Integer read GetSelectColumnListStyle write SetSelectColumnListStyle;
+    [IniValue('SQLFormatter','SelectColumnListLineBreak', '0')]
     property SelectColumnListLineBreak: Integer read GetSelectColumnListLineBreak write SetSelectColumnListLineBreak;
+    [IniValue('SQLFormatter','SelectColumnListColumnInNewLine', 'False')]
     property SelectColumnListColumnInNewLine: Boolean read GetSelectColumnListColumnInNewLine write SetSelectColumnListColumnInNewLine;
+    [IniValue('SQLFormatter','SelectColumnListAlignAlias', 'True')]
     property SelectColumnListAlignAlias: Boolean read GetSelectColumnListAlignAlias write SetSelectColumnListAlignAlias;
+    [IniValue('SQLFormatter','SelectColumnListTreatDistinctAsVirtualColumn', 'False')]
     property SelectColumnListTreatDistinctAsVirtualColumn: Boolean read GetSelectColumnListTreatDistinctAsVirtualColumn write SetSelectColumnListTreatDistinctAsVirtualColumn;
     { Select Subquery }
+    [IniValue('SQLFormatter','SelectSubqueryNewLineAfterIn', 'False')]
     property SelectSubqueryNewLineAfterIn: Boolean read GetSelectSubqueryNewLineAfterIn write SetSelectSubqueryNewLineAfterIn;
+    [IniValue('SQLFormatter','SelectSubqueryNewLineAfterExists', 'False')]
     property SelectSubqueryNewLineAfterExists: Boolean read GetSelectSubqueryNewLineAfterExists write SetSelectSubqueryNewLineAfterExists;
+    [IniValue('SQLFormatter','SelectSubqueryNewLineAfterComparisonOperator', 'False')]
     property SelectSubqueryNewLineAfterComparisonOperator: Boolean read GetSelectSubqueryNewLineAfterComparisonOperator write SetSelectSubqueryNewLineAfterComparisonOperator;
+    [IniValue('SQLFormatter','SelectSubqueryNewLineBeforeComparisonOperator', 'False')]
     property SelectSubqueryNewLineBeforeComparisonOperator: Boolean read GetSelectSubqueryNewLineBeforeComparisonOperator write SetSelectSubqueryNewLineBeforeComparisonOperator;
     { Select Into Clause }
+    [IniValue('SQLFormatter','SelectIntoClauseInNewLine', 'False')]
     property SelectIntoClauseInNewLine: Boolean read GetSelectIntoClauseInNewLine write SetSelectIntoClauseInNewLine;
     { Select From/Join Clause }
+    [IniValue('SQLFormatter','SelectFromClauseStyle', '0')]
     property SelectFromClauseStyle: Integer read GetSelectFromClauseStyle write SetSelectFromClauseStyle;
+    [IniValue('SQLFormatter','SelectFromClauseInNewLine', 'False')]
     property SelectFromClauseInNewLine: Boolean read GetSelectFromClauseInNewLine write SetSelectFromClauseInNewLine;
+    [IniValue('SQLFormatter','SelectJoinClauseInNewLine', 'True')]
     property SelectJoinClauseInNewLine: Boolean read GetSelectJoinClauseInNewLine write SetSelectJoinClauseInNewLine;
+    [IniValue('SQLFormatter','SelectAlignJoinWithFromKeyword', 'False')]
     property SelectAlignJoinWithFromKeyword: Boolean read GetSelectAlignJoinWithFromKeyword write SetSelectAlignJoinWithFromKeyword;
+    [IniValue('SQLFormatter','SelectAlignAndOrWithOnInJoinClause', 'False')]
     property SelectAlignAndOrWithOnInJoinClause: Boolean read GetSelectAlignAndOrWithOnInJoinClause write SetSelectAlignAndOrWithOnInJoinClause;
+    [IniValue('SQLFormatter','SelectAlignAliasInFromClause', 'False')]
     property SelectAlignAliasInFromClause: Boolean read GetSelectAlignAliasInFromClause write SetSelectAlignAliasInFromClause;
     { Select And/Or Clause }
+    [IniValue('SQLFormatter','SelectAndOrLineBreak', '0')]
     property SelectAndOrLineBreak: Integer read GetSelectAndOrLineBreak write SetSelectAndOrLineBreak;
+    [IniValue('SQLFormatter','SelectAndOrUnderWhere', 'False')]
     property SelectAndOrUnderWhere: Boolean read GetSelectAndOrUnderWhere write SetSelectAndOrUnderWhere;
+    [IniValue('SQLFormatter','SelectWhereClauseInNewline', 'False')]
     property SelectWhereClauseInNewline: Boolean read GetSelectWhereClauseInNewline write SetSelectWhereClauseInNewline;
+    [IniValue('SQLFormatter','SelectWhereClauseAlignExpr', 'False')]
     property SelectWhereClauseAlignExpr: Boolean read GetSelectWhereClauseAlignExpr write SetSelectWhereClauseAlignExpr;
     { Select Group By Clause }
+    [IniValue('SQLFormatter','SelectGroupByClauseStyle', '0')]
     property SelectGroupByClauseStyle: Integer read GetSelectGroupByClauseStyle write SetSelectGroupByClauseStyle;
+    [IniValue('SQLFormatter','SelectGroupByClauseInNewLine', 'False')]
     property SelectGroupByClauseInNewLine: Boolean read GetSelectGroupByClauseInNewLine write SetSelectGroupByClauseInNewLine;
     { Select Having Clause }
+    [IniValue('SQLFormatter','SelectHavingClauseInNewLine', 'False')]
     property SelectHavingClauseInNewLine: Boolean read GetSelectHavingClauseInNewLine write SetSelectHavingClauseInNewLine;
     { Select Order By Clause }
+    [IniValue('SQLFormatter','SelectOrderByClauseStyle', '0')]
     property SelectOrderByClauseStyle: Integer read GetSelectOrderByClauseStyle write SetSelectOrderByClauseStyle;
+    [IniValue('SQLFormatter','SelectOrderByClauseInNewLine', 'False')]
     property SelectOrderByClauseInNewLine: Boolean read GetSelectOrderByClauseInNewLine write SetSelectOrderByClauseInNewLine;
     { Alignments }
+    [IniValue('SQLFormatter','KeywordAlign', '0')]
     property KeywordAlign: Integer read GetKeywordAlign write SetKeywordAlign;
+    [IniValue('SQLFormatter','KeywordAlignmentLeftJustify', 'False')]
     property KeywordAlignmentLeftJustify: Boolean read GetKeywordAlignmentLeftJustify write SetKeywordAlignmentLeftJustify;
   end;
 
 implementation
 
 uses
-  BCCommon.Messages;
+  BCCommon.Messages, BCCommon.FileUtils;
 
 { TSQLFormatterOptionsWrapper }
+
+procedure TSQLFormatterOptionsWrapper.ReadIniFile;
+begin
+  TIniPersist.Load(GetIniFilename, Self);
+end;
+
+procedure TSQLFormatterOptionsWrapper.WriteIniFile;
+begin
+  TIniPersist.Save(GetIniFilename, Self);
+end;
 
 { Select Column List }
 
