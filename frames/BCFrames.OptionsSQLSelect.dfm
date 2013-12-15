@@ -19,11 +19,11 @@ object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Top = 3
       Width = 399
       Height = 497
-      ActivePage = TabSheet4
+      ActivePage = TabSheet5
       Align = alClient
       MultiLine = True
       TabOrder = 0
-      ActivePageCaption = 'From/Join Clause'
+      ActivePageCaption = 'And/Or Keyword'
       TabDragDrop = False
       TabClosed = False
       HoldShiftToDragDrop = False
@@ -269,10 +269,138 @@ object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           TabOrder = 2
           ReadOnly = False
         end
+        object JoinClauseInNewLineCheckBox: TBCCheckBox
+          Left = 9
+          Top = 113
+          Width = 282
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = ' Join Clause In New Line'
+          Checked = True
+          State = cbChecked
+          TabOrder = 3
+          ReadOnly = False
+        end
+        object AlignJoinWithFromKeywordCheckBox: TBCCheckBox
+          Left = 9
+          Top = 133
+          Width = 282
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = ' Align Join With FROM Keyword'
+          Checked = True
+          State = cbChecked
+          TabOrder = 4
+          ReadOnly = False
+        end
+        object AlignAndOrWithOnInJoinClauseCheckBox: TBCCheckBox
+          Left = 9
+          Top = 153
+          Width = 282
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = ' Align AND/OR With ON In Join Clause '
+          Checked = True
+          State = cbChecked
+          TabOrder = 5
+          ReadOnly = False
+        end
+        object AlignAliasInFromClauseCheckBox: TBCCheckBox
+          Left = 9
+          Top = 173
+          Width = 282
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = ' Align Alias In From Clause'
+          Checked = True
+          State = cbChecked
+          TabOrder = 6
+          ReadOnly = False
+        end
       end
       object TabSheet5: TTabSheet
         Caption = 'And/Or Keyword'
         ImageIndex = 4
+        object AndOrLineBreakLabel: TLabel
+          Left = 11
+          Top = 7
+          Width = 49
+          Height = 13
+          Caption = 'Line Break'
+        end
+        object AndOrLineBreakComboBox: TBCComboBox
+          Left = 9
+          Top = 23
+          Width = 133
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Style = csDropDownList
+          DropDownCount = 9
+          TabOrder = 0
+          DeniedKeyStrokes = True
+          ReadOnly = False
+          DropDownFixedWidth = 0
+        end
+        object AndOrUnderWhereCheckBox: TBCCheckBox
+          Left = 9
+          Top = 52
+          Width = 276
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = ' AND/OR Under Where'
+          Checked = True
+          State = cbChecked
+          TabOrder = 1
+          ReadOnly = False
+        end
+        object WhereClauseInNewlineCheckBox: TBCCheckBox
+          Left = 9
+          Top = 72
+          Width = 276
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = ' Where Clause In New Line'
+          Checked = True
+          State = cbChecked
+          TabOrder = 2
+          ReadOnly = False
+        end
+        object WhereClauseAlignExprCheckBox: TBCCheckBox
+          Left = 9
+          Top = 92
+          Width = 276
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = ' Where Clause Align Expr'
+          Checked = True
+          State = cbChecked
+          TabOrder = 3
+          ReadOnly = False
+        end
       end
       object TabSheet6: TTabSheet
         Caption = 'Group By Clause'

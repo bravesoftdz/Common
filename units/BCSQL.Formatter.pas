@@ -47,7 +47,23 @@ type
     procedure SetSelectFromClauseLineBreak(Value: Integer);
     function GetSelectFromClauseInNewLine: Boolean;
     procedure SetSelectFromClauseInNewLine(Value: Boolean);
+    function GetSelectJoinClauseInNewLine: Boolean;
+    procedure SetSelectJoinClauseInNewLine(Value: Boolean);
+    function GetSelectAlignJoinWithFromKeyword: Boolean;
+    procedure SetSelectAlignJoinWithFromKeyword(Value: Boolean);
+    function GetSelectAlignAndOrWithOnInJoinClause: Boolean;
+    procedure SetSelectAlignAndOrWithOnInJoinClause(Value: Boolean);
+    function GetSelectAlignAliasInFromClause: Boolean;
+    procedure SetSelectAlignAliasInFromClause(Value: Boolean);
     { Select And/Or Clause }
+    function GetSelectAndOrLineBreak: Integer;
+    procedure SetSelectAndOrLineBreak(Value: Integer);
+    function GetSelectAndOrUnderWhere: Boolean;
+    procedure SetSelectAndOrUnderWhere(Value: Boolean);
+    function GetSelectWhereClauseInNewline: Boolean;
+    procedure SetSelectWhereClauseInNewline(Value: Boolean);
+    function GetSelectWhereClauseAlignExpr: Boolean;
+    procedure SetSelectWhereClauseAlignExpr(Value: Boolean);
     { Select Group By Clause }
     { Select Having Clause }
     { Select Order By Clause }
@@ -73,8 +89,15 @@ type
     property SelectFromClauseStyle: Integer read GetSelectFromClauseStyle write SetSelectFromClauseStyle;
     property SelectFromClauseLineBreak: Integer read GetSelectFromClauseLineBreak write SetSelectFromClauseLineBreak;
     property SelectFromClauseInNewLine: Boolean read GetSelectFromClauseInNewLine write SetSelectFromClauseInNewLine;
-
+    property SelectJoinClauseInNewLine: Boolean read GetSelectJoinClauseInNewLine write SetSelectJoinClauseInNewLine;
+    property SelectAlignJoinWithFromKeyword: Boolean read GetSelectAlignJoinWithFromKeyword write SetSelectAlignJoinWithFromKeyword;
+    property SelectAlignAndOrWithOnInJoinClause: Boolean read GetSelectAlignAndOrWithOnInJoinClause write SetSelectAlignAndOrWithOnInJoinClause;
+    property SelectAlignAliasInFromClause: Boolean read GetSelectAlignAliasInFromClause write SetSelectAlignAliasInFromClause;
     { Select And/Or Clause }
+    property SelectAndOrLineBreak: Integer read GetSelectAndOrLineBreak write SetSelectAndOrLineBreak;
+    property SelectAndOrUnderWhere: Boolean read GetSelectAndOrUnderWhere write SetSelectAndOrUnderWhere;
+    property SelectWhereClauseInNewline: Boolean read GetSelectWhereClauseInNewline write SetSelectWhereClauseInNewline;
+    property SelectWhereClauseAlignExpr: Boolean read GetSelectWhereClauseAlignExpr write SetSelectWhereClauseAlignExpr;
     { Select Group By Clause }
     { Select Having Clause }
     { Select Order By Clause }
@@ -272,6 +295,96 @@ end;
 procedure TSQLFormatterOptionsWrapper.SetSelectFromClauseInNewLine(Value: Boolean);
 begin
   gFmtOpt.Select_FromclauseInNewLine := Value;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectJoinClauseInNewLine: Boolean;
+begin
+  Result := gFmtOpt.Select_FromclauseJoinOnInNewline;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectJoinClauseInNewLine(Value: Boolean);
+begin
+  gFmtOpt.Select_FromclauseJoinOnInNewline := Value;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectAlignJoinWithFromKeyword: Boolean;
+begin
+  Result := gFmtOpt.AlignJoinWithFromKeyword;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectAlignJoinWithFromKeyword(Value: Boolean);
+begin
+  gFmtOpt.AlignJoinWithFromKeyword := Value;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectAlignAndOrWithOnInJoinClause: Boolean;
+begin
+  Result := gFmtOpt.AlignAndOrWithOnInJoinClause;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectAlignAndOrWithOnInJoinClause(Value: Boolean);
+begin
+  gFmtOpt.AlignAndOrWithOnInJoinClause := Value;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectAlignAliasInFromClause: Boolean;
+begin
+  Result := gFmtOpt.AlignAliasInFromClause;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectAlignAliasInFromClause(Value: Boolean);
+begin
+  gFmtOpt.AlignAliasInFromClause := Value;
+end;
+
+{ Select And/Or Clause }
+function TSQLFormatterOptionsWrapper.GetSelectAndOrLineBreak: Integer;
+begin
+  case gFmtOpt.LinefeedsAndOr_option of
+    lfBeforeAndOr: Result := 0;
+    lfAfterAndOr: Result := 1;
+  else
+    Result := 2 { lfNoLineBreak }
+  end;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectAndOrLineBreak(Value: Integer);
+begin
+  case Value of
+    0: gFmtOpt.LinefeedsAndOr_option := lfBeforeAndOr;
+    1: gFmtOpt.LinefeedsAndOr_option := lfAfterAndOr;
+    2: gFmtOpt.LinefeedsAndOr_option := lfNoLineBreak;
+  end;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectAndOrUnderWhere: Boolean;
+begin
+  Result := gFmtOpt.AndOrUnderWhere;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectAndOrUnderWhere(Value: Boolean);
+begin
+  gFmtOpt.AndOrUnderWhere := Value;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectWhereClauseInNewline: Boolean;
+begin
+  Result := gFmtOpt.WhereClauseInNewline;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectWhereClauseInNewline(Value: Boolean);
+begin
+  gFmtOpt.WhereClauseInNewline := Value;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectWhereClauseAlignExpr: Boolean;
+begin
+  Result := gFmtOpt.WhereClauseAlignExpr;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectWhereClauseAlignExpr(Value: Boolean);
+begin
+  gFmtOpt.WhereClauseAlignExpr := Value;
 end;
 
 { Alignments }

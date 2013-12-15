@@ -1797,6 +1797,16 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'NoLineBreak'
         Strings.Strings = (
           'No Line Break')
+      end
+      item
+        Name = 'BeforeAndor'
+        Strings.Strings = (
+          'Before AND/OR')
+      end
+      item
+        Name = 'AfterAndOr'
+        Strings.Strings = (
+          'After AND/OR')
       end>
     Left = 90
     Top = 438
