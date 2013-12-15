@@ -38,7 +38,15 @@ type
     function GetSelectSubqueryNewLineBeforeComparisonOperator: Boolean;
     procedure SetSelectSubqueryNewLineBeforeComparisonOperator(Value: Boolean);
     { Select Into Clause }
+    function GetSelectIntoClauseInNewLine: Boolean;
+    procedure SetSelectIntoClauseInNewLine(Value: Boolean);
     { Select From/Join Clause }
+    function GetSelectFromClauseStyle: Integer;
+    procedure SetSelectFromClauseStyle(Value: Integer);
+    function GetSelectFromClauseLineBreak: Integer;
+    procedure SetSelectFromClauseLineBreak(Value: Integer);
+    function GetSelectFromClauseInNewLine: Boolean;
+    procedure SetSelectFromClauseInNewLine(Value: Boolean);
     { Select And/Or Clause }
     { Select Group By Clause }
     { Select Having Clause }
@@ -60,7 +68,12 @@ type
     property SelectSubqueryNewLineAfterComparisonOperator: Boolean read GetSelectSubqueryNewLineAfterComparisonOperator write SetSelectSubqueryNewLineAfterComparisonOperator;
     property SelectSubqueryNewLineBeforeComparisonOperator: Boolean read GetSelectSubqueryNewLineBeforeComparisonOperator write SetSelectSubqueryNewLineBeforeComparisonOperator;
     { Select Into Clause }
+    property SelectIntoClauseInNewLine: Boolean read GetSelectIntoClauseInNewLine write SetSelectIntoClauseInNewLine;
     { Select From/Join Clause }
+    property SelectFromClauseStyle: Integer read GetSelectFromClauseStyle write SetSelectFromClauseStyle;
+    property SelectFromClauseLineBreak: Integer read GetSelectFromClauseLineBreak write SetSelectFromClauseLineBreak;
+    property SelectFromClauseInNewLine: Boolean read GetSelectFromClauseInNewLine write SetSelectFromClauseInNewLine;
+
     { Select And/Or Clause }
     { Select Group By Clause }
     { Select Having Clause }
@@ -91,7 +104,6 @@ end;
 
 function TSQLFormatterOptionsWrapper.GetSelectColumnListStyle: Integer;
 begin
-  //Result := gFmtOpt.Select_ListitemFitInOneLine;
   case gFmtOpt.Select_ColumnList_Style of
     asStacked: Result := 0;
   else
@@ -101,9 +113,8 @@ end;
 
 procedure TSQLFormatterOptionsWrapper.SetSelectColumnListStyle(Value: Integer);
 begin
-  //gFmtOpt.Select_ListitemFitInOneLine := Value;
   case Value of
-    0: gFmtOpt.Select_ColumnList_Style := asStacked; //Select_ColumnList_Style
+    0: gFmtOpt.Select_ColumnList_Style := asStacked;
     1: gFmtOpt.Select_ColumnList_Style := asWrapped;
   end;
 end;
@@ -199,6 +210,68 @@ end;
 procedure TSQLFormatterOptionsWrapper.SetSelectSubqueryNewLineBeforeComparisonOperator(Value: Boolean);
 begin
   gFmtOpt.Subquery_NewLine_Before_ComparisonOperator := Value;
+end;
+
+{ Into Clause }
+
+function TSQLFormatterOptionsWrapper.GetSelectIntoClauseInNewLine: Boolean;
+begin
+  Result := gFmtOpt.IntoClauseInNewline;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectIntoClauseInNewLine(Value: Boolean);
+begin
+  gFmtOpt.IntoClauseInNewline := Value;
+end;
+
+{ Select From/Join Clause }
+
+function TSQLFormatterOptionsWrapper.GetSelectFromClauseStyle: Integer;
+begin
+  case gFmtOpt.Select_fromclause_Style of
+    asStacked: Result := 0;
+  else
+    Result := 1 { asWrapped }
+  end;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectFromClauseStyle(Value: Integer);
+begin
+  case Value of
+    0: gFmtOpt.Select_fromclause_Style := asStacked;
+    1: gFmtOpt.Select_fromclause_Style := asWrapped;
+  end;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectFromClauseLineBreak: Integer;
+begin
+  case gFmtOpt.Select_ColumnList_Comma of
+    lfAfterComma: Result := 0;
+    lfBeforeComma: Result := 1;
+    lfBeforeCommaWithSpace: Result := 2;
+  else
+    Result := 3 { lfNoLineBreakComma }
+  end;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectFromClauseLineBreak(Value: Integer);
+begin
+  case Value of
+    0: gFmtOpt.Select_ColumnList_Comma := lfAfterComma;
+    1: gFmtOpt.Select_ColumnList_Comma := lfBeforeComma;
+    2: gFmtOpt.Select_ColumnList_Comma := lfBeforeCommaWithSpace;
+    3: gFmtOpt.Select_ColumnList_Comma := lfNoLineBreakComma;
+  end;
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectFromClauseInNewLine: Boolean;
+begin
+  Result := gFmtOpt.Select_FromclauseInNewLine;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectFromClauseInNewLine(Value: Boolean);
+begin
+  gFmtOpt.Select_FromclauseInNewLine := Value;
 end;
 
 { Alignments }
