@@ -43,8 +43,6 @@ type
     { Select From/Join Clause }
     function GetSelectFromClauseStyle: Integer;
     procedure SetSelectFromClauseStyle(Value: Integer);
-    function GetSelectFromClauseLineBreak: Integer;
-    procedure SetSelectFromClauseLineBreak(Value: Integer);
     function GetSelectFromClauseInNewLine: Boolean;
     procedure SetSelectFromClauseInNewLine(Value: Boolean);
     function GetSelectJoinClauseInNewLine: Boolean;
@@ -65,12 +63,23 @@ type
     function GetSelectWhereClauseAlignExpr: Boolean;
     procedure SetSelectWhereClauseAlignExpr(Value: Boolean);
     { Select Group By Clause }
+    function GetSelectGroupByClauseStyle: Integer;
+    procedure SetSelectGroupByClauseStyle(Value: Integer);
+    function GetSelectGroupByClauseInNewLine: Boolean;
+    procedure SetSelectGroupByClauseInNewLine(Value: Boolean);
     { Select Having Clause }
+    function GetSelectHavingClauseInNewLine: Boolean;
+    procedure SetSelectHavingClauseInNewLine(Value: Boolean);
     { Select Order By Clause }
-
+    function GetSelectOrderByClauseStyle: Integer;
+    procedure SetSelectOrderByClauseStyle(Value: Integer);
+    function GetSelectOrderByClauseInNewLine: Boolean;
+    procedure SetSelectOrderByClauseInNewLine(Value: Boolean);
     { Alignments }
-    function GetSelectKeywordsAlign: Integer;
-    procedure SetSelectKeywordsAlign(Value: Integer);
+    function GetKeywordAlign: Integer;
+    procedure SetKeywordAlign(Value: Integer);
+    function GetKeywordAlignmentLeftJustify: Boolean;
+    procedure SetKeywordAlignmentLeftJustify(Value: Boolean);
   public
     { Select Column List }
     property SelectColumnListStyle: Integer read GetSelectColumnListStyle write SetSelectColumnListStyle;
@@ -87,7 +96,6 @@ type
     property SelectIntoClauseInNewLine: Boolean read GetSelectIntoClauseInNewLine write SetSelectIntoClauseInNewLine;
     { Select From/Join Clause }
     property SelectFromClauseStyle: Integer read GetSelectFromClauseStyle write SetSelectFromClauseStyle;
-    property SelectFromClauseLineBreak: Integer read GetSelectFromClauseLineBreak write SetSelectFromClauseLineBreak;
     property SelectFromClauseInNewLine: Boolean read GetSelectFromClauseInNewLine write SetSelectFromClauseInNewLine;
     property SelectJoinClauseInNewLine: Boolean read GetSelectJoinClauseInNewLine write SetSelectJoinClauseInNewLine;
     property SelectAlignJoinWithFromKeyword: Boolean read GetSelectAlignJoinWithFromKeyword write SetSelectAlignJoinWithFromKeyword;
@@ -99,11 +107,16 @@ type
     property SelectWhereClauseInNewline: Boolean read GetSelectWhereClauseInNewline write SetSelectWhereClauseInNewline;
     property SelectWhereClauseAlignExpr: Boolean read GetSelectWhereClauseAlignExpr write SetSelectWhereClauseAlignExpr;
     { Select Group By Clause }
+    property SelectGroupByClauseStyle: Integer read GetSelectGroupByClauseStyle write SetSelectGroupByClauseStyle;
+    property SelectGroupByClauseInNewLine: Boolean read GetSelectGroupByClauseInNewLine write SetSelectGroupByClauseInNewLine;
     { Select Having Clause }
+    property SelectHavingClauseInNewLine: Boolean read GetSelectHavingClauseInNewLine write SetSelectHavingClauseInNewLine;
     { Select Order By Clause }
-
+    property SelectOrderByClauseStyle: Integer read GetSelectOrderByClauseStyle write SetSelectOrderByClauseStyle;
+    property SelectOrderByClauseInNewLine: Boolean read GetSelectOrderByClauseInNewLine write SetSelectOrderByClauseInNewLine;
     { Alignments }
-    property SelectKeywordsAlign: Integer read GetSelectKeywordsAlign write SetSelectKeywordsAlign;
+    property KeywordAlign: Integer read GetKeywordAlign write SetKeywordAlign;
+    property KeywordAlignmentLeftJustify: Boolean read GetKeywordAlignmentLeftJustify write SetKeywordAlignmentLeftJustify;
   end;
 
 implementation
@@ -112,16 +125,6 @@ uses
   BCCommon.Messages;
 
 { TSQLFormatterOptionsWrapper }
-
-function TSQLFormatterOptionsWrapper.GetSelectKeywordsAlign: Integer;
-begin
-  case gFmtOpt.Select_keywords_alignOption of
-    aloLeft: Result := 0;
-    aloRight: Result := 1
-  else
-    Result := 2; { aloNone }
-  end;
-end;
 
 { Select Column List }
 
@@ -251,40 +254,12 @@ end;
 
 function TSQLFormatterOptionsWrapper.GetSelectFromClauseStyle: Integer;
 begin
-  case gFmtOpt.Select_fromclause_Style of
-    asStacked: Result := 0;
-  else
-    Result := 1 { asWrapped }
-  end;
+  Result := Ord(gFmtOpt.Select_fromclause_Style);
 end;
 
 procedure TSQLFormatterOptionsWrapper.SetSelectFromClauseStyle(Value: Integer);
 begin
-  case Value of
-    0: gFmtOpt.Select_fromclause_Style := asStacked;
-    1: gFmtOpt.Select_fromclause_Style := asWrapped;
-  end;
-end;
-
-function TSQLFormatterOptionsWrapper.GetSelectFromClauseLineBreak: Integer;
-begin
-  case gFmtOpt.Select_ColumnList_Comma of
-    lfAfterComma: Result := 0;
-    lfBeforeComma: Result := 1;
-    lfBeforeCommaWithSpace: Result := 2;
-  else
-    Result := 3 { lfNoLineBreakComma }
-  end;
-end;
-
-procedure TSQLFormatterOptionsWrapper.SetSelectFromClauseLineBreak(Value: Integer);
-begin
-  case Value of
-    0: gFmtOpt.Select_ColumnList_Comma := lfAfterComma;
-    1: gFmtOpt.Select_ColumnList_Comma := lfBeforeComma;
-    2: gFmtOpt.Select_ColumnList_Comma := lfBeforeCommaWithSpace;
-    3: gFmtOpt.Select_ColumnList_Comma := lfNoLineBreakComma;
-  end;
+  gFmtOpt.Select_fromclause_Style := TAlignStyle(Value);
 end;
 
 function TSQLFormatterOptionsWrapper.GetSelectFromClauseInNewLine: Boolean;
@@ -338,23 +313,15 @@ begin
 end;
 
 { Select And/Or Clause }
+
 function TSQLFormatterOptionsWrapper.GetSelectAndOrLineBreak: Integer;
 begin
-  case gFmtOpt.LinefeedsAndOr_option of
-    lfBeforeAndOr: Result := 0;
-    lfAfterAndOr: Result := 1;
-  else
-    Result := 2 { lfNoLineBreak }
-  end;
+  Result := Ord(gFmtOpt.LinefeedsAndOr_option);
 end;
 
 procedure TSQLFormatterOptionsWrapper.SetSelectAndOrLineBreak(Value: Integer);
 begin
-  case Value of
-    0: gFmtOpt.LinefeedsAndOr_option := lfBeforeAndOr;
-    1: gFmtOpt.LinefeedsAndOr_option := lfAfterAndOr;
-    2: gFmtOpt.LinefeedsAndOr_option := lfNoLineBreak;
-  end;
+  gFmtOpt.LinefeedsAndOr_option := TLineFeedsAndOrOption(Value);
 end;
 
 function TSQLFormatterOptionsWrapper.GetSelectAndOrUnderWhere: Boolean;
@@ -387,15 +354,82 @@ begin
   gFmtOpt.WhereClauseAlignExpr := Value;
 end;
 
+{ Select Group By Clause }
+
+function TSQLFormatterOptionsWrapper.GetSelectGroupByClauseStyle: Integer;
+begin
+  Result := Ord(gFmtOpt.Select_Groupby_Style);
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectGroupByClauseStyle(Value: Integer);
+begin
+  gFmtOpt.Select_Groupby_Style := TAlignStyle(Value);
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectGroupByClauseInNewLine: Boolean;
+begin
+  Result := gFmtOpt.GroupByClauseInNewline;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectGroupByClauseInNewLine(Value: Boolean);
+begin
+  gFmtOpt.GroupByClauseInNewline := Value;
+end;
+
+{ Having Clause }
+
+function TSQLFormatterOptionsWrapper.GetSelectHavingClauseInNewLine: Boolean;
+begin
+  Result := gFmtOpt.HavingClauseInNewline;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectHavingClauseInNewLine(Value: Boolean);
+begin
+  gFmtOpt.HavingClauseInNewline := Value;
+end;
+
+{ Select Order By Clause }
+
+function TSQLFormatterOptionsWrapper.GetSelectOrderByClauseStyle: Integer;
+begin
+  Result := Ord(gFmtOpt.Select_Orderby_Style);
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectOrderByClauseStyle(Value: Integer);
+begin
+  gFmtOpt.Select_Orderby_Style := TAlignStyle(Value);
+end;
+
+function TSQLFormatterOptionsWrapper.GetSelectOrderByClauseInNewLine: Boolean;
+begin
+  Result := gFmtOpt.OrderByClauseInNewline;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetSelectOrderByClauseInNewLine(Value: Boolean);
+begin
+  gFmtOpt.OrderByClauseInNewline := Value;
+end;
+
 { Alignments }
 
-procedure TSQLFormatterOptionsWrapper.SetSelectKeywordsAlign(Value: Integer);
+function TSQLFormatterOptionsWrapper.GetKeywordAlign: Integer;
 begin
-  case Value of
-    0: gFmtOpt.Select_keywords_alignOption := aloLeft;
-    1: gFmtOpt.Select_keywords_alignOption := aloRight;
-    2: gFmtOpt.Select_keywords_alignOption := aloNone;
-  end;
+  Result := Ord(gFmtOpt.Select_keywords_alignOption);
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetKeywordAlign(Value: Integer);
+begin
+  gFmtOpt.Select_keywords_alignOption := TAlignOption(Value);
+end;
+
+function TSQLFormatterOptionsWrapper.GetKeywordAlignmentLeftJustify: Boolean;
+begin
+  Result := gfmtopt.TrueLeft;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetKeywordAlignmentLeftJustify(Value: Boolean);
+begin
+  gfmtopt.TrueLeft := Value;
 end;
 
 { TSQLFormatter }

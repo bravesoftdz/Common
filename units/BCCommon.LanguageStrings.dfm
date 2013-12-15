@@ -1807,6 +1807,21 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'AfterAndOr'
         Strings.Strings = (
           'After AND/OR')
+      end
+      item
+        Name = 'Left'
+        Strings.Strings = (
+          'Left')
+      end
+      item
+        Name = 'Right'
+        Strings.Strings = (
+          'Right')
+      end
+      item
+        Name = 'None'
+        Strings.Strings = (
+          'None')
       end>
     Left = 90
     Top = 438

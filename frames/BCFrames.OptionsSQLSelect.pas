@@ -33,8 +33,6 @@ type
     IntoClauseInNewLineCheckBox: TBCCheckBox;
     FromClauseStyleLabel: TLabel;
     FromClauseStyleComboBox: TBCComboBox;
-    FromClauseLineBreakLabel: TLabel;
-    FromClauseLineBreakComboBox: TBCComboBox;
     FromClauseInNewLineCheckBox: TBCCheckBox;
     JoinClauseInNewLineCheckBox: TBCCheckBox;
     AlignJoinWithFromKeywordCheckBox: TBCCheckBox;
@@ -45,6 +43,13 @@ type
     AndOrUnderWhereCheckBox: TBCCheckBox;
     WhereClauseInNewlineCheckBox: TBCCheckBox;
     WhereClauseAlignExprCheckBox: TBCCheckBox;
+    GroupByClauseStyleLabel: TLabel;
+    GroupByClauseStyleComboBox: TBCComboBox;
+    GroupByClauseInNewLineCheckBox: TBCCheckBox;
+    HavingClauseInNewLineCheckBox: TBCCheckBox;
+    OrderByClauseStyleLabel: TLabel;
+    OrderByClauseStyleComboBox: TBCComboBox;
+    OrderByClauseInNewLineCheckBox: TBCCheckBox;
   private
     { Private declarations }
   public
@@ -81,18 +86,21 @@ begin
     Add(LanguageDatamodule.GetSQLFormatter('Stacked'));
     Add(LanguageDatamodule.GetSQLFormatter('Wrapped'));
   end;
-  with FromClauseLineBreakComboBox.Items do
-  begin
-    Add(LanguageDatamodule.GetSQLFormatter('AfterComma'));
-    Add(LanguageDatamodule.GetSQLFormatter('BeforeComma'));
-    Add(LanguageDatamodule.GetSQLFormatter('BeforeCommaWithSpace'));
-    Add(LanguageDatamodule.GetSQLFormatter('NoLineBreak'));
-  end;
   with AndOrLineBreakComboBox.Items do
   begin
     Add(LanguageDatamodule.GetSQLFormatter('BeforeAndor'));
     Add(LanguageDatamodule.GetSQLFormatter('AfterAndOr'));
     Add(LanguageDatamodule.GetSQLFormatter('NoLineBreak'));
+  end;
+  with GroupByClauseStyleComboBox.Items do
+  begin
+    Add(LanguageDatamodule.GetSQLFormatter('Stacked'));
+    Add(LanguageDatamodule.GetSQLFormatter('Wrapped'));
+  end;
+  with OrderByClauseStyleComboBox.Items do
+  begin
+    Add(LanguageDatamodule.GetSQLFormatter('Stacked'));
+    Add(LanguageDatamodule.GetSQLFormatter('Wrapped'));
   end;
   { Set default page }
   PageControl.TabIndex := 0;
@@ -115,7 +123,6 @@ begin
   IntoClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectIntoClauseInNewLine;
   { Select From/Join Clause }
   FromClauseStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectFromClauseStyle;
-  FromClauseLineBreakComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectFromClauseLineBreak;
   FromClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectFromClauseInNewLine;
   JoinClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectJoinClauseInNewLine;
   AlignJoinWithFromKeywordCheckBox.Checked := SQLFormatterOptionsWrapper.SelectAlignJoinWithFromKeyword;
@@ -126,6 +133,14 @@ begin
   AndOrUnderWhereCheckBox.Checked := SQLFormatterOptionsWrapper.SelectAndOrUnderWhere;
   WhereClauseInNewlineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectWhereClauseInNewline;
   WhereClauseAlignExprCheckBox.Checked := SQLFormatterOptionsWrapper.SelectWhereClauseAlignExpr;
+  { Group By Clause }
+  GroupByClauseStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectGroupByClauseStyle;
+  GroupByClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectGroupByClauseInNewLine;
+  { Having Clause }
+  HavingClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectHavingClauseInNewLine;
+  { Order By Clause }
+  OrderByClauseStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectOrderByClauseStyle;
+  OrderByClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectOrderByClauseInNewLine;
 end;
 
 procedure TOptionsSQLSelectFrame.PutData(var SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper);
@@ -145,7 +160,6 @@ begin
   SQLFormatterOptionsWrapper.SelectIntoClauseInNewLine := IntoClauseInNewLineCheckBox.Checked;
   { Select From/Join Clause }
   SQLFormatterOptionsWrapper.SelectFromClauseStyle := FromClauseStyleComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.SelectFromClauseLineBreak := FromClauseLineBreakComboBox.ItemIndex;
   SQLFormatterOptionsWrapper.SelectFromClauseInNewLine := FromClauseInNewLineCheckBox.Checked;
   SQLFormatterOptionsWrapper.SelectJoinClauseInNewLine := JoinClauseInNewLineCheckBox.Checked;
   SQLFormatterOptionsWrapper.SelectAlignJoinWithFromKeyword := AlignJoinWithFromKeywordCheckBox.Checked;
@@ -156,6 +170,14 @@ begin
   SQLFormatterOptionsWrapper.SelectAndOrUnderWhere := AndOrUnderWhereCheckBox.Checked;
   SQLFormatterOptionsWrapper.SelectWhereClauseInNewline := WhereClauseInNewlineCheckBox.Checked;
   SQLFormatterOptionsWrapper.SelectWhereClauseAlignExpr := WhereClauseAlignExprCheckBox.Checked;
+  { Group By Clause }
+  SQLFormatterOptionsWrapper.SelectGroupByClauseStyle := GroupByClauseStyleComboBox.ItemIndex;
+  SQLFormatterOptionsWrapper.SelectGroupByClauseInNewLine := GroupByClauseInNewLineCheckBox.Checked;
+  { Having Clause }
+  SQLFormatterOptionsWrapper.SelectHavingClauseInNewLine := HavingClauseInNewLineCheckBox.Checked;
+  { Order By Clause }
+  SQLFormatterOptionsWrapper.SelectOrderByClauseStyle := OrderByClauseStyleComboBox.ItemIndex;
+  SQLFormatterOptionsWrapper.SelectOrderByClauseInNewLine := OrderByClauseInNewLineCheckBox.Checked;
 end;
 
 end.

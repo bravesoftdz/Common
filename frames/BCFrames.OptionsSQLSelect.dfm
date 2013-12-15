@@ -19,11 +19,11 @@ object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Top = 3
       Width = 399
       Height = 497
-      ActivePage = TabSheet5
+      ActivePage = TabSheet8
       Align = alClient
       MultiLine = True
       TabOrder = 0
-      ActivePageCaption = 'And/Or Keyword'
+      ActivePageCaption = 'Order By Clause'
       TabDragDrop = False
       TabClosed = False
       HoldShiftToDragDrop = False
@@ -215,13 +215,6 @@ object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Height = 13
           Caption = 'Style'
         end
-        object FromClauseLineBreakLabel: TLabel
-          Left = 11
-          Top = 49
-          Width = 49
-          Height = 13
-          Caption = 'Line Break'
-        end
         object FromClauseStyleComboBox: TBCComboBox
           Left = 9
           Top = 23
@@ -238,25 +231,9 @@ object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           ReadOnly = False
           DropDownFixedWidth = 0
         end
-        object FromClauseLineBreakComboBox: TBCComboBox
-          Left = 9
-          Top = 65
-          Width = 133
-          Height = 21
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Style = csDropDownList
-          DropDownCount = 9
-          TabOrder = 1
-          DeniedKeyStrokes = True
-          ReadOnly = False
-          DropDownFixedWidth = 0
-        end
         object FromClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
-          Top = 93
+          Top = 52
           Width = 282
           Height = 21
           Margins.Left = 4
@@ -266,12 +243,12 @@ object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Caption = ' From Clause In New Line'
           Checked = True
           State = cbChecked
-          TabOrder = 2
+          TabOrder = 1
           ReadOnly = False
         end
         object JoinClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
-          Top = 113
+          Top = 72
           Width = 282
           Height = 21
           Margins.Left = 4
@@ -281,12 +258,12 @@ object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Caption = ' Join Clause In New Line'
           Checked = True
           State = cbChecked
-          TabOrder = 3
+          TabOrder = 2
           ReadOnly = False
         end
         object AlignJoinWithFromKeywordCheckBox: TBCCheckBox
           Left = 9
-          Top = 133
+          Top = 92
           Width = 282
           Height = 21
           Margins.Left = 4
@@ -296,12 +273,12 @@ object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Caption = ' Align Join With FROM Keyword'
           Checked = True
           State = cbChecked
-          TabOrder = 4
+          TabOrder = 3
           ReadOnly = False
         end
         object AlignAndOrWithOnInJoinClauseCheckBox: TBCCheckBox
           Left = 9
-          Top = 153
+          Top = 112
           Width = 282
           Height = 21
           Margins.Left = 4
@@ -311,12 +288,12 @@ object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Caption = ' Align AND/OR With ON In Join Clause '
           Checked = True
           State = cbChecked
-          TabOrder = 5
+          TabOrder = 4
           ReadOnly = False
         end
         object AlignAliasInFromClauseCheckBox: TBCCheckBox
           Left = 9
-          Top = 173
+          Top = 132
           Width = 282
           Height = 21
           Margins.Left = 4
@@ -326,7 +303,7 @@ object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Caption = ' Align Alias In From Clause'
           Checked = True
           State = cbChecked
-          TabOrder = 6
+          TabOrder = 5
           ReadOnly = False
         end
       end
@@ -405,14 +382,105 @@ object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet6: TTabSheet
         Caption = 'Group By Clause'
         ImageIndex = 5
+        object GroupByClauseStyleLabel: TLabel
+          Left = 11
+          Top = 7
+          Width = 24
+          Height = 13
+          Caption = 'Style'
+        end
+        object GroupByClauseStyleComboBox: TBCComboBox
+          Left = 9
+          Top = 23
+          Width = 133
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Style = csDropDownList
+          DropDownCount = 9
+          TabOrder = 0
+          DeniedKeyStrokes = True
+          ReadOnly = False
+          DropDownFixedWidth = 0
+        end
+        object GroupByClauseInNewLineCheckBox: TBCCheckBox
+          Left = 9
+          Top = 52
+          Width = 282
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = ' Group By Clause In New Line'
+          Checked = True
+          State = cbChecked
+          TabOrder = 1
+          ReadOnly = False
+        end
       end
       object TabSheet7: TTabSheet
         Caption = 'Having Clause'
         ImageIndex = 6
+        object HavingClauseInNewLineCheckBox: TBCCheckBox
+          Left = 9
+          Top = 5
+          Width = 282
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = ' Having Clause In New Line'
+          Checked = True
+          State = cbChecked
+          TabOrder = 0
+          ReadOnly = False
+        end
       end
       object TabSheet8: TTabSheet
         Caption = 'Order By Clause'
         ImageIndex = 7
+        object OrderByClauseStyleLabel: TLabel
+          Left = 11
+          Top = 7
+          Width = 24
+          Height = 13
+          Caption = 'Style'
+        end
+        object OrderByClauseStyleComboBox: TBCComboBox
+          Left = 9
+          Top = 23
+          Width = 133
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Style = csDropDownList
+          DropDownCount = 9
+          TabOrder = 0
+          DeniedKeyStrokes = True
+          ReadOnly = False
+          DropDownFixedWidth = 0
+        end
+        object OrderByClauseInNewLineCheckBox: TBCCheckBox
+          Left = 9
+          Top = 52
+          Width = 282
+          Height = 21
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = ' Order By Clause In New Line'
+          Checked = True
+          State = cbChecked
+          TabOrder = 1
+          ReadOnly = False
+        end
       end
     end
   end
