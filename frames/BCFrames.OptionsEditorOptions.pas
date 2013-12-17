@@ -74,7 +74,7 @@ begin
   OptionsContainer.LineSpacing := StrToIntDef(LineSpacingEdit.Text, 0);
   OptionsContainer.TabWidth := StrToIntDef(TabWidthEdit.Text, 8);
   OptionsContainer.ColorBrightness := BrightnessTrackBar.Position;
-  OptionsContainer.InsertCaret := TSynEditCaretType(InsertCaretComboBox.ItemIndex);
+  OptionsContainer.InsertCaret := InsertCaretComboBox.ItemIndex;
   OptionsContainer.NonblinkingCaretColor := ColorToString(NonblinkingCaretColorBox.Selected);
 end;
 

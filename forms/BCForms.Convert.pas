@@ -54,7 +54,7 @@ implementation
 
 uses
   System.IniFiles, BCCommon.FileUtils, System.ConvUtils, System.StdConvs, BCCommon.LanguageStrings,
-  BCCommon.Messages, BCCommon.LanguageUtils, BCCommon.Math;
+  BCCommon.Messages, BCCommon.LanguageUtils, BCCommon.Math, BCCommon.Lib;
 
 const
   DistanceItemIndex = 0;
@@ -154,6 +154,8 @@ begin
     { Position }
     Left := ReadInteger('ConvertPosition', 'Left', (Screen.Width - Width) div 2);
     Top := ReadInteger('ConvertPosition', 'Top', (Screen.Height - Height) div 2);
+    { Check if the form is outside the workarea }
+    Left := SetFormInsideWorkArea(Left, Width);
     TypeComboBox.ItemIndex := ReadInteger('ConvertPosition', 'TypeItemIndex', -1);
     AddConvertTypes;
     FromComboBox.ItemIndex := ReadInteger('ConvertPosition', 'FromItemIndex', -1);

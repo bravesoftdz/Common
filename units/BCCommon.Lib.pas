@@ -138,6 +138,7 @@ procedure AutoSizeCol(Grid: TBCStringGrid; StartCol: Integer = 0);
 procedure CheckForUpdates(AppName: string; AboutVersion: string);
 procedure InsertTextToCombo(ComboBox: TBCComboBox);
 procedure RunCommand(const Cmd, Params: String);
+function SetFormInsideWorkArea(Left, Width: Integer): Integer;
 
 implementation
 
@@ -349,6 +350,28 @@ begin
   //Close process and thread handles
   CloseHandle(PI.hThread);
   CloseHandle(PI.hProcess);
+end;
+
+function SetFormInsideWorkArea(Left, Width: Integer): Integer;
+var
+  i: Integer;
+  ScreenPos: Integer;
+begin
+  Result := Left;
+  { check if the application is outside left side }
+  ScreenPos := 0;
+  for i := 0 to Screen.MonitorCount - 1 do
+    if Screen.Monitors[i].WorkareaRect.Left < ScreenPos then
+      ScreenPos := Screen.Monitors[i].WorkareaRect.Left;
+  if Left + Width < ScreenPos then
+    Result := (Screen.Width - Width) div 2;
+  { check if the application is outside right side }
+  ScreenPos := 0;
+  for i := 0 to Screen.MonitorCount - 1 do
+    if Screen.Monitors[i].WorkareaRect.Right > ScreenPos then
+      ScreenPos := Screen.Monitors[i].WorkareaRect.Right;
+  if Left > ScreenPos then
+    Result := (Screen.Width - Width) div 2;
 end;
 
 end.

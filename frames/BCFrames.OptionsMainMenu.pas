@@ -66,7 +66,7 @@ begin
   OptionsContainer.MainMenuUseSystemFont := UseSystemFontCheckBox.Checked;
   OptionsContainer.MainMenuFontName := FontLabel.Font.Name;
   OptionsContainer.MainMenuFontSize := FontLabel.Font.Size;
-  OptionsContainer.AnimationStyle := TAnimationStyle(AnimationStyleComboBox.ItemIndex);
+  OptionsContainer.AnimationStyle := AnimationStyleComboBox.ItemIndex;
   OptionsContainer.AnimationDuration := StrToIntDef(AnimationDurationEdit.Text, 150);
 end;
 

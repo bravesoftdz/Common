@@ -51,7 +51,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.LanguageUtils, System.IniFiles, BCCommon.FileUtils, Vcl.Themes, Winapi.ShellAPI;
+  BCCommon.LanguageUtils, System.IniFiles, BCCommon.FileUtils, Vcl.Themes, Winapi.ShellAPI, BCCommon.Lib;
 
 type
   PSearchRec = ^TSearchRec;
@@ -301,6 +301,8 @@ begin
     { Position }
     Left := ReadInteger('SearchForFilesPosition', 'Left', (Screen.Width - Width) div 2);
     Top := ReadInteger('SearchForFilesPosition', 'Top', (Screen.Height - Height) div 2);
+    { Check if the form is outside the workarea }
+    Left := SetFormInsideWorkArea(Left, Width);
   finally
     Free;
   end;

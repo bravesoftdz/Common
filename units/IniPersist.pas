@@ -35,11 +35,15 @@ type
     FName: string;
     FDefaultValue: string;
     FSection: string;
+    FBooleanValue: Boolean;
+  public
+    constructor Create(const aSection: String; const aName: string; const aDefaultValue: String); overload;
+    constructor Create(const aSection: String; const aName: string; const aDefaultBooleanValue: Boolean); overload;
   published
-    constructor Create(const aSection: String; const aName: string; const aDefaultValue: String = '');
     property Section: string read FSection write FSection;
     property Name: string read FName write FName;
     property DefaultValue: string read FDefaultValue write FDefaultValue;
+    property BooleanValue: Boolean read FBooleanValue;
   end;
 
   EIniPersist = class(Exception);
@@ -63,9 +67,23 @@ uses
 
 constructor IniValueAttribute.Create(const aSection, aName, aDefaultValue: String);
 begin
+  FBooleanValue := False;
   FSection := aSection;
   FName := aName;
   FDefaultValue := aDefaultValue;
+end;
+
+{ Old format for boolean values: 0=False, 1=True }
+{ TODO: Remove this after a while... }
+constructor IniValueAttribute.Create(const aSection: String; const aName: string; const aDefaultBooleanValue: Boolean);
+begin
+  FBooleanValue := True;
+  FSection := aSection;
+  FName := aName;
+  if aDefaultBooleanValue then
+    FDefaultValue := 'True'
+  else
+    FDefaultValue := 'False'
 end;
 
 { TIniPersist }
@@ -101,8 +119,15 @@ begin
         IniValue := GetIniAttribute(Prop);
         if Assigned(IniValue) then
         begin
-          Data := Ini.ReadString(IniValue.Section, IniValue.Name,
-            IniValue.DefaultValue);
+          Data := Ini.ReadString(IniValue.Section, IniValue.Name, IniValue.DefaultValue);
+          if IniValue.BooleanValue then
+          begin
+            if Data = '0' then
+              Data := 'False'
+            else
+            if Data = '1' then
+              Data := 'True';
+          end;
           Value := Prop.GetValue(Obj);
           SetValue(Data, Value);
           Prop.SetValue(Obj, Value);

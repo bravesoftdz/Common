@@ -3,14 +3,14 @@ unit BCCommon.OptionsContainer;
 interface
 
 uses
-  System.Classes, Vcl.ActnMenus, SynEdit, BCCommon.FileUtils{$ifdef EDITBONE}, Lib, SynHighlighterWebData,
+  System.Classes, Vcl.Forms, Vcl.ActnMenus, SynEdit, BCCommon.FileUtils, IniPersist{$ifdef EDITBONE}, Lib, SynHighlighterWebData,
   SynHighlighterWeb, SynHighlighterSQL{$endif};
 
 type
   TOptionsContainer = class(TComponent)
   private
     FAnimationDuration: Integer;
-    FAnimationStyle: TAnimationStyle;
+    FAnimationStyle: Integer;
     FAutoIndent: Boolean;
     FAutoSave: Boolean;
     FBeepIfSearchStringNotFound: Boolean;
@@ -26,7 +26,7 @@ type
     FFontSize: Integer;
     FIgnoreBlanks: Boolean;
     FIgnoreCase: Boolean;
-    FInsertCaret: TSynEditCaretType;
+    FInsertCaret: Integer;
     FLineSpacing: Integer;
     FMainMenuFontName: string;
     FMainMenuFontSize: Integer;
@@ -94,35 +94,63 @@ type
     procedure ReadIniFile; virtual;
     procedure WriteIniFile; virtual;
   published
-    property AnimationDuration: Integer read FAnimationDuration write FAnimationDuration default 150;
-    property AnimationStyle: TAnimationStyle read FAnimationStyle write FAnimationStyle default asDefault;
-    property AutoIndent: Boolean read FAutoIndent write FAutoIndent default True;
-    property AutoSave: Boolean read FAutoSave write FAutoSave default False;
-    property BeepIfSearchStringNotFound: Boolean read FBeepIfSearchStringNotFound write FBeepIfSearchStringNotFound default True;
+    [IniValue('Options', 'AnimationDuration', '150')]
+    property AnimationDuration: Integer read FAnimationDuration write FAnimationDuration;
+    [IniValue('Options', 'AnimationStyle', '1')]
+    property AnimationStyle: Integer read FAnimationStyle write FAnimationStyle;
+    [IniValue('Options', 'AutoIndent', True)]
+    property AutoIndent: Boolean read FAutoIndent write FAutoIndent;
+    [IniValue('Options', 'AutoSave', False)]
+    property AutoSave: Boolean read FAutoSave write FAutoSave;
+    [IniValue('Options', 'BeepIfSearchStringNotFound', True)]
+    property BeepIfSearchStringNotFound: Boolean read FBeepIfSearchStringNotFound write FBeepIfSearchStringNotFound;
+    [IniValue('Options', 'ActiveLineColorBrightness', '2')]
     property ColorBrightness: Integer read FColorBrightness write FColorBrightness;
-    property CompletionProposalCaseSensitive: Boolean read FCompletionProposalCaseSensitive write FCompletionProposalCaseSensitive default True;
-    property CompletionProposalEnabled: Boolean read FCompletionProposalEnabled write FCompletionProposalEnabled default True;
+    [IniValue('Options', 'CompletionProposalCaseSensitive', True)]
+    property CompletionProposalCaseSensitive: Boolean read FCompletionProposalCaseSensitive write FCompletionProposalCaseSensitive;
+    [IniValue('Options', 'CompletionProposalEnabled', True)]
+    property CompletionProposalEnabled: Boolean read FCompletionProposalEnabled write FCompletionProposalEnabled;
+    [IniValue('Options', 'CompletionProposalShortcut', 'Ctrl+Space')]
     property CompletionProposalShortcut: string read FCompletionProposalShortcut write FCompletionProposalShortcut;
-    property EnableLineNumbers: Boolean read FEnableLineNumbers write FEnableLineNumbers default True;
-    property EnableSelectionMode: Boolean read FEnableSelectionMode write FEnableSelectionMode default False;
-    property EnableSpecialChars: Boolean read FEnableSpecialChars write FEnableSpecialChars default False;
-    property EnableWordWrap: Boolean read FEnableWordWrap write FEnableWordWrap default False;
+    [IniValue('Options', 'EnableLineNumbers', True)]
+    property EnableLineNumbers: Boolean read FEnableLineNumbers write FEnableLineNumbers;
+    [IniValue('Options', 'EnableSelectionMode', False)]
+    property EnableSelectionMode: Boolean read FEnableSelectionMode write FEnableSelectionMode;
+    [IniValue('Options', 'EnableSpecialChars', False)]
+    property EnableSpecialChars: Boolean read FEnableSpecialChars write FEnableSpecialChars;
+    [IniValue('Options', 'EnableWordWrap', False)]
+    property EnableWordWrap: Boolean read FEnableWordWrap write FEnableWordWrap;
+    [IniValue('Options', 'FontName', 'Courier New')]
     property FontName: string read FFontName write FFontName;
-    property FontSize: Integer read FFontSize write FFontSize default 9;
-    property IgnoreBlanks: Boolean read FIgnoreBlanks write FIgnoreBlanks default True;
-    property IgnoreCase: Boolean read FIgnoreCase write FIgnoreCase default True;
-    property InsertCaret: TSynEditCaretType read FInsertCaret write FInsertCaret default ctVerticalLine;
-    property LineSpacing: Integer read FLineSpacing write FLineSpacing default 0;
+    [IniValue('Options', 'FontSize', '9')]
+    property FontSize: Integer read FFontSize write FFontSize;
+    [IniValue('Options', 'IgnoreBlanks', True)]
+    property IgnoreBlanks: Boolean read FIgnoreBlanks write FIgnoreBlanks;
+    [IniValue('Options', 'IgnoreCase', True)]
+    property IgnoreCase: Boolean read FIgnoreCase write FIgnoreCase;
+    [IniValue('Options', 'InsertCaret', '0')]
+    property InsertCaret: Integer read FInsertCaret write FInsertCaret;
+    [IniValue('Options', 'LineSpacing', '0')]
+    property LineSpacing: Integer read FLineSpacing write FLineSpacing;
+    [IniValue('Options', 'MainMenuFontName', 'Tahoma')]
     property MainMenuFontName: string read FMainMenuFontName write FMainMenuFontName;
-    property MainMenuFontSize: Integer read FMainMenuFontSize write FMainMenuFontSize default 8;
+    [IniValue('Options', 'MainMenuFontSize', '8')]
+    property MainMenuFontSize: Integer read FMainMenuFontSize write FMainMenuFontSize;
     property MainMenuSystemFontName: string read FMainMenuSystemFontName write FMainMenuSystemFontName;
     property MainMenuSystemFontSize: Integer read FMainMenuSystemFontSize write FMainMenuSystemFontSize;
-    property MainMenuUseSystemFont: Boolean read FMainMenuUseSystemFont write FMainMenuUseSystemFont default False;
+    [IniValue('Options', 'MainMenuUseSystemFont', False)]
+    property MainMenuUseSystemFont: Boolean read FMainMenuUseSystemFont write FMainMenuUseSystemFont;
+    [IniValue('Options', 'MarginFontName', 'Courier New')]
     property MarginFontName: string read FMarginFontName write FMarginFontName;
-    property MarginFontSize: Integer read FMarginFontSize write FMarginFontSize default 9;
+    [IniValue('Options', 'MarginFontSize', '9')]
+    property MarginFontSize: Integer read FMarginFontSize write FMarginFontSize;
+    [IniValue('Options', 'MarginInTens', True)]
     property MarginInTens: Boolean read FMarginInTens write FMarginInTens default True;
+    [IniValue('Options', 'MarginLeftMarginAutoSize', True)]
     property MarginLeftMarginAutoSize: Boolean read FMarginLeftMarginAutoSize write FMarginLeftMarginAutoSize default True;
+    [IniValue('Options', 'MarginLeftMarginWidth', '57')]
     property MarginLeftMarginWidth: Integer read FMarginLeftMarginWidth write FMarginLeftMarginWidth default 30;
+    [IniValue('Options', 'MarginLeftMarginMouseMove', True)]
     property MarginLeftMarginMouseMove: Boolean read FMarginLeftMarginMouseMove write FMarginLeftMarginMouseMove default True;
     property MarginLineModified: Boolean read FMarginLineModified write FMarginLineModified default False;
     property MarginModifiedColor: string read FMarginModifiedColor write FMarginModifiedColor;
@@ -297,7 +325,7 @@ type
     FOutputShowCloseButton: Boolean;
     FOutputShowImage: Boolean;
     FPHPVersion: TSynWebPhpVersion;
-    FShowSearchStringNotFound: Boolean;
+    //FShowSearchStringNotFound: Boolean;
     FShowXMLTree: Boolean;
     FSQLDialect: TSQLDialect;
     FSupportedFileExts: string;
@@ -372,7 +400,7 @@ type
 implementation
 
 uses
-  System.SysUtils, Vcl.Forms, Vcl.ComCtrls, Vcl.Graphics, Vcl.Menus, SynEditTypes, SynCompletionProposal,
+  System.SysUtils, Vcl.ComCtrls, Vcl.Graphics, Vcl.Menus, SynEditTypes, SynCompletionProposal,
   BCCommon.StringUtils, BCCommon.LanguageStrings, BigIni;
 
 {$ifdef ORABONE}
@@ -400,40 +428,15 @@ end;
 
 procedure TOptionsContainer.ReadIniFile;
 begin
+  TIniPersist.Load(GetIniFilename, Self);
+
   with TBigIniFile.Create(GetIniFilename) do
   try
     { Options }
     DeleteKey('Options', 'UseSystemFont'); { deprecated }
-    FAnimationDuration := StrToInt(ReadString('Options', 'AnimationDuration', '150'));
-    FAnimationStyle := TAnimationStyle(StrToInt(ReadString('Options', 'AnimationStyle', '1')));
-    FAutoIndent := ReadBool('Options', 'AutoIndent', True);
-    FAutoSave := ReadBool('Options', 'AutoSave', False);
-    FBeepIfSearchStringNotFound := ReadBool('Options', 'BeepIfSearchStringNotFound', True);
-    FColorBrightness := StrToInt(ReadString('Options', 'ActiveLineColorBrightness', '2'));
-    FCompletionProposalCaseSensitive := ReadBool('Options', 'CompletionProposalCaseSensitive', True);
-    FCompletionProposalEnabled := ReadBool('Options', 'CompletionProposalEnabled', True);
-    FCompletionProposalShortcut := ReadString('Options', 'CompletionProposalShortcut', 'Ctrl+Space');
-    FEnableLineNumbers := ReadBool('Options', 'EnableLineNumbers', True);
-    FEnableSelectionMode := ReadBool('Options', 'EnableSelectionMode', False);
-    FEnableSpecialChars := ReadBool('Options', 'EnableSpecialChars', False);
-    FEnableWordWrap := ReadBool('Options', 'EnableWordWrap', False);
-    FFontName := ReadString('Options', 'FontName', 'Courier New');
-    FFontSize := StrToInt(ReadString('Options', 'FontSize', '9'));
-    FIgnoreBlanks := ReadBool('Options', 'IgnoreBlanks', True);
-    FIgnoreCase := ReadBool('Options', 'IgnoreCase', True);
-    FInsertCaret := TSynEditCaretType(StrToInt(ReadString('Options', 'InsertCaret', '0')));
-    FLineSpacing := StrToInt(ReadString('Options', 'LineSpacing', '0'));
-    FMainMenuFontName := ReadString('Options', 'MainMenuFontName', 'Tahoma');
-    FMainMenuFontSize := StrToInt(ReadString('Options', 'MainMenuFontSize', '8'));
     FMainMenuSystemFontName := ReadString('Options', 'MainMenuSystemFontName', Screen.MenuFont.Name);
     FMainMenuSystemFontSize := StrToInt(ReadString('Options', 'MainMenuSystemFontSize', IntToStr(Screen.MenuFont.Size)));
-    FMainMenuUseSystemFont := ReadBool('Options', 'MainMenuUseSystemFont', False);
-    FMarginFontName := ReadString('Options', 'MarginFontName', 'Courier New');
-    FMarginFontSize := StrToInt(ReadString('Options', 'MarginFontSize', '9'));
-    FMarginInTens := ReadBool('Options', 'MarginInTens', True);
-    FMarginLeftMarginAutoSize := ReadBool('Options', 'MarginLeftMarginAutoSize', True);
-    FMarginLeftMarginMouseMove := ReadBool('Options', 'MarginLeftMarginMouseMove', True);
-    FMarginLeftMarginWidth := StrToInt(ReadString('Options', 'MarginLeftMarginWidth', '48'));
+
     FMarginLineModified := ReadBool('Options', 'MarginLineModified', True);
     FMarginModifiedColor := ReadString('Options', 'MarginModifiedColor', 'clYellow');
     FMarginNormalColor := ReadString('Options', 'MarginNormalColor', 'clGreen');
@@ -489,6 +492,8 @@ end;
 
 procedure TOptionsContainer.WriteIniFile;
 begin
+  TIniPersist.Save(GetIniFilename, Self);
+
   with TBigIniFile.Create(GetIniFilename) do
   try
     { Options }
@@ -588,7 +593,7 @@ begin
     TCustomSynEdit(Dest).Gutter.LineModifiedColor := StringToColor(FMarginModifiedColor);
     TCustomSynEdit(Dest).Gutter.LineNormalColor := StringToColor(FMarginNormalColor);
     TCustomSynEdit(Dest).TabWidth := FTabWidth;
-    TCustomSynEdit(Dest).InsertCaret := FInsertCaret;
+    TCustomSynEdit(Dest).InsertCaret := TSynEditCaretType(FInsertCaret);
     TCustomSynEdit(Dest).NonBlinkingCaretColor := StringToColor(FNonblinkingCaretColor);
     if FAutoIndent then
       TCustomSynEdit(Dest).Options := TCustomSynEdit(Dest).Options + [eoAutoIndent]
@@ -664,7 +669,7 @@ begin
       Screen.MenuFont.Name := FMainMenuFontName;
       Screen.MenuFont.Size := FMainMenuFontSize;
     end;
-    TActionMainMenuBar(Dest).AnimationStyle := FAnimationStyle;
+    TActionMainMenuBar(Dest).AnimationStyle := TAnimationStyle(FAnimationStyle);
     TActionMainMenuBar(Dest).AnimateDuration := FAnimationDuration;
   end
   else
@@ -1130,88 +1135,6 @@ var
   i: Integer;
 begin
   inherited;
-  FCompletionProposalShortcut := 'Ctrl+Space';
-  FDocDoubleBuffered := True;
-  FDocMultiLine := False;
-  FDocRightClickSelect := True;
-  FDocSaveTabs := True;
-  FDocShowCloseButton := False;
-  FDocShowImage := True;
-  FLineSpacing := 0;
-  FFontName := 'Courier New';
-  FFontSize := 9;
-  FMarginLeftMarginAutoSize := True;
-  FMarginFontName := 'Courier New';
-  FMarginFontSize := 9;
-  FMarginRightMargin := 80;
-  FMarginLeftMarginWidth := 30;
-  FMarginVisibleLeftMargin := True;
-  FMarginVisibleRightMargin := True;
-  FMarginInTens := True;
-  FMarginZeroStart := False;
-  FMarginLineModified := True;
-  FMarginModifiedColor := 'clYellow';
-  FMarginNormalColor := 'clGreen';
-  FMinimapFontSize := 2;
-  FMinimapFontName := 'Courier New';
-  FHTMLErrorChecking := True;
-  FHTMLVersion := shvHtml5;
-  FIgnoreBlanks := True;
-  FIgnoreCase := True;
-  FInsertCaret := ctVerticalLine;
-  FNonblinkingCaretColor := 'clBlack';
-  FMainMenuFontName := 'Tahoma';
-  FMainMenuFontSize := 8;
-  FMainMenuSystemFontName := Screen.MenuFont.Name;
-  FMainMenuSystemFontSize := Screen.MenuFont.Size;
-  FMainMenuUseSystemFont := False;
-  FOutputCloseTabByDblClick := False;
-  FOutputCloseTabByMiddleClick := False;
-  FOutputDoubleBuffered := True;
-  FOutputIndent := 20;
-  FOutputMultiLine := False;
-  FOutputRightClickSelect := True;
-  FOutputSaveTabs := True;
-  FOutputShowCloseButton := False;
-  FOutputShowImage := True;
-  FOutputShowtreeLines := False;
-  FPersistentHotKeys := False;
-  FPrintDateTime := 1;
-  FPrintDocumentName := 2;
-  FPrintPageNumber := 3;
-  FPrintPrintedBy := 0;
-  FPrintShowFooterLine := True;
-  FPrintShowHeaderLine := True;
-  FPrintShowLineNumbers := False;
-  FPrintWordWrapLine := False;
-  FScrollPastEof := False;
-  FScrollPastEol := True;
-  FShadows := True;
-  FShowSearchStringNotFound := True;
-  FShowXMLTree := False;
-  FSmartTabDelete := False;
-  FSmartTabs := False;
-  FStatusBarFontName := 'Tahoma';
-  FStatusBarFontSize := 8;
-  FStatusBarUseSystemFont := False;
-  FTabsToSpaces := True;
-  FTabWidth := 2;
-  FToolBarCase := True;
-  FToolBarCommand := True;
-  FToolBarDirectory := True;
-  FToolBarDocument := True;
-  FToolBarIndent := True;
-  FToolBarMacro := True;
-  FToolBarMode := True;
-  FToolBarPrint := True;
-  FToolBarSearch := True;
-  FToolBarSort := True;
-  FToolBarStandard := True;
-  FToolBarTools := True;
-  FTrimTrailingSpaces := True;
-  FTripleClickRowSelect := True;
-  FUndoAfterSave := False;
-
   FFileTypes := TStringList.Create;
   for i := 0 to 55 do
     FFileTypes.Add(LanguageDataModule.FileTypesMultiStringHolder.MultipleStrings.Items[i].Strings.Text);
