@@ -88,7 +88,6 @@ type
     FTripleClickRowSelect: Boolean;
     FUndoAfterSave: Boolean;
   public
-    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure AssignTo(Dest: TPersistent); override;
     procedure ReadIniFile; virtual;
@@ -145,61 +144,109 @@ type
     [IniValue('Options', 'MarginFontSize', '9')]
     property MarginFontSize: Integer read FMarginFontSize write FMarginFontSize;
     [IniValue('Options', 'MarginInTens', True)]
-    property MarginInTens: Boolean read FMarginInTens write FMarginInTens default True;
+    property MarginInTens: Boolean read FMarginInTens write FMarginInTens;
     [IniValue('Options', 'MarginLeftMarginAutoSize', True)]
-    property MarginLeftMarginAutoSize: Boolean read FMarginLeftMarginAutoSize write FMarginLeftMarginAutoSize default True;
+    property MarginLeftMarginAutoSize: Boolean read FMarginLeftMarginAutoSize write FMarginLeftMarginAutoSize;
     [IniValue('Options', 'MarginLeftMarginWidth', '57')]
-    property MarginLeftMarginWidth: Integer read FMarginLeftMarginWidth write FMarginLeftMarginWidth default 30;
+    property MarginLeftMarginWidth: Integer read FMarginLeftMarginWidth write FMarginLeftMarginWidth;
     [IniValue('Options', 'MarginLeftMarginMouseMove', True)]
-    property MarginLeftMarginMouseMove: Boolean read FMarginLeftMarginMouseMove write FMarginLeftMarginMouseMove default True;
-    property MarginLineModified: Boolean read FMarginLineModified write FMarginLineModified default False;
+    property MarginLeftMarginMouseMove: Boolean read FMarginLeftMarginMouseMove write FMarginLeftMarginMouseMove;
+    [IniValue('Options', 'MarginLineModified', True)]
+    property MarginLineModified: Boolean read FMarginLineModified write FMarginLineModified;
+    [IniValue('Options', 'MarginModifiedColor', 'clYellow')]
     property MarginModifiedColor: string read FMarginModifiedColor write FMarginModifiedColor;
+    [IniValue('Options', 'MarginNormalColor', 'clGreen')]
     property MarginNormalColor: string read FMarginNormalColor write FMarginNormalColor;
-    property MarginRightMargin: Integer read FMarginRightMargin write FMarginRightMargin default 80;
-    property MarginShowBookmarks: Boolean read FMarginShowBookmarks write FMarginShowBookmarks default True;
-    property MarginShowBookmarkPanel: Boolean read FMarginShowBookmarkPanel write FMarginShowBookmarkPanel default True;
-    property MarginVisibleLeftMargin: Boolean read FMarginVisibleLeftMargin write FMarginVisibleLeftMargin default True;
-    property MarginVisibleRightMargin: Boolean read FMarginVisibleRightMargin write FMarginVisibleRightMargin default True;
-    property MarginZeroStart: Boolean read FMarginZeroStart write FMarginZeroStart default False;
+    [IniValue('Options', 'RightMargin', '80')]
+    property MarginRightMargin: Integer read FMarginRightMargin write FMarginRightMargin;
+    [IniValue('Options', 'MarginShowBookmarks', True)]
+    property MarginShowBookmarks: Boolean read FMarginShowBookmarks write FMarginShowBookmarks;
+    [IniValue('Options', 'MarginShowBookmarkPanel', True)]
+    property MarginShowBookmarkPanel: Boolean read FMarginShowBookmarkPanel write FMarginShowBookmarkPanel;
+    [IniValue('Options', 'MarginVisibleLeftMargin', True)]
+    property MarginVisibleLeftMargin: Boolean read FMarginVisibleLeftMargin write FMarginVisibleLeftMargin;
+    [IniValue('Options', 'MarginVisibleRightMargin', True)]
+    property MarginVisibleRightMargin: Boolean read FMarginVisibleRightMargin write FMarginVisibleRightMargin;
+    [IniValue('Options', 'MarginZeroStart', False)]
+    property MarginZeroStart: Boolean read FMarginZeroStart write FMarginZeroStart;
+    [IniValue('Options', 'MinimapFontName', 'Courier New')]
     property MinimapFontName: string read FMinimapFontName write FMinimapFontName;
-    property MinimapFontSize: Integer read FMinimapFontSize write FMinimapFontSize default 2;
-    property MinimapWidth: Integer read FMinimapWidth write FMinimapWidth default 100;
-    property NonblinkingCaret: Boolean read FNonblinkingCaret write FNonblinkingCaret default False;
+    [IniValue('Options', 'MinimapFontSize', '1')]
+    property MinimapFontSize: Integer read FMinimapFontSize write FMinimapFontSize;
+    [IniValue('Options', 'MinimapWidth', '100')]
+    property MinimapWidth: Integer read FMinimapWidth write FMinimapWidth;
+    [IniValue('Options', 'NonblinkingCaret', False)]
+    property NonblinkingCaret: Boolean read FNonblinkingCaret write FNonblinkingCaret;
+    [IniValue('Options', 'NonblinkingCaretColor', 'clBlack')]
     property NonblinkingCaretColor: string read FNonblinkingCaretColor write FNonblinkingCaretColor;
-    property OutputIndent: Integer read FOutputIndent write FOutputIndent default 16;
-    property OutputShowTreeLines: Boolean read FOutputShowTreeLines write FOutputShowTreeLines default False;
-    property PersistentHotKeys: Boolean read FPersistentHotKeys write FPersistentHotKeys default False;
+    [IniValue('Options', 'OutputIndent', '20')]
+    property OutputIndent: Integer read FOutputIndent write FOutputIndent;
+    [IniValue('Options', 'OutputShowTreeLines', False)]
+    property OutputShowTreeLines: Boolean read FOutputShowTreeLines write FOutputShowTreeLines ;
+    [IniValue('Options', 'PersistentHotKeys', False)]
+    property PersistentHotKeys: Boolean read FPersistentHotKeys write FPersistentHotKeys;
+    [IniValue('Options', 'PrintDateTime', '1')]
     property PrintDateTime: Integer read FPrintDateTime write FPrintDateTime;
+    [IniValue('Options', 'PrintDocumentName', '2')]
     property PrintDocumentName: Integer read FPrintDocumentName write FPrintDocumentName;
+    [IniValue('Options', 'PrintPageNumber', '3')]
     property PrintPageNumber: Integer read FPrintPageNumber write FPrintPageNumber;
+    [IniValue('Options', 'PrintPrintedBy', '0')]
     property PrintPrintedBy: Integer read FPrintPrintedBy write FPrintPrintedBy;
+    [IniValue('Options', 'PrintShowFooterLine', True)]
     property PrintShowFooterLine: Boolean read FPrintShowFooterLine write FPrintShowFooterLine;
+    [IniValue('Options', 'PrintShowHeaderLine', True)]
     property PrintShowHeaderLine: Boolean read FPrintShowHeaderLine write FPrintShowHeaderLine;
+    [IniValue('Options', 'PrintShowLineNumbers', False)]
     property PrintShowLineNumbers: Boolean read FPrintShowLineNumbers write FPrintShowLineNumbers;
+    [IniValue('Options', 'PrintWordWrapLine', False)]
     property PrintWordWrapLine: Boolean read FPrintWordWrapLine write FPrintWordWrapLine;
-    property ScrollPastEof: Boolean read FScrollPastEof write FScrollPastEof default False;
-    property ScrollPastEol: Boolean read FScrollPastEol write FScrollPastEol default True;
-    property Shadows: Boolean read FShadows write FShadows default True;
-    property ShowSearchStringNotFound: Boolean read FShowSearchStringNotFound write FShowSearchStringNotFound default True;
-    property SmartTabDelete: Boolean read FSmartTabDelete write FSmartTabDelete default False;
-    property SmartTabs: Boolean read FSmartTabs write FSmartTabs default False;
+    [IniValue('Options', 'ScrollPastEof', False)]
+    property ScrollPastEof: Boolean read FScrollPastEof write FScrollPastEof;
+    [IniValue('Options', 'ScrollPastEol', True)]
+    property ScrollPastEol: Boolean read FScrollPastEol write FScrollPastEol;
+    [IniValue('Options', 'Shadows', True)]
+    property Shadows: Boolean read FShadows write FShadows;
+    [IniValue('Options', 'ShowSearchStringNotFound', True)]
+    property ShowSearchStringNotFound: Boolean read FShowSearchStringNotFound write FShowSearchStringNotFound;
+    [IniValue('Options', 'SmartTabDelete', False)]
+    property SmartTabDelete: Boolean read FSmartTabDelete write FSmartTabDelete;
+    [IniValue('Options', 'SmartTabs', False)]
+    property SmartTabs: Boolean read FSmartTabs write FSmartTabs;
+    [IniValue('Options', 'StatusBarFontName', 'Tahoma')]
     property StatusBarFontName: string read FStatusBarFontName write FStatusBarFontName;
-    property StatusBarFontSize: Integer read FStatusBarFontSize write FStatusBarFontSize default 8;
-    property StatusBarUseSystemFont: Boolean read FStatusBarUseSystemFont write FStatusBarUseSystemFont default False;
-    property TabsToSpaces: Boolean read FTabsToSpaces write FTabsToSpaces default True;
-    property TabWidth: Integer read FTabWidth write FTabWidth default 8;
-    property ToolBarCase: Boolean read FToolBarCase write FToolBarCase default True;
-    property ToolBarCommand: Boolean read FToolBarCommand write FToolBarCommand default True;
-    property ToolBarPrint: Boolean read FToolBarPrint write FToolBarPrint default True;
-    property ToolBarIndent: Boolean read FToolBarIndent write FToolBarIndent default True;
-    property ToolBarStandard: Boolean read FToolBarStandard write FToolBarStandard default True;
-    property ToolBarMode: Boolean read FToolBarMode write FToolBarMode default True;
-    property ToolBarSearch: Boolean read FToolBarSearch write FToolBarSearch default True;
-    property ToolBarSort: Boolean read FToolBarSort write FToolBarSort default True;
-    property ToolBarTools: Boolean read FToolBarTools write FToolBarTools default True;
-    property TrimTrailingSpaces: Boolean read FTrimTrailingSpaces write FTrimTrailingSpaces default True;
-    property TripleClickRowSelect: Boolean read FTripleClickRowSelect write FTripleClickRowSelect default True;
-    property UndoAfterSave: Boolean read FUndoAfterSave write FUndoAfterSave default False;
+    [IniValue('Options', 'StatusBarFontSize', '8')]
+    property StatusBarFontSize: Integer read FStatusBarFontSize write FStatusBarFontSize;
+    [IniValue('Options', 'StatusBarUseSystemFont', False)]
+    property StatusBarUseSystemFont: Boolean read FStatusBarUseSystemFont write FStatusBarUseSystemFont;
+    [IniValue('Options', 'TabsToSpaces', True)]
+    property TabsToSpaces: Boolean read FTabsToSpaces write FTabsToSpaces;
+    [IniValue('Options', 'TabWidth', '2')]
+    property TabWidth: Integer read FTabWidth write FTabWidth;
+    [IniValue('ActionToolBar', 'Case', True)]
+    property ToolBarCase: Boolean read FToolBarCase write FToolBarCase;
+    [IniValue('ActionToolBar', 'Command', True)]
+    property ToolBarCommand: Boolean read FToolBarCommand write FToolBarCommand;
+    [IniValue('ActionToolBar', 'Print', True)]
+    property ToolBarPrint: Boolean read FToolBarPrint write FToolBarPrint;
+    [IniValue('ActionToolBar', 'Indent', True)]
+    property ToolBarIndent: Boolean read FToolBarIndent write FToolBarIndent;
+    [IniValue('ActionToolBar', 'Standard', True)]
+    property ToolBarStandard: Boolean read FToolBarStandard write FToolBarStandard;
+    [IniValue('ActionToolBar', 'Mode', True)]
+    property ToolBarMode: Boolean read FToolBarMode write FToolBarMode;
+    [IniValue('ActionToolBar', 'Search', True)]
+    property ToolBarSearch: Boolean read FToolBarSearch write FToolBarSearch;
+    [IniValue('ActionToolBar', 'Sort', True)]
+    property ToolBarSort: Boolean read FToolBarSort write FToolBarSort;
+    [IniValue('ActionToolBar', 'Tools', True)]
+    property ToolBarTools: Boolean read FToolBarTools write FToolBarTools;
+    [IniValue('Options', 'TrimTrailingSpaces', True)]
+    property TrimTrailingSpaces: Boolean read FTrimTrailingSpaces write FTrimTrailingSpaces;
+    [IniValue('Options', 'TripleClickRowSelect', True)]
+    property TripleClickRowSelect: Boolean read FTripleClickRowSelect write FTripleClickRowSelect;
+    [IniValue('Options', 'UnfoAfterSave', False)]
+    property UndoAfterSave: Boolean read FUndoAfterSave write FUndoAfterSave;
   end;
 
   {$ifdef ORABONE}
@@ -241,45 +288,78 @@ type
     FToolBarExplainPlan: Boolean;
     FToolBarTransaction: Boolean;
   public
-    constructor Create(AOwner: TComponent); override;
-    procedure ReadIniFile; override;
     procedure WriteIniFile; override;
   published
-    property ConnectionCloseTabByDblClick: Boolean read FConnectionCloseTabByDblClick write FConnectionCloseTabByDblClick default False;
-    property ConnectionCloseTabByMiddleClick: Boolean read FConnectionCloseTabByMiddleClick write FConnectionCloseTabByMiddleClick default False;
-    property ConnectionDoubleBuffered: Boolean read FConnectionDoubleBuffered write FConnectionDoubleBuffered default True;
-    property ConnectionMultiLine: Boolean read FConnectionMultiLine write FConnectionMultiLine default False;
-    property ConnectionRightClickSelect: Boolean read FConnectionRightClickSelect write FConnectionRightClickSelect default True;
-    property ConnectionShowCloseButton: Boolean read FConnectionShowCloseButton write FConnectionShowCloseButton default False;
-    property ConnectionShowImage: Boolean read FConnectionShowImage write FConnectionShowImage default True;
+    [IniValue('Options', 'ConnectionCloseTabByDblClick', False)]
+    property ConnectionCloseTabByDblClick: Boolean read FConnectionCloseTabByDblClick write FConnectionCloseTabByDblClick;
+    [IniValue('Options', 'ConnectionCloseTabByMiddleClick', False)]
+    property ConnectionCloseTabByMiddleClick: Boolean read FConnectionCloseTabByMiddleClick write FConnectionCloseTabByMiddleClick;
+    [IniValue('Options', 'ConnectionDoubleBuffered', True)]
+    property ConnectionDoubleBuffered: Boolean read FConnectionDoubleBuffered write FConnectionDoubleBuffered;
+    [IniValue('Options', 'ConnectionMultiLine', False)]
+    property ConnectionMultiLine: Boolean read FConnectionMultiLine write FConnectionMultiLine;
+    [IniValue('Options', 'ConnectionRightClickSelect', True)]
+    property ConnectionRightClickSelect: Boolean read FConnectionRightClickSelect write FConnectionRightClickSelect;
+    [IniValue('Options', 'ConnectionShowCloseButton', False)]
+    property ConnectionShowCloseButton: Boolean read FConnectionShowCloseButton write FConnectionShowCloseButton;
+    [IniValue('Options', 'ConnectionShowImage', True)]
+    property ConnectionShowImage: Boolean read FConnectionShowImage write FConnectionShowImage;
+    [IniValue('Options', 'DateFormat', 'DD.MM.YYYY')]
     property DateFormat: string read FDateFormat write FDateFormat;
-    property EditorCloseTabByDblClick: Boolean read FEditorCloseTabByDblClick write FEditorCloseTabByDblClick default False;
-    property EditorCloseTabByMiddleClick: Boolean read FEditorCloseTabByMiddleClick write FEditorCloseTabByMiddleClick  default False;
-    property EditorDoubleBuffered: Boolean read FEditorDoubleBuffered write FEditorDoubleBuffered default True;
-    property EditorMultiLine: Boolean read FEditorMultiLine write FEditorMultiLine default False;
-    property EditorRightClickSelect: Boolean read FEditorRightClickSelect write FEditorRightClickSelect default True;
-    property EditorShowCloseButton: Boolean read FEditorShowCloseButton write FEditorShowCloseButton default False;
-    property EditorShowImage: Boolean read FEditorShowImage write FEditorShowImage default True;
-    property FilterOnTyping: Boolean read FFilterOnTyping write FFilterOnTyping default True;
+    [IniValue('Options', 'EditorCloseTabByDblClick', False)]
+    property EditorCloseTabByDblClick: Boolean read FEditorCloseTabByDblClick write FEditorCloseTabByDblClick;
+    [IniValue('Options', 'EditorCloseTabByMiddleClick', False)]
+    property EditorCloseTabByMiddleClick: Boolean read FEditorCloseTabByMiddleClick write FEditorCloseTabByMiddleClick;
+    [IniValue('Options', 'EditorDoubleBuffered', True)]
+    property EditorDoubleBuffered: Boolean read FEditorDoubleBuffered write FEditorDoubleBuffered;
+    [IniValue('Options', 'EditorMultiLine', False)]
+    property EditorMultiLine: Boolean read FEditorMultiLine write FEditorMultiLine;
+    [IniValue('Options', 'EditorRightClickSelect', True)]
+    property EditorRightClickSelect: Boolean read FEditorRightClickSelect write FEditorRightClickSelect;
+    [IniValue('Options', 'EditorShowCloseButton', False)]
+    property EditorShowCloseButton: Boolean read FEditorShowCloseButton write FEditorShowCloseButton;
+    [IniValue('Options', 'EditorShowImage', True)]
+    property EditorShowImage: Boolean read FEditorShowImage write FEditorShowImage;
+    [IniValue('Options', 'FilterOnTyping', True)]
+    property FilterOnTyping: Boolean read FFilterOnTyping write FFilterOnTyping;
+    [IniValue('Options', 'ObjectFrameAlign', 'Bottom')]
     property ObjectFrameAlign: string read FObjectFrameAlign write FObjectFrameAlign;
-    property OutputCloseTabByDblClick: Boolean read FOutputCloseTabByDblClick write FOutputCloseTabByDblClick default False;
-    property OutputCloseTabByMiddleClick: Boolean read FOutputCloseTabByMiddleClick write FOutputCloseTabByMiddleClick default False;
-    property OutputDoubleBuffered: Boolean read FOutputDoubleBuffered write FOutputDoubleBuffered default True;
-    property OutputMultiLine: Boolean read FOutputMultiLine write FOutputMultiLine default False;
-    property OutputRightClickSelect: Boolean read FOutputRightClickSelect write FOutputRightClickSelect default True;
-    property OutputShowCloseButton: Boolean read FOutputShowCloseButton write FOutputShowCloseButton default False;
-    property OutputShowImage: Boolean read FOutputShowImage write FOutputShowImage default True;
-    property PollingInterval: Integer read FPollingInterval write FPollingInterval default 1;
+    [IniValue('Options', 'OutputCloseTabByDblClick', False)]
+    property OutputCloseTabByDblClick: Boolean read FOutputCloseTabByDblClick write FOutputCloseTabByDblClick;
+    [IniValue('Options', 'OutputCloseTabByMiddleClick', False)]
+    property OutputCloseTabByMiddleClick: Boolean read FOutputCloseTabByMiddleClick write FOutputCloseTabByMiddleClick;
+    [IniValue('Options', 'OutputDoubleBuffered', True)]
+    property OutputDoubleBuffered: Boolean read FOutputDoubleBuffered write FOutputDoubleBuffered;
+    [IniValue('Options', 'OutputMultiLine', False)]
+    property OutputMultiLine: Boolean read FOutputMultiLine write FOutputMultiLine;
+    [IniValue('Options', 'OutputRightClickSelect', True)]
+    property OutputRightClickSelect: Boolean read FOutputRightClickSelect write FOutputRightClickSelect;
+    [IniValue('Options', 'OutputShowCloseButton', False)]
+    property OutputShowCloseButton: Boolean read FOutputShowCloseButton write FOutputShowCloseButton;
+    [IniValue('Options', 'OutputShowImage', True)]
+    property OutputShowImage: Boolean read FOutputShowImage write FOutputShowImage;
+    [IniValue('Options', 'PollingInterval', '1')]
+    property PollingInterval: Integer read FPollingInterval write FPollingInterval;
+    [IniValue('Options', 'SchemaBrowserAlign', 'Bottom')]
     property SchemaBrowserAlign: string read FSchemaBrowserAlign write FSchemaBrowserAlign;
-    property SchemaBrowserIndent: Integer read FSchemaBrowserIndent write FSchemaBrowserIndent default 16;
-    property SchemaBrowserShowTreeLines: Boolean read FSchemaBrowserShowTreeLines write FSchemaBrowserShowTreeLines default False;
-    property ShowDataSearchPanel: Boolean read FShowDataSearchPanel write FShowDataSearchPanel default True;
-    property ShowObjectCreationAndModificationTimestamp: Boolean read FShowObjectCreationAndModificationTimestamp write FShowObjectCreationAndModificationTimestamp default False;
+    [IniValue('Options', 'SchemaBrowserIndent', '16')]
+    property SchemaBrowserIndent: Integer read FSchemaBrowserIndent write FSchemaBrowserIndent;
+    [IniValue('Options', 'SchemaBrowserShowTreeLines', False)]
+    property SchemaBrowserShowTreeLines: Boolean read FSchemaBrowserShowTreeLines write FSchemaBrowserShowTreeLines;
+    [IniValue('Options', 'ShowDataSearchPanel', True)]
+    property ShowDataSearchPanel: Boolean read FShowDataSearchPanel write FShowDataSearchPanel;
+    [IniValue('Options', 'ShowObjectCreationAndModificationTimestamp', False)]
+    property ShowObjectCreationAndModificationTimestamp: Boolean read FShowObjectCreationAndModificationTimestamp write FShowObjectCreationAndModificationTimestamp;
+    [IniValue('Options', 'TimeFormat', 'HH24:MI:SS')]
     property TimeFormat: string read FTimeFormat write FTimeFormat;
-    property ToolBarDBMS: Boolean read FToolBarDBMS write FToolBarDBMS default True;
-    property ToolBarExecute: Boolean read FToolBarExecute write FToolBarExecute default True;
-    property ToolBarExplainPlan: Boolean read FToolBarExplainPlan write FToolBarExplainPlan default True;
-    property ToolBarTransaction: Boolean read FToolBarTransaction write FToolBarTransaction default True;
+    [IniValue('Options', 'ToolBarDBMS', True)]
+    property ToolBarDBMS: Boolean read FToolBarDBMS write FToolBarDBMS;
+    [IniValue('Options', 'ToolBarExecute', True)]
+    property ToolBarExecute: Boolean read FToolBarExecute write FToolBarExecute;
+    [IniValue('Options', 'ToolBarExplainPlan', True)]
+    property ToolBarExplainPlan: Boolean read FToolBarExplainPlan write FToolBarExplainPlan;
+    [IniValue('Options', 'ToolBarTransaction', True)]
+    property ToolBarTransaction: Boolean read FToolBarTransaction write FToolBarTransaction;
   end;
 
   function OptionsContainer: TOraBoneOptionsContainer;
@@ -344,53 +424,94 @@ type
     function SupportedFileExts(Refresh: Boolean = False): string;
     procedure AssignTo(Dest: TPersistent); override;
     procedure ReadIniFile; override;
-    procedure WriteIniFile; override;
   published
+    [IniValue('Options', 'CPASHighlighter', '0')]
     property CPASHighlighter: TCPASHighlighter read FCPASHighlighter write FCPASHighlighter;
+    [IniValue('Options', 'CSSVersion', '2')]
     property CSSVersion: TSynWebCssVersion read FCSSVersion write FCSSVersion;
+    [IniValue('Options', 'DefaultEncoding', '1')]
     property DefaultEncoding: Integer read FDefaultEncoding write FDefaultEncoding;
+    [IniValue('Options', 'DefaultHighlighter', '52')]
     property DefaultHighlighter: Integer read FDefaultHighlighter write FDefaultHighlighter;
-    property DirCloseTabByDblClick: Boolean read FDirCloseTabByDblClick write FDirCloseTabByDblClick default False;
-    property DirCloseTabByMiddleClick: Boolean read FDirCloseTabByMiddleClick write FDirCloseTabByMiddleClick default False;
-    property DirDoubleBuffered: Boolean read FDirDoubleBuffered write FDirDoubleBuffered default True;
-    property DirIndent: Integer read FDirIndent write FDirIndent default 20;
-    property DirMultiLine: Boolean read FDirMultiLine write FDirMultiLine default False;
-    property DirRightClickSelect: Boolean read FDirRightClickSelect write FDirRightClickSelect default True;
-    property DirSaveTabs: Boolean read FDirSaveTabs write FDirSaveTabs default True;
-    property DirShowArchiveFiles: Boolean read FDirShowArchiveFiles write FDirShowArchiveFiles default True;
-    property DirShowCloseButton: Boolean read FDirShowCloseButton write FDirShowCloseButton default False;
-    property DirShowHiddenFiles: Boolean read FDirShowHiddenFiles write FDirShowHiddenFiles default False;
-    property DirShowImage: Boolean read FDirShowImage write FDirShowImage default True;
-    property DirShowSystemFiles: Boolean read FDirShowSystemFiles write FDirShowSystemFiles default False;
-    property DirShowTreeLines: Boolean read FDirShowTreeLines write FDirShowTreeLines default False;
-    property DocCloseTabByDblClick: Boolean read FDocCloseTabByDblClick write FDocCloseTabByDblClick default False;
-    property DocCloseTabByMiddleClick: Boolean read FDocCloseTabByMiddleClick write FDocCloseTabByMiddleClick default False;
-    property DocDoubleBuffered: Boolean read FDocDoubleBuffered write FDocDoubleBuffered default True;
+    [IniValue('Options', 'DirCloseTabByDblClick', False)]
+    property DirCloseTabByDblClick: Boolean read FDirCloseTabByDblClick write FDirCloseTabByDblClick;
+    [IniValue('Options', 'DirCloseTabByMiddleClick', False)]
+    property DirCloseTabByMiddleClick: Boolean read FDirCloseTabByMiddleClick write FDirCloseTabByMiddleClick;
+    [IniValue('Options', 'DirDoubleBuffered', True)]
+    property DirDoubleBuffered: Boolean read FDirDoubleBuffered write FDirDoubleBuffered;
+    [IniValue('Options', 'DirIndent', '20')]
+    property DirIndent: Integer read FDirIndent write FDirIndent;
+    [IniValue('Options', 'DirMultiLine', False)]
+    property DirMultiLine: Boolean read FDirMultiLine write FDirMultiLine;
+    [IniValue('Options', 'DirRightClickSelect', True)]
+    property DirRightClickSelect: Boolean read FDirRightClickSelect write FDirRightClickSelect;
+    [IniValue('Options', 'DirSaveTabs', True)]
+    property DirSaveTabs: Boolean read FDirSaveTabs write FDirSaveTabs;
+    [IniValue('Options', 'DirShowArchiveFiles', True)]
+    property DirShowArchiveFiles: Boolean read FDirShowArchiveFiles write FDirShowArchiveFiles;
+    [IniValue('Options', 'DirShowCloseButton', False)]
+    property DirShowCloseButton: Boolean read FDirShowCloseButton write FDirShowCloseButton;
+    [IniValue('Options', 'DirShowHiddenFiles', False)]
+    property DirShowHiddenFiles: Boolean read FDirShowHiddenFiles write FDirShowHiddenFiles;
+    [IniValue('Options', 'DirShowImage', True)]
+    property DirShowImage: Boolean read FDirShowImage write FDirShowImage;
+    [IniValue('Options', 'DirShowSystemFiles', False)]
+    property DirShowSystemFiles: Boolean read FDirShowSystemFiles write FDirShowSystemFiles;
+    [IniValue('Options', 'DirShowTreeLines', False)]
+    property DirShowTreeLines: Boolean read FDirShowTreeLines write FDirShowTreeLines;
+    [IniValue('Options', 'DocCloseTabByDblClick', False)]
+    property DocCloseTabByDblClick: Boolean read FDocCloseTabByDblClick write FDocCloseTabByDblClick;
+    [IniValue('Options', 'DocCloseTabByMiddleClick', False)]
+    property DocCloseTabByMiddleClick: Boolean read FDocCloseTabByMiddleClick write FDocCloseTabByMiddleClick;
+    [IniValue('Options', 'DocDoubleBuffered', True)]
+    property DocDoubleBuffered: Boolean read FDocDoubleBuffered write FDocDoubleBuffered;
+    [IniValue('Options', 'DocMultiLine', False)]
     property DocMultiLine: Boolean read FDocMultiLine write FDocMultiLine;
+    [IniValue('Options', 'DocRightClickSelect', True)]
     property DocRightClickSelect: Boolean read FDocRightClickSelect write FDocRightClickSelect;
+    [IniValue('Options', 'DocSaveTabs', True)]
     property DocSaveTabs: Boolean read FDocSaveTabs write FDocSaveTabs;
+    [IniValue('Options', 'DocShowCloseButton', False)]
     property DocShowCloseButton: Boolean read FDocShowCloseButton write FDocShowCloseButton;
+    [IniValue('Options', 'DocShowImage', True)]
     property DocShowImage: Boolean read FDocShowImage write FDocShowImage;
     property Extensions: string read GetExtensions;
     property FileTypes: TStrings read FFileTypes write FFileTypes;
     property FilterCount: Cardinal read GetFilterCount;
     property Filters: string read GetFilters;
+    [IniValue('Options', 'HTMLErrorChecking', True)]
     property HTMLErrorChecking: Boolean read FHTMLErrorChecking write FHTMLErrorChecking;
+    [IniValue('Options', 'HTMLVersion', '4')]
     property HTMLVersion: TSynWebHtmlVersion read FHTMLVersion write FHTMLVersion;
+    [IniValue('Options', 'OutputCloseTabByDblClick', False)]
     property OutputCloseTabByDblClick: Boolean read FOutputCloseTabByDblClick write FOutputCloseTabByDblClick;
+    [IniValue('Options', 'OutputCloseTabByMiddleClick', False)]
     property OutputCloseTabByMiddleClick: Boolean read FOutputCloseTabByMiddleClick write FOutputCloseTabByMiddleClick;
+    [IniValue('Options', 'OutputDoubleBuffered', True)]
     property OutputDoubleBuffered: Boolean read FOutputDoubleBuffered write FOutputDoubleBuffered;
+    [IniValue('Options', 'OutputMultiLine', False)]
     property OutputMultiLine: Boolean read FOutputMultiLine write FOutputMultiLine;
+    [IniValue('Options', 'OutputRightClickSelect', True)]
     property OutputRightClickSelect: Boolean read FOutputRightClickSelect write FOutputRightClickSelect;
+    [IniValue('Options', 'OutputSaveTabs', True)]
     property OutputSaveTabs: Boolean read FOutputSaveTabs write FOutputSaveTabs;
+    [IniValue('Options', 'OutputShowCloseButton', False)]
     property OutputShowCloseButton: Boolean read FOutputShowCloseButton write FOutputShowCloseButton;
+    [IniValue('Options', 'OutputShowImage', True)]
     property OutputShowImage: Boolean read FOutputShowImage write FOutputShowImage;
+    [IniValue('Options', 'PHPVersion', '1')]
     property PHPVersion: TSynWebPhpVersion read FPHPVersion write FPHPVersion;
+    [IniValue('Options', 'ShowXMLTree', True)]
     property ShowXMLTree: Boolean read FShowXMLTree write FShowXMLTree;
+    [IniValue('Options', 'SQLDialect', '0')]
     property SQLDialect: TSQLDialect read FSQLDialect write FSQLDialect;
+    [IniValue('ActionToolBar', 'Directory', True)]
     property ToolBarDirectory: Boolean read FToolBarDirectory write FToolBarDirectory;
+    [IniValue('ActionToolBar', 'Document', True)]
     property ToolBarDocument: Boolean read FToolBarDocument write FToolBarDocument;
+    [IniValue('ActionToolBar', 'Macro', True)]
     property ToolBarMacro: Boolean read FToolBarMacro write FToolBarMacro;
+    [IniValue('Options', 'ToolBarVisible', True)]
     property ToolBarVisible: Boolean read FToolBarVisible write FToolBarVisible;
   end;
 
@@ -432,59 +553,9 @@ begin
 
   with TBigIniFile.Create(GetIniFilename) do
   try
-    { Options }
-    DeleteKey('Options', 'UseSystemFont'); { deprecated }
+    { OS-dependent options }
     FMainMenuSystemFontName := ReadString('Options', 'MainMenuSystemFontName', Screen.MenuFont.Name);
     FMainMenuSystemFontSize := StrToInt(ReadString('Options', 'MainMenuSystemFontSize', IntToStr(Screen.MenuFont.Size)));
-
-    FMarginLineModified := ReadBool('Options', 'MarginLineModified', True);
-    FMarginModifiedColor := ReadString('Options', 'MarginModifiedColor', 'clYellow');
-    FMarginNormalColor := ReadString('Options', 'MarginNormalColor', 'clGreen');
-    FMarginRightMargin := StrToInt(ReadString('Options', 'RightMargin', '80'));
-    FMarginShowBookmarks := ReadBool('Options', 'MarginShowBookmarks', True);
-    FMarginShowBookmarkPanel := ReadBool('Options', 'MarginShowBookmarkPanel', True);
-    FMarginVisibleLeftMargin := ReadBool('Options', 'MarginVisibleLeftMargin', True);
-    FMarginVisibleRightMargin := ReadBool('Options', 'MarginVisibleRightMargin', True);
-    FMarginZeroStart := ReadBool('Options', 'MarginZeroStart', False);
-    FMinimapFontName :=  ReadString('Options', 'MinimapFontName', 'Courier New');
-    FMinimapFontSize :=  StrToInt(ReadString('Options', 'MinimapFontSize', '1'));
-    FMinimapWidth :=  StrToInt(ReadString('Options', 'MinimapWidth', '100'));
-    FNonblinkingCaret := ReadBool('Options', 'NonblinkingCaret', False);
-    FNonblinkingCaretColor := ReadString('Options', 'NonblinkingCaretColor', 'clBlack');
-    FOutputIndent := StrToInt(ReadString('Options', 'OutputIndent', '20'));
-    FOutputShowTreeLines:= ReadBool('Options', 'OutputShowTreeLines', False);
-    FPersistentHotKeys := ReadBool('Options', 'PersistentHotKeys', False);
-    FPrintDateTime :=  StrToInt(ReadString('Options', 'PrintDateTime', '1'));
-    FPrintDocumentName := StrToInt(ReadString('Options', 'PrintDocumentName', '2'));
-    FPrintPageNumber := StrToInt(ReadString('Options', 'PrintPageNumber', '3'));
-    FPrintPrintedBy := StrToInt(ReadString('Options', 'PrintPrintedBy', '0'));
-    FPrintShowFooterLine := ReadBool('Options', 'PrintShowFooterLine', True);
-    FPrintShowHeaderLine := ReadBool('Options', 'PrintShowHeaderLine', True);
-    FPrintShowLineNumbers := ReadBool('Options', 'PrintShowLineNumbers', False);
-    FPrintWordWrapLine := ReadBool('Options', 'PrintWordWrapLine', False);
-    FScrollPastEof := ReadBool('Options', 'ScrollPastEof', False);
-    FScrollPastEol := ReadBool('Options', 'ScrollPastEol', True);
-    FShadows := ReadBool('Options', 'Shadows', True);
-    FShowSearchStringNotFound := ReadBool('Options', 'ShowSearchStringNotFound', True);
-    FSmartTabDelete := ReadBool('Options', 'SmartTabDelete', False);
-    FSmartTabs := ReadBool('Options', 'SmartTabs', False);
-    FStatusBarFontName := ReadString('Options', 'StatusBarFontName', 'Tahoma');
-    FStatusBarFontSize := StrToInt(ReadString('Options', 'StatusBarFontSize', '8'));
-    FStatusBarUseSystemFont := ReadBool('Options', 'StatusBarUseSystemFont', False);
-    FTabsToSpaces := ReadBool('Options', 'TabsToSpaces', True);
-    FTabWidth := StrToInt(ReadString('Options', 'TabWidth', '2'));
-    FTrimTrailingSpaces := ReadBool('Options', 'TrimTrailingSpaces', True);
-    FTripleClickRowSelect := ReadBool('Options', 'TripleClickRowSelect', True);
-    FUndoAfterSave := ReadBool('Options', 'UnfoAfterSave', False);
-    FToolBarStandard := ReadBool('ActionToolBar', 'Standard', True);
-    FToolBarPrint := ReadBool('ActionToolBar', 'Print', True);
-    FToolBarIndent := ReadBool('ActionToolBar', 'Indent', True);
-    FToolBarSort := ReadBool('ActionToolBar', 'Sort', True);
-    FToolBarCase := ReadBool('ActionToolBar', 'Case', True);
-    FToolBarCommand := ReadBool('ActionToolBar', 'Command', True);
-    FToolBarSearch := ReadBool('ActionToolBar', 'Search', True);
-    FToolBarMode := ReadBool('ActionToolBar', 'Mode', True);
-    FToolBarTools := ReadBool('ActionToolBar', 'Tools', True);
   finally
     Free;
   end;
@@ -492,84 +563,20 @@ end;
 
 procedure TOptionsContainer.WriteIniFile;
 begin
-  TIniPersist.Save(GetIniFilename, Self);
-
   with TBigIniFile.Create(GetIniFilename) do
   try
-    { Options }
-    DeleteKey('Options', 'ExtraLineSpacing'); { deprecated }
+    { deprecated options }
+    DeleteKey('Options', 'ExtraLineSpacing');
     DeleteKey('Options', 'MarginAutoSize');
     DeleteKey('Options', 'MarginWidth');
     DeleteKey('Options', 'MarginVisible');
     DeleteKey('Options', 'MinimapFontFactor');
-    WriteBool('Options', 'AutoIndent', FAutoIndent);
-    WriteBool('Options', 'AutoSave', FAutoSave);
-    WriteBool('Options', 'BeepIfSearchStringNotFound', FBeepIfSearchStringNotFound);
-    WriteBool('Options', 'CompletionProposalCaseSensitive', FCompletionProposalCaseSensitive);
-    WriteBool('Options', 'CompletionProposalEnabled', FCompletionProposalEnabled);
-    WriteBool('Options', 'IgnoreBlanks', FIgnoreBlanks);
-    WriteBool('Options', 'IgnoreCase', FIgnoreCase);
-    WriteBool('Options', 'MainMenuUseSystemFont', FMainMenuUseSystemFont);
-    WriteBool('Options', 'MarginInTens', FMarginInTens);
-    WriteBool('Options', 'MarginLeftMarginAutoSize', FMarginLeftMarginAutoSize);
-    WriteBool('Options', 'MarginLeftMarginMouseMove', FMarginLeftMarginMouseMove);
-    WriteBool('Options', 'MarginLineModified', FMarginLineModified);
-    WriteBool('Options', 'MarginShowBookmarks', FMarginShowBookmarks);
-    WriteBool('Options', 'MarginShowBookmarkPanel', FMarginShowBookmarkPanel);
-    WriteBool('Options', 'MarginVisibleLeftMargin', FMarginVisibleLeftMargin);
-    WriteBool('Options', 'MarginVisibleRightMargin', FMarginVisibleRightMargin);
-    WriteBool('Options', 'MarginZeroStart', FMarginZeroStart);
-    WriteBool('Options', 'NonblinkingCaret', FNonblinkingCaret);
-    WriteBool('Options', 'OutputShowTreeLines', FOutputShowTreeLines);
-    WriteBool('Options', 'PersistentHotKeys', FPersistentHotKeys);
-    WriteBool('Options', 'PrintShowFooterLine', FPrintShowFooterLine);
-    WriteBool('Options', 'PrintShowHeaderLine', FPrintShowHeaderLine);
-    WriteBool('Options', 'PrintShowLineNumbers', FPrintShowLineNumbers);
-    WriteBool('Options', 'PrintWordWrapLine', FPrintWordWrapLine);
-    WriteBool('Options', 'ScrollPastEof', FScrollPastEof);
-    WriteBool('Options', 'ScrollPastEol', FScrollPastEol);
-    WriteBool('Options', 'Shadows', FShadows);
-    WriteBool('Options', 'ShowSearchStringNotFound', FShowSearchStringNotFound);
-    WriteBool('Options', 'SmartTabDelete', FSmartTabDelete);
-    WriteBool('Options', 'SmartTabs', FSmartTabs);
-    WriteBool('Options', 'StatusBarUseSystemFont', FStatusBarUseSystemFont);
-    WriteBool('Options', 'TabsToSpaces', FTabsToSpaces);
-    WriteBool('Options', 'TrimTrailingSpaces', FTrimTrailingSpaces);
-    WriteBool('Options', 'TripleClickRowSelect', FTripleClickRowSelect);
-    WriteBool('Options', 'UndoAfterSave', FUndoAfterSave);
-    WriteString('Options', 'ActiveLineColorBrightness', IntToStr(FColorBrightness));
-    WriteString('Options', 'AnimationDuration', IntToStr(FAnimationDuration));
-    WriteString('Options', 'AnimationStyle', IntToStr(Ord(FAnimationStyle)));
-    WriteString('Options', 'CompletionProposalShortcut', FCompletionProposalShortcut);
-    WriteString('Options', 'FontName', FFontName);
-    WriteString('Options', 'FontSize', IntToStr(FFontSize));
-    WriteString('Options', 'InsertCaret', IntToStr(Ord(FInsertCaret)));
-    WriteString('Options', 'LineSpacing', IntToStr(FLineSpacing));
-    WriteString('Options', 'MainMenuFontName', FMainMenuFontName);
-    WriteString('Options', 'MainMenuFontSize', IntToStr(FMainMenuFontSize));
-    WriteString('Options', 'MainMenuSystemFontName', FMainMenuSystemFontName);
-    WriteString('Options', 'MainMenuSystemFontSize', IntToStr(FMainMenuSystemFontSize));
-    WriteString('Options', 'MarginFontName', FMarginFontName);
-    WriteString('Options', 'MarginFontSize', IntToStr(FMarginFontSize));
-    WriteString('Options', 'MarginLeftMarginWidth', IntToStr(FMarginLeftMarginWidth));
-    WriteString('Options', 'MarginModifiedColor', FMarginModifiedColor);
-    WriteString('Options', 'MarginNormalColor', FMarginNormalColor);
-    WriteString('Options', 'MinimapFontName', FMinimapFontName);
-    WriteString('Options', 'MinimapFontSize', IntToStr(FMinimapFontSize));
-    WriteString('Options', 'MinimapWidth', IntToStr(FMinimapWidth));
-    WriteString('Options', 'NonblinkingCaretColor', FNonblinkingCaretColor);
-    WriteString('Options', 'OutputIndent', IntToStr(FOutputIndent));
-    WriteString('Options', 'PrintDateTime', IntToStr(FPrintDateTime));
-    WriteString('Options', 'PrintDocumentName', IntToStr(FPrintDocumentName));
-    WriteString('Options', 'PrintPageNumber', IntToStr(FPrintPageNumber));
-    WriteString('Options', 'PrintPrintedBy', IntToStr(FPrintPrintedBy));
-    WriteString('Options', 'RightMargin', IntToStr(FMarginRightMargin));
-    WriteString('Options', 'StatusBarFontName', FStatusBarFontName);
-    WriteString('Options', 'StatusBarFontSize', IntToStr(FStatusBarFontSize));
-    WriteString('Options', 'TabWidth', IntToStr(FTabWidth));
+    DeleteKey('Options', 'UseSystemFont');
   finally
     Free;
   end;
+
+  TIniPersist.Save(GetIniFilename, Self);
 end;
 
 procedure TOptionsContainer.AssignTo(Dest: TPersistent);
@@ -699,22 +706,6 @@ begin
     inherited;
 end;
 
-constructor TOptionsContainer.Create(AOwner: TComponent);
-begin
-  inherited;
-  { default values }
-  FCompletionProposalShortCut := 'Ctrl+Space';
-  FFontName := 'Courier New';
-  FNonblinkingCaretColor := 'clBlack';
-  FMainMenuFontName := 'Tahoma';
-  FMainMenuSystemFontName := Screen.MenuFont.Name;
-  FMainMenuSystemFontSize := Screen.MenuFont.Size;
-  FMarginFontName := 'Courier New';
-  FMarginModifiedColor := 'clYellow';
-  FMarginNormalColor := 'clGreen';
-  FStatusBarFontName := 'Tahoma';
-end;
-
 destructor TOptionsContainer.Destroy;
 begin
   FOptionsContainer := nil;
@@ -724,117 +715,22 @@ end;
 { TOraBoneOptionsContainer }
 
 {$ifdef ORABONE}
-constructor TOraBoneOptionsContainer.Create(AOwner: TComponent);
-begin
-  inherited;
-  { default values }
-  FCompletionProposalShortCut := 'Ctrl+Space';
-  FDateFormat := 'DD.MM.YYYY';
-  FFontName := 'Courier New';
-  FNonblinkingCaretColor := 'clBlack';
-  FMainMenuFontName := 'Tahoma';
-  FMainMenuSystemFontName := Screen.MenuFont.Name;
-  FMainMenuSystemFontSize := Screen.MenuFont.Size;
-  FMarginFontName := 'Courier New';
-  FMarginModifiedColor := 'clYellow';
-  FMarginNormalColor := 'clGreen';
-  FObjectFrameAlign := 'Bottom';
-  FSchemaBrowserAlign := 'Bottom';
-  FStatusBarFontName := 'Tahoma';
-  FTimeFormat := 'HH24:MI:SS';
-end;
-
-procedure TOraBoneOptionsContainer.ReadIniFile;
-begin
-  inherited;
-  with TBigIniFile.Create(GetINIFilename) do
-  try
-    { Options }
-    FConnectionCloseTabByDblClick := ReadBool('Options', 'ConnectionCloseTabByDblClick', False);
-    FConnectionCloseTabByMiddleClick := ReadBool('Options', 'ConnectionCloseTabByMiddleClick', False);
-    FConnectionMultiLine := ReadBool('Options', 'ConnectionMultiLine', False);
-    FConnectionDoubleBuffered := ReadBool('Options', 'ConnectionDoubleBuffered', True);
-    FConnectionShowCloseButton := ReadBool('Options', 'ConnectionShowCloseButton', False);
-    FConnectionRightClickSelect := ReadBool('Options', 'ConnectionRightClickSelect', True);
-    FConnectionShowImage := ReadBool('Options', 'ConnectionShowImage', True);
-    FEditorCloseTabByDblClick := ReadBool('Options', 'EditorCloseTabByDblClick', False);
-    FEditorCloseTabByMiddleClick := ReadBool('Options', 'EditorCloseTabByMiddleClick', False);
-    FEditorMultiLine := ReadBool('Options', 'EditorMultiLine', False);
-    FEditorDoubleBuffered := ReadBool('Options', 'EditorDoubleBuffered', True);
-    FEditorShowCloseButton := ReadBool('Options', 'EditorShowCloseButton', False);
-    FEditorRightClickSelect := ReadBool('Options', 'EditorRightClickSelect', True);
-    FEditorShowImage := ReadBool('Options', 'EditorShowImage', True);
-    FOutputCloseTabByDblClick := ReadBool('Options', 'OutputCloseTabByDblClick', False);
-    FOutputCloseTabByMiddleClick := ReadBool('Options', 'OutputCloseTabByMiddleClick', False);
-    FOutputMultiLine := ReadBool('Options', 'OutputMultiLine', False);
-    FOutputDoubleBuffered := ReadBool('Options', 'OutputDoubleBuffered', True);
-    FOutputShowCloseButton := ReadBool('Options', 'OutputShowCloseButton', False);
-    FOutputRightClickSelect := ReadBool('Options', 'OutputRightClickSelect', True);
-    FOutputShowImage := ReadBool('Options', 'OutputShowImage', True);
-    FPollingInterval := ReadInteger('Options', 'PollingInterval', 1);
-    FDateFormat := ReadString('Options', 'DateFormat', 'DD.MM.YYYY');
-    FTimeFormat := ReadString('Options', 'TimeFormat', 'HH24:MI:SS');
-    FSchemaBrowserAlign := ReadString('Options', 'SchemaBrowserAlign', 'Bottom');
-    FSchemaBrowserShowTreeLines:= ReadBool('Options', 'SchemaBrowserShowTreeLines', False);
-    FSchemaBrowserIndent := StrToInt(ReadString('Options', 'SchemaBrowserIndent', '16'));
-    FObjectFrameAlign := ReadString('Options', 'ObjectFrameAlign', 'Bottom');
-    FShowObjectCreationAndModificationTimestamp := ReadBool('Options', 'ShowObjectCreationAndModificationTimestamp',
-      ReadBool('Options', 'ObjectCreationAndModificationTimestamp', False));
-    DeleteKey('Options', 'ObjectCreationAndModificationTimestamp'); { deprecated }
-    FShowDataSearchPanel := ReadBool('Options', 'ShowDataSearchPanel', True);
-    FFilterOnTyping := ReadBool('Options', 'FilterOnTyping', True);
-  finally
-    Free;
-  end;
-end;
-
 procedure TOraBoneOptionsContainer.WriteIniFile;
 begin
   inherited;
   with TBigIniFile.Create(GetINIFilename) do
   try
-    WriteBool('Options', 'EditorCloseTabByDblClick', FEditorCloseTabByDblClick);
-    WriteBool('Options', 'EditorCloseTabByMiddleClick', FEditorCloseTabByMiddleClick);
-    WriteBool('Options', 'EditorMultiLine', FEditorMultiLine);
-    WriteBool('Options', 'EditorDoubleBuffered', FEditorDoubleBuffered);
-    WriteBool('Options', 'EditorShowCloseButton', FEditorShowCloseButton);
-    WriteBool('Options', 'EditorRightClickSelect', FEditorRightClickSelect);
-    WriteBool('Options', 'EditorShowImage', FEditorShowImage);
-    WriteBool('Options', 'ConnectionCloseTabByDblClick', FConnectionCloseTabByDblClick);
-    WriteBool('Options', 'ConnectionCloseTabByMiddleClick', FConnectionCloseTabByMiddleClick);
-    WriteBool('Options', 'ConnectionMultiLine', FConnectionMultiLine);
-    WriteBool('Options', 'ConnectionDoubleBuffered', FConnectionDoubleBuffered);
-    WriteBool('Options', 'ConnectionShowCloseButton', FConnectionShowCloseButton);
-    WriteBool('Options', 'ConnectionRightClickSelect', FConnectionRightClickSelect);
-    WriteBool('Options', 'ConnectionShowImage', FConnectionShowImage);
-    WriteBool('Options', 'OutputCloseTabByDblClick', FOutputCloseTabByDblClick);
-    WriteBool('Options', 'OutputCloseTabByMiddleClick', FOutputCloseTabByMiddleClick);
-    WriteBool('Options', 'OutputMultiLine', FOutputMultiLine);
-    WriteBool('Options', 'OutputDoubleBuffered', FOutputDoubleBuffered);
-    WriteBool('Options', 'OutputShowCloseButton', FOutputShowCloseButton);
-    WriteBool('Options', 'OutputRightClickSelect', FOutputRightClickSelect);
-    WriteBool('Options', 'OutputShowImage', FOutputShowImage);
-    WriteString('Options', 'PollingInterval', IntToStr(FPollingInterval));
-    WriteString('Options', 'DateFormat', FDateFormat);
-    WriteString('Options', 'TimeFormat', FTimeFormat);
-    WriteString('Options', 'SchemaBrowserAlign', FSchemaBrowserAlign);
-    WriteBool('Options', 'SchemaBrowserShowTreeLines', FSchemaBrowserShowTreeLines);
-    WriteString('Options', 'SchemaBrowserIndent', IntToStr(FSchemaBrowserIndent));
-    WriteString('Options', 'ObjectFrameAlign', FObjectFrameAlign);
-    WriteBool('Options', 'ShowObjectCreationAndModificationTimestamp', FShowObjectCreationAndModificationTimestamp);
-    WriteBool('Options', 'ShowDataSearchPanel', FShowDataSearchPanel);
-    WriteBool('Options', 'FilterOnTyping', FFilterOnTyping);
-    DeleteKey('Options', 'MarginLineNumbers'); { deprecated }
+    { deprecated }
+    DeleteKey('Options', 'MarginLineNumbers');
+    DeleteKey('Options', 'ObjectCreationAndModificationTimestamp');
   finally
     Free
   end;
 end;
-
 {$endif}
 
 { TEditBoneOptionsContainer }
 {$ifdef EDITBONE}
-
 procedure TEditBoneOptionsContainer.ReadIniFile;
 var
   i, j: Integer;
@@ -845,39 +741,6 @@ begin
   FileTypes := TStringList.Create;
   with TBigIniFile.Create(GetIniFilename) do
   try
-    { Options }
-    FDirCloseTabByDblClick := ReadBool('Options', 'DirCloseTabByDblClick', False);
-    FDirCloseTabByMiddleClick := ReadBool('Options', 'DirCloseTabByMiddleClick', False);
-    FDirDoubleBuffered := ReadBool('Options', 'DirDoubleBuffered', True);
-    FDirIndent := StrToInt(ReadString('Options', 'DirIndent', '20'));
-    FDirMultiLine := ReadBool('Options', 'DirMultiLine', False);
-    FDirRightClickSelect := ReadBool('Options', 'DirRightClickSelect', True);
-    FDirSaveTabs:= ReadBool('Options', 'DirSaveTabs', True);
-    FDirShowArchiveFiles:= ReadBool('Options', 'DirShowArchiveFiles', True);
-    FDirShowCloseButton := ReadBool('Options', 'DirShowCloseButton', False);
-    FDirShowHiddenFiles:= ReadBool('Options', 'DirShowHiddenFiles', False);
-    FDirShowImage := ReadBool('Options', 'DirShowImage', True);
-    FDirShowSystemFiles:= ReadBool('Options', 'DirShowSystemFiles', False);
-    FDirShowTreeLines:= ReadBool('Options', 'DirShowTreeLines', False);
-    FDocCloseTabByDblClick := ReadBool('Options', 'DocCloseTabByDblClick', False);
-    FDocCloseTabByMiddleClick := ReadBool('Options', 'DocCloseTabByMiddleClick', False);
-    FDocDoubleBuffered := ReadBool('Options', 'DocDoubleBuffered', True);
-    FDocMultiLine := ReadBool('Options', 'DocMultiLine', False);
-    FDocRightClickSelect := ReadBool('Options', 'DocRightClickSelect', True);
-    FDocSaveTabs:= ReadBool('Options', 'DocSaveTabs', True);
-    FDocShowCloseButton := ReadBool('Options', 'DocShowCloseButton', False);
-    FDocShowImage := ReadBool('Options', 'DocShowImage', True);
-    FHTMLErrorChecking := ReadBool('Options', 'HTMLErrorChecking', True);
-    FHtmlVersion := TSynWebHtmlVersion(StrToInt(ReadString('Options', 'HTMLVersion', '4'))); { default: HTML5 }
-    FOutputCloseTabByDblClick := ReadBool('Options', 'OutputCloseTabByDblClick', False);
-    FOutputCloseTabByMiddleClick := ReadBool('Options', 'OutputCloseTabByMiddleClick', False);
-    FOutputDoubleBuffered := ReadBool('Options', 'OutputDoubleBuffered', True);
-    FOutputMultiLine := ReadBool('Options', 'OutputMultiLine', False);
-    FOutputRightClickSelect := ReadBool('Options', 'OutputRightClickSelect', True);
-    FOutputSaveTabs:= ReadBool('Options', 'OutputSaveTabs', True);
-    FOutputShowCloseButton := ReadBool('Options', 'OutputShowCloseButton', False);
-    FOutputShowImage := ReadBool('Options', 'OutputShowImage', True);
-    FShowXMLTree := ReadBool('Options', 'ShowXMLTree', True);
     { FileTypes }
     ReadSectionValues('FileTypes', FileTypes);
     for i := 0 to FileTypes.Count - 1 do
@@ -893,66 +756,8 @@ begin
           Break;
         end;
     end;
-    FSQLDialect := TSQLDialect(StrToInt(ReadString('Options', 'SQLDialect', '0')));
-    FCPASHighlighter := TCPASHighlighter(StrToInt(ReadString('Options', 'CPASHighlighter', '0')));
-    FCSSVersion := TSynWebCssVersion(StrToInt(ReadString('Options', 'CSSVersion', '2')));
-    FPHPVersion := TSynWebPhpVersion(StrToInt(ReadString('Options', 'PHPVersion', '1')));
-    FDefaultEncoding := StrToInt(ReadString('Options', 'DefaultEncoding', '1'));
-    FDefaultHighlighter := StrToInt(ReadString('Options', 'DefaultHighlighter', '52'));
-    { Tool Bar }
-    FToolBarDirectory := ReadBool('ActionToolBar', 'Directory', True);
-    FToolBarMacro := ReadBool('ActionToolBar', 'Macro', True);
-    FToolBarDocument := ReadBool('ActionToolBar', 'Document', True);
   finally
     FileTypes.Free;
-    Free;
-  end;
-end;
-
-procedure TEditBoneOptionsContainer.WriteIniFile;
-begin
-  inherited;
-  with TBigIniFile.Create(GetIniFilename) do
-  try
-    { Options }
-    WriteBool('Options', 'DirCloseTabByDblClick', FDirCloseTabByDblClick);
-    WriteBool('Options', 'DirCloseTabByMiddleClick', FDirCloseTabByMiddleClick);
-    WriteBool('Options', 'DirDoubleBuffered', FDirDoubleBuffered);
-    WriteBool('Options', 'DirMultiLine', FDirMultiLine);
-    WriteBool('Options', 'DirRightClickSelect', FDirRightClickSelect);
-    WriteBool('Options', 'DirSaveTabs', FDirSaveTabs);
-    WriteBool('Options', 'DirShowArchiveFiles', FDirShowArchiveFiles);
-    WriteBool('Options', 'DirShowCloseButton', FDirShowCloseButton);
-    WriteBool('Options', 'DirShowHiddenFiles', FDirShowHiddenFiles);
-    WriteBool('Options', 'DirShowImage', FDirShowImage);
-    WriteBool('Options', 'DirShowSystemFiles', FDirShowSystemFiles);
-    WriteBool('Options', 'DirShowTreeLines', FDirShowTreeLines);
-    WriteBool('Options', 'DocCloseTabByDblClick', FDocCloseTabByDblClick);
-    WriteBool('Options', 'DocCloseTabByMiddleClick', FDocCloseTabByMiddleClick);
-    WriteBool('Options', 'DocDoubleBuffered', FDocDoubleBuffered);
-    WriteBool('Options', 'DocMultiLine', FDocMultiLine);
-    WriteBool('Options', 'DocRightClickSelect', FDocRightClickSelect);
-    WriteBool('Options', 'DocSaveTabs', FDocSaveTabs);
-    WriteBool('Options', 'DocShowCloseButton', FDocShowCloseButton);
-    WriteBool('Options', 'DocShowImage', FDocShowImage);
-    WriteBool('Options', 'HTMLErrorChecking', FHTMLErrorChecking);
-    WriteBool('Options', 'OutputCloseTabByDblClick', FOutputCloseTabByDblClick);
-    WriteBool('Options', 'OutputCloseTabByMiddleClick', FOutputCloseTabByMiddleClick);
-    WriteBool('Options', 'OutputDoubleBuffered', FOutputDoubleBuffered);
-    WriteBool('Options', 'OutputMultiLine', FOutputMultiLine);
-    WriteBool('Options', 'OutputRightClickSelect', FOutputRightClickSelect);
-    WriteBool('Options', 'OutputSaveTabs', FOutputSaveTabs);
-    WriteBool('Options', 'OutputShowCloseButton', FOutputShowCloseButton);
-    WriteBool('Options', 'OutputShowImage', FOutputShowImage);
-    WriteString('Options', 'DirIndent', IntToStr(FDirIndent));
-    WriteString('Options', 'HTMLVersion', IntToStr(Ord(FHtmlVersion)));
-    WriteString('Options', 'SQLDialect', IntToStr(Ord(FSQLDialect)));
-    WriteString('Options', 'CPASHighlighter', IntToStr(Ord(FCPASHighlighter)));
-    WriteString('Options', 'CSSVersion', IntToStr(Ord(FCSSVersion)));
-    WriteString('Options', 'PHPVersion', IntToStr(Ord(FPHPVersion)));
-    WriteString('Options', 'DefaultEncoding', IntToStr(FDefaultEncoding));
-    WriteString('Options', 'DefaultHighlighter', IntToStr(FDefaultHighlighter));
-  finally
     Free;
   end;
 end;
