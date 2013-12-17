@@ -368,8 +368,8 @@ type
   {$ifdef EDITBONE}
   TEditBoneOptionsContainer = class(TOptionsContainer)
   private
-    FCPASHighlighter: TCPASHighlighter;
-    FCSSVersion: TSynWebCssVersion;
+    FCPASHighlighter: Integer;
+    FCSSVersion: Integer;
     FDefaultEncoding: Integer;
     FDefaultHighlighter: Integer;
     FDirCloseTabByDblClick: Boolean;
@@ -395,7 +395,7 @@ type
     FDocShowImage: Boolean;
     FFileTypes: TStrings;
     FHTMLErrorChecking: Boolean;
-    FHTMLVersion: TSynWebHtmlVersion;
+    FHTMLVersion: Integer;
     FOutputCloseTabByDblClick: Boolean;
     FOutputCloseTabByMiddleClick: Boolean;
     FOutputDoubleBuffered: Boolean;
@@ -404,10 +404,9 @@ type
     FOutputSaveTabs: Boolean;
     FOutputShowCloseButton: Boolean;
     FOutputShowImage: Boolean;
-    FPHPVersion: TSynWebPhpVersion;
-    //FShowSearchStringNotFound: Boolean;
+    FPHPVersion: Integer;
     FShowXMLTree: Boolean;
-    FSQLDialect: TSQLDialect;
+    FSQLDialect: Integer;
     FSupportedFileExts: string;
     FToolBarDirectory: Boolean;
     FToolBarDocument: Boolean;
@@ -426,9 +425,9 @@ type
     procedure ReadIniFile; override;
   published
     [IniValue('Options', 'CPASHighlighter', '0')]
-    property CPASHighlighter: TCPASHighlighter read FCPASHighlighter write FCPASHighlighter;
+    property CPASHighlighter: Integer read FCPASHighlighter write FCPASHighlighter;
     [IniValue('Options', 'CSSVersion', '2')]
-    property CSSVersion: TSynWebCssVersion read FCSSVersion write FCSSVersion;
+    property CSSVersion: Integer read FCSSVersion write FCSSVersion;
     [IniValue('Options', 'DefaultEncoding', '1')]
     property DefaultEncoding: Integer read FDefaultEncoding write FDefaultEncoding;
     [IniValue('Options', 'DefaultHighlighter', '52')]
@@ -482,7 +481,7 @@ type
     [IniValue('Options', 'HTMLErrorChecking', True)]
     property HTMLErrorChecking: Boolean read FHTMLErrorChecking write FHTMLErrorChecking;
     [IniValue('Options', 'HTMLVersion', '4')]
-    property HTMLVersion: TSynWebHtmlVersion read FHTMLVersion write FHTMLVersion;
+    property HTMLVersion: Integer read FHTMLVersion write FHTMLVersion;
     [IniValue('Options', 'OutputCloseTabByDblClick', False)]
     property OutputCloseTabByDblClick: Boolean read FOutputCloseTabByDblClick write FOutputCloseTabByDblClick;
     [IniValue('Options', 'OutputCloseTabByMiddleClick', False)]
@@ -500,11 +499,11 @@ type
     [IniValue('Options', 'OutputShowImage', True)]
     property OutputShowImage: Boolean read FOutputShowImage write FOutputShowImage;
     [IniValue('Options', 'PHPVersion', '1')]
-    property PHPVersion: TSynWebPhpVersion read FPHPVersion write FPHPVersion;
+    property PHPVersion: Integer read FPHPVersion write FPHPVersion;
     [IniValue('Options', 'ShowXMLTree', True)]
     property ShowXMLTree: Boolean read FShowXMLTree write FShowXMLTree;
     [IniValue('Options', 'SQLDialect', '0')]
-    property SQLDialect: TSQLDialect read FSQLDialect write FSQLDialect;
+    property SQLDialect: Integer read FSQLDialect write FSQLDialect;
     [IniValue('ActionToolBar', 'Directory', True)]
     property ToolBarDirectory: Boolean read FToolBarDirectory write FToolBarDirectory;
     [IniValue('ActionToolBar', 'Document', True)]
@@ -1015,12 +1014,12 @@ begin
   begin
     if TCustomSynEdit(Dest).Highlighter is TSynWebHtmlSyn then
     begin
-      TSynWebHtmlSyn(TCustomSynEdit(Dest).Highlighter).Engine.Options.HtmlVersion := FHTMLVersion;
-      TSynWebHtmlSyn(TCustomSynEdit(Dest).Highlighter).Engine.Options.CssVersion := FCSSVersion;
-      TSynWebHtmlSyn(TCustomSynEdit(Dest).Highlighter).Engine.Options.PhpVersion := FPHPVersion;
+      TSynWebHtmlSyn(TCustomSynEdit(Dest).Highlighter).Engine.Options.HtmlVersion := TSynWebHtmlVersion(FHTMLVersion);
+      TSynWebHtmlSyn(TCustomSynEdit(Dest).Highlighter).Engine.Options.CssVersion := TSynWebCssVersion(FCSSVersion);
+      TSynWebHtmlSyn(TCustomSynEdit(Dest).Highlighter).Engine.Options.PhpVersion := TSynWebPhpVersion(FPHPVersion);
     end;
     if TCustomSynEdit(Dest).Highlighter is TSynSQLSyn then
-      TSynSQLSyn(TCustomSynEdit(Dest).Highlighter).SQLDialect := FSQLDialect;
+      TSynSQLSyn(TCustomSynEdit(Dest).Highlighter).SQLDialect := TSQLDialect(FSQLDialect);
   end;
 end;
 {$endif}
