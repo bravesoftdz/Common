@@ -1,15 +1,15 @@
 object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
   Left = 0
   Top = 0
-  Width = 451
-  Height = 302
+  Width = 556
+  Height = 516
   Align = alClient
   TabOrder = 0
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 451
-    Height = 302
+    Width = 556
+    Height = 516
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -67,7 +67,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object AutoIndentCheckBox: TBCCheckBox
       Left = 9
       Top = 6
-      Width = 201
+      Width = 300
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
@@ -82,7 +82,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object TrimTrailingSpacesCheckBox: TBCCheckBox
       Left = 9
       Top = 166
-      Width = 201
+      Width = 300
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
@@ -97,7 +97,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object ScrollPastEofCheckBox: TBCCheckBox
       Left = 9
       Top = 66
-      Width = 201
+      Width = 300
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
@@ -110,7 +110,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object ScrollPastEolCheckBox: TBCCheckBox
       Left = 9
       Top = 86
-      Width = 198
+      Width = 300
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
@@ -170,7 +170,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object TabsToSpacesCheckBox: TBCCheckBox
       Left = 9
       Top = 146
-      Width = 198
+      Width = 300
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
@@ -185,7 +185,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object AutoSaveCheckBox: TBCCheckBox
       Left = 9
       Top = 26
-      Width = 201
+      Width = 300
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
@@ -214,7 +214,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object UndoAfterSaveCheckBox: TBCCheckBox
       Left = 9
       Top = 206
-      Width = 201
+      Width = 300
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
@@ -227,7 +227,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object SmartTabsCheckBox: TBCCheckBox
       Left = 9
       Top = 106
-      Width = 201
+      Width = 300
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
@@ -240,7 +240,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object SmartTabDeleteCheckBox: TBCCheckBox
       Left = 9
       Top = 126
-      Width = 201
+      Width = 300
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
@@ -253,7 +253,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object TripleClickRowSelectCheckBox: TBCCheckBox
       Left = 9
       Top = 186
-      Width = 201
+      Width = 300
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
@@ -268,7 +268,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object NonblinkingCaretCheckBox: TBCCheckBox
       Left = 9
       Top = 46
-      Width = 198
+      Width = 300
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
@@ -281,7 +281,7 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object NonblinkingCaretColorBox: TColorBox
       Left = 9
       Top = 416
-      Width = 133
+      Width = 200
       Height = 22
       Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor, cbPrettyNames]
       DoubleBuffered = True
