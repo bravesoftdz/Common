@@ -289,11 +289,6 @@ object LanguageDataModule: TLanguageDataModule
           'Search for '#39#39'%s'#39#39)
       end
       item
-        Name = 'SearchInProgress'
-        Strings.Strings = (
-          'Search in progress...')
-      end
-      item
         Name = 'Second'
         Strings.Strings = (
           's')
@@ -742,6 +737,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'SNameWindowText'
         Strings.Strings = (
           'Window Text')
+      end
+      item
+        Name = 'AutoSave'
+        Strings.Strings = (
+          'Auto Save')
       end>
     Left = 88
     Top = 254

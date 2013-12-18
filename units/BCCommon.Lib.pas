@@ -11,6 +11,7 @@ const
   CHR_TAB = '  ';
 
   BONECODE_URL = 'http://www.bonecode.com';
+  DONATION_URL = 'https://www.paypal.com/fi/cgi-bin/webscr?cmd=_flow&SESSION=R9MHB-wVKm9gDjeSLRLKnuzFBfGcOfgm2ed7KcoWOC7q0zZTwApthVwWB7q&dispatch=5885d80a13c0db1f8e263663d3faee8def8934b92a630e40b7fef61ab7e9fe63';
 
   OUTPUT_FILE_SEPARATOR = '@#/%&';
 
