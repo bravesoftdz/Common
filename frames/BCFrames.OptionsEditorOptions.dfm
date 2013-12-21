@@ -1,21 +1,19 @@
 object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
   Left = 0
   Top = 0
-  Width = 451
-  Height = 489
-  Align = alClient
+  Width = 304
+  Height = 432
   TabOrder = 0
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 451
-    Height = 489
-    Align = alClient
+    Width = 304
+    Height = 432
     BevelOuter = bvNone
     TabOrder = 0
     object LineSpacingLabel: TLabel
-      Left = 11
-      Top = 229
+      Left = 6
+      Top = 223
       Width = 59
       Height = 13
       Margins.Left = 4
@@ -25,8 +23,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Caption = 'Line Spacing'
     end
     object TabWidthLabel: TLabel
-      Left = 11
-      Top = 269
+      Left = 6
+      Top = 263
       Width = 49
       Height = 13
       Margins.Left = 4
@@ -36,8 +34,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Caption = 'Tab Width'
     end
     object ActiveLineColorBrightnessLabel: TLabel
-      Left = 11
-      Top = 309
+      Left = 6
+      Top = 303
       Width = 133
       Height = 13
       Margins.Left = 4
@@ -47,15 +45,15 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Caption = 'Active Line Color Brightness'
     end
     object InsertCaretLabel: TLabel
-      Left = 11
-      Top = 357
+      Left = 6
+      Top = 351
       Width = 59
       Height = 13
       Caption = 'Insert Caret'
     end
     object NonblinkingCaretColorLabel: TLabel
-      Left = 11
-      Top = 400
+      Left = 6
+      Top = 394
       Width = 116
       Height = 13
       Margins.Left = 4
@@ -65,8 +63,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Caption = 'Non-blinking Caret Color'
     end
     object AutoIndentCheckBox: TBCCheckBox
-      Left = 9
-      Top = 6
+      Left = 4
+      Top = 0
       Width = 300
       Height = 21
       Margins.Left = 4
@@ -80,8 +78,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object TrimTrailingSpacesCheckBox: TBCCheckBox
-      Left = 9
-      Top = 166
+      Left = 4
+      Top = 160
       Width = 300
       Height = 21
       Margins.Left = 4
@@ -95,8 +93,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object ScrollPastEofCheckBox: TBCCheckBox
-      Left = 9
-      Top = 66
+      Left = 4
+      Top = 60
       Width = 300
       Height = 21
       Margins.Left = 4
@@ -108,8 +106,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object ScrollPastEolCheckBox: TBCCheckBox
-      Left = 9
-      Top = 86
+      Left = 4
+      Top = 80
       Width = 300
       Height = 21
       Margins.Left = 4
@@ -123,14 +121,15 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object LineSpacingEdit: TBCEdit
-      Left = 9
-      Top = 244
+      Left = 4
+      Top = 238
       Width = 64
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      AutoSize = False
       TabOrder = 11
       Text = '0'
       EnterToTab = False
@@ -141,14 +140,15 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       NumbersAllowNegative = False
     end
     object TabWidthEdit: TBCEdit
-      Left = 9
-      Top = 284
+      Left = 4
+      Top = 278
       Width = 64
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      AutoSize = False
       TabOrder = 12
       Text = '2'
       EnterToTab = False
@@ -159,8 +159,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       NumbersAllowNegative = False
     end
     object BrightnessTrackBar: TTrackBar
-      Left = 4
-      Top = 324
+      Left = 0
+      Top = 318
       Width = 150
       Height = 27
       Min = 1
@@ -168,8 +168,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       TabOrder = 13
     end
     object TabsToSpacesCheckBox: TBCCheckBox
-      Left = 9
-      Top = 146
+      Left = 4
+      Top = 140
       Width = 300
       Height = 21
       Margins.Left = 4
@@ -183,8 +183,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object AutoSaveCheckBox: TBCCheckBox
-      Left = 9
-      Top = 26
+      Left = 4
+      Top = 20
       Width = 300
       Height = 21
       Margins.Left = 4
@@ -196,8 +196,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object InsertCaretComboBox: TBCComboBox
-      Left = 9
-      Top = 373
+      Left = 4
+      Top = 367
       Width = 133
       Height = 21
       Margins.Left = 4
@@ -212,8 +212,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       DropDownFixedWidth = 0
     end
     object UndoAfterSaveCheckBox: TBCCheckBox
-      Left = 9
-      Top = 206
+      Left = 4
+      Top = 200
       Width = 300
       Height = 21
       Margins.Left = 4
@@ -225,8 +225,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object SmartTabsCheckBox: TBCCheckBox
-      Left = 9
-      Top = 106
+      Left = 4
+      Top = 100
       Width = 300
       Height = 21
       Margins.Left = 4
@@ -238,8 +238,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object SmartTabDeleteCheckBox: TBCCheckBox
-      Left = 9
-      Top = 126
+      Left = 4
+      Top = 120
       Width = 300
       Height = 21
       Margins.Left = 4
@@ -251,8 +251,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object TripleClickRowSelectCheckBox: TBCCheckBox
-      Left = 9
-      Top = 186
+      Left = 4
+      Top = 180
       Width = 300
       Height = 21
       Margins.Left = 4
@@ -266,8 +266,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object NonblinkingCaretCheckBox: TBCCheckBox
-      Left = 9
-      Top = 46
+      Left = 4
+      Top = 40
       Width = 300
       Height = 21
       Margins.Left = 4
@@ -279,8 +279,8 @@ object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object NonblinkingCaretColorBox: TColorBox
-      Left = 9
-      Top = 416
+      Left = 4
+      Top = 410
       Width = 200
       Height = 22
       Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor, cbPrettyNames]

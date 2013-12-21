@@ -1,22 +1,21 @@
 object OptionsCompareFrame: TOptionsCompareFrame
   Left = 0
   Top = 0
-  Width = 451
-  Height = 302
-  Align = alClient
+  Width = 282
+  Height = 41
   TabOrder = 0
   Visible = False
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 451
-    Height = 302
-    Align = alClient
+    Width = 282
+    Height = 41
     BevelOuter = bvNone
+    Padding.Left = 4
     TabOrder = 0
     object IgnoreCaseCheckBox: TBCCheckBox
-      Left = 9
-      Top = 6
+      Left = 4
+      Top = 0
       Width = 276
       Height = 21
       Margins.Left = 4
@@ -30,8 +29,8 @@ object OptionsCompareFrame: TOptionsCompareFrame
       ReadOnly = False
     end
     object IgnoreBlanksCheckBox: TBCCheckBox
-      Left = 9
-      Top = 26
+      Left = 4
+      Top = 20
       Width = 282
       Height = 21
       Margins.Left = 4

@@ -1,48 +1,47 @@
 object OptionsPrintFrame: TOptionsPrintFrame
   Left = 0
   Top = 0
-  Width = 487
-  Height = 394
+  Width = 201
+  Height = 256
   TabOrder = 0
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 487
-    Height = 394
-    Align = alClient
+    Width = 201
+    Height = 256
     BevelOuter = bvNone
     TabOrder = 0
     object DateTimeLabel: TLabel
-      Left = 11
-      Top = 136
+      Left = 6
+      Top = 131
       Width = 51
       Height = 13
       Caption = 'Date Time '
     end
     object PrintedByLabel: TLabel
-      Left = 11
-      Top = 92
+      Left = 6
+      Top = 87
       Width = 49
       Height = 13
       Caption = 'Printed By'
     end
     object DocumentNameLabel: TLabel
-      Left = 11
-      Top = 5
+      Left = 6
+      Top = 0
       Width = 78
       Height = 13
       Caption = 'Document Name'
     end
     object PageNumberLabel: TLabel
-      Left = 11
-      Top = 49
+      Left = 6
+      Top = 44
       Width = 64
       Height = 13
       Caption = 'Page Number'
     end
     object DateTimeComboBox: TBCComboBox
-      Left = 9
-      Top = 151
+      Left = 4
+      Top = 146
       Width = 186
       Height = 21
       Margins.Left = 4
@@ -57,8 +56,8 @@ object OptionsPrintFrame: TOptionsPrintFrame
       DropDownFixedWidth = 0
     end
     object PrintedByComboBox: TBCComboBox
-      Left = 9
-      Top = 108
+      Left = 4
+      Top = 103
       Width = 186
       Height = 21
       Margins.Left = 4
@@ -73,8 +72,8 @@ object OptionsPrintFrame: TOptionsPrintFrame
       DropDownFixedWidth = 0
     end
     object DocumentNameComboBox: TBCComboBox
-      Left = 9
-      Top = 21
+      Left = 4
+      Top = 16
       Width = 186
       Height = 21
       Margins.Left = 4
@@ -89,8 +88,8 @@ object OptionsPrintFrame: TOptionsPrintFrame
       DropDownFixedWidth = 0
     end
     object PageNumberComboBox: TBCComboBox
-      Left = 9
-      Top = 64
+      Left = 4
+      Top = 59
       Width = 186
       Height = 21
       Margins.Left = 4
@@ -105,8 +104,8 @@ object OptionsPrintFrame: TOptionsPrintFrame
       DropDownFixedWidth = 0
     end
     object ShowHeaderLineCheckBox: TBCCheckBox
-      Left = 9
-      Top = 180
+      Left = 4
+      Top = 175
       Width = 201
       Height = 21
       Margins.Left = 4
@@ -120,8 +119,8 @@ object OptionsPrintFrame: TOptionsPrintFrame
       ReadOnly = False
     end
     object ShowFooterLineCheckBox: TBCCheckBox
-      Left = 9
-      Top = 200
+      Left = 4
+      Top = 195
       Width = 201
       Height = 21
       Margins.Left = 4
@@ -135,8 +134,8 @@ object OptionsPrintFrame: TOptionsPrintFrame
       ReadOnly = False
     end
     object ShowLineNumbersCheckBox: TBCCheckBox
-      Left = 9
-      Top = 220
+      Left = 4
+      Top = 215
       Width = 201
       Height = 21
       Margins.Left = 4
@@ -148,8 +147,8 @@ object OptionsPrintFrame: TOptionsPrintFrame
       ReadOnly = False
     end
     object WordWrapCheckBox: TBCCheckBox
-      Left = 9
-      Top = 240
+      Left = 4
+      Top = 235
       Width = 201
       Height = 21
       Margins.Left = 4

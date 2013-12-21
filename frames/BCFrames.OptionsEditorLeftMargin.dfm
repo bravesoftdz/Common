@@ -1,22 +1,20 @@
 object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
   Left = 0
   Top = 0
-  Width = 451
-  Height = 302
-  Align = alClient
+  Width = 296
+  Height = 272
   TabOrder = 0
   Visible = False
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 451
-    Height = 302
-    Align = alClient
+    Width = 296
+    Height = 272
     BevelOuter = bvNone
     TabOrder = 0
     object WidthLabel: TLabel
-      Left = 11
-      Top = 240
+      Left = 6
+      Top = 234
       Width = 28
       Height = 13
       Margins.Left = 4
@@ -26,8 +24,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Caption = 'Width'
     end
     object LineModifiedColorLabel: TLabel
-      Left = 29
-      Top = 152
+      Left = 6
+      Top = 146
       Width = 90
       Height = 13
       Margins.Left = 4
@@ -37,8 +35,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Caption = 'Line Modified Color'
     end
     object LineNormalColorLabel: TLabel
-      Left = 29
-      Top = 194
+      Left = 6
+      Top = 188
       Width = 83
       Height = 13
       Margins.Left = 4
@@ -48,8 +46,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Caption = 'Line Normal Color'
     end
     object VisibleCheckBox: TBCCheckBox
-      Left = 9
-      Top = 6
+      Left = 4
+      Top = 0
       Width = 294
       Height = 21
       Margins.Left = 4
@@ -63,8 +61,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ReadOnly = False
     end
     object AutoSizeCheckBox: TBCCheckBox
-      Left = 9
-      Top = 26
+      Left = 4
+      Top = 20
       Width = 276
       Height = 21
       Margins.Left = 4
@@ -78,8 +76,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ReadOnly = False
     end
     object LeftMarginWidthEdit: TBCEdit
-      Left = 9
-      Top = 257
+      Left = 4
+      Top = 251
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -96,8 +94,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       NumbersAllowNegative = False
     end
     object ShowLineModifiedCheckBox: TBCCheckBox
-      Left = 9
-      Top = 126
+      Left = 4
+      Top = 120
       Width = 296
       Height = 21
       Margins.Left = 4
@@ -111,8 +109,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ReadOnly = False
     end
     object LineModifiedColorBox: TColorBox
-      Left = 27
-      Top = 168
+      Left = 4
+      Top = 162
       Width = 200
       Height = 22
       Selected = clYellow
@@ -122,8 +120,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       TabOrder = 7
     end
     object LineNormalColorBox: TColorBox
-      Left = 27
-      Top = 210
+      Left = 4
+      Top = 204
       Width = 200
       Height = 22
       Selected = clGreen
@@ -133,8 +131,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       TabOrder = 8
     end
     object InTensCheckBox: TBCCheckBox
-      Left = 9
-      Top = 46
+      Left = 4
+      Top = 40
       Width = 296
       Height = 21
       Margins.Left = 4
@@ -148,8 +146,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ReadOnly = False
     end
     object ZeroStartCheckBox: TBCCheckBox
-      Left = 9
-      Top = 66
+      Left = 4
+      Top = 60
       Width = 268
       Height = 21
       Margins.Left = 4
@@ -163,8 +161,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ReadOnly = False
     end
     object ShowBookmarkPanelCheckBox: TBCCheckBox
-      Left = 9
-      Top = 106
+      Left = 4
+      Top = 100
       Width = 296
       Height = 21
       Margins.Left = 4
@@ -178,8 +176,8 @@ object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ReadOnly = False
     end
     object ShowBookmarksCheckBox: TBCCheckBox
-      Left = 9
-      Top = 86
+      Left = 4
+      Top = 80
       Width = 296
       Height = 21
       Margins.Left = 4

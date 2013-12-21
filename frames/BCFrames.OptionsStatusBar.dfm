@@ -1,20 +1,19 @@
 object OptionsStatusBarFrame: TOptionsStatusBarFrame
   Left = 0
   Top = 0
-  Width = 320
-  Height = 240
+  Width = 232
+  Height = 49
   TabOrder = 0
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 320
-    Height = 240
-    Align = alClient
+    Width = 232
+    Height = 49
     BevelOuter = bvNone
     TabOrder = 0
     object SelectFontSpeedButton: TSpeedButton
-      Left = 9
-      Top = 31
+      Left = 4
+      Top = 25
       Width = 24
       Height = 24
       Action = SelectFontAction
@@ -47,8 +46,8 @@ object OptionsStatusBarFrame: TOptionsStatusBarFrame
         00FFFF00FFCFAB7FB67F3CB57E3AB6803DBD8C4FFF00FFFF00FF}
     end
     object FontLabel: TLabel
-      Left = 39
-      Top = 37
+      Left = 34
+      Top = 31
       Width = 57
       Height = 13
       Margins.Left = 4
@@ -64,8 +63,8 @@ object OptionsStatusBarFrame: TOptionsStatusBarFrame
       ParentFont = False
     end
     object UseSystemFontCheckBox: TBCCheckBox
-      Left = 9
-      Top = 6
+      Left = 4
+      Top = 0
       Width = 232
       Height = 21
       Margins.Left = 4

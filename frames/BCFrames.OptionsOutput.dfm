@@ -1,20 +1,19 @@
 object OptionsOutputFrame: TOptionsOutputFrame
   Left = 0
   Top = 0
-  Width = 320
-  Height = 240
+  Width = 201
+  Height = 63
   TabOrder = 0
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 320
-    Height = 240
-    Align = alClient
+    Width = 201
+    Height = 63
     BevelOuter = bvNone
     TabOrder = 0
     object IndentLabel: TLabel
-      Left = 11
-      Top = 31
+      Left = 6
+      Top = 25
       Width = 32
       Height = 13
       Margins.Left = 4
@@ -24,8 +23,8 @@ object OptionsOutputFrame: TOptionsOutputFrame
       Caption = 'Indent'
     end
     object ShowTreeLinesCheckBox: TBCCheckBox
-      Left = 9
-      Top = 6
+      Left = 4
+      Top = 0
       Width = 201
       Height = 21
       Margins.Left = 4
@@ -37,8 +36,8 @@ object OptionsOutputFrame: TOptionsOutputFrame
       ReadOnly = False
     end
     object IndentEdit: TBCEdit
-      Left = 9
-      Top = 48
+      Left = 4
+      Top = 42
       Width = 64
       Height = 21
       Margins.Left = 4

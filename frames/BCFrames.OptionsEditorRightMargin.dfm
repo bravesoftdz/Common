@@ -1,22 +1,20 @@
 object OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
   Left = 0
   Top = 0
-  Width = 451
-  Height = 302
-  Align = alClient
+  Width = 198
+  Height = 81
   TabOrder = 0
   Visible = False
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 451
-    Height = 302
-    Align = alClient
+    Width = 198
+    Height = 81
     BevelOuter = bvNone
     TabOrder = 0
     object PositionLabel: TLabel
-      Left = 11
-      Top = 49
+      Left = 6
+      Top = 43
       Width = 37
       Height = 13
       Margins.Left = 4
@@ -26,8 +24,8 @@ object OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Caption = 'Position'
     end
     object PositionEdit: TBCEdit
-      Left = 9
-      Top = 66
+      Left = 4
+      Top = 60
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -44,8 +42,8 @@ object OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       NumbersAllowNegative = False
     end
     object VisibleCheckBox: TBCCheckBox
-      Left = 9
-      Top = 6
+      Left = 4
+      Top = 0
       Width = 198
       Height = 21
       Margins.Left = 4
@@ -59,8 +57,8 @@ object OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       ReadOnly = False
     end
     object MouseMoveCheckBox: TBCCheckBox
-      Left = 9
-      Top = 26
+      Left = 4
+      Top = 20
       Width = 198
       Height = 21
       Margins.Left = 4

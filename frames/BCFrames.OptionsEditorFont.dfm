@@ -2,7 +2,7 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
   Left = 0
   Top = 0
   Width = 451
-  Height = 302
+  Height = 305
   Align = alClient
   TabOrder = 0
   Visible = False
@@ -10,7 +10,7 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
     Left = 0
     Top = 0
     Width = 451
-    Height = 302
+    Height = 305
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -18,13 +18,13 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
       Left = 0
       Top = 0
       Width = 451
-      Height = 181
+      Height = 172
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
       object SelectEditorFontSpeedButton: TSpeedButton
-        Left = 9
-        Top = 24
+        Left = 4
+        Top = 16
         Width = 24
         Height = 24
         Action = SelectEditorFontAction
@@ -57,8 +57,8 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
           00FFFF00FFCFAB7FB67F3CB57E3AB6803DBD8C4FFF00FFFF00FF}
       end
       object EditorFontLabel: TLabel
-        Left = 40
-        Top = 31
+        Left = 36
+        Top = 23
         Width = 105
         Height = 15
         Margins.Left = 4
@@ -74,8 +74,8 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         ParentFont = False
       end
       object MarginFontLabel: TLabel
-        Left = 40
-        Top = 73
+        Left = 36
+        Top = 65
         Width = 105
         Height = 15
         Margins.Left = 4
@@ -91,8 +91,8 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         ParentFont = False
       end
       object SelecMarginFontSpeedButton: TSpeedButton
-        Left = 9
-        Top = 67
+        Left = 4
+        Top = 59
         Width = 24
         Height = 24
         Action = SelectMarginFontAction
@@ -125,8 +125,8 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
           00FFFF00FFCFAB7FB67F3CB57E3AB6803DBD8C4FFF00FFFF00FF}
       end
       object EditorLabel: TLabel
-        Left = 11
-        Top = 9
+        Left = 6
+        Top = 1
         Width = 28
         Height = 13
         Margins.Left = 4
@@ -136,8 +136,8 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         Caption = 'Editor'
       end
       object MarginLabel: TLabel
-        Left = 11
-        Top = 52
+        Left = 6
+        Top = 44
         Width = 32
         Height = 13
         Margins.Left = 4
@@ -147,8 +147,8 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         Caption = 'Margin'
       end
       object MinimapLabel: TLabel
-        Left = 11
-        Top = 95
+        Left = 6
+        Top = 87
         Width = 38
         Height = 13
         Margins.Left = 4
@@ -158,8 +158,8 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         Caption = 'Minimap'
       end
       object SelecMinimapFontSpeedButton: TSpeedButton
-        Left = 9
-        Top = 110
+        Left = 4
+        Top = 102
         Width = 24
         Height = 24
         Action = SelectMinimapFontAction
@@ -192,8 +192,8 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
           00FFFF00FFCFAB7FB67F3CB57E3AB6803DBD8C4FFF00FFFF00FF}
       end
       object MinimapFontLabel: TLabel
-        Left = 40
-        Top = 116
+        Left = 36
+        Top = 108
         Width = 30
         Height = 3
         Margins.Left = 4
@@ -209,8 +209,8 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         ParentFont = False
       end
       object MinimapWidthLabel: TLabel
-        Left = 11
-        Top = 138
+        Left = 6
+        Top = 130
         Width = 69
         Height = 13
         Margins.Left = 4
@@ -220,8 +220,8 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         Caption = 'Minimap Width'
       end
       object MinimapWidthEdit: TBCEdit
-        Left = 9
-        Top = 153
+        Left = 4
+        Top = 145
         Width = 64
         Height = 21
         Margins.Left = 4
@@ -241,9 +241,9 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
     end
     object BottomPanel: TPanel
       Left = 0
-      Top = 181
+      Top = 172
       Width = 451
-      Height = 121
+      Height = 133
       Align = alClient
       BevelOuter = bvNone
       Padding.Left = 4
@@ -252,7 +252,7 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         Left = 4
         Top = 0
         Width = 447
-        Height = 121
+        Height = 133
         Align = alClient
         ActiveLineColor = clBtnFace
         CodeFolding.CaseSensitive = False
@@ -302,12 +302,14 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         Minimap.Visible = True
         Minimap.CharWidth = 2
         Minimap.CharHeight = 4
-        Minimap.LinesInWindow = 25
+        Minimap.LinesInWindow = 28
         Options = [eoAutoIndent, eoDragDropEditing, eoEnhanceEndKey, eoGroupUndo, eoHalfPageScroll, eoScrollPastEol, eoShowScrollHint, eoSmartTabDelete, eoSmartTabs, eoTabsToSpaces]
         WordWrap.Enabled = False
         WordWrap.Position = 80
         WordWrap.Style = wwsClientWidth
         FontSmoothing = fsmNone
+        ExplicitLeft = 5
+        ExplicitWidth = 446
       end
     end
   end

@@ -1,27 +1,26 @@
 object OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
   Left = 0
   Top = 0
-  Width = 320
-  Height = 240
+  Width = 201
+  Height = 80
   TabOrder = 0
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 320
-    Height = 240
-    Align = alClient
+    Width = 201
+    Height = 80
     BevelOuter = bvNone
     TabOrder = 0
     object ShortcutLabel: TLabel
-      Left = 11
-      Top = 49
+      Left = 6
+      Top = 43
       Width = 41
       Height = 13
       Caption = 'Shortcut'
     end
     object EnabledCheckBox: TBCCheckBox
-      Left = 9
-      Top = 6
+      Left = 4
+      Top = 0
       Width = 201
       Height = 21
       Margins.Left = 4
@@ -35,8 +34,8 @@ object OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFra
       ReadOnly = False
     end
     object CaseSensitiveCheckBox: TBCCheckBox
-      Left = 9
-      Top = 26
+      Left = 4
+      Top = 20
       Width = 201
       Height = 21
       Margins.Left = 4
@@ -50,8 +49,8 @@ object OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFra
       ReadOnly = False
     end
     object ShortcutComboBox: TBCComboBox
-      Left = 9
-      Top = 65
+      Left = 4
+      Top = 59
       Width = 160
       Height = 21
       Margins.Left = 4

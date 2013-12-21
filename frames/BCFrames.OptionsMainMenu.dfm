@@ -1,22 +1,20 @@
 object OptionsMainMenuFrame: TOptionsMainMenuFrame
   Left = 0
   Top = 0
-  Width = 451
-  Height = 302
-  Align = alClient
+  Width = 236
+  Height = 173
   TabOrder = 0
   Visible = False
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 451
-    Height = 302
-    Align = alClient
+    Width = 236
+    Height = 173
     BevelOuter = bvNone
     TabOrder = 0
     object FontLabel: TLabel
-      Left = 36
-      Top = 78
+      Left = 34
+      Top = 72
       Width = 57
       Height = 13
       Margins.Left = 4
@@ -32,15 +30,15 @@ object OptionsMainMenuFrame: TOptionsMainMenuFrame
       ParentFont = False
     end
     object AnimationStyleLabel: TLabel
-      Left = 9
-      Top = 102
+      Left = 6
+      Top = 96
       Width = 74
       Height = 13
       Caption = 'Animation Style'
     end
     object AnimationDurationLabel: TLabel
-      Left = 9
-      Top = 142
+      Left = 6
+      Top = 136
       Width = 91
       Height = 13
       Margins.Left = 4
@@ -50,8 +48,8 @@ object OptionsMainMenuFrame: TOptionsMainMenuFrame
       Caption = 'Animation Duration'
     end
     object SelectFontSpeedButton: TSpeedButton
-      Left = 5
-      Top = 72
+      Left = 4
+      Top = 66
       Width = 24
       Height = 24
       Action = SelectFontAction
@@ -84,8 +82,8 @@ object OptionsMainMenuFrame: TOptionsMainMenuFrame
         00FFFF00FFCFAB7FB67F3CB57E3AB6803DBD8C4FFF00FFFF00FF}
     end
     object PersistentHotKeysCheckBox: TBCCheckBox
-      Left = 9
-      Top = 6
+      Left = 4
+      Top = 0
       Width = 232
       Height = 21
       Margins.Left = 4
@@ -97,8 +95,8 @@ object OptionsMainMenuFrame: TOptionsMainMenuFrame
       ReadOnly = False
     end
     object ShadowsCheckBox: TBCCheckBox
-      Left = 9
-      Top = 26
+      Left = 4
+      Top = 20
       Width = 232
       Height = 21
       Margins.Left = 4
@@ -112,8 +110,8 @@ object OptionsMainMenuFrame: TOptionsMainMenuFrame
       ReadOnly = False
     end
     object UseSystemFontCheckBox: TBCCheckBox
-      Left = 9
-      Top = 46
+      Left = 4
+      Top = 40
       Width = 232
       Height = 21
       Margins.Left = 4
@@ -125,8 +123,8 @@ object OptionsMainMenuFrame: TOptionsMainMenuFrame
       ReadOnly = False
     end
     object AnimationStyleComboBox: TBCComboBox
-      Left = 8
-      Top = 118
+      Left = 4
+      Top = 112
       Width = 186
       Height = 21
       Margins.Left = 4
@@ -140,8 +138,8 @@ object OptionsMainMenuFrame: TOptionsMainMenuFrame
       DropDownFixedWidth = 0
     end
     object AnimationDurationEdit: TBCEdit
-      Left = 8
-      Top = 158
+      Left = 4
+      Top = 152
       Width = 64
       Height = 21
       Margins.Left = 4
