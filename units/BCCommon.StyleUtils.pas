@@ -127,7 +127,7 @@ begin
     SynEdit.SelectedColor.Foreground := LStyles.GetSystemColor(clHighlightText);
     SynEdit.Gutter.Font.Color := LightenColor(EditColor); //LStyles.GetStyleFontColor(sfEditBoxTextNormal);
     SynEdit.Gutter.BorderColor := LStyles.GetStyleColor(scEdit);
-    SynEdit.Gutter.Color := SynEdit.Color; //SynEdit.Color;
+    SynEdit.Gutter.Color := SynEdit.Color;
     if EditColor = clWindowText then
       SynEdit.Gutter.Color := LightenColor(SynEdit.Color, 0.2);
     SynEdit.Gutter.BookmarkPanelColor := LStyles.GetStyleColor(scPanel);
@@ -1160,12 +1160,11 @@ begin
      (GetRValue(EditColor) + GetGValue(EditColor) + GetBValue(EditColor) > 500) then
     EditColor := clWindowText
   else
-    EditColor := LStyles.GetStyleFontColor(sfEditBoxTextNormal); //LStyles.GetStyleColor(scPanel);
+    EditColor := LStyles.GetStyleFontColor(sfEditBoxTextNormal);
   SynEdit.Gutter.Font.Color := LightenColor(EditColor);
   SynEdit.Gutter.Color := SynEdit.Color;
   if EditColor = clWindowText then
     SynEdit.Gutter.Color := LightenColor(SynEdit.Color, 0.2);
-  //SynEdit.ActiveLineColor := SynEdit.Color;
   SynEdit.Invalidate;
 end;
 
