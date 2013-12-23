@@ -2,23 +2,25 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
   Left = 0
   Top = 0
   Width = 451
-  Height = 305
+  Height = 390
   Align = alClient
   TabOrder = 0
   Visible = False
+  ExplicitHeight = 305
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 451
-    Height = 305
+    Height = 390
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitHeight = 305
     object TopPanel: TPanel
       Left = 0
       Top = 0
       Width = 451
-      Height = 172
+      Height = 219
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
@@ -219,6 +221,17 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         Margins.Bottom = 4
         Caption = 'Minimap Width'
       end
+      object ActiveLineColorBrightnessLabel: TLabel
+        Left = 6
+        Top = 172
+        Width = 133
+        Height = 13
+        Margins.Left = 4
+        Margins.Top = 4
+        Margins.Right = 4
+        Margins.Bottom = 4
+        Caption = 'Active Line Color Brightness'
+      end
       object MinimapWidthEdit: TBCEdit
         Left = 4
         Top = 145
@@ -238,21 +251,32 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         ErrorColor = 14803198
         NumbersAllowNegative = False
       end
+      object BrightnessTrackBar: TTrackBar
+        Left = 0
+        Top = 186
+        Width = 150
+        Height = 31
+        Min = 1
+        Position = 2
+        TabOrder = 1
+      end
     end
     object BottomPanel: TPanel
       Left = 0
-      Top = 172
+      Top = 219
       Width = 451
-      Height = 133
+      Height = 171
       Align = alClient
       BevelOuter = bvNone
       Padding.Left = 4
       TabOrder = 1
+      ExplicitTop = 172
+      ExplicitHeight = 133
       object SynEdit: TBCSynEdit
         Left = 4
         Top = 0
         Width = 447
-        Height = 133
+        Height = 171
         Align = alClient
         ActiveLineColor = clBtnFace
         CodeFolding.CaseSensitive = False
@@ -302,14 +326,13 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         Minimap.Visible = True
         Minimap.CharWidth = 2
         Minimap.CharHeight = 4
-        Minimap.LinesInWindow = 28
+        Minimap.LinesInWindow = 37
         Options = [eoAutoIndent, eoDragDropEditing, eoEnhanceEndKey, eoGroupUndo, eoHalfPageScroll, eoScrollPastEol, eoShowScrollHint, eoSmartTabDelete, eoSmartTabs, eoTabsToSpaces]
         WordWrap.Enabled = False
         WordWrap.Position = 80
         WordWrap.Style = wwsClientWidth
         FontSmoothing = fsmNone
-        ExplicitLeft = 5
-        ExplicitWidth = 446
+        ExplicitHeight = 133
       end
     end
   end

@@ -109,6 +109,7 @@ type
     procedure LeftGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
     procedure RightGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
     procedure RightGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+    procedure DrawGridVerticalScroll(Sender: TObject);
   private
     { Private declarations }
     FDiff: TDiff;
@@ -200,9 +201,10 @@ begin
   OldDrawGridProc(Message);
   if (Message.Msg = WM_VSCROLL) or (Message.msg = WM_Mousewheel) then
   begin
+    //DrawGrid.Invalidate;
     OldLeftGridProc(Message);
     OldRightGridProc(Message);
-    DrawGrid.Invalidate;
+    //DrawGrid.Invalidate;
   end;
 end;
 
@@ -265,148 +267,149 @@ const
   PaleBlue: TColor = $FF9999;
   PaleGray: TColor = $D0D0D0;
 var
-  lclr, rclr: TColor;
+  LeftRowColor, RightRowColor: TColor;
   LStyles: TCustomStyleServices;
+  RowInsideVisibleRows: Boolean;
 begin
   LStyles := StyleServices;
-  lclr := clNone;
-  rclr := clNone;
+  LeftRowColor := clNone;
+  RightRowColor := clNone;
+  RowInsideVisibleRows := (ARow >= LeftGrid.TopRow) and (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount);
   if FDiff.Count = 0 then
+  with DrawGrid.Canvas do
+  begin
+    if LStyles.Enabled then
+      Brush.Color := LStyles.GetStyleColor(scPanel)
+    else
+      Brush.Color := clWhite;
+    FillRect(Rect);
+  end
+  else
+  begin
+    if (ARow < FDiff.Count) then
+    case FDiff.Compares[ARow].Kind of
+      ckNone:
+        begin
+          if LStyles.Enabled then
+          begin
+            LeftRowColor := LStyles.GetStyleColor(scPanel);
+            RightRowColor := LStyles.GetStyleColor(scPanel);
+          end
+          else
+          begin
+            LeftRowColor := clWhite;
+            RightRowColor := clWhite;
+          end;
+
+          if RowInsideVisibleRows then
+          begin
+            if LStyles.Enabled then
+            begin
+              LeftRowColor := LStyles.GetStyleColor(scEdit);
+              RightRowColor := LStyles.GetStyleColor(scEdit);
+            end
+            else
+            begin
+              LeftRowColor := clSilver;
+              RightRowColor := clSilver;
+            end;
+          end;
+        end;
+      ckModify:
+        begin
+          LeftRowColor := PaleRed;
+          RightRowColor := PaleRed;
+          if RowInsideVisibleRows then
+          begin
+            LeftRowColor := clRed;
+            RightRowColor := clRed;
+          end;
+        end;
+      ckDelete:
+        begin
+          if LStyles.Enabled then
+            RightRowColor := LStyles.GetStyleColor(scEdit)
+          else
+            RightRowColor := PaleGray;
+          LeftRowColor := PaleBlue;
+          if RowInsideVisibleRows then
+          begin
+            LeftRowColor := clBlue;
+            if LStyles.Enabled then
+              RightRowColor := LStyles.GetStyleColor(scPanel)
+            else
+              RightRowColor := clBtnShadow;
+          end;
+        end;
+      ckAdd:
+        begin
+          if LStyles.Enabled then
+            LeftRowColor := LStyles.GetStyleColor(scEdit)
+          else
+            LeftRowColor := PaleGray;
+          RightRowColor := PaleBlue;
+          if RowInsideVisibleRows then
+          begin
+            if LStyles.Enabled then
+              LeftRowColor := LStyles.GetStyleColor(scPanel)
+            else
+              LeftRowColor := clBtnShadow;
+            RightRowColor := clBlue;
+          end;
+        end;
+    end;
+
     with DrawGrid.Canvas do
     begin
-      if LStyles.Enabled then
-        Brush.Color := LStyles.GetStyleColor(scPanel)
-      else
-        Brush.Color := clWhite;
-      FillRect(Rect);
-    end
-    else
-    begin
-      if (ARow < FDiff.Count) then
-        case FDiff.Compares[ARow].Kind of
-          ckNone:
-            begin
-              if LStyles.Enabled then
-              begin
-                lclr := LStyles.GetStyleColor(scPanel);
-                rclr := LStyles.GetStyleColor(scPanel);
-              end
-              else
-              begin
-                lclr := clWhite;
-                rclr := clWhite;
-              end;
-
-              //if (ARow < FGridVisibleBottom) and (ARow >= FGridVisibleTop) then
-              if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
-              begin
-                if LStyles.Enabled then
-                begin
-                  lclr := LStyles.GetStyleColor(scEdit);
-                  rclr := LStyles.GetStyleColor(scEdit);
-                end
-                else
-                begin
-                  lclr := clSilver;
-                  rclr := clSilver;
-                end;
-              end;
-            end;
-          ckModify:
-            begin
-              lclr := PaleRed;
-              rclr := PaleRed;
-              if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
-              begin
-                lclr := clRed;
-                rclr := clRed;
-              end;
-            end;
-          ckDelete:
-            begin
-              if LStyles.Enabled then
-                rclr := LStyles.GetStyleColor(scEdit)
-              else
-                rclr := PaleGray;
-              lclr := PaleBlue;
-              if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
-              begin
-                lclr := clBlue;
-                if LStyles.Enabled then
-                  rclr := LStyles.GetStyleColor(scPanel)
-                else
-                  rclr := clBtnShadow;
-              end;
-            end;
-          ckAdd:
-            begin
-              if LStyles.Enabled then
-                lclr := LStyles.GetStyleColor(scEdit)
-              else
-                lclr := PaleGray;
-              rclr := PaleBlue;
-              if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
-              begin
-                if LStyles.Enabled then
-                  lclr := LStyles.GetStyleColor(scPanel)
-                else
-                  lclr := clBtnShadow;
-                rclr := clBlue;
-              end;
-            end;
-        end;
-
-      with DrawGrid.Canvas do
+      if RowInsideVisibleRows then
       begin
-        if (ARow < LeftGrid.TopRow + LeftGrid.VisibleRowCount) and (ARow >= LeftGrid.TopRow) then
-        begin
-          if LStyles.Enabled then
-            Brush.Color := LStyles.GetStyleColor(scBorder)
-          else
-            Brush.Color := clBlack;
-          FillRect(System.Types.Rect(0, Rect.top, 1, Rect.bottom));
-          if LStyles.Enabled then
-            Brush.Color := LStyles.GetStyleColor(scBorder)
-          else
-            Brush.Color := clBlack;
-          FillRect(System.Types.Rect(21, Rect.top, 22, Rect.bottom));
-        end;
+        if LStyles.Enabled then
+          Brush.Color := LStyles.GetStyleColor(scBorder)
+        else
+          Brush.Color := clBlack;
+        FillRect(System.Types.Rect(0, Rect.top, 1, Rect.bottom));
+        if LStyles.Enabled then
+          Brush.Color := LStyles.GetStyleColor(scBorder)
+        else
+          Brush.Color := clBlack;
+        FillRect(System.Types.Rect(21, Rect.top, 22, Rect.bottom));
+      end;
 
-        { Draw grids }
-        Brush.Color := lclr;
-        FillRect(System.Types.Rect(1, Rect.top, 11, Rect.bottom));
-        Brush.Color := rclr;
-        FillRect(System.Types.Rect(11, Rect.top, 21, Rect.bottom));
+      { Draw grids }
+      Brush.Color := LeftRowColor;
+      FillRect(System.Types.Rect(1, Rect.top, 11, Rect.bottom));
+      Brush.Color := RightRowColor;
+      FillRect(System.Types.Rect(11, Rect.top, 21, Rect.bottom));
 
-        if ARow = LeftGrid.Row then
-        begin
-          if LStyles.Enabled then
-            Brush.Color := LStyles.GetSystemColor(clHighlight)
-          else
-            Brush.Color := clHighlight;
+      if ARow = LeftGrid.Row then
+      begin
+        if LStyles.Enabled then
+          Brush.Color := LStyles.GetSystemColor(clHighlight)
+        else
+          Brush.Color := clHighlight;
 
-          FillRect(System.Types.Rect(1, Rect.top, 21, Rect.bottom));
-        end;
+        FillRect(System.Types.Rect(1, Rect.top, 21, Rect.bottom));
+      end;
 
-        { Draw a rectangle around visible area }
-        if LeftGrid.TopRow + LeftGrid.VisibleRowCount = ARow then
-        begin
-          if LStyles.Enabled then
-            Brush.Color := LStyles.GetStyleColor(scBorder)
-          else
-            Brush.Color := clBlack;
-          FillRect(System.Types.Rect(0, Rect.top, 22, Rect.bottom));
-        end;
-        if LeftGrid.TopRow - 1 = ARow then
-        begin
-          if LStyles.Enabled then
-            Brush.Color := LStyles.GetStyleColor(scBorder)
-          else
-            Brush.Color := clBlack;
-          FillRect(System.Types.Rect(0, Rect.top, 22, Rect.bottom));
-        end;
+      { Draw a rectangle around visible area }
+      if LeftGrid.TopRow + LeftGrid.VisibleRowCount = ARow then
+      begin
+        if LStyles.Enabled then
+          Brush.Color := LStyles.GetStyleColor(scBorder)
+        else
+          Brush.Color := clBlack;
+        FillRect(System.Types.Rect(0, Rect.top, 22, Rect.bottom));
+      end;
+      if LeftGrid.TopRow - 1 = ARow then
+      begin
+        if LStyles.Enabled then
+          Brush.Color := LStyles.GetStyleColor(scBorder)
+        else
+          Brush.Color := clBlack;
+        FillRect(System.Types.Rect(0, Rect.top, 22, Rect.bottom));
       end;
     end;
+  end;
 end;
 
 procedure TCompareFrame.DrawGridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -456,6 +459,11 @@ procedure TCompareFrame.DrawGridMouseWheelUp(Sender: TObject; Shift: TShiftState
   var Handled: Boolean);
 begin
   ScrollGrids(DrawGrid.Row);
+end;
+
+procedure TCompareFrame.DrawGridVerticalScroll(Sender: TObject);
+begin
+  DrawGrid.Invalidate;
 end;
 
 procedure TCompareFrame.FilenameEditLeftKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);

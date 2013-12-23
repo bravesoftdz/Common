@@ -742,6 +742,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'AutoSave'
         Strings.Strings = (
           'Auto Save')
+      end
+      item
+        Name = 'FilesFound'
+        Strings.Strings = (
+          '%d file(s) have been found in %s')
       end>
     Left = 88
     Top = 254

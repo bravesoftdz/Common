@@ -17,8 +17,6 @@ type
     LineSpacingEdit: TBCEdit;
     TabWidthLabel: TLabel;
     TabWidthEdit: TBCEdit;
-    BrightnessTrackBar: TTrackBar;
-    ActiveLineColorBrightnessLabel: TLabel;
     TabsToSpacesCheckBox: TBCCheckBox;
     AutoSaveCheckBox: TBCCheckBox;
     InsertCaretLabel: TLabel;
@@ -30,6 +28,7 @@ type
     NonblinkingCaretCheckBox: TBCCheckBox;
     NonblinkingCaretColorLabel: TLabel;
     NonblinkingCaretColorBox: TColorBox;
+    ShowScrollHintCheckBox: TBCCheckBox;
   private
     { Private declarations }
   public
@@ -68,12 +67,12 @@ begin
   OptionsContainer.TripleClickRowSelect := TripleClickRowSelectCheckBox.Checked;
   OptionsContainer.ScrollPastEof := ScrollPastEofCheckBox.Checked;
   OptionsContainer.ScrollPastEol := ScrollPastEolCheckBox.Checked;
+  OptionsContainer.ShowScrollHint := ShowScrollHintCheckBox.Checked;
   OptionsContainer.TabsToSpaces := TabsToSpacesCheckBox.Checked;
   OptionsContainer.SmartTabs := SmartTabsCheckBox.Checked;
   OptionsContainer.SmartTabDelete := SmartTabDeleteCheckBox.Checked;
   OptionsContainer.LineSpacing := StrToIntDef(LineSpacingEdit.Text, 0);
   OptionsContainer.TabWidth := StrToIntDef(TabWidthEdit.Text, 8);
-  OptionsContainer.ColorBrightness := BrightnessTrackBar.Position;
   OptionsContainer.InsertCaret := InsertCaretComboBox.ItemIndex;
   OptionsContainer.NonblinkingCaretColor := ColorToString(NonblinkingCaretColorBox.Selected);
 end;
@@ -88,12 +87,12 @@ begin
   TripleClickRowSelectCheckBox.Checked := OptionsContainer.TripleClickRowSelect;
   ScrollPastEofCheckBox.Checked := OptionsContainer.ScrollPastEof;
   ScrollPastEolCheckBox.Checked := OptionsContainer.ScrollPastEol;
+  ShowScrollHintCheckBox.Checked := OptionsContainer.ShowScrollHint;
   TabsToSpacesCheckBox.Checked := OptionsContainer.TabsToSpaces;
   SmartTabsCheckBox.Checked := OptionsContainer.SmartTabs;
   SmartTabDeleteCheckBox.Checked := OptionsContainer.SmartTabDelete;
   LineSpacingEdit.Text := IntToStr(OptionsContainer.LineSpacing);
   TabWidthEdit.Text := IntToStr(OptionsContainer.TabWidth);
-  BrightnessTrackBar.Position := OptionsContainer.ColorBrightness;
   InsertCaretComboBox.ItemIndex := Ord(OptionsContainer.InsertCaret);
   NonblinkingCaretColorBox.Selected := StringToColor(OptionsContainer.NonblinkingCaretColor);
 end;

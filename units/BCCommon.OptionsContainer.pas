@@ -66,6 +66,7 @@ type
     FPrintWordWrapLine: Boolean;
     FScrollPastEof: Boolean;
     FScrollPastEol: Boolean;
+    FShowScrollHint: Boolean;
     FShadows: Boolean;
     FShowSearchStringNotFound: Boolean;
     FSmartTabDelete: Boolean;
@@ -207,6 +208,8 @@ type
     property ScrollPastEol: Boolean read FScrollPastEol write FScrollPastEol;
     [IniValue('Options', 'Shadows', True)]
     property Shadows: Boolean read FShadows write FShadows;
+    [IniValue('Options', 'ShowScrollHint', True)]
+    property ShowScrollHint: Boolean read FShowScrollHint write FShowScrollHint;
     [IniValue('Options', 'ShowSearchStringNotFound', True)]
     property ShowSearchStringNotFound: Boolean read FShowSearchStringNotFound write FShowSearchStringNotFound;
     [IniValue('Options', 'SmartTabDelete', False)]
@@ -613,6 +616,10 @@ begin
       TCustomSynEdit(Dest).Options := TCustomSynEdit(Dest).Options + [eoScrollPastEol]
     else
       TCustomSynEdit(Dest).Options := TCustomSynEdit(Dest).Options - [eoScrollPastEol];
+    if FShowScrollHint then
+      TCustomSynEdit(Dest).Options := TCustomSynEdit(Dest).Options + [eoShowScrollHint]
+    else
+      TCustomSynEdit(Dest).Options := TCustomSynEdit(Dest).Options - [eoShowScrollHint];
     if FTabsToSpaces then
       TCustomSynEdit(Dest).Options := TCustomSynEdit(Dest).Options + [eoTabsToSpaces]
     else

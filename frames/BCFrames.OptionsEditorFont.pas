@@ -32,6 +32,8 @@ type
     SynURISyn: TSynURISyn;
     MinimapWidthLabel: TLabel;
     MinimapWidthEdit: TBCEdit;
+    ActiveLineColorBrightnessLabel: TLabel;
+    BrightnessTrackBar: TTrackBar;
     procedure SelectEditorFontActionExecute(Sender: TObject);
     procedure SelectMarginFontActionExecute(Sender: TObject);
     procedure SelectMinimapFontActionExecute(Sender: TObject);
@@ -100,6 +102,7 @@ begin
   OptionsContainer.MinimapFontName := MinimapFontLabel.Font.Name;
   OptionsContainer.MinimapFontSize := MinimapFontLabel.Font.Size;
   OptionsContainer.MinimapWidth := StrToIntDef(MinimapWidthEdit.Text, 100);
+  OptionsContainer.ColorBrightness := BrightnessTrackBar.Position;
 end;
 
 procedure TOptionsEditorFontFrame.GetData(OptionsContainer: TOptionsContainer);
@@ -115,6 +118,7 @@ begin
   MinimapFontLabel.Font.Size := OptionsContainer.MinimapFontSize;
   MinimapFontLabel.Caption := Format('%s %dpt', [MinimapFontLabel.Font.Name, MinimapFontLabel.Font.Size]);
   MinimapWidthEdit.Text := IntToStr(OptionsContainer.MinimapWidth);
+  BrightnessTrackBar.Position := OptionsContainer.ColorBrightness;
 end;
 
 end.

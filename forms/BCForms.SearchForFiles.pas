@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
-  System.Actions, Vcl.ActnList, Vcl.ImgList, BCControls.ImageList, Vcl.StdCtrls, VirtualTrees;
+  System.Actions, Vcl.ActnList, Vcl.ImgList, BCControls.ImageList, Vcl.StdCtrls, VirtualTrees, BCControls.ProgressBar,
+  Vcl.ComCtrls;
 
 type
   TOpenFileEvent = procedure(var FileName: string);
@@ -17,6 +18,7 @@ type
     ClearAction: TAction;
     SearchAction: TAction;
     SearchingFilesPanel: TPanel;
+    StatusBar: TStatusBar;
     procedure ClearActionExecute(Sender: TObject);
     procedure SearchActionExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -31,13 +33,18 @@ type
     procedure SearchVirtualDrawTreeCompareNodes(Sender: TBaseVirtualTree; Node1, Node2: PVirtualNode;
       Column: TColumnIndex; var Result: Integer);
     procedure SearchVirtualDrawTreeDblClick(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     FOpenFile: TOpenFileEvent;
+    FProgressBar: TBCProgressBar;
     procedure ReadIniFile;
     procedure WriteIniFile;
     procedure ReadFiles(RootDirectory: string);
     procedure SetVisibleRows;
+    procedure ResizeProgressBar;
+    procedure CreateProgressBar;
   public
     { Public declarations }
     procedure Open(RootDirectory: string);
@@ -51,7 +58,8 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.LanguageUtils, System.IniFiles, BCCommon.FileUtils, Vcl.Themes, Winapi.ShellAPI, BCCommon.Lib;
+  Winapi.CommCtrl, BCCommon.LanguageUtils, System.IniFiles, BCCommon.FileUtils, Vcl.Themes, Winapi.ShellAPI,
+  BCCommon.Lib, BCCommon.LanguageStrings;
 
 type
   PSearchRec = ^TSearchRec;
@@ -71,6 +79,29 @@ begin
   Result := FSearchForFilesForm;
   UpdateLanguage(FSearchForFilesForm, GetSelectedLanguage);
 end;
+
+procedure TSearchForFilesForm.ResizeProgressBar;
+var
+  R: TRect;
+begin
+  if Assigned(FProgressBar) then
+  begin
+    Statusbar.Perform(SB_GETRECT, 0, Integer(@R));
+    FProgressBar.Top    := R.Top;
+    FProgressBar.Left   := R.Left;
+    FProgressBar.Width  := R.Right - R.Left;
+    FProgressBar.Height := R.Bottom - R.Top;
+  end;
+end;
+
+procedure TSearchForFilesForm.CreateProgressBar;
+begin
+  FProgressBar := TBCProgressBar.Create(StatusBar);
+  FProgressBar.Hide;
+  ResizeProgressBar;
+  FProgressBar.Parent := Statusbar;
+end;
+
 
 procedure TSearchForFilesForm.SetVisibleRows;
 var
@@ -275,16 +306,47 @@ procedure TSearchForFilesForm.FormDestroy(Sender: TObject);
 begin
   SearchVirtualDrawTree.Images.Free;
   FSearchForFilesForm := nil;
+  FProgressBar.Free;
+end;
+
+procedure TSearchForFilesForm.FormResize(Sender: TObject);
+begin
+  ResizeProgressBar;
+end;
+
+procedure TSearchForFilesForm.FormShow(Sender: TObject);
+begin
+  CreateProgressBar;
 end;
 
 procedure TSearchForFilesForm.Open(RootDirectory: string);
+var
+  T1, T2: TTime;
+  Min, Secs: Integer;
+  TimeDifference: string;
 begin
   SearchingFilesPanel.Visible := True;
   SearchForEdit.ReadOnly := True;
   ReadIniFile;
   Show;
   SearchVirtualDrawTree.BeginUpdate;
+  FProgressBar.Count := CountFilesInFolder(RootDirectory);
+  FProgressBar.Show;
+  T1 := Now;
+  try
   ReadFiles(RootDirectory);
+  finally
+    FProgressBar.Hide;
+    T2 := Now;
+    Min := StrToInt(FormatDateTime('n', T2 - T1));
+    Secs := Min * 60 + StrToInt(FormatDateTime('s', T2 - T1));
+    if Secs < 60 then
+      TimeDifference := FormatDateTime(Format('s.zzz "%s"', [LanguageDataModule.GetConstant('Second')]), T2 - T1)
+    else
+      TimeDifference := FormatDateTime(Format('n "%s" s.zzz "%s"', [LanguageDataModule.GetConstant('Minute'), LanguageDataModule.GetConstant('Second')]), T2 - T1);
+    StatusBar.Panels[0].Text := Format(LanguageDataModule.GetConstant('FilesFound'), [FProgressBar.Count, TimeDifference])
+  end;
+
   SearchVirtualDrawTree.Sort(nil, 0, sdAscending, False);
   SearchVirtualDrawTree.EndUpdate;
   SearchingFilesPanel.Visible := False;

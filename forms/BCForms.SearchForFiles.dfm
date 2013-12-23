@@ -50,13 +50,15 @@ object SearchForFilesForm: TSearchForFilesForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnResize = FormResize
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object SearchingFilesPanel: TPanel
     Left = 0
     Top = 24
     Width = 383
-    Height = 377
+    Height = 358
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Searching files...'
@@ -88,7 +90,7 @@ object SearchForFilesForm: TSearchForFilesForm
     Left = 3
     Top = 27
     Width = 377
-    Height = 371
+    Height = 352
     Align = alClient
     Header.AutoSizeIndex = 0
     Header.Font.Charset = DEFAULT_CHARSET
@@ -108,6 +110,16 @@ object SearchForFilesForm: TSearchForFilesForm
     OnGetImageIndex = SearchVirtualDrawTreeGetImageIndex
     OnGetNodeWidth = SearchVirtualDrawTreeGetNodeWidth
     Columns = <>
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Top = 382
+    Width = 383
+    Height = 19
+    Panels = <
+      item
+        Width = 300
+      end>
   end
   object ActionList: TActionList
     Left = 196
