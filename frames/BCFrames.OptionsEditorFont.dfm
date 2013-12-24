@@ -2,20 +2,18 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
   Left = 0
   Top = 0
   Width = 451
-  Height = 390
+  Height = 305
   Align = alClient
   TabOrder = 0
   Visible = False
-  ExplicitHeight = 305
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 451
-    Height = 390
+    Height = 305
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitHeight = 305
     object TopPanel: TPanel
       Left = 0
       Top = 0
@@ -259,24 +257,23 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         Min = 1
         Position = 2
         TabOrder = 1
+        OnChange = BrightnessTrackBarChange
       end
     end
     object BottomPanel: TPanel
       Left = 0
       Top = 219
       Width = 451
-      Height = 171
+      Height = 86
       Align = alClient
       BevelOuter = bvNone
       Padding.Left = 4
       TabOrder = 1
-      ExplicitTop = 172
-      ExplicitHeight = 133
       object SynEdit: TBCSynEdit
         Left = 4
         Top = 0
         Width = 447
-        Height = 171
+        Height = 86
         Align = alClient
         ActiveLineColor = clBtnFace
         CodeFolding.CaseSensitive = False
@@ -326,13 +323,12 @@ object OptionsEditorFontFrame: TOptionsEditorFontFrame
         Minimap.Visible = True
         Minimap.CharWidth = 2
         Minimap.CharHeight = 4
-        Minimap.LinesInWindow = 37
+        Minimap.LinesInWindow = 16
         Options = [eoAutoIndent, eoDragDropEditing, eoEnhanceEndKey, eoGroupUndo, eoHalfPageScroll, eoScrollPastEol, eoShowScrollHint, eoSmartTabDelete, eoSmartTabs, eoTabsToSpaces]
         WordWrap.Enabled = False
         WordWrap.Position = 80
         WordWrap.Style = wwsClientWidth
         FontSmoothing = fsmNone
-        ExplicitHeight = 133
       end
     end
   end

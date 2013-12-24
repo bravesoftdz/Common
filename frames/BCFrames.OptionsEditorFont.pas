@@ -38,6 +38,7 @@ type
     procedure SelectMarginFontActionExecute(Sender: TObject);
     procedure SelectMinimapFontActionExecute(Sender: TObject);
     procedure MinimapWidthEditChange(Sender: TObject);
+    procedure BrightnessTrackBarChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -49,6 +50,9 @@ type
 implementation
 
 {$R *.dfm}
+
+uses
+  BCCommon.StyleUtils;
 
 procedure TOptionsEditorFontFrame.MinimapWidthEditChange(Sender: TObject);
 begin
@@ -103,6 +107,11 @@ begin
   OptionsContainer.MinimapFontSize := MinimapFontLabel.Font.Size;
   OptionsContainer.MinimapWidth := StrToIntDef(MinimapWidthEdit.Text, 100);
   OptionsContainer.ColorBrightness := BrightnessTrackBar.Position;
+end;
+
+procedure TOptionsEditorFontFrame.BrightnessTrackBarChange(Sender: TObject);
+begin
+  SynEdit.ActiveLineColor := LightenColor(SynEdit.Color, 1 - (10 - BrightnessTrackBar.Position)/10);
 end;
 
 procedure TOptionsEditorFontFrame.GetData(OptionsContainer: TOptionsContainer);
