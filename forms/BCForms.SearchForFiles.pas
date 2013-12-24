@@ -39,6 +39,7 @@ type
     { Private declarations }
     FOpenFile: TOpenFileEvent;
     FProgressBar: TBCProgressBar;
+    FFormClosing: Boolean;
     procedure ReadIniFile;
     procedure WriteIniFile;
     procedure ReadFiles(RootDirectory: string);
@@ -282,6 +283,8 @@ end;
 procedure TSearchForFilesForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   WriteIniFile;
+  FFormClosing := True;
+  Application.ProcessMessages;
   Action := caFree;
 end;
 
@@ -291,6 +294,7 @@ var
   PathInfo: String;
   SysImageList: THandle;
 begin
+  FFormClosing := False;
   SearchVirtualDrawTree.NodeDataSize := SizeOf(TSearchRec);
   SearchVirtualDrawTree.Images := TBCImageList.Create(Self);
   SysImageList := SHGetFileInfo(PChar(PathInfo), 0, SHFileInfo, SizeOf(SHFileInfo), SHGFI_SYSICONINDEX or SHGFI_SMALLICON);
@@ -304,9 +308,9 @@ end;
 
 procedure TSearchForFilesForm.FormDestroy(Sender: TObject);
 begin
+  FProgressBar.Free;
   SearchVirtualDrawTree.Images.Free;
   FSearchForFilesForm := nil;
-  FProgressBar.Free;
 end;
 
 procedure TSearchForFilesForm.FormResize(Sender: TObject);
@@ -334,23 +338,26 @@ begin
   FProgressBar.Show;
   T1 := Now;
   try
-  ReadFiles(RootDirectory);
+    ReadFiles(RootDirectory);
   finally
     FProgressBar.Hide;
-    T2 := Now;
-    Min := StrToInt(FormatDateTime('n', T2 - T1));
-    Secs := Min * 60 + StrToInt(FormatDateTime('s', T2 - T1));
-    if Secs < 60 then
-      TimeDifference := FormatDateTime(Format('s.zzz "%s"', [LanguageDataModule.GetConstant('Second')]), T2 - T1)
-    else
-      TimeDifference := FormatDateTime(Format('n "%s" s.zzz "%s"', [LanguageDataModule.GetConstant('Minute'), LanguageDataModule.GetConstant('Second')]), T2 - T1);
-    StatusBar.Panels[0].Text := Format(LanguageDataModule.GetConstant('FilesFound'), [FProgressBar.Count, TimeDifference])
-  end;
+    if not FFormClosing then
+    begin
+      T2 := Now;
+      Min := StrToInt(FormatDateTime('n', T2 - T1));
+      Secs := Min * 60 + StrToInt(FormatDateTime('s', T2 - T1));
+      if Secs < 60 then
+        TimeDifference := FormatDateTime(Format('s.zzz "%s"', [LanguageDataModule.GetConstant('Second')]), T2 - T1)
+      else
+        TimeDifference := FormatDateTime(Format('n "%s" s.zzz "%s"', [LanguageDataModule.GetConstant('Minute'), LanguageDataModule.GetConstant('Second')]), T2 - T1);
+      StatusBar.Panels[0].Text := Format(LanguageDataModule.GetConstant('FilesFound'), [FProgressBar.Count, TimeDifference]);
+      SearchVirtualDrawTree.Sort(nil, 0, sdAscending, False);
 
-  SearchVirtualDrawTree.Sort(nil, 0, sdAscending, False);
-  SearchVirtualDrawTree.EndUpdate;
-  SearchingFilesPanel.Visible := False;
-  SearchForEdit.ReadOnly := False;
+      SearchVirtualDrawTree.EndUpdate;
+      SearchingFilesPanel.Visible := False;
+      SearchForEdit.ReadOnly := False;
+    end;
+  end;
 end;
 
 procedure TSearchForFilesForm.ReadIniFile;
@@ -407,13 +414,16 @@ var
     end;
   end;
 begin
+  if FFormClosing then
+    Exit;
   {$WARNINGS OFF} { IncludeTrailingBackslash is specific to a platform }
   shFindFile := FindFirstFile(PChar(IncludeTrailingBackslash(RootDirectory) + '*.*'), sWin32FD);
   {$WARNINGS ON}
   if shFindFile <> INVALID_HANDLE_VALUE then
   try
     repeat
-      Application.ProcessMessages;
+      if FFormClosing then
+        Exit;
       FName := StrPas(sWin32FD.cFileName);
       if (FName <> '.') and (FName <> '..') then
       begin
@@ -423,16 +433,21 @@ begin
           {$WARNINGS ON}
         else
         begin
-          Node := SearchVirtualDrawTree.AddChild(nil);
-          NodeData := SearchVirtualDrawTree.GetNodeData(Node);
-          NodeData.FileName := FName;
-          {$WARNINGS OFF} { ExcludeTrailingBackslash is specific to a platform }
-          NodeData.FilePath := ExcludeTrailingBackslash(RootDirectory);
-          NodeData.ImageIndex := GetIconIndex(IncludeTrailingBackslash(RootDirectory) + FName);
-          {$WARNINGS ON}
+          FProgressBar.StepIt;
+          Application.ProcessMessages;
+          if not FFormClosing then
+          begin
+            Node := SearchVirtualDrawTree.AddChild(nil);
+            NodeData := SearchVirtualDrawTree.GetNodeData(Node);
+            NodeData.FileName := FName;
+            {$WARNINGS OFF} { ExcludeTrailingBackslash is specific to a platform }
+            NodeData.FilePath := ExcludeTrailingBackslash(RootDirectory);
+            NodeData.ImageIndex := GetIconIndex(IncludeTrailingBackslash(RootDirectory) + FName);
+            {$WARNINGS ON}
+          end;
         end;
       end;
-    until not FindNextFile(shFindFile, sWin32FD);
+    until not FindNextFile(shFindFile, sWin32FD) and not FFormClosing;
   finally
     Winapi.Windows.FindClose(shFindFile);
   end;
