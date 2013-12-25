@@ -42,10 +42,10 @@ type
     procedure BrightnessTrackBarChange(Sender: TObject);
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    procedure GetData(OptionsContainer: TOptionsContainer); override;
-    procedure PutData(OptionsContainer: TOptionsContainer); override;
+    procedure Init; override;
+    procedure GetData; override;
+    procedure PutData; override;
   end;
 
 function OptionsEditorFontFrame(AOwner: TComponent): TOptionsEditorFontFrame;
@@ -73,9 +73,8 @@ begin
   FOptionsEditorFontFrame := nil;
 end;
 
-constructor TOptionsEditorFontFrame.Create(AOwner: TComponent);
+procedure TOptionsEditorFontFrame.Init;
 begin
-  inherited;
   UpdateMarginAndColors(SynEdit);
   OptionsContainer.AssignTo(SynEdit);
   SynEdit.ActiveLineColor := LightenColor(SynEdit.Color, 1 - (10 - OptionsContainer.ColorBrightness) / 10);
@@ -124,7 +123,7 @@ begin
   end;
 end;
 
-procedure TOptionsEditorFontFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorFontFrame.PutData;
 begin
   OptionsContainer.FontName := EditorFontLabel.Font.Name;
   OptionsContainer.FontSize := EditorFontLabel.Font.Size;
@@ -141,7 +140,7 @@ begin
   SynEdit.ActiveLineColor := LightenColor(SynEdit.Color, 1 - (10 - BrightnessTrackBar.Position)/10);
 end;
 
-procedure TOptionsEditorFontFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorFontFrame.GetData;
 begin
   EditorFontLabel.Font.Name := OptionsContainer.FontName;
   EditorFontLabel.Font.Size := OptionsContainer.FontSize;

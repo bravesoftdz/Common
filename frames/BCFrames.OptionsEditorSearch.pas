@@ -16,8 +16,8 @@ type
   public
     { Public declarations }
     destructor Destroy; override;
-    procedure GetData(OptionsContainer: TOptionsContainer); override;
-    procedure PutData(OptionsContainer: TOptionsContainer); override;
+    procedure GetData; override;
+    procedure PutData; override;
   end;
 
 function OptionsEditorSearchFrame(AOwner: TComponent): TOptionsEditorSearchFrame;
@@ -42,14 +42,13 @@ begin
   FOptionsEditorSearchFrame := nil;
 end;
 
-
-procedure TOptionsEditorSearchFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorSearchFrame.PutData;
 begin
   OptionsContainer.ShowSearchStringNotFound := ShowSearchStringNotFoundCheckBox.Checked;
   OptionsContainer.BeepIfSearchStringNotFound := BeepIfSearchStringNotFoundCheckBox.Checked;
 end;
 
-procedure TOptionsEditorSearchFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorSearchFrame.GetData;
 begin
   ShowSearchStringNotFoundCheckBox.Checked := OptionsContainer.ShowSearchStringNotFound;
   BeepIfSearchStringNotFoundCheckBox.Checked := OptionsContainer.BeepIfSearchStringNotFound;

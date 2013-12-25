@@ -25,10 +25,13 @@ type
     { Private declarations }
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent); override;
-    procedure GetData(OptionsContainer: TOptionsContainer); override;
-    procedure PutData(OptionsContainer: TOptionsContainer); override;
+    destructor Destroy; override;
+    procedure Init; override;
+    procedure GetData; override;
+    procedure PutData; override;
   end;
+
+function OptionsPrintFrame(AOwner: TComponent): TOptionsPrintFrame;
 
 implementation
 
@@ -37,9 +40,24 @@ implementation
 uses
   BCCommon.LanguageStrings;
 
-constructor TOptionsPrintFrame.Create(AOwner: TComponent);
+var
+  FOptionsPrintFrame: TOptionsPrintFrame;
+
+function OptionsPrintFrame(AOwner: TComponent): TOptionsPrintFrame;
+begin
+  if not Assigned(FOptionsPrintFrame) then
+    FOptionsPrintFrame := TOptionsPrintFrame.Create(AOwner);
+  Result := FOptionsPrintFrame;
+end;
+
+destructor TOptionsPrintFrame.Destroy;
 begin
   inherited;
+  FOptionsPrintFrame := nil;
+end;
+
+procedure TOptionsPrintFrame.Init;
+begin
   with DocumentNameComboBox.Items do
   begin
     Add(LanguageDatamodule.GetConstant('FooterLeft'));
@@ -53,7 +71,7 @@ begin
   DateTimeComboBox.Items.Text := DocumentNameComboBox.Items.Text;
 end;
 
-procedure TOptionsPrintFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsPrintFrame.PutData;
 begin
   OptionsContainer.PrintDocumentName := DocumentNameComboBox.ItemIndex;
   OptionsContainer.PrintPageNumber := PageNumberComboBox.ItemIndex;
@@ -65,7 +83,7 @@ begin
   OptionsContainer.PrintWordWrapLine := WordWrapCheckBox.Checked;
 end;
 
-procedure TOptionsPrintFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsPrintFrame.GetData;
 begin
   DocumentNameComboBox.ItemIndex := OptionsContainer.PrintDocumentName;
   PageNumberComboBox.ItemIndex := OptionsContainer.PrintPageNumber;

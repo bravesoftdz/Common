@@ -17,10 +17,13 @@ type
     { Private declarations }
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent); override;
-    procedure GetData(OptionsContainer: TOptionsContainer); override;
-    procedure PutData(OptionsContainer: TOptionsContainer); override;
+    destructor Destroy; override;
+    procedure Init; override;
+    procedure GetData; override;
+    procedure PutData; override;
   end;
+
+function OptionsEditorCompletionProposalFrame(AOwner: TComponent): TOptionsEditorCompletionProposalFrame;
 
 implementation
 
@@ -29,23 +32,38 @@ implementation
 uses
   Vcl.Menus, BCCommon.Lib;
 
-constructor TOptionsEditorCompletionProposalFrame.Create(AOwner: TComponent);
+var
+  FOptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame;
+
+function OptionsEditorCompletionProposalFrame(AOwner: TComponent): TOptionsEditorCompletionProposalFrame;
+begin
+  if not Assigned(FOptionsEditorCompletionProposalFrame) then
+    FOptionsEditorCompletionProposalFrame := TOptionsEditorCompletionProposalFrame.Create(AOwner);
+  Result := FOptionsEditorCompletionProposalFrame;
+end;
+
+destructor TOptionsEditorCompletionProposalFrame.Destroy;
+begin
+  inherited;
+  FOptionsEditorCompletionProposalFrame := nil;
+end;
+
+procedure TOptionsEditorCompletionProposalFrame.Init;
 var
   i: Integer;
 begin
-  inherited;
   for i := 1 to High(ShortCuts) do
     ShortcutComboBox.Items.Add(ShortCutToText(ShortCuts[i]));
 end;
 
-procedure TOptionsEditorCompletionProposalFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorCompletionProposalFrame.PutData;
 begin
   OptionsContainer.CompletionProposalEnabled := EnabledCheckBox.Checked;
   OptionsContainer.CompletionProposalCaseSensitive := CaseSensitiveCheckBox.Checked;
   OptionsContainer.CompletionProposalShortcut := ShortcutComboBox.Text;
 end;
 
-procedure TOptionsEditorCompletionProposalFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorCompletionProposalFrame.GetData;
 begin
   EnabledCheckBox.Checked := OptionsContainer.CompletionProposalEnabled;
   CaseSensitiveCheckBox.Checked := OptionsContainer.CompletionProposalCaseSensitive;

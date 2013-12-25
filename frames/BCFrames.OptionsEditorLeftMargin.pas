@@ -28,8 +28,8 @@ type
   public
     { Public declarations }
     destructor Destroy; override;
-    procedure GetData(OptionsContainer: TOptionsContainer); override;
-    procedure PutData(OptionsContainer: TOptionsContainer); override;
+    procedure GetData; override;
+    procedure PutData; override;
   end;
 
 function OptionsEditorLeftMarginFrame(AOwner: TComponent): TOptionsEditorLeftMarginFrame;
@@ -57,7 +57,7 @@ begin
   FOptionsEditorLeftMarginFrame := nil;
 end;
 
-procedure TOptionsEditorLeftMarginFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorLeftMarginFrame.PutData;
 begin
   OptionsContainer.MarginVisibleLeftMargin := VisibleCheckBox.Checked;
   OptionsContainer.MarginLeftMarginAutoSize := AutoSizeCheckBox.Checked;
@@ -71,7 +71,7 @@ begin
   OptionsContainer.MarginLeftMarginWidth := StrToIntDef(LeftMarginWidthEdit.Text, 30);
 end;
 
-procedure TOptionsEditorLeftMarginFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorLeftMarginFrame.GetData;
 begin
   AutoSizeCheckBox.Checked := OptionsContainer.MarginLeftMarginAutoSize;
   VisibleCheckBox.Checked := OptionsContainer.MarginVisibleLeftMargin;

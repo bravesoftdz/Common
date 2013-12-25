@@ -16,9 +16,12 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure GetData(OptionsContainer: TOptionsContainer); override;
-    procedure PutData(OptionsContainer: TOptionsContainer); override;
+    destructor Destroy; override;
+    procedure GetData; override;
+    procedure PutData; override;
   end;
+
+function OptionsOutputFrame(AOwner: TComponent): TOptionsOutputFrame;
 
 implementation
 
@@ -27,13 +30,29 @@ implementation
 uses
   System.SysUtils;
 
-procedure TOptionsOutputFrame.PutData(OptionsContainer: TOptionsContainer);
+var
+  FOptionsOutputFrame: TOptionsOutputFrame;
+
+function OptionsOutputFrame(AOwner: TComponent): TOptionsOutputFrame;
+begin
+  if not Assigned(FOptionsOutputFrame) then
+    FOptionsOutputFrame := TOptionsOutputFrame.Create(AOwner);
+  Result := FOptionsOutputFrame;
+end;
+
+destructor TOptionsOutputFrame.Destroy;
+begin
+  inherited;
+  FOptionsOutputFrame := nil;
+end;
+
+procedure TOptionsOutputFrame.PutData;
 begin
   OptionsContainer.OutputShowTreeLines := ShowTreeLinesCheckBox.Checked;
   OptionsContainer.OutputIndent := StrToIntDef(IndentEdit.Text, 16);
 end;
 
-procedure TOptionsOutputFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsOutputFrame.GetData;
 begin
   ShowTreeLinesCheckBox.Checked := OptionsContainer.OutputShowTreeLines;
   IndentEdit.Text := IntToStr(OptionsContainer.OutputIndent);

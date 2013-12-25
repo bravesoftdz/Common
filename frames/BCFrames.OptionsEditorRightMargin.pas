@@ -18,8 +18,8 @@ type
   public
     { Public declarations }
     destructor Destroy; override;
-    procedure GetData(OptionsContainer: TOptionsContainer); override;
-    procedure PutData(OptionsContainer: TOptionsContainer); override;
+    procedure GetData; override;
+    procedure PutData; override;
   end;
 
 function OptionsEditorRightMarginFrame(AOwner: TComponent): TOptionsEditorRightMarginFrame;
@@ -47,14 +47,14 @@ begin
   FOptionsEditorRightMarginFrame := nil;
 end;
 
-procedure TOptionsEditorRightMarginFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorRightMarginFrame.PutData;
 begin
   OptionsContainer.MarginVisibleRightMargin := VisibleCheckBox.Checked;
   OptionsContainer.MarginRightMargin := StrToIntDef(PositionEdit.Text, 80);
   OptionsContainer.MarginLeftMarginMouseMove := MouseMoveCheckBox.Checked;
 end;
 
-procedure TOptionsEditorRightMarginFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorRightMarginFrame.GetData;
 begin
   VisibleCheckBox.Checked := OptionsContainer.MarginVisibleRightMargin;
   PositionEdit.Text := IntToStr(OptionsContainer.MarginRightMargin);

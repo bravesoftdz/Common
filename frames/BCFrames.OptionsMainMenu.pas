@@ -27,10 +27,13 @@ type
     { Private declarations }
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent); override;
-    procedure GetData(OptionsContainer: TOptionsContainer); override;
-    procedure PutData(OptionsContainer: TOptionsContainer); override;
+    destructor Destroy; override;
+    procedure Init; override;
+    procedure GetData; override;
+    procedure PutData; override;
   end;
+
+function OptionsMainMenuFrame(AOwner: TComponent): TOptionsMainMenuFrame;
 
 implementation
 
@@ -39,11 +42,26 @@ implementation
 uses
   BCCommon.Lib, Vcl.ActnMenus;
 
-constructor TOptionsMainMenuFrame.Create(AOwner: TComponent);
+var
+  FOptionsMainMenuFrame: TOptionsMainMenuFrame;
+
+function OptionsMainMenuFrame(AOwner: TComponent): TOptionsMainMenuFrame;
+begin
+  if not Assigned(FOptionsMainMenuFrame) then
+    FOptionsMainMenuFrame := TOptionsMainMenuFrame.Create(AOwner);
+  Result := FOptionsMainMenuFrame;
+end;
+
+destructor TOptionsMainMenuFrame.Destroy;
+begin
+  inherited;
+  FOptionsMainMenuFrame := nil;
+end;
+
+procedure TOptionsMainMenuFrame.Init;
 var
   i: TAnimationStyle;
 begin
-  inherited;
   for i := Low(TAnimationStyle) to High(TAnimationStyle) do
     AnimationStyleComboBox.Items.Add(TAnimationStyleStr[TAnimationStyle(i)]);
 end;
@@ -59,7 +77,7 @@ begin
   end;
 end;
 
-procedure TOptionsMainMenuFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsMainMenuFrame.PutData;
 begin
   OptionsContainer.PersistentHotKeys := PersistentHotKeysCheckBox.Checked;
   OptionsContainer.Shadows := ShadowsCheckBox.Checked;
@@ -70,7 +88,7 @@ begin
   OptionsContainer.AnimationDuration := StrToIntDef(AnimationDurationEdit.Text, 150);
 end;
 
-procedure TOptionsMainMenuFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsMainMenuFrame.GetData;
 begin
   PersistentHotKeysCheckBox.Checked := OptionsContainer.PersistentHotKeys;
   ShadowsCheckBox.Checked := OptionsContainer.Shadows;
@@ -78,7 +96,7 @@ begin
   FontLabel.Font.Name := OptionsContainer.MainMenuFontName;
   FontLabel.Font.Size := OptionsContainer.MainMenuFontSize;
   FontLabel.Caption := Format('%s %dpt', [FontLabel.Font.Name, FontLabel.Font.Size]);
-  AnimationStyleComboBox.ItemIndex := Ord(OptionsContainer.AnimationStyle);
+  AnimationStyleComboBox.ItemIndex := OptionsContainer.AnimationStyle;
   AnimationDurationEdit.Text := IntToStr(OptionsContainer.AnimationDuration);
 end;
 

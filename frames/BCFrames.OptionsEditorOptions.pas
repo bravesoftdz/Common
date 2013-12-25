@@ -33,10 +33,10 @@ type
     { Private declarations }
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    procedure GetData(OptionsContainer: TOptionsContainer); override;
-    procedure PutData(OptionsContainer: TOptionsContainer); override;
+    procedure Init; override;
+    procedure GetData; override;
+    procedure PutData; override;
   end;
 
 function OptionsEditorOptionsFrame(AOwner: TComponent): TOptionsEditorOptionsFrame;
@@ -64,7 +64,7 @@ begin
   FOptionsEditorOptionsFrame := nil;
 end;
 
-constructor TOptionsEditorOptionsFrame.Create(AOwner: TComponent);
+procedure TOptionsEditorOptionsFrame.Init;
 begin
   inherited;
   with InsertCaretComboBox.Items do
@@ -76,7 +76,7 @@ begin
   end;
 end;
 
-procedure TOptionsEditorOptionsFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorOptionsFrame.PutData;
 begin
   OptionsContainer.AutoIndent := AutoIndentCheckBox.Checked;
   OptionsContainer.AutoSave := AutoSaveCheckBox.Checked;
@@ -96,7 +96,7 @@ begin
   OptionsContainer.NonblinkingCaretColor := ColorToString(NonblinkingCaretColorBox.Selected);
 end;
 
-procedure TOptionsEditorOptionsFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsEditorOptionsFrame.GetData;
 begin
   AutoIndentCheckBox.Checked := OptionsContainer.AutoIndent;
   AutoSaveCheckBox.Checked := OptionsContainer.AutoSave;
@@ -112,7 +112,7 @@ begin
   SmartTabDeleteCheckBox.Checked := OptionsContainer.SmartTabDelete;
   LineSpacingEdit.Text := IntToStr(OptionsContainer.LineSpacing);
   TabWidthEdit.Text := IntToStr(OptionsContainer.TabWidth);
-  InsertCaretComboBox.ItemIndex := Ord(OptionsContainer.InsertCaret);
+  InsertCaretComboBox.ItemIndex := OptionsContainer.InsertCaret;
   NonblinkingCaretColorBox.Selected := StringToColor(OptionsContainer.NonblinkingCaretColor);
 end;
 

@@ -21,13 +21,32 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure GetData(OptionsContainer: TOptionsContainer); override;
-    procedure PutData(OptionsContainer: TOptionsContainer); override;
+    destructor Destroy; override;
+    procedure GetData; override;
+    procedure PutData; override;
   end;
+
+function OptionsStatusBarFrame(AOwner: TComponent): TOptionsStatusBarFrame;
 
 implementation
 
 {$R *.dfm}
+
+var
+  FOptionsStatusBarFrame: TOptionsStatusBarFrame;
+
+function OptionsStatusBarFrame(AOwner: TComponent): TOptionsStatusBarFrame;
+begin
+  if not Assigned(FOptionsStatusBarFrame) then
+    FOptionsStatusBarFrame := TOptionsStatusBarFrame.Create(AOwner);
+  Result := FOptionsStatusBarFrame;
+end;
+
+destructor TOptionsStatusBarFrame.Destroy;
+begin
+  inherited;
+  FOptionsStatusBarFrame := nil;
+end;
 
 procedure TOptionsStatusBarFrame.SelectFontActionExecute(Sender: TObject);
 begin
@@ -40,14 +59,14 @@ begin
   end;
 end;
 
-procedure TOptionsStatusBarFrame.PutData(OptionsContainer: TOptionsContainer);
+procedure TOptionsStatusBarFrame.PutData;
 begin
   OptionsContainer.StatusBarUseSystemFont := UseSystemFontCheckBox.Checked;
   OptionsContainer.StatusBarFontName := FontLabel.Font.Name;
   OptionsContainer.StatusBarFontSize := FontLabel.Font.Size;
 end;
 
-procedure TOptionsStatusBarFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsStatusBarFrame.GetData;
 begin
   UseSystemFontCheckBox.Checked := OptionsContainer.StatusBarUseSystemFont;
   FontLabel.Font.Name := OptionsContainer.StatusBarFontName;

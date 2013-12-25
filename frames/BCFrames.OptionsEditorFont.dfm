@@ -1,11 +1,10 @@
 inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
-  Left = 0
-  Top = 0
   Width = 451
   Height = 305
   Align = alClient
-  TabOrder = 0
   Visible = False
+  ExplicitWidth = 451
+  ExplicitHeight = 305
   object Panel: TPanel
     Left = 0
     Top = 0

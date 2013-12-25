@@ -15,21 +15,40 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure GetData(OptionsContainer: TOptionsContainer); override;
-    procedure PutData(OptionsContainer: TOptionsContainer); override;
+    destructor Destroy; override;
+    procedure GetData; override;
+    procedure PutData; override;
   end;
+
+function OptionsCompareFrame(AOwner: TComponent): TOptionsCompareFrame;
 
 implementation
 
 {$R *.dfm}
 
-procedure TOptionsCompareFrame.PutData(OptionsContainer: TOptionsContainer);
+var
+  FOptionsCompareFrame: TOptionsCompareFrame;
+
+function OptionsCompareFrame(AOwner: TComponent): TOptionsCompareFrame;
+begin
+  if not Assigned(FOptionsCompareFrame) then
+    FOptionsCompareFrame := TOptionsCompareFrame.Create(AOwner);
+  Result := FOptionsCompareFrame;
+end;
+
+destructor TOptionsCompareFrame.Destroy;
+begin
+  inherited;
+  FOptionsCompareFrame := nil;
+end;
+
+procedure TOptionsCompareFrame.PutData;
 begin
   OptionsContainer.IgnoreCase := IgnoreCaseCheckBox.Checked;
   OptionsContainer.IgnoreBlanks := IgnoreBlanksCheckBox.Checked;
 end;
 
-procedure TOptionsCompareFrame.GetData(OptionsContainer: TOptionsContainer);
+procedure TOptionsCompareFrame.GetData;
 begin
   IgnoreCaseCheckBox.Checked := OptionsContainer.IgnoreCase;
   IgnoreBlanksCheckBox.Checked := OptionsContainer.IgnoreBlanks;
