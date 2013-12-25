@@ -43,9 +43,12 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
     procedure GetData(OptionsContainer: TOptionsContainer); override;
     procedure PutData(OptionsContainer: TOptionsContainer); override;
   end;
+
+function OptionsEditorFontFrame(AOwner: TComponent): TOptionsEditorFontFrame;
 
 implementation
 
@@ -53,6 +56,22 @@ implementation
 
 uses
   BCCommon.StyleUtils, BCCommon.LanguageUtils;
+
+var
+  FOptionsEditorFontFrame: TOptionsEditorFontFrame;
+
+function OptionsEditorFontFrame(AOwner: TComponent): TOptionsEditorFontFrame;
+begin
+  if not Assigned(FOptionsEditorFontFrame) then
+    FOptionsEditorFontFrame := TOptionsEditorFontFrame.Create(AOwner);
+  Result := FOptionsEditorFontFrame;
+end;
+
+destructor TOptionsEditorFontFrame.Destroy;
+begin
+  inherited;
+  FOptionsEditorFontFrame := nil;
+end;
 
 constructor TOptionsEditorFontFrame.Create(AOwner: TComponent);
 begin

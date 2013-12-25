@@ -17,9 +17,12 @@ type
     { Private declarations }
   public
     { Public declarations }
+    destructor Destroy; override;
     procedure GetData(OptionsContainer: TOptionsContainer); override;
     procedure PutData(OptionsContainer: TOptionsContainer); override;
   end;
+
+function OptionsEditorRightMarginFrame(AOwner: TComponent): TOptionsEditorRightMarginFrame;
 
 implementation
 
@@ -27,6 +30,22 @@ implementation
 
 uses
   System.SysUtils;
+
+var
+  FOptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame;
+
+function OptionsEditorRightMarginFrame(AOwner: TComponent): TOptionsEditorRightMarginFrame;
+begin
+  if not Assigned(FOptionsEditorRightMarginFrame) then
+    FOptionsEditorRightMarginFrame := TOptionsEditorRightMarginFrame.Create(AOwner);
+  Result := FOptionsEditorRightMarginFrame;
+end;
+
+destructor TOptionsEditorRightMarginFrame.Destroy;
+begin
+  inherited;
+  FOptionsEditorRightMarginFrame := nil;
+end;
 
 procedure TOptionsEditorRightMarginFrame.PutData(OptionsContainer: TOptionsContainer);
 begin

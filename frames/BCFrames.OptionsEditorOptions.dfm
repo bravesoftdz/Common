@@ -1,4 +1,4 @@
-object OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
+inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
   Left = 0
   Top = 0
   Width = 260

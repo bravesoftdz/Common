@@ -5,10 +5,10 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   BCControls.CheckBox, Vcl.Buttons, BCControls.ComboBox, BCControls.Edit, Vcl.ActnList, System.Actions,
-  BCCommon.OptionsContainer;
+  BCCommon.OptionsContainer, BCFrames.OptionsFrame;
 
 type
-  TOptionsMainMenuFrame = class(TFrame)
+  TOptionsMainMenuFrame = class(TOptionsFrame)
     Panel: TPanel;
     PersistentHotKeysCheckBox: TBCCheckBox;
     ShadowsCheckBox: TBCCheckBox;
@@ -28,8 +28,8 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
-    procedure GetData(OptionsContainer: TOptionsContainer);
-    procedure PutData(OptionsContainer: TOptionsContainer);
+    procedure GetData(OptionsContainer: TOptionsContainer); override;
+    procedure PutData(OptionsContainer: TOptionsContainer); override;
   end;
 
 implementation

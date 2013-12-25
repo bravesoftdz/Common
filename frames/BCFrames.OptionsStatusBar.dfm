@@ -1,9 +1,8 @@
-object OptionsStatusBarFrame: TOptionsStatusBarFrame
-  Left = 0
-  Top = 0
+inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
   Width = 232
   Height = 49
-  TabOrder = 0
+  ExplicitWidth = 232
+  ExplicitHeight = 49
   object Panel: TPanel
     Left = 0
     Top = 0

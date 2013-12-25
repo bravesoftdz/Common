@@ -4,10 +4,10 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.ComboBox, Vcl.ExtCtrls,
-  BCControls.CheckBox, BCCommon.OptionsContainer;
+  BCControls.CheckBox, BCCommon.OptionsContainer, BCFrames.OptionsFrame;
 
 type
-  TOptionsPrintFrame = class(TFrame)
+  TOptionsPrintFrame = class(TOptionsFrame)
     Panel: TPanel;
     DateTimeLabel: TLabel;
     PrintedByLabel: TLabel;
@@ -26,8 +26,8 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
-    procedure GetData(OptionsContainer: TOptionsContainer);
-    procedure PutData(OptionsContainer: TOptionsContainer);
+    procedure GetData(OptionsContainer: TOptionsContainer); override;
+    procedure PutData(OptionsContainer: TOptionsContainer); override;
   end;
 
 implementation

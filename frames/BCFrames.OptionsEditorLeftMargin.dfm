@@ -1,4 +1,4 @@
-object OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
+inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
   Left = 0
   Top = 0
   Width = 296

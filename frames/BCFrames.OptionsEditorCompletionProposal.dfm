@@ -1,9 +1,8 @@
-object OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
-  Left = 0
-  Top = 0
+inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
   Width = 201
   Height = 80
-  TabOrder = 0
+  ExplicitWidth = 201
+  ExplicitHeight = 80
   object Panel: TPanel
     Left = 0
     Top = 0

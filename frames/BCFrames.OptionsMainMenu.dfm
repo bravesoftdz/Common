@@ -1,10 +1,9 @@
-object OptionsMainMenuFrame: TOptionsMainMenuFrame
-  Left = 0
-  Top = 0
+inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
   Width = 236
   Height = 173
-  TabOrder = 0
   Visible = False
+  ExplicitWidth = 236
+  ExplicitHeight = 173
   object Panel: TPanel
     Left = 0
     Top = 0

@@ -4,10 +4,11 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  BCControls.CheckBox, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ActnList, System.Actions, BCCommon.OptionsContainer;
+  BCControls.CheckBox, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ActnList, System.Actions, BCCommon.OptionsContainer,
+  BCFrames.OptionsFrame;
 
 type
-  TOptionsStatusBarFrame = class(TFrame)
+  TOptionsStatusBarFrame = class(TOptionsFrame)
     Panel: TPanel;
     SelectFontSpeedButton: TSpeedButton;
     FontLabel: TLabel;
@@ -20,8 +21,8 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure GetData(OptionsContainer: TOptionsContainer);
-    procedure PutData(OptionsContainer: TOptionsContainer);
+    procedure GetData(OptionsContainer: TOptionsContainer); override;
+    procedure PutData(OptionsContainer: TOptionsContainer); override;
   end;
 
 implementation

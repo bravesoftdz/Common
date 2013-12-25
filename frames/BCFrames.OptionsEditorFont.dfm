@@ -1,4 +1,4 @@
-object OptionsEditorFontFrame: TOptionsEditorFontFrame
+inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
   Left = 0
   Top = 0
   Width = 451

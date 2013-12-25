@@ -4,10 +4,10 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.CheckBox, Vcl.ExtCtrls,
-  BCControls.ComboBox, BCCommon.OptionsContainer;
+  BCControls.ComboBox, BCCommon.OptionsContainer, BCFrames.OptionsFrame;
 
 type
-  TOptionsEditorCompletionProposalFrame = class(TFrame)
+  TOptionsEditorCompletionProposalFrame = class(TOptionsFrame)
     Panel: TPanel;
     EnabledCheckBox: TBCCheckBox;
     CaseSensitiveCheckBox: TBCCheckBox;
@@ -18,8 +18,8 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
-    procedure GetData(OptionsContainer: TOptionsContainer);
-    procedure PutData(OptionsContainer: TOptionsContainer);
+    procedure GetData(OptionsContainer: TOptionsContainer); override;
+    procedure PutData(OptionsContainer: TOptionsContainer); override;
   end;
 
 implementation

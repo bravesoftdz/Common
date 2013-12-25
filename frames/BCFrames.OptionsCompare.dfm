@@ -1,10 +1,9 @@
-object OptionsCompareFrame: TOptionsCompareFrame
-  Left = 0
-  Top = 0
+inherited OptionsCompareFrame: TOptionsCompareFrame
   Width = 282
   Height = 41
-  TabOrder = 0
   Visible = False
+  ExplicitWidth = 282
+  ExplicitHeight = 41
   object Panel: TPanel
     Left = 0
     Top = 0

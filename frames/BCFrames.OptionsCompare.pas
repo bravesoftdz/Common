@@ -4,10 +4,10 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.CheckBox,
-  BCCommon.OptionsContainer;
+  BCCommon.OptionsContainer, BCFrames.OptionsFrame;
 
 type
-  TOptionsCompareFrame = class(TFrame)
+  TOptionsCompareFrame = class(TOptionsFrame)
     Panel: TPanel;
     IgnoreCaseCheckBox: TBCCheckBox;
     IgnoreBlanksCheckBox: TBCCheckBox;
@@ -15,8 +15,8 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure GetData(OptionsContainer: TOptionsContainer);
-    procedure PutData(OptionsContainer: TOptionsContainer);
+    procedure GetData(OptionsContainer: TOptionsContainer); override;
+    procedure PutData(OptionsContainer: TOptionsContainer); override;
   end;
 
 implementation
