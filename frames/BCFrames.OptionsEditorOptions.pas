@@ -4,10 +4,10 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.ComboBox,
-  BCControls.CheckBox, BCControls.Edit, Vcl.ComCtrls, JvEdit, BCCommon.OptionsContainer;
+  BCControls.CheckBox, BCControls.Edit, Vcl.ComCtrls, JvEdit, BCCommon.OptionsContainer, BCFrames.OptionsFrame;
 
 type
-  TOptionsEditorOptionsFrame = class(TFrame)
+  TOptionsEditorOptionsFrame = class(TOptionsFrame)
     Panel: TPanel;
     AutoIndentCheckBox: TBCCheckBox;
     TrimTrailingSpacesCheckBox: TBCCheckBox;
@@ -34,16 +34,35 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); override;
-    procedure GetData(OptionsContainer: TOptionsContainer);
-    procedure PutData(OptionsContainer: TOptionsContainer);
+    destructor Destroy; override;
+    procedure GetData(OptionsContainer: TOptionsContainer); override;
+    procedure PutData(OptionsContainer: TOptionsContainer); override;
   end;
+
+function OptionsEditorOptionsFrame(AOwner: TComponent): TOptionsEditorOptionsFrame;
 
 implementation
 
 {$R *.dfm}
 
 uses
-  System.SysUtils, SynEdit, BCCommon.LanguageStrings;
+  System.SysUtils, SynEdit, BCCommon.LanguageStrings, BCCommon.LanguageUtils;
+
+var
+  FOptionsEditorOptionsFrame: TOptionsEditorOptionsFrame;
+
+function OptionsEditorOptionsFrame(AOwner: TComponent): TOptionsEditorOptionsFrame;
+begin
+  if not Assigned(FOptionsEditorOptionsFrame) then
+    FOptionsEditorOptionsFrame := TOptionsEditorOptionsFrame.Create(AOwner);
+  Result := FOptionsEditorOptionsFrame;
+end;
+
+destructor TOptionsEditorOptionsFrame.Destroy;
+begin
+  inherited;
+  FOptionsEditorOptionsFrame := nil;
+end;
 
 constructor TOptionsEditorOptionsFrame.Create(AOwner: TComponent);
 begin

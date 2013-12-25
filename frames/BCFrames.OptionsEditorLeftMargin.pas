@@ -4,11 +4,11 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.CheckBox,
-  BCControls.Edit, Vcl.Buttons, JvEdit, BCCommon.OptionsContainer;
+  BCControls.Edit, Vcl.Buttons, JvEdit, BCCommon.OptionsContainer, BCFrames.OptionsFrame;
 
 type
 
-  TOptionsEditorLeftMarginFrame = class(TFrame)
+  TOptionsEditorLeftMarginFrame = class(TOptionsFrame)
     Panel: TPanel;
     VisibleCheckBox: TBCCheckBox;
     AutoSizeCheckBox: TBCCheckBox;
@@ -27,8 +27,8 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure GetData(OptionsContainer: TOptionsContainer);
-    procedure PutData(OptionsContainer: TOptionsContainer);
+    procedure GetData(OptionsContainer: TOptionsContainer); override;
+    procedure PutData(OptionsContainer: TOptionsContainer); override;
   end;
 
 implementation

@@ -5,10 +5,11 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons,
   Vcl.StdCtrls, Vcl.ActnList, BCControls.SynEdit, System.Actions, SynEdit, Vcl.ComCtrls, Vcl.ImgList,
-  BCControls.ImageList, SynEditHighlighter, SynHighlighterURI, SynURIOpener, BCControls.Edit, BCCommon.OptionsContainer;
+  BCControls.ImageList, SynEditHighlighter, SynHighlighterURI, SynURIOpener, BCControls.Edit, BCCommon.OptionsContainer,
+  BCFrames.OptionsFrame;
 
 type
-  TOptionsEditorFontFrame = class(TFrame)
+  TOptionsEditorFontFrame = class(TOptionsFrame)
     Panel: TPanel;
     FontDialog: TFontDialog;
     ActionList: TActionList;
@@ -39,12 +40,11 @@ type
     procedure SelectMinimapFontActionExecute(Sender: TObject);
     procedure MinimapWidthEditChange(Sender: TObject);
     procedure BrightnessTrackBarChange(Sender: TObject);
-  private
-    { Private declarations }
   public
     { Public declarations }
-    procedure GetData(OptionsContainer: TOptionsContainer);
-    procedure PutData(OptionsContainer: TOptionsContainer);
+    constructor Create(AOwner: TComponent); override;
+    procedure GetData(OptionsContainer: TOptionsContainer); override;
+    procedure PutData(OptionsContainer: TOptionsContainer); override;
   end;
 
 implementation
@@ -52,7 +52,15 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StyleUtils;
+  BCCommon.StyleUtils, BCCommon.LanguageUtils;
+
+constructor TOptionsEditorFontFrame.Create(AOwner: TComponent);
+begin
+  inherited;
+  UpdateMarginAndColors(SynEdit);
+  OptionsContainer.AssignTo(SynEdit);
+  SynEdit.ActiveLineColor := LightenColor(SynEdit.Color, 1 - (10 - OptionsContainer.ColorBrightness) / 10);
+end;
 
 procedure TOptionsEditorFontFrame.MinimapWidthEditChange(Sender: TObject);
 begin
