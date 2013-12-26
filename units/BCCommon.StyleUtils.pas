@@ -15,7 +15,7 @@ uses
   SynHighlighterRuby, SynHighlighterSDD, SynHighlighterSML, SynHighlighterTclTk, SynHighlighterYAML,
   SynHighlighterTex, SynHighlighterUNIXShellScript, SynHighlighterVB, SynHighlighterASM,
   SynHighlighterSQL, SynHighlighterWeb, SynHighlighterURI, BCDialogs.Dlg, BCControls.SynEdit,
-  SynHighlighterWebIDL, SynHighlighterLLVM;
+  SynHighlighterWebIDL, SynHighlighterLLVM, SynHighlighterVrml97;
 
 const
   STYLENAME_WINDOWS = 'Windows';
@@ -70,6 +70,7 @@ const
   procedure UpdateURISynColors(UriSyn: TSynUriSyn; WhiteBackground: Boolean);
   procedure UpdateVBSynColors(VBSyn: TSynVBSyn; WhiteBackground: Boolean);
   procedure UpdateVBScriptSynColors(VBScriptSyn: TSynVBScriptSyn; WhiteBackground: Boolean);
+  procedure UpdateVrmlSynColors(VrmlSyn: TSynVrml97Syn; WhiteBackground: Boolean);
   procedure UpdateYAMLSynColors(YAMLSyn: TSynYAMLSyn; WhiteBackground: Boolean);
   procedure UpdateWebIDLSynColors(WebIDLSyn: TSynWebIDLSyn; WhiteBackground: Boolean);
   procedure UpdateWebEngineColors(SynWebEngine: TSynWebEngine; WhiteBackground: Boolean);
@@ -988,6 +989,57 @@ begin
     YAMLSyn.StringAttri.Foreground := clAqua;
     YAMLSyn.SymbolAttri.Foreground := clAqua;
     YAMLSyn.TagAttri.Foreground := clAqua;
+  end;
+end;
+
+procedure UpdateVrmlSynColors(VrmlSyn: TSynVrml97Syn; WhiteBackground: Boolean);
+begin
+  if WhiteBackground then
+  begin
+    VrmlSyn.CommentAttri.Foreground := clGray;
+    VrmlSyn.EcmaScriptEventAttri.Foreground := clNavy;
+    VrmlSyn.IdentifierAttri.Foreground := clNavy;
+    VrmlSyn.NonReservedKeyAttri.Foreground := clBlack;
+    VrmlSyn.SpaceAttri.Foreground := clNavy;
+    VrmlSyn.StringAttri.Foreground := clNavy;
+    VrmlSyn.SymbolAttri.Foreground := clNavy;
+    VrmlSyn.VrmlAppearanceAttri.Foreground := clGray;
+    VrmlSyn.VrmlAttributeAttri.Foreground := clNavy;
+    VrmlSyn.VrmlGroupingAttri.Foreground := clNavy;
+    VrmlSyn.VrmlLightAttri.Foreground := clTeal;
+    VrmlSyn.VrmlNodeAttri.Foreground := clGreen;
+    VrmlSyn.VrmlSensorAttri.Foreground := clOlive;
+    VrmlSyn.VrmlShapeAttri.Foreground := clPurple;
+    VrmlSyn.VrmlShape_HintAttri.Foreground := clPurple;
+    VrmlSyn.VrmlTime_dependentAttri.Foreground := clOlive;
+    VrmlSyn.VrmlViewpointAttri.Foreground := clGreen;
+    VrmlSyn.VrmlWorldInfoAttri.Foreground := clMaroon;
+    VrmlSyn.X3DDocTypeAttri.Foreground := clMaroon;
+    VrmlSyn.X3DHeaderAttri.Foreground := clMaroon;
+  end
+  else
+  begin
+    VrmlSyn.CommentAttri.Foreground := clSilver;
+    VrmlSyn.EcmaScriptEventAttri.Foreground := clAqua;
+    VrmlSyn.IdentifierAttri.Foreground := clAqua;
+    VrmlSyn.NonReservedKeyAttri.Foreground := clWhite;
+    VrmlSyn.SpaceAttri.Foreground := clAqua;
+    VrmlSyn.StringAttri.Foreground := clAqua;
+    VrmlSyn.SymbolAttri.Foreground := clAqua;
+    VrmlSyn.VrmlAppearanceAttri.Foreground := clSilver;
+    VrmlSyn.VrmlAttributeAttri.Foreground := clAqua;
+    VrmlSyn.VrmlGroupingAttri.Foreground := clAqua;
+    VrmlSyn.VrmlLightAttri.Foreground := LightenColor(clTeal);
+    VrmlSyn.VrmlNodeAttri.Foreground := clLime;
+    VrmlSyn.VrmlSensorAttri.Foreground := clYellow;
+    VrmlSyn.VrmlShapeAttri.Foreground := clYellow;
+    VrmlSyn.VrmlShape_HintAttri.Foreground := clYellow;
+    VrmlSyn.VrmlTime_dependentAttri.Foreground := clYellow;
+    VrmlSyn.VrmlViewpointAttri.Foreground := clLime;
+    VrmlSyn.VrmlWorldInfoAttri.Foreground := clTeal;
+    VrmlSyn.X3DDocTypeAttri.Foreground := clTeal;
+    VrmlSyn.X3DHeaderAttri.Foreground := clTeal;
+
   end;
 end;
 
