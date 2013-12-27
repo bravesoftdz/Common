@@ -5,10 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCSQL.Formatter,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.CheckBox, Vcl.ExtCtrls,
-  BCControls.ComboBox;
+  BCControls.ComboBox, BCFrames.OptionsFrame;
 
 type
-  TOptionsSQLAlignmentsFrame = class(TFrame)
+  TOptionsSQLAlignmentsFrame = class(TOptionsFrame)
     Panel: TPanel;
     KeywordAlignmentLeftJustifyCheckBox: TBCCheckBox;
     KeywordAlignLabel: TLabel;
@@ -17,10 +17,13 @@ type
     { Private declarations }
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent); override;
-    procedure GetData(SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper);
-    procedure PutData(var SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper);
+    destructor Destroy; override;
+    procedure GetData; override;
+    procedure Init; override;
+    procedure PutData; override;
   end;
+
+function OptionsSQLAlignmentsFrame(AOwner: TComponent): TOptionsSQLAlignmentsFrame;
 
 implementation
 
@@ -29,9 +32,24 @@ implementation
 uses
   BCCommon.LanguageStrings;
 
-constructor TOptionsSQLAlignmentsFrame.Create(AOwner: TComponent);
+var
+  FOptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame;
+
+function OptionsSQLAlignmentsFrame(AOwner: TComponent): TOptionsSQLAlignmentsFrame;
+begin
+  if not Assigned(FOptionsSQLAlignmentsFrame) then
+    FOptionsSQLAlignmentsFrame := TOptionsSQLAlignmentsFrame.Create(AOwner);
+  Result := FOptionsSQLAlignmentsFrame;
+end;
+
+destructor TOptionsSQLAlignmentsFrame.Destroy;
 begin
   inherited;
+  FOptionsSQLAlignmentsFrame := nil;
+end;
+
+procedure TOptionsSQLAlignmentsFrame.Init;
+begin
   with KeywordAlignComboBox.Items do
   begin
     Add(LanguageDatamodule.GetSQLFormatter('Left'));
@@ -40,13 +58,13 @@ begin
   end;
 end;
 
-procedure TOptionsSQLAlignmentsFrame.GetData(SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper);
+procedure TOptionsSQLAlignmentsFrame.GetData;
 begin
   KeywordAlignComboBox.ItemIndex := SQLFormatterOptionsWrapper.KeywordAlign;
   KeywordAlignmentLeftJustifyCheckBox.Checked := SQLFormatterOptionsWrapper.KeywordAlignmentLeftJustify;
 end;
 
-procedure TOptionsSQLAlignmentsFrame.PutData(var SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper);
+procedure TOptionsSQLAlignmentsFrame.PutData;
 begin
   SQLFormatterOptionsWrapper.KeywordAlign := KeywordAlignComboBox.ItemIndex;
   SQLFormatterOptionsWrapper.KeywordAlignmentLeftJustify := KeywordAlignmentLeftJustifyCheckBox.Checked;

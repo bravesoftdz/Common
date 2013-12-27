@@ -15,7 +15,7 @@ type
     function GetFormattedSQL: string;
   end;
 
-  TSQLFormatterOptionsWrapper = class
+  TSQLFormatterOptionsWrapper = class(TPersistent)
   private
     { Select Column List }
     function GetSelectColumnlistStyle: Integer;
@@ -81,6 +81,7 @@ type
     function GetKeywordAlignmentLeftJustify: Boolean;
     procedure SetKeywordAlignmentLeftJustify(Value: Boolean);
   public
+    destructor Destroy; override;
     procedure ReadIniFile;
     procedure WriteIniFile;
     { Select Column List }
@@ -148,10 +149,28 @@ type
     property KeywordAlignmentLeftJustify: Boolean read GetKeywordAlignmentLeftJustify write SetKeywordAlignmentLeftJustify;
   end;
 
+function SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper;
+
 implementation
 
 uses
-  BCCommon.Messages, BCCommon.FileUtils;
+  BCCommon.Messages, BCCommon.FileUtils, System.SysUtils;
+
+var
+  FSQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper;
+
+function SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper;
+begin
+  if not Assigned(FSQLFormatterOptionsWrapper) then
+    FSQLFormatterOptionsWrapper := TSQLFormatterOptionsWrapper.Create;
+  Result := FSQLFormatterOptionsWrapper;
+end;
+
+destructor TSQLFormatterOptionsWrapper.Destroy;
+begin
+  FreeAndNil(FSQLFormatterOptionsWrapper);
+  inherited;
+end;
 
 { TSQLFormatterOptionsWrapper }
 

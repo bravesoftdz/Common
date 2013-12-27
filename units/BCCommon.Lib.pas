@@ -140,6 +140,7 @@ procedure CheckForUpdates(AppName: string; AboutVersion: string);
 procedure InsertTextToCombo(ComboBox: TBCComboBox);
 procedure RunCommand(const Cmd, Params: String);
 function SetFormInsideWorkArea(Left, Width: Integer): Integer;
+function PostInc(var i: Integer) : Integer; inline;
 
 implementation
 
@@ -373,6 +374,12 @@ begin
       ScreenPos := Screen.Monitors[i].WorkareaRect.Right;
   if Left > ScreenPos then
     Result := (Screen.Width - Width) div 2;
+end;
+
+function PostInc(var i: Integer) : Integer; inline;
+begin
+  Result := i;
+  Inc(i)
 end;
 
 end.

@@ -7,7 +7,7 @@ uses
   SynHighlighterWeb, SynHighlighterSQL{$endif};
 
 type
-  TOptionsContainer = class(TComponent)
+  TOptionsContainer = class(TPersistent)
   private
     FAnimationDuration: Integer;
     FAnimationStyle: Integer;
@@ -533,7 +533,7 @@ var
 function OptionsContainer: TOraBoneOptionsContainer;
 begin
   if not Assigned(FOptionsContainer) then
-    FOptionsContainer := TOraBoneOptionsContainer.Create(nil);
+    FOptionsContainer := TOraBoneOptionsContainer.Create;
   Result := FOptionsContainer;
 end;
 {$endif}
@@ -714,7 +714,7 @@ end;
 
 destructor TOptionsContainer.Destroy;
 begin
-  FOptionsContainer := nil;
+  FreeAndNil(FOptionsContainer);
   inherited;
 end;
 
