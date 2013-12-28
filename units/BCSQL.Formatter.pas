@@ -75,6 +75,15 @@ type
     procedure SetSelectOrderByClauseStyle(Value: Integer);
     function GetSelectOrderByClauseInNewLine: Boolean;
     procedure SetSelectOrderByClauseInNewLine(Value: Boolean);
+    { Insert }
+    function GetInsertColumnlistStyle: Integer;
+    procedure SetInsertColumnlistStyle(Value: Integer);
+    function GetInsertValuelistStyle: Integer;
+    procedure SetInsertValuelistStyle(Value: Integer);
+    function GetInsertParenthesisInSeparateLine: Boolean;
+    procedure SetInsertParenthesisInSeparateLine(Value: Boolean);
+    function GetInsertColumnsPerLine: Integer;
+    procedure SetInsertColumnsPerLine(Value: Integer);
     { Alignments }
     function GetKeywordAlign: Integer;
     procedure SetKeywordAlign(Value: Integer);
@@ -142,6 +151,15 @@ type
     property SelectOrderByClauseStyle: Integer read GetSelectOrderByClauseStyle write SetSelectOrderByClauseStyle;
     [IniValue('SQLFormatter','SelectOrderByClauseInNewLine', 'False')]
     property SelectOrderByClauseInNewLine: Boolean read GetSelectOrderByClauseInNewLine write SetSelectOrderByClauseInNewLine;
+    { Insert }
+    [IniValue('SQLFormatter','InsertColumnListStyle', '0')]
+    property InsertColumnListStyle: Integer read GetInsertColumnListStyle write SetInsertColumnListStyle;
+    [IniValue('SQLFormatter','InsertValueListStyle', '0')]
+    property InsertValueListStyle: Integer read GetInsertValueListStyle write SetInsertValueListStyle;
+    [IniValue('SQLFormatter','InsertParenthesisInSeparateLine', 'False')]
+    property InsertParenthesisInSeparateLine: Boolean read GetInsertParenthesisInSeparateLine write SetInsertParenthesisInSeparateLine;
+    [IniValue('SQLFormatter','InsertColumnsPerLine', '0')]
+    property InsertColumnsPerLine: Integer read GetInsertColumnsPerLine write SetInsertColumnsPerLine;
     { Alignments }
     [IniValue('SQLFormatter','KeywordAlign', '0')]
     property KeywordAlign: Integer read GetKeywordAlign write SetKeywordAlign;
@@ -188,40 +206,22 @@ end;
 
 function TSQLFormatterOptionsWrapper.GetSelectColumnListStyle: Integer;
 begin
-  case gFmtOpt.Select_ColumnList_Style of
-    asStacked: Result := 0;
-  else
-    Result := 1 { asWrapped }
-  end;
+  Result := Ord(gFmtOpt.Select_ColumnList_Style);
 end;
 
 procedure TSQLFormatterOptionsWrapper.SetSelectColumnListStyle(Value: Integer);
 begin
-  case Value of
-    0: gFmtOpt.Select_ColumnList_Style := asStacked;
-    1: gFmtOpt.Select_ColumnList_Style := asWrapped;
-  end;
+  gFmtOpt.Select_ColumnList_Style := TAlignStyle(Value);
 end;
 
 function TSQLFormatterOptionsWrapper.GetSelectColumnListLineBreak: Integer;
 begin
-  case gFmtOpt.Select_ColumnList_Comma of
-    lfAfterComma: Result := 0;
-    lfBeforeComma: Result := 1;
-    lfBeforeCommaWithSpace: Result := 2;
-  else
-    Result := 3 { lfNoLineBreakComma }
-  end;
+  Result := Ord(gFmtOpt.Select_ColumnList_Comma);
 end;
 
 procedure TSQLFormatterOptionsWrapper.SetSelectColumnListLineBreak(Value: Integer);
 begin
-  case Value of
-    0: gFmtOpt.Select_ColumnList_Comma := lfAfterComma;
-    1: gFmtOpt.Select_ColumnList_Comma := lfBeforeComma;
-    2: gFmtOpt.Select_ColumnList_Comma := lfBeforeCommaWithSpace;
-    3: gFmtOpt.Select_ColumnList_Comma := lfNoLineBreakComma;
-  end;
+  gFmtOpt.Select_ColumnList_Comma := TLineFeedsCommaOption(Value);
 end;
 
 function TSQLFormatterOptionsWrapper.GetSelectColumnListColumnInNewLine: Boolean;
@@ -466,6 +466,48 @@ end;
 procedure TSQLFormatterOptionsWrapper.SetSelectOrderByClauseInNewLine(Value: Boolean);
 begin
   gFmtOpt.OrderByClauseInNewline := Value;
+end;
+
+{ Insert }
+
+function TSQLFormatterOptionsWrapper.GetInsertColumnListStyle: Integer;
+begin
+  Result := Ord(gFmtOpt.Insert_Columnlist_Style);
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetInsertColumnListStyle(Value: Integer);
+begin
+  gFmtOpt.Insert_Columnlist_Style := TAlignStyle(Value);
+end;
+
+function TSQLFormatterOptionsWrapper.GetInsertValueListStyle: Integer;
+begin
+  Result := Ord(gFmtOpt.Insert_Valuelist_Style);
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetInsertValueListStyle(Value: Integer);
+begin
+  gFmtOpt.Insert_Valuelist_Style := TAlignStyle(Value);
+end;
+
+function TSQLFormatterOptionsWrapper.GetInsertParenthesisInSeparateLine: Boolean;
+begin
+  Result := gFmtOpt.Insert_Parenthesis_in_separate_line;
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetInsertParenthesisInSeparateLine(Value: Boolean);
+begin
+  gFmtOpt.Insert_Parenthesis_in_separate_line := Value;
+end;
+
+function TSQLFormatterOptionsWrapper.GetInsertColumnsPerLine: Integer;
+begin
+  Result := gFmtOpt.Insert_Columns_Per_line
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetInsertColumnsPerLine(Value: Integer);
+begin
+  gFmtOpt.Insert_Columns_Per_line := Value;
 end;
 
 { Alignments }

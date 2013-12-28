@@ -31,7 +31,7 @@ constructor TOptionsFrame.Create(AOwner: TComponent);
 var
   i: Integer;
 begin
-  inherited;
+  inherited Create(AOwner);
   //Assert(not (AOwner is TForm), 'Owner must be a form');
   FOwnerForm := AOwner as TForm;
   { find the scroll box }
@@ -41,7 +41,9 @@ begin
        Parent := FOwnerForm.Components[i] as TWinControl;
        Break;
     end;
+  {$ifdef EDITBONE}
   UpdateLanguage(TForm(Self), GetSelectedLanguage);
+  {$endif}
   Init;
   GetData;
 end;

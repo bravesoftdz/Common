@@ -1,28 +1,23 @@
 inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
-  Left = 0
-  Top = 0
-  Width = 451
-  Height = 302
-  Align = alClient
-  TabOrder = 0
+  Width = 282
+  Height = 62
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 451
-    Height = 302
-    Align = alClient
+    Width = 282
+    Height = 62
     BevelOuter = bvNone
     TabOrder = 0
     object KeywordAlignLabel: TLabel
-      Left = 11
-      Top = 7
+      Left = 6
+      Top = 0
       Width = 68
       Height = 13
       Caption = 'Keyword Align'
     end
     object KeywordAlignmentLeftJustifyCheckBox: TBCCheckBox
-      Left = 9
-      Top = 48
+      Left = 4
+      Top = 41
       Width = 282
       Height = 21
       Margins.Left = 4
@@ -36,8 +31,8 @@ inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
       ReadOnly = False
     end
     object KeywordAlignComboBox: TBCComboBox
-      Left = 9
-      Top = 23
+      Left = 4
+      Top = 16
       Width = 133
       Height = 21
       Margins.Left = 4
