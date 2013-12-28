@@ -1,15 +1,15 @@
-object OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
+inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
   Left = 0
   Top = 0
-  Width = 320
-  Height = 240
+  Width = 451
+  Height = 302
   Align = alClient
   TabOrder = 0
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 320
-    Height = 240
+    Width = 451
+    Height = 302
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0

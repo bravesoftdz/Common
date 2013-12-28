@@ -32,7 +32,7 @@ var
   i: Integer;
 begin
   inherited;
-  Assert(not (AOwner is TForm), 'Owner must be a form');
+  //Assert(not (AOwner is TForm), 'Owner must be a form');
   FOwnerForm := AOwner as TForm;
   { find the scroll box }
   for i := 0 to FOwnerForm.ComponentCount - 1 do

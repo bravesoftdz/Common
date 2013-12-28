@@ -1,29 +1,29 @@
-object OptionsSQLSelectFrame: TOptionsSQLSelectFrame
-  Left = 0
-  Top = 0
-  Width = 405
-  Height = 503
+inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
+  Width = 451
+  Height = 302
   Align = alClient
-  TabOrder = 0
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 405
-    Height = 503
+    Width = 451
+    Height = 302
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
     object PageControl: TBCPageControl
       AlignWithMargins = True
       Left = 3
-      Top = 3
-      Width = 399
-      Height = 497
-      ActivePage = TabSheet8
+      Top = 0
+      Width = 448
+      Height = 302
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      ActivePage = TabSheet1
       Align = alClient
       MultiLine = True
       TabOrder = 0
-      ActivePageCaption = 'Order By Clause'
+      ActivePageCaption = 'Column List'
       TabDragDrop = False
       TabClosed = False
       HoldShiftToDragDrop = False
