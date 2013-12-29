@@ -419,7 +419,6 @@ type
     function GetFilterCount: Cardinal;
     function GetFilters: string;
   public
-    constructor Create(AOwner: TComponent); override;
     function FileType(FileType: TFileType): string;
     function GetFilterExt(FilterIndex: Cardinal): string;
     function GetFilterIndex(FileExt: string): Cardinal;
@@ -544,7 +543,7 @@ var
 function OptionsContainer: TEditBoneOptionsContainer;
 begin
   if not Assigned(FOptionsContainer) then
-    FOptionsContainer := TEditBoneOptionsContainer.Create(nil);
+    FOptionsContainer := TEditBoneOptionsContainer.Create;
   Result := FOptionsContainer;
 end;
 {$endif}
@@ -744,6 +743,10 @@ var
   FileTypes: TStrings;
 begin
   inherited;
+  FFileTypes := TStringList.Create;
+  for i := 0 to 55 do
+    FFileTypes.Add(LanguageDataModule.FileTypesMultiStringHolder.MultipleStrings.Items[i].Strings.Text);
+
   FileTypes := TStringList.Create;
   with TBigIniFile.Create(GetIniFilename) do
   try
@@ -939,16 +942,6 @@ begin
     Result := FFileTypes.Strings[55];
 
   Result := UpperCase(StringBetween(Result, '(', ')'));
-end;
-
-constructor TEditBoneOptionsContainer.Create(AOwner: TComponent);
-var
-  i: Integer;
-begin
-  inherited;
-  FFileTypes := TStringList.Create;
-  for i := 0 to 55 do
-    FFileTypes.Add(LanguageDataModule.FileTypesMultiStringHolder.MultipleStrings.Items[i].Strings.Text);
 end;
 
 function TEditBoneOptionsContainer.GetFilterCount: Cardinal;
