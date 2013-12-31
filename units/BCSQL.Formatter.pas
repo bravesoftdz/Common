@@ -84,6 +84,9 @@ type
     procedure SetInsertParenthesisInSeparateLine(Value: Boolean);
     function GetInsertColumnsPerLine: Integer;
     procedure SetInsertColumnsPerLine(Value: Integer);
+    { Update }
+    function GetUpdateColumnlistStyle: Integer;
+    procedure SetUpdateColumnlistStyle(Value: Integer);
     { Alignments }
     function GetKeywordAlign: Integer;
     procedure SetKeywordAlign(Value: Integer);
@@ -160,6 +163,9 @@ type
     property InsertParenthesisInSeparateLine: Boolean read GetInsertParenthesisInSeparateLine write SetInsertParenthesisInSeparateLine;
     [IniValue('SQLFormatter','InsertColumnsPerLine', '0')]
     property InsertColumnsPerLine: Integer read GetInsertColumnsPerLine write SetInsertColumnsPerLine;
+    { Update }
+    [IniValue('SQLFormatter','UpdateColumnListStyle', '0')]
+    property UpdateColumnListStyle: Integer read GetUpdateColumnListStyle write SetUpdateColumnListStyle;
     { Alignments }
     [IniValue('SQLFormatter','KeywordAlign', '0')]
     property KeywordAlign: Integer read GetKeywordAlign write SetKeywordAlign;
@@ -508,6 +514,18 @@ end;
 procedure TSQLFormatterOptionsWrapper.SetInsertColumnsPerLine(Value: Integer);
 begin
   gFmtOpt.Insert_Columns_Per_line := Value;
+end;
+
+{ Update }
+
+function TSQLFormatterOptionsWrapper.GetUpdateColumnListStyle: Integer;
+begin
+  Result := Ord(gFmtOpt.Update_Columnlist_Style);
+end;
+
+procedure TSQLFormatterOptionsWrapper.SetUpdateColumnListStyle(Value: Integer);
+begin
+  gFmtOpt.Update_Columnlist_Style := TAlignStyle(Value);
 end;
 
 { Alignments }
