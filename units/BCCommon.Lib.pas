@@ -15,6 +15,8 @@ const
 
   OUTPUT_FILE_SEPARATOR = '@#/%&';
 
+  PARAM_NO_INI = '-noini';
+
   TAnimationStyleStr: array[Low(TAnimationStyle)..High(TAnimationStyle)] of String = ('None',
     'Default', 'Unfold', 'Slide', 'Fade');
   TSynEditCaretTypeStr: array[0..3] of String =
