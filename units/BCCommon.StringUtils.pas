@@ -14,6 +14,7 @@ uses
   function RemoveNonAlpha(Source: string): string;
   function RemoveWhiteSpace(const s: string): string;
   function StringBetween(Str: string; SubStr1: string; SunStr2: string): string;
+  function StrContainsChar(CharStr, Str: string): Boolean;
   function WideUpperCase(const S: WideString): WideString;
   function WordCount(s: string): Integer;
 
@@ -222,6 +223,16 @@ begin
   for i :=0 to Length(Source) - 1 do
     if isCharAlpha(Source[i]) then
       Result := Result + Source[i];
+end;
+
+function StrContainsChar(CharStr, Str: string): Boolean;
+var
+  i: Integer;
+begin
+  for i := 1 to Length(CharStr) do
+    if Pos(CharStr[i], Str) <> 0 then
+      Exit(True);
+  Result := False;
 end;
 
 end.

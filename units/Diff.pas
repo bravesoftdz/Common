@@ -88,8 +88,8 @@ type
     oldIndex1,
     oldIndex2 : integer;
     case boolean of
-      false   : (chr1, chr2 : Char);
-      true    : (int1, int2 : integer);
+      False   : (chr1, chr2 : Char);
+      True    : (int1, int2 : integer);
   end;
 
   PDiffVars = ^TDiffVars;
@@ -178,16 +178,17 @@ function TDiff.Execute(pints1, pints2: TPointerList; len1, len2: integer): boole
 var
   i, Len1Minus1: integer;
 begin
-  result := not fExecuting;
-  if not result then exit;
-  fCancelled := false;
-  fExecuting := true;
+  Result := not fExecuting;
+  if not Result then
+    Exit;
+  fCancelled := False;
+  fExecuting := True;
   try
     Clear;
 
     Len1Minus1 := len1 -1;
     fCompareList.Capacity := len1 + len2;
-    fCompareInts := true;
+    fCompareInts := True;
 
     GetMem(DiagBufferF, sizeof(Integer)*(len1+len2+3));
     GetMem(DiagBufferB, sizeof(Integer)*(len1+len2+3));
@@ -205,9 +206,9 @@ begin
 
     if fCancelled then
     begin
-      result := false;
+      Result := False;
       Clear;
-      exit;
+      Exit;
     end;
 
     //correct the occasional missed match ...
@@ -224,7 +225,7 @@ begin
     with fLastCompareRec do
       AddChangeInt(oldIndex1,len1Minus1-oldIndex1, ckNone);
   finally
-    fExecuting := false;
+    fExecuting := False;
   end;
 end;
 
@@ -232,17 +233,18 @@ function TDiff.Execute(pchrs1, pchrs2: PChar; len1, len2: integer): boolean;
 var
   i, Len1Minus1: integer;
 begin
-  result := not fExecuting;
-  if not result then exit;
-  fCancelled := false;
-  fExecuting := true;
+  Result := not fExecuting;
+  if not Result then
+    Exit;
+  fCancelled := False;
+  fExecuting := True;
   try
     Clear;
 
     Len1Minus1 := len1 -1;
     fCompareList.Capacity := len1 + len2;
     fDiffList.Capacity := 1024;
-    fCompareInts := false;
+    fCompareInts := False;
 
     GetMem(DiagBufferF, sizeof(Integer)*(len1+len2+3));
     GetMem(DiagBufferB, sizeof(Integer)*(len1+len2+3));
@@ -258,9 +260,9 @@ begin
 
     if fCancelled then
     begin
-      result := false;
+      Result := False;
       Clear;
-      exit;
+      Exit;
     end;
 
     //correct the occasional missed match ...
@@ -277,7 +279,7 @@ begin
     with fLastCompareRec do
       AddChangeChr(oldIndex1,len1Minus1-oldIndex1, ckNone);
   finally
-    fExecuting := false;
+    fExecuting := False;
   end;
 end;
 
@@ -299,8 +301,9 @@ var
   idx: integer;
 begin
   idx := fDiffList.Count -1;
-  result := idx >= 0;
-  if not result then exit;
+  Result := idx >= 0;
+  if not Result then
+    Exit;
   DiffVars := PDiffVars(fDiffList[idx]);
   with DiffVars^ do
     if fCompareInts then
@@ -331,7 +334,7 @@ begin
   //trim matching bottoms ...
   while (len1 > 0) and (len2 > 0) and (Ints1[offset1] = Ints2[offset2]) do
   begin
-    inc(offset1); inc(offset2); dec(len1); dec(len2);
+    Inc(offset1); Inc(offset2); dec(len1); dec(len2);
   end;
   //trim matching tops ...
   while (len1 > 0) and (len2 > 0) and
@@ -344,18 +347,18 @@ begin
   if (len1 = 0) then
   begin
     AddChangeInt(offset1 ,len2, ckAdd);
-    exit;
+    Exit;
   end
   else if (len2 = 0) then
   begin
     AddChangeInt(offset1 ,len1, ckDelete);
-    exit;
+    Exit;
   end
   else if (len1 = 1) and (len2 = 1) then
   begin
     AddChangeInt(offset1, 1, ckDelete);
     AddChangeInt(offset1, 1, ckAdd);
-    exit;
+    Exit;
   end;
 
   p := -1;
@@ -364,45 +367,58 @@ begin
   if delta < 0 then
   begin
     repeat
-      inc(p);
+      Inc(p);
       if (p mod 1024) = 1023 then
       begin
         Application.ProcessMessages;
-        if fCancelled then exit;
+        if fCancelled then Exit;
       end;
       //nb: the Snake order is important here
       for k := p downto delta +1 do
-        if SnakeIntF(k,offset1,offset2,len1,len2) then exit;
+        if SnakeIntF(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := -p + delta to delta-1 do
-        if SnakeIntF(k,offset1,offset2,len1,len2) then exit;
+        if SnakeIntF(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := delta -p to -1 do
-        if SnakeIntB(k,offset1,offset2,len1,len2) then exit;
+        if SnakeIntB(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := p downto 1 do
-        if SnakeIntB(k,offset1,offset2,len1,len2) then exit;
-      if SnakeIntF(delta,offset1,offset2,len1,len2) then exit;
-      if SnakeIntB(0,offset1,offset2,len1,len2) then exit;
-    until(false);
+        if SnakeIntB(k,offset1,offset2,len1,len2) then
+          Exit;
+      if SnakeIntF(delta,offset1,offset2,len1,len2) then
+        Exit;
+      if SnakeIntB(0,offset1,offset2,len1,len2) then
+        Exit;
+    until(False);
   end else
   begin
     repeat
-      inc(p);
+      Inc(p);
       if (p mod 1024) = 1023 then
       begin
         Application.ProcessMessages;
-        if fCancelled then exit;
+        if fCancelled then
+          Exit;
       end;
       //nb: the Snake order is important here
       for k := -p to delta -1 do
-        if SnakeIntF(k,offset1,offset2,len1,len2) then exit;
+        if SnakeIntF(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := p + delta downto delta +1 do
-        if SnakeIntF(k,offset1,offset2,len1,len2) then exit;
+        if SnakeIntF(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := delta + p downto 1 do
-        if SnakeIntB(k,offset1,offset2,len1,len2) then exit;
+        if SnakeIntB(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := -p to -1 do
-        if SnakeIntB(k,offset1,offset2,len1,len2) then exit;
-      if SnakeIntF(delta,offset1,offset2,len1,len2) then exit;
-      if SnakeIntB(0,offset1,offset2,len1,len2) then exit;
-    until(false);
+        if SnakeIntB(k,offset1,offset2,len1,len2) then
+          Exit;
+      if SnakeIntF(delta,offset1,offset2,len1,len2) then
+        Exit;
+      if SnakeIntB(0,offset1,offset2,len1,len2) then
+        Exit;
+    until False;
   end;
 end;
 
@@ -413,7 +429,7 @@ begin
   //trim matching bottoms ...
   while (len1 > 0) and (len2 > 0) and (Chrs1[offset1] = Chrs2[offset2]) do
   begin
-    inc(offset1); inc(offset2); dec(len1); dec(len2);
+    Inc(offset1); Inc(offset2); dec(len1); dec(len2);
   end;
   //trim matching tops ...
   while (len1 > 0) and (len2 > 0) and
@@ -426,18 +442,18 @@ begin
   if (len1 = 0) then
   begin
     AddChangeChr(offset1 ,len2, ckAdd);
-    exit;
+    Exit;
   end
   else if (len2 = 0) then
   begin
     AddChangeChr(offset1, len1, ckDelete);
-    exit;
+    Exit;
   end
   else if (len1 = 1) and (len2 = 1) then
   begin
     AddChangeChr(offset1, 1, ckDelete);
     AddChangeChr(offset1, 1, ckAdd);
-    exit;
+    Exit;
   end;
 
   p := -1;
@@ -446,45 +462,59 @@ begin
   if delta < 0 then
   begin
     repeat
-      inc(p);
+      Inc(p);
       if (p mod 1024 = 1023) then
       begin
         Application.ProcessMessages;
-        if fCancelled then exit;
+        if fCancelled then
+          Exit;
       end;
       //nb: the Snake order is important here
       for k := p downto delta +1 do
-        if SnakeChrF(k,offset1,offset2,len1,len2) then exit;
+        if SnakeChrF(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := -p + delta to delta-1 do
-        if SnakeChrF(k,offset1,offset2,len1,len2) then exit;
+        if SnakeChrF(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := delta -p to -1 do
-        if SnakeChrB(k,offset1,offset2,len1,len2) then exit;
+        if SnakeChrB(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := p downto 1 do
-        if SnakeChrB(k,offset1,offset2,len1,len2) then exit;
-      if SnakeChrF(delta,offset1,offset2,len1,len2) then exit;
-      if SnakeChrB(0,offset1,offset2,len1,len2) then exit;
-    until(false);
+        if SnakeChrB(k,offset1,offset2,len1,len2) then
+          Exit;
+      if SnakeChrF(delta,offset1,offset2,len1,len2) then
+        Exit;
+      if SnakeChrB(0,offset1,offset2,len1,len2) then
+        Exit;
+    until(False);
   end else
   begin
     repeat
-      inc(p);
+      Inc(p);
       if (p mod 1024 = 1023) then
       begin
         Application.ProcessMessages;
-        if fCancelled then exit;
+        if fCancelled then
+          Exit;
       end;
       //nb: the Snake order is important here
       for k := -p to delta -1 do
-        if SnakeChrF(k,offset1,offset2,len1,len2) then exit;
+        if SnakeChrF(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := p + delta downto delta +1 do
-        if SnakeChrF(k,offset1,offset2,len1,len2) then exit;
+        if SnakeChrF(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := delta + p downto 1 do
-        if SnakeChrB(k,offset1,offset2,len1,len2) then exit;
+        if SnakeChrB(k,offset1,offset2,len1,len2) then
+          Exit;
       for k := -p to -1 do
-        if SnakeChrB(k,offset1,offset2,len1,len2) then exit;
-      if SnakeChrF(delta,offset1,offset2,len1,len2) then exit;
-      if SnakeChrB(0,offset1,offset2,len1,len2) then exit;
-    until(false);
+        if SnakeChrB(k,offset1,offset2,len1,len2) then
+          Exit;
+      if SnakeChrF(delta,offset1,offset2,len1,len2) then
+        Exit;
+      if SnakeChrB(0,offset1,offset2,len1,len2) then
+        Exit;
+    until(False);
   end;
 end;
 
@@ -499,13 +529,15 @@ begin
   while (x < len1-1) and (y < len2-1) and
     (Chrs1[offset1+x+1] = Chrs2[offset2+y+1]) do
   begin
-    inc(x); inc(y);
+    Inc(x); Inc(y);
   end;
   DiagF[k] := y;
-  result := (DiagF[k] >= DiagB[k]);
-  if not result then exit;
+  Result := (DiagF[k] >= DiagB[k]);
+  if not Result then
+    Exit;
 
-  inc(x); inc(y);
+  Inc(x);
+  Inc(y);
   PushDiff(offset1+x, offset2+y, len1-x, len2-y);
   PushDiff(offset1, offset2, x, y);
 end;
@@ -523,10 +555,11 @@ begin
     dec(x); dec(y);
   end;
   DiagB[k] := y;
-  result := DiagB[k] <= DiagF[k];
-  if not result then exit;
+  Result := DiagB[k] <= DiagF[k];
+  if not Result then
+    Exit;
 
-  inc(x); inc(y);
+  Inc(x); Inc(y);
   PushDiff(offset1+x, offset2+y, len1-x, len2-y);
   PushDiff(offset1, offset2, x, y);
 end;
@@ -542,13 +575,15 @@ begin
   while (x < len1-1) and (y < len2-1) and
     (Ints1[offset1+x+1] = Ints2[offset2+y+1]) do
   begin
-    inc(x); inc(y);
+    Inc(x); Inc(y);
   end;
   DiagF[k] := y;
-  result := (DiagF[k] >= DiagB[k]);
-  if not result then exit;
+  Result := (DiagF[k] >= DiagB[k]);
+  if not Result then
+    Exit;
 
-  inc(x); inc(y);
+  Inc(x);
+  Inc(y);
   PushDiff(offset1+x, offset2+y, len1-x, len2-y);
   PushDiff(offset1, offset2, x, y);
 end;
@@ -566,10 +601,11 @@ begin
     dec(x); dec(y);
   end;
   DiagB[k] := y;
-  result := DiagB[k] <= DiagF[k];
-  if not result then exit;
+  Result := DiagB[k] <= DiagF[k];
+  if not Result then
+    Exit;
 
-  inc(x); inc(y);
+  Inc(x); Inc(y);
   PushDiff(offset1+x, offset2+y, len1-x, len2-y);
   PushDiff(offset1, offset2, x, y);
 end;
@@ -585,15 +621,15 @@ begin
     with fLastCompareRec do
     begin
       Kind := ckNone;
-      inc(oldIndex1);
-      inc(oldIndex2);
+      Inc(oldIndex1);
+      Inc(oldIndex2);
       chr1 := Chrs1[oldIndex1];
       chr2 := Chrs2[oldIndex2];
     end;
     New(compareRec);
     compareRec^ := fLastCompareRec;
     fCompareList.Add(compareRec);
-    inc(fDiffStats.matches);
+    Inc(fDiffStats.matches);
   end;
 
   case ChangeKind of
@@ -603,15 +639,15 @@ begin
         with fLastCompareRec do
         begin
           Kind := ckNone;
-          inc(oldIndex1);
-          inc(oldIndex2);
+          Inc(oldIndex1);
+          Inc(oldIndex2);
           chr1 := Chrs1[oldIndex1];
           chr2 := Chrs2[oldIndex2];
         end;
         New(compareRec);
         compareRec^ := fLastCompareRec;
         fCompareList.Add(compareRec);
-        inc(fDiffStats.matches);
+        Inc(fDiffStats.matches);
       end;
     ckAdd :
       begin
@@ -630,8 +666,8 @@ begin
                   dec(j);
               PCompareRec(fCompareList[j]).Kind := ckModify;
               dec(fDiffStats.deletes);
-              inc(fDiffStats.modifies);
-              inc(fLastCompareRec.oldIndex2);
+              Inc(fDiffStats.modifies);
+              Inc(fLastCompareRec.oldIndex2);
               PCompareRec(fCompareList[j]).oldIndex2 := fLastCompareRec.oldIndex2;
               PCompareRec(fCompareList[j]).chr2 := Chrs2[oldIndex2];
               if j = fCompareList.Count-1 then fLastCompareRec.Kind := ckModify;
@@ -640,13 +676,13 @@ begin
 
             Kind := ckAdd;
             chr1 := #0;
-            inc(oldIndex2);
+            Inc(oldIndex2);
             chr2 := Chrs2[oldIndex2]; //ie what we added
           end;
           New(compareRec);
           compareRec^ := fLastCompareRec;
           fCompareList.Add(compareRec);
-          inc(fDiffStats.adds);
+          Inc(fDiffStats.adds);
         end;
       end;
     ckDelete :
@@ -665,8 +701,8 @@ begin
                 dec(j);
               PCompareRec(fCompareList[j]).Kind := ckModify;
               dec(fDiffStats.adds);
-              inc(fDiffStats.modifies);
-              inc(fLastCompareRec.oldIndex1);
+              Inc(fDiffStats.modifies);
+              Inc(fLastCompareRec.oldIndex1);
               PCompareRec(fCompareList[j]).oldIndex1 := fLastCompareRec.oldIndex1;
               PCompareRec(fCompareList[j]).chr1 := Chrs1[oldIndex1];
               if j = fCompareList.Count-1 then fLastCompareRec.Kind := ckModify;
@@ -675,13 +711,13 @@ begin
 
             Kind := ckDelete;
             chr2 := #0;
-            inc(oldIndex1);
+            Inc(oldIndex1);
             chr1 := Chrs1[oldIndex1]; //ie what we deleted
           end;
           New(compareRec);
           compareRec^ := fLastCompareRec;
           fCompareList.Add(compareRec);
-          inc(fDiffStats.deletes);
+          Inc(fDiffStats.deletes);
         end;
       end;
   end;
@@ -698,15 +734,15 @@ begin
     with fLastCompareRec do
     begin
       Kind := ckNone;
-      inc(oldIndex1);
-      inc(oldIndex2);
+      Inc(oldIndex1);
+      Inc(oldIndex2);
       int1 := Integer(Ints1[oldIndex1]);
       int2 := Integer(Ints2[oldIndex2]);
     end;
     New(compareRec);
     compareRec^ := fLastCompareRec;
     fCompareList.Add(compareRec);
-    inc(fDiffStats.matches);
+    Inc(fDiffStats.matches);
   end;
 
   case ChangeKind of
@@ -716,15 +752,15 @@ begin
         with fLastCompareRec do
         begin
           Kind := ckNone;
-          inc(oldIndex1);
-          inc(oldIndex2);
+          Inc(oldIndex1);
+          Inc(oldIndex2);
           int1 := Integer(Ints1[oldIndex1]);
           int2 := Integer(Ints2[oldIndex2]);
         end;
         New(compareRec);
         compareRec^ := fLastCompareRec;
         fCompareList.Add(compareRec);
-        inc(fDiffStats.matches);
+        Inc(fDiffStats.matches);
       end;
     ckAdd :
       begin
@@ -742,8 +778,8 @@ begin
                 dec(j);
               PCompareRec(fCompareList[j]).Kind := ckModify;
               dec(fDiffStats.deletes);
-              inc(fDiffStats.modifies);
-              inc(fLastCompareRec.oldIndex2);
+              Inc(fDiffStats.modifies);
+              Inc(fLastCompareRec.oldIndex2);
               PCompareRec(fCompareList[j]).oldIndex2 := fLastCompareRec.oldIndex2;
               PCompareRec(fCompareList[j]).int2 := Integer(Ints2[oldIndex2]);
               if j = fCompareList.Count-1 then fLastCompareRec.Kind := ckModify;
@@ -752,13 +788,13 @@ begin
 
             Kind := ckAdd;
             int1 := $0;
-            inc(oldIndex2);
+            Inc(oldIndex2);
             int2 := Integer(Ints2[oldIndex2]); //ie what we added
           end;
           New(compareRec);
           compareRec^ := fLastCompareRec;
           fCompareList.Add(compareRec);
-          inc(fDiffStats.adds);
+          Inc(fDiffStats.adds);
         end;
       end;
     ckDelete :
@@ -777,8 +813,8 @@ begin
                 dec(j);
               PCompareRec(fCompareList[j]).Kind := ckModify;
               dec(fDiffStats.adds);
-              inc(fDiffStats.modifies);
-              inc(fLastCompareRec.oldIndex1);
+              Inc(fDiffStats.modifies);
+              Inc(fLastCompareRec.oldIndex1);
               PCompareRec(fCompareList[j]).oldIndex1 := fLastCompareRec.oldIndex1;
               PCompareRec(fCompareList[j]).int1 := Integer(Ints1[oldIndex1]);
               if j = fCompareList.Count-1 then fLastCompareRec.Kind := ckModify;
@@ -787,13 +823,13 @@ begin
 
             Kind := ckDelete;
             int2 := $0;
-            inc(oldIndex1);
+            Inc(oldIndex1);
             int1 := Integer(Ints1[oldIndex1]); //ie what we deleted
           end;
           New(compareRec);
           compareRec^ := fLastCompareRec;
           fCompareList.Add(compareRec);
-          inc(fDiffStats.deletes);
+          Inc(fDiffStats.deletes);
         end;
       end;
   end;
@@ -819,17 +855,17 @@ end;
 
 function TDiff.GetCompareCount: integer;
 begin
-  result := fCompareList.count;
+  Result := fCompareList.count;
 end;
 
 function TDiff.GetCompare(index: integer): TCompareRec;
 begin
-  result := PCompareRec(fCompareList[index])^;
+  Result := PCompareRec(fCompareList[index])^;
 end;
 
 procedure TDiff.Cancel;
 begin
-  fCancelled := true;
+  fCancelled := True;
 end;
 
 end.

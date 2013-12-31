@@ -109,6 +109,11 @@ object CompareFrame: TCompareFrame
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
@@ -174,6 +179,11 @@ object CompareFrame: TCompareFrame
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
@@ -239,6 +249,11 @@ object CompareFrame: TCompareFrame
             A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3A4
             49A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
@@ -302,6 +317,11 @@ object CompareFrame: TCompareFrame
             FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           NumGlyphs = 2
         end
         object LeftComboBox: TBCComboBox
@@ -496,6 +516,11 @@ object CompareFrame: TCompareFrame
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
@@ -561,6 +586,11 @@ object CompareFrame: TCompareFrame
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
@@ -626,6 +656,11 @@ object CompareFrame: TCompareFrame
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
@@ -691,6 +726,11 @@ object CompareFrame: TCompareFrame
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
@@ -804,6 +844,11 @@ object CompareFrame: TCompareFrame
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
@@ -868,6 +913,11 @@ object CompareFrame: TCompareFrame
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
@@ -933,6 +983,11 @@ object CompareFrame: TCompareFrame
             A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3A4
             49A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3A449A3}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
@@ -996,6 +1051,11 @@ object CompareFrame: TCompareFrame
             FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           NumGlyphs = 2
         end
         object RightComboBox: TBCComboBox
@@ -1163,6 +1223,11 @@ object CompareFrame: TCompareFrame
             64FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FF7474748E8E8EFF00FFFF00FFFF00FF}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
@@ -1226,6 +1291,11 @@ object CompareFrame: TCompareFrame
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           GrayedInactive = False
+          HotTrackFont.Charset = DEFAULT_CHARSET
+          HotTrackFont.Color = clWindowText
+          HotTrackFont.Height = -11
+          HotTrackFont.Name = 'Tahoma'
+          HotTrackFont.Style = []
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0

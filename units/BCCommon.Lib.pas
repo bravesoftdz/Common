@@ -152,22 +152,17 @@ function BrowseURL(const URL: string): Boolean;
 var
   TempFileName: string;
   Path: array[0..255] of char;
-  //tmp : PChar;
 begin
-  Result := True;
-  //tmp := StrAlloc(255);
-  //GetTempPath(255, tmp);
   TempFileName := Format('%s%s', [TPath.GetTempPath, 'bonecode-default.html']);
   CloseHandle(CreateFile(PWideChar(TempFileName), GENERIC_WRITE, FILE_SHARE_WRITE, nil, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0));
   FindExecutable(PWideChar(TempFileName), nil, Path); //Find the executable (default browser) associated with the html file.
   DeleteFile(PWideChar(TempFileName));
   if Path = '' then
-  begin
-    Result := False;
-    Exit;
-  end;
+    Exit(False);
 
   RunCommand(Path, URL);
+
+  Result := True;
 end;
 
 function GetAppVersion(const Url:string):string;

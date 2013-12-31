@@ -420,12 +420,8 @@ end;
 
 procedure TCompareFrame.ScrollGrids(Row: Integer);
 begin
-  //if Row = FPreviousRow then
-  //  Exit;
   if (LeftGrid.RowCount = 1) and (RightGrid.RowCount = 1) then
     Exit;
-  //if LeftGrid.RowCount <> RightGrid.RowCount then
-  //  Exit;
 
   DrawGrid.Row := Row;
   DrawGrid.Invalidate;
@@ -434,7 +430,6 @@ begin
 
   LeftMemo.Text := LeftGrid.Cells[1, Row];
   RightMemo.Text := RightGrid.Cells[1, Row];
-  //FPreviousRow := Row;
 end;
 
 procedure TCompareFrame.DrawGridMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);

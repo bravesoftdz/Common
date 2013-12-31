@@ -180,10 +180,7 @@ begin
   InfoSize := GetFileVersionInfoSize(TempPath, Dummy);
 
   if InfoSize = 0 then
-  begin
-    Result := LanguageDataModule.GetConstant('VersionInfoNotFound');
-    Exit;
-  end;
+    Exit(LanguageDataModule.GetConstant('VersionInfoNotFound'));
 
   GetMem(VerInfo, InfoSize);
   GetFileVersionInfo(TempPath, 0, InfoSize, VerInfo);
