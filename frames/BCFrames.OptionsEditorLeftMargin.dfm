@@ -1,19 +1,19 @@
 inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
   Width = 296
-  Height = 272
+  Height = 299
   Visible = False
   ExplicitWidth = 296
-  ExplicitHeight = 272
+  ExplicitHeight = 299
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 296
-    Height = 272
+    Height = 299
     BevelOuter = bvNone
     TabOrder = 0
     object WidthLabel: TLabel
       Left = 6
-      Top = 234
+      Top = 250
       Width = 28
       Height = 13
       Margins.Left = 4
@@ -24,7 +24,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
     end
     object LineModifiedColorLabel: TLabel
       Left = 6
-      Top = 146
+      Top = 164
       Width = 90
       Height = 13
       Margins.Left = 4
@@ -35,7 +35,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
     end
     object LineNormalColorLabel: TLabel
       Left = 6
-      Top = 188
+      Top = 206
       Width = 83
       Height = 13
       Margins.Left = 4
@@ -76,14 +76,14 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
     end
     object LeftMarginWidthEdit: TBCEdit
       Left = 4
-      Top = 251
+      Top = 267
       Width = 64
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      TabOrder = 9
+      TabOrder = 10
       Text = '48'
       EnterToTab = False
       OnlyNumbers = True
@@ -109,25 +109,25 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
     end
     object LineModifiedColorBox: TColorBox
       Left = 4
-      Top = 162
+      Top = 180
       Width = 200
       Height = 22
       Selected = clYellow
       Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor, cbPrettyNames]
       DoubleBuffered = True
       ParentDoubleBuffered = False
-      TabOrder = 7
+      TabOrder = 8
     end
     object LineNormalColorBox: TColorBox
       Left = 4
-      Top = 204
+      Top = 222
       Width = 200
       Height = 22
       Selected = clGreen
       Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor, cbPrettyNames]
       DoubleBuffered = True
       ParentDoubleBuffered = False
-      TabOrder = 8
+      TabOrder = 9
     end
     object InTensCheckBox: TBCCheckBox
       Left = 4
@@ -187,6 +187,21 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Checked = True
       State = cbChecked
       TabOrder = 4
+      ReadOnly = False
+    end
+    object ShowLineNumbersAfterLastLineCheckBox: TBCCheckBox
+      Left = 4
+      Top = 140
+      Width = 296
+      Height = 21
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Caption = ' Show Line Numbers After Last Line'
+      Checked = True
+      State = cbChecked
+      TabOrder = 7
       ReadOnly = False
     end
   end

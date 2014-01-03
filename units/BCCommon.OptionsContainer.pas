@@ -45,6 +45,7 @@ type
     FMarginRightMargin: Integer;
     FMarginShowBookmarks: Boolean;
     FMarginShowBookmarkPanel: Boolean;
+    FMarginShowLineNumbersAfterLastLine: Boolean;
     FMarginVisibleLeftMargin: Boolean;
     FMarginVisibleRightMargin: Boolean;
     FMarginZeroStart: Boolean;
@@ -164,6 +165,8 @@ type
     property MarginShowBookmarks: Boolean read FMarginShowBookmarks write FMarginShowBookmarks;
     [IniValue('Options', 'MarginShowBookmarkPanel', True)]
     property MarginShowBookmarkPanel: Boolean read FMarginShowBookmarkPanel write FMarginShowBookmarkPanel;
+    [IniValue('Options', 'MarginShowLineNumbersAfterLastLine', False)]
+    property MarginShowLineNumbersAfterLastLine: Boolean read FMarginShowLineNumbersAfterLastLine write FMarginShowLineNumbersAfterLastLine;
     [IniValue('Options', 'MarginVisibleLeftMargin', True)]
     property MarginVisibleLeftMargin: Boolean read FMarginVisibleLeftMargin write FMarginVisibleLeftMargin;
     [IniValue('Options', 'MarginVisibleRightMargin', True)]
@@ -600,6 +603,7 @@ begin
     TCustomSynEdit(Dest).Gutter.ShowBookmarkPanel := FMarginShowBookmarkPanel;
     TCustomSynEdit(Dest).Gutter.LineModifiedColor := StringToColor(FMarginModifiedColor);
     TCustomSynEdit(Dest).Gutter.LineNormalColor := StringToColor(FMarginNormalColor);
+    TCustomSynEdit(Dest).Gutter.ShowLineNumbersAfterLastLine := MarginShowLineNumbersAfterLastLine;
     TCustomSynEdit(Dest).TabWidth := FTabWidth;
     TCustomSynEdit(Dest).InsertCaret := TSynEditCaretType(FInsertCaret);
     TCustomSynEdit(Dest).NonBlinkingCaretColor := StringToColor(FNonblinkingCaretColor);

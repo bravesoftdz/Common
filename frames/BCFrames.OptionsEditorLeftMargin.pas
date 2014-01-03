@@ -23,6 +23,7 @@ type
     ZeroStartCheckBox: TBCCheckBox;
     ShowBookmarkPanelCheckBox: TBCCheckBox;
     ShowBookmarksCheckBox: TBCCheckBox;
+    ShowLineNumbersAfterLastLineCheckBox: TBCCheckBox;
   private
     { Private declarations }
   public
@@ -69,6 +70,7 @@ begin
   OptionsContainer.MarginModifiedColor := ColorToString(LineModifiedColorBox.Selected);
   OptionsContainer.MarginNormalColor := ColorToString(LineNormalColorBox.Selected);
   OptionsContainer.MarginLeftMarginWidth := StrToIntDef(LeftMarginWidthEdit.Text, 30);
+  OptionsContainer.MarginShowLineNumbersAfterLastLine := ShowLineNumbersAfterLastLineCheckBox.Checked;
 end;
 
 procedure TOptionsEditorLeftMarginFrame.GetData;
@@ -83,6 +85,7 @@ begin
   LineModifiedColorBox.Selected := StringToColor(OptionsContainer.MarginModifiedColor);
   LineNormalColorBox.Selected := StringToColor(OptionsContainer.MarginNormalColor);
   LeftMarginWidthEdit.Text := IntToStr(OptionsContainer.MarginLeftMarginWidth);
+  ShowLineNumbersAfterLastLineCheckBox.Checked := OptionsContainer.MarginShowLineNumbersAfterLastLine;
 end;
 
 end.
