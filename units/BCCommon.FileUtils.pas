@@ -38,8 +38,9 @@ const
   function GetFileDateTime(FileName: string): TDateTime;
   function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
   function GetFileType(FileName: string): TFileType;
-  function GetFileVersion(Path: string): string;
-  function GetIconIndex(Path: string; Flags: Cardinal = 0): Integer;
+  function GetFileVersion(Filename: string): string;
+  function GetIconIndex(Filename: string; MoreFlags: Cardinal = 0): Integer;
+  function GetIconOverlayIndex(Filename: string): Integer;
   function GetIniFilename: string;
   function GetOutFilename: string;
   function FileIconInit(FullInit: BOOL): BOOL; stdcall;
@@ -104,14 +105,30 @@ begin
     Result := RemoveDir(s);
 end;
 
-function GetIconIndex(Path: string; Flags: Cardinal): Integer;
+function GetIconIndex(Filename: string; MoreFlags: Cardinal): Integer;
 var
   SHFileInfo: TSHFileInfo;
 begin
-  if SHGetFileInfo(PChar(Path), 0, SHFileInfo, SizeOf(SHFileInfo), SHGFI_SYSICONINDEX or SHGFI_SMALLICON or Flags) = 0 then
+  if SHGetFileInfo(PChar(Filename), 0, SHFileInfo, SizeOf(SHFileInfo), SHGFI_SYSICONINDEX or SHGFI_SMALLICON or MoreFlags) = 0 then
     Result := -1
   else
     Result := SHFileInfo.iIcon;
+end;
+
+function GetIconOverlayIndex(Filename: string): Integer;
+const
+  SHGFI_OVERLAYINDEX2 = $40;
+var
+  SHFileInfo: TSHFileInfo;
+begin
+  ZeroMemory(@SHFileInfo, SizeOf(SHFileInfo));
+  if SHGetFileInfo(PChar(Filename), 0, SHFileInfo, Sizeof(SHFileInfo), SHGFI_ICON or SHGFI_OVERLAYINDEX) = 0 then
+    Result := -1
+  else
+  begin
+    Result := SHFileInfo.iIcon;
+    Result := (Result shr ((SizeOf(Result) - 1) * 8)) and $FF - 1;
+  end;
 end;
 
 function FileIconInit(FullInit: BOOL): BOOL; stdcall;
@@ -163,7 +180,7 @@ begin
     Result := ftText
 end;
 
-function GetFileVersion(Path: string): string;
+function GetFileVersion(Filename: string): string;
 var
   VerInfo: Pointer;
   VerValue: PVSFixedFileInfo;
@@ -172,10 +189,10 @@ var
   Dummy: Cardinal;
   TempPath: PChar;
 begin
-  if Trim(Path) = EmptyStr then
+  if Trim(Filename) = EmptyStr then
     TempPath := PChar(ParamStr(0))
   else
-    TempPath := PChar(Path);
+    TempPath := PChar(Filename);
 
   InfoSize := GetFileVersionInfoSize(TempPath, Dummy);
 
