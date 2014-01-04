@@ -128,6 +128,8 @@ begin
   begin
     Result := SHFileInfo.iIcon;
     Result := (Result shr ((SizeOf(Result) - 1) * 8)) and $FF - 1;
+    { destroy the icon, we are only using the index }
+    DestroyIcon(SHFileInfo.hIcon);
   end;
 end;
 
@@ -276,15 +278,15 @@ const
     GenericAll: FILE_ALL_ACCESS
     );
 var
-  LastError              : DWORD;
-  LengthNeeded           : DWORD;
-  SecurityDescriptor     : PSecurityDescriptor;
-  ClientToken            : THandle;
-  AccessMask             : DWORD;
-  PrivilegeSet           : TPrivilegeSet;
-  PrivilegeSetLength     : DWORD;
-  GrantedAccess          : DWORD;
-  AccessStatus           : BOOL;
+  LastError: DWORD;
+  LengthNeeded: DWORD;
+  SecurityDescriptor: PSecurityDescriptor;
+  ClientToken: THandle;
+  AccessMask: DWORD;
+  PrivilegeSet: TPrivilegeSet;
+  PrivilegeSetLength: DWORD;
+  GrantedAccess: DWORD;
+  AccessStatus: BOOL;
 begin
   Result := False;
   LastError := GetLastError;
