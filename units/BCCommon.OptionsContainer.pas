@@ -77,15 +77,6 @@ type
     FStatusBarUseSystemFont: Boolean;
     FTabsToSpaces: Boolean;
     FTabWidth: Integer;
-    FToolBarCase: Boolean;
-    FToolBarCommand: Boolean;
-    FToolBarIndent: Boolean;
-    FToolBarMode: Boolean;
-    FToolBarPrint: Boolean;
-    FToolBarSearch: Boolean;
-    FToolBarSort: Boolean;
-    FToolBarStandard: Boolean;
-    FToolBarTools: Boolean;
     FTrimTrailingSpaces: Boolean;
     FTripleClickRowSelect: Boolean;
     FUndoAfterSave: Boolean;
@@ -229,24 +220,6 @@ type
     property TabsToSpaces: Boolean read FTabsToSpaces write FTabsToSpaces;
     [IniValue('Options', 'TabWidth', '2')]
     property TabWidth: Integer read FTabWidth write FTabWidth;
-    [IniValue('ActionToolBar', 'Case', True)]
-    property ToolBarCase: Boolean read FToolBarCase write FToolBarCase;
-    [IniValue('ActionToolBar', 'Command', True)]
-    property ToolBarCommand: Boolean read FToolBarCommand write FToolBarCommand;
-    [IniValue('ActionToolBar', 'Print', True)]
-    property ToolBarPrint: Boolean read FToolBarPrint write FToolBarPrint;
-    [IniValue('ActionToolBar', 'Indent', True)]
-    property ToolBarIndent: Boolean read FToolBarIndent write FToolBarIndent;
-    [IniValue('ActionToolBar', 'Standard', True)]
-    property ToolBarStandard: Boolean read FToolBarStandard write FToolBarStandard;
-    [IniValue('ActionToolBar', 'Mode', True)]
-    property ToolBarMode: Boolean read FToolBarMode write FToolBarMode;
-    [IniValue('ActionToolBar', 'Search', True)]
-    property ToolBarSearch: Boolean read FToolBarSearch write FToolBarSearch;
-    [IniValue('ActionToolBar', 'Sort', True)]
-    property ToolBarSort: Boolean read FToolBarSort write FToolBarSort;
-    [IniValue('ActionToolBar', 'Tools', True)]
-    property ToolBarTools: Boolean read FToolBarTools write FToolBarTools;
     [IniValue('Options', 'TrimTrailingSpaces', True)]
     property TrimTrailingSpaces: Boolean read FTrimTrailingSpaces write FTrimTrailingSpaces;
     [IniValue('Options', 'TripleClickRowSelect', True)]
@@ -289,10 +262,6 @@ type
     FShowDataSearchPanel: Boolean;
     FShowObjectCreationAndModificationTimestamp: Boolean;
     FTimeFormat: string;
-    FToolBarDBMS: Boolean;
-    FToolBarExecute: Boolean;
-    FToolBarExplainPlan: Boolean;
-    FToolBarTransaction: Boolean;
   public
     procedure WriteIniFile; override;
   published
@@ -358,14 +327,6 @@ type
     property ShowObjectCreationAndModificationTimestamp: Boolean read FShowObjectCreationAndModificationTimestamp write FShowObjectCreationAndModificationTimestamp;
     [IniValue('Options', 'TimeFormat', 'HH24:MI:SS')]
     property TimeFormat: string read FTimeFormat write FTimeFormat;
-    [IniValue('Options', 'ToolBarDBMS', True)]
-    property ToolBarDBMS: Boolean read FToolBarDBMS write FToolBarDBMS;
-    [IniValue('Options', 'ToolBarExecute', True)]
-    property ToolBarExecute: Boolean read FToolBarExecute write FToolBarExecute;
-    [IniValue('Options', 'ToolBarExplainPlan', True)]
-    property ToolBarExplainPlan: Boolean read FToolBarExplainPlan write FToolBarExplainPlan;
-    [IniValue('Options', 'ToolBarTransaction', True)]
-    property ToolBarTransaction: Boolean read FToolBarTransaction write FToolBarTransaction;
   end;
 
   function OptionsContainer: TOraBoneOptionsContainer;
@@ -414,9 +375,6 @@ type
     FShowXMLTree: Boolean;
     FSQLDialect: Integer;
     FSupportedFileExts: string;
-    FToolBarDirectory: Boolean;
-    FToolBarDocument: Boolean;
-    FToolBarMacro: Boolean;
     FToolBarVisible: Boolean;
     function GetExtensions: string;
     function GetFilterCount: Cardinal;
@@ -509,12 +467,6 @@ type
     property ShowXMLTree: Boolean read FShowXMLTree write FShowXMLTree;
     [IniValue('Options', 'SQLDialect', '0')]
     property SQLDialect: Integer read FSQLDialect write FSQLDialect;
-    [IniValue('ActionToolBar', 'Directory', True)]
-    property ToolBarDirectory: Boolean read FToolBarDirectory write FToolBarDirectory;
-    [IniValue('ActionToolBar', 'Document', True)]
-    property ToolBarDocument: Boolean read FToolBarDocument write FToolBarDocument;
-    [IniValue('ActionToolBar', 'Macro', True)]
-    property ToolBarMacro: Boolean read FToolBarMacro write FToolBarMacro;
     [IniValue('Options', 'ToolBarVisible', True)]
     property ToolBarVisible: Boolean read FToolBarVisible write FToolBarVisible;
   end;
