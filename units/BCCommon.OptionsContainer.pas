@@ -352,6 +352,7 @@ type
     FDirShowImage: Boolean;
     FDirShowSystemFiles: Boolean;
     FDirShowTreeLines: Boolean;
+    FDirShowOverlayIcons: Boolean;
     FDocCloseTabByDblClick: Boolean;
     FDocCloseTabByMiddleClick: Boolean;
     FDocDoubleBuffered: Boolean;
@@ -421,6 +422,8 @@ type
     property DirShowSystemFiles: Boolean read FDirShowSystemFiles write FDirShowSystemFiles;
     [IniValue('Options', 'DirShowTreeLines', False)]
     property DirShowTreeLines: Boolean read FDirShowTreeLines write FDirShowTreeLines;
+    [IniValue('Options', 'DirShowOverlayIcons', True)]
+    property DirShowOverlayIcons: Boolean read FDirShowOverlayIcons write FDirShowOverlayIcons;
     [IniValue('Options', 'DocCloseTabByDblClick', False)]
     property DocCloseTabByDblClick: Boolean read FDocCloseTabByDblClick write FDocCloseTabByDblClick;
     [IniValue('Options', 'DocCloseTabByMiddleClick', False)]
