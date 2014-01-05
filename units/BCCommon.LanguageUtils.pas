@@ -120,6 +120,9 @@ begin
       else
       if Form.Components[i] is TVirtualDrawTree then
       begin
+        s := ReadString(Form.Name, Format('%s:h', [TVirtualDrawTree(Form.Components[i]).Name]), '');
+        if s <> '' then
+          TVirtualDrawTree(Form.Components[i]).Hint := s;
         for j := 0 to TVirtualDrawTree(Form.Components[i]).Header.Columns.Count - 1 do
         begin
           s := ReadString(Form.Name, Format('%s:%d', [TVirtualDrawTree(Form.Components[i]).Name, j]), '');
