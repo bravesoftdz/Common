@@ -1,6 +1,8 @@
 inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
   Width = 284
   Height = 150
+  ExplicitWidth = 284
+  ExplicitHeight = 150
   object Panel: TPanel
     Left = 0
     Top = 0

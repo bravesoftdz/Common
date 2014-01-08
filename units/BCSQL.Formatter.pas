@@ -6,16 +6,7 @@ uses
   System.Classes, GSQLParser, LZBaseType, IniPersist;
 
 type
-  TSQLFormatter = class
-  private
-    FSQLParser: TGSQLParser;
-  public
-    constructor Create(SQL: TStrings; Vendor: TDBVendor = DBVOracle); overload;
-    destructor Destroy; override;
-    function GetFormattedSQL: string;
-  end;
-
-  TSQLFormatterOptionsWrapper = class(TPersistent)
+  TSQLFormatterOptions = class(TPersistent)
   private
     { Select Column List }
     function GetSelectColumnlistStyle: Integer;
@@ -97,83 +88,86 @@ type
     procedure ReadIniFile;
     procedure WriteIniFile;
     { Select Column List }
-    [IniValue('SQLFormatter','SelectColumnListStyle', '0')]
+    [IniValue('SQLFormatter', 'SelectColumnListStyle', '0')]
     property SelectColumnListStyle: Integer read GetSelectColumnListStyle write SetSelectColumnListStyle;
-    [IniValue('SQLFormatter','SelectColumnListLineBreak', '0')]
+    [IniValue('SQLFormatter', 'SelectColumnListLineBreak', '0')]
     property SelectColumnListLineBreak: Integer read GetSelectColumnListLineBreak write SetSelectColumnListLineBreak;
-    [IniValue('SQLFormatter','SelectColumnListColumnInNewLine', 'False')]
+    [IniValue('SQLFormatter', 'SelectColumnListColumnInNewLine', 'False')]
     property SelectColumnListColumnInNewLine: Boolean read GetSelectColumnListColumnInNewLine write SetSelectColumnListColumnInNewLine;
-    [IniValue('SQLFormatter','SelectColumnListAlignAlias', 'True')]
+    [IniValue('SQLFormatter', 'SelectColumnListAlignAlias', 'True')]
     property SelectColumnListAlignAlias: Boolean read GetSelectColumnListAlignAlias write SetSelectColumnListAlignAlias;
-    [IniValue('SQLFormatter','SelectColumnListTreatDistinctAsVirtualColumn', 'False')]
+    [IniValue('SQLFormatter', 'SelectColumnListTreatDistinctAsVirtualColumn', 'False')]
     property SelectColumnListTreatDistinctAsVirtualColumn: Boolean read GetSelectColumnListTreatDistinctAsVirtualColumn write SetSelectColumnListTreatDistinctAsVirtualColumn;
     { Select Subquery }
-    [IniValue('SQLFormatter','SelectSubqueryNewLineAfterIn', 'False')]
+    [IniValue('SQLFormatter', 'SelectSubqueryNewLineAfterIn', 'False')]
     property SelectSubqueryNewLineAfterIn: Boolean read GetSelectSubqueryNewLineAfterIn write SetSelectSubqueryNewLineAfterIn;
-    [IniValue('SQLFormatter','SelectSubqueryNewLineAfterExists', 'False')]
+    [IniValue('SQLFormatter', 'SelectSubqueryNewLineAfterExists', 'False')]
     property SelectSubqueryNewLineAfterExists: Boolean read GetSelectSubqueryNewLineAfterExists write SetSelectSubqueryNewLineAfterExists;
-    [IniValue('SQLFormatter','SelectSubqueryNewLineAfterComparisonOperator', 'False')]
+    [IniValue('SQLFormatter', 'SelectSubqueryNewLineAfterComparisonOperator', 'False')]
     property SelectSubqueryNewLineAfterComparisonOperator: Boolean read GetSelectSubqueryNewLineAfterComparisonOperator write SetSelectSubqueryNewLineAfterComparisonOperator;
-    [IniValue('SQLFormatter','SelectSubqueryNewLineBeforeComparisonOperator', 'False')]
+    [IniValue('SQLFormatter', 'SelectSubqueryNewLineBeforeComparisonOperator', 'False')]
     property SelectSubqueryNewLineBeforeComparisonOperator: Boolean read GetSelectSubqueryNewLineBeforeComparisonOperator write SetSelectSubqueryNewLineBeforeComparisonOperator;
     { Select Into Clause }
-    [IniValue('SQLFormatter','SelectIntoClauseInNewLine', 'False')]
+    [IniValue('SQLFormatter', 'SelectIntoClauseInNewLine', 'False')]
     property SelectIntoClauseInNewLine: Boolean read GetSelectIntoClauseInNewLine write SetSelectIntoClauseInNewLine;
     { Select From/Join Clause }
-    [IniValue('SQLFormatter','SelectFromClauseStyle', '0')]
+    [IniValue('SQLFormatter', 'SelectFromClauseStyle', '0')]
     property SelectFromClauseStyle: Integer read GetSelectFromClauseStyle write SetSelectFromClauseStyle;
-    [IniValue('SQLFormatter','SelectFromClauseInNewLine', 'False')]
+    [IniValue('SQLFormatter', 'SelectFromClauseInNewLine', 'False')]
     property SelectFromClauseInNewLine: Boolean read GetSelectFromClauseInNewLine write SetSelectFromClauseInNewLine;
-    [IniValue('SQLFormatter','SelectJoinClauseInNewLine', 'True')]
+    [IniValue('SQLFormatter', 'SelectJoinClauseInNewLine', 'True')]
     property SelectJoinClauseInNewLine: Boolean read GetSelectJoinClauseInNewLine write SetSelectJoinClauseInNewLine;
-    [IniValue('SQLFormatter','SelectAlignJoinWithFromKeyword', 'False')]
+    [IniValue('SQLFormatter', 'SelectAlignJoinWithFromKeyword', 'False')]
     property SelectAlignJoinWithFromKeyword: Boolean read GetSelectAlignJoinWithFromKeyword write SetSelectAlignJoinWithFromKeyword;
-    [IniValue('SQLFormatter','SelectAlignAndOrWithOnInJoinClause', 'False')]
+    [IniValue('SQLFormatter', 'SelectAlignAndOrWithOnInJoinClause', 'False')]
     property SelectAlignAndOrWithOnInJoinClause: Boolean read GetSelectAlignAndOrWithOnInJoinClause write SetSelectAlignAndOrWithOnInJoinClause;
-    [IniValue('SQLFormatter','SelectAlignAliasInFromClause', 'False')]
+    [IniValue('SQLFormatter', 'SelectAlignAliasInFromClause', 'False')]
     property SelectAlignAliasInFromClause: Boolean read GetSelectAlignAliasInFromClause write SetSelectAlignAliasInFromClause;
     { Select And/Or Clause }
-    [IniValue('SQLFormatter','SelectAndOrLineBreak', '0')]
+    [IniValue('SQLFormatter', 'SelectAndOrLineBreak', '0')]
     property SelectAndOrLineBreak: Integer read GetSelectAndOrLineBreak write SetSelectAndOrLineBreak;
-    [IniValue('SQLFormatter','SelectAndOrUnderWhere', 'False')]
+    [IniValue('SQLFormatter', 'SelectAndOrUnderWhere', 'False')]
     property SelectAndOrUnderWhere: Boolean read GetSelectAndOrUnderWhere write SetSelectAndOrUnderWhere;
-    [IniValue('SQLFormatter','SelectWhereClauseInNewline', 'False')]
+    [IniValue('SQLFormatter', 'SelectWhereClauseInNewline', 'False')]
     property SelectWhereClauseInNewline: Boolean read GetSelectWhereClauseInNewline write SetSelectWhereClauseInNewline;
-    [IniValue('SQLFormatter','SelectWhereClauseAlignExpr', 'False')]
+    [IniValue('SQLFormatter', 'SelectWhereClauseAlignExpr', 'False')]
     property SelectWhereClauseAlignExpr: Boolean read GetSelectWhereClauseAlignExpr write SetSelectWhereClauseAlignExpr;
     { Select Group By Clause }
-    [IniValue('SQLFormatter','SelectGroupByClauseStyle', '0')]
+    [IniValue('SQLFormatter', 'SelectGroupByClauseStyle', '0')]
     property SelectGroupByClauseStyle: Integer read GetSelectGroupByClauseStyle write SetSelectGroupByClauseStyle;
-    [IniValue('SQLFormatter','SelectGroupByClauseInNewLine', 'False')]
+    [IniValue('SQLFormatter', 'SelectGroupByClauseInNewLine', 'False')]
     property SelectGroupByClauseInNewLine: Boolean read GetSelectGroupByClauseInNewLine write SetSelectGroupByClauseInNewLine;
     { Select Having Clause }
-    [IniValue('SQLFormatter','SelectHavingClauseInNewLine', 'False')]
+    [IniValue('SQLFormatter', 'SelectHavingClauseInNewLine', 'False')]
     property SelectHavingClauseInNewLine: Boolean read GetSelectHavingClauseInNewLine write SetSelectHavingClauseInNewLine;
     { Select Order By Clause }
-    [IniValue('SQLFormatter','SelectOrderByClauseStyle', '0')]
+    [IniValue('SQLFormatter', 'SelectOrderByClauseStyle', '0')]
     property SelectOrderByClauseStyle: Integer read GetSelectOrderByClauseStyle write SetSelectOrderByClauseStyle;
-    [IniValue('SQLFormatter','SelectOrderByClauseInNewLine', 'False')]
+    [IniValue('SQLFormatter', 'SelectOrderByClauseInNewLine', 'False')]
     property SelectOrderByClauseInNewLine: Boolean read GetSelectOrderByClauseInNewLine write SetSelectOrderByClauseInNewLine;
     { Insert }
-    [IniValue('SQLFormatter','InsertColumnListStyle', '0')]
+    [IniValue('SQLFormatter', 'InsertColumnListStyle', '0')]
     property InsertColumnListStyle: Integer read GetInsertColumnListStyle write SetInsertColumnListStyle;
-    [IniValue('SQLFormatter','InsertValueListStyle', '0')]
+    [IniValue('SQLFormatter', 'InsertValueListStyle', '0')]
     property InsertValueListStyle: Integer read GetInsertValueListStyle write SetInsertValueListStyle;
-    [IniValue('SQLFormatter','InsertParenthesisInSeparateLine', 'False')]
+    [IniValue('SQLFormatter', 'InsertParenthesisInSeparateLine', 'False')]
     property InsertParenthesisInSeparateLine: Boolean read GetInsertParenthesisInSeparateLine write SetInsertParenthesisInSeparateLine;
-    [IniValue('SQLFormatter','InsertColumnsPerLine', '0')]
+    [IniValue('SQLFormatter', 'InsertColumnsPerLine', '0')]
     property InsertColumnsPerLine: Integer read GetInsertColumnsPerLine write SetInsertColumnsPerLine;
     { Update }
-    [IniValue('SQLFormatter','UpdateColumnListStyle', '0')]
+    [IniValue('SQLFormatter', 'UpdateColumnListStyle', '0')]
     property UpdateColumnListStyle: Integer read GetUpdateColumnListStyle write SetUpdateColumnListStyle;
     { Alignments }
-    [IniValue('SQLFormatter','KeywordAlign', '0')]
+    [IniValue('SQLFormatter', 'KeywordAlign', '0')]
     property KeywordAlign: Integer read GetKeywordAlign write SetKeywordAlign;
-    [IniValue('SQLFormatter','KeywordAlignmentLeftJustify', 'False')]
+    [IniValue('SQLFormatter', 'KeywordAlignmentLeftJustify', 'False')]
     property KeywordAlignmentLeftJustify: Boolean read GetKeywordAlignmentLeftJustify write SetKeywordAlignmentLeftJustify;
   end;
 
-function SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper;
+function FormatSQL(SQL: PWideChar; Vendor: Integer): PWideChar; stdcall; external 'SQLFormatter.dll';
+procedure FreeAString(AStr: PWideChar); stdcall; external 'SQLFormatter.dll';
+
+function SQLFormatterOptions: TSQLFormatterOptions;
 
 implementation
 
@@ -181,401 +175,373 @@ uses
   BCCommon.Messages, BCCommon.FileUtils, System.SysUtils;
 
 var
-  FSQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper;
+  FSQLFormatterOptions: TSQLFormatterOptions;
 
-function SQLFormatterOptionsWrapper: TSQLFormatterOptionsWrapper;
+function SQLFormatterOptions: TSQLFormatterOptions;
 begin
-  if not Assigned(FSQLFormatterOptionsWrapper) then
-    FSQLFormatterOptionsWrapper := TSQLFormatterOptionsWrapper.Create;
-  Result := FSQLFormatterOptionsWrapper;
+  if not Assigned(FSQLFormatterOptions) then
+    FSQLFormatterOptions := TSQLFormatterOptions.Create;
+  Result := FSQLFormatterOptions;
 end;
 
-destructor TSQLFormatterOptionsWrapper.Destroy;
+destructor TSQLFormatterOptions.Destroy;
 begin
-  FreeAndNil(FSQLFormatterOptionsWrapper);
+  FreeAndNil(FSQLFormatterOptions);
   inherited;
 end;
 
-{ TSQLFormatterOptionsWrapper }
+{ TSQLFormatterOptions }
 
-procedure TSQLFormatterOptionsWrapper.ReadIniFile;
+procedure TSQLFormatterOptions.ReadIniFile;
 begin
   TIniPersist.Load(GetIniFilename, Self);
 end;
 
-procedure TSQLFormatterOptionsWrapper.WriteIniFile;
+procedure TSQLFormatterOptions.WriteIniFile;
 begin
   TIniPersist.Save(GetIniFilename, Self);
 end;
 
 { Select Column List }
 
-function TSQLFormatterOptionsWrapper.GetSelectColumnListStyle: Integer;
+function TSQLFormatterOptions.GetSelectColumnListStyle: Integer;
 begin
   Result := Ord(gFmtOpt.Select_ColumnList_Style);
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectColumnListStyle(Value: Integer);
+procedure TSQLFormatterOptions.SetSelectColumnListStyle(Value: Integer);
 begin
   gFmtOpt.Select_ColumnList_Style := TAlignStyle(Value);
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectColumnListLineBreak: Integer;
+function TSQLFormatterOptions.GetSelectColumnListLineBreak: Integer;
 begin
   Result := Ord(gFmtOpt.Select_ColumnList_Comma);
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectColumnListLineBreak(Value: Integer);
+procedure TSQLFormatterOptions.SetSelectColumnListLineBreak(Value: Integer);
 begin
   gFmtOpt.Select_ColumnList_Comma := TLineFeedsCommaOption(Value);
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectColumnListColumnInNewLine: Boolean;
+function TSQLFormatterOptions.GetSelectColumnListColumnInNewLine: Boolean;
 begin
   Result := gFmtOpt.SelectItemInNewLine;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectColumnListColumnInNewLine(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectColumnListColumnInNewLine(Value: Boolean);
 begin
   gFmtOpt.SelectItemInNewLine := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectColumnListAlignAlias: Boolean;
+function TSQLFormatterOptions.GetSelectColumnListAlignAlias: Boolean;
 begin
   Result := gFmtOpt.AlignAliasInSelectList;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectColumnListAlignAlias(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectColumnListAlignAlias(Value: Boolean);
 begin
   gFmtOpt.AlignAliasInSelectList := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectColumnListTreatDistinctAsVirtualColumn: Boolean;
+function TSQLFormatterOptions.GetSelectColumnListTreatDistinctAsVirtualColumn: Boolean;
 begin
   Result := gFmtOpt.TreatDistinctAsVirtualColumn;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectColumnListTreatDistinctAsVirtualColumn(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectColumnListTreatDistinctAsVirtualColumn(Value: Boolean);
 begin
   gFmtOpt.TreatDistinctAsVirtualColumn := Value;
 end;
 
 { SubQuery }
 
-function TSQLFormatterOptionsWrapper.GetSelectSubqueryNewLineAfterIn: Boolean;
+function TSQLFormatterOptions.GetSelectSubqueryNewLineAfterIn: Boolean;
 begin
   Result := gFmtOpt.Subquery_NewLine_After_IN;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectSubqueryNewLineAfterIn(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectSubqueryNewLineAfterIn(Value: Boolean);
 begin
   gFmtOpt.Subquery_NewLine_After_IN := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectSubqueryNewLineAfterExists: Boolean;
+function TSQLFormatterOptions.GetSelectSubqueryNewLineAfterExists: Boolean;
 begin
   Result := gFmtOpt.Subquery_NewLine_After_EXISTS;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectSubqueryNewLineAfterExists(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectSubqueryNewLineAfterExists(Value: Boolean);
 begin
   gFmtOpt.Subquery_NewLine_After_EXISTS := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectSubqueryNewLineAfterComparisonOperator: Boolean;
+function TSQLFormatterOptions.GetSelectSubqueryNewLineAfterComparisonOperator: Boolean;
 begin
   Result := gFmtOpt.Subquery_NewLine_After_ComparisonOperator;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectSubqueryNewLineAfterComparisonOperator(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectSubqueryNewLineAfterComparisonOperator(Value: Boolean);
 begin
   gFmtOpt.Subquery_NewLine_After_ComparisonOperator := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectSubqueryNewLineBeforeComparisonOperator: Boolean;
+function TSQLFormatterOptions.GetSelectSubqueryNewLineBeforeComparisonOperator: Boolean;
 begin
   Result := gFmtOpt.Subquery_NewLine_Before_ComparisonOperator;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectSubqueryNewLineBeforeComparisonOperator(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectSubqueryNewLineBeforeComparisonOperator(Value: Boolean);
 begin
   gFmtOpt.Subquery_NewLine_Before_ComparisonOperator := Value;
 end;
 
 { Into Clause }
 
-function TSQLFormatterOptionsWrapper.GetSelectIntoClauseInNewLine: Boolean;
+function TSQLFormatterOptions.GetSelectIntoClauseInNewLine: Boolean;
 begin
   Result := gFmtOpt.IntoClauseInNewline;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectIntoClauseInNewLine(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectIntoClauseInNewLine(Value: Boolean);
 begin
   gFmtOpt.IntoClauseInNewline := Value;
 end;
 
 { Select From/Join Clause }
 
-function TSQLFormatterOptionsWrapper.GetSelectFromClauseStyle: Integer;
+function TSQLFormatterOptions.GetSelectFromClauseStyle: Integer;
 begin
   Result := Ord(gFmtOpt.Select_fromclause_Style);
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectFromClauseStyle(Value: Integer);
+procedure TSQLFormatterOptions.SetSelectFromClauseStyle(Value: Integer);
 begin
   gFmtOpt.Select_fromclause_Style := TAlignStyle(Value);
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectFromClauseInNewLine: Boolean;
+function TSQLFormatterOptions.GetSelectFromClauseInNewLine: Boolean;
 begin
   Result := gFmtOpt.Select_FromclauseInNewLine;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectFromClauseInNewLine(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectFromClauseInNewLine(Value: Boolean);
 begin
   gFmtOpt.Select_FromclauseInNewLine := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectJoinClauseInNewLine: Boolean;
+function TSQLFormatterOptions.GetSelectJoinClauseInNewLine: Boolean;
 begin
   Result := gFmtOpt.Select_FromclauseJoinOnInNewline;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectJoinClauseInNewLine(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectJoinClauseInNewLine(Value: Boolean);
 begin
   gFmtOpt.Select_FromclauseJoinOnInNewline := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectAlignJoinWithFromKeyword: Boolean;
+function TSQLFormatterOptions.GetSelectAlignJoinWithFromKeyword: Boolean;
 begin
   Result := gFmtOpt.AlignJoinWithFromKeyword;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectAlignJoinWithFromKeyword(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectAlignJoinWithFromKeyword(Value: Boolean);
 begin
   gFmtOpt.AlignJoinWithFromKeyword := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectAlignAndOrWithOnInJoinClause: Boolean;
+function TSQLFormatterOptions.GetSelectAlignAndOrWithOnInJoinClause: Boolean;
 begin
   Result := gFmtOpt.AlignAndOrWithOnInJoinClause;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectAlignAndOrWithOnInJoinClause(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectAlignAndOrWithOnInJoinClause(Value: Boolean);
 begin
   gFmtOpt.AlignAndOrWithOnInJoinClause := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectAlignAliasInFromClause: Boolean;
+function TSQLFormatterOptions.GetSelectAlignAliasInFromClause: Boolean;
 begin
   Result := gFmtOpt.AlignAliasInFromClause;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectAlignAliasInFromClause(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectAlignAliasInFromClause(Value: Boolean);
 begin
   gFmtOpt.AlignAliasInFromClause := Value;
 end;
 
 { Select And/Or Clause }
 
-function TSQLFormatterOptionsWrapper.GetSelectAndOrLineBreak: Integer;
+function TSQLFormatterOptions.GetSelectAndOrLineBreak: Integer;
 begin
   Result := Ord(gFmtOpt.LinefeedsAndOr_option);
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectAndOrLineBreak(Value: Integer);
+procedure TSQLFormatterOptions.SetSelectAndOrLineBreak(Value: Integer);
 begin
   gFmtOpt.LinefeedsAndOr_option := TLineFeedsAndOrOption(Value);
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectAndOrUnderWhere: Boolean;
+function TSQLFormatterOptions.GetSelectAndOrUnderWhere: Boolean;
 begin
   Result := gFmtOpt.AndOrUnderWhere;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectAndOrUnderWhere(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectAndOrUnderWhere(Value: Boolean);
 begin
   gFmtOpt.AndOrUnderWhere := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectWhereClauseInNewline: Boolean;
+function TSQLFormatterOptions.GetSelectWhereClauseInNewline: Boolean;
 begin
   Result := gFmtOpt.WhereClauseInNewline;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectWhereClauseInNewline(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectWhereClauseInNewline(Value: Boolean);
 begin
   gFmtOpt.WhereClauseInNewline := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectWhereClauseAlignExpr: Boolean;
+function TSQLFormatterOptions.GetSelectWhereClauseAlignExpr: Boolean;
 begin
   Result := gFmtOpt.WhereClauseAlignExpr;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectWhereClauseAlignExpr(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectWhereClauseAlignExpr(Value: Boolean);
 begin
   gFmtOpt.WhereClauseAlignExpr := Value;
 end;
 
 { Select Group By Clause }
 
-function TSQLFormatterOptionsWrapper.GetSelectGroupByClauseStyle: Integer;
+function TSQLFormatterOptions.GetSelectGroupByClauseStyle: Integer;
 begin
   Result := Ord(gFmtOpt.Select_Groupby_Style);
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectGroupByClauseStyle(Value: Integer);
+procedure TSQLFormatterOptions.SetSelectGroupByClauseStyle(Value: Integer);
 begin
   gFmtOpt.Select_Groupby_Style := TAlignStyle(Value);
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectGroupByClauseInNewLine: Boolean;
+function TSQLFormatterOptions.GetSelectGroupByClauseInNewLine: Boolean;
 begin
   Result := gFmtOpt.GroupByClauseInNewline;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectGroupByClauseInNewLine(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectGroupByClauseInNewLine(Value: Boolean);
 begin
   gFmtOpt.GroupByClauseInNewline := Value;
 end;
 
 { Having Clause }
 
-function TSQLFormatterOptionsWrapper.GetSelectHavingClauseInNewLine: Boolean;
+function TSQLFormatterOptions.GetSelectHavingClauseInNewLine: Boolean;
 begin
   Result := gFmtOpt.HavingClauseInNewline;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectHavingClauseInNewLine(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectHavingClauseInNewLine(Value: Boolean);
 begin
   gFmtOpt.HavingClauseInNewline := Value;
 end;
 
 { Select Order By Clause }
 
-function TSQLFormatterOptionsWrapper.GetSelectOrderByClauseStyle: Integer;
+function TSQLFormatterOptions.GetSelectOrderByClauseStyle: Integer;
 begin
   Result := Ord(gFmtOpt.Select_Orderby_Style);
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectOrderByClauseStyle(Value: Integer);
+procedure TSQLFormatterOptions.SetSelectOrderByClauseStyle(Value: Integer);
 begin
   gFmtOpt.Select_Orderby_Style := TAlignStyle(Value);
 end;
 
-function TSQLFormatterOptionsWrapper.GetSelectOrderByClauseInNewLine: Boolean;
+function TSQLFormatterOptions.GetSelectOrderByClauseInNewLine: Boolean;
 begin
   Result := gFmtOpt.OrderByClauseInNewline;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetSelectOrderByClauseInNewLine(Value: Boolean);
+procedure TSQLFormatterOptions.SetSelectOrderByClauseInNewLine(Value: Boolean);
 begin
   gFmtOpt.OrderByClauseInNewline := Value;
 end;
 
 { Insert }
 
-function TSQLFormatterOptionsWrapper.GetInsertColumnListStyle: Integer;
+function TSQLFormatterOptions.GetInsertColumnListStyle: Integer;
 begin
   Result := Ord(gFmtOpt.Insert_Columnlist_Style);
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetInsertColumnListStyle(Value: Integer);
+procedure TSQLFormatterOptions.SetInsertColumnListStyle(Value: Integer);
 begin
   gFmtOpt.Insert_Columnlist_Style := TAlignStyle(Value);
 end;
 
-function TSQLFormatterOptionsWrapper.GetInsertValueListStyle: Integer;
+function TSQLFormatterOptions.GetInsertValueListStyle: Integer;
 begin
   Result := Ord(gFmtOpt.Insert_Valuelist_Style);
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetInsertValueListStyle(Value: Integer);
+procedure TSQLFormatterOptions.SetInsertValueListStyle(Value: Integer);
 begin
   gFmtOpt.Insert_Valuelist_Style := TAlignStyle(Value);
 end;
 
-function TSQLFormatterOptionsWrapper.GetInsertParenthesisInSeparateLine: Boolean;
+function TSQLFormatterOptions.GetInsertParenthesisInSeparateLine: Boolean;
 begin
   Result := gFmtOpt.Insert_Parenthesis_in_separate_line;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetInsertParenthesisInSeparateLine(Value: Boolean);
+procedure TSQLFormatterOptions.SetInsertParenthesisInSeparateLine(Value: Boolean);
 begin
   gFmtOpt.Insert_Parenthesis_in_separate_line := Value;
 end;
 
-function TSQLFormatterOptionsWrapper.GetInsertColumnsPerLine: Integer;
+function TSQLFormatterOptions.GetInsertColumnsPerLine: Integer;
 begin
   Result := gFmtOpt.Insert_Columns_Per_line
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetInsertColumnsPerLine(Value: Integer);
+procedure TSQLFormatterOptions.SetInsertColumnsPerLine(Value: Integer);
 begin
   gFmtOpt.Insert_Columns_Per_line := Value;
 end;
 
 { Update }
 
-function TSQLFormatterOptionsWrapper.GetUpdateColumnListStyle: Integer;
+function TSQLFormatterOptions.GetUpdateColumnListStyle: Integer;
 begin
   Result := Ord(gFmtOpt.Update_Columnlist_Style);
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetUpdateColumnListStyle(Value: Integer);
+procedure TSQLFormatterOptions.SetUpdateColumnListStyle(Value: Integer);
 begin
   gFmtOpt.Update_Columnlist_Style := TAlignStyle(Value);
 end;
 
 { Alignments }
 
-function TSQLFormatterOptionsWrapper.GetKeywordAlign: Integer;
+function TSQLFormatterOptions.GetKeywordAlign: Integer;
 begin
   Result := Ord(gFmtOpt.Select_keywords_alignOption);
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetKeywordAlign(Value: Integer);
+procedure TSQLFormatterOptions.SetKeywordAlign(Value: Integer);
 begin
   gFmtOpt.Select_keywords_alignOption := TAlignOption(Value);
 end;
 
-function TSQLFormatterOptionsWrapper.GetKeywordAlignmentLeftJustify: Boolean;
+function TSQLFormatterOptions.GetKeywordAlignmentLeftJustify: Boolean;
 begin
   Result := gfmtopt.TrueLeft;
 end;
 
-procedure TSQLFormatterOptionsWrapper.SetKeywordAlignmentLeftJustify(Value: Boolean);
+procedure TSQLFormatterOptions.SetKeywordAlignmentLeftJustify(Value: Boolean);
 begin
   gfmtopt.TrueLeft := Value;
-end;
-
-{ TSQLFormatter }
-
-constructor TSQLFormatter.Create(SQL: TStrings; Vendor: TDBVendor);
-begin
-  FSQLParser := TGSQLParser.Create(Vendor);
-  FSQLParser.SQLText.Assign(SQL);
-end;
-
-function TSQLFormatter.GetFormattedSQL: string;
-var
-  Rslt: Integer;
-begin
-  Rslt := FSQLParser.PrettyPrint;
-  if Rslt > 0 then
-  begin
-    ShowErrorMessage('Invalid SQL');
-    Result := FSQLParser.SqlText.Text
-  end
-  else
-    Result := FSQLParser.FormattedSQLText.Text;
-end;
-
-destructor TSQLFormatter.Destroy;
-begin
-  FSQLParser.Free;
-  inherited;
 end;
 
 end.

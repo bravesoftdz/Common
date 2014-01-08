@@ -16,6 +16,7 @@ var
   GSQLParser: TGSQLParser;
   s: string;
 begin
+  check if there is editbone or orabone
   if (Vendor >= 0) and (Vendor <= 10) then
     DBVendor := TDBVendor(Vendor)
   else
@@ -24,13 +25,14 @@ begin
   GSQLParser := TGSQLParser.Create(DBVendor);
   try
     GSQLParser.SQLText.Text := SQL;
+    ReadFormatOptions;  oma unitti... ehdollista editbone ja orabonen inin luku
     Rslt := GSQLParser.PrettyPrint;
     if Rslt > 0 then
       Result := nil
     else
     begin
       s := GSQLParser.FormattedSQLText.Text;
-      Result := StrAlloc(Length(s)+1);
+      Result := StrAlloc(Length(s) + 1);
       StrPCopy(Result, s);
     end;
   finally

@@ -2,6 +2,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
   Width = 451
   Height = 302
   Align = alClient
+  ExplicitWidth = 451
+  ExplicitHeight = 302
   object Panel: TPanel
     Left = 0
     Top = 0
@@ -30,6 +32,10 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       ShowCloseButton = False
       object TabSheet1: TTabSheet
         Caption = 'Column List'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object ColumnListStyleLabel: TLabel
           Left = 11
           Top = 7
@@ -125,6 +131,10 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet2: TTabSheet
         Caption = 'Subquery'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object NewLineAfterInCheckBox: TBCCheckBox
           Left = 9
           Top = 5
@@ -189,6 +199,10 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet3: TTabSheet
         Caption = 'Into Clause'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object IntoClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5
@@ -208,6 +222,10 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet4: TTabSheet
         Caption = 'From/Join Clause'
         ImageIndex = 3
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object FromClauseStyleLabel: TLabel
           Left = 11
           Top = 7
@@ -310,6 +328,10 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet5: TTabSheet
         Caption = 'And/Or Keyword'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object AndOrLineBreakLabel: TLabel
           Left = 11
           Top = 7
@@ -382,6 +404,10 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet6: TTabSheet
         Caption = 'Group By Clause'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupByClauseStyleLabel: TLabel
           Left = 11
           Top = 7
@@ -424,6 +450,10 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet7: TTabSheet
         Caption = 'Having Clause'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object HavingClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5
@@ -443,6 +473,10 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet8: TTabSheet
         Caption = 'Order By Clause'
         ImageIndex = 7
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object OrderByClauseStyleLabel: TLabel
           Left = 11
           Top = 7

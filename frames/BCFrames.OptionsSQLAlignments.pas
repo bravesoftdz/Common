@@ -60,14 +60,14 @@ end;
 
 procedure TOptionsSQLAlignmentsFrame.GetData;
 begin
-  KeywordAlignComboBox.ItemIndex := SQLFormatterOptionsWrapper.KeywordAlign;
-  KeywordAlignmentLeftJustifyCheckBox.Checked := SQLFormatterOptionsWrapper.KeywordAlignmentLeftJustify;
+  KeywordAlignComboBox.ItemIndex := SQLFormatterOptions.KeywordAlign;
+  KeywordAlignmentLeftJustifyCheckBox.Checked := SQLFormatterOptions.KeywordAlignmentLeftJustify;
 end;
 
 procedure TOptionsSQLAlignmentsFrame.PutData;
 begin
-  SQLFormatterOptionsWrapper.KeywordAlign := KeywordAlignComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.KeywordAlignmentLeftJustify := KeywordAlignmentLeftJustifyCheckBox.Checked;
+  SQLFormatterOptions.KeywordAlign := KeywordAlignComboBox.ItemIndex;
+  SQLFormatterOptions.KeywordAlignmentLeftJustify := KeywordAlignmentLeftJustifyCheckBox.Checked;
 end;
 
 end.

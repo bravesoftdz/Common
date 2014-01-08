@@ -1,6 +1,8 @@
 inherited OptionsSQLUpdateFrame: TOptionsSQLUpdateFrame
   Width = 155
   Height = 47
+  ExplicitWidth = 155
+  ExplicitHeight = 47
   object Panel: TPanel
     Left = 0
     Top = 0

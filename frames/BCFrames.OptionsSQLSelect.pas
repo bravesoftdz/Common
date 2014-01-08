@@ -128,75 +128,75 @@ end;
 procedure TOptionsSQLSelectFrame.GetData;
 begin
   { Column List }
-  ColumnListStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectColumnListStyle;
-  ColumnListLineBreakComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectColumnListLineBreak;
-  ColumnInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectColumnListColumnInNewLine;
-  AlignAliasCheckBox.Checked := SQLFormatterOptionsWrapper.SelectColumnListAlignAlias;
-  TreatDistinctAsVirtualColumnCheckBox.Checked := SQLFormatterOptionsWrapper.SelectColumnListTreatDistinctAsVirtualColumn;
+  ColumnListStyleComboBox.ItemIndex := SQLFormatterOptions.SelectColumnListStyle;
+  ColumnListLineBreakComboBox.ItemIndex := SQLFormatterOptions.SelectColumnListLineBreak;
+  ColumnInNewLineCheckBox.Checked := SQLFormatterOptions.SelectColumnListColumnInNewLine;
+  AlignAliasCheckBox.Checked := SQLFormatterOptions.SelectColumnListAlignAlias;
+  TreatDistinctAsVirtualColumnCheckBox.Checked := SQLFormatterOptions.SelectColumnListTreatDistinctAsVirtualColumn;
   { Subquery }
-  NewLineAfterInCheckBox.Checked := SQLFormatterOptionsWrapper.SelectSubqueryNewLineAfterIn;
-  NewLineAfterExistsCheckBox.Checked := SQLFormatterOptionsWrapper.SelectSubqueryNewLineAfterExists;
-  NewlineAfterComparisonOperatorCheckBox.Checked := SQLFormatterOptionsWrapper.SelectSubqueryNewLineAfterComparisonOperator;
-  NewlineBeforeComparisonOperatorCheckBox.Checked := SQLFormatterOptionsWrapper.SelectSubqueryNewLineBeforeComparisonOperator;
+  NewLineAfterInCheckBox.Checked := SQLFormatterOptions.SelectSubqueryNewLineAfterIn;
+  NewLineAfterExistsCheckBox.Checked := SQLFormatterOptions.SelectSubqueryNewLineAfterExists;
+  NewlineAfterComparisonOperatorCheckBox.Checked := SQLFormatterOptions.SelectSubqueryNewLineAfterComparisonOperator;
+  NewlineBeforeComparisonOperatorCheckBox.Checked := SQLFormatterOptions.SelectSubqueryNewLineBeforeComparisonOperator;
   { Into Clause }
-  IntoClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectIntoClauseInNewLine;
+  IntoClauseInNewLineCheckBox.Checked := SQLFormatterOptions.SelectIntoClauseInNewLine;
   { Select From/Join Clause }
-  FromClauseStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectFromClauseStyle;
-  FromClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectFromClauseInNewLine;
-  JoinClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectJoinClauseInNewLine;
-  AlignJoinWithFromKeywordCheckBox.Checked := SQLFormatterOptionsWrapper.SelectAlignJoinWithFromKeyword;
-  AlignAndOrWithOnInJoinClauseCheckBox.Checked := SQLFormatterOptionsWrapper.SelectAlignAndOrWithOnInJoinClause;
-  AlignAliasInFromClauseCheckBox.Checked := SQLFormatterOptionsWrapper.SelectAlignAliasInFromClause;
+  FromClauseStyleComboBox.ItemIndex := SQLFormatterOptions.SelectFromClauseStyle;
+  FromClauseInNewLineCheckBox.Checked := SQLFormatterOptions.SelectFromClauseInNewLine;
+  JoinClauseInNewLineCheckBox.Checked := SQLFormatterOptions.SelectJoinClauseInNewLine;
+  AlignJoinWithFromKeywordCheckBox.Checked := SQLFormatterOptions.SelectAlignJoinWithFromKeyword;
+  AlignAndOrWithOnInJoinClauseCheckBox.Checked := SQLFormatterOptions.SelectAlignAndOrWithOnInJoinClause;
+  AlignAliasInFromClauseCheckBox.Checked := SQLFormatterOptions.SelectAlignAliasInFromClause;
   { And/Or Keyword }
-  AndOrLineBreakComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectAndOrLineBreak;
-  AndOrUnderWhereCheckBox.Checked := SQLFormatterOptionsWrapper.SelectAndOrUnderWhere;
-  WhereClauseInNewlineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectWhereClauseInNewline;
-  WhereClauseAlignExprCheckBox.Checked := SQLFormatterOptionsWrapper.SelectWhereClauseAlignExpr;
+  AndOrLineBreakComboBox.ItemIndex := SQLFormatterOptions.SelectAndOrLineBreak;
+  AndOrUnderWhereCheckBox.Checked := SQLFormatterOptions.SelectAndOrUnderWhere;
+  WhereClauseInNewlineCheckBox.Checked := SQLFormatterOptions.SelectWhereClauseInNewline;
+  WhereClauseAlignExprCheckBox.Checked := SQLFormatterOptions.SelectWhereClauseAlignExpr;
   { Group By Clause }
-  GroupByClauseStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectGroupByClauseStyle;
-  GroupByClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectGroupByClauseInNewLine;
+  GroupByClauseStyleComboBox.ItemIndex := SQLFormatterOptions.SelectGroupByClauseStyle;
+  GroupByClauseInNewLineCheckBox.Checked := SQLFormatterOptions.SelectGroupByClauseInNewLine;
   { Having Clause }
-  HavingClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectHavingClauseInNewLine;
+  HavingClauseInNewLineCheckBox.Checked := SQLFormatterOptions.SelectHavingClauseInNewLine;
   { Order By Clause }
-  OrderByClauseStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.SelectOrderByClauseStyle;
-  OrderByClauseInNewLineCheckBox.Checked := SQLFormatterOptionsWrapper.SelectOrderByClauseInNewLine;
+  OrderByClauseStyleComboBox.ItemIndex := SQLFormatterOptions.SelectOrderByClauseStyle;
+  OrderByClauseInNewLineCheckBox.Checked := SQLFormatterOptions.SelectOrderByClauseInNewLine;
 end;
 
 procedure TOptionsSQLSelectFrame.PutData;
 begin
   { Column List }
-  SQLFormatterOptionsWrapper.SelectColumnListStyle := ColumnListStyleComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.SelectColumnListLineBreak := ColumnListLineBreakComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.SelectColumnListColumnInNewLine := ColumnInNewLineCheckBox.Checked;
-  SQLFormatterOptionsWrapper.SelectColumnListAlignAlias := AlignAliasCheckBox.Checked;
-  SQLFormatterOptionsWrapper.SelectColumnListTreatDistinctAsVirtualColumn := TreatDistinctAsVirtualColumnCheckBox.Checked;
+  SQLFormatterOptions.SelectColumnListStyle := ColumnListStyleComboBox.ItemIndex;
+  SQLFormatterOptions.SelectColumnListLineBreak := ColumnListLineBreakComboBox.ItemIndex;
+  SQLFormatterOptions.SelectColumnListColumnInNewLine := ColumnInNewLineCheckBox.Checked;
+  SQLFormatterOptions.SelectColumnListAlignAlias := AlignAliasCheckBox.Checked;
+  SQLFormatterOptions.SelectColumnListTreatDistinctAsVirtualColumn := TreatDistinctAsVirtualColumnCheckBox.Checked;
   { Subquery }
-  SQLFormatterOptionsWrapper.SelectSubqueryNewLineAfterIn := NewLineAfterInCheckBox.Checked;
-  SQLFormatterOptionsWrapper.SelectSubqueryNewLineAfterExists := NewLineAfterExistsCheckBox.Checked;
-  SQLFormatterOptionsWrapper.SelectSubqueryNewLineAfterComparisonOperator := NewlineAfterComparisonOperatorCheckBox.Checked;
-  SQLFormatterOptionsWrapper.SelectSubqueryNewLineBeforeComparisonOperator := NewlineBeforeComparisonOperatorCheckBox.Checked;
+  SQLFormatterOptions.SelectSubqueryNewLineAfterIn := NewLineAfterInCheckBox.Checked;
+  SQLFormatterOptions.SelectSubqueryNewLineAfterExists := NewLineAfterExistsCheckBox.Checked;
+  SQLFormatterOptions.SelectSubqueryNewLineAfterComparisonOperator := NewlineAfterComparisonOperatorCheckBox.Checked;
+  SQLFormatterOptions.SelectSubqueryNewLineBeforeComparisonOperator := NewlineBeforeComparisonOperatorCheckBox.Checked;
   { Into Clause }
-  SQLFormatterOptionsWrapper.SelectIntoClauseInNewLine := IntoClauseInNewLineCheckBox.Checked;
+  SQLFormatterOptions.SelectIntoClauseInNewLine := IntoClauseInNewLineCheckBox.Checked;
   { Select From/Join Clause }
-  SQLFormatterOptionsWrapper.SelectFromClauseStyle := FromClauseStyleComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.SelectFromClauseInNewLine := FromClauseInNewLineCheckBox.Checked;
-  SQLFormatterOptionsWrapper.SelectJoinClauseInNewLine := JoinClauseInNewLineCheckBox.Checked;
-  SQLFormatterOptionsWrapper.SelectAlignJoinWithFromKeyword := AlignJoinWithFromKeywordCheckBox.Checked;
-  SQLFormatterOptionsWrapper.SelectAlignAndOrWithOnInJoinClause := AlignAndOrWithOnInJoinClauseCheckBox.Checked;
-  SQLFormatterOptionsWrapper.SelectAlignAliasInFromClause := AlignAliasInFromClauseCheckBox.Checked;
+  SQLFormatterOptions.SelectFromClauseStyle := FromClauseStyleComboBox.ItemIndex;
+  SQLFormatterOptions.SelectFromClauseInNewLine := FromClauseInNewLineCheckBox.Checked;
+  SQLFormatterOptions.SelectJoinClauseInNewLine := JoinClauseInNewLineCheckBox.Checked;
+  SQLFormatterOptions.SelectAlignJoinWithFromKeyword := AlignJoinWithFromKeywordCheckBox.Checked;
+  SQLFormatterOptions.SelectAlignAndOrWithOnInJoinClause := AlignAndOrWithOnInJoinClauseCheckBox.Checked;
+  SQLFormatterOptions.SelectAlignAliasInFromClause := AlignAliasInFromClauseCheckBox.Checked;
   { And/Or Keyword }
-  SQLFormatterOptionsWrapper.SelectAndOrLineBreak := AndOrLineBreakComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.SelectAndOrUnderWhere := AndOrUnderWhereCheckBox.Checked;
-  SQLFormatterOptionsWrapper.SelectWhereClauseInNewline := WhereClauseInNewlineCheckBox.Checked;
-  SQLFormatterOptionsWrapper.SelectWhereClauseAlignExpr := WhereClauseAlignExprCheckBox.Checked;
+  SQLFormatterOptions.SelectAndOrLineBreak := AndOrLineBreakComboBox.ItemIndex;
+  SQLFormatterOptions.SelectAndOrUnderWhere := AndOrUnderWhereCheckBox.Checked;
+  SQLFormatterOptions.SelectWhereClauseInNewline := WhereClauseInNewlineCheckBox.Checked;
+  SQLFormatterOptions.SelectWhereClauseAlignExpr := WhereClauseAlignExprCheckBox.Checked;
   { Group By Clause }
-  SQLFormatterOptionsWrapper.SelectGroupByClauseStyle := GroupByClauseStyleComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.SelectGroupByClauseInNewLine := GroupByClauseInNewLineCheckBox.Checked;
+  SQLFormatterOptions.SelectGroupByClauseStyle := GroupByClauseStyleComboBox.ItemIndex;
+  SQLFormatterOptions.SelectGroupByClauseInNewLine := GroupByClauseInNewLineCheckBox.Checked;
   { Having Clause }
-  SQLFormatterOptionsWrapper.SelectHavingClauseInNewLine := HavingClauseInNewLineCheckBox.Checked;
+  SQLFormatterOptions.SelectHavingClauseInNewLine := HavingClauseInNewLineCheckBox.Checked;
   { Order By Clause }
-  SQLFormatterOptionsWrapper.SelectOrderByClauseStyle := OrderByClauseStyleComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.SelectOrderByClauseInNewLine := OrderByClauseInNewLineCheckBox.Checked;
+  SQLFormatterOptions.SelectOrderByClauseStyle := OrderByClauseStyleComboBox.ItemIndex;
+  SQLFormatterOptions.SelectOrderByClauseInNewLine := OrderByClauseInNewLineCheckBox.Checked;
 end;
 
 end.

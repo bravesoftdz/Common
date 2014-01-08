@@ -68,18 +68,18 @@ end;
 
 procedure TOptionsSQLInsertFrame.GetData;
 begin
-  ColumnListStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.InsertColumnListStyle;
-  ValueListStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.InsertValueListStyle;
-  InsertColumnsPerLineEdit.Text := IntToStr(SQLFormatterOptionsWrapper.InsertColumnsPerLine);
-  ParenthesisInSeparateLinesCheckBox.Checked := SQLFormatterOptionsWrapper.InsertParenthesisInSeparateLine;
+  ColumnListStyleComboBox.ItemIndex := SQLFormatterOptions.InsertColumnListStyle;
+  ValueListStyleComboBox.ItemIndex := SQLFormatterOptions.InsertValueListStyle;
+  InsertColumnsPerLineEdit.Text := IntToStr(SQLFormatterOptions.InsertColumnsPerLine);
+  ParenthesisInSeparateLinesCheckBox.Checked := SQLFormatterOptions.InsertParenthesisInSeparateLine;
 end;
 
 procedure TOptionsSQLInsertFrame.PutData;
 begin
-  SQLFormatterOptionsWrapper.InsertColumnListStyle := ColumnListStyleComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.InsertValueListStyle := ValueListStyleComboBox.ItemIndex;
-  SQLFormatterOptionsWrapper.InsertColumnsPerLine := StrToInt(InsertColumnsPerLineEdit.Text);
-  SQLFormatterOptionsWrapper.InsertParenthesisInSeparateLine := ParenthesisInSeparateLinesCheckBox.Checked;
+  SQLFormatterOptions.InsertColumnListStyle := ColumnListStyleComboBox.ItemIndex;
+  SQLFormatterOptions.InsertValueListStyle := ValueListStyleComboBox.ItemIndex;
+  SQLFormatterOptions.InsertColumnsPerLine := StrToInt(InsertColumnsPerLineEdit.Text);
+  SQLFormatterOptions.InsertParenthesisInSeparateLine := ParenthesisInSeparateLinesCheckBox.Checked;
 end;
 
 

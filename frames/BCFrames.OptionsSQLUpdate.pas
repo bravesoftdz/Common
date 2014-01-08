@@ -57,12 +57,12 @@ end;
 
 procedure TOptionsSQLUpdateFrame.GetData;
 begin
-  ColumnListStyleComboBox.ItemIndex := SQLFormatterOptionsWrapper.UpdateColumnListStyle;
+  ColumnListStyleComboBox.ItemIndex := SQLFormatterOptions.UpdateColumnListStyle;
 end;
 
 procedure TOptionsSQLUpdateFrame.PutData;
 begin
-  SQLFormatterOptionsWrapper.UpdateColumnListStyle := ColumnListStyleComboBox.ItemIndex;
+  SQLFormatterOptions.UpdateColumnListStyle := ColumnListStyleComboBox.ItemIndex;
 end;
 
 end.

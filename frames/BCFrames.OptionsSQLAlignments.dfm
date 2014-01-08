@@ -1,6 +1,8 @@
 inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
   Width = 282
   Height = 62
+  ExplicitWidth = 282
+  ExplicitHeight = 62
   object Panel: TPanel
     Left = 0
     Top = 0
