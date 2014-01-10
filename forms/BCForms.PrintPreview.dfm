@@ -69,6 +69,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Top = 27
     Width = 726
     Height = 477
+    BorderStyle = bsNone
     ScaleMode = pscWholePage
     OnMouseDown = SynEditPrintPreviewMouseDown
     OnPreviewPage = SynEditPrintPreviewPreviewPage
@@ -298,27 +299,27 @@ object PrintPreviewDialog: TPrintPreviewDialog
     object Percent25MenuItem: TMenuItem
       Tag = 25
       Caption = '25%'
-      OnClick = Fitto1Click
+      OnClick = PercentClick
     end
     object Percent50MenuItem: TMenuItem
       Tag = 50
       Caption = '50%'
-      OnClick = Fitto1Click
+      OnClick = PercentClick
     end
     object Percent100MenuItem: TMenuItem
       Tag = 100
       Caption = '100%'
-      OnClick = Fitto1Click
+      OnClick = PercentClick
     end
     object Percent200MenuItem: TMenuItem
       Tag = 200
       Caption = '200%'
-      OnClick = Fitto1Click
+      OnClick = PercentClick
     end
     object Percent400MenuItem: TMenuItem
       Tag = 400
       Caption = '400%'
-      OnClick = Fitto1Click
+      OnClick = PercentClick
     end
   end
   object ApplicationEvents: TApplicationEvents

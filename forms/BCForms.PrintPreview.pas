@@ -52,7 +52,7 @@ type
     ZoomToolButton: TToolButton;
     procedure ApplicationEventsHint(Sender: TObject);
     procedure FirstActionExecute(Sender: TObject);
-    procedure Fitto1Click(Sender: TObject);
+    procedure PercentClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -175,13 +175,15 @@ begin
   end;
 end;
 
-procedure TPrintPreviewDialog.Fitto1Click(Sender: TObject);
+procedure TPrintPreviewDialog.PercentClick(Sender: TObject);
 begin
   case (Sender as TMenuItem).Tag of
     -1: SynEditPrintPreview.ScaleMode := pscPageWidth;
   else
     SynEditPrintPreview.ScalePercent := (Sender as TMenuItem).Tag;
   end;
+  SynEditPrintPreview.Align := alNone;
+  SynEditPrintPreview.Align := alClient;
 end;
 
 procedure TPrintPreviewDialog.ApplicationEventsHint(Sender: TObject);
