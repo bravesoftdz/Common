@@ -4,14 +4,13 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.CheckBox,
-  BCCommon.OptionsContainer, BCFrames.OptionsFrame, Vcl.ComCtrls, Vcl.ImgList, BCControls.ImageList,
-  Vcl.ToolWin, BCControls.ToolBar, System.Actions, Vcl.ActnList, System.Generics.Collections, System.Types, VirtualTrees,
-  Winapi.ActiveX, Vcl.Menus;
+  BCCommon.OptionsContainer, BCFrames.OptionsFrame, Vcl.ComCtrls, Vcl.ImgList, Vcl.ToolWin, BCControls.ToolBar,
+  System.Actions, Vcl.ActnList, System.Generics.Collections, System.Types, VirtualTrees, Winapi.ActiveX, Vcl.Menus,
+  BCCommon.Images;
 
 type
   TOptionsToolBarFrame = class(TOptionsFrame)
     Panel: TPanel;
-    ImageList: TBCImageList;
     ButtonActionList: TActionList;
     AddItemAction: TAction;
     DeleteAction: TAction;
@@ -61,7 +60,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Winapi.Windows, Winapi.CommCtrl, BigIni, BCCommon.Images, BCCommon.FileUtils, Vcl.Themes, BCDialogs.OptionsToolBarItems,
+  Winapi.Windows, Winapi.CommCtrl, BigIni, BCCommon.FileUtils, Vcl.Themes, BCDialogs.OptionsToolBarItems,
   System.SysUtils, BCCommon.Lib;
 
 var

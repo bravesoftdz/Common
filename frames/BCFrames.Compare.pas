@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Diff,
   Vcl.Grids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, JvSpeedButton, JvStringGrid, BCControls.StringGrid, Vcl.ActnList,
-  JvExGrids, BCControls.ComboBox, System.Actions, JvExControls, BCControls.ImageList;
+  JvExGrids, BCControls.ComboBox, System.Actions, JvExControls;
 
 type
   TSyncKind = (skBoth, skVScroll, skHScroll);

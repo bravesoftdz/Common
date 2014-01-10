@@ -4,9 +4,8 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
-  Vcl.ToolWin, Vcl.ActnList, Vcl.ImgList, SynEditPrintPreview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers,
-  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, BCControls.PopupMenu, BCControls.ToolBar, BCControls.ImageList,
-  System.Actions, Vcl.Grids;
+  Vcl.ToolWin, Vcl.ActnList, Vcl.ImgList, SynEditPrintPreview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers, BCCommon.Images,
+  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, BCControls.PopupMenu, BCControls.ToolBar, System.Actions, Vcl.Grids;
 
 type
   TDrawGrid = class(Vcl.Grids.TDrawGrid)
@@ -23,7 +22,6 @@ type
     ButtonPanel: TPanel;
     FirstAction: TAction;
     FirstToolButton: TToolButton;
-    ImageList: TBCImageList;
     LastAction: TAction;
     LasttToolButton: TToolButton;
     LineNumbersAction: TAction;
