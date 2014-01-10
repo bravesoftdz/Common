@@ -3,7 +3,7 @@ unit BCCommon.FileUtils;
 interface
 
 uses
-  Winapi.Windows, System.Classes;
+  Winapi.Windows, System.Classes, System.UITypes;
 
 type
   TFileType = (ftHC11, ftAWK, ftBaan, ftCS, ftCPP, ftCAC, ftCache, ftCss, ftCobol, ftIdl,
@@ -59,21 +59,26 @@ var
   SearhcRec: TSearchRec;
 begin
   Result := Count;
-  FilePath := IncludeTrailingPathDelimiter(FilePath);
-  {$WARNINGS OFF}
-  if FindFirst(IncludeTrailingBackslash(FilePath) + '*.*', faAnyFile, SearhcRec) = 0 then
-  {$WARNINGS ON}
-  begin
-    repeat
-      if (SearhcRec.Name <> '.') and (SearhcRec.Name <> '..') then
-      begin
-        if SearhcRec.Attr and faDirectory = 0 then
-          Inc(Result)
-        else
-          Result := CountFilesInFolder(FilePath + SearhcRec.Name, Result);
-      end;
-    until FindNext (SearhcRec) <> 0;
-    FindClose (SearhcRec);
+  Screen.Cursor := crHourGlass;
+  try
+    FilePath := IncludeTrailingPathDelimiter(FilePath);
+    {$WARNINGS OFF}
+    if FindFirst(IncludeTrailingBackslash(FilePath) + '*.*', faAnyFile, SearhcRec) = 0 then
+    {$WARNINGS ON}
+    begin
+      repeat
+        if (SearhcRec.Name <> '.') and (SearhcRec.Name <> '..') then
+        begin
+          if SearhcRec.Attr and faDirectory = 0 then
+            Inc(Result)
+          else
+            Result := CountFilesInFolder(FilePath + SearhcRec.Name, Result);
+        end;
+      until FindNext (SearhcRec) <> 0;
+      FindClose (SearhcRec);
+    end;
+  finally
+    Screen.Cursor := crDefault;
   end;
 end;
 

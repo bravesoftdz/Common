@@ -71,7 +71,7 @@ begin
   if not Assigned(FOptionsToolBarFrame) then
     FOptionsToolBarFrame := TOptionsToolBarFrame.Create(AOwner);
 
-  FOptionsToolBarFrame.VirtualDrawTree.NodeDataSize := SizeOf(TAction);
+  FOptionsToolBarFrame.VirtualDrawTree.NodeDataSize := SizeOf(TTreeData);
   FOptionsToolBarFrame.VirtualDrawTree.Images := ImagesDataModule.ImageList; { IDE can lose this }
   FOptionsToolBarFrame.ActionList := ActionList;
   FOptionsToolBarFrame.GetToolBarItems;
