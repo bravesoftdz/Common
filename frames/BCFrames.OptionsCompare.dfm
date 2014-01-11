@@ -1,14 +1,14 @@
 inherited OptionsCompareFrame: TOptionsCompareFrame
   Width = 282
-  Height = 41
+  Height = 77
   Visible = False
   ExplicitWidth = 282
-  ExplicitHeight = 41
+  ExplicitHeight = 77
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 282
-    Height = 41
+    Height = 67
     BevelOuter = bvNone
     Padding.Left = 4
     TabOrder = 0

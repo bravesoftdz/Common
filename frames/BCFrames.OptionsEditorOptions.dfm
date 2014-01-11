@@ -178,12 +178,12 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Left = 4
       Top = 343
       Width = 133
-      Height = 21
+      Height = 22
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Style = csDropDownList
+      Style = csOwnerDrawFixed
       DropDownCount = 9
       TabOrder = 14
       DeniedKeyStrokes = True

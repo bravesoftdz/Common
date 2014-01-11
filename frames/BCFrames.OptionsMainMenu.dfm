@@ -1,9 +1,9 @@
 inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
   Width = 236
-  Height = 173
+  Height = 219
   Visible = False
   ExplicitWidth = 236
-  ExplicitHeight = 173
+  ExplicitHeight = 219
   object Panel: TPanel
     Left = 0
     Top = 0
@@ -125,11 +125,12 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       Left = 4
       Top = 112
       Width = 186
-      Height = 21
+      Height = 22
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      Style = csOwnerDrawFixed
       DropDownCount = 9
       TabOrder = 3
       DeniedKeyStrokes = True

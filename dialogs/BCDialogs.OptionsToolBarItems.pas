@@ -20,11 +20,13 @@ type
     procedure AddItemsVirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas; Node: PVirtualNode;
       Column: TColumnIndex; var NodeWidth: Integer);
     procedure FormDestroy(Sender: TObject);
+    procedure AddItemsVirtualDrawTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
   private
     { Private declarations }
     FActionList: TObjectList<TAction>;
   public
     { Public declarations }
+    constructor Create(AOwner: TComponent); override;
     function Open: Boolean;
     procedure GetToolBarItems;
     property ActionList: TObjectList<TAction> read FActionList write FActionList;
@@ -58,6 +60,13 @@ begin
   FOptionsToolBarItemsDialog.GetToolBarItems;
 
   Result := FOptionsToolBarItemsDialog;
+end;
+
+constructor TOptionsToolBarItemsDialog.Create(AOwner: TComponent);
+begin
+  inherited;
+  { IDE is losing this }
+  AddItemsVirtualDrawTree.Images := ImagesDataModule.ImageList;
 end;
 
 function TOptionsToolBarItemsDialog.Open: Boolean;
@@ -125,6 +134,16 @@ begin
   end;
 end;
 
+procedure TOptionsToolBarItemsDialog.AddItemsVirtualDrawTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
+var
+  Data: PTreeData;
+begin
+  inherited;
+  Data := Sender.GetNodeData(Node);
+  Data^.Action := nil;
+  //Finalize(Data^);
+end;
+
 procedure TOptionsToolBarItemsDialog.AddItemsVirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
   Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
 var
@@ -154,10 +173,13 @@ begin
   AddItemsVirtualDrawTree.Clear;
   for Action in FActionList do
   begin
-    Node := AddItemsVirtualDrawTree.AddChild(nil);
-    Node.CheckType := ctCheckBox;
-    Data := AddItemsVirtualDrawTree.GetNodeData(Node);
-    Data^.Action := Action;
+    if Action.Tag <> 1 then
+    begin
+      Node := AddItemsVirtualDrawTree.AddChild(nil);
+      Node.CheckType := ctCheckBox;
+      Data := AddItemsVirtualDrawTree.GetNodeData(Node);
+      Data^.Action := Action;
+    end;
   end;
   AddItemsVirtualDrawTree.EndUpdate;
 end;

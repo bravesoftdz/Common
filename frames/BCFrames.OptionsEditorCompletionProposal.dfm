@@ -1,13 +1,13 @@
 inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
   Width = 201
-  Height = 80
+  Height = 119
   ExplicitWidth = 201
-  ExplicitHeight = 80
+  ExplicitHeight = 119
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 201
-    Height = 80
+    Height = 101
     BevelOuter = bvNone
     TabOrder = 0
     object ShortcutLabel: TLabel
@@ -51,14 +51,14 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       Left = 4
       Top = 59
       Width = 160
-      Height = 21
+      Height = 22
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      Style = csOwnerDrawFixed
       DropDownCount = 9
       TabOrder = 2
-      Text = 'Ctrl+Space'
       DeniedKeyStrokes = True
       ReadOnly = False
       DropDownFixedWidth = 0

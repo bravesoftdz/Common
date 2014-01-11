@@ -246,13 +246,9 @@ procedure TSearchForFilesForm.SearchVirtualDrawTreeFreeNode(Sender: TBaseVirtual
 var
   Data: PSearchRec;
 begin
+  inherited;
   Data := Sender.GetNodeData(Node);
-
-  if Assigned(Data) then
-  begin
-    Data^.Filename := '';
-    Data^.FilePath := '';
-  end;
+  Finalize(Data^);
 end;
 
 procedure TSearchForFilesForm.SearchVirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;

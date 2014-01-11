@@ -11,7 +11,7 @@ uses
 type
   TOptionsToolBarFrame = class(TOptionsFrame)
     Panel: TPanel;
-    ButtonActionList: TActionList;
+    MenuActionList: TActionList;
     AddItemAction: TAction;
     DeleteAction: TAction;
     AddDividerAction: TAction;
@@ -20,6 +20,9 @@ type
     Additem1: TMenuItem;
     DeleteItem1: TMenuItem;
     AddDivider1: TMenuItem;
+    ResetAction: TAction;
+    N1: TMenuItem;
+    Reset1: TMenuItem;
     procedure VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
     procedure VirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind;
       Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
@@ -35,6 +38,7 @@ type
     procedure AddItemActionExecute(Sender: TObject);
     procedure DeleteActionExecute(Sender: TObject);
     procedure AddDividerActionExecute(Sender: TObject);
+    procedure ResetActionExecute(Sender: TObject);
   private
     { Private declarations }
     FActionList: TObjectList<TAction>;
@@ -42,6 +46,7 @@ type
     function FindItemByName(ItemName: string): TAction;
   public
     { Public declarations }
+    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure GetToolBarItems;
     procedure PutData; override;
@@ -77,6 +82,15 @@ begin
   FOptionsToolBarFrame.GetToolBarItems;
 
   Result := FOptionsToolBarFrame;
+end;
+
+constructor TOptionsToolBarFrame.Create(AOwner: TComponent);
+begin
+  inherited;
+  { IDE is losing these }
+  MenuActionList.Images := ImagesDataModule.ImageList;
+  PopupMenu.Images := ImagesDataModule.ImageList;
+  VirtualDrawTree.Images := ImagesDataModule.ImageList;
 end;
 
 procedure TOptionsToolBarFrame.AddDividerActionExecute(Sender: TObject);
@@ -120,6 +134,7 @@ begin
              NewNode := VirtualDrawTree.AddChild(nil);
            NewData := VirtualDrawTree.GetNodeData(NewNode);
            NewData^.Action := Data^.Action;
+           NewData^.Action.Tag := 1;
            VirtualDrawTree.Selected[NewNode] := True;
            FIsChanged := True;
          end;
@@ -134,9 +149,12 @@ end;
 procedure TOptionsToolBarFrame.DeleteActionExecute(Sender: TObject);
 var
   Node: PVirtualNode;
+  Data: PTreeData;
 begin
   inherited;
   Node := VirtualDrawTree.GetFirstSelected;
+  Data := VirtualDrawTree.GetNodeData(Node);
+  Data^.Action.Tag := 0;
   VirtualDrawTree.DeleteNode(Node);
   FIsChanged := True;
 end;
@@ -233,6 +251,102 @@ begin
       Free;
     end;
   end;
+end;
+
+procedure TOptionsToolBarFrame.ResetActionExecute(Sender: TObject);
+var
+  Node: PVirtualNode;
+
+  procedure DeleteNodes;
+  var
+    Node, TmpNode: PVirtualNode;
+  begin
+    Node := VirtualDrawTree.GetLast;
+    while Assigned(Node) do
+    begin
+      TmpNode := VirtualDrawTree.GetPrevious(Node);
+      VirtualDrawTree.DeleteNode(Node);
+      Node := TmpNode;
+    end;
+  end;
+
+  procedure AddNode(ActionName: string);
+  var
+    Data: PTreeData;
+    Action: TAction;
+  begin
+    Node := VirtualDrawTree.AddChild(nil);
+    Data := VirtualDrawTree.GetNodeData(Node);
+    if ActionName <> '-' then
+    begin
+      Action := FindItemByName(ActionName);
+      if Assigned(Action) then
+        Action.Tag := 1;
+    end
+    else
+    begin
+      Action := TAction.Create(nil);
+      Action.Caption := '-';
+    end;
+    Data^.Action := Action;
+  end;
+
+begin
+  inherited;
+  VirtualDrawTree.BeginUpdate;
+  DeleteNodes;
+  {$ifdef EDITBONE}
+  AddNode('FileNewAction');
+  AddNode('FileOpenAction');
+  AddNode('-');
+  AddNode('FileSaveAction');
+  AddNode('FileSaveAsAction');
+  AddNode('FileSaveAllAction');
+  AddNode('FileCloseAction');
+  AddNode('FileCloseAllAction');
+  AddNode('-');
+  AddNode('FilePrintAction');
+  AddNode('FilePrintPreviewAction');
+  AddNode('-');
+  AddNode('ViewOpenDirectoryAction');
+  AddNode('ViewCloseDirectoryAction');
+  AddNode('ViewEditDirectoryAction');
+  AddNode('-');
+  AddNode('EditIncreaseIndentAction');
+  AddNode('EditDecreaseIndentAction');
+  AddNode('-');
+  AddNode('EditSortAscAction');
+  AddNode('EditSortDescAction');
+  AddNode('-');
+  AddNode('EditToggleCaseAction');
+  AddNode('-');
+  AddNode('EditUndoAction');
+  AddNode('EditRedoAction');
+  AddNode('-');
+  AddNode('SearchAction');
+  AddNode('SearchReplaceAction');
+  AddNode('SearchFindInFilesAction');
+  AddNode('-');
+  AddNode('ViewWordWrapAction');
+  AddNode('ViewLineNumbersAction');
+  AddNode('ViewSpecialCharsAction');
+  AddNode('ViewSelectionModeAction');
+  AddNode('-');
+  AddNode('CompareFilesAction');
+  AddNode('-');
+  AddNode('MacroRecordPauseAction');
+  AddNode('MacroStopAction');
+  AddNode('MacroPlaybackAction');
+  AddNode('MacroOpenAction');
+  AddNode('MacroSaveAsAction');
+  AddNode('-');
+  AddNode('ToolsWordCountAction');
+  AddNode('ViewInBrowserAction');
+  {$endif}
+  Node := VirtualDrawTree.GetFirst;
+  if Assigned(Node) then
+    VirtualDrawTree.Selected[Node] := True;
+  VirtualDrawTree.EndUpdate;
 end;
 
 procedure TOptionsToolBarFrame.VirtualDrawTreeDragAllowed(Sender: TBaseVirtualTree; Node: PVirtualNode;
@@ -341,6 +455,7 @@ begin
   if Assigned(Data) then
     if Data^.Action.Caption = '-' then
       Data^.Action.Free;
+  //Finalize(Data^);
 end;
 
 procedure TOptionsToolBarFrame.VirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;

@@ -64,7 +64,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         end>
     end
   end
-  object ButtonActionList: TActionList
+  object MenuActionList: TActionList
     Images = ImagesDataModule.ImageList
     Left = 245
     Top = 173
@@ -86,6 +86,12 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
       ImageIndex = 64
       OnExecute = AddDividerActionExecute
     end
+    object ResetAction: TAction
+      Caption = 'Reset'
+      Hint = 'Reset menu items'
+      ImageIndex = 164
+      OnExecute = ResetActionExecute
+    end
   end
   object PopupMenu: TPopupMenu
     Images = ImagesDataModule.ImageList
@@ -99,6 +105,12 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
     end
     object DeleteItem1: TMenuItem
       Action = DeleteAction
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object Reset1: TMenuItem
+      Action = ResetAction
     end
   end
 end
