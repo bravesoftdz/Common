@@ -81,7 +81,7 @@ type
     FTripleClickRowSelect: Boolean;
     FUndoAfterSave: Boolean;
   public
-    destructor Destroy; override;
+    //destructor Destroy; override;
     procedure AssignTo(Dest: TPersistent); override;
     procedure ReadIniFile; virtual;
     procedure WriteIniFile; virtual;
@@ -670,11 +670,11 @@ begin
     inherited;
 end;
 
-destructor TOptionsContainer.Destroy;
+{destructor TOptionsContainer.Destroy;
 begin
   FreeAndNil(FOptionsContainer);
   inherited;
-end;
+end;  }
 
 { TOraBoneOptionsContainer }
 
