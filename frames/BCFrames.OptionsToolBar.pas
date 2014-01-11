@@ -450,12 +450,12 @@ procedure TOptionsToolBarFrame.VirtualDrawTreeFreeNode(Sender: TBaseVirtualTree;
 var
   Data: PTreeData;
 begin
-  inherited;
   Data := VirtualDrawTree.GetNodeData(Node);
   if Assigned(Data) then
     if Data^.Action.Caption = '-' then
       Data^.Action.Free;
   //Finalize(Data^);
+  inherited;
 end;
 
 procedure TOptionsToolBarFrame.VirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;

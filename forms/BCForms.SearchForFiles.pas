@@ -246,9 +246,9 @@ procedure TSearchForFilesForm.SearchVirtualDrawTreeFreeNode(Sender: TBaseVirtual
 var
   Data: PSearchRec;
 begin
-  inherited;
   Data := Sender.GetNodeData(Node);
   Finalize(Data^);
+  inherited;
 end;
 
 procedure TSearchForFilesForm.SearchVirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;

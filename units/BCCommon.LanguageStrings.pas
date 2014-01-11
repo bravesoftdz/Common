@@ -17,6 +17,9 @@ type
     SQLFormatterMultiStringHolder: TBCMultiStringHolder;
   private
     { Private declarations }
+    FHookedConstantsList: TList;
+  protected
+    procedure FreeHookedConstraintsList;
   public
     { Public declarations }
     function GetConstant(Name: string): string;
@@ -213,14 +216,26 @@ begin
   Constant := GetConstant(Name);
   GetMem(Result, SizeOf(WideChar) * Succ(Length(Constant)));
   StringToWideChar(Constant, Result, Length(Constant) + 1);
+  FHookedConstantsList.Add(Result);
+end;
+
+procedure TLanguageDataModule.FreeHookedConstraintsList;
+var
+  i: Integer;
+begin
+  for i := 0 to FHookedConstantsList.Count - 1 do
+    Dispose(FHookedConstantsList.Items[i]);
+  FHookedConstantsList.Free;
 end;
 
 initialization
 
   LanguageDataModule := TLanguageDataModule.Create(nil);
+  LanguageDataModule.FHookedConstantsList := TList.Create;
 
 finalization
 
+  LanguageDataModule.FreeHookedConstraintsList;
   LanguageDataModule.Free;
 
 end.

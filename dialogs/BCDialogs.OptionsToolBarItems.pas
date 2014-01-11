@@ -138,10 +138,10 @@ procedure TOptionsToolBarItemsDialog.AddItemsVirtualDrawTreeFreeNode(Sender: TBa
 var
   Data: PTreeData;
 begin
-  inherited;
   Data := Sender.GetNodeData(Node);
   Data^.Action := nil;
   //Finalize(Data^);
+  inherited;
 end;
 
 procedure TOptionsToolBarItemsDialog.AddItemsVirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
