@@ -182,8 +182,6 @@ begin
   else
     SynEditPrintPreview.ScalePercent := (Sender as TMenuItem).Tag;
   end;
-  SynEditPrintPreview.Align := alNone;
-  SynEditPrintPreview.Align := alClient;
 end;
 
 procedure TPrintPreviewDialog.ApplicationEventsHint(Sender: TObject);
@@ -217,6 +215,7 @@ begin
       FScale := 25;
     SynEditPrintPreview.ScalePercent := FScale;
   end;
+  self.RecreateWnd;
 end;
 
 procedure TPrintPreviewDialog.SynEditPrintPreviewPreviewPage(
