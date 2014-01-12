@@ -67,7 +67,7 @@ procedure TOptionsEditorCompletionProposalFrame.GetData;
 begin
   EnabledCheckBox.Checked := OptionsContainer.CompletionProposalEnabled;
   CaseSensitiveCheckBox.Checked := OptionsContainer.CompletionProposalCaseSensitive;
-  ShortcutComboBox.Text := OptionsContainer.CompletionProposalShortcut;
+  ShortcutComboBox.ItemIndex := ShortcutComboBox.Items.IndexOf(OptionsContainer.CompletionProposalShortcut);
 end;
 
 end.

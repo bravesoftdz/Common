@@ -22,7 +22,7 @@ const
   TSynEditCaretTypeStr: array[0..3] of String =
     ('Vertical Line', 'Horizontal Line', 'Half Block', 'Block');
 
-  ShortCuts: array[0..108] of TShortCut = (
+  ShortCuts: array[0..110] of TShortCut = (
     scNone,
     Byte('A') or scCtrl,
     Byte('B') or scCtrl,
@@ -124,6 +124,8 @@ const
     VK_F10 or scShift or scCtrl,
     VK_F11 or scShift or scCtrl,
     VK_F12 or scShift or scCtrl,
+    scCtrl or VK_RETURN,
+    scCtrl or VK_SPACE,
     VK_INSERT,
     VK_INSERT or scShift,
     VK_INSERT or scCtrl,
