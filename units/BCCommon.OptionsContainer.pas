@@ -381,6 +381,7 @@ type
     function GetFilterCount: Cardinal;
     function GetFilters: string;
   public
+    destructor Destroy; override;
     function FileType(FileType: TFileType): string;
     function GetFilterExt(FilterIndex: Cardinal): string;
     function GetFilterIndex(FileExt: string): Cardinal;
@@ -695,6 +696,13 @@ end;
 
 { TEditBoneOptionsContainer }
 {$ifdef EDITBONE}
+destructor TEditBoneOptionsContainer.Destroy;
+begin
+  if Assigned(FileTypes) then
+    FileTypes.Free;
+  inherited;
+end;
+
 procedure TEditBoneOptionsContainer.ReadIniFile;
 var
   i, j: Integer;
