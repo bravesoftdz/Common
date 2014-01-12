@@ -38,6 +38,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
       Header.Font.Style = []
       Header.Height = 20
       Header.Options = [hoAutoResize, hoShowSortGlyphs, hoVisible, hoAutoSpring]
+      Images = ImagesDataModule.ImageList
       Indent = 0
       ParentCtl3D = False
       PopupMenu = PopupMenu
@@ -58,12 +59,13 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         item
           Options = [coEnabled, coParentBidiMode, coParentColor, coVisible, coAutoSpring]
           Position = 0
-          Width = 447
+          Width = 443
           WideText = 'Menu Item'
         end>
     end
   end
   object MenuActionList: TActionList
+    Images = ImagesDataModule.ImageList
     Left = 245
     Top = 173
     object AddItemAction: TAction
@@ -92,6 +94,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
     end
   end
   object PopupMenu: TPopupMenu
+    Images = ImagesDataModule.ImageList
     Left = 280
     Top = 86
     object Additem1: TMenuItem

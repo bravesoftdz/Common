@@ -66,6 +66,7 @@ type
     procedure SynEditPrintPreviewPreviewPage(Sender: TObject; PageNumber: Integer);
     procedure WordWrapActionExecute(Sender: TObject);
     procedure ZoomActionExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     FLeft: Integer;
@@ -98,6 +99,17 @@ procedure TPrintPreviewDialog.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   Action := caFree;
+end;
+
+procedure TPrintPreviewDialog.FormCreate(Sender: TObject);
+begin
+  { IDE can lose there properties }
+  ActionList.Images := ImagesDataModule.ImageList;
+  PopupMenu.Images := ImagesDataModule.ImageList;
+  ToolBar.Images := ImagesDataModule.ImageList;
+  ZoomToolBar.Images := ImagesDataModule.ImageList;
+  ModeToolBar.Images := ImagesDataModule.ImageList;
+  PrintToolBar.Images := ImagesDataModule.ImageList;
 end;
 
 procedure TPrintPreviewDialog.FormDestroy(Sender: TObject);

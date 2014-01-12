@@ -80,6 +80,7 @@ object OptionsToolBarItemsDialog: TOptionsToolBarItemsDialog
     Header.Font.Style = []
     Header.Height = 20
     Header.Options = [hoAutoResize, hoShowImages, hoShowSortGlyphs, hoVisible, hoAutoSpring]
+    Images = ImagesDataModule.ImageList
     Indent = 0
     ParentCtl3D = False
     SelectionBlendFactor = 255
@@ -97,7 +98,7 @@ object OptionsToolBarItemsDialog: TOptionsToolBarItemsDialog
       item
         Options = [coEnabled, coParentBidiMode, coParentColor, coVisible, coAutoSpring]
         Position = 0
-        Width = 302
+        Width = 298
         WideText = 'Menu Item'
       end>
   end

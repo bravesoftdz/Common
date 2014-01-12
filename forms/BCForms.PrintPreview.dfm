@@ -45,6 +45,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
   Position = poMainFormCenter
   WindowState = wsMaximized
   OnClose = FormClose
+  OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
   PixelsPerInch = 96
