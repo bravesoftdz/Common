@@ -1,6 +1,7 @@
 library SQLFormatter;
 
 uses
+  Winapi.Windows,
   GSQLParser,
   LZBaseType,
   System.SysUtils,
@@ -8,6 +9,18 @@ uses
   BCSQL.Consts in '..\BCSQL.Consts.pas';
 
 {$R *.res}
+
+function GetDLLPath: string;
+var
+  DLLFileName: PChar;
+begin
+  GetMem(DLLFileName, MAX_PATH + 1);
+  if Assigned(DLLFileName) then
+    GetModuleFileName(hInstance, DLLFileName, MAX_PATH);
+  {$WARNINGS OFF} { IncludeTrailingBackslash is specific to a platform }
+  Result := IncludeTrailingBackslash(ExtractFileDir(DLLFileName));
+  {$WARNINGS ON}
+end;
 
 { Vendor:
   0 = MSSql; 1 = Oracle; 2 = MySQL; 3 = Access; 4 = Generic; 5 = DB2; 6 = Sybase; 7 = Informix; 8 = PostgreSQL;
@@ -19,14 +32,15 @@ var
   ValidCall: Boolean;
   DBVendor: TDBVendor;
   GSQLParser: TGSQLParser;
-  s, IniFileName: string;
+  s, FileDir, IniFileName: string;
 begin
   ValidCall := True;
-  if FileExists('EditBone.exe') then
-    IniFileName := 'EditBone.ini'
+  FileDir := GetDLLPath;
+  if FileExists(FileDir + 'EditBone.exe') then
+    IniFileName := FileDir + 'EditBone.ini'
   else
-  if FileExists('OraBone.exe') then
-    IniFileName := 'OraBone.ini'
+  if FileExists(FileDir + 'OraBone.exe') then
+    IniFileName := FileDir + 'OraBone.ini'
   else
   begin
     s := '-- SQLFormatter.dll works only with EditBone.exe and OraBone.exe' + #10#13 + SQL;
