@@ -347,6 +347,7 @@ begin
   if Assigned(Node) then
     VirtualDrawTree.Selected[Node] := True;
   VirtualDrawTree.EndUpdate;
+  FIsChanged := True;
 end;
 
 procedure TOptionsToolBarFrame.VirtualDrawTreeDragAllowed(Sender: TBaseVirtualTree; Node: PVirtualNode;
