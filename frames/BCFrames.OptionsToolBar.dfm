@@ -1,17 +1,18 @@
 inherited OptionsToolBarFrame: TOptionsToolBarFrame
   Width = 451
-  Height = 305
+  Height = 302
   Align = alClient
   ExplicitWidth = 451
-  ExplicitHeight = 305
+  ExplicitHeight = 302
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 451
-    Height = 305
+    Height = 302
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitHeight = 305
     object VirtualDrawTree: TVirtualDrawTree
       AlignWithMargins = True
       Left = 4
@@ -59,7 +60,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         item
           Options = [coEnabled, coParentBidiMode, coParentColor, coVisible, coAutoSpring]
           Position = 0
-          Width = 443
+          Width = 447
           WideText = 'Menu Item'
         end>
     end

@@ -343,6 +343,52 @@ begin
   AddNode('ToolsWordCountAction');
   AddNode('ViewInBrowserAction');
   {$endif}
+  {$ifdef ORABONE}
+  AddNode('ExecuteStatementAction');
+  AddNode('ExecuteCurrentStatementAction');
+  AddNode('ExecuteScriptAction');
+  AddNode('-');
+  AddNode('DatabaseCommitAction');
+  AddNode('DatabaseRollbackAction');
+  AddNode('-');
+  AddNode('DBMSOutputAction');
+  AddNode('-');
+  AddNode('ExplainPlanAction');
+  AddNode('-');
+  AddNode('FileNewAction');
+  AddNode('FileOpenAction');
+  AddNode('-');
+  AddNode('FileSaveAction');
+  AddNode('FileSaveAsAction');
+  AddNode('FileSaveAllAction');
+  AddNode('FileCloseAction');
+  AddNode('FileCloseAllAction');
+  AddNode('-');
+  AddNode('FilePrintAction');
+  AddNode('FilePrintPreviewAction');
+  AddNode('-');
+  AddNode('EditIncreaseIndentAction');
+  AddNode('EditDecreaseIndentAction');
+  AddNode('-');
+  AddNode('EditSortAscAction');
+  AddNode('EditSortDescAction');
+  AddNode('-');
+  AddNode('EditToggleCaseAction');
+  AddNode('-');
+  AddNode('EditUndoAction');
+  AddNode('EditRedoAction');
+  AddNode('-');
+  AddNode('SearchAction');
+  AddNode('SearchReplaceAction');
+  AddNode('SearchFindInFilesAction');
+  AddNode('-');
+  AddNode('ViewWordWrapAction');
+  AddNode('ViewLineNumbersAction');
+  AddNode('ViewSpecialCharsAction');
+  AddNode('ViewSelectionModeAction');
+  AddNode('-');
+  AddNode('ToolsCompareFilesAction');
+  {$endif}
   Node := VirtualDrawTree.GetFirst;
   if Assigned(Node) then
     VirtualDrawTree.Selected[Node] := True;
