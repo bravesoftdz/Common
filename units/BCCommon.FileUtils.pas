@@ -43,6 +43,7 @@ const
   function GetIconOverlayIndex(Filename: string): Integer;
   function GetIniFilename: string;
   function GetOutFilename: string;
+  function GetSQLFormatterDLLFilename: string;
   function FileIconInit(FullInit: BOOL): BOOL; stdcall;
   function IsExtInFileType(Ext: string; FileType: string): Boolean;
   function CheckAccessToFile(DesiredAccess: DWORD; const FileName: WideString): Boolean;
@@ -245,6 +246,13 @@ end;
 function GetOutFilename: string;
 begin
   Result := ChangeFileExt(Application.EXEName, '.out');
+end;
+
+function GetSQLFormatterDLLFilename: string;
+begin
+  {$WARNINGS OFF} { IncludeTrailingPathDelimiter is specific to a platform }
+  Result := IncludeTrailingPathDelimiter(ExtractFilePath(Application.EXEName)) + 'SQLFormatter.dll';
+  {$WARNINGS ON}
 end;
 
 function IsExtInFileType(Ext: string; FileType: string): Boolean;

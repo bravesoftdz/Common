@@ -132,15 +132,18 @@ type
     property KeywordAlignmentLeftJustify: Boolean read FKeywordAlignmentLeftJustify write FKeywordAlignmentLeftJustify;
   end;
 
-function FormatSQL(SQL: PWideChar; Vendor: Integer): PWideChar; stdcall; external 'SQLFormatter.dll';
-procedure FreeAString(AStr: PWideChar); stdcall; external 'SQLFormatter.dll';
+  TSQLVendor = (svMSSql, svOracle, svMySQL, svAccess, svGeneric, svDB2, svSybase, svInformix, svPostgreSQL, svFirebird, svMdx);
 
+  TFormatSQL = function(SQL: PWideChar; Vendor: Integer): PWideChar; stdcall;
+  TFreeAString = procedure(AStr: PWideChar); stdcall;
+
+function FormatSQL(SQL: string; Vendor: TSQLVendor): string;
 function SQLFormatterOptions: TSQLFormatterOptions;
 
 implementation
 
 uses
-  BCCommon.Messages, BCCommon.FileUtils, System.SysUtils;
+  Winapi.Windows, BCCommon.Messages, BCCommon.FileUtils, System.SysUtils;
 
 var
   FSQLFormatterOptions: TSQLFormatterOptions;
@@ -168,6 +171,31 @@ end;
 procedure TSQLFormatterOptions.WriteIniFile;
 begin
   TIniPersist.Save(GetIniFilename, Self);
+end;
+
+function FormatSQL(SQL: string; Vendor: TSQLVendor): string;
+var
+  DLLHandle: THandle;
+  s: PWideChar;
+  FormatSQLFunction: TFormatSQL;
+  FreeAStringProcedure: TFreeAString;
+begin
+  s := nil;
+  FreeAStringProcedure := nil;
+  DLLHandle := LoadLibrary(PWideChar(GetSQLFormatterDLLFilename));
+  try
+    if DLLHandle = 0 then
+      ShowErrorMessage('DLL load failure');
+    @FormatSQLFunction := GetProcAddress(DLLHandle, 'FormatSQL');
+    @FreeAStringProcedure := GetProcAddress(DLLHandle, 'FreeAString');
+    if Assigned(FormatSQLFunction) then
+      s := FormatSQLFunction(PWideChar(SQL), 1);
+    Result := s;
+  finally
+    if Assigned(FreeAStringProcedure) then
+      FreeAStringProcedure(s);
+    FreeLibrary(DLLHandle);
+  end;
 end;
 
 end.
