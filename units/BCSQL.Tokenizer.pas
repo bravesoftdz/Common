@@ -32,19 +32,19 @@ type
 
   TSQLTokenList = class(TList<TSQLToken>)
   private
-    FHasErrors: Boolean;
+    //FHasErrors: Boolean;
     FHasUnfinishedToken: Boolean;
   public
-    function GetRange(Index: Integer; Count: Integer): TSQLTokenList;
-    function GetRangeByIndex(FromIndex: Integer; ToIndex: Integer): TSQLTokenList;
-    property HasErrors: Boolean read FHasErrors write FHasErrors;
+    //function GetRange(Index: Integer; Count: Integer): TSQLTokenList;
+    //function GetRangeByIndex(FromIndex: Integer; ToIndex: Integer): TSQLTokenList;
+    //property HasErrors: Boolean read FHasErrors write FHasErrors;
     property HasUnfinishedToken: Boolean read FHasUnfinishedToken write FHasUnfinishedToken;
   end;
 
-  TSQLTokenPositionsList = class(TList<System.Integer>)
+  {TSQLTokenPositionsList = class(TList<System.Integer>)
   public
-    function GetRange(Index: Integer; Count: Integer): TSQLTokenPositionsList;
-  end;
+    //function GetRange(Index: Integer; Count: Integer): TSQLTokenPositionsList;
+  end; }
 
   TSQLTokenizer = class
   private
@@ -93,7 +93,7 @@ end;
 
 { TSQLTokenList }
 
-function TSQLTokenList.GetRange(Index: Integer; Count: Integer): TSQLTokenList;
+{function TSQLTokenList.GetRange(Index: Integer; Count: Integer): TSQLTokenList;
 var
   i: Integer;
 begin
@@ -105,18 +105,18 @@ end;
 function TSQLTokenList.GetRangeByIndex(FromIndex: Integer; ToIndex: Integer): TSQLTokenList;
 begin
   Result := GetRange(FromIndex, ToIndex - FromIndex + 1);
-end;
+end; }
 
 { TSQLTokenPositionsList }
 
-function TSQLTokenPositionsList.GetRange(Index: Integer; Count: Integer): TSQLTokenPositionsList;
+{function TSQLTokenPositionsList.GetRange(Index: Integer; Count: Integer): TSQLTokenPositionsList;
 var
   i: Integer;
 begin
   Result := TSQLTokenPositionsList.Create;
   for i := Index to Index + Count - 1 do
     Result.Add(Self.Items[i]);
-end;
+end; }
 
 { TSQLTokenizer }
 
@@ -193,416 +193,420 @@ var
 begin
   Result := TSQLTokenList.Create;
   InputReader := TStringReader.Create(SQL);
-  CurrentTokenValue := TStringBuilder.Create;
+  try
+    CurrentTokenValue := TStringBuilder.Create;
 
-  CurrentTokenizationType := tNull;
-  CurrentTokenValue.Length := 0;
-  CommentNesting := 0;
+    CurrentTokenizationType := tNull;
+    CurrentTokenValue.Length := 0;
+    CommentNesting := 0;
 
-  CurrentCharInt := InputReader.Read;
-  while CurrentCharInt >= 0 do
-  begin
-    CurrentCharacter := Char(CurrentCharInt);
-    if CurrentTokenizationType = tNull then
-      ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result)
-    else
-    case CurrentTokenizationType of
-      tWhiteSpace:
-      begin
-        if IsWhitespace(CurrentCharacter) then
-          CurrentTokenValue.Append(CurrentCharacter)
-        else
+    CurrentCharInt := InputReader.Read;
+    while CurrentCharInt >= 0 do
+    begin
+      CurrentCharacter := Char(CurrentCharInt);
+      if CurrentTokenizationType = tNull then
+        ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result)
+      else
+      case CurrentTokenizationType of
+        tWhiteSpace:
         begin
-          CompleteToken(CurrentTokenizationType, Result, currentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, currentTokenValue, currentCharacter, Result);
-        end;
-      end;
-      tSinglePeriod:
-      begin
-        if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
-        begin
-          currentTokenizationType := tDecimalValue;
-          currentTokenValue.Append('.');
-          currentTokenValue.Append(CurrentCharacter);
-        end
-        else
-        begin
-          currentTokenValue.Append('.');
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end;
-      end;
-
-      tSingleZero:
-      begin
-        if (CurrentCharacter = 'x') or (CurrentCharacter = 'X') then
-        begin
-          currentTokenizationType := tBinaryValue;
-          currentTokenValue.Append('0');
-          currentTokenValue.Append(CurrentCharacter);
-        end
-        else
-        if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
-        begin
-          currentTokenizationType := tNumber;
-          currentTokenValue.Append('0');
-          currentTokenValue.Append(CurrentCharacter);
-        end
-        else
-        if CurrentCharacter = '.' then
-        begin
-          currentTokenizationType := tDecimalValue;
-          currentTokenValue.Append('0');
-          currentTokenValue.Append(CurrentCharacter);
-        end
-        else
-        begin
-          currentTokenValue.Append('0');
-          CompleteToken(CurrentTokenizationType, Result, currentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, currentTokenValue, CurrentCharacter, Result);
-        end;
-      end;
-
-     tNumber:
-     begin
-        if (CurrentCharacter = 'e') or (CurrentCharacter = 'E') then
-        begin
-          CurrentTokenizationType := tFloatValue;
-          CurrentTokenValue.Append(CurrentCharacter);
-        end
-        else
-        if CurrentCharacter = '.' then
-        begin
-          CurrentTokenizationType := tDecimalValue;
-          CurrentTokenValue.Append(CurrentCharacter);
-        end
-        else
-        if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
-          CurrentTokenValue.Append(CurrentCharacter)
-        else
-        begin
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end;
-      end;
-
-      tDecimalValue:
-      begin
-        if (CurrentCharacter = 'e') or (CurrentCharacter = 'E') then
-        begin
-          CurrentTokenizationType := tFloatValue;
-          CurrentTokenValue.Append(CurrentCharacter);
-        end
-        else
-        if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
-          CurrentTokenValue.Append(CurrentCharacter)
-        else
-        begin
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end;
-       end;
-
-      tFloatValue:
-      begin
-        if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
-          CurrentTokenValue.Append(CurrentCharacter)
-        else
-        if (CurrentCharacter = '-') and EndsText('e', CurrentTokenValue.ToString) then
-          CurrentTokenValue.Append(CurrentCharacter)
-        else
-        begin
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end;
-      end;
-
-      tBinaryValue:
-      begin
-        if ( (CurrentCharacter >= '0') and (CurrentCharacter <= '9') ) or
-           ( (CurrentCharacter >= 'A') and (CurrentCharacter <= 'F') ) or
-           ( (CurrentCharacter >= 'a') and (CurrentCharacter <= 'f') ) then
-          CurrentTokenValue.Append(CurrentCharacter)
-        else
-        begin
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end;
-      end;
-
-      tSingleDollar:
-      begin
-        CurrentTokenValue.Append('$');
-        CurrentTokenValue.Append(CurrentCharacter);
-
-        if ( (CurrentCharacter >= 'A') and (CurrentCharacter <= 'Z') ) or
-           ( (CurrentCharacter >= 'a') and (CurrentCharacter <= 'z') ) then
-          CurrentTokenizationType := tPseudoName
-        else
-          CurrentTokenizationType := tMonetaryValue;
-      end;
-
-      tMonetaryValue:
-      begin
-        if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
-          CurrentTokenValue.Append(CurrentCharacter)
-        else
-        if (CurrentCharacter = '-') and (CurrentTokenValue.Length = 1) then
-          CurrentTokenValue.Append(CurrentCharacter)
-        else
-        if (CurrentCharacter = '.') and (Pos('.', CurrentTokenValue.ToString) = 0) then
-          CurrentTokenValue.Append(CurrentCharacter)
-        else
-        begin
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end;
-      end;
-
-      tSingleHyphen:
-      begin
-        if CurrentCharacter = '-' then
-          CurrentTokenizationType := tSingleLineComment
-        else
-        if CurrentCharacter = '=' then
-        begin
-          CurrentTokenizationType := tOtherOperator;
-          CurrentTokenValue.Append('-');
-          CurrentTokenValue.Append(CurrentCharacter);
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-        end
-        else
-        begin
-          CurrentTokenizationType := tOtherOperator;
-          CurrentTokenValue.Append('-');
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end;
-      end;
-
-      tSingleSlash:
-      begin
-        if CurrentCharacter = '*' then
-        begin
-          CurrentTokenizationType := tBlockComment;
-          Inc(CommentNesting);
-        end
-        else
-        if CurrentCharacter = '=' then
-        begin
-          CurrentTokenizationType := tOtherOperator;
-          CurrentTokenValue.Append('/');
-          CurrentTokenValue.Append(CurrentCharacter);
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-        end
-        else
-        begin
-          CurrentTokenizationType := tOtherOperator;
-          CurrentTokenValue.Append('/');
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end;
-      end;
-
-      tSingleLineComment:
-      begin
-        if (CurrentCharacter = Chr(13)) or (CurrentCharacter = Chr(10)) then
-        begin
-          CurrentTokenValue.Append(CurrentCharacter);
-
-          NextCharInt := InputReader.Peek();
-          if (CurrentCharacter = Chr(13)) and (NextCharInt = 10) then
-            CurrentTokenValue.Append(Char(InputReader.Read));
-
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-        end
-        else
-          CurrentTokenValue.Append(CurrentCharacter);
-      end;
-
-      tBlockComment:
-      begin
-        if CurrentCharacter = '*' then
-        begin
-          if InputReader.Peek = Integer('/') then
+          if IsWhitespace(CurrentCharacter) then
+            CurrentTokenValue.Append(CurrentCharacter)
+          else
           begin
-              Dec(CommentNesting);
-              NextCharacter := Char(inputReader.Read);
-              if CommentNesting > 0 then
-              begin
-                CurrentTokenValue.Append(CurrentCharacter);
-                CurrentTokenValue.Append(nextCharacter);
-              end
-              else
+            CompleteToken(CurrentTokenizationType, Result, currentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, currentTokenValue, currentCharacter, Result);
+          end;
+        end;
+        tSinglePeriod:
+        begin
+          if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
+          begin
+            currentTokenizationType := tDecimalValue;
+            currentTokenValue.Append('.');
+            currentTokenValue.Append(CurrentCharacter);
+          end
+          else
+          begin
+            currentTokenValue.Append('.');
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end;
+        end;
+
+        tSingleZero:
+        begin
+          if (CurrentCharacter = 'x') or (CurrentCharacter = 'X') then
+          begin
+            currentTokenizationType := tBinaryValue;
+            currentTokenValue.Append('0');
+            currentTokenValue.Append(CurrentCharacter);
+          end
+          else
+          if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
+          begin
+            currentTokenizationType := tNumber;
+            currentTokenValue.Append('0');
+            currentTokenValue.Append(CurrentCharacter);
+          end
+          else
+          if CurrentCharacter = '.' then
+          begin
+            currentTokenizationType := tDecimalValue;
+            currentTokenValue.Append('0');
+            currentTokenValue.Append(CurrentCharacter);
+          end
+          else
+          begin
+            currentTokenValue.Append('0');
+            CompleteToken(CurrentTokenizationType, Result, currentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, currentTokenValue, CurrentCharacter, Result);
+          end;
+        end;
+
+       tNumber:
+       begin
+          if (CurrentCharacter = 'e') or (CurrentCharacter = 'E') then
+          begin
+            CurrentTokenizationType := tFloatValue;
+            CurrentTokenValue.Append(CurrentCharacter);
+          end
+          else
+          if CurrentCharacter = '.' then
+          begin
+            CurrentTokenizationType := tDecimalValue;
+            CurrentTokenValue.Append(CurrentCharacter);
+          end
+          else
+          if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
+            CurrentTokenValue.Append(CurrentCharacter)
+          else
+          begin
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end;
+        end;
+
+        tDecimalValue:
+        begin
+          if (CurrentCharacter = 'e') or (CurrentCharacter = 'E') then
+          begin
+            CurrentTokenizationType := tFloatValue;
+            CurrentTokenValue.Append(CurrentCharacter);
+          end
+          else
+          if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
+            CurrentTokenValue.Append(CurrentCharacter)
+          else
+          begin
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end;
+         end;
+
+        tFloatValue:
+        begin
+          if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
+            CurrentTokenValue.Append(CurrentCharacter)
+          else
+          if (CurrentCharacter = '-') and EndsText('e', CurrentTokenValue.ToString) then
+            CurrentTokenValue.Append(CurrentCharacter)
+          else
+          begin
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end;
+        end;
+
+        tBinaryValue:
+        begin
+          if ( (CurrentCharacter >= '0') and (CurrentCharacter <= '9') ) or
+             ( (CurrentCharacter >= 'A') and (CurrentCharacter <= 'F') ) or
+             ( (CurrentCharacter >= 'a') and (CurrentCharacter <= 'f') ) then
+            CurrentTokenValue.Append(CurrentCharacter)
+          else
+          begin
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end;
+        end;
+
+        tSingleDollar:
+        begin
+          CurrentTokenValue.Append('$');
+          CurrentTokenValue.Append(CurrentCharacter);
+
+          if ( (CurrentCharacter >= 'A') and (CurrentCharacter <= 'Z') ) or
+             ( (CurrentCharacter >= 'a') and (CurrentCharacter <= 'z') ) then
+            CurrentTokenizationType := tPseudoName
+          else
+            CurrentTokenizationType := tMonetaryValue;
+        end;
+
+        tMonetaryValue:
+        begin
+          if (CurrentCharacter >= '0') and (CurrentCharacter <= '9') then
+            CurrentTokenValue.Append(CurrentCharacter)
+          else
+          if (CurrentCharacter = '-') and (CurrentTokenValue.Length = 1) then
+            CurrentTokenValue.Append(CurrentCharacter)
+          else
+          if (CurrentCharacter = '.') and (Pos('.', CurrentTokenValue.ToString) = 0) then
+            CurrentTokenValue.Append(CurrentCharacter)
+          else
+          begin
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end;
+        end;
+
+        tSingleHyphen:
+        begin
+          if CurrentCharacter = '-' then
+            CurrentTokenizationType := tSingleLineComment
+          else
+          if CurrentCharacter = '=' then
+          begin
+            CurrentTokenizationType := tOtherOperator;
+            CurrentTokenValue.Append('-');
+            CurrentTokenValue.Append(CurrentCharacter);
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+          end
+          else
+          begin
+            CurrentTokenizationType := tOtherOperator;
+            CurrentTokenValue.Append('-');
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end;
+        end;
+
+        tSingleSlash:
+        begin
+          if CurrentCharacter = '*' then
+          begin
+            CurrentTokenizationType := tBlockComment;
+            Inc(CommentNesting);
+          end
+          else
+          if CurrentCharacter = '=' then
+          begin
+            CurrentTokenizationType := tOtherOperator;
+            CurrentTokenValue.Append('/');
+            CurrentTokenValue.Append(CurrentCharacter);
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+          end
+          else
+          begin
+            CurrentTokenizationType := tOtherOperator;
+            CurrentTokenValue.Append('/');
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end;
+        end;
+
+        tSingleLineComment:
+        begin
+          if (CurrentCharacter = Chr(13)) or (CurrentCharacter = Chr(10)) then
+          begin
+            CurrentTokenValue.Append(CurrentCharacter);
+
+            NextCharInt := InputReader.Peek();
+            if (CurrentCharacter = Chr(13)) and (NextCharInt = 10) then
+              CurrentTokenValue.Append(Char(InputReader.Read));
+
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+          end
+          else
+            CurrentTokenValue.Append(CurrentCharacter);
+        end;
+
+        tBlockComment:
+        begin
+          if CurrentCharacter = '*' then
+          begin
+            if InputReader.Peek = Integer('/') then
+            begin
+                Dec(CommentNesting);
+                NextCharacter := Char(inputReader.Read);
+                if CommentNesting > 0 then
+                begin
+                  CurrentTokenValue.Append(CurrentCharacter);
+                  CurrentTokenValue.Append(nextCharacter);
+                end
+                else
+                  CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            end
+            else
+              CurrentTokenValue.Append(CurrentCharacter);
+          end
+          else
+          begin
+            CurrentTokenValue.Append(CurrentCharacter);
+
+            if (CurrentCharacter = '/') and (InputReader.Peek = Integer('*')) then
+            begin
+              CurrentTokenValue.Append(Char(inputReader.Read));
+              Inc(CommentNesting);
+            end;
+          end;
+        end;
+
+        tOtherNode,
+        tPseudoName:
+        begin
+          if IsNonWordCharacter(CurrentCharacter) then
+          begin
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end
+          else
+            CurrentTokenValue.Append(CurrentCharacter);
+        end;
+
+       { tSingleN:
+        begin
+          if CurrentCharacter = '''' then
+            CurrentTokenizationType := tNString
+          else
+          begin
+            CurrentTokenizationType := tOtherNode;
+            CurrentTokenValue.Append('N');
+            CurrentTokenValue.Append(CurrentCharacter);
+          end;
+        end; }
+
+        tNString,
+        tString:
+        begin
+          if CurrentCharacter = '''' then
+          begin
+            if InputReader.Peek = Integer('''') then
+            begin
+              InputReader.Read;
+              CurrentTokenValue.Append(CurrentCharacter);
+            end
+            else
+              CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+          end
+          else
+            CurrentTokenValue.Append(CurrentCharacter);
+        end;
+
+        tQuotedString:
+        begin
+          if CurrentCharacter = '"' then
+          begin
+            if InputReader.Peek = Integer('"') then
+            begin
+              InputReader.Read;
+              CurrentTokenValue.Append(CurrentCharacter);
+            end
+            else
                 CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
           end
           else
             CurrentTokenValue.Append(CurrentCharacter);
-        end
-        else
-        begin
-          CurrentTokenValue.Append(CurrentCharacter);
+        end;
 
-          if (CurrentCharacter = '/') and (InputReader.Peek = Integer('*')) then
+        tBracketQuotedName:
+        begin
+          if CurrentCharacter = ']' then
           begin
-            CurrentTokenValue.Append(Char(inputReader.Read));
-            Inc(CommentNesting);
+            if InputReader.Peek = Integer(']') then
+            begin
+              InputReader.Read;
+              CurrentTokenValue.Append(CurrentCharacter);
+            end
+            else
+              CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+          end
+          else
+            CurrentTokenValue.Append(CurrentCharacter);
+        end;
+
+        tSingleLT:
+        begin
+          CurrentTokenValue.Append('<');
+          CurrentTokenizationType := tOtherOperator;
+          if CharInSet(CurrentCharacter, ['=', '>']) then
+          begin
+            CurrentTokenValue.Append(CurrentCharacter);
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+          end
+          else
+          begin
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
           end;
         end;
-      end;
 
-      tOtherNode,
-      tPseudoName:
-      begin
-        if IsNonWordCharacter(CurrentCharacter) then
+        tSingleAsterisk:
         begin
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end
-        else
-          CurrentTokenValue.Append(CurrentCharacter);
-      end;
-
-     { tSingleN:
-      begin
-        if CurrentCharacter = '''' then
-          CurrentTokenizationType := tNString
-        else
-        begin
-          CurrentTokenizationType := tOtherNode;
-          CurrentTokenValue.Append('N');
-          CurrentTokenValue.Append(CurrentCharacter);
-        end;
-      end; }
-
-      tNString,
-      tString:
-      begin
-        if CurrentCharacter = '''' then
-        begin
-          if InputReader.Peek = Integer('''') then
+          CurrentTokenValue.Append('*');
+          if CurrentCharacter = '=' then
           begin
-            InputReader.Read;
             CurrentTokenValue.Append(CurrentCharacter);
-          end
-          else
+            CurrentTokenizationType := tOtherOperator;
             CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-        end
-        else
-          CurrentTokenValue.Append(CurrentCharacter);
-      end;
-
-      tQuotedString:
-      begin
-        if CurrentCharacter = '"' then
-        begin
-          if InputReader.Peek = Integer('"') then
-          begin
-            InputReader.Read;
-            CurrentTokenValue.Append(CurrentCharacter);
           end
           else
-              CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-        end
-        else
-          CurrentTokenValue.Append(CurrentCharacter);
-      end;
-
-      tBracketQuotedName:
-      begin
-        if CurrentCharacter = ']' then
-        begin
-          if InputReader.Peek = Integer(']') then
           begin
-            InputReader.Read;
-            CurrentTokenValue.Append(CurrentCharacter);
-          end
-          else
             CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-        end
-        else
-          CurrentTokenValue.Append(CurrentCharacter);
-      end;
-
-      tSingleLT:
-      begin
-        CurrentTokenValue.Append('<');
-        CurrentTokenizationType := tOtherOperator;
-        if CharInSet(CurrentCharacter, ['=', '>']) then
-        begin
-          CurrentTokenValue.Append(CurrentCharacter);
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-        end
-        else
-        begin
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end;
         end;
-      end;
 
-      tSingleAsterisk:
-      begin
-        CurrentTokenValue.Append('*');
-        if CurrentCharacter = '=' then
-        begin
-          CurrentTokenValue.Append(CurrentCharacter);
-          CurrentTokenizationType := tOtherOperator;
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-        end
-        else
-        begin
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end;
-      end;
-
-      tSingleOtherCompoundableOperator:
-      begin
-        CurrentTokenizationType := tOtherOperator;
-        if CurrentCharacter = '=' then
-        begin
-          CurrentTokenValue.Append(CurrentCharacter);
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-        end
-        else
-        begin
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end
-      end;
-
-      tSingleExclamation:
-      begin
-        CurrentTokenValue.Append('!');
-        if CharInSet(CurrentCharacter, ['=', '<', '>']) then
+        tSingleOtherCompoundableOperator:
         begin
           CurrentTokenizationType := tOtherOperator;
-          CurrentTokenValue.Append(CurrentCharacter);
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+          if CurrentCharacter = '=' then
+          begin
+            CurrentTokenValue.Append(CurrentCharacter);
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+          end
+          else
+          begin
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end
+        end;
+
+        tSingleExclamation:
+        begin
+          CurrentTokenValue.Append('!');
+          if CharInSet(CurrentCharacter, ['=', '<', '>']) then
+          begin
+            CurrentTokenizationType := tOtherOperator;
+            CurrentTokenValue.Append(CurrentCharacter);
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+          end
+          else
+          begin
+            CurrentTokenizationType := tOtherNode;
+            CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+            ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
+          end;
         end
         else
-        begin
-          CurrentTokenizationType := tOtherNode;
-          CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
-          ProcessOrOpenToken(CurrentTokenizationType, CurrentTokenValue, CurrentCharacter, Result);
-        end;
-      end
-      else
-        raise Exception.Create('In-progress node unrecognized!');
+          raise Exception.Create('In-progress node unrecognized!');
+      end;
+      CurrentCharInt := InputReader.Read;
     end;
-    CurrentCharInt := InputReader.Read;
-  end;
 
-  if CurrentTokenizationType <> tnull then
-  begin
-    if (CurrentTokenizationType = tBlockComment) or
-      (CurrentTokenizationType = tString) or
-      (CurrentTokenizationType = tNString) or
-      (CurrentTokenizationType = tQuotedString) or
-      (CurrentTokenizationType = tBracketQuotedName) then
-      Result.HasUnfinishedToken := True;
+    if CurrentTokenizationType <> tnull then
+    begin
+      if (CurrentTokenizationType = tBlockComment) or
+        (CurrentTokenizationType = tString) or
+        (CurrentTokenizationType = tNString) or
+        (CurrentTokenizationType = tQuotedString) or
+        (CurrentTokenizationType = tBracketQuotedName) then
+        Result.HasUnfinishedToken := True;
 
-    CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+      CompleteToken(CurrentTokenizationType, Result, CurrentTokenValue);
+    end;
+  finally
+    InputReader.Free;
   end;
 end;
 

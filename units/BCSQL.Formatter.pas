@@ -52,7 +52,6 @@ type
     FKeywordAlign: Integer;
     FKeywordAlignmentLeftJustify: Boolean;
   public
-    destructor Destroy; override;
     procedure ReadIniFile;
     procedure WriteIniFile;
     { Select Column List }
@@ -153,12 +152,6 @@ begin
   if not Assigned(FSQLFormatterOptions) then
     FSQLFormatterOptions := TSQLFormatterOptions.Create;
   Result := FSQLFormatterOptions;
-end;
-
-destructor TSQLFormatterOptions.Destroy;
-begin
-  FreeAndNil(FSQLFormatterOptions);
-  inherited;
 end;
 
 { TSQLFormatterOptions }
