@@ -203,7 +203,7 @@ type
     property CapitalizationAliasName: Integer read FCapitalizationAliasName write FCapitalizationAliasName;
     [IniValue(SQLFORMATTER, CAPITALIZATIONVARIABLENAME, '1')]
     property CapitalizationVariableName: Integer read FCapitalizationVariableName write FCapitalizationVariableName;
-    [IniValue(SQLFORMATTER, CAPITALIZATIONPREFIXIDENTITFER, '1')]
+    [IniValue(SQLFORMATTER, CAPITALIZATIONFUNCNAME, '1')]
     property CapitalizationFuncname: Integer read FCapitalizationFuncname write FCapitalizationFuncname;
     [IniValue(SQLFORMATTER, CAPITALIZATIONDATATYPE, '0')]
     property CapitalizationDatatype: Integer read FCapitalizationDatatype write FCapitalizationDatatype;

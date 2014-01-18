@@ -72,8 +72,6 @@ const
   CAPITALIZATIONCOLUMNNAME = 'CapitalizationColumnName';
   CAPITALIZATIONALIASNAME = 'CapitalizationAliasName';
   CAPITALIZATIONVARIABLENAME = 'CapitalizationVariableName';
-  CAPITALIZATIONPREFIXIDENTITFER = 'CapitalizationPrefixIdentitfer';
-  CAPITALIZATIONIDENTIFIERPREFIXLIST = 'CapitalizationIdentifierPrefixList';
   CAPITALIZATIONFUNCNAME = 'CapitalizationFuncname';
   CAPITALIZATIONDATATYPE = 'CapitalizationDatatype';
 
