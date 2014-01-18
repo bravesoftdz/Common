@@ -77,7 +77,7 @@ begin
     gFmtOpt.case_keywords := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONKEYWORDS, 0));
     gFmtOpt.case_identifier := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONIDENTIFIER, 1));
     gFmtOpt.case_quoted_Identifier := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONQUOTEDIDENTIFIER, 3));
-    gFmtOpt.case_table_name := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONTABLENAME, 2));
+    gFmtOpt.case_table_name := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONTABLENAME, 1));
     gFmtOpt.case_column_name := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONCOLUMNNAME, 1));
     gFmtOpt.case_alias_name := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONALIASNAME, 1));
     gFmtOpt.case_variable_name := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONVARIABLENAME, 1));
