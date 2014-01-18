@@ -55,7 +55,14 @@ begin
     gFmtOpt.Update_Columnlist_Style := TAlignStyle(ReadInteger(SQLFORMATTER, UPDATECOLUMNLISTSTYLE, 0));
     { Alignments }
     gFmtOpt.Select_keywords_alignOption := TAlignOption(ReadInteger(SQLFORMATTER, KEYWORDALIGN, 0));
-    gfmtopt.TrueLeft := ReadBool(SQLFORMATTER, KEYWORDALIGNMENTLEFTJUSTIFY, False);
+    gFmtOpt.TrueLeft := ReadBool(SQLFORMATTER, KEYWORDALIGNMENTLEFTJUSTIFY, False);
+    { Whitespace }
+    gFmtOpt.WSPadding_OperatorArithmetic := ReadBool(SQLFORMATTER, WHITESPACESPACEAROUNDOPERATOR, True);
+    gFmtOpt.WSPadding_ParenthesesInFunction := ReadBool(SQLFORMATTER, WHITESPACESPACEINSIDECREATE, False);
+    gFmtOpt.WSPadding_ParenthesesInExpression := ReadBool(SQLFORMATTER, WHITESPACESPACEINSIDEEXPRESSION, False);
+    gFmtOpt.WSPadding_ParenthesesOfSubQuery := ReadBool(SQLFORMATTER, WHITESPACESPACEINSIDESUBQUERY, False);
+    gFmtOpt.WSPadding_ParenthesesInFunctionCall := ReadBool(SQLFORMATTER, WHITESPACESPACEINSIDEFUNCTION, False);
+    gFmtOpt.WSPadding_ParenthesesOfTypename := ReadBool(SQLFORMATTER, WHITESPACESPACEINSIDETYPENAME, False);
   finally
     Free;
   end;

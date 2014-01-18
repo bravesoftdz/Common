@@ -47,6 +47,13 @@ const
   { Alignments }
   KEYWORDALIGN = 'KeywordAlign';
   KEYWORDALIGNMENTLEFTJUSTIFY = 'KeywordAlignmentLeftJustify';
+  { Whitespace }
+  WHITESPACESPACEAROUNDOPERATOR = 'WhitespaceSpaceAroundOperator';
+  WHITESPACESPACEINSIDECREATE = 'WhitespaceSpaceInsideCreate';
+  WHITESPACESPACEINSIDEEXPRESSION = 'WhitespaceSpaceInsideExpression';
+  WHITESPACESPACEINSIDESUBQUERY = 'WhitespaceSpaceInsideSubquery';
+  WHITESPACESPACEINSIDEFUNCTION = 'WhitespaceSpaceInsideFunction';
+  WHITESPACESPACEINSIDETYPENAME = 'WhitespaceSpaceInsideTypename';
 
 implementation
 

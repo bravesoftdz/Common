@@ -51,6 +51,13 @@ type
     { Alignments }
     FKeywordAlign: Integer;
     FKeywordAlignmentLeftJustify: Boolean;
+    { Whitespace }
+    FWhitespaceSpaceAroundOperator: Boolean;
+    FWhitespaceSpaceInsideCreate: Boolean;
+    FWhitespaceSpaceInsideExpression: Boolean;
+    FWhitespaceSpaceInsideSubquery: Boolean;
+    FWhitespaceSpaceInsideFunction: Boolean;
+    FWhitespaceSpaceInsideTypename: Boolean;
   public
     procedure ReadIniFile;
     procedure WriteIniFile;
@@ -129,6 +136,19 @@ type
     property KeywordAlign: Integer read FKeywordAlign write FKeywordAlign;
     [IniValue(SQLFORMATTER, KEYWORDALIGNMENTLEFTJUSTIFY, 'False')]
     property KeywordAlignmentLeftJustify: Boolean read FKeywordAlignmentLeftJustify write FKeywordAlignmentLeftJustify;
+    { Whitespace }
+    [IniValue(SQLFORMATTER, WHITESPACESPACEAROUNDOPERATOR, 'True')]
+    property WhitespaceSpaceAroundOperator: Boolean read FWhitespaceSpaceAroundOperator write FWhitespaceSpaceAroundOperator;
+    [IniValue(SQLFORMATTER, WHITESPACESPACEINSIDECREATE, 'False')]
+    property WhitespaceSpaceInsideCreate: Boolean read FWhitespaceSpaceInsideCreate write FWhitespaceSpaceInsideCreate;
+    [IniValue(SQLFORMATTER, WHITESPACESPACEINSIDEEXPRESSION, 'False')]
+    property WhitespaceSpaceInsideExpression: Boolean read FWhitespaceSpaceInsideExpression write FWhitespaceSpaceInsideExpression;
+    [IniValue(SQLFORMATTER, WHITESPACESPACEINSIDESUBQUERY, 'False')]
+    property WhitespaceSpaceInsideSubquery: Boolean read FWhitespaceSpaceInsideSubquery write FWhitespaceSpaceInsideSubquery;
+    [IniValue(SQLFORMATTER, WHITESPACESPACEINSIDEFUNCTION, 'False')]
+    property WhitespaceSpaceInsideFunction: Boolean read FWhitespaceSpaceInsideFunction write FWhitespaceSpaceInsideFunction;
+    [IniValue(SQLFORMATTER, WHITESPACESPACEINSIDETYPENAME, 'False')]
+    property WhitespaceSpaceInsideTypename: Boolean read FWhitespaceSpaceInsideTypename write FWhitespaceSpaceInsideTypename;
   end;
 
   TSQLVendor = (svMSSql, svOracle, svMySQL, svAccess, svGeneric, svDB2, svSybase, svInformix, svPostgreSQL, svFirebird, svMdx);
