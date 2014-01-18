@@ -21,21 +21,17 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = TabSheet1
+      ActivePage = TabSheet8
       Align = alClient
       MultiLine = True
       TabOrder = 0
-      ActivePageCaption = 'Column List'
+      ActivePageCaption = 'Order By Clause'
       TabDragDrop = False
       TabClosed = False
       HoldShiftToDragDrop = False
       ShowCloseButton = False
       object TabSheet1: TTabSheet
         Caption = 'Column List'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ColumnListStyleLabel: TLabel
           Left = 11
           Top = 7
@@ -52,14 +48,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         end
         object ColumnListStyleComboBox: TBCComboBox
           Left = 9
-          Top = 23
+          Top = 21
           Width = 133
-          Height = 21
+          Height = 22
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Style = csDropDownList
+          Style = csOwnerDrawFixed
           DropDownCount = 9
           TabOrder = 0
           DeniedKeyStrokes = True
@@ -70,12 +66,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Left = 9
           Top = 65
           Width = 133
-          Height = 21
+          Height = 22
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Style = csDropDownList
+          Style = csOwnerDrawFixed
           DropDownCount = 9
           TabOrder = 1
           DeniedKeyStrokes = True
@@ -131,10 +127,6 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet2: TTabSheet
         Caption = 'Subquery'
         ImageIndex = 1
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object NewLineAfterInCheckBox: TBCCheckBox
           Left = 9
           Top = 5
@@ -199,10 +191,6 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet3: TTabSheet
         Caption = 'Into Clause'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object IntoClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5
@@ -222,10 +210,6 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet4: TTabSheet
         Caption = 'From/Join Clause'
         ImageIndex = 3
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object FromClauseStyleLabel: TLabel
           Left = 11
           Top = 7
@@ -237,12 +221,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Left = 9
           Top = 23
           Width = 133
-          Height = 21
+          Height = 22
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Style = csDropDownList
+          Style = csOwnerDrawFixed
           DropDownCount = 9
           TabOrder = 0
           DeniedKeyStrokes = True
@@ -328,10 +312,6 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet5: TTabSheet
         Caption = 'And/Or Keyword'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object AndOrLineBreakLabel: TLabel
           Left = 11
           Top = 7
@@ -343,12 +323,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Left = 9
           Top = 23
           Width = 133
-          Height = 21
+          Height = 22
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Style = csDropDownList
+          Style = csOwnerDrawFixed
           DropDownCount = 9
           TabOrder = 0
           DeniedKeyStrokes = True
@@ -404,10 +384,6 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet6: TTabSheet
         Caption = 'Group By Clause'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupByClauseStyleLabel: TLabel
           Left = 11
           Top = 7
@@ -419,12 +395,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Left = 9
           Top = 23
           Width = 133
-          Height = 21
+          Height = 22
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Style = csDropDownList
+          Style = csOwnerDrawFixed
           DropDownCount = 9
           TabOrder = 0
           DeniedKeyStrokes = True
@@ -450,10 +426,6 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet7: TTabSheet
         Caption = 'Having Clause'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object HavingClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5
@@ -473,10 +445,6 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet8: TTabSheet
         Caption = 'Order By Clause'
         ImageIndex = 7
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object OrderByClauseStyleLabel: TLabel
           Left = 11
           Top = 7
@@ -488,12 +456,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Left = 9
           Top = 23
           Width = 133
-          Height = 21
+          Height = 22
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Style = csDropDownList
+          Style = csOwnerDrawFixed
           DropDownCount = 9
           TabOrder = 0
           DeniedKeyStrokes = True

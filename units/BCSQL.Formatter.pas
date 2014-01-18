@@ -58,6 +58,26 @@ type
     FWhitespaceSpaceInsideSubquery: Boolean;
     FWhitespaceSpaceInsideFunction: Boolean;
     FWhitespaceSpaceInsideTypename: Boolean;
+    { Indentation }
+    FIndentationIndentLength: Integer;
+    FIndentationUseTab: Boolean;
+    FIndentationTabSize: Integer;
+    FIndentationFunctionBodyIndent: Integer;
+    FIndentationBlockLeftOnNewline: Boolean;
+    FIndentationBlockLeftIndentSize: Integer;
+    FIndentationBlockRightIndentSize: Integer;
+    FIndentationBlockIndentSize: Integer;
+    FIndentationIfElseSingleStmtIndentSize: Integer;
+    { Capitalization }
+    FCapitalizationKeywords: Integer;
+    FCapitalizationIdentifier: Integer;
+    FCapitalizationQuotedIdentifier: Integer;
+    FCapitalizationTableName: Integer;
+    FCapitalizationColumnName: Integer;
+    FCapitalizationAliasName: Integer;
+    FCapitalizationVariableName: Integer;
+    FCapitalizationFuncname: Integer;
+    FCapitalizationDatatype: Integer;
   public
     procedure ReadIniFile;
     procedure WriteIniFile;
@@ -149,6 +169,44 @@ type
     property WhitespaceSpaceInsideFunction: Boolean read FWhitespaceSpaceInsideFunction write FWhitespaceSpaceInsideFunction;
     [IniValue(SQLFORMATTER, WHITESPACESPACEINSIDETYPENAME, 'False')]
     property WhitespaceSpaceInsideTypename: Boolean read FWhitespaceSpaceInsideTypename write FWhitespaceSpaceInsideTypename;
+    { Indentation }
+    [IniValue(SQLFORMATTER, INDENTATIONINDENTLENGTH, '2')]
+    property IndentationIndentLength: Integer read FIndentationIndentLength write FIndentationIndentLength;
+    [IniValue(SQLFORMATTER, INDENTATIONUSETAB, 'False')]
+    property IndentationUseTab: Boolean read FIndentationUseTab write FIndentationUseTab;
+    [IniValue(SQLFORMATTER, INDENTATIONTABSIZE, '2')]
+    property IndentationTabSize: Integer read FIndentationTabSize write FIndentationTabSize;
+    [IniValue(SQLFORMATTER, INDENTATIONFUNCTIONBODYINDENT, '2')]
+    property IndentationFunctionBodyIndent: Integer read FIndentationFunctionBodyIndent write FIndentationFunctionBodyIndent;
+    [IniValue(SQLFORMATTER, INDENTATIONBLOCKLEFTONNEWLINE, 'True')]
+    property IndentationBlockLeftOnNewline: Boolean read FIndentationBlockLeftOnNewline write FIndentationBlockLeftOnNewline;
+    [IniValue(SQLFORMATTER, INDENTATIONBLOCKLEFTINDENTSIZE, '2')]
+    property IndentationBlockLeftIndentSize: Integer read FIndentationBlockLeftIndentSize write FIndentationBlockLeftIndentSize;
+    [IniValue(SQLFORMATTER, INDENTATIONBLOCKRIGHTINDENTSIZE, '2')]
+    property IndentationBlockRightIndentSize: Integer read FIndentationBlockRightIndentSize write FIndentationBlockRightIndentSize;
+    [IniValue(SQLFORMATTER, INDENTATIONBLOCKINDENTSIZE, '2')]
+    property IndentationBlockIndentSize: Integer read FIndentationBlockIndentSize write FIndentationBlockIndentSize;
+    [IniValue(SQLFORMATTER, INDENTATIONIFELSESINGLESTMTINDENTSIZE, '2')]
+    property IndentationIfElseSingleStmtIndentSize: Integer read FIndentationIfElseSingleStmtIndentSize write FIndentationIfElseSingleStmtIndentSize;
+    { Capitalization }
+    [IniValue(SQLFORMATTER, CAPITALIZATIONKEYWORDS, '0')]
+    property CapitalizationKeywords: Integer read FCapitalizationKeywords write FCapitalizationKeywords;
+    [IniValue(SQLFORMATTER, CAPITALIZATIONIDENTIFIER, '1')]
+    property CapitalizationIdentifier: Integer read FCapitalizationIdentifier write FCapitalizationIdentifier;
+    [IniValue(SQLFORMATTER, CAPITALIZATIONQUOTEDIDENTIFIER, '3')]
+    property CapitalizationQuotedIdentifier: Integer read FCapitalizationQuotedIdentifier write FCapitalizationQuotedIdentifier;
+    [IniValue(SQLFORMATTER, CAPITALIZATIONTABLENAME, '1')]
+    property CapitalizationTableName: Integer read FCapitalizationTableName write FCapitalizationTableName;
+    [IniValue(SQLFORMATTER, CAPITALIZATIONCOLUMNNAME, '1')]
+    property CapitalizationColumnName: Integer read FCapitalizationColumnName write FCapitalizationColumnName;
+    [IniValue(SQLFORMATTER, CAPITALIZATIONALIASNAME, '1')]
+    property CapitalizationAliasName: Integer read FCapitalizationAliasName write FCapitalizationAliasName;
+    [IniValue(SQLFORMATTER, CAPITALIZATIONVARIABLENAME, '1')]
+    property CapitalizationVariableName: Integer read FCapitalizationVariableName write FCapitalizationVariableName;
+    [IniValue(SQLFORMATTER, CAPITALIZATIONPREFIXIDENTITFER, '1')]
+    property CapitalizationFuncname: Integer read FCapitalizationFuncname write FCapitalizationFuncname;
+    [IniValue(SQLFORMATTER, CAPITALIZATIONDATATYPE, '0')]
+    property CapitalizationDatatype: Integer read FCapitalizationDatatype write FCapitalizationDatatype;
   end;
 
   TSQLVendor = (svMSSql, svOracle, svMySQL, svAccess, svGeneric, svDB2, svSybase, svInformix, svPostgreSQL, svFirebird, svMdx);

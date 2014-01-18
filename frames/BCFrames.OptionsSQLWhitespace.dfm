@@ -1,4 +1,4 @@
-object OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
+inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
   Left = 0
   Top = 0
   Width = 320

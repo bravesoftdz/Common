@@ -63,6 +63,26 @@ begin
     gFmtOpt.WSPadding_ParenthesesOfSubQuery := ReadBool(SQLFORMATTER, WHITESPACESPACEINSIDESUBQUERY, False);
     gFmtOpt.WSPadding_ParenthesesInFunctionCall := ReadBool(SQLFORMATTER, WHITESPACESPACEINSIDEFUNCTION, False);
     gFmtOpt.WSPadding_ParenthesesOfTypename := ReadBool(SQLFORMATTER, WHITESPACESPACEINSIDETYPENAME, False);
+    { Indentation }
+    gFmtOpt.IndentLen := ReadInteger(SQLFORMATTER, INDENTATIONINDENTLENGTH, 2);
+    gFmtOpt.UseTab := ReadBool(SQLFORMATTER, INDENTATIONUSETAB, False);
+    gFmtOpt.TabSize	:= ReadInteger(SQLFORMATTER, INDENTATIONTABSIZE, 2);
+    gFmtOpt.BEStyle_Function_BodyIndent := ReadInteger(SQLFORMATTER, INDENTATIONFUNCTIONBODYINDENT, 2);
+    gFmtOpt.BEStyle_Block_leftBEOnNewline := ReadBool(SQLFORMATTER, INDENTATIONBLOCKLEFTONNEWLINE, True);
+    gFmtOpt.BEStyle_Block_leftBEIndentSize := ReadInteger(SQLFORMATTER, INDENTATIONBLOCKLEFTINDENTSIZE, 2);
+    gFmtOpt.BEStyle_Block_rightBEIndentSize := ReadInteger(SQLFORMATTER, INDENTATIONBLOCKRIGHTINDENTSIZE, 2);
+    gFmtOpt.BEStyle_BlockIndentSize := ReadInteger(SQLFORMATTER, INDENTATIONBLOCKINDENTSIZE, 2);
+    gFmtOpt.BEStyle_IfElseSingleStmtIndentSize := ReadInteger(SQLFORMATTER, INDENTATIONIFELSESINGLESTMTINDENTSIZE, 2);
+    { Capitalization }
+    gFmtOpt.case_keywords := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONKEYWORDS, 0));
+    gFmtOpt.case_identifier := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONIDENTIFIER, 1));
+    gFmtOpt.case_quoted_Identifier := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONQUOTEDIDENTIFIER, 3));
+    gFmtOpt.case_table_name := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONTABLENAME, 2));
+    gFmtOpt.case_column_name := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONCOLUMNNAME, 1));
+    gFmtOpt.case_alias_name := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONALIASNAME, 1));
+    gFmtOpt.case_variable_name := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONVARIABLENAME, 1));
+    gFmtOpt.case_funcname := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONFUNCNAME, 2));
+    gFmtOpt.case_datatype := TCaseOption(ReadInteger(SQLFORMATTER, CAPITALIZATIONDATATYPE, 0));
   finally
     Free;
   end;

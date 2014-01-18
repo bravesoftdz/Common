@@ -78,7 +78,7 @@ procedure TOptionsSQLInsertFrame.PutData;
 begin
   SQLFormatterOptions.InsertColumnListStyle := ColumnListStyleComboBox.ItemIndex;
   SQLFormatterOptions.InsertValueListStyle := ValueListStyleComboBox.ItemIndex;
-  SQLFormatterOptions.InsertColumnsPerLine := StrToInt(InsertColumnsPerLineEdit.Text);
+  SQLFormatterOptions.InsertColumnsPerLine := StrToIntDef(InsertColumnsPerLineEdit.Text, 0);
   SQLFormatterOptions.InsertParenthesisInSeparateLine := ParenthesisInSeparateLinesCheckBox.Checked;
 end;
 

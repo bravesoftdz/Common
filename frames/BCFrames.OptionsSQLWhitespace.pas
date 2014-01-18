@@ -16,8 +16,6 @@ type
     SpaceInsideSubqueryCheckBox: TBCCheckBox;
     SpaceInsideFunctionCheckBox: TBCCheckBox;
     SpaceInsideTypenameCheckBox: TBCCheckBox;
-  private
-    { Private declarations }
   public
     { Public declarations }
     destructor Destroy; override;

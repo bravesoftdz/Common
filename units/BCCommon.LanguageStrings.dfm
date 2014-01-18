@@ -1827,6 +1827,26 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'None'
         Strings.Strings = (
           'None')
+      end
+      item
+        Name = 'Uppercase'
+        Strings.Strings = (
+          'Uppercase')
+      end
+      item
+        Name = 'Lowercase'
+        Strings.Strings = (
+          'Lowercase')
+      end
+      item
+        Name = 'SentenceCase'
+        Strings.Strings = (
+          'Sentence Case')
+      end
+      item
+        Name = 'NoChange'
+        Strings.Strings = (
+          'No Change')
       end>
     Left = 90
     Top = 438

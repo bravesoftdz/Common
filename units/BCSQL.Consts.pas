@@ -54,6 +54,28 @@ const
   WHITESPACESPACEINSIDESUBQUERY = 'WhitespaceSpaceInsideSubquery';
   WHITESPACESPACEINSIDEFUNCTION = 'WhitespaceSpaceInsideFunction';
   WHITESPACESPACEINSIDETYPENAME = 'WhitespaceSpaceInsideTypename';
+  { Indentation }
+  INDENTATIONINDENTLENGTH = 'IndentationIndentLength';
+  INDENTATIONUSETAB = 'IndentationUseTab';
+  INDENTATIONTABSIZE = 'IndentationTabSize';
+  INDENTATIONFUNCTIONBODYINDENT = 'IndentationFunctionBodyIndent';
+  INDENTATIONBLOCKLEFTONNEWLINE = 'IndentationBlockLeftOnNewline';
+  INDENTATIONBLOCKLEFTINDENTSIZE = 'IndentationBlockLeftIndentSize';
+  INDENTATIONBLOCKRIGHTINDENTSIZE = 'IndentationBlockRightIndentSize';
+  INDENTATIONBLOCKINDENTSIZE = 'IndentationBlockIndentSize';
+  INDENTATIONIFELSESINGLESTMTINDENTSIZE = 'IndentationIfElseSingleStmtIndentSize';
+  { Capitalization }
+  CAPITALIZATIONKEYWORDS = 'CapitalizationKeywords';
+  CAPITALIZATIONIDENTIFIER = 'CapitalizationIdentifier';
+  CAPITALIZATIONQUOTEDIDENTIFIER = 'CapitalizationQuotedIdentifier';
+  CAPITALIZATIONTABLENAME = 'CapitalizationTableName';
+  CAPITALIZATIONCOLUMNNAME = 'CapitalizationColumnName';
+  CAPITALIZATIONALIASNAME = 'CapitalizationAliasName';
+  CAPITALIZATIONVARIABLENAME = 'CapitalizationVariableName';
+  CAPITALIZATIONPREFIXIDENTITFER = 'CapitalizationPrefixIdentitfer';
+  CAPITALIZATIONIDENTIFIERPREFIXLIST = 'CapitalizationIdentifierPrefixList';
+  CAPITALIZATIONFUNCNAME = 'CapitalizationFuncname';
+  CAPITALIZATIONDATATYPE = 'CapitalizationDatatype';
 
 implementation
 
