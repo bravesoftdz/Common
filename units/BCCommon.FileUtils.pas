@@ -46,7 +46,8 @@ const
   function GetSQLFormatterDLLFilename: string;
   function FileIconInit(FullInit: BOOL): BOOL; stdcall;
   function IsExtInFileType(Ext: string; FileType: string): Boolean;
-  function CheckAccessToFile(DesiredAccess: DWORD; const FileName: WideString): Boolean;
+  function IsVirtualDrive(Drive: Char): Boolean;
+  function CheckAccessToFile(const DesiredAccess: Cardinal; const FileName: WideString): Boolean;
   function RemoveDirectory(const Directory: String): Boolean;
   function CountFilesInFolder(FilePath: string; Count: Integer = 0): Integer;
 
@@ -282,9 +283,31 @@ begin
     Result := Format('%s~', [Result]);
 end;
 
+function IsVirtualDrive(Drive: Char): Boolean;
+var
+  DeviceName, TargetPath: string;
+begin
+  TargetPath := Drive + ':';
+  SetLength(DeviceName, Max_Path + 1);
+  SetLength(DeviceName, QueryDosDevice(PChar(TargetPath), PChar(DeviceName), Length(DeviceName)));
+  Result := Pos('\??\', DeviceName) = 1;
+end;
+
+{function CheckAccessToFile(DesiredAccess: DWORD; const FileName: WideString): Boolean;
+var
+  FileObject: TJwSecureFileObject;
+begin
+  FileObject := TJwSecureFileObject.Create(FileName);
+  try
+    Result := FileObject.AccessCheck(DesiredAccess);
+  finally
+    FileObject.Free;
+  end;
+end;
+
 function CheckAccessToFile(DesiredAccess: DWORD; const FileName: WideString): Boolean;
 const
-  GenericFileMapping     : TGenericMapping = (
+  GenericFileMapping: TGenericMapping = (
     GenericRead: FILE_GENERIC_READ;
     GenericWrite: FILE_GENERIC_WRITE;
     GenericExecute: FILE_GENERIC_EXECUTE;
@@ -340,6 +363,44 @@ begin
   finally
     LocalFree(HLOCAL(SecurityDescriptor));
   end;
+end; }
+
+function CheckAccessToFile(const DesiredAccess: Cardinal; const FileName: WideString): Boolean;
+var
+  Token: THandle;
+  Status: LongBool;
+  Access: Cardinal;
+  SecDescSize: Cardinal;
+  PrivSetSize: Cardinal;
+  PrivSet: PRIVILEGE_SET;
+  Mapping: GENERIC_MAPPING;
+  SecDesc: PSECURITY_DESCRIPTOR;
+begin
+  Result := False;
+  GetFileSecurity(PChar(Filename), OWNER_SECURITY_INFORMATION or GROUP_SECURITY_INFORMATION or DACL_SECURITY_INFORMATION, nil, 0, SecDescSize);
+  SecDesc := GetMemory(SecDescSize);
+
+  if GetFileSecurity(PChar(Filename), OWNER_SECURITY_INFORMATION or GROUP_SECURITY_INFORMATION or DACL_SECURITY_INFORMATION, SecDesc, SecDescSize, SecDescSize) then
+  begin
+    ImpersonateSelf(SecurityImpersonation);
+    OpenThreadToken(GetCurrentThread, TOKEN_QUERY or
+        TOKEN_IMPERSONATE or TOKEN_DUPLICATE, False, Token);
+    if Token <> 0 then
+    begin
+      Mapping.GenericRead := FILE_GENERIC_READ;
+      Mapping.GenericWrite := FILE_GENERIC_WRITE;
+      Mapping.GenericExecute := FILE_GENERIC_EXECUTE;
+      Mapping.GenericAll := FILE_ALL_ACCESS;
+
+      MapGenericMask(Access, Mapping);
+      PrivSetSize := SizeOf(PrivSet);
+      AccessCheck(SecDesc, Token, DesiredAccess, Mapping, PrivSet, PrivSetSize, Access, Status);
+      CloseHandle(Token);
+      Result := Status;
+    end;
+  end;
+
+  FreeMem(SecDesc, SecDescSize);
 end;
 
 end.

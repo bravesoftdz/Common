@@ -12,7 +12,7 @@ implementation
 
 uses
   BigIni, BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
-  Vcl.ExtCtrls, VirtualTrees, BCCommon.LanguageStrings;
+  Vcl.ExtCtrls, VirtualTrees, BCCommon.LanguageStrings, BCControls.ColorComboBox;
 
 function GetSelectedLanguage(Default: string): string;
 begin
@@ -130,6 +130,16 @@ begin
             TVirtualDrawTree(Form.Components[i]).Header.Columns[j].Text := s;
         end;
       end
+      else
+      if Form.Components[i] is TBCColorComboBox then
+      begin
+        s := ReadString(Form.Name, TBCColorComboBox(Form.Components[i]).Name, '');
+        if s <> '' then
+        begin
+          TBCColorComboBox(Form.Components[i]).NewColortext := Format('%s', [s]);
+          TBCColorComboBox(Form.Components[i]).ColordialogText := Format('%s...', [s]);
+        end;
+      end;
   finally
     Free;
   end;

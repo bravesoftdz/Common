@@ -107,26 +107,28 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       TabOrder = 6
       ReadOnly = False
     end
-    object LineModifiedColorBox: TColorBox
+    object LineModifiedColorBox: TBCColorComboBox
       Left = 4
       Top = 180
       Width = 200
       Height = 22
-      Selected = clYellow
-      Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor, cbPrettyNames]
-      DoubleBuffered = True
-      ParentDoubleBuffered = False
+      ColorDialogText = 'Custom...'
+      ColorWidth = 13
+      DroppedDownWidth = 200
+      NewColorText = 'Custom'
+      Options = [coText, coStdColors, coSysColors, coCustomColors]
       TabOrder = 8
     end
-    object LineNormalColorBox: TColorBox
+    object LineNormalColorBox: TBCColorComboBox
       Left = 4
       Top = 222
       Width = 200
       Height = 22
-      Selected = clGreen
-      Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor, cbPrettyNames]
-      DoubleBuffered = True
-      ParentDoubleBuffered = False
+      ColorDialogText = 'Custom...'
+      ColorWidth = 13
+      DroppedDownWidth = 200
+      NewColorText = 'Custom'
+      Options = [coText, coStdColors, coSysColors, coCustomColors]
       TabOrder = 9
     end
     object InTensCheckBox: TBCCheckBox

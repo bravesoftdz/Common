@@ -257,14 +257,16 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       TabOrder = 2
       ReadOnly = False
     end
-    object NonblinkingCaretColorBox: TColorBox
+    object NonblinkingCaretColorBox: TBCColorComboBox
       Left = 4
       Top = 386
       Width = 200
       Height = 22
-      Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor, cbPrettyNames]
-      DoubleBuffered = True
-      ParentDoubleBuffered = False
+      ColorDialogText = 'Custom...'
+      ColorWidth = 13
+      DroppedDownWidth = 200
+      NewColorText = 'Custom'
+      Options = [coText, coStdColors, coSysColors, coCustomColors]
       TabOrder = 15
     end
     object ShowScrollHintCheckBox: TBCCheckBox

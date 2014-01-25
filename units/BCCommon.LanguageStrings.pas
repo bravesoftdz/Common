@@ -18,6 +18,7 @@ type
   private
     { Private declarations }
     FHookedConstantsList: TList;
+    FColorComboBoxStrings: TStrings;
   protected
     procedure FreeHookedConstraintsList;
   public
@@ -31,6 +32,7 @@ type
     function GetWarningMessage(Name: string): string;
     function GetYesOrNoMessage(Name: string): string;
     function GetSQLFormatter(Name: string): string;
+    property ColorComboBoxStrings: TStrings read FColorComboBoxStrings;
   end;
 
 procedure ReadLanguageFile(Language: string);
@@ -90,6 +92,7 @@ begin
     SetStringHolder(LanguageDataModule.ConstantMultiStringHolder, 'Constant');
     SetStringHolder(LanguageDataModule.FileTypesMultiStringHolder, 'FileTypes');
     SetStringHolder(LanguageDataModule.ConvertConstantMultiStringHolder, 'ConvertConstant');
+    BigIniFile.ReadSectionValues('ColorComboBox', LanguageDataModule.FColorComboBoxStrings);
   finally
     BigIniFile.Free;
   end;
@@ -113,60 +116,6 @@ begin
   HookResourceString(@SMsgDlgNoToAll, LanguageDataModule.GetPConstant('SMsgDlgNoToAll'));
   HookResourceString(@SMsgDlgYesToAll, LanguageDataModule.GetPConstant('SMsgDlgYesToAll'));
   HookResourceString(@SMsgDlgClose, LanguageDataModule.GetPConstant('SMsgDlgClose'));
-
-  HookResourceString(@SColorBoxCustomCaption, LanguageDataModule.GetPConstant('SColorBoxCustomCaption'));
-  HookResourceString(@SNameBlack, LanguageDataModule.GetPConstant('SNameBlack'));
-  HookResourceString(@SNameMaroon, LanguageDataModule.GetPConstant('SNameMaroon'));
-  HookResourceString(@SNameGreen, LanguageDataModule.GetPConstant('SNameGreen'));
-  HookResourceString(@SNameOlive, LanguageDataModule.GetPConstant('SNameOlive'));
-  HookResourceString(@SNameNavy, LanguageDataModule.GetPConstant('SNameNavy'));
-  HookResourceString(@SNamePurple, LanguageDataModule.GetPConstant('SNamePurple'));
-  HookResourceString(@SNameTeal, LanguageDataModule.GetPConstant('SNameTeal'));
-  HookResourceString(@SNameGray, LanguageDataModule.GetPConstant('SNameGray'));
-  HookResourceString(@SNameSilver, LanguageDataModule.GetPConstant('SNameSilver'));
-  HookResourceString(@SNameRed, LanguageDataModule.GetPConstant('SNameRed'));
-  HookResourceString(@SNameLime, LanguageDataModule.GetPConstant('SNameLime'));
-  HookResourceString(@SNameYellow, LanguageDataModule.GetPConstant('SNameYellow'));
-  HookResourceString(@SNameBlue, LanguageDataModule.GetPConstant('SNameBlue'));
-  HookResourceString(@SNameFuchsia, LanguageDataModule.GetPConstant('SNameFuchsia'));
-  HookResourceString(@SNameAqua, LanguageDataModule.GetPConstant('SNameAqua'));
-  HookResourceString(@SNameWhite, LanguageDataModule.GetPConstant('SNameWhite'));
-  HookResourceString(@SNameMoneyGreen, LanguageDataModule.GetPConstant('SNameMoneyGreen'));
-  HookResourceString(@SNameSkyBlue, LanguageDataModule.GetPConstant('SNameSkyBlue'));
-  HookResourceString(@SNameCream, LanguageDataModule.GetPConstant('SNameCream'));
-  HookResourceString(@SNameMedGray, LanguageDataModule.GetPConstant('SNameMedGray'));
-  HookResourceString(@SNameActiveBorder, LanguageDataModule.GetPConstant('SNameActiveBorder'));
-  HookResourceString(@SNameActiveCaption, LanguageDataModule.GetPConstant('SNameActiveCaption'));
-  HookResourceString(@SNameAppWorkSpace, LanguageDataModule.GetPConstant('SNameAppWorkSpace'));
-  HookResourceString(@SNameBackground, LanguageDataModule.GetPConstant('SNameBackground'));
-  HookResourceString(@SNameBtnFace, LanguageDataModule.GetPConstant('SNameBtnFace'));
-  HookResourceString(@SNameBtnHighlight, LanguageDataModule.GetPConstant('SNameBtnHighlight'));
-  HookResourceString(@SNameBtnShadow, LanguageDataModule.GetPConstant('SNameBtnShadow'));
-  HookResourceString(@SNameBtnText, LanguageDataModule.GetPConstant('SNameBtnText'));
-  HookResourceString(@SNameCaptionText, LanguageDataModule.GetPConstant('SNameCaptionText'));
-  HookResourceString(@SNameDefault, LanguageDataModule.GetPConstant('SNameDefault'));
-  HookResourceString(@SNameGradientActiveCaption, LanguageDataModule.GetPConstant('SNameGradientActiveCaption'));
-  HookResourceString(@SNameGradientInactiveCaption, LanguageDataModule.GetPConstant('SNameGradientInactiveCaption'));
-  HookResourceString(@SNameGrayText, LanguageDataModule.GetPConstant('SNameGrayText'));
-  HookResourceString(@SNameHighlight, LanguageDataModule.GetPConstant('SNameHighlight'));
-  HookResourceString(@SNameHighlightText, LanguageDataModule.GetPConstant('SNameHighlightText'));
-  HookResourceString(@SNameHotLight, LanguageDataModule.GetPConstant('SNameHotLight'));
-  HookResourceString(@SNameInactiveBorder, LanguageDataModule.GetPConstant('SNameInactiveBorder'));
-  HookResourceString(@SNameInactiveCaption, LanguageDataModule.GetPConstant('SNameInactiveCaption'));
-  HookResourceString(@SNameInactiveCaptionText, LanguageDataModule.GetPConstant('SNameInactiveCaptionText'));
-  HookResourceString(@SNameInfoBk, LanguageDataModule.GetPConstant('SNameInfoBk'));
-  HookResourceString(@SNameInfoText, LanguageDataModule.GetPConstant('SNameInfoText'));
-  HookResourceString(@SNameMenu, LanguageDataModule.GetPConstant('SNameMenu'));
-  HookResourceString(@SNameMenuBar, LanguageDataModule.GetPConstant('SNameMenuBar'));
-  HookResourceString(@SNameMenuHighlight, LanguageDataModule.GetPConstant('SNameMenuHighlight'));
-  HookResourceString(@SNameMenuText, LanguageDataModule.GetPConstant('SNameMenuText'));
-  HookResourceString(@SNameNone, LanguageDataModule.GetPConstant('SNameNone'));
-  HookResourceString(@SNameScrollBar, LanguageDataModule.GetPConstant('SNameScrollBar'));
-  HookResourceString(@SName3DDkShadow, LanguageDataModule.GetPConstant('SName3DDkShadow'));
-  HookResourceString(@SName3DLight, LanguageDataModule.GetPConstant('SName3DLight'));
-  HookResourceString(@SNameWindow, LanguageDataModule.GetPConstant('SNameWindow'));
-  HookResourceString(@SNameWindowFrame, LanguageDataModule.GetPConstant('SNameWindowFrame'));
-  HookResourceString(@SNameWindowText, LanguageDataModule.GetPConstant('SNameWindowText'));
 end;
 
 function TLanguageDataModule.GetYesOrNoMessage(Name: string): string;
@@ -232,10 +181,12 @@ initialization
 
   LanguageDataModule := TLanguageDataModule.Create(nil);
   LanguageDataModule.FHookedConstantsList := TList.Create;
+  LanguageDataModule.FColorComboBoxStrings := TStringList.Create;
 
 finalization
 
   LanguageDataModule.FreeHookedConstraintsList;
+  LanguageDataModule.FColorComboBoxStrings.Free;
   LanguageDataModule.Free;
 
 end.

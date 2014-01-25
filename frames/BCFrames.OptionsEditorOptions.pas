@@ -4,7 +4,8 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.ComboBox,
-  BCControls.CheckBox, BCControls.Edit, Vcl.ComCtrls, JvEdit, BCCommon.OptionsContainer, BCFrames.OptionsFrame;
+  BCControls.CheckBox, BCControls.Edit, Vcl.ComCtrls, JvEdit, BCCommon.OptionsContainer, BCFrames.OptionsFrame,
+  JvExStdCtrls, JvCombobox, BCControls.ColorComboBox, JvColorCombo;
 
 type
   TOptionsEditorOptionsFrame = class(TOptionsFrame)
@@ -27,7 +28,7 @@ type
     TripleClickRowSelectCheckBox: TBCCheckBox;
     NonblinkingCaretCheckBox: TBCCheckBox;
     NonblinkingCaretColorLabel: TLabel;
-    NonblinkingCaretColorBox: TColorBox;
+    NonblinkingCaretColorBox: TBCColorComboBox;
     ShowScrollHintCheckBox: TBCCheckBox;
   private
     { Private declarations }
@@ -67,6 +68,7 @@ end;
 procedure TOptionsEditorOptionsFrame.Init;
 begin
   inherited;
+  NonblinkingCaretColorBox.ColorNameMap := LanguageDatamodule.ColorComboBoxStrings;
   with InsertCaretComboBox.Items do
   begin
     Add(LanguageDatamodule.GetConstant('VerticalLine'));
@@ -93,7 +95,7 @@ begin
   OptionsContainer.LineSpacing := StrToIntDef(LineSpacingEdit.Text, 0);
   OptionsContainer.TabWidth := StrToIntDef(TabWidthEdit.Text, 8);
   OptionsContainer.InsertCaret := InsertCaretComboBox.ItemIndex;
-  OptionsContainer.NonblinkingCaretColor := ColorToString(NonblinkingCaretColorBox.Selected);
+  OptionsContainer.NonblinkingCaretColor := ColorToString(NonblinkingCaretColorBox.ColorValue);
 end;
 
 procedure TOptionsEditorOptionsFrame.GetData;
@@ -113,7 +115,7 @@ begin
   LineSpacingEdit.Text := IntToStr(OptionsContainer.LineSpacing);
   TabWidthEdit.Text := IntToStr(OptionsContainer.TabWidth);
   InsertCaretComboBox.ItemIndex := OptionsContainer.InsertCaret;
-  NonblinkingCaretColorBox.Selected := StringToColor(OptionsContainer.NonblinkingCaretColor);
+  NonblinkingCaretColorBox.ColorValue := StringToColor(OptionsContainer.NonblinkingCaretColor);
 end;
 
 end.
