@@ -128,6 +128,8 @@ const
   IMG_IDX_SYNONYM_INVALID = 191;
   IMG_IDX_DBLINK_INVALID = 124;
 
+  IMG_IDX_DRIVE = 248;
+
 type
   TImagesDataModule = class(TDataModule)
     ImageList: TBCImageList;
