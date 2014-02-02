@@ -47,6 +47,7 @@ const
   function FileIconInit(FullInit: BOOL): BOOL; stdcall;
   function IsExtInFileType(Ext: string; FileType: string): Boolean;
   function IsVirtualDrive(Drive: Char): Boolean;
+  function VirtualDrivePath(Drive: Char): AnsiString;
   function CheckAccessToFile(const DesiredAccess: Cardinal; const FileName: WideString): Boolean;
   function RemoveDirectory(const Directory: String): Boolean;
   function CountFilesInFolder(FilePath: string; Count: Integer = 0): Integer;
@@ -54,7 +55,7 @@ const
 implementation
 
 uses
-  System.SysUtils, Winapi.ShellAPI, BCCommon.LanguageStrings, Vcl.Forms;
+  System.SysUtils, Winapi.ShellAPI, BCCommon.LanguageStrings, Vcl.Forms, System.AnsiStrings;
 
 function CountFilesInFolder(FilePath: string; Count: Integer = 0): Integer;
 var
@@ -291,6 +292,19 @@ begin
   SetLength(DeviceName, Max_Path + 1);
   SetLength(DeviceName, QueryDosDevice(PChar(TargetPath), PChar(DeviceName), Length(DeviceName)));
   Result := Pos('\??\', DeviceName) = 1;
+end;
+
+function VirtualDrivePath(Drive: Char): AnsiString;
+var
+  DeviceName, TargetPath:  string;
+begin
+  TargetPath := Drive + ':';
+  SetLength(DeviceName, Max_Path + 1);
+  SetLength(DeviceName, QueryDosDevice(PChar(TargetPath), PChar(DeviceName), Length(DeviceName)));
+  if pos('\??\', DeviceName) = 1 then
+    Result := System.AnsiStrings.StrPas(@DeviceName[5])
+  else
+    Result := '';
 end;
 
 function CheckAccessToFile(const DesiredAccess: DWORD; const FileName: WideString): Boolean;

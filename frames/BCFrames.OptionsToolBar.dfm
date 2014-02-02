@@ -1,18 +1,17 @@
 inherited OptionsToolBarFrame: TOptionsToolBarFrame
   Width = 451
-  Height = 302
+  Height = 305
   Align = alClient
   ExplicitWidth = 451
-  ExplicitHeight = 302
+  ExplicitHeight = 305
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 451
-    Height = 302
+    Height = 305
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitHeight = 305
     object VirtualDrawTree: TVirtualDrawTree
       AlignWithMargins = True
       Left = 4

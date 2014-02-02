@@ -60,7 +60,7 @@ implementation
 
 uses
   Winapi.CommCtrl, BCCommon.LanguageUtils, System.IniFiles, BCCommon.FileUtils, Vcl.Themes, Winapi.ShellAPI,
-  BCCommon.Lib, BCCommon.LanguageStrings;
+  BCCommon.Lib, BCCommon.LanguageStrings, System.Types;
 
 type
   PSearchRec = ^TSearchRec;
@@ -230,14 +230,14 @@ begin
     begin
       Format := DT_TOP or DT_LEFT or DT_VCENTER or DT_SINGLELINE;
 
-      DrawTextW(Canvas.Handle, PWideChar(S), Length(S), R, Format);
+      DrawText(Canvas.Handle, S, Length(S), R, Format);
       R.Left := R.Left + Canvas.TextWidth(S);
       S := System.SysUtils.Format(' (%s)', [Data.FilePath]);
       if LStyles.Enabled then
         Canvas.Font.Color := LStyles.GetStyleFontColor(sfEditBoxTextDisabled)
       else
         Canvas.Font.Color := clBtnFace;
-      DrawTextW(Canvas.Handle, PWideChar(S), Length(S), R, Format);
+      DrawText(Canvas.Handle, S, Length(S), R, Format);
     end;
   end;
 end;
