@@ -6,6 +6,8 @@ uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms;
 
 type
+  TDialogType = (dtOpen, dtEdit);
+
   TDialog = class(TForm)
     procedure FormShow(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
