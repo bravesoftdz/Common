@@ -47,7 +47,7 @@ const
   function FileIconInit(FullInit: BOOL): BOOL; stdcall;
   function IsExtInFileType(Ext: string; FileType: string): Boolean;
   function IsVirtualDrive(Drive: Char): Boolean;
-  function VirtualDrivePath(Drive: Char): AnsiString;
+  function VirtualDrivePath(Drive: Char): string;
   function CheckAccessToFile(const DesiredAccess: Cardinal; const FileName: WideString): Boolean;
   function RemoveDirectory(const Directory: String): Boolean;
   function CountFilesInFolder(FilePath: string; Count: Integer = 0): Integer;
@@ -294,18 +294,20 @@ begin
   Result := Pos('\??\', DeviceName) = 1;
 end;
 
-function VirtualDrivePath(Drive: Char): AnsiString;
+function VirtualDrivePath(Drive: Char): string;
 var
   DeviceName, TargetPath:  string;
 begin
   TargetPath := Drive + ':';
   SetLength(DeviceName, Max_Path + 1);
-  SetLength(DeviceName, QueryDosDevice(PChar(TargetPath), PChar(DeviceName), Length(DeviceName)));
-  if pos('\??\', DeviceName) = 1 then
-    Result := System.AnsiStrings.StrPas(@DeviceName[5])
+  SetLength(DeviceName, QueryDosDevice(PWideChar(TargetPath), PWideChar(DeviceName), Length(DeviceName)));
+  if Pos('\??\', DeviceName) = 1 then
+    Result := Copy(DeviceName, 5, Length(DeviceName))
   else
     Result := '';
 end;
+
+// if DefineDosDevice(DDD_RAW_TARGET_PATH, 'P:', 'F:\Backup\Music\Modules') then
 
 function CheckAccessToFile(const DesiredAccess: DWORD; const FileName: WideString): Boolean;
 const
