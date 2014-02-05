@@ -328,29 +328,29 @@ end;
 
 procedure RunCommand(const Cmd, Params: String);
 var
-  SI: TStartupInfo;
-  PI: TProcessInformation;
+  StartupInfo: TStartupInfo;
+  ProcessInformation: TProcessInformation;
   CmdLine: String;
 begin
-  //Fill record with zero byte values
-  FillChar(SI, SizeOf(SI), 0);
-  //Set mandatory record field
-  SI.cb := SizeOf(SI);
-  //Ensure Windows mouse cursor reflects launch progress
-  SI.dwFlags := StartF_ForceOnFeedback;
-  //Set up command line
+  { Fill record with zero byte values }
+  FillChar(StartupInfo, SizeOf(StartupInfo), 0);
+  { Set mandatory record field }
+  StartupInfo.cb := SizeOf(StartupInfo);
+  { Ensure Windows mouse cursor reflects launch progress }
+  StartupInfo.dwFlags := StartF_ForceOnFeedback;
+  { Set up command line }
   CmdLine := Cmd;
   if Length(Params) > 0 then
     CmdLine := CmdLine + #32 + '"' + Params + '"';
-  //Try and launch child process. Raise exception on failure
+  { Try and launch child process. Raise exception on failure }
   {$WARNINGS OFF}
-  Win32Check(CreateProcess(nil, PChar(CmdLine), nil, nil, False, 0, nil, nil, SI, PI));
+  Win32Check(CreateProcess(nil, PChar(CmdLine), nil, nil, False, 0, nil, nil, StartupInfo, ProcessInformation));
   {$WARNINGS ON}
-  //Wait until process has started its main message loop
-  WaitForInputIdle(PI.hProcess, Infinite);
-  //Close process and thread handles
-  CloseHandle(PI.hThread);
-  CloseHandle(PI.hProcess);
+  { Wait until process has started its main message loop }
+  WaitForInputIdle(ProcessInformation.hProcess, Infinite);
+  { Close process and thread handles }
+  CloseHandle(ProcessInformation.hThread);
+  CloseHandle(ProcessInformation.hProcess);
 end;
 
 function SetFormInsideWorkArea(Left, Width: Integer): Integer;

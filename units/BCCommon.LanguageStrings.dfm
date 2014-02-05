@@ -91,7 +91,7 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'EnterTabName'
         Strings.Strings = (
-          'Enter Tab Name.')
+          'Enter tab name.')
       end
       item
         Name = 'FileNotFound'
@@ -101,7 +101,17 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'RootDirectoryNotExist'
         Strings.Strings = (
-          'Root Directory does not exist')
+          'Root directory does not exist')
+      end
+      item
+        Name = 'EnterPath'
+        Strings.Strings = (
+          'Enter path.')
+      end
+      item
+        Name = 'PathNotExist'
+        Strings.Strings = (
+          'Path does not exist')
       end>
     Left = 88
     Top = 142
@@ -747,6 +757,16 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'FilesFound'
         Strings.Strings = (
           '%d file(s) have been found in %s')
+      end
+      item
+        Name = 'AddVirtualDrive'
+        Strings.Strings = (
+          'Add Virtual Drive')
+      end
+      item
+        Name = 'EditVirtualDrive'
+        Strings.Strings = (
+          'Edit Virtual Drive')
       end>
     Left = 88
     Top = 254

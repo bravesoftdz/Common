@@ -70,7 +70,7 @@ var
 
 function ConvertForm: TConvertForm;
 begin
-  if FConvertForm = nil then
+  if not Assigned(FConvertForm) then
     Application.CreateForm(TConvertForm, FConvertForm);
   Result := FConvertForm;
   UpdateLanguage(FConvertForm, GetSelectedLanguage);

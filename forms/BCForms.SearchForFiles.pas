@@ -75,7 +75,7 @@ var
 
 function SearchForFilesForm: TSearchForFilesForm;
 begin
-  if FSearchForFilesForm = nil then
+  if not Assigned(FSearchForFilesForm) then
     Application.CreateForm(TSearchForFilesForm, FSearchForFilesForm);
   Result := FSearchForFilesForm;
   UpdateLanguage(FSearchForFilesForm, GetSelectedLanguage);
