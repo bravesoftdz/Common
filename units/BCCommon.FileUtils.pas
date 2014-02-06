@@ -302,7 +302,7 @@ begin
   SetLength(DeviceName, Max_Path + 1);
   SetLength(DeviceName, QueryDosDevice(PWideChar(TargetPath), PWideChar(DeviceName), Length(DeviceName)));
   if Pos('\??\', DeviceName) = 1 then
-    Result := Copy(DeviceName, 5, Length(DeviceName))
+    Result := Trim(Copy(DeviceName, 5, Length(DeviceName)))
   else
     Result := '';
 end;
