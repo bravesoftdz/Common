@@ -330,7 +330,14 @@ begin
   ReadIniFile;
   Show;
   SearchVirtualDrawTree.BeginUpdate;
-  FProgressBar.Count := CountFilesInFolder(RootDirectory);
+  Screen.Cursor := crHourGlass;
+  try
+    StatusBar.Panels[0].Text := LanguageDataModule.GetConstant('CountingFiles');
+    Application.ProcessMessages;
+    FProgressBar.Count := CountFilesInFolder(RootDirectory);
+  finally
+    Screen.Cursor := crDefault;
+  end;
   FProgressBar.Show;
   T1 := Now;
   try

@@ -51,6 +51,9 @@ const
   function CheckAccessToFile(const DesiredAccess: Cardinal; const FileName: WideString): Boolean;
   function RemoveDirectory(const Directory: String): Boolean;
   function CountFilesInFolder(FilePath: string; Count: Integer = 0): Integer;
+  function SystemDir: string;
+  procedure CreateVirtualDrive(const Drive: Char; const Path: String);
+  procedure DeleteVirtualDrive(const Drive: Char);
 
 implementation
 
@@ -62,26 +65,21 @@ var
   SearhcRec: TSearchRec;
 begin
   Result := Count;
-  Screen.Cursor := crHourGlass;
-  try
-    FilePath := IncludeTrailingPathDelimiter(FilePath);
-    {$WARNINGS OFF}
-    if FindFirst(IncludeTrailingBackslash(FilePath) + '*.*', faAnyFile, SearhcRec) = 0 then
-    {$WARNINGS ON}
-    begin
-      repeat
-        if (SearhcRec.Name <> '.') and (SearhcRec.Name <> '..') then
-        begin
-          if SearhcRec.Attr and faDirectory = 0 then
-            Inc(Result)
-          else
-            Result := CountFilesInFolder(FilePath + SearhcRec.Name, Result);
-        end;
-      until FindNext (SearhcRec) <> 0;
-      FindClose (SearhcRec);
-    end;
-  finally
-    Screen.Cursor := crDefault;
+  FilePath := IncludeTrailingPathDelimiter(FilePath);
+  {$WARNINGS OFF}
+  if FindFirst(IncludeTrailingBackslash(FilePath) + '*.*', faAnyFile, SearhcRec) = 0 then
+  {$WARNINGS ON}
+  begin
+    repeat
+      if (SearhcRec.Name <> '.') and (SearhcRec.Name <> '..') then
+      begin
+        if SearhcRec.Attr and faDirectory = 0 then
+          Inc(Result)
+        else
+          Result := CountFilesInFolder(FilePath + SearhcRec.Name, Result);
+      end;
+    until FindNext (SearhcRec) <> 0;
+    FindClose (SearhcRec);
   end;
 end;
 
@@ -367,6 +365,28 @@ begin
   finally
     LocalFree(HLOCAL(SecurityDescriptor));
   end;
+end;
+
+function SystemDir: string;
+begin
+  SetLength(Result, MAX_PATH);
+  GetSystemDirectory(@Result[1], MAX_PATH);
+end;
+
+procedure CreateVirtualDrive(const Drive: Char; const Path: String);
+var
+  Param: String;
+begin
+  Param := Format('%s: "%s"', [Drive, Path]);
+  ShellExecute(1, 'open', 'subst', PChar(Param), PChar(SystemDir), SW_HIDE);
+end;
+
+procedure DeleteVirtualDrive(const Drive: Char);
+var
+  Param: String;
+begin
+  Param := Format('%s: /d', [Drive]);
+  ShellExecute(1, 'open', 'subst', PChar(Param), PChar(SystemDir), SW_HIDE);
 end;
 
 end.

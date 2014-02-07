@@ -113,9 +113,10 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 47
-        Height = 13
+        Height = 22
         Align = alLeft
         Caption = 'Find what'
+        ExplicitHeight = 13
       end
     end
     object FileTypePanel: TPanel
@@ -136,9 +137,10 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 41
-        Height = 13
+        Height = 23
         Align = alLeft
         Caption = 'File type'
+        ExplicitHeight = 13
       end
     end
     object FolderPanel: TPanel
@@ -158,9 +160,10 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 30
-        Height = 13
+        Height = 22
         Align = alLeft
         Caption = 'Folder'
+        ExplicitHeight = 13
       end
     end
   end
@@ -298,11 +301,6 @@ object FindInFilesDialog: TFindInFilesDialog
           FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
           FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
           00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
-        HotTrackFont.Charset = DEFAULT_CHARSET
-        HotTrackFont.Color = clWindowText
-        HotTrackFont.Height = -11
-        HotTrackFont.Name = 'Tahoma'
-        HotTrackFont.Style = []
         NumGlyphs = 2
       end
       object FolderEdit2Panel: TPanel
@@ -347,14 +345,16 @@ object FindInFilesDialog: TFindInFilesDialog
       BevelOuter = bvNone
       Padding.Top = 4
       TabOrder = 3
+      ExplicitTop = 72
       object CaseSensitiveLabel: TLabel
         Left = 18
         Top = 4
         Width = 69
-        Height = 13
+        Height = 17
         Align = alLeft
         Caption = 'C&ase sensitive'
         Layout = tlCenter
+        ExplicitHeight = 13
       end
       object CaseSensitiveCheckBox: TCheckBox
         Left = 0

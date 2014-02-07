@@ -62,6 +62,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'DeleteFile'
         Strings.Strings = (
           'Delete file %s, are you sure?')
+      end
+      item
+        Name = 'DeleteVirtualDrive'
+        Strings.Strings = (
+          'Delete virtual drive %s, are you sure?')
       end>
     Left = 92
     Top = 22
@@ -767,6 +772,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'EditVirtualDrive'
         Strings.Strings = (
           'Edit Virtual Drive')
+      end
+      item
+        Name = 'CountingFiles'
+        Strings.Strings = (
+          'Counting files...')
       end>
     Left = 88
     Top = 254
