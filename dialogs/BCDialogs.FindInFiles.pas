@@ -81,7 +81,8 @@ begin
   if not Assigned(FFindInFilesDialog) then
   begin
     Application.CreateForm(TFindInFilesDialog, FFindInFilesDialog);
-    TStyleManager.Engine.RegisterStyleHook(TJvDirectoryEdit, TEditStyleHook);
+    if Assigned(TStyleManager.Engine) then
+      TStyleManager.Engine.RegisterStyleHook(TJvDirectoryEdit, TEditStyleHook);
   end;
   Result := FFindInFilesDialog;
   SetStyledFormSize(Result);
