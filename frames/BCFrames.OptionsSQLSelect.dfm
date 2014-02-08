@@ -27,7 +27,6 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       TabOrder = 0
       ActivePageCaption = 'Order By Clause'
       TabDragDrop = False
-      TabClosed = False
       HoldShiftToDragDrop = False
       ShowCloseButton = False
       object TabSheet1: TTabSheet
