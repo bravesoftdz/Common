@@ -227,7 +227,6 @@ begin
       FScale := 25;
     SynEditPrintPreview.ScalePercent := FScale;
   end;
-  self.RecreateWnd;
 end;
 
 procedure TPrintPreviewDialog.SynEditPrintPreviewPreviewPage(
