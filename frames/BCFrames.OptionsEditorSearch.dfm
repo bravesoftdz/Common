@@ -1,8 +1,6 @@
 inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
   Width = 352
   Height = 41
-  ExplicitWidth = 352
-  ExplicitHeight = 41
   object Panel: TPanel
     Left = 0
     Top = 0

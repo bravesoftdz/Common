@@ -1,9 +1,10 @@
 inherited OptionsCompareFrame: TOptionsCompareFrame
   Width = 282
   Height = 77
+  Color = clWindow
+  ParentBackground = False
+  ParentColor = False
   Visible = False
-  ExplicitWidth = 282
-  ExplicitHeight = 77
   object Panel: TPanel
     Left = 0
     Top = 0

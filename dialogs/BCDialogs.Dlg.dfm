@@ -4,7 +4,7 @@ object Dialog: TDialog
   Caption = 'Dialog'
   ClientHeight = 300
   ClientWidth = 635
-  Color = clBtnFace
+  Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

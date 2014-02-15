@@ -2,8 +2,6 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
   Width = 236
   Height = 219
   Visible = False
-  ExplicitWidth = 236
-  ExplicitHeight = 219
   object Panel: TPanel
     Left = 0
     Top = 0

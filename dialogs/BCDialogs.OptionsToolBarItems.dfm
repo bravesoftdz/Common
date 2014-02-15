@@ -4,7 +4,7 @@ object OptionsToolBarItemsDialog: TOptionsToolBarItemsDialog
   Caption = 'Select Items'
   ClientHeight = 376
   ClientWidth = 314
-  Color = clBtnFace
+  Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

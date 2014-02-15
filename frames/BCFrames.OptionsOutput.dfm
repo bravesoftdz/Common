@@ -1,8 +1,6 @@
 inherited OptionsOutputFrame: TOptionsOutputFrame
   Width = 201
   Height = 63
-  ExplicitWidth = 201
-  ExplicitHeight = 63
   object Panel: TPanel
     Left = 0
     Top = 0

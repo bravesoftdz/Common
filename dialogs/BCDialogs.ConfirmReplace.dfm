@@ -5,7 +5,7 @@ object ConfirmReplaceDialog: TConfirmReplaceDialog
   Caption = 'Confirm Replace'
   ClientHeight = 94
   ClientWidth = 333
-  Color = clBtnFace
+  Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

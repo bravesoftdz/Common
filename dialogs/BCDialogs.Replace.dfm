@@ -5,7 +5,7 @@ object ReplaceDialog: TReplaceDialog
   Caption = 'Replace'
   ClientHeight = 137
   ClientWidth = 534
-  Color = clBtnFace
+  Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -108,7 +108,7 @@ object ReplaceDialog: TReplaceDialog
         Left = 0
         Top = 2
         Width = 50
-        Height = 13
+        Height = 23
         Align = alLeft
         Caption = 'Search for'
       end
@@ -126,7 +126,7 @@ object ReplaceDialog: TReplaceDialog
         Left = 0
         Top = 2
         Width = 61
-        Height = 13
+        Height = 23
         Align = alLeft
         Caption = 'Replace with'
       end

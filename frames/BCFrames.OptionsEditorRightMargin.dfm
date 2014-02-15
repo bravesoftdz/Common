@@ -2,8 +2,6 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
   Width = 198
   Height = 131
   Visible = False
-  ExplicitWidth = 198
-  ExplicitHeight = 131
   object Panel: TPanel
     Left = 0
     Top = 0

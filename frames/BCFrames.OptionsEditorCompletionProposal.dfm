@@ -1,8 +1,9 @@
 inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
   Width = 201
   Height = 119
-  ExplicitWidth = 201
-  ExplicitHeight = 119
+  Color = clWindow
+  ParentBackground = False
+  ParentColor = False
   object Panel: TPanel
     Left = 0
     Top = 0

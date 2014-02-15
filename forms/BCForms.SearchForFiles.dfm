@@ -5,7 +5,7 @@ object SearchForFilesForm: TSearchForFilesForm
   Caption = 'Search for Files'
   ClientHeight = 401
   ClientWidth = 383
-  Color = clBtnFace
+  Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

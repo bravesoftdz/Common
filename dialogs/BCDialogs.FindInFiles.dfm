@@ -5,7 +5,7 @@ object FindInFilesDialog: TFindInFilesDialog
   Caption = 'Find in Files'
   ClientHeight = 112
   ClientWidth = 499
-  Color = clBtnFace
+  Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -113,7 +113,7 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 47
-        Height = 13
+        Height = 22
         Align = alLeft
         Caption = 'Find what'
       end
@@ -136,7 +136,7 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 41
-        Height = 13
+        Height = 23
         Align = alLeft
         Caption = 'File type'
       end
@@ -158,7 +158,7 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 30
-        Height = 13
+        Height = 22
         Align = alLeft
         Caption = 'Folder'
       end
@@ -346,7 +346,7 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 18
         Top = 4
         Width = 69
-        Height = 13
+        Height = 17
         Align = alLeft
         Caption = 'C&ase sensitive'
         Layout = tlCenter

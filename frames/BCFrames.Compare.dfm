@@ -4,6 +4,9 @@ object CompareFrame: TCompareFrame
   Width = 521
   Height = 343
   DoubleBuffered = True
+  Color = clWindow
+  ParentBackground = False
+  ParentColor = False
   ParentDoubleBuffered = False
   TabOrder = 0
   OnResize = FrameResize

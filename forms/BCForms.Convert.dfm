@@ -5,7 +5,7 @@ object ConvertForm: TConvertForm
   Caption = 'Convert Between Numerical Units'
   ClientHeight = 150
   ClientWidth = 400
-  Color = clBtnFace
+  Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

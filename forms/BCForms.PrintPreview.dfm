@@ -4,7 +4,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
   Caption = 'Print Preview'
   ClientHeight = 523
   ClientWidth = 726
-  Color = clBtnFace
+  Color = clWindow
   ParentFont = True
   Icon.Data = {
     0000010001001010000001002000280400001600000028000000100000002000
@@ -87,6 +87,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Padding.Top = 2
     Padding.Right = 2
     Padding.Bottom = 2
+    ParentColor = True
     TabOrder = 1
     object Bevel7: TBevel
       AlignWithMargins = True

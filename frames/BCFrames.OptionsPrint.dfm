@@ -1,8 +1,6 @@
 inherited OptionsPrintFrame: TOptionsPrintFrame
   Width = 201
   Height = 345
-  ExplicitWidth = 201
-  ExplicitHeight = 345
   object Panel: TPanel
     Left = 0
     Top = 0
