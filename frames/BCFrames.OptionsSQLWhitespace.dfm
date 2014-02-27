@@ -1,6 +1,8 @@
 inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
-  Height = 135
-  ExplicitHeight = 135
+  Width = 301
+  Height = 131
+  ExplicitWidth = 301
+  ExplicitHeight = 131
   object Panel: TPanel
     Left = 0
     Top = 0

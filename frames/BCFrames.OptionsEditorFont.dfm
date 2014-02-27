@@ -268,7 +268,9 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       Height = 83
       Align = alClient
       BevelOuter = bvNone
+      Color = clWindow
       Padding.Left = 4
+      ParentBackground = False
       TabOrder = 1
       object SynEdit: TBCSynEdit
         Left = 4
@@ -364,7 +366,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
     Left = 260
     Top = 170
     Bitmap = {
-      494C01010A000D00080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010A000D000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

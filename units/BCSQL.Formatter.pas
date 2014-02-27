@@ -256,7 +256,11 @@ begin
   DLLHandle := LoadLibrary(PWideChar(GetSQLFormatterDLLFilename));
   try
     if DLLHandle = 0 then
+    begin
       ShowErrorMessage('DLL load failure');
+      Result := SQL;
+      Exit;
+    end;
     @FormatSQLFunction := GetProcAddress(DLLHandle, 'FormatSQL');
     @FreeAStringProcedure := GetProcAddress(DLLHandle, 'FreeAString');
     if Assigned(FormatSQLFunction) then

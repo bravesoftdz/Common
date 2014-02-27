@@ -1,9 +1,9 @@
 inherited OptionsCompareFrame: TOptionsCompareFrame
   Width = 282
-  Height = 77
+  Height = 67
   Visible = False
   ExplicitWidth = 282
-  ExplicitHeight = 77
+  ExplicitHeight = 67
   object Panel: TPanel
     Left = 0
     Top = 0

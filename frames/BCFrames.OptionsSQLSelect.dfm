@@ -11,6 +11,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
     Height = 302
     Align = alClient
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object PageControl: TBCPageControl
       AlignWithMargins = True
@@ -21,11 +23,11 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = TabSheet8
+      ActivePage = TabSheet1
       Align = alClient
       MultiLine = True
       TabOrder = 0
-      ActivePageCaption = 'Order By Clause'
+      ActivePageCaption = 'Column List'
       TabDragDrop = False
       HoldShiftToDragDrop = False
       ShowCloseButton = False
@@ -126,6 +128,10 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet2: TTabSheet
         Caption = 'Subquery'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object NewLineAfterInCheckBox: TBCCheckBox
           Left = 9
           Top = 5
@@ -190,6 +196,10 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet3: TTabSheet
         Caption = 'Into Clause'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object IntoClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5
@@ -425,6 +435,10 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       object TabSheet7: TTabSheet
         Caption = 'Having Clause'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object HavingClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5

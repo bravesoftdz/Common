@@ -47,6 +47,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
       SelectionBlendFactor = 255
       TabOrder = 0
       TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand]
+      TreeOptions.MiscOptions = [toAcceptOLEDrop, toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning]
       TreeOptions.PaintOptions = [toHideFocusRect, toShowButtons, toShowDropmark, toShowRoot, toThemeAware, toUseBlendedSelection]
       TreeOptions.SelectionOptions = [toFullRowSelect, toMiddleClickSelect]
       WantTabs = True
