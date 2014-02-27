@@ -9,6 +9,8 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
     Width = 284
     Height = 150
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object ColumnListStyleLabel: TLabel
       Left = 6

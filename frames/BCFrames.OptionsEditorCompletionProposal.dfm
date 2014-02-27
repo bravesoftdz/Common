@@ -1,15 +1,16 @@
 inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
   Width = 201
   Height = 119
-  Color = clWindow
-  ParentBackground = False
-  ParentColor = False
+  ExplicitWidth = 201
+  ExplicitHeight = 119
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 201
     Height = 101
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object ShortcutLabel: TLabel
       Left = 6

@@ -1,12 +1,16 @@
 inherited OptionsPrintFrame: TOptionsPrintFrame
   Width = 201
   Height = 345
+  ExplicitWidth = 201
+  ExplicitHeight = 345
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 201
     Height = 256
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object DateTimeLabel: TLabel
       Left = 6

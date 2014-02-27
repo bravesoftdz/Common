@@ -1,17 +1,18 @@
 inherited OptionsCompareFrame: TOptionsCompareFrame
   Width = 282
   Height = 77
-  Color = clWindow
-  ParentBackground = False
-  ParentColor = False
   Visible = False
+  ExplicitWidth = 282
+  ExplicitHeight = 77
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 282
     Height = 67
     BevelOuter = bvNone
+    Color = clWindow
     Padding.Left = 4
+    ParentBackground = False
     TabOrder = 0
     object IgnoreCaseCheckBox: TBCCheckBox
       Left = 4

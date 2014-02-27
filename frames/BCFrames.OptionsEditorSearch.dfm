@@ -1,12 +1,16 @@
 inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
   Width = 352
   Height = 41
+  ExplicitWidth = 352
+  ExplicitHeight = 41
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 369
     Height = 41
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object ShowSearchStringNotFoundCheckBox: TBCCheckBox
       Left = 4

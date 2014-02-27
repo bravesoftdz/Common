@@ -1,12 +1,16 @@
 inherited OptionsOutputFrame: TOptionsOutputFrame
   Width = 201
   Height = 63
+  ExplicitWidth = 201
+  ExplicitHeight = 63
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 201
     Height = 63
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object IndentLabel: TLabel
       Left = 6

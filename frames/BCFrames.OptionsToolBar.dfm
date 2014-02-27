@@ -1,23 +1,25 @@
 inherited OptionsToolBarFrame: TOptionsToolBarFrame
   Width = 451
-  Height = 305
+  Height = 302
   Align = alClient
   ExplicitWidth = 451
-  ExplicitHeight = 305
+  ExplicitHeight = 302
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 451
-    Height = 305
+    Height = 302
     Align = alClient
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object VirtualDrawTree: TVirtualDrawTree
       AlignWithMargins = True
       Left = 4
       Top = 0
       Width = 447
-      Height = 305
+      Height = 302
       Hint = 
         'Use drag and drop to move menu items. Right click popup menu to ' +
         'insert and delete items.'
@@ -59,7 +61,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         item
           Options = [coEnabled, coParentBidiMode, coParentColor, coVisible, coAutoSpring]
           Position = 0
-          Width = 447
+          Width = 443
           WideText = 'Menu Item'
         end>
     end

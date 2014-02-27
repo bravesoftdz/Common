@@ -2,12 +2,16 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
   Width = 236
   Height = 219
   Visible = False
+  ExplicitWidth = 236
+  ExplicitHeight = 219
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 236
     Height = 173
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object FontLabel: TLabel
       Left = 34

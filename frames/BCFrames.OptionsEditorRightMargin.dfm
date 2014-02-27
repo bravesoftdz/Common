@@ -2,12 +2,16 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
   Width = 198
   Height = 131
   Visible = False
+  ExplicitWidth = 198
+  ExplicitHeight = 131
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 198
     Height = 103
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object PositionLabel: TLabel
       Left = 6

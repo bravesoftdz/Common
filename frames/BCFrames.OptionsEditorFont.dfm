@@ -1,16 +1,15 @@
 inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
   Width = 451
-  Height = 305
+  Height = 302
   Align = alClient
-  Color = clWindow
-  ParentBackground = False
-  ParentColor = False
   Visible = False
+  ExplicitWidth = 451
+  ExplicitHeight = 302
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 451
-    Height = 305
+    Height = 302
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -21,6 +20,8 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       Height = 219
       Align = alTop
       BevelOuter = bvNone
+      Color = clWindow
+      ParentBackground = False
       TabOrder = 0
       object SelectEditorFontSpeedButton: TSpeedButton
         Left = 4
@@ -264,7 +265,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       Left = 0
       Top = 219
       Width = 451
-      Height = 86
+      Height = 83
       Align = alClient
       BevelOuter = bvNone
       Padding.Left = 4
@@ -273,7 +274,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Left = 4
         Top = 0
         Width = 447
-        Height = 86
+        Height = 83
         Align = alClient
         ActiveLineColor = clBtnFace
         CodeFolding.CaseSensitive = False
@@ -323,7 +324,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Minimap.Visible = True
         Minimap.CharWidth = 2
         Minimap.CharHeight = 4
-        Minimap.LinesInWindow = 16
+        Minimap.LinesInWindow = 15
         Options = [eoAutoIndent, eoDragDropEditing, eoEnhanceEndKey, eoGroupUndo, eoHalfPageScroll, eoScrollPastEol, eoShowScrollHint, eoSmartTabDelete, eoSmartTabs, eoTabsToSpaces]
         WordWrap.Enabled = False
         WordWrap.Position = 80
@@ -363,7 +364,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
     Left = 260
     Top = 170
     Bitmap = {
-      494C01010A000D00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010A000D00080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

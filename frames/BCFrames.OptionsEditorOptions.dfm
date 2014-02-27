@@ -1,15 +1,16 @@
 inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
   Width = 260
   Height = 412
-  Color = clWindow
-  ParentBackground = False
-  ParentColor = False
+  ExplicitWidth = 260
+  ExplicitHeight = 412
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 260
     Height = 432
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object LineSpacingLabel: TLabel
       Left = 6

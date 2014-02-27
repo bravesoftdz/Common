@@ -9,6 +9,8 @@ inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
     Width = 282
     Height = 62
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object KeywordAlignLabel: TLabel
       Left = 6

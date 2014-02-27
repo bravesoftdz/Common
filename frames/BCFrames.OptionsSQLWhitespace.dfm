@@ -1,15 +1,14 @@
 inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
-  Left = 0
-  Top = 0
-  Width = 320
   Height = 135
-  TabOrder = 0
+  ExplicitHeight = 135
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 301
     Height = 131
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object SpaceAroundOperatorCheckBox: TBCCheckBox
       Left = 4

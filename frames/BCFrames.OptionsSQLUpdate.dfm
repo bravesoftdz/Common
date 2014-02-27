@@ -9,6 +9,8 @@ inherited OptionsSQLUpdateFrame: TOptionsSQLUpdateFrame
     Width = 155
     Height = 47
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     object ColumnListStyleLabel: TLabel
       Left = 6
