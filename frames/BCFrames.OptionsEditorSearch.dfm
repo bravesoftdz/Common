@@ -1,12 +1,12 @@
 inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
-  Width = 352
+  Width = 300
   Height = 41
-  ExplicitWidth = 352
+  ExplicitWidth = 300
   ExplicitHeight = 41
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 369
+    Width = 300
     Height = 41
     BevelOuter = bvNone
     Color = clWindow
