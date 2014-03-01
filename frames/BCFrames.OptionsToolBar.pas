@@ -412,12 +412,13 @@ begin
   pSource := TVirtualStringTree(Source).FocusedNode;
   pTarget := Sender.DropTargetNode;
 
-  attMode := amNoWhere;
-  case Mode of
-    dmNowhere: attMode := amNoWhere;
-    dmAbove: attMode := amInsertBefore;
-    dmOnNode, dmBelow: attMode := amInsertAfter;
-  end;
+  if pTarget.Index > pSource.Index then
+    attMode := amInsertAfter
+  else
+  if pTarget.Index < pSource.Index then
+    attMode := amInsertBefore
+  else
+    attMode := amNoWhere;
 
   Sender.MoveTo(pSource, pTarget, attMode, False);
   FIsChanged := True;
@@ -427,7 +428,7 @@ procedure TOptionsToolBarFrame.VirtualDrawTreeDragOver(Sender: TBaseVirtualTree;
   State: TDragState; Pt: TPoint; Mode: TDropMode; var Effect: Integer; var Accept: Boolean);
 begin
   inherited;
-  Accept := (Source = Sender);
+  Accept := Source = Sender;
 end;
 
 procedure TOptionsToolBarFrame.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
