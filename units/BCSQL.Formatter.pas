@@ -48,6 +48,8 @@ type
     FInsertColumnsPerLine: Integer;
     { Update }
     FUpdateColumnlistStyle: Integer;
+    { Vendor }
+    FSQLVendor: Integer;
     { Alignments }
     FKeywordAlign: Integer;
     FKeywordAlignmentLeftJustify: Boolean;
@@ -151,6 +153,9 @@ type
     { Update }
     [IniValue(SQLFORMATTER, UPDATECOLUMNLISTSTYLE, '0')]
     property UpdateColumnListStyle: Integer read FUpdateColumnListStyle write FUpdateColumnListStyle;
+    { SQL Vendor }
+    [IniValue(SQLFORMATTER, SQLVENDOR, '4')] { 4 = Generic }
+    property SQLVendor: Integer read FSQLVendor write FSQLVendor;
     { Alignments }
     [IniValue(SQLFORMATTER, KEYWORDALIGN, '0')]
     property KeywordAlign: Integer read FKeywordAlign write FKeywordAlign;
