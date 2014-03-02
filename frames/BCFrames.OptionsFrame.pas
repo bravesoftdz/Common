@@ -17,7 +17,7 @@ type
     constructor Create(AOwner: TComponent); override;
     procedure Init; virtual;
     procedure GetData; virtual;
-    procedure PutData; virtual;
+    procedure PutData; virtual; abstract;
   end;
 
 implementation
@@ -58,17 +58,12 @@ end;
 
 procedure TOptionsFrame.Init;
 begin
-  //
+  // not abstract because this is not always implemented
 end;
 
 procedure TOptionsFrame.GetData;
 begin
-  //
-end;
-
-procedure TOptionsFrame.PutData;
-begin
-  //
+  // not abstract because this is not always implemented
 end;
 
 end.

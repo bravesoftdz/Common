@@ -1,12 +1,12 @@
 inherited OptionsSQLUpdateFrame: TOptionsSQLUpdateFrame
-  Width = 155
+  Width = 195
   Height = 47
-  ExplicitWidth = 155
+  ExplicitWidth = 195
   ExplicitHeight = 47
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 155
+    Width = 195
     Height = 47
     BevelOuter = bvNone
     Color = clWindow
@@ -15,14 +15,14 @@ inherited OptionsSQLUpdateFrame: TOptionsSQLUpdateFrame
     object ColumnListStyleLabel: TLabel
       Left = 6
       Top = 0
-      Width = 81
+      Width = 77
       Height = 13
-      Caption = 'Column List Style'
+      Caption = 'Column list style'
     end
     object ColumnListStyleComboBox: TBCComboBox
       Left = 4
       Top = 16
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4

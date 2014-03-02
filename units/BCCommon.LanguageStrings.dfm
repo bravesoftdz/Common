@@ -1816,22 +1816,22 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'AfterComma'
         Strings.Strings = (
-          'After Comma')
+          'After comma')
       end
       item
         Name = 'BeforeComma'
         Strings.Strings = (
-          'Before Comma')
+          'Before comma')
       end
       item
         Name = 'BeforeCommaWithSpace'
         Strings.Strings = (
-          'Before Comma With Space')
+          'Before comma with space')
       end
       item
         Name = 'NoLineBreak'
         Strings.Strings = (
-          'No Line Break')
+          'No line break')
       end
       item
         Name = 'BeforeAndor'
@@ -1871,7 +1871,7 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'SentenceCase'
         Strings.Strings = (
-          'Sentence Case')
+          'Sentence case')
       end
       item
         Name = 'NoChange'

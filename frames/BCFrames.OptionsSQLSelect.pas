@@ -12,7 +12,7 @@ type
   TOptionsSQLSelectFrame = class(TOptionsFrame)
     Panel: TPanel;
     PageControl: TBCPageControl;
-    TabSheet1: TTabSheet;
+    ColumnListTabSheet: TTabSheet;
     ColumnListStyleLabel: TLabel;
     ColumnListStyleComboBox: TBCComboBox;
     ColumnListLineBreakLabel: TLabel;
@@ -20,17 +20,17 @@ type
     AlignAliasCheckBox: TBCCheckBox;
     ColumnInNewLineCheckBox: TBCCheckBox;
     TreatDistinctAsVirtualColumnCheckBox: TBCCheckBox;
-    TabSheet2: TTabSheet;
+    SubqueryTabSheet: TTabSheet;
     NewLineAfterInCheckBox: TBCCheckBox;
     NewLineAfterExistsCheckBox: TBCCheckBox;
     NewlineAfterComparisonOperatorCheckBox: TBCCheckBox;
     NewlineBeforeComparisonOperatorCheckBox: TBCCheckBox;
-    TabSheet3: TTabSheet;
-    TabSheet4: TTabSheet;
-    TabSheet5: TTabSheet;
-    TabSheet6: TTabSheet;
-    TabSheet7: TTabSheet;
-    TabSheet8: TTabSheet;
+    IntoClauseTabSheet: TTabSheet;
+    FromJoinClauseTabSheet: TTabSheet;
+    AndOrKeywordTabSheet: TTabSheet;
+    GroupByClauseTabSheet: TTabSheet;
+    HavingClauseTabSheet: TTabSheet;
+    OderByClauseTabSheet: TTabSheet;
     IntoClauseInNewLineCheckBox: TBCCheckBox;
     FromClauseStyleLabel: TLabel;
     FromClauseStyleComboBox: TBCComboBox;

@@ -16,51 +16,51 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
     object IndentLengthLabel: TLabel
       Left = 6
       Top = 0
-      Width = 68
+      Width = 65
       Height = 13
-      Caption = 'Indent Length'
+      Caption = 'Indent length'
     end
     object TabSizeLabel: TLabel
       Left = 6
       Top = 64
-      Width = 40
+      Width = 39
       Height = 13
-      Caption = 'Tab Size'
+      Caption = 'Tab size'
     end
     object FunctionBodyIndentLabel: TLabel
       Left = 6
       Top = 106
-      Width = 103
+      Width = 101
       Height = 13
-      Caption = 'Function Body Indent'
+      Caption = 'Function body indent'
     end
     object BlockLeftIndentSizeLabel: TLabel
       Left = 6
       Top = 170
-      Width = 103
+      Width = 97
       Height = 13
-      Caption = 'Block Left Indent Size'
+      Caption = 'Block left indent size'
     end
     object BlockRightIndentSizeLabel: TLabel
       Left = 6
       Top = 212
-      Width = 109
+      Width = 103
       Height = 13
-      Caption = 'Block Right Indent Size'
+      Caption = 'Block right indent size'
     end
     object BlockIndentSizeLabel: TLabel
       Left = 6
       Top = 254
-      Width = 81
+      Width = 78
       Height = 13
-      Caption = 'Block Indent Size'
+      Caption = 'Block indent size'
     end
     object SingleStatementIndentLabel: TLabel
       Left = 6
       Top = 296
-      Width = 172
+      Width = 173
       Height = 13
-      Caption = 'If/Else Single Statement Indent Size'
+      Caption = 'IF/ELSE single statement indent size'
     end
     object UseTabCheckBox: TBCCheckBox
       Left = 6
@@ -71,7 +71,7 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Use Tab'
+      Caption = ' Use tab'
       TabOrder = 0
       ReadOnly = False
     end
@@ -141,7 +141,7 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Block On New Line'
+      Caption = ' Block on new line'
       TabOrder = 4
       ReadOnly = False
     end

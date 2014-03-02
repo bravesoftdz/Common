@@ -1,13 +1,13 @@
 inherited OptionsSQLFormatterFrame: TOptionsSQLFormatterFrame
-  Width = 282
-  Height = 62
-  ExplicitWidth = 282
-  ExplicitHeight = 62
+  Width = 192
+  Height = 49
+  ExplicitWidth = 192
+  ExplicitHeight = 49
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 282
-    Height = 62
+    Width = 192
+    Height = 49
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
@@ -22,7 +22,7 @@ inherited OptionsSQLFormatterFrame: TOptionsSQLFormatterFrame
     object SQLVendorComboBox: TBCComboBox
       Left = 4
       Top = 16
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4

@@ -92,6 +92,7 @@ begin
     SetStringHolder(LanguageDataModule.ConstantMultiStringHolder, 'Constant');
     SetStringHolder(LanguageDataModule.FileTypesMultiStringHolder, 'FileTypes');
     SetStringHolder(LanguageDataModule.ConvertConstantMultiStringHolder, 'ConvertConstant');
+    SetStringHolder(LanguageDataModule.SQLFormatterMultiStringHolder, 'SQLFormatterConstant');
     BigIniFile.ReadSectionValues('ColorComboBox', LanguageDataModule.FColorComboBoxStrings);
   finally
     BigIniFile.Free;

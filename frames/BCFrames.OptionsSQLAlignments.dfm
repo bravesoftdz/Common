@@ -37,7 +37,7 @@ inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
     object KeywordAlignComboBox: TBCComboBox
       Left = 4
       Top = 16
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4

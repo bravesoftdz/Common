@@ -23,16 +23,16 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = TabSheet1
+      ActivePage = FromJoinClauseTabSheet
       Align = alClient
       MultiLine = True
       TabOrder = 0
-      ActivePageCaption = 'Column List'
+      ActivePageCaption = 'FROM/JOIN clause'
       TabDragDrop = False
       HoldShiftToDragDrop = False
       ShowCloseButton = False
-      object TabSheet1: TTabSheet
-        Caption = 'Column List'
+      object ColumnListTabSheet: TTabSheet
+        Caption = 'Column list'
         object ColumnListStyleLabel: TLabel
           Left = 11
           Top = 7
@@ -45,12 +45,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Top = 49
           Width = 49
           Height = 13
-          Caption = 'Line Break'
+          Caption = 'Line break'
         end
         object ColumnListStyleComboBox: TBCComboBox
           Left = 9
           Top = 21
-          Width = 133
+          Width = 186
           Height = 22
           Margins.Left = 4
           Margins.Top = 4
@@ -66,7 +66,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object ColumnListLineBreakComboBox: TBCComboBox
           Left = 9
           Top = 65
-          Width = 133
+          Width = 186
           Height = 22
           Margins.Left = 4
           Margins.Top = 4
@@ -88,7 +88,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Align Alias'
+          Caption = ' Align alias'
           Checked = True
           State = cbChecked
           TabOrder = 2
@@ -103,7 +103,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Columns In New Line'
+          Caption = ' Columns in new line'
           Checked = True
           State = cbChecked
           TabOrder = 3
@@ -118,20 +118,16 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Treat Distinct As Virtual Column'
+          Caption = ' Treat distinct as virtual column'
           Checked = True
           State = cbChecked
           TabOrder = 4
           ReadOnly = False
         end
       end
-      object TabSheet2: TTabSheet
+      object SubqueryTabSheet: TTabSheet
         Caption = 'Subquery'
         ImageIndex = 1
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object NewLineAfterInCheckBox: TBCCheckBox
           Left = 9
           Top = 5
@@ -141,7 +137,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' New Line After IN'
+          Caption = ' New line after IN'
           Checked = True
           State = cbChecked
           TabOrder = 0
@@ -156,7 +152,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' New Line After EXISTS'
+          Caption = ' New line after EXISTS'
           Checked = True
           State = cbChecked
           TabOrder = 1
@@ -171,7 +167,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' New Line After Comparison Operator'
+          Caption = ' New line after comparison operator'
           Checked = True
           State = cbChecked
           TabOrder = 2
@@ -186,20 +182,16 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' New Line Before Comparison Operator'
+          Caption = ' New line before comparison operator'
           Checked = True
           State = cbChecked
           TabOrder = 3
           ReadOnly = False
         end
       end
-      object TabSheet3: TTabSheet
-        Caption = 'Into Clause'
+      object IntoClauseTabSheet: TTabSheet
+        Caption = 'INTO clause'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object IntoClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5
@@ -209,15 +201,15 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Into Clause In New Line'
+          Caption = ' Into clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 0
           ReadOnly = False
         end
       end
-      object TabSheet4: TTabSheet
-        Caption = 'From/Join Clause'
+      object FromJoinClauseTabSheet: TTabSheet
+        Caption = 'FROM/JOIN clause'
         ImageIndex = 3
         object FromClauseStyleLabel: TLabel
           Left = 11
@@ -229,7 +221,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object FromClauseStyleComboBox: TBCComboBox
           Left = 9
           Top = 23
-          Width = 133
+          Width = 186
           Height = 22
           Margins.Left = 4
           Margins.Top = 4
@@ -251,7 +243,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' From Clause In New Line'
+          Caption = ' From clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 1
@@ -266,7 +258,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Join Clause In New Line'
+          Caption = ' Join clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 2
@@ -281,7 +273,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Align Join With FROM Keyword'
+          Caption = ' Align join with FROM keyword'
           Checked = True
           State = cbChecked
           TabOrder = 3
@@ -296,7 +288,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Align AND/OR With ON In Join Clause '
+          Caption = ' Align AND/OR with ON in join clause '
           Checked = True
           State = cbChecked
           TabOrder = 4
@@ -311,27 +303,27 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Align Alias In From Clause'
+          Caption = ' Align alias in FROM clause'
           Checked = True
           State = cbChecked
           TabOrder = 5
           ReadOnly = False
         end
       end
-      object TabSheet5: TTabSheet
-        Caption = 'And/Or Keyword'
+      object AndOrKeywordTabSheet: TTabSheet
+        Caption = 'AND/OR keyword'
         ImageIndex = 4
         object AndOrLineBreakLabel: TLabel
           Left = 11
           Top = 7
           Width = 49
           Height = 13
-          Caption = 'Line Break'
+          Caption = 'Line break'
         end
         object AndOrLineBreakComboBox: TBCComboBox
           Left = 9
           Top = 23
-          Width = 133
+          Width = 186
           Height = 22
           Margins.Left = 4
           Margins.Top = 4
@@ -353,7 +345,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' AND/OR Under Where'
+          Caption = ' AND/OR under where'
           Checked = True
           State = cbChecked
           TabOrder = 1
@@ -368,7 +360,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Where Clause In New Line'
+          Caption = ' Where clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 2
@@ -383,15 +375,15 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Where Clause Align Expr'
+          Caption = ' Where clause align expr'
           Checked = True
           State = cbChecked
           TabOrder = 3
           ReadOnly = False
         end
       end
-      object TabSheet6: TTabSheet
-        Caption = 'Group By Clause'
+      object GroupByClauseTabSheet: TTabSheet
+        Caption = 'GROUP BY clause'
         ImageIndex = 5
         object GroupByClauseStyleLabel: TLabel
           Left = 11
@@ -402,8 +394,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         end
         object GroupByClauseStyleComboBox: TBCComboBox
           Left = 9
-          Top = 23
-          Width = 133
+          Top = 22
+          Width = 186
           Height = 22
           Margins.Left = 4
           Margins.Top = 4
@@ -425,20 +417,16 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Group By Clause In New Line'
+          Caption = ' GROUP BY clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 1
           ReadOnly = False
         end
       end
-      object TabSheet7: TTabSheet
-        Caption = 'Having Clause'
+      object HavingClauseTabSheet: TTabSheet
+        Caption = 'HAVING clause'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object HavingClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5
@@ -448,15 +436,15 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Having Clause In New Line'
+          Caption = ' Having clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 0
           ReadOnly = False
         end
       end
-      object TabSheet8: TTabSheet
-        Caption = 'Order By Clause'
+      object OderByClauseTabSheet: TTabSheet
+        Caption = 'ORDER BY clause'
         ImageIndex = 7
         object OrderByClauseStyleLabel: TLabel
           Left = 11
@@ -468,7 +456,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object OrderByClauseStyleComboBox: TBCComboBox
           Left = 9
           Top = 23
-          Width = 133
+          Width = 186
           Height = 22
           Margins.Left = 4
           Margins.Top = 4
@@ -490,7 +478,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Order By Clause In New Line'
+          Caption = ' ORDER BY clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 1

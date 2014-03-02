@@ -15,27 +15,27 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
     object ColumnListStyleLabel: TLabel
       Left = 6
       Top = 0
-      Width = 81
+      Width = 77
       Height = 13
-      Caption = 'Column List Style'
+      Caption = 'Column list style'
     end
     object ValueListStyleLabel: TLabel
       Left = 6
       Top = 42
-      Width = 72
+      Width = 68
       Height = 13
-      Caption = 'Value List Style'
+      Caption = 'Value list style'
     end
     object InsertColumnsPerLineLabel: TLabel
       Left = 6
       Top = 84
-      Width = 113
+      Width = 108
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = 'Insert Columns Per Line'
+      Caption = 'Insert columns per line'
     end
     object ParenthesisInSeparateLinesCheckBox: TBCCheckBox
       Left = 4
@@ -46,7 +46,7 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Parenthesis In Separate Lines'
+      Caption = ' Parenthesis in separate lines'
       Checked = True
       State = cbChecked
       TabOrder = 2
@@ -55,7 +55,7 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
     object ColumnListStyleComboBox: TBCComboBox
       Left = 4
       Top = 16
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4
@@ -71,7 +71,7 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
     object ValueListStyleComboBox: TBCComboBox
       Left = 4
       Top = 58
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4

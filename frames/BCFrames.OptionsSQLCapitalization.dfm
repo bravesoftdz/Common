@@ -1,12 +1,12 @@
 inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
-  Width = 171
+  Width = 193
   Height = 361
-  ExplicitWidth = 171
+  ExplicitWidth = 193
   ExplicitHeight = 361
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 171
+    Width = 193
     Height = 361
     BevelOuter = bvNone
     Color = clWindow
@@ -29,56 +29,56 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     object QuotedIdentifierLabel: TLabel
       Left = 6
       Top = 80
-      Width = 83
+      Width = 81
       Height = 13
-      Caption = 'Quoted Identifier'
+      Caption = 'Quoted identifier'
     end
     object TableNameLabel: TLabel
       Left = 6
       Top = 120
-      Width = 56
+      Width = 55
       Height = 13
-      Caption = 'Table Name'
+      Caption = 'Table name'
     end
     object ColumnNameLabel: TLabel
       Left = 6
       Top = 160
-      Width = 65
+      Width = 64
       Height = 13
-      Caption = 'Column Name'
+      Caption = 'Column name'
     end
     object AliasNameLabel: TLabel
       Left = 6
       Top = 200
-      Width = 52
+      Width = 51
       Height = 13
-      Caption = 'Alias Name'
+      Caption = 'Alias name'
     end
     object VariableNameLabel: TLabel
       Left = 6
       Top = 240
-      Width = 68
+      Width = 67
       Height = 13
-      Caption = 'Variable Name'
+      Caption = 'Variable name'
     end
     object FunctionNameLabel: TLabel
       Left = 6
       Top = 280
-      Width = 71
+      Width = 70
       Height = 13
-      Caption = 'Function Name'
+      Caption = 'Function name'
     end
     object DataTypeLabel: TLabel
       Left = 6
       Top = 320
-      Width = 50
+      Width = 48
       Height = 13
-      Caption = 'Data Type'
+      Caption = 'Data type'
     end
     object KeywordsComboBox: TBCComboBox
       Left = 4
       Top = 16
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4
@@ -94,7 +94,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     object IdentifierComboBox: TBCComboBox
       Left = 4
       Top = 56
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4
@@ -110,7 +110,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     object QuotedIdentifierComboBox: TBCComboBox
       Left = 4
       Top = 96
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4
@@ -126,7 +126,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     object TableNameComboBox: TBCComboBox
       Left = 4
       Top = 136
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4
@@ -142,7 +142,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     object ColumnNameComboBox: TBCComboBox
       Left = 4
       Top = 176
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4
@@ -158,7 +158,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     object AliasNameComboBox: TBCComboBox
       Left = 4
       Top = 216
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4
@@ -174,7 +174,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     object VariableNameComboBox: TBCComboBox
       Left = 4
       Top = 256
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4
@@ -190,7 +190,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     object FunctionNameComboBox: TBCComboBox
       Left = 4
       Top = 296
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4
@@ -206,7 +206,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     object DataTypeComboBox: TBCComboBox
       Left = 4
       Top = 336
-      Width = 133
+      Width = 186
       Height = 22
       Margins.Left = 4
       Margins.Top = 4
