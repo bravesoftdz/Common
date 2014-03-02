@@ -23,11 +23,11 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = FromJoinClauseTabSheet
+      ActivePage = OderByClauseTabSheet
       Align = alClient
       MultiLine = True
       TabOrder = 0
-      ActivePageCaption = 'FROM/JOIN clause'
+      ActivePageCaption = 'ORDER BY clause'
       TabDragDrop = False
       HoldShiftToDragDrop = False
       ShowCloseButton = False
@@ -118,7 +118,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Treat distinct as virtual column'
+          Caption = ' Treat DISTINCT as virtual column'
           Checked = True
           State = cbChecked
           TabOrder = 4
@@ -201,7 +201,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Into clause in new line'
+          Caption = ' INTO clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 0
@@ -243,7 +243,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' From clause in new line'
+          Caption = ' FROM clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 1
@@ -258,7 +258,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Join clause in new line'
+          Caption = ' JOIN clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 2
@@ -273,7 +273,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Align join with FROM keyword'
+          Caption = ' Align JOIN with FROM keyword'
           Checked = True
           State = cbChecked
           TabOrder = 3
@@ -288,7 +288,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Align AND/OR with ON in join clause '
+          Caption = ' Align AND/OR with ON in JOIN clause '
           Checked = True
           State = cbChecked
           TabOrder = 4
@@ -360,7 +360,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Where clause in new line'
+          Caption = ' WHERE clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 2
@@ -375,7 +375,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Where clause align expr'
+          Caption = ' WHERE clause align expr'
           Checked = True
           State = cbChecked
           TabOrder = 3
@@ -436,7 +436,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Having clause in new line'
+          Caption = ' HAVING clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 0
