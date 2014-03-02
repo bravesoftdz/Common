@@ -15,9 +15,9 @@ inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
     object KeywordAlignLabel: TLabel
       Left = 6
       Top = 0
-      Width = 68
+      Width = 67
       Height = 13
-      Caption = 'Keyword Align'
+      Caption = 'Keyword align'
     end
     object KeywordAlignmentLeftJustifyCheckBox: TBCCheckBox
       Left = 4
@@ -28,7 +28,7 @@ inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Keyword Alignment Strict Left'
+      Caption = ' Keyword alignment strict left'
       Checked = True
       State = cbChecked
       TabOrder = 1

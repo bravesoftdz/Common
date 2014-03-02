@@ -3,7 +3,7 @@ unit BCSQL.Consts;
 interface
 
 const
-  SQLVENDOR = 'SQLVendor';
+  SQLDATABASE = 'SQLDatabase';
   SQLFORMATTER = 'SQLFormatter';
   { Select Column List }
   SELECTCOLUMNLISTSTYLE = 'SelectColumnListStyle';

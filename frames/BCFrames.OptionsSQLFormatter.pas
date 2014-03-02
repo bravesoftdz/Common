@@ -10,8 +10,8 @@ uses
 type
   TOptionsSQLFormatterFrame = class(TOptionsFrame)
     Panel: TPanel;
-    VendorLabel: TLabel;
-    SQLVendorComboBox: TBCComboBox;
+    DatabaseLabel: TLabel;
+    DatabaseComboBox: TBCComboBox;
   private
     { Private declarations }
   public
@@ -51,7 +51,7 @@ procedure TOptionsSQLFormatterFrame.Init;
 begin
   { 0 = MSSql; 1 = Oracle; 2 = MySQL; 3 = Access; 4 = Generic; 5 = DB2; 6 = Sybase; 7 = Informix; 8 = PostgreSQL;
     9 = Firebird; 10 = Mdx }
-  with SQLVendorComboBox.Items do
+  with DatabaseComboBox.Items do
   begin
     Add('MSSQL');
     Add('Oracle');
@@ -69,12 +69,12 @@ end;
 
 procedure TOptionsSQLFormatterFrame.GetData;
 begin
-  SQLVendorComboBox.ItemIndex := SQLFormatterOptions.SQLVendor;
+  DatabaseComboBox.ItemIndex := SQLFormatterOptions.SQLDatabase;
 end;
 
 procedure TOptionsSQLFormatterFrame.PutData;
 begin
-  SQLFormatterOptions.SQLVendor := SQLVendorComboBox.ItemIndex;
+  SQLFormatterOptions.SQLDatabase := DatabaseComboBox.ItemIndex;
 end;
 
 end.

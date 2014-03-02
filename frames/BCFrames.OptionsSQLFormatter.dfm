@@ -12,14 +12,14 @@ inherited OptionsSQLFormatterFrame: TOptionsSQLFormatterFrame
     Color = clWindow
     ParentBackground = False
     TabOrder = 0
-    object VendorLabel: TLabel
+    object DatabaseLabel: TLabel
       Left = 6
       Top = 0
-      Width = 34
+      Width = 46
       Height = 13
-      Caption = 'Vendor'
+      Caption = 'Database'
     end
-    object SQLVendorComboBox: TBCComboBox
+    object DatabaseComboBox: TBCComboBox
       Left = 4
       Top = 16
       Width = 186

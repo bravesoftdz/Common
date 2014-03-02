@@ -48,8 +48,8 @@ type
     FInsertColumnsPerLine: Integer;
     { Update }
     FUpdateColumnlistStyle: Integer;
-    { Vendor }
-    FSQLVendor: Integer;
+    { Database }
+    FSQLDatabase: Integer;
     { Alignments }
     FKeywordAlign: Integer;
     FKeywordAlignmentLeftJustify: Boolean;
@@ -153,9 +153,9 @@ type
     { Update }
     [IniValue(SQLFORMATTER, UPDATECOLUMNLISTSTYLE, '0')]
     property UpdateColumnListStyle: Integer read FUpdateColumnListStyle write FUpdateColumnListStyle;
-    { SQL Vendor }
-    [IniValue(SQLFORMATTER, SQLVENDOR, '4')] { 4 = Generic }
-    property SQLVendor: Integer read FSQLVendor write FSQLVendor;
+    { SQL Database }
+    [IniValue(SQLFORMATTER, SQLDatabase, '4')] { 4 = Generic }
+    property SQLDatabase: Integer read FSQLDatabase write FSQLDatabase;
     { Alignments }
     [IniValue(SQLFORMATTER, KEYWORDALIGN, '0')]
     property KeywordAlign: Integer read FKeywordAlign write FKeywordAlign;
@@ -214,12 +214,12 @@ type
     property CapitalizationDatatype: Integer read FCapitalizationDatatype write FCapitalizationDatatype;
   end;
 
-  TSQLVendor = (svMSSql, svOracle, svMySQL, svAccess, svGeneric, svDB2, svSybase, svInformix, svPostgreSQL, svFirebird, svMdx);
+  TSQLDatabase = (dbMSSql, dbOracle, dbMySQL, dbAccess, dbGeneric, dbDB2, dbSybase, dbInformix, dbPostgreSQL, dbFirebird, dbMdx);
 
-  TFormatSQL = function(SQL: PWideChar; Vendor: Integer): PWideChar; stdcall;
+  TFormatSQL = function(SQL: PWideChar; Database: Integer): PWideChar; stdcall;
   TFreeAString = procedure(AStr: PWideChar); stdcall;
 
-function FormatSQL(SQL: string; Vendor: TSQLVendor): string;
+function FormatSQL(SQL: string; Database: TSQLDatabase): string;
 function SQLFormatterOptions: TSQLFormatterOptions;
 
 implementation
@@ -249,7 +249,7 @@ begin
   TIniPersist.Save(GetIniFilename, Self);
 end;
 
-function FormatSQL(SQL: string; Vendor: TSQLVendor): string;
+function FormatSQL(SQL: string; Database: TSQLDatabase): string;
 var
   DLLHandle: THandle;
   s: PWideChar;
@@ -269,7 +269,7 @@ begin
     @FormatSQLFunction := GetProcAddress(DLLHandle, 'FormatSQL');
     @FreeAStringProcedure := GetProcAddress(DLLHandle, 'FreeAString');
     if Assigned(FormatSQLFunction) then
-      s := FormatSQLFunction(PWideChar(SQL), 1);
+      s := FormatSQLFunction(PWideChar(SQL), Ord(Database));
     Result := s;
   finally
     if Assigned(FreeAStringProcedure) then
