@@ -1,13 +1,13 @@
 inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
   Width = 260
-  Height = 412
+  Height = 457
   ExplicitWidth = 260
-  ExplicitHeight = 412
+  ExplicitHeight = 457
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 260
-    Height = 432
+    Height = 457
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
@@ -44,13 +44,24 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object NonblinkingCaretColorLabel: TLabel
       Left = 6
       Top = 370
-      Width = 116
+      Width = 175
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = 'Non-blinking Caret Color'
+      Caption = 'Non-blinking Caret Background Color'
+    end
+    object NonblinkingCaretFontColorLabel: TLabel
+      Left = 6
+      Top = 414
+      Width = 141
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Caption = 'Non-blinking Caret Font Color'
     end
     object AutoIndentCheckBox: TBCCheckBox
       Left = 4
@@ -259,7 +270,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       TabOrder = 2
       ReadOnly = False
     end
-    object NonblinkingCaretColorBox: TBCColorComboBox
+    object NonblinkingCaretBackgroundColorBox: TBCColorComboBox
       Left = 4
       Top = 386
       Width = 200
@@ -285,6 +296,19 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       State = cbChecked
       TabOrder = 5
       ReadOnly = False
+    end
+    object NonblinkingCaretFontColorBox: TBCColorComboBox
+      Left = 6
+      Top = 430
+      Width = 200
+      Height = 22
+      ColorValue = clWhite
+      ColorDialogText = 'Custom...'
+      ColorWidth = 13
+      DroppedDownWidth = 200
+      NewColorText = 'Custom'
+      Options = [coText, coStdColors, coSysColors, coCustomColors]
+      TabOrder = 16
     end
   end
 end

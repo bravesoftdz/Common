@@ -28,8 +28,10 @@ type
     TripleClickRowSelectCheckBox: TBCCheckBox;
     NonblinkingCaretCheckBox: TBCCheckBox;
     NonblinkingCaretColorLabel: TLabel;
-    NonblinkingCaretColorBox: TBCColorComboBox;
+    NonblinkingCaretBackgroundColorBox: TBCColorComboBox;
     ShowScrollHintCheckBox: TBCCheckBox;
+    NonblinkingCaretFontColorLabel: TLabel;
+    NonblinkingCaretFontColorBox: TBCColorComboBox;
   private
     { Private declarations }
   public
@@ -68,7 +70,8 @@ end;
 procedure TOptionsEditorOptionsFrame.Init;
 begin
   inherited;
-  NonblinkingCaretColorBox.ColorNameMap := LanguageDatamodule.ColorComboBoxStrings;
+  NonblinkingCaretBackgroundColorBox.ColorNameMap := LanguageDatamodule.ColorComboBoxStrings;
+  NonblinkingCaretFontColorBox.ColorNameMap := LanguageDatamodule.ColorComboBoxStrings;
   with InsertCaretComboBox.Items do
   begin
     Add(LanguageDatamodule.GetConstant('VerticalLine'));
@@ -95,7 +98,8 @@ begin
   OptionsContainer.LineSpacing := StrToIntDef(LineSpacingEdit.Text, 0);
   OptionsContainer.TabWidth := StrToIntDef(TabWidthEdit.Text, 8);
   OptionsContainer.InsertCaret := InsertCaretComboBox.ItemIndex;
-  OptionsContainer.NonblinkingCaretColor := ColorToString(NonblinkingCaretColorBox.ColorValue);
+  OptionsContainer.NonblinkingCaretColor := ColorToString(NonblinkingCaretBackgroundColorBox.ColorValue);
+  OptionsContainer.NonblinkingCaretFontColor := ColorToString(NonblinkingCaretFontColorBox.ColorValue);
 end;
 
 procedure TOptionsEditorOptionsFrame.GetData;
@@ -115,7 +119,8 @@ begin
   LineSpacingEdit.Text := IntToStr(OptionsContainer.LineSpacing);
   TabWidthEdit.Text := IntToStr(OptionsContainer.TabWidth);
   InsertCaretComboBox.ItemIndex := OptionsContainer.InsertCaret;
-  NonblinkingCaretColorBox.ColorValue := StringToColor(OptionsContainer.NonblinkingCaretColor);
+  NonblinkingCaretBackgroundColorBox.ColorValue := StringToColor(OptionsContainer.NonblinkingCaretColor);
+  NonblinkingCaretFontColorBox.ColorValue := StringToColor(OptionsContainer.NonblinkingCaretFontColor);
 end;
 
 end.

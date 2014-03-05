@@ -54,6 +54,7 @@ type
     FMinimapWidth: Integer;
     FNonblinkingCaret: Boolean;
     FNonblinkingCaretColor: string;
+    FNonblinkingCaretFontColor: string;
     FOutputIndent: Integer;
     FOutputShowTreeLines: Boolean;
     FPersistentHotKeys: Boolean;
@@ -174,6 +175,8 @@ type
     property NonblinkingCaret: Boolean read FNonblinkingCaret write FNonblinkingCaret;
     [IniValue('Options', 'NonblinkingCaretColor', 'clBlack')]
     property NonblinkingCaretColor: string read FNonblinkingCaretColor write FNonblinkingCaretColor;
+    [IniValue('Options', 'NonblinkingCaretFontColor', 'clWhite')]
+    property NonblinkingCaretFontColor: string read FNonblinkingCaretFontColor write FNonblinkingCaretFontColor;
     [IniValue('Options', 'OutputIndent', '20')]
     property OutputIndent: Integer read FOutputIndent write FOutputIndent;
     [IniValue('Options', 'OutputShowTreeLines', False)]
@@ -563,6 +566,7 @@ begin
     TCustomSynEdit(Dest).TabWidth := FTabWidth;
     TCustomSynEdit(Dest).InsertCaret := TSynEditCaretType(FInsertCaret);
     TCustomSynEdit(Dest).NonBlinkingCaretColor := StringToColor(FNonblinkingCaretColor);
+    TCustomSynEdit(Dest).NonBlinkingCaretFontColor := StringToColor(FNonblinkingCaretFontColor);
     if FAutoIndent then
       TCustomSynEdit(Dest).Options := TCustomSynEdit(Dest).Options + [eoAutoIndent]
     else
