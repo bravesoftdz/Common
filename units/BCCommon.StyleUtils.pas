@@ -145,7 +145,7 @@ begin
     SynEdit.Gutter.Color := clBtnFace;
     SynEdit.Color := clWindow;
   end;
-
+  SynEdit.SearchHighlightColor := SynEdit.RightEdge.Color;
   //SynEdit.ActiveLineColor := SynEdit.Color;
 end;
 
@@ -1217,6 +1217,7 @@ begin
   SynEdit.Gutter.Color := SynEdit.Color;
   if EditColor = clWindowText then
     SynEdit.Gutter.Color := LightenColor(SynEdit.Color, 0.2);
+  SynEdit.SearchHighlightColor := SynEdit.RightEdge.Color;
   SynEdit.Invalidate;
 end;
 
