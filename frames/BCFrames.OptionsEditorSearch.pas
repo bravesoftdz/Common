@@ -11,6 +11,7 @@ type
     Panel: TPanel;
     ShowSearchStringNotFoundCheckBox: TBCCheckBox;
     BeepIfSearchStringNotFoundCheckBox: TBCCheckBox;
+    DocumentSpecificSearchCheckBox: TBCCheckBox;
   private
     { Private declarations }
   public
@@ -46,12 +47,14 @@ procedure TOptionsEditorSearchFrame.PutData;
 begin
   OptionsContainer.ShowSearchStringNotFound := ShowSearchStringNotFoundCheckBox.Checked;
   OptionsContainer.BeepIfSearchStringNotFound := BeepIfSearchStringNotFoundCheckBox.Checked;
+  OptionsContainer.DocumentSpecificSearch := DocumentSpecificSearchCheckBox.Checked;
 end;
 
 procedure TOptionsEditorSearchFrame.GetData;
 begin
   ShowSearchStringNotFoundCheckBox.Checked := OptionsContainer.ShowSearchStringNotFound;
   BeepIfSearchStringNotFoundCheckBox.Checked := OptionsContainer.BeepIfSearchStringNotFound;
+  DocumentSpecificSearchCheckBox.Checked := OptionsContainer.DocumentSpecificSearch;
 end;
 
 end.

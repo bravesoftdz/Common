@@ -212,24 +212,24 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       object MinimapWidthLabel: TLabel
         Left = 6
         Top = 130
-        Width = 69
+        Width = 67
         Height = 13
         Margins.Left = 4
         Margins.Top = 4
         Margins.Right = 4
         Margins.Bottom = 4
-        Caption = 'Minimap Width'
+        Caption = 'Minimap width'
       end
       object ActiveLineColorBrightnessLabel: TLabel
         Left = 6
         Top = 172
-        Width = 133
+        Width = 128
         Height = 13
         Margins.Left = 4
         Margins.Top = 4
         Margins.Right = 4
         Margins.Bottom = 4
-        Caption = 'Active Line Color Brightness'
+        Caption = 'Active line color brightness'
       end
       object MinimapWidthEdit: TBCEdit
         Left = 4
@@ -366,7 +366,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
     Left = 260
     Top = 170
     Bitmap = {
-      494C01010A000D000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010A000D00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

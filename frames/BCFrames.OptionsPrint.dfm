@@ -15,30 +15,30 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
     object DateTimeLabel: TLabel
       Left = 6
       Top = 131
-      Width = 51
+      Width = 49
       Height = 13
-      Caption = 'Date Time '
+      Caption = 'Date time '
     end
     object PrintedByLabel: TLabel
       Left = 6
       Top = 87
       Width = 49
       Height = 13
-      Caption = 'Printed By'
+      Caption = 'Printed by'
     end
     object DocumentNameLabel: TLabel
       Left = 6
       Top = 0
-      Width = 78
+      Width = 77
       Height = 13
-      Caption = 'Document Name'
+      Caption = 'Document name'
     end
     object PageNumberLabel: TLabel
       Left = 6
       Top = 44
-      Width = 64
+      Width = 63
       Height = 13
-      Caption = 'Page Number'
+      Caption = 'Page number'
     end
     object DateTimeComboBox: TBCComboBox
       Left = 4
@@ -113,7 +113,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show Header Line'
+      Caption = ' Show header line'
       Checked = True
       State = cbChecked
       TabOrder = 4
@@ -128,7 +128,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show Footer Line'
+      Caption = ' Show footer line'
       Checked = True
       State = cbChecked
       TabOrder = 5
@@ -143,7 +143,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show Line Numbers'
+      Caption = ' Show line numbers'
       TabOrder = 6
       ReadOnly = False
     end
@@ -156,7 +156,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Word Wrap'
+      Caption = ' Word wrap'
       TabOrder = 7
       ReadOnly = False
     end

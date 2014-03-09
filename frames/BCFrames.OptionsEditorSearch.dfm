@@ -1,13 +1,14 @@
 inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
   Width = 300
-  Height = 41
+  Height = 64
+  AutoSize = True
   ExplicitWidth = 300
-  ExplicitHeight = 41
+  ExplicitHeight = 64
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 300
-    Height = 41
+    Height = 64
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
@@ -21,7 +22,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show Search String Not Found Message'
+      Caption = ' Show search string not found message'
       Checked = True
       State = cbChecked
       TabOrder = 0
@@ -36,10 +37,25 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Beep If Search String Not Found'
+      Caption = ' Beep if search string not found'
       Checked = True
       State = cbChecked
       TabOrder = 1
+      ReadOnly = False
+    end
+    object DocumentSpecificSearchCheckBox: TBCCheckBox
+      Left = 4
+      Top = 40
+      Width = 280
+      Height = 21
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Caption = ' Document-specific search'
+      Checked = True
+      State = cbChecked
+      TabOrder = 2
       ReadOnly = False
     end
   end

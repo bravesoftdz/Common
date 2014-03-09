@@ -2,6 +2,8 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
   Width = 296
   Height = 299
   Visible = False
+  ExplicitWidth = 296
+  ExplicitHeight = 299
   object Panel: TPanel
     Left = 0
     Top = 0
@@ -25,24 +27,24 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
     object LineModifiedColorLabel: TLabel
       Left = 6
       Top = 164
-      Width = 90
+      Width = 88
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = 'Line Modified Color'
+      Caption = 'Line modified color'
     end
     object LineNormalColorLabel: TLabel
       Left = 6
       Top = 206
-      Width = 83
+      Width = 80
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = 'Line Normal Color'
+      Caption = 'Line normal color'
     end
     object VisibleCheckBox: TBCCheckBox
       Left = 4
@@ -68,7 +70,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Auto Size'
+      Caption = ' Auto size'
       Checked = True
       State = cbChecked
       TabOrder = 1
@@ -101,7 +103,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show Line Modified'
+      Caption = ' Show line modified'
       Checked = True
       State = cbChecked
       TabOrder = 6
@@ -140,7 +142,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Line Numbers In Tens'
+      Caption = ' Line numbers in tens'
       Checked = True
       State = cbChecked
       TabOrder = 2
@@ -155,7 +157,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Line Numbers Zero Start'
+      Caption = ' Line numbers zero start'
       Checked = True
       State = cbChecked
       TabOrder = 3
@@ -170,7 +172,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show Bookmark Panel'
+      Caption = ' Show bookmark panel'
       Checked = True
       State = cbChecked
       TabOrder = 5
@@ -185,7 +187,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show Bookmarks'
+      Caption = ' Show bookmarks'
       Checked = True
       State = cbChecked
       TabOrder = 4
@@ -200,7 +202,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show Line Numbers After Last Line'
+      Caption = ' Show line numbers after last line'
       Checked = True
       State = cbChecked
       TabOrder = 7

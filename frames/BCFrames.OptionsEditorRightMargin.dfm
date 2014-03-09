@@ -66,7 +66,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Mouse Move'
+      Caption = ' Mouse move'
       Checked = True
       State = cbChecked
       TabOrder = 1

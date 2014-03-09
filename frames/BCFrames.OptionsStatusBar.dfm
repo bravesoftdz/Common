@@ -72,7 +72,7 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Use System Font'
+      Caption = ' Use system font'
       TabOrder = 0
       ReadOnly = False
     end

@@ -5,13 +5,13 @@ interface
 uses
   Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
   System.Actions, Vcl.ActnList, Vcl.ImgList, BCControls.ImageList, Vcl.StdCtrls, VirtualTrees, BCControls.ProgressBar,
-  Vcl.ComCtrls;
+  Vcl.ComCtrls, BCControls.ButtonedEdit;
 
 type
   TOpenFileEvent = procedure(var FileName: string);
 
   TSearchForFilesForm = class(TForm)
-    SearchForEdit: TButtonedEdit;
+    SearchForEdit: TBCButtonedEdit;
     ActionList: TActionList;
     SearchVirtualDrawTree: TVirtualDrawTree;
     ImageList: TBCImageList;

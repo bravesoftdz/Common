@@ -66,7 +66,7 @@ object SearchForFilesForm: TSearchForFilesForm
     TabOrder = 2
     Visible = False
   end
-  object SearchForEdit: TButtonedEdit
+  object SearchForEdit: TBCButtonedEdit
     AlignWithMargins = True
     Left = 3
     Top = 3

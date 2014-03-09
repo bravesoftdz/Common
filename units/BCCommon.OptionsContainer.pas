@@ -18,6 +18,7 @@ type
     FCompletionProposalCaseSensitive: Boolean;
     FCompletionProposalEnabled: Boolean;
     FCompletionProposalShortcut: string;
+    FDocumentSpecificSearch: Boolean;
     FEnableLineNumbers: Boolean;
     FEnableSelectionMode: Boolean;
     FEnableSpecialChars: Boolean;
@@ -82,7 +83,6 @@ type
     FTripleClickRowSelect: Boolean;
     FUndoAfterSave: Boolean;
   public
-    //destructor Destroy; override;
     procedure AssignTo(Dest: TPersistent); override;
     procedure ReadIniFile; virtual;
     procedure WriteIniFile; virtual;
@@ -97,6 +97,8 @@ type
     property AutoSave: Boolean read FAutoSave write FAutoSave;
     [IniValue('Options', 'BeepIfSearchStringNotFound', True)]
     property BeepIfSearchStringNotFound: Boolean read FBeepIfSearchStringNotFound write FBeepIfSearchStringNotFound;
+    [IniValue('Options', 'DocumentSpecificSearch', True)]
+    property DocumentSpecificSearch: Boolean read FDocumentSpecificSearch write FDocumentSpecificSearch;
     [IniValue('Options', 'ActiveLineColorBrightness', '2')]
     property ColorBrightness: Integer read FColorBrightness write FColorBrightness;
     [IniValue('Options', 'CompletionProposalCaseSensitive', True)]
@@ -675,12 +677,6 @@ begin
     inherited;
 end;
 
-{destructor TOptionsContainer.Destroy;
-begin
-  FreeAndNil(FOptionsContainer);
-  inherited;
-end;  }
-
 { TOraBoneOptionsContainer }
 
 {$ifdef ORABONE}
@@ -699,6 +695,7 @@ end;
 {$endif}
 
 { TEditBoneOptionsContainer }
+
 {$ifdef EDITBONE}
 destructor TEditBoneOptionsContainer.Destroy;
 begin

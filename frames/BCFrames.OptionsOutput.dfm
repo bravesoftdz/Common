@@ -32,7 +32,7 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show Tree Lines'
+      Caption = ' Show tree lines'
       TabOrder = 0
       ReadOnly = False
     end

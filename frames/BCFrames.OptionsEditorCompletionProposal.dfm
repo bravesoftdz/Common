@@ -43,7 +43,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Case Sensitive'
+      Caption = ' Case sensitive'
       Checked = True
       State = cbChecked
       TabOrder = 1

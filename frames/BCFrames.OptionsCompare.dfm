@@ -23,7 +23,7 @@ inherited OptionsCompareFrame: TOptionsCompareFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Ignore Case'
+      Caption = ' Ignore case'
       Checked = True
       State = cbChecked
       TabOrder = 0
@@ -38,7 +38,7 @@ inherited OptionsCompareFrame: TOptionsCompareFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Ignore Blanks'
+      Caption = ' Ignore blanks'
       Checked = True
       State = cbChecked
       TabOrder = 1

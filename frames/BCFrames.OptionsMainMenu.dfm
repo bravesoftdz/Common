@@ -33,20 +33,20 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
     object AnimationStyleLabel: TLabel
       Left = 6
       Top = 96
-      Width = 74
+      Width = 73
       Height = 13
-      Caption = 'Animation Style'
+      Caption = 'Animation style'
     end
     object AnimationDurationLabel: TLabel
       Left = 6
       Top = 136
-      Width = 91
+      Width = 90
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = 'Animation Duration'
+      Caption = 'Animation duration'
     end
     object SelectFontSpeedButton: TSpeedButton
       Left = 4
@@ -91,7 +91,7 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Persistent Hot Keys'
+      Caption = ' Persistent hot keys'
       TabOrder = 0
       ReadOnly = False
     end
@@ -119,7 +119,7 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Use System Font'
+      Caption = ' Use system font'
       TabOrder = 2
       ReadOnly = False
     end

@@ -15,53 +15,53 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object LineSpacingLabel: TLabel
       Left = 6
       Top = 245
-      Width = 59
+      Width = 58
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = 'Line Spacing'
+      Caption = 'Line spacing'
     end
     object TabWidthLabel: TLabel
       Left = 6
       Top = 285
-      Width = 49
+      Width = 47
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = 'Tab Width'
+      Caption = 'Tab width'
     end
     object InsertCaretLabel: TLabel
       Left = 6
       Top = 327
-      Width = 59
+      Width = 57
       Height = 13
-      Caption = 'Insert Caret'
+      Caption = 'Insert caret'
     end
     object NonblinkingCaretColorLabel: TLabel
       Left = 6
       Top = 370
-      Width = 175
+      Width = 171
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = 'Non-blinking Caret Background Color'
+      Caption = 'Non-blinking caret background color'
     end
     object NonblinkingCaretFontColorLabel: TLabel
       Left = 6
       Top = 414
-      Width = 141
+      Width = 135
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = 'Non-blinking Caret Font Color'
+      Caption = 'Non-blinking caret font color'
     end
     object AutoIndentCheckBox: TBCCheckBox
       Left = 4
@@ -72,7 +72,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Auto Indent'
+      Caption = ' Auto indent'
       Checked = True
       State = cbChecked
       TabOrder = 0
@@ -87,7 +87,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Trim Trailing Spaces'
+      Caption = ' Trim trailing spaces'
       Checked = True
       State = cbChecked
       TabOrder = 9
@@ -102,7 +102,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Scroll Past End of File'
+      Caption = ' Scroll past end of file'
       TabOrder = 3
       ReadOnly = False
     end
@@ -115,7 +115,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Scroll Past End of Line'
+      Caption = ' Scroll past end of line'
       Checked = True
       State = cbChecked
       TabOrder = 4
@@ -168,7 +168,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Tabs to Spaces'
+      Caption = ' Tabs to spaces'
       Checked = True
       State = cbChecked
       TabOrder = 8
@@ -183,7 +183,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Auto Save'
+      Caption = ' Auto save'
       TabOrder = 1
       ReadOnly = False
     end
@@ -212,7 +212,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Undo After Save'
+      Caption = ' Undo after save'
       TabOrder = 11
       ReadOnly = False
     end
@@ -225,7 +225,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Smart Tabs'
+      Caption = ' Smart tabs'
       TabOrder = 6
       ReadOnly = False
     end
@@ -238,7 +238,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Smart Tab Delete'
+      Caption = ' Smart tab delete'
       TabOrder = 7
       ReadOnly = False
     end
@@ -251,7 +251,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Triple-Click Row Select'
+      Caption = ' Triple-click row select'
       Checked = True
       State = cbChecked
       TabOrder = 10
@@ -266,7 +266,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Non-blinking Caret'
+      Caption = ' Non-blinking caret'
       TabOrder = 2
       ReadOnly = False
     end
@@ -291,7 +291,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show Scroll Hint'
+      Caption = ' Show scroll hint'
       Checked = True
       State = cbChecked
       TabOrder = 5
