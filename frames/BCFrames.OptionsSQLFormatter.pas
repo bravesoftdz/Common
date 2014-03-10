@@ -59,11 +59,11 @@ begin
     Add('MSAccess');
     Add('Generic');
     Add('DB2');
-    Add('Sybase');
-    Add('Informix');
-    Add('PostgreSQL');
-    Add('Firebird');
-    Add('Mdx');
+    //Add('Sybase');
+    //Add('Informix');
+    //Add('PostgreSQL');
+    //Add('Firebird');
+    //Add('Mdx');
   end;
 end;
 
