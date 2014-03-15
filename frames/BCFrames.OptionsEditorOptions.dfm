@@ -298,7 +298,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ReadOnly = False
     end
     object NonblinkingCaretFontColorBox: TBCColorComboBox
-      Left = 6
+      Left = 4
       Top = 430
       Width = 200
       Height = 22
