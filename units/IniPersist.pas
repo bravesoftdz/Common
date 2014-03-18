@@ -179,7 +179,7 @@ end;
 
 class procedure TIniPersist.Save(FileName: String; Obj: TObject);
 var
-  ctx: TRttiContext;
+  RttiContext: TRttiContext;
   objType: TRttiType;
   Field: TRttiField;
   Prop: TRttiProperty;
@@ -188,11 +188,11 @@ var
   Ini: TIniFile;
   Data: String;
 begin
-  ctx := TRttiContext.Create;
+  RttiContext := TRttiContext.Create;
   try
     Ini := TIniFile.Create(FileName);
     try
-      objType := ctx.GetType(Obj.ClassInfo);
+      objType := RttiContext.GetType(Obj.ClassInfo);
       for Prop in objType.GetProperties do
       begin
         IniValue := GetIniAttribute(Prop);
@@ -217,7 +217,7 @@ begin
       Ini.Free;
     end;
   finally
-    ctx.Free;
+    RttiContext.Free;
   end;
 end;
 

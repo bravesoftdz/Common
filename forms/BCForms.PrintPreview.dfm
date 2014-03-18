@@ -201,11 +201,13 @@ object PrintPreviewDialog: TPrintPreviewDialog
         Left = 0
         Top = 0
         Action = LineNumbersAction
+        Style = tbsCheck
       end
       object WordWrapToolButton: TToolButton
         Left = 24
         Top = 0
         Action = WordWrapAction
+        Style = tbsCheck
       end
     end
     object PrintToolBar: TBCToolBar

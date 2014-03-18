@@ -70,6 +70,8 @@ type
     FScrollPastEof: Boolean;
     FScrollPastEol: Boolean;
     FShowScrollHint: Boolean;
+    FShowSearchMap: Boolean;
+    FShowSearchHighlighter: Boolean;
     FShadows: Boolean;
     FShowSearchStringNotFound: Boolean;
     FSmartTabDelete: Boolean;
@@ -211,6 +213,10 @@ type
     property ShowScrollHint: Boolean read FShowScrollHint write FShowScrollHint;
     [IniValue('Options', 'ShowSearchStringNotFound', True)]
     property ShowSearchStringNotFound: Boolean read FShowSearchStringNotFound write FShowSearchStringNotFound;
+    [IniValue('Options', 'ShowSearchMap', True)]
+    property ShowSearchMap: Boolean read FShowSearchMap write FShowSearchMap;
+    [IniValue('Options', 'ShowSearchHighlighter', True)]
+    property ShowSearchHighlighter: Boolean read FShowSearchHighlighter write FShowSearchHighlighter;
     [IniValue('Options', 'SmartTabDelete', False)]
     property SmartTabDelete: Boolean read FSmartTabDelete write FSmartTabDelete;
     [IniValue('Options', 'SmartTabs', False)]
@@ -630,6 +636,8 @@ begin
     TCustomSynEdit(Dest).Minimap.Font.Name := FMinimapFontName;
     TCustomSynEdit(Dest).Minimap.Font.Size := FMinimapFontSize;
     TCustomSynEdit(Dest).Minimap.Width := FMinimapWidth;
+
+    TCustomSynEdit(Dest).ShowSearchHighlighter := FShowSearchHighlighter;
   end
   else
   if Assigned(Dest) and (Dest is TActionMainMenuBar) then

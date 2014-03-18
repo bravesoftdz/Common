@@ -12,6 +12,8 @@ type
     ShowSearchStringNotFoundCheckBox: TBCCheckBox;
     BeepIfSearchStringNotFoundCheckBox: TBCCheckBox;
     DocumentSpecificSearchCheckBox: TBCCheckBox;
+    ShowSearchMapCheckBox: TBCCheckBox;
+    ShowSearchHighlighterCheckBox: TBCCheckBox;
   private
     { Private declarations }
   public
@@ -48,6 +50,8 @@ begin
   OptionsContainer.ShowSearchStringNotFound := ShowSearchStringNotFoundCheckBox.Checked;
   OptionsContainer.BeepIfSearchStringNotFound := BeepIfSearchStringNotFoundCheckBox.Checked;
   OptionsContainer.DocumentSpecificSearch := DocumentSpecificSearchCheckBox.Checked;
+  OptionsContainer.ShowSearchMap := ShowSearchMapCheckBox.Checked;
+  OptionsContainer.ShowSearchHighlighter := ShowSearchHighlighterCheckBox.Checked;
 end;
 
 procedure TOptionsEditorSearchFrame.GetData;
@@ -55,6 +59,8 @@ begin
   ShowSearchStringNotFoundCheckBox.Checked := OptionsContainer.ShowSearchStringNotFound;
   BeepIfSearchStringNotFoundCheckBox.Checked := OptionsContainer.BeepIfSearchStringNotFound;
   DocumentSpecificSearchCheckBox.Checked := OptionsContainer.DocumentSpecificSearch;
+  ShowSearchMapCheckBox.Checked := OptionsContainer.ShowSearchMap;
+  ShowSearchHighlighterCheckBox.Checked := OptionsContainer.ShowSearchHighlighter;
 end;
 
 end.
