@@ -575,6 +575,9 @@ begin
     TCustomSynEdit(Dest).InsertCaret := TSynEditCaretType(FInsertCaret);
     TCustomSynEdit(Dest).NonBlinkingCaretColor := StringToColor(FNonblinkingCaretColor);
     TCustomSynEdit(Dest).NonBlinkingCaretFontColor := StringToColor(FNonblinkingCaretFontColor);
+
+    TCustomSynEdit(Dest).Options := TCustomSynEdit(Dest).Options + [eoAutoSizeMaxScrollWidth];
+
     if FAutoIndent then
       TCustomSynEdit(Dest).Options := TCustomSynEdit(Dest).Options + [eoAutoIndent]
     else
