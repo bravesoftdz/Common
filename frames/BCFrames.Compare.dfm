@@ -17,11 +17,12 @@ object CompareFrame: TCompareFrame
     Height = 343
     Align = alClient
     BevelOuter = bvNone
+    Color = clWindow
     DoubleBuffered = True
     Padding.Left = 1
     Padding.Top = 1
     Padding.Bottom = 2
-    ParentColor = True
+    ParentBackground = False
     ParentDoubleBuffered = False
     TabOrder = 0
     object LeftPanel: TPanel
@@ -32,8 +33,9 @@ object CompareFrame: TCompareFrame
       Align = alLeft
       BevelOuter = bvNone
       BorderWidth = 3
+      Color = clWindow
       DoubleBuffered = True
-      ParentColor = True
+      ParentBackground = False
       ParentDoubleBuffered = False
       TabOrder = 0
       object LeftTopPanel: TPanel
@@ -44,8 +46,9 @@ object CompareFrame: TCompareFrame
         Align = alTop
         BevelOuter = bvNone
         BorderWidth = 3
+        Color = clWindow
         DoubleBuffered = True
-        ParentColor = True
+        ParentBackground = False
         ParentDoubleBuffered = False
         TabOrder = 0
         DesignSize = (
@@ -58,6 +61,7 @@ object CompareFrame: TCompareFrame
           Height = 21
           Action = SaveLeftGridAction
           Anchors = [akTop, akRight]
+          Color = clWindow
           DoubleBuffered = False
           Flat = True
           Glyph.Data = {
@@ -115,6 +119,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
         object CopyRightSpeedButton: TJvSpeedButton
           Left = 219
@@ -123,6 +128,7 @@ object CompareFrame: TCompareFrame
           Height = 21
           Action = CopySelectionRightAction
           Anchors = [akTop, akRight]
+          Color = clWindow
           DoubleBuffered = False
           Flat = True
           Glyph.Data = {
@@ -180,6 +186,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
         object OpenDocumentsLeftSpeedButton: TJvSpeedButton
           Left = 173
@@ -188,6 +195,7 @@ object CompareFrame: TCompareFrame
           Height = 21
           Action = OpenDocumentsLeftAction
           Anchors = [akTop, akRight]
+          Color = clWindow
           DoubleBuffered = False
           Flat = True
           Glyph.Data = {
@@ -245,6 +253,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
         object BitBtn1: TJvSpeedButton
           Left = 150
@@ -253,6 +262,7 @@ object CompareFrame: TCompareFrame
           Height = 21
           Action = LeftDocumentButtonClickAction
           Anchors = [akTop, akRight]
+          Color = clWindow
           Flat = True
           Glyph.Data = {
             36060000424D3606000000000000360000002800000020000000100000000100
@@ -306,6 +316,7 @@ object CompareFrame: TCompareFrame
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           NumGlyphs = 2
+          Transparent = True
         end
         object LeftComboBox: TBCComboBox
           Left = 0
@@ -402,7 +413,8 @@ object CompareFrame: TCompareFrame
       Align = alBottom
       BevelOuter = bvNone
       BorderWidth = 3
-      ParentColor = True
+      Color = clWindow
+      ParentBackground = False
       TabOrder = 1
       object LeftRightPanel: TPanel
         Left = 3
@@ -411,6 +423,8 @@ object CompareFrame: TCompareFrame
         Height = 44
         Align = alLeft
         BevelOuter = bvNone
+        Color = clWindow
+        ParentBackground = False
         TabOrder = 0
         object LeftLabel: TLabel
           Left = 3
@@ -434,6 +448,8 @@ object CompareFrame: TCompareFrame
         Height = 44
         Align = alClient
         BevelOuter = bvNone
+        Color = clWindow
+        ParentBackground = False
         TabOrder = 1
         DesignSize = (
           454
@@ -445,6 +461,7 @@ object CompareFrame: TCompareFrame
           Height = 21
           Action = UpdateLeftRowAction
           Anchors = [akTop, akRight]
+          Color = clWindow
           DoubleBuffered = False
           Flat = True
           Glyph.Data = {
@@ -502,6 +519,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
         object CancelLeftSpeedButton: TJvSpeedButton
           Left = 428
@@ -510,6 +528,7 @@ object CompareFrame: TCompareFrame
           Height = 21
           Action = CancelLeftRowAction
           Anchors = [akTop, akRight]
+          Color = clWindow
           DoubleBuffered = False
           Flat = True
           Glyph.Data = {
@@ -567,6 +586,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
         object CancelRightSpeedButton: TJvSpeedButton
           Left = 428
@@ -575,6 +595,7 @@ object CompareFrame: TCompareFrame
           Height = 21
           Action = CancelRightRowAction
           Anchors = [akTop, akRight]
+          Color = clWindow
           DoubleBuffered = False
           Flat = True
           Glyph.Data = {
@@ -632,6 +653,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
         object UpdateRightSpeedButton: TJvSpeedButton
           Left = 404
@@ -640,6 +662,7 @@ object CompareFrame: TCompareFrame
           Height = 21
           Action = UpdateRightRowAction
           Anchors = [akTop, akRight]
+          Color = clWindow
           DoubleBuffered = False
           Flat = True
           Glyph.Data = {
@@ -697,6 +720,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
         object LeftMemo: TMemo
           Left = 0
@@ -730,7 +754,9 @@ object CompareFrame: TCompareFrame
       Align = alRight
       BevelOuter = bvNone
       BorderWidth = 3
+      Color = clWindow
       DoubleBuffered = True
+      ParentBackground = False
       ParentDoubleBuffered = False
       TabOrder = 2
       object RightTopPanel: TPanel
@@ -741,7 +767,9 @@ object CompareFrame: TCompareFrame
         Align = alTop
         BevelOuter = bvNone
         Caption = 'RightTopPanel'
+        Color = clWindow
         DoubleBuffered = True
+        ParentBackground = False
         ParentDoubleBuffered = False
         TabOrder = 0
         DesignSize = (
@@ -753,6 +781,7 @@ object CompareFrame: TCompareFrame
           Width = 22
           Height = 21
           Action = SaveRightGridAction
+          Color = clWindow
           DoubleBuffered = False
           Flat = True
           Glyph.Data = {
@@ -810,6 +839,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
         object CopyLeftSpeedButton: TJvSpeedButton
           Left = 0
@@ -817,6 +847,7 @@ object CompareFrame: TCompareFrame
           Width = 22
           Height = 21
           Action = CopySelectionLeftAction
+          Color = clWindow
           DoubleBuffered = False
           Flat = True
           Glyph.Data = {
@@ -874,6 +905,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
         object OpenDocumentsRightSpeedButton: TJvSpeedButton
           Left = 198
@@ -882,6 +914,7 @@ object CompareFrame: TCompareFrame
           Height = 21
           Action = OpenDocumentsRightAction
           Anchors = [akTop, akRight]
+          Color = clWindow
           DoubleBuffered = False
           Flat = True
           Glyph.Data = {
@@ -939,6 +972,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
         object JvSpeedButton1: TJvSpeedButton
           Left = 175
@@ -947,6 +981,7 @@ object CompareFrame: TCompareFrame
           Height = 21
           Action = RightDocumentButtonClickAction
           Anchors = [akTop, akRight]
+          Color = clWindow
           Flat = True
           Glyph.Data = {
             36060000424D3606000000000000360000002800000020000000100000000100
@@ -1000,6 +1035,7 @@ object CompareFrame: TCompareFrame
             FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           NumGlyphs = 2
+          Transparent = True
         end
         object RightComboBox: TBCComboBox
           Left = 47
@@ -1039,6 +1075,8 @@ object CompareFrame: TCompareFrame
         Align = alClient
         BevelOuter = bvNone
         DoubleBuffered = False
+        Color = clWindow
+        ParentColor = False
         ParentDoubleBuffered = False
         TabOrder = 1
         object RightGrid: TBCStringGrid
@@ -1091,9 +1129,11 @@ object CompareFrame: TCompareFrame
       Height = 290
       Align = alLeft
       BevelOuter = bvNone
+      Color = clWindow
       DoubleBuffered = False
       Padding.Left = 2
       Padding.Bottom = 3
+      ParentBackground = False
       ParentDoubleBuffered = False
       TabOrder = 3
       object TopMiddlePanel: TPanel
@@ -1106,6 +1146,8 @@ object CompareFrame: TCompareFrame
         Margins.Right = 0
         Align = alTop
         BevelOuter = bvNone
+        Color = clWindow
+        ParentBackground = False
         TabOrder = 0
         object FindNextDifferenceSpeedButton: TJvSpeedButton
           Left = 23
@@ -1113,6 +1155,7 @@ object CompareFrame: TCompareFrame
           Width = 22
           Height = 21
           Action = FindNextDifferenceAction
+          ParentColor = True
           Flat = True
           Glyph.Data = {
             36060000424D3606000000000000360000002800000020000000100000000100
@@ -1169,6 +1212,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
         object RefreshSpeedButton: TJvSpeedButton
           Left = 0
@@ -1176,6 +1220,7 @@ object CompareFrame: TCompareFrame
           Width = 22
           Height = 21
           Action = RefreshAction
+          ParentColor = True
           Flat = True
           Glyph.Data = {
             36060000424D3606000000000000360000002800000020000000100000000100
@@ -1232,6 +1277,7 @@ object CompareFrame: TCompareFrame
           MarkDropDown = False
           NumGlyphs = 2
           Spacing = 0
+          Transparent = True
         end
       end
       object DrawGrid: TBCStringGrid

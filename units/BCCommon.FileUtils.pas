@@ -45,6 +45,7 @@ const
   function GetOutFilename: string;
   function GetSQLFormatterDLLFilename: string;
   function FileIconInit(FullInit: BOOL): BOOL; stdcall;
+  function GetSysImageList: THandle;
   function IsExtInFileType(Ext: string; FileType: string): Boolean;
   function IsVirtualDrive(Drive: Char): Boolean;
   function VirtualDrivePath(Drive: Char): string;
@@ -155,6 +156,40 @@ begin
       Result := PFileIconInit(FullInit);
   end;
 end;
+
+const
+  IID_IImageList: TGUID = '{46EB5926-582E-4017-9FDF-E8998DAA0950}';
+ // ImageListTypes: array[Boolean] of Integer = (SHIL_EXTRALARGE, SHIL_JUMBO);
+
+function BackfillSHGetImageList(Flags: Integer; const IID: TGUID; var ImageList: THandle): HRESULT; stdcall;
+var
+  SHFileInfo: TSHFileInfo;
+begin
+  Result := S_OK;
+  if IID <> IID_IImageList then
+    Exit(E_NOINTERFACE);
+  ImageList := SHGetFileInfo('', 0, SHFileInfo, SizeOf(SHFileInfo), SHGFI_ICON or SHGFI_SYSICONINDEX or SHGFI_SMALLICON or SHGFI_ADDOVERLAYS);
+  if ImageList = 0 then
+    Exit(S_FALSE)
+end;
+
+function GetSysImageList: THandle;
+var
+  SHGetImageList: function (Flags: Integer; const IID: TGUID; var ImageList: THandle): HRESULT; stdcall;
+begin
+  FileIconInit(True);
+
+  SHGetImageList := GetProcAddress(GetModuleHandle('shell32.dll'), 'SHGetImageList');
+  if not Assigned(@SHGetImageList) then
+  begin
+    SHGetImageList := GetProcAddress(GetModuleHandle('shell32.dll'), PChar(727));
+    if not Assigned(@SHGetImageList) then
+      SHGetImageList := BackfillSHGetImageList;
+  end;
+  if SHGetImageList(SHIL_SYSSMALL, IID_IImageList, Result) <> 0 then
+    Exit(0);
+end;
+
 
 function GetFileDateTime(FileName: string): TDateTime;
 var

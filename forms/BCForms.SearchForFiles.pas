@@ -286,14 +286,12 @@ end;
 
 procedure TSearchForFilesForm.FormCreate(Sender: TObject);
 var
-  SHFileInfo: TSHFileInfo;
-  PathInfo: String;
   SysImageList: THandle;
 begin
   FFormClosing := False;
   SearchVirtualDrawTree.NodeDataSize := SizeOf(TSearchRec);
   SearchVirtualDrawTree.Images := TBCImageList.Create(Self);
-  SysImageList := SHGetFileInfo(PChar(PathInfo), 0, SHFileInfo, SizeOf(SHFileInfo), SHGFI_SYSICONINDEX or SHGFI_SMALLICON);
+  SysImageList := GetSysImageList; //SHGetFileInfo(PChar(PathInfo), 0, SHFileInfo, SizeOf(SHFileInfo), SHGFI_SYSICONINDEX or SHGFI_SMALLICON);
   if SysImageList <> 0 then
   begin
     SearchVirtualDrawTree.Images.Handle := SysImageList;

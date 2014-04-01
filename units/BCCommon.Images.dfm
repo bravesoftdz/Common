@@ -5,6 +5,7 @@ object ImagesDataModule: TImagesDataModule
   object ImageList: TBCImageList
     ColorDepth = cd32Bit
     DrawingStyle = dsTransparent
+    ShareImages = True
     Left = 79
     Top = 32
     Bitmap = {
