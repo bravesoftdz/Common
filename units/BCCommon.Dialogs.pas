@@ -196,7 +196,7 @@ end;
 
 function OpenMultiSel(hOwner: Cardinal; const iniDirPath, Filter, Title: string): TMultiResult;
 var
-  OFName : TOpenFileName;
+  OFName: TOpenFileName;
 begin
   {this will create a Multi-Selection Open Dialg box, and the Result of this
    function is a TMultiResult record, which has the file-name OffSet as the
