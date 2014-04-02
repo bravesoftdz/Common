@@ -42,7 +42,7 @@ object CompareFrame: TCompareFrame
         Left = 3
         Top = 3
         Width = 241
-        Height = 23
+        Height = 24
         Align = alTop
         BevelOuter = bvNone
         BorderWidth = 3
@@ -53,11 +53,11 @@ object CompareFrame: TCompareFrame
         TabOrder = 0
         DesignSize = (
           241
-          23)
+          24)
         object SaveSpeedButton1: TJvSpeedButton
           Left = 196
           Top = 0
-          Width = 22
+          Width = 21
           Height = 21
           Action = SaveLeftGridAction
           Anchors = [akTop, akRight]
@@ -124,7 +124,7 @@ object CompareFrame: TCompareFrame
         object CopyRightSpeedButton: TJvSpeedButton
           Left = 219
           Top = 0
-          Width = 23
+          Width = 21
           Height = 21
           Action = CopySelectionRightAction
           Anchors = [akTop, akRight]
@@ -349,9 +349,9 @@ object CompareFrame: TCompareFrame
       end
       object LeftScrollBox: TScrollBox
         Left = 3
-        Top = 26
+        Top = 27
         Width = 241
-        Height = 261
+        Height = 260
         HorzScrollBar.Smooth = True
         HorzScrollBar.Tracking = True
         VertScrollBar.Visible = False
@@ -367,7 +367,7 @@ object CompareFrame: TCompareFrame
           Left = 0
           Top = 0
           Width = 0
-          Height = 257
+          Height = 256
           Align = alLeft
           BorderStyle = bsNone
           ColCount = 2
@@ -457,7 +457,7 @@ object CompareFrame: TCompareFrame
         object UpdateLeftSpeedButton: TJvSpeedButton
           Left = 404
           Top = 0
-          Width = 22
+          Width = 21
           Height = 21
           Action = UpdateLeftRowAction
           Anchors = [akTop, akRight]
@@ -524,7 +524,7 @@ object CompareFrame: TCompareFrame
         object CancelLeftSpeedButton: TJvSpeedButton
           Left = 428
           Top = 0
-          Width = 22
+          Width = 21
           Height = 21
           Action = CancelLeftRowAction
           Anchors = [akTop, akRight]
@@ -591,7 +591,7 @@ object CompareFrame: TCompareFrame
         object CancelRightSpeedButton: TJvSpeedButton
           Left = 428
           Top = 23
-          Width = 22
+          Width = 21
           Height = 21
           Action = CancelRightRowAction
           Anchors = [akTop, akRight]
@@ -658,7 +658,7 @@ object CompareFrame: TCompareFrame
         object UpdateRightSpeedButton: TJvSpeedButton
           Left = 404
           Top = 23
-          Width = 22
+          Width = 21
           Height = 21
           Action = UpdateRightRowAction
           Anchors = [akTop, akRight]
@@ -763,7 +763,7 @@ object CompareFrame: TCompareFrame
         Left = 3
         Top = 3
         Width = 219
-        Height = 23
+        Height = 24
         Align = alTop
         BevelOuter = bvNone
         Caption = 'RightTopPanel'
@@ -774,11 +774,11 @@ object CompareFrame: TCompareFrame
         TabOrder = 0
         DesignSize = (
           219
-          23)
+          24)
         object SaveSpeedButton2: TJvSpeedButton
           Left = 23
           Top = 0
-          Width = 22
+          Width = 21
           Height = 21
           Action = SaveRightGridAction
           Color = clWindow
@@ -844,7 +844,7 @@ object CompareFrame: TCompareFrame
         object CopyLeftSpeedButton: TJvSpeedButton
           Left = 0
           Top = 0
-          Width = 22
+          Width = 21
           Height = 21
           Action = CopySelectionLeftAction
           Color = clWindow
@@ -1066,9 +1066,9 @@ object CompareFrame: TCompareFrame
       end
       object RightScrollBox: TScrollBox
         Left = 3
-        Top = 26
+        Top = 27
         Width = 219
-        Height = 261
+        Height = 260
         HorzScrollBar.Smooth = True
         HorzScrollBar.Tracking = True
         VertScrollBar.Visible = False
@@ -1083,7 +1083,7 @@ object CompareFrame: TCompareFrame
           Left = 0
           Top = 0
           Width = 0
-          Height = 257
+          Height = 256
           Align = alLeft
           BorderStyle = bsNone
           Color = clWhite
@@ -1141,7 +1141,7 @@ object CompareFrame: TCompareFrame
         Left = 2
         Top = 3
         Width = 47
-        Height = 20
+        Height = 21
         Margins.Left = 0
         Margins.Right = 0
         Align = alTop
@@ -1152,7 +1152,7 @@ object CompareFrame: TCompareFrame
         object FindNextDifferenceSpeedButton: TJvSpeedButton
           Left = 23
           Top = 0
-          Width = 22
+          Width = 21
           Height = 21
           Action = FindNextDifferenceAction
           ParentColor = True
@@ -1217,7 +1217,7 @@ object CompareFrame: TCompareFrame
         object RefreshSpeedButton: TJvSpeedButton
           Left = 0
           Top = 0
-          Width = 22
+          Width = 21
           Height = 21
           Action = RefreshAction
           ParentColor = True
@@ -1282,9 +1282,9 @@ object CompareFrame: TCompareFrame
       end
       object DrawGrid: TBCStringGrid
         Left = 2
-        Top = 26
+        Top = 27
         Width = 44
-        Height = 261
+        Height = 260
         Align = alLeft
         ColCount = 1
         DefaultColWidth = 22
