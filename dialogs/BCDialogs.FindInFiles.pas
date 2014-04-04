@@ -68,7 +68,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StyleUtils, System.Math, BCCommon.LanguageStrings, BCCommon.Lib,
+  BCCommon.StyleUtils, System.Math, BCCommon.LanguageStrings, BCCommon.Lib, BCCommon.StringUtils,
   {$WARNINGS OFF}
   Vcl.FileCtrl; { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}
@@ -153,8 +153,8 @@ var
   Dir: string;
 begin
   Dir := FolderEdit.Text;
-  if Vcl.FileCtrl.SelectDirectory(LanguageDataModule.GetConstant('SelectRootDirectory'), '', Dir, [sdNewFolder, sdShowShares,
-    sdNewUI, sdValidateDir], Self) then
+  if Vcl.FileCtrl.SelectDirectory(LanguageDataModule.GetConstant('SelectRootDirectory'), '', Dir, [sdNewFolder,
+    sdShowShares, sdNewUI, sdValidateDir], Self) then
     FolderEdit.Text := Dir;
 end;
 
@@ -174,8 +174,8 @@ begin
     Clear;
     while Pos('|', Temp) <> 0 do
     begin
-      Add(Copy(Temp, 1, Pos('|', Temp) - 1));
-      Temp := Copy(Temp, Pos('|', Temp) + 1, Length(Temp));
+      Add(GetNextToken('|', Temp));
+      Temp := RemoveTokenFromStart('|', Temp);
     end;
   end;
 end;

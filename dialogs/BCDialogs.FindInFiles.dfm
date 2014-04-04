@@ -116,6 +116,7 @@ object FindInFilesDialog: TFindInFilesDialog
         Height = 22
         Align = alLeft
         Caption = 'Find what'
+        ExplicitHeight = 13
       end
     end
     object FileTypePanel: TPanel
@@ -139,6 +140,7 @@ object FindInFilesDialog: TFindInFilesDialog
         Height = 23
         Align = alLeft
         Caption = 'File type'
+        ExplicitHeight = 13
       end
     end
     object FolderPanel: TPanel
@@ -161,6 +163,7 @@ object FindInFilesDialog: TFindInFilesDialog
         Height = 22
         Align = alLeft
         Caption = 'Folder'
+        ExplicitHeight = 13
       end
     end
   end
@@ -350,6 +353,7 @@ object FindInFilesDialog: TFindInFilesDialog
         Align = alLeft
         Caption = 'C&ase sensitive'
         Layout = tlCenter
+        ExplicitHeight = 13
       end
       object CaseSensitiveCheckBox: TCheckBox
         Left = 0
