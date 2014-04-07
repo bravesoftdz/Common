@@ -43,6 +43,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
     ADFFB7B7B5FF000000000000000000000000000000000000000000000000}
   OldCreateOrder = True
   Position = poMainFormCenter
+  Scaled = False
   WindowState = wsMaximized
   OnClose = FormClose
   OnCreate = FormCreate
