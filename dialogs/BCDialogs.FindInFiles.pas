@@ -5,15 +5,14 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, JvToolEdit,
   BCControls.ComboBox, Vcl.Themes, Vcl.ActnList, Vcl.Buttons, BCDialogs.Dlg, System.Actions, BCControls.Edit,
-  Vcl.ComCtrls, JvExControls, JvSpeedButton;
+  Vcl.ComCtrls, JvExControls, JvSpeedButton, BCControls.CheckBox;
 
 type
   TFindInFilesDialog = class(TDialog)
     ActionList: TActionList;
     ButtonPanel: TPanel;
     CancelButton: TButton;
-    CaseSensitiveCheckBox: TCheckBox;
-    CaseSensitiveLabel: TLabel;
+    CaseSensitiveCheckBox: TBCCheckBox;
     FileTypeComboBox: TBCComboBox;
     FileTypeLabel: TLabel;
     FindButton: TButton;
@@ -23,7 +22,7 @@ type
     FolderEdit: TBCEdit;
     FolderLabel: TLabel;
     LeftPanel: TPanel;
-    LookInSubfoldersCheckBox: TCheckBox;
+    LookInSubfoldersCheckBox: TBCCheckBox;
     FindButtonPanel: TPanel;
     CancelButtonPanel: TPanel;
     FolderEdit2Panel: TPanel;

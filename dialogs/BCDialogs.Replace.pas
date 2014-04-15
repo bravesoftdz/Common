@@ -6,12 +6,12 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCDialogs.Dlg, Vcl.ExtCtrls,
-  BCControls.ComboBox, Vcl.StdCtrls;
+  BCControls.ComboBox, Vcl.StdCtrls, BCControls.CheckBox;
 
 type
   TReplaceDialog = class(TDialog)
     CancelButton: TButton;
-    CaseSensitiveCheckBox: TCheckBox;
+    CaseSensitiveCheckBox: TBCCheckBox;
     FindButton: TButton;
     LeftPanel: TPanel;
     OptionsGroupBox: TGroupBox;
@@ -31,7 +31,7 @@ type
     RightPanel: TPanel;
     SearchForComboBox: TBCComboBox;
     SearchForLabel: TLabel;
-    WholeWordsCheckBox: TCheckBox;
+    WholeWordsCheckBox: TBCCheckBox;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);

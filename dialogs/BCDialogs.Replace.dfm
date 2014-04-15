@@ -198,21 +198,25 @@ object ReplaceDialog: TReplaceDialog
         Align = alLeft
         Caption = ' Options '
         TabOrder = 0
-        object CaseSensitiveCheckBox: TCheckBox
+        object CaseSensitiveCheckBox: TBCCheckBox
           Left = 8
           Top = 16
-          Width = 155
-          Height = 17
+          Width = 91
+          Height = 15
           Caption = ' Case sensitive'
           TabOrder = 0
+          AutoSize = True
+          ReadOnly = False
         end
-        object WholeWordsCheckBox: TCheckBox
+        object WholeWordsCheckBox: TBCCheckBox
           Left = 8
           Top = 39
-          Width = 155
-          Height = 17
+          Width = 107
+          Height = 15
           Caption = ' Whole words only'
           TabOrder = 1
+          AutoSize = True
+          ReadOnly = False
         end
       end
       object Panel9: TPanel

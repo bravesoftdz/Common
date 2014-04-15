@@ -12,7 +12,7 @@ implementation
 
 uses
   BigIni, BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
-  Vcl.ExtCtrls, VirtualTrees, BCCommon.LanguageStrings, BCControls.ColorComboBox;
+  Vcl.ExtCtrls, VirtualTrees, BCCommon.LanguageStrings, BCControls.ColorComboBox, BCControls.CheckBox;
 
 function GetSelectedLanguage(Default: string): string;
 begin
@@ -58,11 +58,11 @@ begin
           TLabel(Form.Components[i]).Caption := s
       end
       else
-      if Form.Components[i] is TCheckBox then
+      if Form.Components[i] is TBCCheckBox then
       begin
-        s := ReadString(Form.Name, TCheckBox(Form.Components[i]).Name, '');
+        s := ReadString(Form.Name, TBCCheckBox(Form.Components[i]).Name, '');
         if s <> '' then
-          TCheckBox(Form.Components[i]).Caption := Format(' %s', [s]);
+          TBCCheckBox(Form.Components[i]).SetText(Format(' %s', [s]));
       end
       else
       if Form.Components[i] is TGroupBox then
