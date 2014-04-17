@@ -1,19 +1,24 @@
 inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
-  Width = 232
+  Width = 128
   Height = 49
-  ExplicitWidth = 232
-  ExplicitHeight = 49
+  AutoSize = True
   object Panel: TPanel
-    Left = 0
+    AlignWithMargins = True
+    Left = 4
     Top = 0
-    Width = 232
+    Width = 124
     Height = 49
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
     TabOrder = 0
     object SelectFontSpeedButton: TSpeedButton
-      Left = 4
+      Left = 0
       Top = 25
       Width = 24
       Height = 24
@@ -47,7 +52,7 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
         00FFFF00FFCFAB7FB67F3CB57E3AB6803DBD8C4FFF00FFFF00FF}
     end
     object FontLabel: TLabel
-      Left = 34
+      Left = 30
       Top = 31
       Width = 57
       Height = 13
@@ -64,16 +69,17 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       ParentFont = False
     end
     object UseSystemFontCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 0
-      Width = 232
-      Height = 21
+      Width = 124
+      Height = 18
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Use system font'
       TabOrder = 0
+      AutoSize = True
       ReadOnly = False
     end
   end

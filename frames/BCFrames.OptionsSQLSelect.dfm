@@ -1,14 +1,12 @@
 inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
   Width = 451
-  Height = 302
+  Height = 304
   Align = alClient
-  ExplicitWidth = 451
-  ExplicitHeight = 302
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 451
-    Height = 302
+    Height = 304
     Align = alClient
     BevelOuter = bvNone
     Color = clWindow
@@ -19,20 +17,32 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Left = 3
       Top = 0
       Width = 448
-      Height = 302
+      Height = 304
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = OderByClauseTabSheet
+      ActivePage = AndOrKeywordTabSheet
       Align = alClient
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       MultiLine = True
+      ParentFont = False
       TabOrder = 0
-      ActivePageCaption = 'ORDER BY clause'
+      ActivePageCaption = 'AND/OR keyword'
       TabDragDrop = False
       HoldShiftToDragDrop = False
       ShowCloseButton = False
       object ColumnListTabSheet: TTabSheet
         Caption = 'Column list'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
         object ColumnListStyleLabel: TLabel
           Left = 11
           Top = 7
@@ -82,8 +92,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object AlignAliasCheckBox: TBCCheckBox
           Left = 9
           Top = 93
-          Width = 276
-          Height = 21
+          Width = 69
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -92,13 +102,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 2
+          AutoSize = True
           ReadOnly = False
         end
         object ColumnInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 113
-          Width = 282
-          Height = 21
+          Width = 115
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -107,13 +118,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 3
+          AutoSize = True
           ReadOnly = False
         end
         object TreatDistinctAsVirtualColumnCheckBox: TBCCheckBox
           Left = 9
           Top = 133
-          Width = 276
-          Height = 21
+          Width = 181
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -122,6 +134,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 4
+          AutoSize = True
           ReadOnly = False
         end
       end
@@ -131,8 +144,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object NewLineAfterInCheckBox: TBCCheckBox
           Left = 9
           Top = 5
-          Width = 282
-          Height = 21
+          Width = 103
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -141,13 +154,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 0
+          AutoSize = True
           ReadOnly = False
         end
         object NewLineAfterExistsCheckBox: TBCCheckBox
           Left = 9
           Top = 25
-          Width = 276
-          Height = 21
+          Width = 126
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -156,13 +170,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 1
+          AutoSize = True
           ReadOnly = False
         end
         object NewlineAfterComparisonOperatorCheckBox: TBCCheckBox
           Left = 9
           Top = 45
-          Width = 276
-          Height = 21
+          Width = 191
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -171,13 +186,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 2
+          AutoSize = True
           ReadOnly = False
         end
         object NewlineBeforeComparisonOperatorCheckBox: TBCCheckBox
           Left = 9
           Top = 65
-          Width = 276
-          Height = 21
+          Width = 199
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -186,6 +202,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 3
+          AutoSize = True
           ReadOnly = False
         end
       end
@@ -195,8 +212,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object IntoClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5
-          Width = 282
-          Height = 21
+          Width = 133
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -205,12 +222,19 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 0
+          AutoSize = True
           ReadOnly = False
         end
       end
       object FromJoinClauseTabSheet: TTabSheet
         Caption = 'FROM/JOIN clause'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
         ImageIndex = 3
+        ParentFont = False
         object FromClauseStyleLabel: TLabel
           Left = 11
           Top = 7
@@ -237,8 +261,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object FromClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 52
-          Width = 282
-          Height = 21
+          Width = 137
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -247,13 +271,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 1
+          AutoSize = True
           ReadOnly = False
         end
         object JoinClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 72
-          Width = 282
-          Height = 21
+          Width = 132
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -262,13 +287,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 2
+          AutoSize = True
           ReadOnly = False
         end
         object AlignJoinWithFromKeywordCheckBox: TBCCheckBox
           Left = 9
           Top = 92
-          Width = 282
-          Height = 21
+          Width = 171
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -277,13 +303,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 3
+          AutoSize = True
           ReadOnly = False
         end
         object AlignAndOrWithOnInJoinClauseCheckBox: TBCCheckBox
           Left = 9
           Top = 112
-          Width = 282
-          Height = 21
+          Width = 203
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -292,13 +319,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 4
+          AutoSize = True
           ReadOnly = False
         end
         object AlignAliasInFromClauseCheckBox: TBCCheckBox
           Left = 9
           Top = 132
-          Width = 282
-          Height = 21
+          Width = 145
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -307,6 +335,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 5
+          AutoSize = True
           ReadOnly = False
         end
       end
@@ -339,8 +368,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object AndOrUnderWhereCheckBox: TBCCheckBox
           Left = 9
           Top = 52
-          Width = 276
-          Height = 21
+          Width = 126
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -349,13 +378,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 1
+          AutoSize = True
           ReadOnly = False
         end
         object WhereClauseInNewlineCheckBox: TBCCheckBox
           Left = 9
           Top = 72
-          Width = 276
-          Height = 21
+          Width = 144
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -364,13 +394,14 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 2
+          AutoSize = True
           ReadOnly = False
         end
         object WhereClauseAlignExprCheckBox: TBCCheckBox
           Left = 9
           Top = 92
-          Width = 276
-          Height = 21
+          Width = 141
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -379,6 +410,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 3
+          AutoSize = True
           ReadOnly = False
         end
       end
@@ -411,8 +443,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object GroupByClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 52
-          Width = 282
-          Height = 21
+          Width = 158
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -421,6 +453,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 1
+          AutoSize = True
           ReadOnly = False
         end
       end
@@ -430,8 +463,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object HavingClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5
-          Width = 282
-          Height = 21
+          Width = 146
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -440,6 +473,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 0
+          AutoSize = True
           ReadOnly = False
         end
       end
@@ -472,8 +506,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object OrderByClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 52
-          Width = 282
-          Height = 21
+          Width = 158
+          Height = 15
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
@@ -482,6 +516,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Checked = True
           State = cbChecked
           TabOrder = 1
+          AutoSize = True
           ReadOnly = False
         end
       end

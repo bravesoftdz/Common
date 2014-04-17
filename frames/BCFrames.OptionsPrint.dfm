@@ -1,47 +1,52 @@
 inherited OptionsPrintFrame: TOptionsPrintFrame
-  Width = 201
-  Height = 256
-  ExplicitWidth = 201
-  ExplicitHeight = 256
+  Width = 190
+  Height = 253
+  AutoSize = True
   object Panel: TPanel
-    Left = 0
+    AlignWithMargins = True
+    Left = 4
     Top = 0
-    Width = 201
-    Height = 256
+    Width = 186
+    Height = 253
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
     TabOrder = 0
     object DateTimeLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 131
-      Width = 49
-      Height = 13
+      Width = 59
+      Height = 16
       Caption = 'Date time '
     end
     object PrintedByLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 87
-      Width = 49
-      Height = 13
+      Width = 57
+      Height = 16
       Caption = 'Printed by'
     end
     object DocumentNameLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 0
-      Width = 77
-      Height = 13
+      Width = 93
+      Height = 16
       Caption = 'Document name'
     end
     object PageNumberLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 44
-      Width = 63
-      Height = 13
+      Width = 76
+      Height = 16
       Caption = 'Page number'
     end
     object DateTimeComboBox: TBCComboBox
-      Left = 4
+      Left = 0
       Top = 146
       Width = 186
       Height = 22
@@ -57,7 +62,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       DropDownFixedWidth = 0
     end
     object PrintedByComboBox: TBCComboBox
-      Left = 4
+      Left = 0
       Top = 103
       Width = 186
       Height = 22
@@ -73,7 +78,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       DropDownFixedWidth = 0
     end
     object DocumentNameComboBox: TBCComboBox
-      Left = 4
+      Left = 0
       Top = 16
       Width = 186
       Height = 22
@@ -89,7 +94,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       DropDownFixedWidth = 0
     end
     object PageNumberComboBox: TBCComboBox
-      Left = 4
+      Left = 0
       Top = 59
       Width = 186
       Height = 22
@@ -105,10 +110,10 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       DropDownFixedWidth = 0
     end
     object ShowHeaderLineCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 175
-      Width = 201
-      Height = 21
+      Width = 133
+      Height = 18
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -117,13 +122,14 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       Checked = True
       State = cbChecked
       TabOrder = 4
+      AutoSize = True
       ReadOnly = False
     end
     object ShowFooterLineCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 195
-      Width = 201
-      Height = 21
+      Width = 127
+      Height = 18
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -132,32 +138,35 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       Checked = True
       State = cbChecked
       TabOrder = 5
+      AutoSize = True
       ReadOnly = False
     end
     object ShowLineNumbersCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 215
-      Width = 201
-      Height = 21
+      Width = 143
+      Height = 18
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Show line numbers'
       TabOrder = 6
+      AutoSize = True
       ReadOnly = False
     end
     object WordWrapCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 235
-      Width = 201
-      Height = 21
+      Width = 97
+      Height = 18
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Word wrap'
       TabOrder = 7
+      AutoSize = True
       ReadOnly = False
     end
   end

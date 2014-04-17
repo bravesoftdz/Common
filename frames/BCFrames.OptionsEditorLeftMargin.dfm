@@ -1,20 +1,31 @@
 inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
-  Width = 296
-  Height = 299
+  Width = 204
+  Height = 288
+  AutoSize = True
   Visible = False
-  ExplicitWidth = 296
-  ExplicitHeight = 299
   object Panel: TPanel
-    Left = 0
+    AlignWithMargins = True
+    Left = 4
     Top = 0
-    Width = 296
-    Height = 299
+    Width = 200
+    Height = 288
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
     ParentBackground = False
+    ParentFont = False
     TabOrder = 0
     object WidthLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 250
       Width = 28
       Height = 13
@@ -23,9 +34,15 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = 'Width'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
     object LineModifiedColorLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 164
       Width = 88
       Height = 13
@@ -34,9 +51,15 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = 'Line modified color'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
     object LineNormalColorLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 206
       Width = 80
       Height = 13
@@ -45,39 +68,59 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = 'Line normal color'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
     object VisibleCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 0
-      Width = 294
-      Height = 21
+      Width = 51
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Visible'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 0
+      AutoSize = True
       ReadOnly = False
     end
     object AutoSizeCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 20
-      Width = 276
-      Height = 21
+      Width = 66
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Auto size'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 1
+      AutoSize = True
       ReadOnly = False
     end
     object LeftMarginWidthEdit: TBCEdit
-      Left = 4
+      Left = 0
       Top = 267
       Width = 64
       Height = 21
@@ -85,6 +128,12 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 10
       Text = '48'
       EnterToTab = False
@@ -95,22 +144,29 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       NumbersAllowNegative = False
     end
     object ShowLineModifiedCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 120
-      Width = 296
-      Height = 21
+      Width = 110
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Show line modified'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 6
+      AutoSize = True
       ReadOnly = False
     end
     object LineModifiedColorBox: TBCColorComboBox
-      Left = 4
+      Left = 0
       Top = 180
       Width = 200
       Height = 22
@@ -119,10 +175,16 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       DroppedDownWidth = 200
       NewColorText = 'Custom'
       Options = [coText, coStdColors, coSysColors, coCustomColors]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 8
     end
     object LineNormalColorBox: TBCColorComboBox
-      Left = 4
+      Left = 0
       Top = 222
       Width = 200
       Height = 22
@@ -131,81 +193,122 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       DroppedDownWidth = 200
       NewColorText = 'Custom'
       Options = [coText, coStdColors, coSysColors, coCustomColors]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 9
     end
     object InTensCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 40
-      Width = 296
-      Height = 21
+      Width = 120
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Line numbers in tens'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 2
+      AutoSize = True
       ReadOnly = False
     end
     object ZeroStartCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 60
-      Width = 268
-      Height = 21
+      Width = 135
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Line numbers zero start'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 3
+      AutoSize = True
       ReadOnly = False
     end
     object ShowBookmarkPanelCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 100
-      Width = 296
-      Height = 21
+      Width = 126
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Show bookmark panel'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 5
+      AutoSize = True
       ReadOnly = False
     end
     object ShowBookmarksCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 80
-      Width = 296
-      Height = 21
+      Width = 102
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Show bookmarks'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 4
+      AutoSize = True
       ReadOnly = False
     end
     object ShowLineNumbersAfterLastLineCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 140
-      Width = 296
-      Height = 21
+      Width = 177
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Show line numbers after last line'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 7
+      AutoSize = True
       ReadOnly = False
     end
   end

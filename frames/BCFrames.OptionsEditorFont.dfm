@@ -1,27 +1,37 @@
 inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
   Width = 451
-  Height = 302
+  Height = 304
   Align = alClient
   Visible = False
-  ExplicitWidth = 451
-  ExplicitHeight = 302
   object Panel: TPanel
-    Left = 0
+    AlignWithMargins = True
+    Left = 4
     Top = 0
-    Width = 451
-    Height = 302
+    Width = 447
+    Height = 304
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
     Align = alClient
+    AutoSize = True
     BevelOuter = bvNone
     TabOrder = 0
     object TopPanel: TPanel
       Left = 0
       Top = 0
-      Width = 451
+      Width = 447
       Height = 219
       Align = alTop
       BevelOuter = bvNone
       Color = clWindow
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
+      ParentFont = False
       TabOrder = 0
       object SelectEditorFontSpeedButton: TSpeedButton
         Left = 4
@@ -135,6 +145,12 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Margins.Right = 4
         Margins.Bottom = 4
         Caption = 'Editor'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
       end
       object MarginLabel: TLabel
         Left = 6
@@ -146,6 +162,12 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Margins.Right = 4
         Margins.Bottom = 4
         Caption = 'Margin'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
       end
       object MinimapLabel: TLabel
         Left = 6
@@ -157,6 +179,12 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Margins.Right = 4
         Margins.Bottom = 4
         Caption = 'Minimap'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
       end
       object SelecMinimapFontSpeedButton: TSpeedButton
         Left = 4
@@ -219,6 +247,12 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Margins.Right = 4
         Margins.Bottom = 4
         Caption = 'Minimap width'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
       end
       object ActiveLineColorBrightnessLabel: TLabel
         Left = 6
@@ -230,6 +264,12 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Margins.Right = 4
         Margins.Bottom = 4
         Caption = 'Active line color brightness'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
       end
       object MinimapWidthEdit: TBCEdit
         Left = 4
@@ -240,6 +280,12 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Margins.Top = 4
         Margins.Right = 4
         Margins.Bottom = 4
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 0
         Text = '100'
         OnChange = MinimapWidthEditChange
@@ -264,19 +310,18 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
     object BottomPanel: TPanel
       Left = 0
       Top = 219
-      Width = 451
-      Height = 83
+      Width = 447
+      Height = 85
       Align = alClient
       BevelOuter = bvNone
       Color = clWindow
-      Padding.Left = 4
       ParentBackground = False
       TabOrder = 1
       object SynEdit: TBCSynEdit
-        Left = 4
+        Left = 0
         Top = 0
         Width = 447
-        Height = 83
+        Height = 85
         Align = alClient
         ActiveLineColor = clBtnFace
         CodeFolding.CaseSensitive = False
@@ -298,7 +343,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Background.RepeatMode = brmNone
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -13
+        Font.Height = -11
         Font.Name = 'Courier New'
         Font.Style = []
         TabOrder = 0
@@ -317,16 +362,6 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Gutter.RightOffsetColor = clNone
         Gutter.ShowBookmarks = False
         Highlighter = SynURISyn
-        Minimap.Font.Charset = DEFAULT_CHARSET
-        Minimap.Font.Color = clWindowText
-        Minimap.Font.Height = -4
-        Minimap.Font.Name = 'Courier New'
-        Minimap.Font.Style = []
-        Minimap.Width = 100
-        Minimap.Visible = True
-        Minimap.CharWidth = 2
-        Minimap.CharHeight = 4
-        Minimap.LinesInWindow = 15
         Options = [eoAutoIndent, eoDragDropEditing, eoEnhanceEndKey, eoGroupUndo, eoHalfPageScroll, eoScrollPastEol, eoShowScrollHint, eoSmartTabDelete, eoSmartTabs, eoTabsToSpaces]
         WordWrap.Enabled = False
         WordWrap.Position = 80

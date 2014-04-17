@@ -1,36 +1,42 @@
 inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
-  Width = 284
-  Height = 150
-  ExplicitWidth = 284
-  ExplicitHeight = 150
+  Width = 201
+  Height = 143
+  AutoSize = True
+  ParentFont = False
   object Panel: TPanel
-    Left = 0
+    AlignWithMargins = True
+    Left = 4
     Top = 0
-    Width = 284
-    Height = 150
+    Width = 197
+    Height = 143
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
     TabOrder = 0
     object ColumnListStyleLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 0
-      Width = 77
-      Height = 13
+      Width = 93
+      Height = 16
       Caption = 'Column list style'
     end
     object ValueListStyleLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 42
-      Width = 68
-      Height = 13
+      Width = 82
+      Height = 16
       Caption = 'Value list style'
     end
     object InsertColumnsPerLineLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 84
-      Width = 108
-      Height = 13
+      Width = 131
+      Height = 16
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -38,10 +44,10 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       Caption = 'Insert columns per line'
     end
     object ParenthesisInSeparateLinesCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 125
-      Width = 282
-      Height = 21
+      Width = 197
+      Height = 18
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -50,10 +56,11 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       Checked = True
       State = cbChecked
       TabOrder = 2
+      AutoSize = True
       ReadOnly = False
     end
     object ColumnListStyleComboBox: TBCComboBox
-      Left = 4
+      Left = 0
       Top = 16
       Width = 186
       Height = 22
@@ -69,7 +76,7 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       DropDownFixedWidth = 0
     end
     object ValueListStyleComboBox: TBCComboBox
-      Left = 4
+      Left = 0
       Top = 58
       Width = 186
       Height = 22
@@ -79,13 +86,19 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       Margins.Bottom = 4
       Style = csOwnerDrawFixed
       DropDownCount = 9
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 1
       DeniedKeyStrokes = True
       ReadOnly = False
       DropDownFixedWidth = 0
     end
     object InsertColumnsPerLineEdit: TBCEdit
-      Left = 4
+      Left = 0
       Top = 100
       Width = 64
       Height = 21

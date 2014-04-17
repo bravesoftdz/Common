@@ -1,22 +1,27 @@
 inherited OptionsOutputFrame: TOptionsOutputFrame
-  Width = 201
-  Height = 63
-  ExplicitWidth = 201
-  ExplicitHeight = 63
+  Width = 126
+  Height = 66
+  AutoSize = True
   object Panel: TPanel
-    Left = 0
+    AlignWithMargins = True
+    Left = 4
     Top = 0
-    Width = 201
-    Height = 63
+    Width = 122
+    Height = 66
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
     TabOrder = 0
     object IndentLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 25
-      Width = 32
-      Height = 13
+      Width = 36
+      Height = 16
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -24,23 +29,24 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
       Caption = 'Indent'
     end
     object ShowTreeLinesCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 0
-      Width = 201
-      Height = 21
+      Width = 122
+      Height = 18
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Show tree lines'
       TabOrder = 0
+      AutoSize = True
       ReadOnly = False
     end
     object IndentEdit: TBCEdit
-      Left = 4
+      Left = 0
       Top = 42
       Width = 64
-      Height = 21
+      Height = 24
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4

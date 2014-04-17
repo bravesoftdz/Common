@@ -1,47 +1,72 @@
 inherited OptionsCompareFrame: TOptionsCompareFrame
-  Width = 282
-  Height = 67
+  Width = 95
+  Height = 35
+  AutoSize = True
   Visible = False
-  ExplicitWidth = 282
-  ExplicitHeight = 67
   object Panel: TPanel
-    Left = 0
+    AlignWithMargins = True
+    Left = 4
     Top = 0
-    Width = 282
-    Height = 67
+    Width = 91
+    Height = 35
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
     Padding.Left = 4
     ParentBackground = False
+    ParentFont = False
     TabOrder = 0
     object IgnoreCaseCheckBox: TBCCheckBox
       Left = 4
       Top = 0
-      Width = 276
-      Height = 21
+      Width = 79
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Ignore case'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 0
+      AutoSize = True
       ReadOnly = False
     end
     object IgnoreBlanksCheckBox: TBCCheckBox
       Left = 4
       Top = 20
-      Width = 282
-      Height = 21
+      Width = 87
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Ignore blanks'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 1
+      AutoSize = True
       ReadOnly = False
     end
   end

@@ -1,20 +1,31 @@
 inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
-  Width = 198
-  Height = 103
+  Width = 86
+  Height = 81
+  AutoSize = True
   Visible = False
-  ExplicitWidth = 198
-  ExplicitHeight = 103
   object Panel: TPanel
-    Left = 0
+    AlignWithMargins = True
+    Left = 4
     Top = 0
-    Width = 198
-    Height = 103
+    Width = 82
+    Height = 81
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
     ParentBackground = False
+    ParentFont = False
     TabOrder = 0
     object PositionLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 43
       Width = 37
       Height = 13
@@ -23,9 +34,15 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = 'Position'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
     object PositionEdit: TBCEdit
-      Left = 4
+      Left = 0
       Top = 60
       Width = 64
       Height = 21
@@ -33,6 +50,12 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 0
       Text = '80'
       EnterToTab = False
@@ -43,33 +66,47 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       NumbersAllowNegative = False
     end
     object VisibleCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 0
-      Width = 198
-      Height = 21
+      Width = 51
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Visible'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 2
+      AutoSize = True
       ReadOnly = False
     end
     object MouseMoveCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 20
-      Width = 198
-      Height = 21
+      Width = 82
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Mouse move'
       Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       State = cbChecked
       TabOrder = 1
+      AutoSize = True
       ReadOnly = False
     end
   end

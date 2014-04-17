@@ -4,7 +4,12 @@ object OptionsFrame: TOptionsFrame
   Width = 320
   Height = 240
   Color = clWindow
-  ParentBackground = False
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
   ParentColor = False
+  ParentFont = False
   TabOrder = 0
 end

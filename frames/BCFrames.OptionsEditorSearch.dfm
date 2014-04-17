@@ -1,22 +1,33 @@
 inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
-  Width = 300
-  Height = 105
-  ExplicitWidth = 300
-  ExplicitHeight = 105
+  Width = 212
+  Height = 95
+  AutoSize = True
   object Panel: TPanel
-    Left = 0
+    AlignWithMargins = True
+    Left = 4
     Top = 0
-    Width = 300
-    Height = 105
+    Width = 208
+    Height = 95
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
     ParentBackground = False
+    ParentFont = False
     TabOrder = 0
     object ShowSearchStringNotFoundCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 0
-      Width = 331
-      Height = 21
+      Width = 208
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -25,13 +36,14 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       Checked = True
       State = cbChecked
       TabOrder = 0
+      AutoSize = True
       ReadOnly = False
     end
     object BeepIfSearchStringNotFoundCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 20
-      Width = 335
-      Height = 21
+      Width = 170
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -40,13 +52,14 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       Checked = True
       State = cbChecked
       TabOrder = 1
+      AutoSize = True
       ReadOnly = False
     end
     object DocumentSpecificSearchCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 40
-      Width = 280
-      Height = 21
+      Width = 144
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -55,13 +68,14 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       Checked = True
       State = cbChecked
       TabOrder = 2
+      AutoSize = True
       ReadOnly = False
     end
     object ShowSearchMapCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 60
-      Width = 280
-      Height = 21
+      Width = 106
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -70,13 +84,14 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       Checked = True
       State = cbChecked
       TabOrder = 3
+      AutoSize = True
       ReadOnly = False
     end
     object ShowSearchHighlighterCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 80
-      Width = 280
-      Height = 21
+      Width = 136
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -85,6 +100,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       Checked = True
       State = cbChecked
       TabOrder = 4
+      AutoSize = True
       ReadOnly = False
     end
   end

@@ -1,20 +1,25 @@
 inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
-  Width = 236
-  Height = 173
+  Width = 190
+  Height = 176
+  AutoSize = True
   Visible = False
-  ExplicitWidth = 236
-  ExplicitHeight = 173
   object Panel: TPanel
-    Left = 0
+    AlignWithMargins = True
+    Left = 4
     Top = 0
-    Width = 236
-    Height = 173
+    Width = 186
+    Height = 176
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
     TabOrder = 0
     object FontLabel: TLabel
-      Left = 34
+      Left = 30
       Top = 72
       Width = 57
       Height = 13
@@ -31,17 +36,17 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       ParentFont = False
     end
     object AnimationStyleLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 96
-      Width = 73
-      Height = 13
+      Width = 87
+      Height = 16
       Caption = 'Animation style'
     end
     object AnimationDurationLabel: TLabel
-      Left = 6
+      Left = 2
       Top = 136
-      Width = 90
-      Height = 13
+      Width = 108
+      Height = 16
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -49,7 +54,7 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       Caption = 'Animation duration'
     end
     object SelectFontSpeedButton: TSpeedButton
-      Left = 4
+      Left = 0
       Top = 66
       Width = 24
       Height = 24
@@ -83,23 +88,24 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
         00FFFF00FFCFAB7FB67F3CB57E3AB6803DBD8C4FFF00FFFF00FF}
     end
     object PersistentHotKeysCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 0
-      Width = 232
-      Height = 21
+      Width = 140
+      Height = 18
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Persistent hot keys'
       TabOrder = 0
+      AutoSize = True
       ReadOnly = False
     end
     object ShadowsCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 20
-      Width = 232
-      Height = 21
+      Width = 85
+      Height = 18
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -108,23 +114,25 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       Checked = True
       State = cbChecked
       TabOrder = 1
+      AutoSize = True
       ReadOnly = False
     end
     object UseSystemFontCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 40
-      Width = 232
-      Height = 21
+      Width = 124
+      Height = 18
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Use system font'
       TabOrder = 2
+      AutoSize = True
       ReadOnly = False
     end
     object AnimationStyleComboBox: TBCComboBox
-      Left = 4
+      Left = 0
       Top = 112
       Width = 186
       Height = 22
@@ -140,10 +148,10 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       DropDownFixedWidth = 0
     end
     object AnimationDurationEdit: TBCEdit
-      Left = 4
+      Left = 0
       Top = 152
       Width = 64
-      Height = 21
+      Height = 24
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
