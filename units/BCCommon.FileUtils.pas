@@ -119,7 +119,11 @@ begin
   if SHGetFileInfo(PChar(Filename), 0, SHFileInfo, SizeOf(SHFileInfo), SHGFI_SYSICONINDEX or SHGFI_SMALLICON or MoreFlags) = 0 then
     Result := -1
   else
+  begin
     Result := SHFileInfo.iIcon;
+    { destroy the icon, we are only using the index }
+    DestroyIcon(SHFileInfo.hIcon);
+  end;
 end;
 
 function GetIconOverlayIndex(Filename: string): Integer;
