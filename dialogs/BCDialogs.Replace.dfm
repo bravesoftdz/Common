@@ -3,8 +3,8 @@ object ReplaceDialog: TReplaceDialog
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Replace'
-  ClientHeight = 137
-  ClientWidth = 534
+  ClientHeight = 336
+  ClientWidth = 369
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,227 +21,287 @@ object ReplaceDialog: TReplaceDialog
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object RightPanel: TPanel
-    Left = 439
-    Top = 12
-    Width = 83
-    Height = 125
-    Align = alRight
-    BevelOuter = bvNone
-    Padding.Left = 8
+  object OptionsGroupBox: TBCGroupBox
+    AlignWithMargins = True
+    Left = 12
+    Top = 124
+    Width = 345
+    Height = 101
+    Margins.Left = 0
+    Margins.Top = 6
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Align = alTop
+    ControlSpacing = 5
+    LayoutManagerActive = False
+    LayoutType = ltVertical
+    LabelColor = clWindowText
     TabOrder = 0
-    object CancelButton: TButton
+    Caption = 'Options'
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWindowText
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = []
+    object CaseSensitiveCheckBox: TBCCheckBox
       Left = 8
-      Top = 62
+      Top = 21
+      Width = 91
+      Height = 15
+      Caption = ' Case sensitive'
+      TabOrder = 0
+      AutoSize = True
+      ReadOnly = False
+    end
+    object WholeWordsCheckBox: TBCCheckBox
+      Left = 8
+      Top = 42
+      Width = 107
+      Height = 15
+      Caption = ' Whole words only'
+      TabOrder = 1
+      AutoSize = True
+      ReadOnly = False
+    end
+    object RegularExpressionsCheckBox: TBCCheckBox
+      Left = 8
+      Top = 63
+      Width = 119
+      Height = 15
+      Caption = ' Regular expressions'
+      TabOrder = 2
+      AutoSize = True
+      ReadOnly = False
+    end
+    object PromptOnReplaceCheckBox: TBCCheckBox
+      Left = 8
+      Top = 84
+      Width = 109
+      Height = 15
+      Caption = ' Prompt on replace'
+      Checked = True
+      State = cbChecked
+      TabOrder = 3
+      AutoSize = True
+      ReadOnly = False
+    end
+  end
+  object ReplaceInGroupBox: TBCGroupBox
+    AlignWithMargins = True
+    Left = 12
+    Top = 231
+    Width = 345
+    Height = 64
+    Margins.Left = 0
+    Margins.Top = 6
+    Margins.Right = 0
+    Align = alTop
+    ControlSpacing = 5
+    LayoutManagerActive = False
+    LayoutType = ltVertical
+    LabelColor = clWindowText
+    TabOrder = 1
+    Caption = 'Replace in'
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWindowText
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = []
+    object WholeFileRadioButton: TBCRadioButton
+      Left = 8
+      Top = 21
+      Width = 69
+      Height = 15
+      BiDiMode = bdLeftToRight
+      Caption = ' Whole file'
+      Checked = True
+      ParentBiDiMode = False
+      TabOrder = 0
+      TabStop = True
+      AutoSize = True
+      ReadOnly = False
+    end
+    object AllOpenFilesRadioButton: TBCRadioButton
+      Left = 8
+      Top = 42
+      Width = 82
+      Height = 15
+      BiDiMode = bdLeftToRight
+      Caption = ' All open files'
+      ParentBiDiMode = False
+      TabOrder = 1
+      AutoSize = True
+      ReadOnly = False
+    end
+  end
+  object Controls1Panel: TPanel
+    Left = 12
+    Top = 12
+    Width = 345
+    Height = 16
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 2
+    object SearchForLabel: TLabel
+      Left = 0
+      Top = 0
+      Width = 50
+      Height = 16
+      Align = alLeft
+      Caption = 'Search for'
+    end
+  end
+  object Controls2Panel: TPanel
+    Left = 12
+    Top = 28
+    Width = 345
+    Height = 21
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    TabOrder = 3
+    object SearchForComboBox: TBCComboBox
+      Left = 0
+      Top = 0
+      Width = 345
+      Height = 21
+      Align = alClient
+      TabOrder = 0
+      OnKeyUp = SearchForComboBoxKeyUp
+      DeniedKeyStrokes = False
+      ReadOnly = False
+      DropDownFixedWidth = 0
+    end
+  end
+  object Controls3Panel: TPanel
+    Left = 12
+    Top = 49
+    Width = 345
+    Height = 24
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 4
+    object ReplaceWithRadioButton: TBCRadioButton
+      Left = 0
+      Top = 0
+      Width = 345
+      Height = 24
+      Align = alClient
+      BiDiMode = bdLeftToRight
+      Caption = ' Replace with'
+      Checked = True
+      ParentBiDiMode = False
+      TabOrder = 0
+      TabStop = True
+      AutoSize = True
+      ReadOnly = False
+    end
+  end
+  object Controls4Panel: TPanel
+    Left = 12
+    Top = 73
+    Width = 345
+    Height = 21
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    TabOrder = 5
+    object ReplaceWithComboBox: TBCComboBox
+      Left = 0
+      Top = 0
+      Width = 345
+      Height = 21
+      Align = alClient
+      TabOrder = 0
+      DeniedKeyStrokes = False
+      ReadOnly = False
+      DropDownFixedWidth = 0
+    end
+  end
+  object Controls5Panel: TPanel
+    Left = 12
+    Top = 94
+    Width = 345
+    Height = 24
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 6
+    object DeleteLineRadioButton: TBCRadioButton
+      Left = 0
+      Top = 0
+      Width = 345
+      Height = 24
+      Align = alClient
+      BiDiMode = bdLeftToRight
+      Caption = ' Delete line'
+      ParentBiDiMode = False
+      TabOrder = 0
+      AutoSize = True
+      ReadOnly = False
+    end
+  end
+  object ButtonsPanel: TPanel
+    AlignWithMargins = True
+    Left = 15
+    Top = 292
+    Width = 339
+    Height = 41
+    Align = alBottom
+    BevelOuter = bvNone
+    Padding.Top = 8
+    Padding.Bottom = 8
+    TabOrder = 7
+    object FindButton: TButton
+      Left = 98
+      Top = 8
       Width = 75
       Height = 25
-      Align = alTop
+      Align = alRight
+      Caption = '&Find'
+      Default = True
+      Enabled = False
+      ModalResult = 1
+      TabOrder = 0
+    end
+    object ReplaceAllButton: TButton
+      Left = 181
+      Top = 8
+      Width = 75
+      Height = 25
+      Align = alRight
+      Caption = '&Replace All'
+      Enabled = False
+      ModalResult = 6
+      TabOrder = 1
+    end
+    object CancelButton: TButton
+      Left = 264
+      Top = 8
+      Width = 75
+      Height = 25
+      Align = alRight
       Cancel = True
       Caption = 'Cancel'
       ModalResult = 2
-      TabOrder = 0
-    end
-    object Panel10: TPanel
-      Left = 8
-      Top = 0
-      Width = 75
-      Height = 31
-      Align = alTop
-      BevelOuter = bvNone
-      Padding.Bottom = 6
-      TabOrder = 1
-      object FindButton: TButton
-        Left = 0
-        Top = 0
-        Width = 75
-        Height = 25
-        Align = alTop
-        Caption = '&Find'
-        Default = True
-        Enabled = False
-        ModalResult = 1
-        TabOrder = 0
-      end
-    end
-    object Panel11: TPanel
-      Left = 8
-      Top = 31
-      Width = 75
-      Height = 31
-      Align = alTop
-      BevelOuter = bvNone
-      Caption = 'Panel11'
-      Padding.Bottom = 6
       TabOrder = 2
-      object ReplaceAllButton: TButton
-        Left = 0
-        Top = 0
-        Width = 75
-        Height = 25
-        Align = alTop
-        Caption = '&Replace All'
-        Enabled = False
-        ModalResult = 6
-        TabOrder = 0
-      end
     end
-  end
-  object LeftPanel: TPanel
-    Left = 12
-    Top = 12
-    Width = 76
-    Height = 125
-    Align = alLeft
-    BevelOuter = bvNone
-    Padding.Right = 9
-    TabOrder = 1
-    object Panel3: TPanel
-      Left = 0
-      Top = 0
-      Width = 67
+    object ButtonDivider2Panel: TPanel
+      Left = 256
+      Top = 8
+      Width = 8
       Height = 25
-      Align = alTop
+      Align = alRight
       BevelOuter = bvNone
-      Padding.Top = 2
-      TabOrder = 0
-      object SearchForLabel: TLabel
-        Left = 0
-        Top = 2
-        Width = 50
-        Height = 23
-        Align = alLeft
-        Caption = 'Search for'
-      end
+      TabOrder = 3
     end
-    object Panel5: TPanel
-      Left = 0
-      Top = 25
-      Width = 67
+    object ButtonDivider1Panel: TPanel
+      Left = 173
+      Top = 8
+      Width = 8
       Height = 25
-      Align = alTop
+      Align = alRight
       BevelOuter = bvNone
-      Padding.Top = 2
-      TabOrder = 1
-      object ReplaceWithLabel: TLabel
-        Left = 0
-        Top = 2
-        Width = 61
-        Height = 23
-        Align = alLeft
-        Caption = 'Replace with'
-      end
-    end
-  end
-  object Panel4: TPanel
-    Left = 88
-    Top = 12
-    Width = 351
-    Height = 125
-    Align = alClient
-    BevelOuter = bvNone
-    TabOrder = 2
-    object Panel6: TPanel
-      Left = 0
-      Top = 0
-      Width = 351
-      Height = 25
-      Align = alTop
-      BevelOuter = bvNone
-      TabOrder = 0
-      object SearchForComboBox: TBCComboBox
-        Left = 0
-        Top = 0
-        Width = 351
-        Height = 21
-        Align = alTop
-        TabOrder = 0
-        OnKeyUp = SearchForComboBoxKeyUp
-        DeniedKeyStrokes = False
-        ReadOnly = False
-        DropDownFixedWidth = 0
-      end
-    end
-    object Panel7: TPanel
-      Left = 0
-      Top = 25
-      Width = 351
-      Height = 25
-      Align = alTop
-      BevelOuter = bvNone
-      TabOrder = 1
-      object ReplaceWithComboBox: TBCComboBox
-        Left = 0
-        Top = 0
-        Width = 351
-        Height = 21
-        Align = alTop
-        TabOrder = 0
-        DeniedKeyStrokes = False
-        ReadOnly = False
-        DropDownFixedWidth = 0
-      end
-    end
-    object Panel8: TPanel
-      Left = 0
-      Top = 50
-      Width = 351
-      Height = 75
-      Align = alClient
-      BevelOuter = bvNone
-      Padding.Bottom = 10
-      TabOrder = 2
-      object OptionsGroupBox: TGroupBox
-        Left = 0
-        Top = 0
-        Width = 173
-        Height = 65
-        Align = alLeft
-        Caption = ' Options '
-        TabOrder = 0
-        object CaseSensitiveCheckBox: TBCCheckBox
-          Left = 8
-          Top = 16
-          Width = 91
-          Height = 15
-          Caption = ' Case sensitive'
-          TabOrder = 0
-          AutoSize = True
-          ReadOnly = False
-        end
-        object WholeWordsCheckBox: TBCCheckBox
-          Left = 8
-          Top = 39
-          Width = 107
-          Height = 15
-          Caption = ' Whole words only'
-          TabOrder = 1
-          AutoSize = True
-          ReadOnly = False
-        end
-      end
-      object Panel9: TPanel
-        Left = 173
-        Top = 0
-        Width = 178
-        Height = 65
-        Align = alClient
-        BevelOuter = bvNone
-        Padding.Left = 8
-        TabOrder = 1
-        object ReplaceInRadioGroup: TRadioGroup
-          Left = 8
-          Top = 0
-          Width = 170
-          Height = 65
-          Align = alClient
-          Caption = ' Replace in '
-          ItemIndex = 0
-          Items.Strings = (
-            ' Whole file'
-            ' All open files')
-          TabOrder = 0
-        end
-      end
+      TabOrder = 4
     end
   end
 end

@@ -6,32 +6,35 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCDialogs.Dlg, Vcl.ExtCtrls,
-  BCControls.ComboBox, Vcl.StdCtrls, BCControls.CheckBox;
+  BCControls.ComboBox, Vcl.StdCtrls, BCControls.CheckBox, BCControls.LayoutPanel, BCControls.GroupBox,
+  BCControls.RadioButton;
 
 type
   TReplaceDialog = class(TDialog)
-    CancelButton: TButton;
+    OptionsGroupBox: TBCGroupBox;
     CaseSensitiveCheckBox: TBCCheckBox;
-    FindButton: TButton;
-    LeftPanel: TPanel;
-    OptionsGroupBox: TGroupBox;
-    Panel10: TPanel;
-    Panel11: TPanel;
-    Panel3: TPanel;
-    Panel4: TPanel;
-    Panel5: TPanel;
-    Panel6: TPanel;
-    Panel7: TPanel;
-    Panel8: TPanel;
-    Panel9: TPanel;
-    ReplaceAllButton: TButton;
-    ReplaceInRadioGroup: TRadioGroup;
-    ReplaceWithComboBox: TBCComboBox;
-    ReplaceWithLabel: TLabel;
-    RightPanel: TPanel;
-    SearchForComboBox: TBCComboBox;
-    SearchForLabel: TLabel;
     WholeWordsCheckBox: TBCCheckBox;
+    RegularExpressionsCheckBox: TBCCheckBox;
+    PromptOnReplaceCheckBox: TBCCheckBox;
+    ReplaceInGroupBox: TBCGroupBox;
+    WholeFileRadioButton: TBCRadioButton;
+    AllOpenFilesRadioButton: TBCRadioButton;
+    Controls1Panel: TPanel;
+    SearchForLabel: TLabel;
+    Controls2Panel: TPanel;
+    SearchForComboBox: TBCComboBox;
+    Controls3Panel: TPanel;
+    ReplaceWithRadioButton: TBCRadioButton;
+    Controls4Panel: TPanel;
+    ReplaceWithComboBox: TBCComboBox;
+    Controls5Panel: TPanel;
+    DeleteLineRadioButton: TBCRadioButton;
+    ButtonsPanel: TPanel;
+    FindButton: TButton;
+    ReplaceAllButton: TButton;
+    CancelButton: TButton;
+    ButtonDivider2Panel: TPanel;
+    ButtonDivider1Panel: TPanel;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -42,6 +45,8 @@ type
     function GetSearchCaseSensitive: Boolean;
     function GetSearchText: string;
     function GetSearchWholeWords: Boolean;
+    procedure ReadIniFile;
+    procedure WriteIniFile;
   public
     property ReplaceInWholeFile: Boolean read GetReplaceInWholeFile;
     property ReplaceText: string read GetReplaceText;
@@ -57,7 +62,7 @@ implementation
 {$R *.DFM}
 
 uses
-  BCCommon.StyleUtils, System.Math, BCCommon.Lib;
+  BCCommon.StyleUtils, System.Math, BCCommon.Lib, System.IniFiles, BCCommon.FileUtils;
 
 var
   FReplaceDialog: TReplaceDialog;
@@ -67,7 +72,7 @@ begin
   if not Assigned(FReplaceDialog) then
     Application.CreateForm(TReplaceDialog, FReplaceDialog);
   Result := FReplaceDialog;
-  SetStyledFormSize(Result);
+  Result.ReadIniFile;
 end;
 
 procedure TReplaceDialog.FormDestroy(Sender: TObject);
@@ -76,14 +81,8 @@ begin
 end;
 
 procedure TReplaceDialog.FormShow(Sender: TObject);
-var
-  i: Integer;
 begin
-  i := ReplaceInRadioGroup.ItemIndex; { language update will set the itemindex to -1 }
   inherited;
-  ReplaceInRadioGroup.ItemIndex := i;
-  LeftPanel.Width := Max(SearchForLabel.Width + 12, ReplaceWithLabel.Width + 12);
-  RightPanel.Width := Max(Max(Canvas.TextWidth(FindButton.Caption), Max(Canvas.TextWidth(ReplaceAllButton.Caption), Canvas.TextWidth(CancelButton.Caption))) + 14, 83);
 
   if SearchForComboBox.CanFocus then
     SearchForComboBox.SetFocus;
@@ -117,17 +116,48 @@ end;
 
 function TReplaceDialog.GetReplaceInWholeFile: Boolean;
 begin
-  Result := ReplaceInRadioGroup.ItemIndex = 0;
+  Result := WholeFileRadioButton.Checked;
 end;
 
 procedure TReplaceDialog.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
   inherited;
+  WriteIniFile;
   if ModalResult = mrOK then
   begin
     InsertTextToCombo(SearchForComboBox);
     InsertTextToCombo(ReplaceWithComboBox);
+  end;
+end;
+
+procedure TReplaceDialog.ReadIniFile;
+begin
+  with TMemIniFile.Create(GetIniFilename) do
+  try
+    CaseSensitiveCheckBox.Checked := ReadBool('ReplaceOptions', 'CaseSensitive', False);
+    WholeWordsCheckBox.Checked := ReadBool('ReplaceOptions', 'WholeWords', False);
+    RegularExpressionsCheckBox.Checked := ReadBool('ReplaceOptions', 'RegularExpressions', False);
+    PromptOnReplaceCheckBox.Checked := ReadBool('ReplaceOptions', 'PromptOnReplace', True);
+    WholeFileRadioButton.Checked := ReadBool('ReplaceOptions', 'WholeFile', True);
+    AllOpenFilesRadioButton.Checked := ReadBool('ReplaceOptions', 'AllOpenFiles', False);
+  finally
+    Free;
+  end;
+end;
+
+procedure TReplaceDialog.WriteIniFile;
+begin
+  with TMemIniFile.Create(GetIniFilename) do
+  try
+    WriteBool('ReplaceOptions', 'CaseSensitive', CaseSensitiveCheckBox.Checked);
+    WriteBool('ReplaceOptions', 'WholeWords', WholeWordsCheckBox.Checked);
+    WriteBool('ReplaceOptions', 'RegularExpressions', RegularExpressionsCheckBox.Checked);
+    WriteBool('ReplaceOptions', 'PromptOnReplace', PromptOnReplaceCheckBox.Checked);
+    WriteBool('ReplaceOptions', 'WholeFile', WholeFileRadioButton.Checked);
+    WriteBool('ReplaceOptions', 'AllOpenFiles', AllOpenFilesRadioButton.Checked);
+  finally
+    Free;
   end;
 end;
 
