@@ -3,7 +3,7 @@ object ReplaceDialog: TReplaceDialog
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Replace'
-  ClientHeight = 336
+  ClientHeight = 360
   ClientWidth = 369
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
@@ -26,7 +26,7 @@ object ReplaceDialog: TReplaceDialog
     Left = 12
     Top = 124
     Width = 345
-    Height = 101
+    Height = 123
     Margins.Left = 0
     Margins.Top = 6
     Margins.Right = 0
@@ -75,12 +75,22 @@ object ReplaceDialog: TReplaceDialog
     end
     object PromptOnReplaceCheckBox: TBCCheckBox
       Left = 8
-      Top = 84
+      Top = 105
       Width = 109
       Height = 15
       Caption = ' Prompt on replace'
       Checked = True
       State = cbChecked
+      TabOrder = 4
+      AutoSize = True
+      ReadOnly = False
+    end
+    object WildCardCheckBox: TBCCheckBox
+      Left = 8
+      Top = 84
+      Width = 66
+      Height = 15
+      Caption = ' Wild card'
       TabOrder = 3
       AutoSize = True
       ReadOnly = False
@@ -89,7 +99,7 @@ object ReplaceDialog: TReplaceDialog
   object ReplaceInGroupBox: TBCGroupBox
     AlignWithMargins = True
     Left = 12
-    Top = 231
+    Top = 253
     Width = 345
     Height = 64
     Margins.Left = 0
@@ -243,7 +253,7 @@ object ReplaceDialog: TReplaceDialog
   object ButtonsPanel: TPanel
     AlignWithMargins = True
     Left = 15
-    Top = 292
+    Top = 316
     Width = 339
     Height = 41
     Align = alBottom

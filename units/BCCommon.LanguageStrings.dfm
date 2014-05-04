@@ -67,6 +67,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'DeleteVirtualDrive'
         Strings.Strings = (
           'Delete virtual drive %s, are you sure?')
+      end
+      item
+        Name = 'DeleteLine'
+        Strings.Strings = (
+          'Delete line, are you sure?')
       end>
     Left = 92
     Top = 22

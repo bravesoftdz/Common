@@ -35,24 +35,33 @@ type
     CancelButton: TButton;
     ButtonDivider2Panel: TPanel;
     ButtonDivider1Panel: TPanel;
+    WildCardCheckBox: TBCCheckBox;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SearchForComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
+    function GetPromptOnReplace: Boolean;
+    function GetRegularExpressions: Boolean;
     function GetReplaceInWholeFile: Boolean;
+    function GetReplace: Boolean;
     function GetReplaceText: string;
     function GetSearchCaseSensitive: Boolean;
     function GetSearchText: string;
     function GetSearchWholeWords: Boolean;
+    function GetWildCard: Boolean;
     procedure ReadIniFile;
     procedure WriteIniFile;
   public
+    property PromptOnReplace: Boolean read GetPromptOnReplace;
+    property RegularExpressions: Boolean read GetRegularExpressions;
+    property Replace: Boolean read GetReplace;
     property ReplaceInWholeFile: Boolean read GetReplaceInWholeFile;
     property ReplaceText: string read GetReplaceText;
     property SearchCaseSensitive: Boolean read GetSearchCaseSensitive;
     property SearchText: string read GetSearchText;
     property SearchWholeWords: Boolean read GetSearchWholeWords;
+    property WildCard: Boolean read GetWildCard;
   end;
 
 function ReplaceDialog: TReplaceDialog;
@@ -88,6 +97,21 @@ begin
     SearchForComboBox.SetFocus;
 end;
 
+function TReplaceDialog.GetPromptOnReplace: Boolean;
+begin
+  Result := PromptOnReplaceCheckBox.Checked;
+end;
+
+function TReplaceDialog.GetRegularExpressions: Boolean;
+begin
+  Result := RegularExpressionsCheckBox.Checked;
+end;
+
+function TReplaceDialog.GetReplace: Boolean;
+begin
+  Result := ReplaceWithRadioButton.Checked;
+end;
+
 function TReplaceDialog.GetReplaceText: string;
 begin
   Result := ReplaceWithComboBox.Text;
@@ -106,6 +130,11 @@ end;
 function TReplaceDialog.GetSearchWholeWords: Boolean;
 begin
   Result := WholeWordsCheckBox.Checked;
+end;
+
+function TReplaceDialog.GetWildCard: Boolean;
+begin
+  Result := WildCardCheckBox.Checked;
 end;
 
 procedure TReplaceDialog.SearchForComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);

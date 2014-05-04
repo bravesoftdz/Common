@@ -19,7 +19,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   public
-    procedure PrepareShow(AEditorRect: TRect; X, Y1, Y2: integer; AReplaceText: string);
+    procedure Initialize(AEditorRect: TRect; X, Y1, Y2: integer; AConfirmText: string);
   end;
 
 function ConfirmReplaceDialog: TConfirmReplaceDialog;
@@ -53,12 +53,12 @@ begin
   FConfirmReplaceDialog := nil;
 end;
 
-procedure TConfirmReplaceDialog.PrepareShow(AEditorRect: TRect;
-  X, Y1, Y2: integer; AReplaceText: string);
+procedure TConfirmReplaceDialog.Initialize(AEditorRect: TRect;
+  X, Y1, Y2: integer; AConfirmText: string);
 var
   nW, nH: integer;
 begin
-  ConfirmationLabel.Caption := Format(LanguageDataModule.GetYesOrNoMessage('ReplaceOccurence'), [AReplaceText]);
+  ConfirmationLabel.Caption := AConfirmText;
   nW := AEditorRect.Right - AEditorRect.Left;
   nH := AEditorRect.Bottom - AEditorRect.Top;
 
