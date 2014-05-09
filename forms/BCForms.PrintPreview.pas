@@ -83,7 +83,7 @@ implementation
 
 uses
   Vcl.Themes, BCCommon.LanguageUtils, BCCommon.Dialogs, WinApi.CommDlg, BCCommon.LanguageStrings,
-  BCControls.StyleHooks;
+  BCControls.StyleHooks, Winapi.Windows;
 
 var
   FPrintPreviewDialog: TPrintPreviewDialog;
@@ -118,6 +118,8 @@ begin
 end;
 
 procedure TPrintPreviewDialog.FormShow(Sender: TObject);
+var
+  LStyles: TCustomStyleServices;
 begin
   SynEditPrintPreview.UpdatePreview;
   SynEditPrintPreview.FirstPage;
@@ -133,6 +135,10 @@ begin
 
   StatusBar.Font.Name := 'Tahoma'; // IDE is losing this for some reason... :/
   StatusBar.Font.Size := 8;
+
+  LStyles := StyleServices;
+  if LStyles.Enabled then
+    SynEditPrintPreview.Color := LStyles.GetStyleColor(scPanel);
 
   UpdateLanguage(Self);
   Caption := Format('%s - [%s]', [Caption, SynEditPrintPreview.SynEditPrint.Title]);
@@ -227,6 +233,8 @@ begin
       FScale := 25;
     SynEditPrintPreview.ScalePercent := FScale;
   end;
+  { fix for scrollbar resize bug }
+  SetWindowPos(SynEditPrintPreview.Handle, 0, 0, 0, SynEditPrintPreview.Width, SynEditPrintPreview.Height, SWP_DRAWFRAME);
 end;
 
 procedure TPrintPreviewDialog.SynEditPrintPreviewPreviewPage(

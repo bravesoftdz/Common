@@ -72,6 +72,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Width = 726
     Height = 477
     BorderStyle = bsNone
+    Color = clWindow
     ScaleMode = pscWholePage
     OnMouseDown = SynEditPrintPreviewMouseDown
     OnPreviewPage = SynEditPrintPreviewPreviewPage
