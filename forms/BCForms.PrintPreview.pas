@@ -5,14 +5,10 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
   Vcl.ToolWin, Vcl.ActnList, Vcl.ImgList, SynEditPrintPreview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers, BCCommon.Images,
-  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, BCControls.PopupMenu, BCControls.ToolBar, System.Actions, Vcl.Grids;
+  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, BCControls.PopupMenu, BCControls.ToolBar, System.Actions, Vcl.Grids,
+  System.Types;
 
 type
-  TDrawGrid = class(Vcl.Grids.TDrawGrid)
-  public
-    property OnResize;
-  end;
-
   TPrintPreviewDialog = class(TForm)
     ActionList: TActionList;
     ApplicationEvents: TApplicationEvents;
@@ -82,8 +78,8 @@ implementation
 {$R *.DFM}
 
 uses
-  Vcl.Themes, BCCommon.LanguageUtils, BCCommon.Dialogs, WinApi.CommDlg, BCCommon.LanguageStrings,
-  BCControls.StyleHooks, Winapi.Windows;
+  Vcl.Themes, UxTheme, BCCommon.LanguageUtils, BCCommon.Dialogs, WinApi.CommDlg, BCCommon.LanguageStrings,
+  BCControls.StyleHooks, Winapi.Windows, Math;
 
 var
   FPrintPreviewDialog: TPrintPreviewDialog;
@@ -234,7 +230,7 @@ begin
     SynEditPrintPreview.ScalePercent := FScale;
   end;
   { fix for scrollbar resize bug }
-  SetWindowPos(SynEditPrintPreview.Handle, 0, 0, 0, SynEditPrintPreview.Width, SynEditPrintPreview.Height, SWP_DRAWFRAME);
+  SetWindowPos(SynEditPrintPreview.Handle, 0, 0, SynEditPrintPreview.Top, SynEditPrintPreview.Width, SynEditPrintPreview.Height, SWP_DRAWFRAME);
 end;
 
 procedure TPrintPreviewDialog.SynEditPrintPreviewPreviewPage(

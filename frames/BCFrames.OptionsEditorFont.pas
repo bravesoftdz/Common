@@ -78,6 +78,7 @@ begin
   UpdateMarginAndColors(SynEdit);
   OptionsContainer.AssignTo(SynEdit);
   SynEdit.ActiveLineColor := LightenColor(SynEdit.Color, 1 - (10 - OptionsContainer.ColorBrightness) / 10);
+  SynEdit.Minimap.Visible := True;
 end;
 
 procedure TOptionsEditorFontFrame.MinimapWidthEditChange(Sender: TObject);

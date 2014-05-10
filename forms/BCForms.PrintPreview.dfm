@@ -67,15 +67,18 @@ object PrintPreviewDialog: TPrintPreviewDialog
     ShowHint = True
   end
   object SynEditPrintPreview: TSynEditPrintPreview
+    AlignWithMargins = True
     Left = 0
-    Top = 27
-    Width = 726
-    Height = 477
-    BorderStyle = bsNone
+    Top = 30
+    Width = 723
+    Height = 471
+    Margins.Left = 0
     Color = clWindow
     ScaleMode = pscWholePage
     OnMouseDown = SynEditPrintPreviewMouseDown
     OnPreviewPage = SynEditPrintPreviewPreviewPage
+    ExplicitLeft = 189
+    ExplicitWidth = 534
   end
   object ButtonPanel: TPanel
     Left = 0
