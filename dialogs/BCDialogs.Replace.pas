@@ -27,8 +27,6 @@ type
     ReplaceWithRadioButton: TBCRadioButton;
     Controls4Panel: TPanel;
     ReplaceWithComboBox: TBCComboBox;
-    Controls5Panel: TPanel;
-    DeleteLineRadioButton: TBCRadioButton;
     ButtonsPanel: TPanel;
     FindButton: TButton;
     ReplaceAllButton: TButton;
@@ -36,6 +34,7 @@ type
     ButtonDivider2Panel: TPanel;
     ButtonDivider1Panel: TPanel;
     WildCardCheckBox: TBCCheckBox;
+    DeleteLineRadioButton: TBCRadioButton;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);

@@ -1,27 +1,28 @@
 inherited OptionsOutputFrame: TOptionsOutputFrame
-  Width = 126
-  Height = 66
+  Width = 103
+  Height = 75
   AutoSize = True
+  ExplicitWidth = 103
+  ExplicitHeight = 75
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 122
-    Height = 66
+    Width = 99
+    Height = 75
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
     TabOrder = 0
     object IndentLabel: TLabel
       Left = 2
-      Top = 25
-      Width = 36
-      Height = 16
+      Top = 37
+      Width = 32
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -31,8 +32,8 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
     object ShowTreeLinesCheckBox: TBCCheckBox
       Left = 0
       Top = 0
-      Width = 122
-      Height = 18
+      Width = 95
+      Height = 15
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -44,14 +45,14 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
     end
     object IndentEdit: TBCEdit
       Left = 0
-      Top = 42
+      Top = 54
       Width = 64
-      Height = 24
+      Height = 21
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      TabOrder = 1
+      TabOrder = 2
       Text = '20'
       EnterToTab = False
       OnlyNumbers = True
@@ -59,6 +60,20 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
+    end
+    object ShowCheckBoxCheckBox: TBCCheckBox
+      Left = 0
+      Top = 18
+      Width = 99
+      Height = 15
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Caption = ' Show check box'
+      TabOrder = 1
+      AutoSize = True
+      ReadOnly = False
     end
   end
 end

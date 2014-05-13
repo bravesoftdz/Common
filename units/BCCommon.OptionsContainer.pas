@@ -58,6 +58,7 @@ type
     FNonblinkingCaretFontColor: string;
     FOutputIndent: Integer;
     FOutputShowTreeLines: Boolean;
+    FOutputShowCheckBox: Boolean;
     FPersistentHotKeys: Boolean;
     FPrintDateTime: Integer;
     FPrintDocumentName: Integer;
@@ -184,7 +185,9 @@ type
     [IniValue('Options', 'OutputIndent', '20')]
     property OutputIndent: Integer read FOutputIndent write FOutputIndent;
     [IniValue('Options', 'OutputShowTreeLines', False)]
-    property OutputShowTreeLines: Boolean read FOutputShowTreeLines write FOutputShowTreeLines ;
+    property OutputShowTreeLines: Boolean read FOutputShowTreeLines write FOutputShowTreeLines;
+    [IniValue('Options', 'OutputShowCheckBox', True)]
+    property OutputShowCheckBox: Boolean read FOutputShowCheckBox write FOutputShowCheckBox;
     [IniValue('Options', 'PersistentHotKeys', False)]
     property PersistentHotKeys: Boolean read FPersistentHotKeys write FPersistentHotKeys;
     [IniValue('Options', 'PrintDateTime', '1')]

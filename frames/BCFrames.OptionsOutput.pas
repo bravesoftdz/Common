@@ -12,6 +12,7 @@ type
     IndentLabel: TLabel;
     ShowTreeLinesCheckBox: TBCCheckBox;
     IndentEdit: TBCEdit;
+    ShowCheckBoxCheckBox: TBCCheckBox;
   private
     { Private declarations }
   public
@@ -49,12 +50,14 @@ end;
 procedure TOptionsOutputFrame.PutData;
 begin
   OptionsContainer.OutputShowTreeLines := ShowTreeLinesCheckBox.Checked;
+  OptionsContainer.OutputShowCheckBox := ShowCheckBoxCheckBox.Checked;
   OptionsContainer.OutputIndent := StrToIntDef(IndentEdit.Text, 16);
 end;
 
 procedure TOptionsOutputFrame.GetData;
 begin
   ShowTreeLinesCheckBox.Checked := OptionsContainer.OutputShowTreeLines;
+  ShowCheckBoxCheckBox.Checked := OptionsContainer.OutputShowCheckBox;
   IndentEdit.Text := IntToStr(OptionsContainer.OutputIndent);
 end;
 

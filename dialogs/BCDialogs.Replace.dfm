@@ -3,7 +3,7 @@ object ReplaceDialog: TReplaceDialog
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Replace'
-  ClientHeight = 360
+  ClientHeight = 339
   ClientWidth = 369
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
@@ -24,7 +24,7 @@ object ReplaceDialog: TReplaceDialog
   object OptionsGroupBox: TBCGroupBox
     AlignWithMargins = True
     Left = 12
-    Top = 124
+    Top = 100
     Width = 345
     Height = 123
     Margins.Left = 0
@@ -43,6 +43,7 @@ object ReplaceDialog: TReplaceDialog
     CaptionFont.Height = -11
     CaptionFont.Name = 'Tahoma'
     CaptionFont.Style = []
+    ExplicitTop = 124
     object CaseSensitiveCheckBox: TBCCheckBox
       Left = 8
       Top = 21
@@ -99,7 +100,7 @@ object ReplaceDialog: TReplaceDialog
   object ReplaceInGroupBox: TBCGroupBox
     AlignWithMargins = True
     Left = 12
-    Top = 253
+    Top = 229
     Width = 345
     Height = 64
     Margins.Left = 0
@@ -117,6 +118,7 @@ object ReplaceDialog: TReplaceDialog
     CaptionFont.Height = -11
     CaptionFont.Name = 'Tahoma'
     CaptionFont.Style = []
+    ExplicitTop = 253
     object WholeFileRadioButton: TBCRadioButton
       Left = 8
       Top = 21
@@ -159,6 +161,7 @@ object ReplaceDialog: TReplaceDialog
       Height = 16
       Align = alLeft
       Caption = 'Search for'
+      ExplicitHeight = 13
     end
   end
   object Controls2Panel: TPanel
@@ -194,15 +197,28 @@ object ReplaceDialog: TReplaceDialog
     object ReplaceWithRadioButton: TBCRadioButton
       Left = 0
       Top = 0
-      Width = 345
+      Width = 167
       Height = 24
-      Align = alClient
+      Align = alLeft
       BiDiMode = bdLeftToRight
       Caption = ' Replace with'
       Checked = True
       ParentBiDiMode = False
       TabOrder = 0
       TabStop = True
+      AutoSize = True
+      ReadOnly = False
+    end
+    object DeleteLineRadioButton: TBCRadioButton
+      Left = 184
+      Top = 0
+      Width = 161
+      Height = 24
+      Align = alRight
+      BiDiMode = bdLeftToRight
+      Caption = ' Delete line'
+      ParentBiDiMode = False
+      TabOrder = 1
       AutoSize = True
       ReadOnly = False
     end
@@ -228,39 +244,18 @@ object ReplaceDialog: TReplaceDialog
       DropDownFixedWidth = 0
     end
   end
-  object Controls5Panel: TPanel
-    Left = 12
-    Top = 94
-    Width = 345
-    Height = 24
-    Align = alTop
-    BevelOuter = bvNone
-    TabOrder = 6
-    object DeleteLineRadioButton: TBCRadioButton
-      Left = 0
-      Top = 0
-      Width = 345
-      Height = 24
-      Align = alClient
-      BiDiMode = bdLeftToRight
-      Caption = ' Delete line'
-      ParentBiDiMode = False
-      TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
-    end
-  end
   object ButtonsPanel: TPanel
     AlignWithMargins = True
     Left = 15
-    Top = 316
+    Top = 295
     Width = 339
     Height = 41
     Align = alBottom
     BevelOuter = bvNone
     Padding.Top = 8
     Padding.Bottom = 8
-    TabOrder = 7
+    TabOrder = 6
+    ExplicitTop = 316
     object FindButton: TButton
       Left = 98
       Top = 8
