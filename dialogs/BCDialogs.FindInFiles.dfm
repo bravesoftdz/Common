@@ -3,7 +3,7 @@ object FindInFilesDialog: TFindInFilesDialog
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Find in Files'
-  ClientHeight = 112
+  ClientHeight = 268
   ClientWidth = 499
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
@@ -21,202 +21,143 @@ object FindInFilesDialog: TFindInFilesDialog
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object ButtonPanel: TPanel
-    Left = 404
+  object FindWhatPanel: TPanel
+    AlignWithMargins = True
+    Left = 14
     Top = 12
-    Width = 83
-    Height = 100
-    Align = alRight
+    Width = 471
+    Height = 18
+    Margins.Left = 2
+    Margins.Top = 0
+    Margins.Right = 2
+    Margins.Bottom = 0
+    Align = alTop
     BevelOuter = bvNone
-    Padding.Left = 8
+    Padding.Top = 2
     TabOrder = 0
-    object FindButtonPanel: TPanel
-      Left = 8
-      Top = 0
-      Width = 75
-      Height = 31
-      Margins.Left = 2
-      Margins.Top = 2
-      Margins.Right = 2
-      Margins.Bottom = 2
-      Align = alTop
-      AutoSize = True
-      BevelOuter = bvNone
-      Padding.Bottom = 6
-      TabOrder = 0
-      object FindButton: TButton
-        Left = 0
-        Top = 0
-        Width = 75
-        Height = 25
-        Align = alTop
-        Caption = '&Find'
-        Default = True
-        Enabled = False
-        ModalResult = 1
-        TabOrder = 0
-      end
-    end
-    object CancelButtonPanel: TPanel
-      Left = 8
-      Top = 31
-      Width = 75
-      Height = 25
-      Margins.Left = 2
-      Margins.Top = 2
-      Margins.Right = 2
-      Margins.Bottom = 2
-      Align = alTop
-      AutoSize = True
-      BevelOuter = bvNone
-      TabOrder = 1
-      object CancelButton: TButton
-        Left = 0
-        Top = 0
-        Width = 75
-        Height = 25
-        Align = alTop
-        Cancel = True
-        Caption = 'Cancel'
-        ModalResult = 2
-        TabOrder = 0
-      end
+    ExplicitLeft = 16
+    ExplicitWidth = 469
+    object TextToFindLabel: TLabel
+      Left = 0
+      Top = 2
+      Width = 56
+      Height = 16
+      Align = alLeft
+      Caption = 'Text to find'
+      ExplicitHeight = 13
     end
   end
-  object LeftPanel: TPanel
+  object FindWhatComboPanel: TPanel
     Left = 12
-    Top = 12
-    Width = 59
-    Height = 100
+    Top = 30
+    Width = 475
+    Height = 24
     Margins.Left = 2
     Margins.Top = 2
     Margins.Right = 2
     Margins.Bottom = 2
-    Align = alLeft
+    Align = alTop
     BevelOuter = bvNone
-    Padding.Right = 9
     TabOrder = 1
-    object FindWhatPanel: TPanel
+    object FindWhatComboBox: TBCComboBox
       Left = 0
       Top = 0
-      Width = 50
-      Height = 24
-      Margins.Left = 2
-      Margins.Top = 2
-      Margins.Right = 2
-      Margins.Bottom = 2
+      Width = 475
+      Height = 21
       Align = alTop
-      BevelOuter = bvNone
-      Padding.Top = 2
       TabOrder = 0
-      object FindWhatLabel: TLabel
-        Left = 0
-        Top = 2
-        Width = 47
-        Height = 22
-        Align = alLeft
-        Caption = 'Find what'
-      end
-    end
-    object FileTypePanel: TPanel
-      Left = 0
-      Top = 24
-      Width = 50
-      Height = 25
-      Margins.Left = 2
-      Margins.Top = 2
-      Margins.Right = 2
-      Margins.Bottom = 2
-      Align = alTop
-      AutoSize = True
-      BevelOuter = bvNone
-      Padding.Top = 2
-      TabOrder = 1
-      object FileTypeLabel: TLabel
-        Left = 0
-        Top = 2
-        Width = 41
-        Height = 23
-        Align = alLeft
-        Caption = 'File type'
-      end
-    end
-    object FolderPanel: TPanel
-      Left = 0
-      Top = 49
-      Width = 50
-      Height = 24
-      Margins.Left = 2
-      Margins.Top = 2
-      Margins.Right = 2
-      Margins.Bottom = 2
-      Align = alTop
-      BevelOuter = bvNone
-      Padding.Top = 2
-      TabOrder = 2
-      object FolderLabel: TLabel
-        Left = 0
-        Top = 2
-        Width = 30
-        Height = 22
-        Align = alLeft
-        Caption = 'Folder'
-      end
+      OnKeyUp = FindWhatComboBoxKeyUp
+      DeniedKeyStrokes = False
+      ReadOnly = False
+      DropDownFixedWidth = 0
     end
   end
-  object MiddlePanel: TPanel
-    Left = 71
-    Top = 12
-    Width = 333
-    Height = 100
-    Margins.Left = 2
-    Margins.Top = 2
-    Margins.Right = 2
-    Margins.Bottom = 2
-    Align = alClient
-    BevelOuter = bvNone
+  object OptionsGroupBox: TBCGroupBox
+    Left = 12
+    Top = 54
+    Width = 475
+    Height = 45
+    Align = alTop
+    ControlSpacing = 5
+    LayoutManagerActive = False
+    LayoutType = ltVertical
+    LabelColor = clWindowText
     TabOrder = 2
-    object FindWhatComboPanel: TPanel
-      Left = 0
-      Top = 0
-      Width = 333
-      Height = 24
-      Margins.Left = 2
-      Margins.Top = 2
+    Caption = 'Options'
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWindowText
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = []
+    object CaseSensitiveCheckBox: TBCCheckBox
+      Left = 8
+      Top = 21
+      Width = 91
+      Height = 15
+      Caption = ' Case sensitive'
+      TabOrder = 0
+      AutoSize = True
+      ReadOnly = False
+    end
+  end
+  object SearchDirectoryOptionsGroupBox: TBCGroupBox
+    Left = 12
+    Top = 99
+    Width = 475
+    Height = 134
+    Align = alTop
+    ControlSpacing = 5
+    LayoutManagerActive = False
+    LayoutType = ltVertical
+    LabelColor = clWindowText
+    TabOrder = 3
+    Caption = 'Search directory options'
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWindowText
+    CaptionFont.Height = -11
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = []
+    object Panel1: TPanel
+      AlignWithMargins = True
+      Left = 9
+      Top = 18
+      Width = 463
+      Height = 18
+      Margins.Left = 8
+      Margins.Top = 4
       Margins.Right = 2
-      Margins.Bottom = 2
+      Margins.Bottom = 0
       Align = alTop
       BevelOuter = bvNone
+      Padding.Top = 2
       TabOrder = 0
-      object FindWhatComboBox: TBCComboBox
+      object FileMaskLabel: TLabel
         Left = 0
-        Top = 0
-        Width = 333
-        Height = 21
-        Align = alTop
-        TabOrder = 0
-        OnKeyUp = FindWhatComboBoxKeyUp
-        DeniedKeyStrokes = False
-        ReadOnly = False
-        DropDownFixedWidth = 0
+        Top = 2
+        Width = 43
+        Height = 16
+        Align = alLeft
+        Caption = 'File mask'
+        ExplicitHeight = 13
       end
     end
     object FileTypeComboPanel: TPanel
-      Left = 0
-      Top = 24
-      Width = 333
+      AlignWithMargins = True
+      Left = 7
+      Top = 36
+      Width = 465
       Height = 24
-      Margins.Left = 2
-      Margins.Top = 2
+      Margins.Left = 6
+      Margins.Top = 0
       Margins.Right = 2
       Margins.Bottom = 2
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 1
-      object FileTypeComboBox: TBCComboBox
+      object FileMaskComboBox: TBCComboBox
         Left = 0
         Top = 0
-        Width = 333
+        Width = 465
         Height = 21
         Align = alTop
         DropDownCount = 20
@@ -227,23 +168,48 @@ object FindInFilesDialog: TFindInFilesDialog
         DropDownFixedWidth = 0
       end
     end
+    object FolderPanel: TPanel
+      AlignWithMargins = True
+      Left = 9
+      Top = 62
+      Width = 463
+      Height = 18
+      Margins.Left = 8
+      Margins.Top = 0
+      Margins.Right = 2
+      Margins.Bottom = 0
+      Align = alTop
+      BevelOuter = bvNone
+      Padding.Top = 2
+      TabOrder = 2
+      object DirectoriesLabel: TLabel
+        Left = 0
+        Top = 2
+        Width = 51
+        Height = 16
+        Align = alLeft
+        Caption = 'Directories'
+        ExplicitHeight = 13
+      end
+    end
     object FolderEditPanel: TPanel
-      Left = 0
-      Top = 48
-      Width = 333
-      Height = 22
-      Margins.Left = 2
-      Margins.Top = 2
+      AlignWithMargins = True
+      Left = 7
+      Top = 80
+      Width = 465
+      Height = 21
+      Margins.Left = 6
+      Margins.Top = 0
       Margins.Right = 2
       Margins.Bottom = 2
       Align = alTop
       BevelOuter = bvNone
-      TabOrder = 2
-      object BitBtn1: TJvSpeedButton
-        Left = 312
+      TabOrder = 3
+      object FolderSpeedButton: TJvSpeedButton
+        Left = 444
         Top = 0
         Width = 21
-        Height = 22
+        Height = 21
         Action = FolderButtonClickAction
         Align = alRight
         Flat = True
@@ -299,12 +265,14 @@ object FindInFilesDialog: TFindInFilesDialog
           FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
           00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
         NumGlyphs = 2
+        ExplicitLeft = 312
+        ExplicitHeight = 22
       end
       object FolderEdit2Panel: TPanel
         Left = 0
         Top = 0
-        Width = 312
-        Height = 22
+        Width = 444
+        Height = 21
         Margins.Left = 2
         Margins.Top = 2
         Margins.Right = 2
@@ -313,10 +281,10 @@ object FindInFilesDialog: TFindInFilesDialog
         BevelOuter = bvNone
         Padding.Right = 3
         TabOrder = 0
-        object FolderEdit: TBCEdit
+        object DirectoriesEdit: TBCEdit
           Left = 0
           Top = 0
-          Width = 309
+          Width = 441
           Height = 21
           Align = alTop
           TabOrder = 0
@@ -330,9 +298,9 @@ object FindInFilesDialog: TFindInFilesDialog
       end
     end
     object CheckBoxPanel: TPanel
-      Left = 0
-      Top = 70
-      Width = 333
+      Left = 1
+      Top = 103
+      Width = 473
       Height = 21
       Margins.Left = 2
       Margins.Top = 2
@@ -341,45 +309,78 @@ object FindInFilesDialog: TFindInFilesDialog
       Align = alTop
       BevelOuter = bvNone
       Padding.Top = 4
-      TabOrder = 3
-      object CaseSensitiveCheckBox: TBCCheckBox
-        Left = 0
+      TabOrder = 4
+      object IncludeSubdirectoriesCheckBox: TBCCheckBox
+        Left = 8
         Top = 4
-        Width = 91
+        Width = 127
         Height = 17
         Align = alLeft
-        Caption = ' Case sensitive'
+        Caption = ' Include subdirectories'
+        Checked = True
+        State = cbChecked
         TabOrder = 0
         AutoSize = True
         ReadOnly = False
       end
-      object LookInSubfoldersCheckBox: TBCCheckBox
-        Left = 99
-        Top = 4
-        Width = 108
-        Height = 17
-        Align = alLeft
-        Caption = ' Look in subfolders'
-        Checked = True
-        State = cbChecked
-        TabOrder = 1
-        AutoSize = True
-        ReadOnly = False
-      end
       object TPanel
-        Left = 91
+        Left = 0
         Top = 4
         Width = 8
         Height = 17
         Align = alLeft
         BevelOuter = bvNone
-        TabOrder = 2
+        TabOrder = 1
       end
     end
   end
+  object ButtonsPanel: TPanel
+    AlignWithMargins = True
+    Left = 15
+    Top = 224
+    Width = 469
+    Height = 41
+    Align = alBottom
+    BevelOuter = bvNone
+    Padding.Top = 8
+    Padding.Bottom = 8
+    TabOrder = 4
+    object FindButton: TButton
+      Left = 311
+      Top = 8
+      Width = 75
+      Height = 25
+      Align = alRight
+      Caption = '&Find'
+      Default = True
+      Enabled = False
+      ModalResult = 1
+      TabOrder = 0
+    end
+    object CancelButton: TButton
+      Left = 394
+      Top = 8
+      Width = 75
+      Height = 25
+      Align = alRight
+      Cancel = True
+      Caption = 'Cancel'
+      ModalResult = 2
+      TabOrder = 1
+    end
+    object ButtonDivider1Panel: TPanel
+      Left = 386
+      Top = 8
+      Width = 8
+      Height = 25
+      Align = alRight
+      BevelOuter = bvNone
+      TabOrder = 2
+    end
+  end
   object ActionList: TActionList
-    Left = 208
-    Top = 30
+    Left = 434
+    Top = 6
     object FolderButtonClickAction: TAction
       ImageIndex = 0
       OnExecute = FolderButtonClickActionExecute

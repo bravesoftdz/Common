@@ -5,36 +5,35 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, JvToolEdit,
   BCControls.ComboBox, Vcl.Themes, Vcl.ActnList, Vcl.Buttons, BCDialogs.Dlg, System.Actions, BCControls.Edit,
-  Vcl.ComCtrls, JvExControls, JvSpeedButton, BCControls.CheckBox;
+  Vcl.ComCtrls, JvExControls, JvSpeedButton, BCControls.CheckBox, BCControls.LayoutPanel, BCControls.GroupBox;
 
 type
   TFindInFilesDialog = class(TDialog)
     ActionList: TActionList;
-    ButtonPanel: TPanel;
-    CancelButton: TButton;
-    CaseSensitiveCheckBox: TBCCheckBox;
-    FileTypeComboBox: TBCComboBox;
-    FileTypeLabel: TLabel;
-    FindButton: TButton;
-    FindWhatComboBox: TBCComboBox;
-    FindWhatLabel: TLabel;
     FolderButtonClickAction: TAction;
-    FolderEdit: TBCEdit;
-    FolderLabel: TLabel;
-    LeftPanel: TPanel;
-    LookInSubfoldersCheckBox: TBCCheckBox;
-    FindButtonPanel: TPanel;
-    CancelButtonPanel: TPanel;
-    FolderEdit2Panel: TPanel;
     FindWhatPanel: TPanel;
-    FileTypePanel: TPanel;
-    FolderPanel: TPanel;
-    MiddlePanel: TPanel;
+    TextToFindLabel: TLabel;
     FindWhatComboPanel: TPanel;
+    FindWhatComboBox: TBCComboBox;
+    OptionsGroupBox: TBCGroupBox;
+    CaseSensitiveCheckBox: TBCCheckBox;
+    SearchDirectoryOptionsGroupBox: TBCGroupBox;
+    Panel1: TPanel;
+    FileMaskLabel: TLabel;
     FileTypeComboPanel: TPanel;
+    FileMaskComboBox: TBCComboBox;
+    FolderPanel: TPanel;
+    DirectoriesLabel: TLabel;
     FolderEditPanel: TPanel;
+    FolderSpeedButton: TJvSpeedButton;
+    FolderEdit2Panel: TPanel;
+    DirectoriesEdit: TBCEdit;
     CheckBoxPanel: TPanel;
-    BitBtn1: TJvSpeedButton;
+    IncludeSubdirectoriesCheckBox: TBCCheckBox;
+    ButtonsPanel: TPanel;
+    FindButton: TButton;
+    CancelButton: TButton;
+    ButtonDivider1Panel: TPanel;
     procedure FindWhatComboBoxKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FolderButtonClickActionExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -95,8 +94,6 @@ end;
 procedure TFindInFilesDialog.FormShow(Sender: TObject);
 begin
   inherited;
-  LeftPanel.Width := Max(Max(FindWhatLabel.Width + 12, FileTypeLabel.Width + 12), FolderLabel.Width + 12);
-  ButtonPanel.Width := Max(Max(Canvas.TextWidth(FindButton.Caption), Canvas.TextWidth(CancelButton.Caption)) + 10, 83);
   SetButtons;
   if FindWhatComboBox.CanFocus then
     FindWhatComboBox.SetFocus;
@@ -109,12 +106,12 @@ end;
 
 function TFindInFilesDialog.GetFileTypeText: string;
 begin
-  Result := FileTypeComboBox.Text;
+  Result := FileMaskComboBox.Text;
 end;
 
 function TFindInFilesDialog.GetFolderText: string;
 begin
-  Result := Trim(FolderEdit.Text);
+  Result := Trim(DirectoriesEdit.Text);
   {$WARNINGS OFF} { IncludeTrailingBackslash is specific to a platform }
   if Result <> '' then
     Result := IncludeTrailingBackslash(Result);
@@ -123,7 +120,7 @@ end;
 
 procedure TFindInFilesDialog.SetFolderText(Value: string);
 begin
-  FolderEdit.Text := Value;
+  DirectoriesEdit.Text := Value;
 end;
 
 function TFindInFilesDialog.GetSearchCaseSensitive: Boolean;
@@ -133,7 +130,7 @@ end;
 
 function TFindInFilesDialog.GetLookInSubfolders: Boolean;
 begin
-  Result := LookInSubfoldersCheckBox.Checked;
+  Result := IncludeSubdirectoriesCheckBox.Checked;
 end;
 
 procedure TFindInFilesDialog.SetButtons;
@@ -151,10 +148,10 @@ procedure TFindInFilesDialog.FolderButtonClickActionExecute(Sender: TObject);
 var
   Dir: string;
 begin
-  Dir := FolderEdit.Text;
+  Dir := DirectoriesEdit.Text;
   if Vcl.FileCtrl.SelectDirectory(LanguageDataModule.GetConstant('SelectRootDirectory'), '', Dir, [sdNewFolder,
     sdShowShares, sdNewUI, sdValidateDir], Self) then
-    FolderEdit.Text := Dir;
+    DirectoriesEdit.Text := Dir;
 end;
 
 procedure TFindInFilesDialog.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -168,7 +165,7 @@ var
   Temp: string;
 begin
   Temp := Value;
-  with FileTypeComboBox.Items do
+  with FileMaskComboBox.Items do
   begin
     Clear;
     while Pos('|', Temp) <> 0 do

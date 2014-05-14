@@ -43,7 +43,6 @@ object ReplaceDialog: TReplaceDialog
     CaptionFont.Height = -11
     CaptionFont.Name = 'Tahoma'
     CaptionFont.Style = []
-    ExplicitTop = 124
     object CaseSensitiveCheckBox: TBCCheckBox
       Left = 8
       Top = 21
@@ -118,7 +117,6 @@ object ReplaceDialog: TReplaceDialog
     CaptionFont.Height = -11
     CaptionFont.Name = 'Tahoma'
     CaptionFont.Style = []
-    ExplicitTop = 253
     object WholeFileRadioButton: TBCRadioButton
       Left = 8
       Top = 21
@@ -147,10 +145,15 @@ object ReplaceDialog: TReplaceDialog
     end
   end
   object Controls1Panel: TPanel
-    Left = 12
+    AlignWithMargins = True
+    Left = 14
     Top = 12
-    Width = 345
+    Width = 343
     Height = 16
+    Margins.Left = 2
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 2
@@ -195,10 +198,14 @@ object ReplaceDialog: TReplaceDialog
     BevelOuter = bvNone
     TabOrder = 4
     object ReplaceWithRadioButton: TBCRadioButton
-      Left = 0
+      AlignWithMargins = True
+      Left = 2
       Top = 0
-      Width = 167
+      Width = 83
       Height = 24
+      Margins.Left = 2
+      Margins.Top = 0
+      Margins.Bottom = 0
       Align = alLeft
       BiDiMode = bdLeftToRight
       Caption = ' Replace with'
@@ -210,10 +217,15 @@ object ReplaceDialog: TReplaceDialog
       ReadOnly = False
     end
     object DeleteLineRadioButton: TBCRadioButton
-      Left = 184
+      AlignWithMargins = True
+      Left = 271
       Top = 0
-      Width = 161
+      Width = 72
       Height = 24
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 2
+      Margins.Bottom = 0
       Align = alRight
       BiDiMode = bdLeftToRight
       Caption = ' Delete line'
@@ -221,6 +233,7 @@ object ReplaceDialog: TReplaceDialog
       TabOrder = 1
       AutoSize = True
       ReadOnly = False
+      ExplicitLeft = 273
     end
   end
   object Controls4Panel: TPanel
@@ -255,7 +268,6 @@ object ReplaceDialog: TReplaceDialog
     Padding.Top = 8
     Padding.Bottom = 8
     TabOrder = 6
-    ExplicitTop = 316
     object FindButton: TButton
       Left = 98
       Top = 8
