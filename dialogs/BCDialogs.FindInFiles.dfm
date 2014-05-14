@@ -182,13 +182,13 @@ object FindInFilesDialog: TFindInFilesDialog
       BevelOuter = bvNone
       Padding.Top = 2
       TabOrder = 2
-      object DirectoriesLabel: TLabel
+      object DirectoryLabel: TLabel
         Left = 0
         Top = 2
-        Width = 51
+        Width = 44
         Height = 16
         Align = alLeft
-        Caption = 'Directories'
+        Caption = 'Directory'
         ExplicitHeight = 13
       end
     end
@@ -205,7 +205,7 @@ object FindInFilesDialog: TFindInFilesDialog
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 3
-      object FolderSpeedButton: TJvSpeedButton
+      object DirectorySpeedButton: TJvSpeedButton
         Left = 444
         Top = 0
         Width = 21
@@ -281,7 +281,7 @@ object FindInFilesDialog: TFindInFilesDialog
         BevelOuter = bvNone
         Padding.Right = 3
         TabOrder = 0
-        object DirectoriesEdit: TBCEdit
+        object DirectoryEdit: TBCEdit
           Left = 0
           Top = 0
           Width = 441
