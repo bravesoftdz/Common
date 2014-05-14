@@ -24,7 +24,7 @@ object ReplaceDialog: TReplaceDialog
   object OptionsGroupBox: TBCGroupBox
     AlignWithMargins = True
     Left = 12
-    Top = 100
+    Top = 99
     Width = 345
     Height = 123
     Margins.Left = 0
@@ -43,6 +43,7 @@ object ReplaceDialog: TReplaceDialog
     CaptionFont.Height = -11
     CaptionFont.Name = 'Tahoma'
     CaptionFont.Style = []
+    ExplicitTop = 98
     object CaseSensitiveCheckBox: TBCCheckBox
       Left = 8
       Top = 21
@@ -99,7 +100,7 @@ object ReplaceDialog: TReplaceDialog
   object ReplaceInGroupBox: TBCGroupBox
     AlignWithMargins = True
     Left = 12
-    Top = 229
+    Top = 228
     Width = 345
     Height = 64
     Margins.Left = 0
@@ -117,6 +118,7 @@ object ReplaceDialog: TReplaceDialog
     CaptionFont.Height = -11
     CaptionFont.Name = 'Tahoma'
     CaptionFont.Style = []
+    ExplicitTop = 227
     object WholeFileRadioButton: TBCRadioButton
       Left = 8
       Top = 21
@@ -193,7 +195,7 @@ object ReplaceDialog: TReplaceDialog
     Left = 12
     Top = 49
     Width = 345
-    Height = 24
+    Height = 23
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 4
@@ -202,7 +204,7 @@ object ReplaceDialog: TReplaceDialog
       Left = 2
       Top = 0
       Width = 83
-      Height = 24
+      Height = 23
       Margins.Left = 2
       Margins.Top = 0
       Margins.Bottom = 0
@@ -215,13 +217,14 @@ object ReplaceDialog: TReplaceDialog
       TabStop = True
       AutoSize = True
       ReadOnly = False
+      ExplicitHeight = 22
     end
     object DeleteLineRadioButton: TBCRadioButton
       AlignWithMargins = True
       Left = 271
       Top = 0
       Width = 72
-      Height = 24
+      Height = 23
       Margins.Left = 0
       Margins.Top = 0
       Margins.Right = 2
@@ -233,18 +236,19 @@ object ReplaceDialog: TReplaceDialog
       TabOrder = 1
       AutoSize = True
       ReadOnly = False
-      ExplicitLeft = 273
+      ExplicitHeight = 22
     end
   end
   object Controls4Panel: TPanel
     Left = 12
-    Top = 73
+    Top = 72
     Width = 345
     Height = 21
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     TabOrder = 5
+    ExplicitTop = 71
     object ReplaceWithComboBox: TBCComboBox
       Left = 0
       Top = 0
