@@ -49,6 +49,8 @@ type
     procedure SetButtons;
     procedure SetExtensions(Value: string);
     procedure SetFolderText(Value: string);
+    procedure ReadIniFile;
+    procedure WriteIniFile;
   public
     { Public declarations }
     property Extensions: string write SetExtensions;
@@ -66,10 +68,11 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StyleUtils, System.Math, BCCommon.LanguageStrings, BCCommon.Lib, BCCommon.StringUtils,
+  BCCommon.StyleUtils, System.Math, BCCommon.LanguageStrings, BCCommon.Lib, BCCommon.StringUtils, System.IniFiles,
   {$WARNINGS OFF}
-  Vcl.FileCtrl; { warning: FileCtrl is specific to a platform }
+  Vcl.FileCtrl, { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}
+  BCCommon.FileUtils;
 
 var
   FFindInFilesDialog: TFindInFilesDialog;
@@ -83,7 +86,7 @@ begin
       TStyleManager.Engine.RegisterStyleHook(TJvDirectoryEdit, TEditStyleHook);
   end;
   Result := FFindInFilesDialog;
-  SetStyledFormSize(Result);
+  Result.ReadIniFile;
 end;
 
 procedure TFindInFilesDialog.FormDestroy(Sender: TObject);
@@ -156,6 +159,7 @@ end;
 
 procedure TFindInFilesDialog.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
+  WriteIniFile;
   if ModalResult = mrOK then
     InsertTextToCombo(FindWhatComboBox);
 end;
@@ -173,6 +177,26 @@ begin
       Add(GetNextToken('|', Temp));
       Temp := RemoveTokenFromStart('|', Temp);
     end;
+  end;
+end;
+
+procedure TFindInFilesDialog.ReadIniFile;
+begin
+  with TIniFile.Create(GetIniFilename) do
+  try
+    CaseSensitiveCheckBox.Checked := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
+  finally
+    Free;
+  end;
+end;
+
+procedure TFindInFilesDialog.WriteIniFile;
+begin
+  with TIniFile.Create(GetIniFilename) do
+  try
+    WriteBool('FindInFilesOptions', 'CaseSensitive', CaseSensitiveCheckBox.Checked);
+  finally
+    Free;
   end;
 end;
 

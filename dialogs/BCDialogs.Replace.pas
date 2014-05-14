@@ -161,7 +161,7 @@ end;
 
 procedure TReplaceDialog.ReadIniFile;
 begin
-  with TMemIniFile.Create(GetIniFilename) do
+  with TIniFile.Create(GetIniFilename) do
   try
     CaseSensitiveCheckBox.Checked := ReadBool('ReplaceOptions', 'CaseSensitive', False);
     WholeWordsCheckBox.Checked := ReadBool('ReplaceOptions', 'WholeWords', False);
@@ -176,7 +176,7 @@ end;
 
 procedure TReplaceDialog.WriteIniFile;
 begin
-  with TMemIniFile.Create(GetIniFilename) do
+  with TIniFile.Create(GetIniFilename) do
   try
     WriteBool('ReplaceOptions', 'CaseSensitive', CaseSensitiveCheckBox.Checked);
     WriteBool('ReplaceOptions', 'WholeWords', WholeWordsCheckBox.Checked);

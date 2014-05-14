@@ -43,7 +43,6 @@ object ReplaceDialog: TReplaceDialog
     CaptionFont.Height = -11
     CaptionFont.Name = 'Tahoma'
     CaptionFont.Style = []
-    ExplicitTop = 98
     object CaseSensitiveCheckBox: TBCCheckBox
       Left = 8
       Top = 21
@@ -118,7 +117,6 @@ object ReplaceDialog: TReplaceDialog
     CaptionFont.Height = -11
     CaptionFont.Name = 'Tahoma'
     CaptionFont.Style = []
-    ExplicitTop = 227
     object WholeFileRadioButton: TBCRadioButton
       Left = 8
       Top = 21
@@ -217,7 +215,6 @@ object ReplaceDialog: TReplaceDialog
       TabStop = True
       AutoSize = True
       ReadOnly = False
-      ExplicitHeight = 22
     end
     object DeleteLineRadioButton: TBCRadioButton
       AlignWithMargins = True
@@ -236,7 +233,6 @@ object ReplaceDialog: TReplaceDialog
       TabOrder = 1
       AutoSize = True
       ReadOnly = False
-      ExplicitHeight = 22
     end
   end
   object Controls4Panel: TPanel
@@ -248,7 +244,6 @@ object ReplaceDialog: TReplaceDialog
     AutoSize = True
     BevelOuter = bvNone
     TabOrder = 5
-    ExplicitTop = 71
     object ReplaceWithComboBox: TBCComboBox
       Left = 0
       Top = 0

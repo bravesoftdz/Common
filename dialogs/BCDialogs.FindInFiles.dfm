@@ -35,16 +35,13 @@ object FindInFilesDialog: TFindInFilesDialog
     BevelOuter = bvNone
     Padding.Top = 2
     TabOrder = 0
-    ExplicitLeft = 16
-    ExplicitWidth = 469
     object TextToFindLabel: TLabel
       Left = 0
       Top = 2
       Width = 56
-      Height = 16
+      Height = 13
       Align = alLeft
       Caption = 'Text to find'
-      ExplicitHeight = 13
     end
   end
   object FindWhatComboPanel: TPanel
@@ -135,10 +132,9 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 43
-        Height = 16
+        Height = 13
         Align = alLeft
         Caption = 'File mask'
-        ExplicitHeight = 13
       end
     end
     object FileTypeComboPanel: TPanel
@@ -186,10 +182,9 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 44
-        Height = 16
+        Height = 13
         Align = alLeft
         Caption = 'Directory'
-        ExplicitHeight = 13
       end
     end
     object FolderEditPanel: TPanel
@@ -322,6 +317,7 @@ object FindInFilesDialog: TFindInFilesDialog
         TabOrder = 0
         AutoSize = True
         ReadOnly = False
+        ExplicitHeight = 15
       end
       object TPanel
         Left = 0
