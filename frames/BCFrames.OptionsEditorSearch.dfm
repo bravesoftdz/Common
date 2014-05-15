@@ -2,12 +2,14 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
   Width = 212
   Height = 95
   AutoSize = True
+  ExplicitWidth = 212
+  ExplicitHeight = 95
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 208
-    Height = 95
+    Width = 207
+    Height = 97
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -26,82 +28,77 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
     object ShowSearchStringNotFoundCheckBox: TBCCheckBox
       Left = 0
       Top = 0
-      Width = 208
-      Height = 15
+      Width = 207
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show search string not found message'
+      Caption = 'Show search string not found message'
       Checked = True
       State = cbChecked
       TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object BeepIfSearchStringNotFoundCheckBox: TBCCheckBox
       Left = 0
       Top = 20
-      Width = 170
-      Height = 15
+      Width = 169
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Beep if search string not found'
+      Caption = 'Beep if search string not found'
       Checked = True
       State = cbChecked
       TabOrder = 1
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object DocumentSpecificSearchCheckBox: TBCCheckBox
       Left = 0
       Top = 40
-      Width = 144
-      Height = 15
+      Width = 143
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Document-specific search'
+      Caption = 'Document-specific search'
       Checked = True
       State = cbChecked
       TabOrder = 2
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ShowSearchMapCheckBox: TBCCheckBox
       Left = 0
       Top = 60
-      Width = 106
-      Height = 15
+      Width = 105
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show search map'
+      Caption = 'Show search map'
       Checked = True
       State = cbChecked
       TabOrder = 3
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ShowSearchHighlighterCheckBox: TBCCheckBox
       Left = 0
       Top = 80
-      Width = 136
-      Height = 15
+      Width = 135
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show search highlighter'
+      Caption = 'Show search highlighter'
       Checked = True
       State = cbChecked
       TabOrder = 4
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
   end
 end

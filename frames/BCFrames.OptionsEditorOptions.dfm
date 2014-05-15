@@ -1,13 +1,15 @@
 inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
   Width = 204
-  Height = 455
+  Height = 452
   AutoSize = True
+  ExplicitWidth = 204
+  ExplicitHeight = 452
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 200
-    Height = 455
+    Height = 452
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -83,64 +85,60 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object AutoIndentCheckBox: TBCCheckBox
       Left = 0
       Top = 0
-      Width = 78
-      Height = 15
+      Width = 77
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Auto indent'
+      Caption = 'Auto indent'
       Checked = True
       State = cbChecked
       TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object TrimTrailingSpacesCheckBox: TBCCheckBox
       Left = 0
       Top = 180
-      Width = 113
-      Height = 15
+      Width = 112
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Trim trailing spaces'
+      Caption = 'Trim trailing spaces'
       Checked = True
       State = cbChecked
       TabOrder = 9
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ScrollPastEofCheckBox: TBCCheckBox
       Left = 0
       Top = 60
-      Width = 122
-      Height = 15
+      Width = 121
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Scroll past end of file'
+      Caption = 'Scroll past end of file'
       TabOrder = 3
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ScrollPastEolCheckBox: TBCCheckBox
       Left = 0
       Top = 80
-      Width = 124
-      Height = 15
+      Width = 123
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Scroll past end of line'
+      Caption = 'Scroll past end of line'
       Checked = True
       State = cbChecked
       TabOrder = 4
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object LineSpacingEdit: TBCEdit
       Left = 0
@@ -183,32 +181,30 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object TabsToSpacesCheckBox: TBCCheckBox
       Left = 0
       Top = 160
-      Width = 94
-      Height = 15
+      Width = 93
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Tabs to spaces'
+      Caption = 'Tabs to spaces'
       Checked = True
       State = cbChecked
       TabOrder = 8
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object AutoSaveCheckBox: TBCCheckBox
       Left = 0
       Top = 20
-      Width = 71
-      Height = 15
+      Width = 70
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Auto save'
+      Caption = 'Auto save'
       TabOrder = 1
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object InsertCaretComboBox: TBCComboBox
       Left = 0
@@ -229,74 +225,69 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object UndoAfterSaveCheckBox: TBCCheckBox
       Left = 0
       Top = 220
-      Width = 100
-      Height = 15
+      Width = 99
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Undo after save'
+      Caption = 'Undo after save'
       TabOrder = 11
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object SmartTabsCheckBox: TBCCheckBox
       Left = 0
       Top = 120
-      Width = 74
-      Height = 15
+      Width = 73
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Smart tabs'
+      Caption = 'Smart tabs'
       TabOrder = 6
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object SmartTabDeleteCheckBox: TBCCheckBox
       Left = 0
       Top = 140
-      Width = 102
-      Height = 15
+      Width = 101
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Smart tab delete'
+      Caption = 'Smart tab delete'
       TabOrder = 7
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object TripleClickRowSelectCheckBox: TBCCheckBox
       Left = 0
       Top = 200
-      Width = 123
-      Height = 15
+      Width = 122
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Triple-click row select'
+      Caption = 'Triple-click row select'
       Checked = True
       State = cbChecked
       TabOrder = 10
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object NonblinkingCaretCheckBox: TBCCheckBox
       Left = 0
       Top = 40
-      Width = 108
-      Height = 15
+      Width = 107
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Non-blinking caret'
+      Caption = 'Non-blinking caret'
       TabOrder = 2
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object NonblinkingCaretBackgroundColorBox: TBCColorComboBox
       Left = 0
@@ -319,18 +310,17 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     object ShowScrollHintCheckBox: TBCCheckBox
       Left = 0
       Top = 100
-      Width = 96
-      Height = 15
+      Width = 95
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show scroll hint'
+      Caption = 'Show scroll hint'
       Checked = True
       State = cbChecked
       TabOrder = 5
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object NonblinkingCaretFontColorBox: TBCColorComboBox
       Left = 0

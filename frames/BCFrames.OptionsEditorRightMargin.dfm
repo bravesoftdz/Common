@@ -1,18 +1,22 @@
 inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
-  Width = 86
-  Height = 81
+  Width = 451
+  Height = 304
+  Align = alClient
   AutoSize = True
   Visible = False
+  ExplicitWidth = 451
+  ExplicitHeight = 304
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 82
-    Height = 81
+    Width = 447
+    Height = 304
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
+    Align = alClient
     AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
@@ -34,12 +38,6 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = 'Position'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
     end
     object PositionEdit: TBCEdit
       Left = 0
@@ -68,13 +66,13 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
     object VisibleCheckBox: TBCCheckBox
       Left = 0
       Top = 0
-      Width = 51
-      Height = 15
+      Width = 50
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Visible'
+      Caption = 'Visible'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -84,30 +82,24 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       ParentFont = False
       State = cbChecked
       TabOrder = 2
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object MouseMoveCheckBox: TBCCheckBox
       Left = 0
       Top = 20
-      Width = 82
-      Height = 15
+      Width = 81
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Mouse move'
+      Caption = 'Mouse move'
       Checked = True
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
+      Color = clWindow
+      ParentColor = False
       State = cbChecked
       TabOrder = 1
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
   end
 end

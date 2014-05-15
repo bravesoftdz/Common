@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCSQL.Formatter,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.CheckBox, Vcl.ExtCtrls,
-  BCFrames.OptionsFrame;
+  BCFrames.OptionsFrame, JvExStdCtrls, JvCheckBox;
 
 type
   TOptionsSQLWhitespaceFrame = class(TOptionsFrame)

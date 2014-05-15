@@ -2,12 +2,14 @@ inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
   Width = 317
   Height = 115
   AutoSize = True
+  ExplicitWidth = 317
+  ExplicitHeight = 115
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 313
-    Height = 115
+    Width = 312
+    Height = 117
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -26,85 +28,80 @@ inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
     object SpaceAroundOperatorCheckBox: TBCCheckBox
       Left = 0
       Top = 0
-      Width = 255
-      Height = 15
+      Width = 254
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Space around operator of arithmetric expression'
+      Caption = 'Space around operator of arithmetric expression'
       Checked = True
       State = cbChecked
       TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object SpaceInsideCreateCheckBox: TBCCheckBox
       Left = 0
       Top = 20
-      Width = 313
-      Height = 15
+      Width = 312
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Space inside parenthesis in CREATE FUNCTION/PROCEDURE'
+      Caption = 'Space inside parenthesis in CREATE FUNCTION/PROCEDURE'
       TabOrder = 1
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object SpaceInsideExpressionCheckBox: TBCCheckBox
       Left = 0
       Top = 40
-      Width = 206
-      Height = 15
+      Width = 205
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Space inside parenthesis in expression'
+      Caption = 'Space inside parenthesis in expression'
       TabOrder = 2
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object SpaceInsideSubqueryCheckBox: TBCCheckBox
       Left = 0
       Top = 60
-      Width = 199
-      Height = 15
+      Width = 198
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Space inside parenthesis in subquery'
+      Caption = 'Space inside parenthesis in subquery'
       TabOrder = 3
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object SpaceInsideFunctionCheckBox: TBCCheckBox
       Left = 0
       Top = 80
-      Width = 211
-      Height = 15
+      Width = 210
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Space inside parenthesis in function call'
+      Caption = 'Space inside parenthesis in function call'
       TabOrder = 4
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object SpaceInsideTypenameCheckBox: TBCCheckBox
       Left = 0
       Top = 100
-      Width = 290
-      Height = 15
+      Width = 289
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Space inside parenthesis of typename in CREATE TABLE'
+      Caption = 'Space inside parenthesis of typename in CREATE TABLE'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -112,8 +109,7 @@ inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 5
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
   end
 end

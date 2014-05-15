@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   BCControls.CheckBox, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ActnList, System.Actions, BCCommon.OptionsContainer,
-  BCFrames.OptionsFrame;
+  BCFrames.OptionsFrame, JvExStdCtrls, JvCheckBox;
 
 type
   TOptionsStatusBarFrame = class(TOptionsFrame)

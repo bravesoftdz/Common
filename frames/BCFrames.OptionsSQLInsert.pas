@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, BCSQL.Formatter,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCFrames.OptionsFrame, Vcl.StdCtrls, BCControls.ComboBox, BCControls.CheckBox,
-  Vcl.ExtCtrls, BCControls.Edit;
+  Vcl.ExtCtrls, BCControls.Edit, JvExStdCtrls, JvCheckBox;
 
 type
   TOptionsSQLInsertFrame = class(TOptionsFrame)

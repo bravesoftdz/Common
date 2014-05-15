@@ -39,9 +39,10 @@ object FindInFilesDialog: TFindInFilesDialog
       Left = 0
       Top = 2
       Width = 56
-      Height = 13
+      Height = 16
       Align = alLeft
       Caption = 'Text to find'
+      ExplicitHeight = 13
     end
   end
   object FindWhatComboPanel: TPanel
@@ -89,12 +90,11 @@ object FindInFilesDialog: TFindInFilesDialog
     object CaseSensitiveCheckBox: TBCCheckBox
       Left = 8
       Top = 21
-      Width = 91
-      Height = 15
-      Caption = ' Case sensitive'
+      Width = 90
+      Height = 17
+      Caption = 'Case sensitive'
       TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
   end
   object SearchDirectoryOptionsGroupBox: TBCGroupBox
@@ -132,9 +132,10 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 43
-        Height = 13
+        Height = 16
         Align = alLeft
         Caption = 'File mask'
+        ExplicitHeight = 13
       end
     end
     object FileTypeComboPanel: TPanel
@@ -182,9 +183,10 @@ object FindInFilesDialog: TFindInFilesDialog
         Left = 0
         Top = 2
         Width = 44
-        Height = 13
+        Height = 16
         Align = alLeft
         Caption = 'Directory'
+        ExplicitHeight = 13
       end
     end
     object FolderEditPanel: TPanel
@@ -308,16 +310,16 @@ object FindInFilesDialog: TFindInFilesDialog
       object IncludeSubdirectoriesCheckBox: TBCCheckBox
         Left = 8
         Top = 4
-        Width = 127
+        Width = 126
         Height = 17
         Align = alLeft
-        Caption = ' Include subdirectories'
+        Caption = 'Include subdirectories'
         Checked = True
+        Color = clWindow
+        ParentColor = False
         State = cbChecked
         TabOrder = 0
-        AutoSize = True
-        ReadOnly = False
-        ExplicitHeight = 15
+        LinkedControls = <>
       end
       object TPanel
         Left = 0

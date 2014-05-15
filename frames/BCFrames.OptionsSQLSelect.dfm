@@ -2,6 +2,8 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
   Width = 451
   Height = 304
   Align = alClient
+  ExplicitWidth = 451
+  ExplicitHeight = 304
   object Panel: TPanel
     Left = 0
     Top = 0
@@ -92,50 +94,47 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object AlignAliasCheckBox: TBCCheckBox
           Left = 9
           Top = 93
-          Width = 69
-          Height = 15
+          Width = 68
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Align alias'
+          Caption = 'Align alias'
           Checked = True
           State = cbChecked
           TabOrder = 2
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
         object ColumnInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 113
-          Width = 115
-          Height = 15
+          Width = 114
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Columns in new line'
+          Caption = 'Columns in new line'
           Checked = True
           State = cbChecked
           TabOrder = 3
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
         object TreatDistinctAsVirtualColumnCheckBox: TBCCheckBox
           Left = 9
           Top = 133
-          Width = 181
-          Height = 15
+          Width = 180
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Treat DISTINCT as virtual column'
+          Caption = 'Treat DISTINCT as virtual column'
           Checked = True
           State = cbChecked
           TabOrder = 4
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
       end
       object SubqueryTabSheet: TTabSheet
@@ -144,66 +143,62 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object NewLineAfterInCheckBox: TBCCheckBox
           Left = 9
           Top = 5
-          Width = 103
-          Height = 15
+          Width = 102
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' New line after IN'
+          Caption = 'New line after IN'
           Checked = True
           State = cbChecked
           TabOrder = 0
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
         object NewLineAfterExistsCheckBox: TBCCheckBox
           Left = 9
           Top = 25
-          Width = 126
-          Height = 15
+          Width = 125
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' New line after EXISTS'
+          Caption = 'New line after EXISTS'
           Checked = True
           State = cbChecked
           TabOrder = 1
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
         object NewlineAfterComparisonOperatorCheckBox: TBCCheckBox
           Left = 9
           Top = 45
-          Width = 191
-          Height = 15
+          Width = 190
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' New line after comparison operator'
+          Caption = 'New line after comparison operator'
           Checked = True
           State = cbChecked
           TabOrder = 2
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
         object NewlineBeforeComparisonOperatorCheckBox: TBCCheckBox
           Left = 9
           Top = 65
-          Width = 199
-          Height = 15
+          Width = 198
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' New line before comparison operator'
+          Caption = 'New line before comparison operator'
           Checked = True
           State = cbChecked
           TabOrder = 3
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
       end
       object IntoClauseTabSheet: TTabSheet
@@ -212,18 +207,17 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object IntoClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5
-          Width = 133
-          Height = 15
+          Width = 132
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' INTO clause in new line'
+          Caption = 'INTO clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 0
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
       end
       object FromJoinClauseTabSheet: TTabSheet
@@ -261,82 +255,77 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object FromClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 52
-          Width = 137
-          Height = 15
+          Width = 136
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' FROM clause in new line'
+          Caption = 'FROM clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 1
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
         object JoinClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 72
-          Width = 132
-          Height = 15
+          Width = 131
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' JOIN clause in new line'
+          Caption = 'JOIN clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 2
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
         object AlignJoinWithFromKeywordCheckBox: TBCCheckBox
           Left = 9
           Top = 92
-          Width = 171
-          Height = 15
+          Width = 170
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Align JOIN with FROM keyword'
+          Caption = 'Align JOIN with FROM keyword'
           Checked = True
           State = cbChecked
           TabOrder = 3
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
         object AlignAndOrWithOnInJoinClauseCheckBox: TBCCheckBox
           Left = 9
           Top = 112
-          Width = 203
-          Height = 15
+          Width = 202
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Align AND/OR with ON in JOIN clause '
+          Caption = 'Align AND/OR with ON in JOIN clause '
           Checked = True
           State = cbChecked
           TabOrder = 4
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
         object AlignAliasInFromClauseCheckBox: TBCCheckBox
           Left = 9
           Top = 132
-          Width = 145
-          Height = 15
+          Width = 144
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' Align alias in FROM clause'
+          Caption = 'Align alias in FROM clause'
           Checked = True
           State = cbChecked
           TabOrder = 5
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
       end
       object AndOrKeywordTabSheet: TTabSheet
@@ -368,50 +357,47 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object AndOrUnderWhereCheckBox: TBCCheckBox
           Left = 9
           Top = 52
-          Width = 126
-          Height = 15
+          Width = 125
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' AND/OR under where'
+          Caption = 'AND/OR under where'
           Checked = True
           State = cbChecked
           TabOrder = 1
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
         object WhereClauseInNewlineCheckBox: TBCCheckBox
           Left = 9
           Top = 72
-          Width = 144
-          Height = 15
+          Width = 143
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' WHERE clause in new line'
+          Caption = 'WHERE clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 2
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
         object WhereClauseAlignExprCheckBox: TBCCheckBox
           Left = 9
           Top = 92
-          Width = 141
-          Height = 15
+          Width = 140
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' WHERE clause align expr'
+          Caption = 'WHERE clause align expr'
           Checked = True
           State = cbChecked
           TabOrder = 3
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
       end
       object GroupByClauseTabSheet: TTabSheet
@@ -443,18 +429,17 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object GroupByClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 52
-          Width = 158
-          Height = 15
+          Width = 157
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' GROUP BY clause in new line'
+          Caption = 'GROUP BY clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 1
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
       end
       object HavingClauseTabSheet: TTabSheet
@@ -463,18 +448,17 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object HavingClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 5
-          Width = 146
-          Height = 15
+          Width = 145
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' HAVING clause in new line'
+          Caption = 'HAVING clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 0
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
       end
       object OderByClauseTabSheet: TTabSheet
@@ -506,18 +490,17 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         object OrderByClauseInNewLineCheckBox: TBCCheckBox
           Left = 9
           Top = 52
-          Width = 158
-          Height = 15
+          Width = 157
+          Height = 17
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' ORDER BY clause in new line'
+          Caption = 'ORDER BY clause in new line'
           Checked = True
           State = cbChecked
           TabOrder = 1
-          AutoSize = True
-          ReadOnly = False
+          LinkedControls = <>
         end
       end
     end

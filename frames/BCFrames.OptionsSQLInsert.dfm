@@ -2,13 +2,14 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
   Width = 201
   Height = 143
   AutoSize = True
-  ParentFont = False
+  ExplicitWidth = 201
+  ExplicitHeight = 143
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 197
-    Height = 143
+    Width = 186
+    Height = 142
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -21,22 +22,22 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
     object ColumnListStyleLabel: TLabel
       Left = 2
       Top = 0
-      Width = 93
-      Height = 16
+      Width = 77
+      Height = 13
       Caption = 'Column list style'
     end
     object ValueListStyleLabel: TLabel
       Left = 2
       Top = 42
-      Width = 82
-      Height = 16
+      Width = 68
+      Height = 13
       Caption = 'Value list style'
     end
     object InsertColumnsPerLineLabel: TLabel
       Left = 2
       Top = 84
-      Width = 131
-      Height = 16
+      Width = 108
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -46,18 +47,17 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
     object ParenthesisInSeparateLinesCheckBox: TBCCheckBox
       Left = 0
       Top = 125
-      Width = 197
-      Height = 18
+      Width = 158
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Parenthesis in separate lines'
+      Caption = 'Parenthesis in separate lines'
       Checked = True
       State = cbChecked
       TabOrder = 2
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ColumnListStyleComboBox: TBCComboBox
       Left = 0

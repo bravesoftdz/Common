@@ -2,6 +2,8 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
   Width = 179
   Height = 333
   AutoSize = True
+  ExplicitWidth = 179
+  ExplicitHeight = 333
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -93,13 +95,13 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
     object UseTabCheckBox: TBCCheckBox
       Left = 2
       Top = 41
-      Width = 59
-      Height = 15
+      Width = 58
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Use tab'
+      Caption = 'Use tab'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -107,8 +109,7 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object IndentLengthEdit: TBCEdit
       Left = 0
@@ -170,13 +171,13 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
     object BlockOnNewLineCheckBox: TBCCheckBox
       Left = 2
       Top = 147
-      Width = 103
-      Height = 15
+      Width = 102
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Block on new line'
+      Caption = 'Block on new line'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -184,8 +185,7 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 4
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object BlockLeftIndentSizeEdit: TBCEdit
       Left = 0

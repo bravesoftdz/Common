@@ -7,7 +7,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCDialogs.Dlg, Vcl.ExtCtrls,
   BCControls.ComboBox, Vcl.StdCtrls, BCControls.CheckBox, BCControls.LayoutPanel, BCControls.GroupBox,
-  BCControls.RadioButton;
+  BCControls.RadioButton, JvExStdCtrls, JvCheckBox, JvRadioButton;
 
 type
   TReplaceDialog = class(TDialog)

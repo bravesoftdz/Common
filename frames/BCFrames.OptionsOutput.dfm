@@ -32,16 +32,15 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
     object ShowTreeLinesCheckBox: TBCCheckBox
       Left = 0
       Top = 0
-      Width = 95
-      Height = 15
+      Width = 94
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show tree lines'
+      Caption = 'Show tree lines'
       TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object IndentEdit: TBCEdit
       Left = 0
@@ -64,16 +63,15 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
     object ShowCheckBoxCheckBox: TBCCheckBox
       Left = 0
       Top = 18
-      Width = 99
-      Height = 15
+      Width = 98
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show check box'
+      Caption = 'Show check box'
       TabOrder = 1
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
   end
 end

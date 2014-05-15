@@ -2,12 +2,14 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
   Width = 190
   Height = 253
   AutoSize = True
+  ExplicitWidth = 190
+  ExplicitHeight = 253
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 186
-    Height = 253
+    Height = 252
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -20,29 +22,29 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
     object DateTimeLabel: TLabel
       Left = 2
       Top = 131
-      Width = 59
-      Height = 16
+      Width = 49
+      Height = 13
       Caption = 'Date time '
     end
     object PrintedByLabel: TLabel
       Left = 2
       Top = 87
-      Width = 57
-      Height = 16
+      Width = 49
+      Height = 13
       Caption = 'Printed by'
     end
     object DocumentNameLabel: TLabel
       Left = 2
       Top = 0
-      Width = 93
-      Height = 16
+      Width = 77
+      Height = 13
       Caption = 'Document name'
     end
     object PageNumberLabel: TLabel
       Left = 2
       Top = 44
-      Width = 76
-      Height = 16
+      Width = 63
+      Height = 13
       Caption = 'Page number'
     end
     object DateTimeComboBox: TBCComboBox
@@ -112,62 +114,58 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
     object ShowHeaderLineCheckBox: TBCCheckBox
       Left = 0
       Top = 175
-      Width = 133
-      Height = 18
+      Width = 103
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show header line'
+      Caption = 'Show header line'
       Checked = True
       State = cbChecked
       TabOrder = 4
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ShowFooterLineCheckBox: TBCCheckBox
       Left = 0
       Top = 195
-      Width = 127
-      Height = 18
+      Width = 99
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show footer line'
+      Caption = 'Show footer line'
       Checked = True
       State = cbChecked
       TabOrder = 5
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ShowLineNumbersCheckBox: TBCCheckBox
       Left = 0
       Top = 215
-      Width = 143
-      Height = 18
+      Width = 110
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show line numbers'
+      Caption = 'Show line numbers'
       TabOrder = 6
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object WordWrapCheckBox: TBCCheckBox
       Left = 0
       Top = 235
-      Width = 97
-      Height = 18
+      Width = 74
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Word wrap'
+      Caption = 'Word wrap'
       TabOrder = 7
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
   end
 end

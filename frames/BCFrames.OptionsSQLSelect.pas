@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCSQL.Formatter,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.CheckBox, Vcl.ExtCtrls,
   BCControls.ComboBox, BCControls.Edit, Vcl.ComCtrls, JvExComCtrls, JvComCtrls, BCControls.PageControl,
-  BCFrames.OptionsFrame;
+  BCFrames.OptionsFrame, JvExStdCtrls, JvCheckBox;
 
 type
   TOptionsSQLSelectFrame = class(TOptionsFrame)

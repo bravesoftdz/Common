@@ -3,6 +3,8 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
   Height = 288
   AutoSize = True
   Visible = False
+  ExplicitWidth = 204
+  ExplicitHeight = 288
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -78,13 +80,13 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
     object VisibleCheckBox: TBCCheckBox
       Left = 0
       Top = 0
-      Width = 51
-      Height = 15
+      Width = 50
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Visible'
+      Caption = 'Visible'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -94,19 +96,18 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ParentFont = False
       State = cbChecked
       TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object AutoSizeCheckBox: TBCCheckBox
       Left = 0
       Top = 20
-      Width = 66
-      Height = 15
+      Width = 65
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Auto size'
+      Caption = 'Auto size'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -116,8 +117,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ParentFont = False
       State = cbChecked
       TabOrder = 1
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object LeftMarginWidthEdit: TBCEdit
       Left = 0
@@ -146,13 +146,13 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
     object ShowLineModifiedCheckBox: TBCCheckBox
       Left = 0
       Top = 120
-      Width = 110
-      Height = 15
+      Width = 109
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show line modified'
+      Caption = 'Show line modified'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -162,8 +162,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ParentFont = False
       State = cbChecked
       TabOrder = 6
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object LineModifiedColorBox: TBCColorComboBox
       Left = 0
@@ -204,13 +203,13 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
     object InTensCheckBox: TBCCheckBox
       Left = 0
       Top = 40
-      Width = 120
-      Height = 15
+      Width = 119
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Line numbers in tens'
+      Caption = 'Line numbers in tens'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -220,19 +219,18 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ParentFont = False
       State = cbChecked
       TabOrder = 2
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ZeroStartCheckBox: TBCCheckBox
       Left = 0
       Top = 60
-      Width = 135
-      Height = 15
+      Width = 134
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Line numbers zero start'
+      Caption = 'Line numbers zero start'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -242,19 +240,18 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ParentFont = False
       State = cbChecked
       TabOrder = 3
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ShowBookmarkPanelCheckBox: TBCCheckBox
       Left = 0
       Top = 100
-      Width = 126
-      Height = 15
+      Width = 125
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show bookmark panel'
+      Caption = 'Show bookmark panel'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -264,19 +261,18 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ParentFont = False
       State = cbChecked
       TabOrder = 5
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ShowBookmarksCheckBox: TBCCheckBox
       Left = 0
       Top = 80
-      Width = 102
-      Height = 15
+      Width = 101
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show bookmarks'
+      Caption = 'Show bookmarks'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -286,19 +282,18 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ParentFont = False
       State = cbChecked
       TabOrder = 4
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ShowLineNumbersAfterLastLineCheckBox: TBCCheckBox
       Left = 0
       Top = 140
-      Width = 177
-      Height = 15
+      Width = 176
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show line numbers after last line'
+      Caption = 'Show line numbers after last line'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -308,8 +303,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       ParentFont = False
       State = cbChecked
       TabOrder = 7
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
   end
 end

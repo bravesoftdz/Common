@@ -2,11 +2,13 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
   Width = 128
   Height = 49
   AutoSize = True
+  ExplicitWidth = 128
+  ExplicitHeight = 49
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 124
+    Width = 99
     Height = 49
     Margins.Left = 4
     Margins.Top = 0
@@ -71,16 +73,15 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
     object UseSystemFontCheckBox: TBCCheckBox
       Left = 0
       Top = 0
-      Width = 124
-      Height = 18
+      Width = 99
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Use system font'
+      Caption = 'Use system font'
       TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
   end
   object ActionList: TActionList

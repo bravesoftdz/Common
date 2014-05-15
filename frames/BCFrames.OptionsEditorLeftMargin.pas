@@ -5,7 +5,7 @@ interface
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.CheckBox,
   BCControls.Edit, Vcl.Buttons, JvEdit, BCCommon.OptionsContainer, BCFrames.OptionsFrame, JvExStdCtrls,
-  JvCombobox, JvColorCombo, BCControls.ColorComboBox;
+  JvCombobox, JvColorCombo, BCControls.ColorComboBox, JvCheckBox;
 
 type
 

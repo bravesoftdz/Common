@@ -5,7 +5,7 @@ interface
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.ComboBox,
   BCControls.CheckBox, BCControls.Edit, Vcl.ComCtrls, JvEdit, BCCommon.OptionsContainer, BCFrames.OptionsFrame,
-  JvExStdCtrls, JvCombobox, BCControls.ColorComboBox, JvColorCombo;
+  JvExStdCtrls, JvCombobox, BCControls.ColorComboBox, JvColorCombo, JvCheckBox;
 
 type
   TOptionsEditorOptionsFrame = class(TOptionsFrame)

@@ -12,7 +12,8 @@ implementation
 
 uses
   BigIni, BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
-  Vcl.ExtCtrls, VirtualTrees, BCCommon.LanguageStrings, BCControls.ColorComboBox, BCControls.CheckBox;
+  Vcl.ExtCtrls, VirtualTrees, BCCommon.LanguageStrings, BCControls.ColorComboBox, BCControls.CheckBox,
+  BCControls.GroupBox, BCControls.RadioButton;
 
 function GetSelectedLanguage(Default: string): string;
 begin
@@ -62,14 +63,21 @@ begin
       begin
         s := ReadString(Form.Name, TBCCheckBox(Form.Components[i]).Name, '');
         if s <> '' then
-          TBCCheckBox(Form.Components[i]).SetText(Format(' %s', [s]));
+          TBCCheckBox(Form.Components[i]).Caption := Format(' %s', [s]);
       end
       else
-      if Form.Components[i] is TGroupBox then
+      if Form.Components[i] is TBCRadioButton then
+      begin
+        s := ReadString(Form.Name, TBCRadioButton(Form.Components[i]).Name, '');
+        if s <> '' then
+          TBCRadioButton(Form.Components[i]).Caption := Format(' %s', [s]);
+      end
+      else
+      if Form.Components[i] is TBCGroupBox then
       begin
         s := ReadString(Form.Name, TGroupBox(Form.Components[i]).Name, '');
         if s <> '' then
-          TGroupBox(Form.Components[i]).Caption := Format(' %s ', [s])
+          TGroupBox(Form.Components[i]).Caption := s;
       end
       else
       if Form.Components[i] is TPanel then

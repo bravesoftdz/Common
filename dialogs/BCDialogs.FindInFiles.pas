@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, JvToolEdit,
   BCControls.ComboBox, Vcl.Themes, Vcl.ActnList, Vcl.Buttons, BCDialogs.Dlg, System.Actions, BCControls.Edit,
-  Vcl.ComCtrls, JvExControls, JvSpeedButton, BCControls.CheckBox, BCControls.LayoutPanel, BCControls.GroupBox;
+  Vcl.ComCtrls, JvExControls, JvSpeedButton, BCControls.CheckBox, BCControls.LayoutPanel, BCControls.GroupBox,
+  JvExStdCtrls, JvCheckBox;
 
 type
   TFindInFilesDialog = class(TDialog)

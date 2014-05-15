@@ -3,12 +3,14 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
   Height = 176
   AutoSize = True
   Visible = False
+  ExplicitWidth = 190
+  ExplicitHeight = 176
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 186
-    Height = 176
+    Height = 173
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -38,15 +40,15 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
     object AnimationStyleLabel: TLabel
       Left = 2
       Top = 96
-      Width = 87
-      Height = 16
+      Width = 73
+      Height = 13
       Caption = 'Animation style'
     end
     object AnimationDurationLabel: TLabel
       Left = 2
       Top = 136
-      Width = 108
-      Height = 16
+      Width = 90
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -90,46 +92,43 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
     object PersistentHotKeysCheckBox: TBCCheckBox
       Left = 0
       Top = 0
-      Width = 140
-      Height = 18
+      Width = 113
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Persistent hot keys'
+      Caption = 'Persistent hot keys'
       TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ShadowsCheckBox: TBCCheckBox
       Left = 0
       Top = 20
-      Width = 85
-      Height = 18
+      Width = 64
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Shadows'
+      Caption = 'Shadows'
       Checked = True
       State = cbChecked
       TabOrder = 1
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object UseSystemFontCheckBox: TBCCheckBox
       Left = 0
       Top = 40
-      Width = 124
-      Height = 18
+      Width = 99
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Use system font'
+      Caption = 'Use system font'
       TabOrder = 2
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object AnimationStyleComboBox: TBCComboBox
       Left = 0
@@ -151,7 +150,7 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       Left = 0
       Top = 152
       Width = 64
-      Height = 24
+      Height = 21
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4

@@ -46,54 +46,49 @@ object ReplaceDialog: TReplaceDialog
     object CaseSensitiveCheckBox: TBCCheckBox
       Left = 8
       Top = 21
-      Width = 91
-      Height = 15
-      Caption = ' Case sensitive'
+      Width = 90
+      Height = 17
+      Caption = 'Case sensitive'
       TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object WholeWordsCheckBox: TBCCheckBox
       Left = 8
       Top = 42
-      Width = 107
-      Height = 15
-      Caption = ' Whole words only'
+      Width = 106
+      Height = 17
+      Caption = 'Whole words only'
       TabOrder = 1
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object RegularExpressionsCheckBox: TBCCheckBox
       Left = 8
       Top = 63
-      Width = 119
-      Height = 15
-      Caption = ' Regular expressions'
+      Width = 118
+      Height = 17
+      Caption = 'Regular expressions'
       TabOrder = 2
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object PromptOnReplaceCheckBox: TBCCheckBox
       Left = 8
       Top = 105
-      Width = 109
-      Height = 15
-      Caption = ' Prompt on replace'
+      Width = 108
+      Height = 17
+      Caption = 'Prompt on replace'
       Checked = True
       State = cbChecked
       TabOrder = 4
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object WildCardCheckBox: TBCCheckBox
       Left = 8
       Top = 84
-      Width = 66
-      Height = 15
-      Caption = ' Wild card'
+      Width = 65
+      Height = 17
+      Caption = 'Wild card'
       TabOrder = 3
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
   end
   object ReplaceInGroupBox: TBCGroupBox
@@ -120,28 +115,28 @@ object ReplaceDialog: TReplaceDialog
     object WholeFileRadioButton: TBCRadioButton
       Left = 8
       Top = 21
-      Width = 69
-      Height = 15
+      Width = 68
+      Height = 17
+      Alignment = taLeftJustify
       BiDiMode = bdLeftToRight
-      Caption = ' Whole file'
+      Caption = 'Whole file'
       Checked = True
       ParentBiDiMode = False
       TabOrder = 0
       TabStop = True
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object AllOpenFilesRadioButton: TBCRadioButton
       Left = 8
       Top = 42
-      Width = 82
-      Height = 15
+      Width = 81
+      Height = 17
+      Alignment = taLeftJustify
       BiDiMode = bdLeftToRight
-      Caption = ' All open files'
+      Caption = 'All open files'
       ParentBiDiMode = False
       TabOrder = 1
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
   end
   object Controls1Panel: TPanel
@@ -201,38 +196,38 @@ object ReplaceDialog: TReplaceDialog
       AlignWithMargins = True
       Left = 2
       Top = 0
-      Width = 83
+      Width = 82
       Height = 23
       Margins.Left = 2
       Margins.Top = 0
       Margins.Bottom = 0
       Align = alLeft
+      Alignment = taLeftJustify
       BiDiMode = bdLeftToRight
-      Caption = ' Replace with'
+      Caption = 'Replace with'
       Checked = True
       ParentBiDiMode = False
       TabOrder = 0
       TabStop = True
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object DeleteLineRadioButton: TBCRadioButton
       AlignWithMargins = True
-      Left = 271
+      Left = 272
       Top = 0
-      Width = 72
+      Width = 71
       Height = 23
       Margins.Left = 0
       Margins.Top = 0
       Margins.Right = 2
       Margins.Bottom = 0
       Align = alRight
+      Alignment = taLeftJustify
       BiDiMode = bdLeftToRight
-      Caption = ' Delete line'
+      Caption = 'Delete line'
       ParentBiDiMode = False
       TabOrder = 1
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
   end
   object Controls4Panel: TPanel

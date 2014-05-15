@@ -2,6 +2,8 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
   Width = 164
   Height = 81
   AutoSize = True
+  ExplicitWidth = 164
+  ExplicitHeight = 81
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -39,13 +41,13 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
     object EnabledCheckBox: TBCCheckBox
       Left = 0
       Top = 0
-      Width = 60
-      Height = 15
+      Width = 59
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Enabled'
+      Caption = 'Enabled'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -55,19 +57,18 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       ParentFont = False
       State = cbChecked
       TabOrder = 0
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object CaseSensitiveCheckBox: TBCCheckBox
       Left = 0
       Top = 20
-      Width = 91
-      Height = 15
+      Width = 90
+      Height = 17
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Case sensitive'
+      Caption = 'Case sensitive'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -77,8 +78,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       ParentFont = False
       State = cbChecked
       TabOrder = 1
-      AutoSize = True
-      ReadOnly = False
+      LinkedControls = <>
     end
     object ShortcutComboBox: TBCComboBox
       Left = 0
