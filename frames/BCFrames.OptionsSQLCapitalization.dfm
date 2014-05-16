@@ -1,7 +1,8 @@
 inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
   Width = 190
   Height = 358
-  AutoSize = True
+  ExplicitWidth = 190
+  ExplicitHeight = 358
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -12,7 +13,6 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     Font.Charset = DEFAULT_CHARSET
@@ -26,12 +26,12 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     object KeywordsLabel: TLabel
       Left = 2
       Top = 0
-      Width = 55
-      Height = 16
+      Width = 47
+      Height = 13
       Caption = 'Keywords'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
@@ -105,7 +105,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       DropDownCount = 9
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False

@@ -1,7 +1,6 @@
 inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
   Width = 204
   Height = 452
-  AutoSize = True
   ExplicitWidth = 204
   ExplicitHeight = 452
   object Panel: TPanel
@@ -14,7 +13,6 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     Font.Charset = DEFAULT_CHARSET

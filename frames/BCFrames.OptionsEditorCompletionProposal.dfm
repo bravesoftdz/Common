@@ -1,7 +1,6 @@
 inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
   Width = 164
   Height = 81
-  AutoSize = True
   ExplicitWidth = 164
   ExplicitHeight = 81
   object Panel: TPanel
@@ -14,7 +13,6 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     Font.Charset = DEFAULT_CHARSET

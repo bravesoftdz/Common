@@ -18,6 +18,7 @@ type
     procedure Init; virtual;
     procedure GetData; virtual;
     procedure PutData; virtual; abstract;
+    procedure ShowFrame;
   end;
 
 implementation
@@ -25,7 +26,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.LanguageUtils;
+  BCCommon.LanguageUtils, Vcl.ExtCtrls, BCControls.CheckBox;
 
 constructor TOptionsFrame.Create(AOwner: TComponent);
 var
@@ -64,6 +65,17 @@ end;
 procedure TOptionsFrame.GetData;
 begin
   // not abstract because this is not always implemented
+end;
+
+procedure TOptionsFrame.ShowFrame;
+var
+  i: Integer;
+begin
+  Show;
+  { Autosize panels. This is stupid but TPanel can't be autosized before it's visible. }
+  for i := 0 to ComponentCount - 1 do
+    if Components[i] is TPanel then
+      (Components[i] as TPanel).AutoSize := True;
 end;
 
 end.

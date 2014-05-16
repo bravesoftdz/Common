@@ -1,8 +1,7 @@
 inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
-  Width = 128
+  Width = 103
   Height = 49
-  AutoSize = True
-  ExplicitWidth = 128
+  ExplicitWidth = 103
   ExplicitHeight = 49
   object Panel: TPanel
     AlignWithMargins = True
@@ -14,7 +13,6 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False

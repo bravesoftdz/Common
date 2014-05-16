@@ -36,7 +36,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       ParentFont = False
       TabOrder = 0
       object SelectEditorFontSpeedButton: TSpeedButton
-        Left = 4
+        Left = 0
         Top = 16
         Width = 24
         Height = 24
@@ -70,7 +70,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
           00FFFF00FFCFAB7FB67F3CB57E3AB6803DBD8C4FFF00FFFF00FF}
       end
       object EditorFontLabel: TLabel
-        Left = 36
+        Left = 32
         Top = 23
         Width = 105
         Height = 15
@@ -87,7 +87,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         ParentFont = False
       end
       object MarginFontLabel: TLabel
-        Left = 36
+        Left = 32
         Top = 65
         Width = 105
         Height = 15
@@ -104,7 +104,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         ParentFont = False
       end
       object SelecMarginFontSpeedButton: TSpeedButton
-        Left = 4
+        Left = 0
         Top = 59
         Width = 24
         Height = 24
@@ -138,7 +138,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
           00FFFF00FFCFAB7FB67F3CB57E3AB6803DBD8C4FFF00FFFF00FF}
       end
       object EditorLabel: TLabel
-        Left = 6
+        Left = 2
         Top = 1
         Width = 28
         Height = 13
@@ -155,7 +155,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         ParentFont = False
       end
       object MarginLabel: TLabel
-        Left = 6
+        Left = 2
         Top = 44
         Width = 32
         Height = 13
@@ -172,7 +172,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         ParentFont = False
       end
       object MinimapLabel: TLabel
-        Left = 6
+        Left = 2
         Top = 87
         Width = 38
         Height = 13
@@ -189,7 +189,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         ParentFont = False
       end
       object SelecMinimapFontSpeedButton: TSpeedButton
-        Left = 4
+        Left = 0
         Top = 102
         Width = 24
         Height = 24
@@ -223,7 +223,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
           00FFFF00FFCFAB7FB67F3CB57E3AB6803DBD8C4FFF00FFFF00FF}
       end
       object MinimapFontLabel: TLabel
-        Left = 36
+        Left = 32
         Top = 108
         Width = 30
         Height = 3
@@ -240,7 +240,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         ParentFont = False
       end
       object MinimapWidthLabel: TLabel
-        Left = 6
+        Left = 2
         Top = 130
         Width = 67
         Height = 13
@@ -257,7 +257,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         ParentFont = False
       end
       object ActiveLineColorBrightnessLabel: TLabel
-        Left = 6
+        Left = 2
         Top = 172
         Width = 128
         Height = 13
@@ -274,7 +274,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         ParentFont = False
       end
       object MinimapWidthEdit: TBCEdit
-        Left = 4
+        Left = 0
         Top = 145
         Width = 64
         Height = 21
@@ -299,9 +299,9 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         NumbersAllowNegative = False
       end
       object BrightnessTrackBar: TTrackBar
-        Left = 0
+        Left = -6
         Top = 186
-        Width = 150
+        Width = 225
         Height = 31
         Min = 1
         Position = 2
@@ -403,7 +403,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
     Left = 260
     Top = 170
     Bitmap = {
-      494C01010A000D00080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010A000D000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

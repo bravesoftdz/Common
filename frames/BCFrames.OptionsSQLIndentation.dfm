@@ -1,7 +1,6 @@
 inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
   Width = 179
   Height = 333
-  AutoSize = True
   ExplicitWidth = 179
   ExplicitHeight = 333
   object Panel: TPanel
@@ -14,7 +13,6 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     Font.Charset = DEFAULT_CHARSET

@@ -1,10 +1,9 @@
 inherited OptionsCompareFrame: TOptionsCompareFrame
-  Width = 92
-  Height = 35
-  AutoSize = True
+  Width = 94
+  Height = 37
   Visible = False
-  ExplicitWidth = 92
-  ExplicitHeight = 35
+  ExplicitWidth = 94
+  ExplicitHeight = 37
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -15,7 +14,6 @@ inherited OptionsCompareFrame: TOptionsCompareFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     Font.Charset = DEFAULT_CHARSET
@@ -28,14 +26,14 @@ inherited OptionsCompareFrame: TOptionsCompareFrame
     ParentFont = False
     TabOrder = 0
     object IgnoreCaseCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 0
       Width = 78
       Height = 17
       Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
       Caption = 'Ignore case'
       Checked = True
       Font.Charset = DEFAULT_CHARSET
@@ -49,14 +47,14 @@ inherited OptionsCompareFrame: TOptionsCompareFrame
       LinkedControls = <>
     end
     object IgnoreBlanksCheckBox: TBCCheckBox
-      Left = 4
+      Left = 0
       Top = 20
       Width = 86
       Height = 17
       Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
       Caption = 'Ignore blanks'
       Checked = True
       Font.Charset = DEFAULT_CHARSET

@@ -1,9 +1,8 @@
 inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
-  Width = 201
-  Height = 143
-  AutoSize = True
-  ExplicitWidth = 201
-  ExplicitHeight = 143
+  Width = 190
+  Height = 142
+  ExplicitWidth = 190
+  ExplicitHeight = 142
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -14,7 +13,6 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
@@ -88,7 +86,7 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       DropDownCount = 9
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False

@@ -1,9 +1,8 @@
 inherited OptionsPrintFrame: TOptionsPrintFrame
   Width = 190
-  Height = 253
-  AutoSize = True
+  Height = 252
   ExplicitWidth = 190
-  ExplicitHeight = 253
+  ExplicitHeight = 252
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -14,7 +13,6 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False

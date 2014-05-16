@@ -1,9 +1,9 @@
 inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
-  Width = 212
-  Height = 95
+  Width = 211
+  Height = 97
   AutoSize = True
-  ExplicitWidth = 212
-  ExplicitHeight = 95
+  ExplicitWidth = 211
+  ExplicitHeight = 97
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -14,7 +14,6 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     Font.Charset = DEFAULT_CHARSET

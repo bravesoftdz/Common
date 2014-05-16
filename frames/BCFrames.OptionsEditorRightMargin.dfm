@@ -1,23 +1,19 @@
 inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
-  Width = 451
-  Height = 304
-  Align = alClient
-  AutoSize = True
+  Width = 85
+  Height = 81
   Visible = False
-  ExplicitWidth = 451
-  ExplicitHeight = 304
+  ExplicitWidth = 85
+  ExplicitHeight = 81
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 447
-    Height = 304
+    Width = 81
+    Height = 81
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    Align = alClient
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     Font.Charset = DEFAULT_CHARSET

@@ -1,10 +1,9 @@
 inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
   Width = 190
-  Height = 176
-  AutoSize = True
+  Height = 173
   Visible = False
   ExplicitWidth = 190
-  ExplicitHeight = 176
+  ExplicitHeight = 173
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -15,7 +14,6 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False

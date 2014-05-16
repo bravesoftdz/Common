@@ -1,7 +1,8 @@
 inherited OptionsSQLUpdateFrame: TOptionsSQLUpdateFrame
   Width = 190
   Height = 38
-  AutoSize = True
+  ExplicitWidth = 190
+  ExplicitHeight = 38
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -12,7 +13,6 @@ inherited OptionsSQLUpdateFrame: TOptionsSQLUpdateFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
@@ -20,8 +20,8 @@ inherited OptionsSQLUpdateFrame: TOptionsSQLUpdateFrame
     object ColumnListStyleLabel: TLabel
       Left = 2
       Top = 0
-      Width = 93
-      Height = 16
+      Width = 77
+      Height = 13
       Caption = 'Column list style'
     end
     object ColumnListStyleComboBox: TBCComboBox

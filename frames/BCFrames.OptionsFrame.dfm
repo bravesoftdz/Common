@@ -3,6 +3,7 @@ object OptionsFrame: TOptionsFrame
   Top = 0
   Width = 320
   Height = 240
+  AutoSize = True
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

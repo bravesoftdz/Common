@@ -1,9 +1,8 @@
 inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
-  Width = 200
-  Height = 59
-  AutoSize = True
-  ExplicitWidth = 200
-  ExplicitHeight = 59
+  Width = 190
+  Height = 58
+  ExplicitWidth = 190
+  ExplicitHeight = 58
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -14,7 +13,6 @@ inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False

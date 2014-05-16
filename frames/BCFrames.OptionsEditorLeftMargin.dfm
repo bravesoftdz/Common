@@ -1,7 +1,6 @@
 inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
   Width = 204
   Height = 288
-  AutoSize = True
   Visible = False
   ExplicitWidth = 204
   ExplicitHeight = 288
@@ -15,7 +14,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     Font.Charset = DEFAULT_CHARSET

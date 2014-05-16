@@ -1,14 +1,13 @@
 inherited OptionsOutputFrame: TOptionsOutputFrame
-  Width = 103
+  Width = 102
   Height = 75
-  AutoSize = True
-  ExplicitWidth = 103
+  ExplicitWidth = 102
   ExplicitHeight = 75
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 99
+    Width = 98
     Height = 75
     Margins.Left = 4
     Margins.Top = 0
