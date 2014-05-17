@@ -14,7 +14,7 @@ type
     OptionsGroupBox: TBCGroupBox;
     CaseSensitiveCheckBox: TBCCheckBox;
     WholeWordsCheckBox: TBCCheckBox;
-    RegularExpressionsCheckBox: TBCCheckBox;
+    RegularExpressionCheckBox: TBCCheckBox;
     PromptOnReplaceCheckBox: TBCCheckBox;
     ReplaceInGroupBox: TBCGroupBox;
     WholeFileRadioButton: TBCRadioButton;
@@ -103,7 +103,7 @@ end;
 
 function TReplaceDialog.GetRegularExpressions: Boolean;
 begin
-  Result := RegularExpressionsCheckBox.Checked;
+  Result := RegularExpressionCheckBox.Checked;
 end;
 
 function TReplaceDialog.GetReplace: Boolean;
@@ -165,7 +165,7 @@ begin
   try
     CaseSensitiveCheckBox.Checked := ReadBool('ReplaceOptions', 'CaseSensitive', False);
     WholeWordsCheckBox.Checked := ReadBool('ReplaceOptions', 'WholeWords', False);
-    RegularExpressionsCheckBox.Checked := ReadBool('ReplaceOptions', 'RegularExpressions', False);
+    RegularExpressionCheckBox.Checked := ReadBool('ReplaceOptions', 'RegularExpressions', False);
     PromptOnReplaceCheckBox.Checked := ReadBool('ReplaceOptions', 'PromptOnReplace', True);
     WholeFileRadioButton.Checked := ReadBool('ReplaceOptions', 'WholeFile', True);
     AllOpenFilesRadioButton.Checked := ReadBool('ReplaceOptions', 'AllOpenFiles', False);
@@ -180,7 +180,7 @@ begin
   try
     WriteBool('ReplaceOptions', 'CaseSensitive', CaseSensitiveCheckBox.Checked);
     WriteBool('ReplaceOptions', 'WholeWords', WholeWordsCheckBox.Checked);
-    WriteBool('ReplaceOptions', 'RegularExpressions', RegularExpressionsCheckBox.Checked);
+    WriteBool('ReplaceOptions', 'RegularExpressions', RegularExpressionCheckBox.Checked);
     WriteBool('ReplaceOptions', 'PromptOnReplace', PromptOnReplaceCheckBox.Checked);
     WriteBool('ReplaceOptions', 'WholeFile', WholeFileRadioButton.Checked);
     WriteBool('ReplaceOptions', 'AllOpenFiles', AllOpenFilesRadioButton.Checked);

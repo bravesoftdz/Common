@@ -61,7 +61,7 @@ object ReplaceDialog: TReplaceDialog
       TabOrder = 1
       LinkedControls = <>
     end
-    object RegularExpressionsCheckBox: TBCCheckBox
+    object RegularExpressionCheckBox: TBCCheckBox
       Left = 9
       Top = 63
       Width = 118
@@ -263,7 +263,6 @@ object ReplaceDialog: TReplaceDialog
     Padding.Top = 8
     Padding.Bottom = 8
     TabOrder = 6
-    ExplicitWidth = 339
     object FindButton: TButton
       Left = 101
       Top = 8
@@ -275,7 +274,6 @@ object ReplaceDialog: TReplaceDialog
       Enabled = False
       ModalResult = 1
       TabOrder = 0
-      ExplicitLeft = 98
     end
     object ReplaceAllButton: TButton
       Left = 184
@@ -287,7 +285,6 @@ object ReplaceDialog: TReplaceDialog
       Enabled = False
       ModalResult = 6
       TabOrder = 1
-      ExplicitLeft = 181
     end
     object CancelButton: TButton
       Left = 267
@@ -299,7 +296,6 @@ object ReplaceDialog: TReplaceDialog
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 2
-      ExplicitLeft = 264
     end
     object ButtonDivider2Panel: TPanel
       Left = 259
@@ -309,7 +305,6 @@ object ReplaceDialog: TReplaceDialog
       Align = alRight
       BevelOuter = bvNone
       TabOrder = 3
-      ExplicitLeft = 256
     end
     object ButtonDivider1Panel: TPanel
       Left = 176
@@ -319,7 +314,6 @@ object ReplaceDialog: TReplaceDialog
       Align = alRight
       BevelOuter = bvNone
       TabOrder = 4
-      ExplicitLeft = 173
     end
   end
 end
