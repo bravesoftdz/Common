@@ -44,7 +44,7 @@ object ReplaceDialog: TReplaceDialog
     CaptionFont.Name = 'Tahoma'
     CaptionFont.Style = []
     object CaseSensitiveCheckBox: TBCCheckBox
-      Left = 8
+      Left = 9
       Top = 21
       Width = 90
       Height = 17
@@ -53,7 +53,7 @@ object ReplaceDialog: TReplaceDialog
       LinkedControls = <>
     end
     object WholeWordsCheckBox: TBCCheckBox
-      Left = 8
+      Left = 9
       Top = 42
       Width = 106
       Height = 17
@@ -62,7 +62,7 @@ object ReplaceDialog: TReplaceDialog
       LinkedControls = <>
     end
     object RegularExpressionsCheckBox: TBCCheckBox
-      Left = 8
+      Left = 9
       Top = 63
       Width = 118
       Height = 17
@@ -71,7 +71,7 @@ object ReplaceDialog: TReplaceDialog
       LinkedControls = <>
     end
     object PromptOnReplaceCheckBox: TBCCheckBox
-      Left = 8
+      Left = 9
       Top = 105
       Width = 108
       Height = 17
@@ -82,7 +82,7 @@ object ReplaceDialog: TReplaceDialog
       LinkedControls = <>
     end
     object WildCardCheckBox: TBCCheckBox
-      Left = 8
+      Left = 9
       Top = 84
       Width = 65
       Height = 17
@@ -113,7 +113,7 @@ object ReplaceDialog: TReplaceDialog
     CaptionFont.Name = 'Tahoma'
     CaptionFont.Style = []
     object WholeFileRadioButton: TBCRadioButton
-      Left = 8
+      Left = 9
       Top = 21
       Width = 68
       Height = 17
@@ -127,7 +127,7 @@ object ReplaceDialog: TReplaceDialog
       LinkedControls = <>
     end
     object AllOpenFilesRadioButton: TBCRadioButton
-      Left = 8
+      Left = 9
       Top = 42
       Width = 81
       Height = 17
@@ -255,15 +255,17 @@ object ReplaceDialog: TReplaceDialog
     AlignWithMargins = True
     Left = 15
     Top = 295
-    Width = 339
+    Width = 342
     Height = 41
+    Margins.Right = 0
     Align = alBottom
     BevelOuter = bvNone
     Padding.Top = 8
     Padding.Bottom = 8
     TabOrder = 6
+    ExplicitWidth = 339
     object FindButton: TButton
-      Left = 98
+      Left = 101
       Top = 8
       Width = 75
       Height = 25
@@ -273,9 +275,10 @@ object ReplaceDialog: TReplaceDialog
       Enabled = False
       ModalResult = 1
       TabOrder = 0
+      ExplicitLeft = 98
     end
     object ReplaceAllButton: TButton
-      Left = 181
+      Left = 184
       Top = 8
       Width = 75
       Height = 25
@@ -284,9 +287,10 @@ object ReplaceDialog: TReplaceDialog
       Enabled = False
       ModalResult = 6
       TabOrder = 1
+      ExplicitLeft = 181
     end
     object CancelButton: TButton
-      Left = 264
+      Left = 267
       Top = 8
       Width = 75
       Height = 25
@@ -295,24 +299,27 @@ object ReplaceDialog: TReplaceDialog
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 2
+      ExplicitLeft = 264
     end
     object ButtonDivider2Panel: TPanel
-      Left = 256
+      Left = 259
       Top = 8
       Width = 8
       Height = 25
       Align = alRight
       BevelOuter = bvNone
       TabOrder = 3
+      ExplicitLeft = 256
     end
     object ButtonDivider1Panel: TPanel
-      Left = 173
+      Left = 176
       Top = 8
       Width = 8
       Height = 25
       Align = alRight
       BevelOuter = bvNone
       TabOrder = 4
+      ExplicitLeft = 173
     end
   end
 end

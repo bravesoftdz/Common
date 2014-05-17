@@ -88,7 +88,7 @@ object FindInFilesDialog: TFindInFilesDialog
     CaptionFont.Name = 'Tahoma'
     CaptionFont.Style = []
     object CaseSensitiveCheckBox: TBCCheckBox
-      Left = 8
+      Left = 9
       Top = 21
       Width = 90
       Height = 17
@@ -305,6 +305,7 @@ object FindInFilesDialog: TFindInFilesDialog
       Margins.Bottom = 2
       Align = alTop
       BevelOuter = bvNone
+      Padding.Left = 8
       Padding.Top = 4
       TabOrder = 4
       object IncludeSubdirectoriesCheckBox: TBCCheckBox
@@ -321,30 +322,23 @@ object FindInFilesDialog: TFindInFilesDialog
         TabOrder = 0
         LinkedControls = <>
       end
-      object TPanel
-        Left = 0
-        Top = 4
-        Width = 8
-        Height = 17
-        Align = alLeft
-        BevelOuter = bvNone
-        TabOrder = 1
-      end
     end
   end
   object ButtonsPanel: TPanel
     AlignWithMargins = True
     Left = 15
     Top = 224
-    Width = 469
+    Width = 472
     Height = 41
+    Margins.Right = 0
     Align = alBottom
     BevelOuter = bvNone
     Padding.Top = 8
     Padding.Bottom = 8
     TabOrder = 4
+    ExplicitWidth = 469
     object FindButton: TButton
-      Left = 311
+      Left = 314
       Top = 8
       Width = 75
       Height = 25
@@ -354,9 +348,10 @@ object FindInFilesDialog: TFindInFilesDialog
       Enabled = False
       ModalResult = 1
       TabOrder = 0
+      ExplicitLeft = 311
     end
     object CancelButton: TButton
-      Left = 394
+      Left = 397
       Top = 8
       Width = 75
       Height = 25
@@ -365,15 +360,17 @@ object FindInFilesDialog: TFindInFilesDialog
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 1
+      ExplicitLeft = 394
     end
     object ButtonDivider1Panel: TPanel
-      Left = 386
+      Left = 389
       Top = 8
       Width = 8
       Height = 25
       Align = alRight
       BevelOuter = bvNone
       TabOrder = 2
+      ExplicitLeft = 386
     end
   end
   object ActionList: TActionList
