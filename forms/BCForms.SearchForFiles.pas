@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
   System.Actions, Vcl.ActnList, Vcl.ImgList, BCControls.ImageList, Vcl.StdCtrls, VirtualTrees, BCControls.ProgressBar,
-  Vcl.ComCtrls, BCControls.ButtonedEdit;
+  Vcl.ComCtrls, BCControls.ButtonedEdit, System.Win.TaskbarCore, Vcl.Taskbar;
 
 type
   TOpenFileEvent = procedure(var FileName: string);
@@ -19,6 +19,7 @@ type
     SearchAction: TAction;
     SearchingFilesPanel: TPanel;
     StatusBar: TStatusBar;
+    Taskbar: TTaskbar;
     procedure ClearActionExecute(Sender: TObject);
     procedure SearchActionExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -35,6 +36,9 @@ type
     procedure SearchVirtualDrawTreeDblClick(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure TaskBarStepChange(Sender: TObject);
+    procedure TaskBarShow(Sender: TObject);
+    procedure TaskBarHide(Sender: TObject);
   private
     { Private declarations }
     FOpenFile: TOpenFileEvent;
@@ -95,9 +99,27 @@ begin
   end;
 end;
 
+procedure TSearchForFilesForm.TaskBarStepChange(Sender: TObject);
+begin
+  Taskbar.ProgressValue := FProgressBar.Position;
+end;
+
+procedure TSearchForFilesForm.TaskBarShow(Sender: TObject);
+begin
+  Taskbar.ProgressState := TTaskBarProgressState.Normal;
+end;
+
+procedure TSearchForFilesForm.TaskBarHide(Sender: TObject);
+begin
+  Taskbar.ProgressState := TTaskBarProgressState.None;
+end;
+
 procedure TSearchForFilesForm.CreateProgressBar;
 begin
   FProgressBar := TBCProgressBar.Create(StatusBar);
+  FProgressBar.OnStepChange := TaskBarStepChange;
+  FProgressBar.OnShow := TaskBarShow;
+  FProgressBar.OnHide := TaskBarHide;
   FProgressBar.Hide;
   ResizeProgressBar;
   FProgressBar.Parent := Statusbar;
