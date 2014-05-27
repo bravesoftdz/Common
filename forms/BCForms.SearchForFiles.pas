@@ -111,7 +111,8 @@ end;
 
 procedure TSearchForFilesForm.TaskBarHide(Sender: TObject);
 begin
-  Taskbar.ProgressState := TTaskBarProgressState.None;
+  if Assigned(Taskbar) then
+    Taskbar.ProgressState := TTaskBarProgressState.None;
 end;
 
 procedure TSearchForFilesForm.CreateProgressBar;
@@ -124,7 +125,6 @@ begin
   ResizeProgressBar;
   FProgressBar.Parent := Statusbar;
 end;
-
 
 procedure TSearchForFilesForm.SetVisibleRows;
 var
@@ -324,9 +324,11 @@ end;
 
 procedure TSearchForFilesForm.FormDestroy(Sender: TObject);
 begin
+  Taskbar.ProgressState := TTaskBarProgressState.None;
   FProgressBar.Free;
   SearchVirtualDrawTree.Images.Free;
   FSearchForFilesForm := nil;
+  inherited;
 end;
 
 procedure TSearchForFilesForm.FormResize(Sender: TObject);
