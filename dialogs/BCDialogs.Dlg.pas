@@ -26,8 +26,10 @@ implementation
 
 {$R *.dfm}
 
+{$IFNDEF SHIFTER}
 uses
   BCCommon.LanguageUtils;
+{$ENDIF}
 
 constructor TDialog.Create(AOwner: TComponent);
 begin
@@ -47,7 +49,9 @@ end;
 
 procedure TDialog.FormShow(Sender: TObject);
 begin
+  {$IFNDEF SHIFTER}
   BCCommon.LanguageUtils.UpdateLanguage(Self);
+  {$ENDIF}
 end;
 
 end.
