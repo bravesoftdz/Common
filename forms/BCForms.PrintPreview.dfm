@@ -77,8 +77,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
     ScaleMode = pscWholePage
     OnMouseDown = SynEditPrintPreviewMouseDown
     OnPreviewPage = SynEditPrintPreviewPreviewPage
-    ExplicitLeft = 189
-    ExplicitWidth = 534
   end
   object ButtonPanel: TPanel
     Left = 0
@@ -188,7 +186,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
         Left = 0
         Top = 0
         Action = ZoomAction
-        DropdownMenu = PopupMenu
+        DropdownMenu = PopupActionBar
         Style = tbsDropDown
       end
     end
@@ -301,7 +299,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
       OnExecute = WordWrapActionExecute
     end
   end
-  object PopupMenu: TBCPopupMenu
+  object PopupActionBar: TPopupActionBar
     Images = ImagesDataModule.ImageList
     Left = 180
     Top = 65

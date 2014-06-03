@@ -5,8 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
   Vcl.ToolWin, Vcl.ActnList, Vcl.ImgList, SynEditPrintPreview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers, BCCommon.Images,
-  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, BCControls.PopupMenu, BCControls.ToolBar, System.Actions, Vcl.Grids,
-  System.Types;
+  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, BCControls.ToolBar, System.Actions, Vcl.Grids, System.Types;
 
 type
   TPrintPreviewDialog = class(TForm)
@@ -30,7 +29,7 @@ type
     Percent25MenuItem: TMenuItem;
     Percent400MenuItem: TMenuItem;
     Percent50MenuItem: TMenuItem;
-    PopupMenu: TBCPopupMenu;
+    PopupActionBar: TPopupActionBar;
     PrevAction: TAction;
     PrevioustToolButton: TToolButton;
     PrintAction: TAction;
@@ -101,7 +100,7 @@ procedure TPrintPreviewDialog.FormCreate(Sender: TObject);
 begin
   { IDE can lose there properties }
   ActionList.Images := ImagesDataModule.ImageList;
-  PopupMenu.Images := ImagesDataModule.ImageList;
+  PopupActionBar.Images := ImagesDataModule.ImageList;
   ToolBar.Images := ImagesDataModule.ImageList;
   ZoomToolBar.Images := ImagesDataModule.ImageList;
   ModeToolBar.Images := ImagesDataModule.ImageList;

@@ -6,7 +6,7 @@ uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.CheckBox,
   BCCommon.OptionsContainer, BCFrames.OptionsFrame, Vcl.ComCtrls, Vcl.ImgList, Vcl.ToolWin, BCControls.ToolBar,
   System.Actions, Vcl.ActnList, System.Generics.Collections, System.Types, VirtualTrees, Winapi.ActiveX, Vcl.Menus,
-  BCCommon.Images;
+  BCCommon.Images, Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup;
 
 type
   TOptionsToolBarFrame = class(TOptionsFrame)
@@ -16,7 +16,7 @@ type
     DeleteAction: TAction;
     AddDividerAction: TAction;
     VirtualDrawTree: TVirtualDrawTree;
-    PopupMenu: TPopupMenu;
+    PopupActionBar: TPopupActionBar;
     Additem1: TMenuItem;
     DeleteItem1: TMenuItem;
     AddDivider1: TMenuItem;
@@ -89,7 +89,7 @@ begin
   inherited;
   { IDE is losing these }
   MenuActionList.Images := ImagesDataModule.ImageList;
-  PopupMenu.Images := ImagesDataModule.ImageList;
+  PopupActionBar.Images := ImagesDataModule.ImageList;
   VirtualDrawTree.Images := ImagesDataModule.ImageList;
 end;
 

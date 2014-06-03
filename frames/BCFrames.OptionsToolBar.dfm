@@ -1,14 +1,14 @@
 inherited OptionsToolBarFrame: TOptionsToolBarFrame
   Width = 451
-  Height = 302
+  Height = 304
   Align = alClient
   ExplicitWidth = 451
-  ExplicitHeight = 302
+  ExplicitHeight = 304
   object Panel: TPanel
     Left = 0
     Top = 0
     Width = 451
-    Height = 302
+    Height = 304
     Align = alClient
     BevelOuter = bvNone
     Color = clWindow
@@ -19,7 +19,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
       Left = 4
       Top = 0
       Width = 447
-      Height = 302
+      Height = 304
       Hint = 
         'Use drag and drop to move menu items. Right click popup menu to ' +
         'insert and delete items.'
@@ -43,7 +43,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
       Images = ImagesDataModule.ImageList
       Indent = 0
       ParentCtl3D = False
-      PopupMenu = PopupMenu
+      PopupMenu = PopupActionBar
       SelectionBlendFactor = 255
       TabOrder = 0
       TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand]
@@ -96,7 +96,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
       OnExecute = ResetActionExecute
     end
   end
-  object PopupMenu: TPopupMenu
+  object PopupActionBar: TPopupActionBar
     Images = ImagesDataModule.ImageList
     Left = 280
     Top = 86
