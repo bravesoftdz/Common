@@ -35,6 +35,7 @@ object DownloadURLDialog: TDownloadURLDialog
     ParentBackground = False
     ParentCtl3D = False
     TabOrder = 0
+    StyleElements = []
     object InformationLabel: TLabel
       Left = 11
       Top = 19
