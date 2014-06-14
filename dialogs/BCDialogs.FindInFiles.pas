@@ -28,7 +28,7 @@ type
     FolderEditPanel: TPanel;
     DirectorySpeedButton: TJvSpeedButton;
     FolderEdit2Panel: TPanel;
-    DirectoryEdit: TBCEdit;
+    DirectoryComboBox: TBCComboBox;
     CheckBoxPanel: TPanel;
     IncludeSubdirectoriesCheckBox: TBCCheckBox;
     ButtonsPanel: TPanel;
@@ -115,7 +115,7 @@ end;
 
 function TFindInFilesDialog.GetFolderText: string;
 begin
-  Result := Trim(DirectoryEdit.Text);
+  Result := Trim(DirectoryComboBox.Text);
   {$WARNINGS OFF} { IncludeTrailingBackslash is specific to a platform }
   if Result <> '' then
     Result := IncludeTrailingBackslash(Result);
@@ -124,7 +124,7 @@ end;
 
 procedure TFindInFilesDialog.SetFolderText(Value: string);
 begin
-  DirectoryEdit.Text := Value;
+  DirectoryComboBox.Text := Value;
 end;
 
 function TFindInFilesDialog.GetSearchCaseSensitive: Boolean;
@@ -152,17 +152,20 @@ procedure TFindInFilesDialog.FolderButtonClickActionExecute(Sender: TObject);
 var
   Dir: string;
 begin
-  Dir := DirectoryEdit.Text;
+  Dir := DirectoryComboBox.Text;
   if Vcl.FileCtrl.SelectDirectory(LanguageDataModule.GetConstant('SelectRootDirectory'), '', Dir, [sdNewFolder,
     sdShowShares, sdNewUI, sdValidateDir], Self) then
-    DirectoryEdit.Text := Dir;
+    DirectoryComboBox.Text := Dir;
 end;
 
 procedure TFindInFilesDialog.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   WriteIniFile;
   if ModalResult = mrOK then
+  begin
     InsertTextToCombo(FindWhatComboBox);
+    InsertTextToCombo(DirectoryComboBox);
+  end;
 end;
 
 procedure TFindInFilesDialog.SetExtensions(Value: string);

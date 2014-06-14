@@ -278,19 +278,16 @@ object FindInFilesDialog: TFindInFilesDialog
         BevelOuter = bvNone
         Padding.Right = 3
         TabOrder = 0
-        object DirectoryEdit: TBCEdit
+        object DirectoryComboBox: TBCComboBox
           Left = 0
           Top = 0
           Width = 441
           Height = 21
           Align = alTop
           TabOrder = 0
-          EnterToTab = False
-          OnlyNumbers = False
-          NumbersWithDots = False
-          NumbersWithSpots = False
-          ErrorColor = clBlack
-          NumbersAllowNegative = False
+          DeniedKeyStrokes = False
+          ReadOnly = False
+          DropDownFixedWidth = 0
         end
       end
     end
@@ -336,7 +333,6 @@ object FindInFilesDialog: TFindInFilesDialog
     Padding.Top = 8
     Padding.Bottom = 8
     TabOrder = 4
-    ExplicitWidth = 469
     object FindButton: TButton
       Left = 314
       Top = 8
@@ -348,7 +344,6 @@ object FindInFilesDialog: TFindInFilesDialog
       Enabled = False
       ModalResult = 1
       TabOrder = 0
-      ExplicitLeft = 311
     end
     object CancelButton: TButton
       Left = 397
@@ -360,7 +355,6 @@ object FindInFilesDialog: TFindInFilesDialog
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 1
-      ExplicitLeft = 394
     end
     object ButtonDivider1Panel: TPanel
       Left = 389
@@ -370,7 +364,6 @@ object FindInFilesDialog: TFindInFilesDialog
       Align = alRight
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitLeft = 386
     end
   end
   object ActionList: TActionList

@@ -152,7 +152,7 @@ procedure TReplaceDialog.FormCloseQuery(Sender: TObject;
 begin
   inherited;
   WriteIniFile;
-  if ModalResult = mrOK then
+  if ModalResult in [mrOK, mrYes] then
   begin
     InsertTextToCombo(SearchForComboBox);
     InsertTextToCombo(ReplaceWithComboBox);
