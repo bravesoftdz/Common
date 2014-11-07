@@ -3,8 +3,6 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
   Height = 304
   Align = alClient
   Visible = False
-  ExplicitWidth = 451
-  ExplicitHeight = 304
   object Panel: TPanel
     AlignWithMargins = True
     Left = 4
@@ -324,32 +322,20 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Top = 0
         Width = 447
         Height = 85
-        Align = alClient
-        ActiveLineColor = clBtnFace
-        CodeFolding.CaseSensitive = False
-        CodeFolding.FolderBarLinesColor = 12434877
         ActiveLine.Background = clYellow
         ActiveLine.Foreground = clNavy
         ActiveLine.Visible = True
-        LineDivider.Visible = False
-        LineDivider.Color = clRed
-        LineDivider.Style = psSolid
-        RightEdge.MouseMove = False
-        RightEdge.Visible = True
-        RightEdge.Position = 80
-        RightEdge.Color = clSilver
-        RightEdge.Style = psSolid
-        LineSpacing = 0
-        LineSpacingRule = lsSpecified
+        ActiveLineColor = clBtnFace
+        Align = alClient
         Background.Visible = False
         Background.RepeatMode = brmNone
+        BookMarkOptions.BookmarkImages = BookmarkImagesList
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Courier New'
         Font.Style = []
-        TabOrder = 0
-        BookMarkOptions.BookmarkImages = BookmarkImagesList
+        FontSmoothing = fsmNone
         Gutter.ShowLineModified = False
         Gutter.LineModifiedColor = clYellow
         Gutter.LineNormalColor = clLime
@@ -364,11 +350,21 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         Gutter.RightOffsetColor = clNone
         Gutter.ShowBookmarks = False
         Highlighter = SynURISyn
+        LineDivider.Visible = False
+        LineDivider.Color = clRed
+        LineDivider.Style = psSolid
+        LineSpacing = 0
+        LineSpacingRule = lsSpecified
         Options = [eoAutoIndent, eoDragDropEditing, eoEnhanceEndKey, eoGroupUndo, eoHalfPageScroll, eoScrollPastEol, eoShowScrollHint, eoSmartTabDelete, eoSmartTabs, eoTabsToSpaces]
+        RightEdge.MouseMove = False
+        RightEdge.Visible = True
+        RightEdge.Position = 80
+        RightEdge.Color = clSilver
+        RightEdge.Style = psSolid
+        TabOrder = 0
         WordWrap.Enabled = False
         WordWrap.Position = 80
         WordWrap.Style = wwsClientWidth
-        FontSmoothing = fsmNone
       end
     end
   end
@@ -403,7 +399,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
     Left = 260
     Top = 170
     Bitmap = {
-      494C01010A000D000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010A000D00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

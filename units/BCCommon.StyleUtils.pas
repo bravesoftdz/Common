@@ -146,7 +146,7 @@ begin
     SynEdit.Color := clWindow;
   end;
   SynEdit.SearchHighlightColor := SynEdit.RightEdge.Color;
-  //SynEdit.ActiveLineColor := SynEdit.Color;
+  SynEdit.ActiveLineColor := SynEdit.Color;
 end;
 
 procedure UpdateHC11SynColors(HC11Syn: TSynHC11Syn; WhiteBackground: Boolean);
