@@ -1,0 +1,90 @@
+inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
+  Width = 128
+  Height = 81
+  object Panel: TBCPanel [0]
+    AlignWithMargins = True
+    Left = 4
+    Top = 0
+    Width = 124
+    Height = 81
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    BevelOuter = bvNone
+    Color = clWindow
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    SkinData.SkinSection = 'CHECKBOX'
+    object CheckBoxSelectedBlockIndent: TBCCheckBox
+      Left = 0
+      Top = 0
+      Width = 124
+      Height = 20
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Caption = ' Selected block indent'
+      Checked = True
+      State = cbChecked
+      TabOrder = 0
+      SkinData.SkinSection = 'CHECKBOX'
+      ImgChecked = 0
+      ImgUnchecked = 0
+    end
+    object EditWidth: TBCEdit
+      Left = 0
+      Top = 60
+      Width = 64
+      Height = 21
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      TabOrder = 2
+      Text = '2'
+      SkinData.SkinSection = 'EDIT'
+      BoundLabel.Active = True
+      BoundLabel.Caption = 'Width'
+      BoundLabel.Indent = 4
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclTopLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      EnterToTab = False
+      OnlyNumbers = True
+      NumbersWithDots = False
+      NumbersWithSpots = False
+      ErrorColor = clBlack
+      NumbersAllowNegative = False
+      ValueInt = 2
+    end
+    object CheckBoxTabsToSpaces: TBCCheckBox
+      Left = 0
+      Top = 20
+      Width = 95
+      Height = 20
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Caption = ' Tabs to spaces'
+      TabOrder = 1
+      SkinData.SkinSection = 'CHECKBOX'
+      ImgChecked = 0
+      ImgUnchecked = 0
+    end
+  end
+end

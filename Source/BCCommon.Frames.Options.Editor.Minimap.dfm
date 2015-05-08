@@ -1,0 +1,93 @@
+inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
+  Width = 164
+  Height = 82
+  object TopPanel: TBCPanel [0]
+    AlignWithMargins = True
+    Left = 4
+    Top = 0
+    Width = 160
+    Height = 82
+    Margins.Left = 4
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    BevelOuter = bvNone
+    Color = clWindow
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    SkinData.SkinSection = 'CHECKBOX'
+    object EditWidth: TBCEdit
+      Left = 0
+      Top = 61
+      Width = 64
+      Height = 21
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      Text = '100'
+      SkinData.SkinSection = 'EDIT'
+      BoundLabel.Active = True
+      BoundLabel.Caption = 'Width'
+      BoundLabel.Indent = 4
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclTopLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      EnterToTab = False
+      OnlyNumbers = True
+      NumbersWithDots = False
+      NumbersWithSpots = False
+      ErrorColor = 14803198
+      NumbersAllowNegative = False
+      ValueInt = 100
+    end
+    object CheckBoxVisible: TBCCheckBox
+      Left = 0
+      Top = 0
+      Width = 52
+      Height = 20
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Caption = ' Visible'
+      TabOrder = 0
+      SkinData.SkinSection = 'CHECKBOX'
+      ImgChecked = 0
+      ImgUnchecked = 0
+    end
+    object CheckBoxShowMoveDirectionCursors: TBCCheckBox
+      Left = 0
+      Top = 20
+      Width = 160
+      Height = 20
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Caption = ' Show move direction cursors'
+      TabOrder = 1
+      SkinData.SkinSection = 'CHECKBOX'
+      ImgChecked = 0
+      ImgUnchecked = 0
+    end
+  end
+end
