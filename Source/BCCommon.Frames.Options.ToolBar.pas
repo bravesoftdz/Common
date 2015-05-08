@@ -204,46 +204,46 @@ procedure TOptionsToolBarFrame.GetToolBarItems;
 var
   i: Integer;
   s: string;
-  ToolBarItems: TStrings;
-  Action: TAction;
-  Node: PVirtualNode;
-  Data: PTreeData;
+  LToolBarItems: TStrings;
+  LAction: TAction;
+  LNode: PVirtualNode;
+  LData: PTreeData;
 begin
   { read from ini }
-  ToolBarItems := TStringList.Create;
+  LToolBarItems := TStringList.Create;
   with TBigIniFile.Create(GetIniFilename) do
   try
     { read items from ini }
-    ReadSectionValues('ToolBarItems', ToolBarItems);
+    ReadSectionValues('ToolBarItems', LToolBarItems);
     { add items to action bar }
     VirtualDrawTree.BeginUpdate;
     VirtualDrawTree.Clear;
-    for i := 0 to ToolBarItems.Count - 1 do
+    for i := 0 to LToolBarItems.Count - 1 do
     begin
-      Node := VirtualDrawTree.AddChild(nil);
-      Data := VirtualDrawTree.GetNodeData(Node);
+      LNode := VirtualDrawTree.AddChild(nil);
+      LData := VirtualDrawTree.GetNodeData(LNode);
 
-      s := System.Copy(ToolBarItems.Strings[i], Pos('=', ToolBarItems.Strings[i]) + 1, Length(ToolBarItems.Strings[i]));
+      s := System.Copy(LToolBarItems.Strings[i], Pos('=', LToolBarItems.Strings[i]) + 1, Length(LToolBarItems.Strings[i]));
       if s <> '-' then
       begin
-        Action := FindItemByName(s);
-        if Assigned(Action) then
-          Action.Tag := 1;
+        LAction := FindItemByName(s);
+        if Assigned(LAction) then
+          LAction.Tag := 1;
       end
       else
       begin
-        Action := TAction.Create(nil);
-        Action.Caption := '-';
+        LAction := TAction.Create(nil);
+        LAction.Caption := '-';
       end;
-      Data^.Action := Action;
+      LData^.Action := LAction;
     end;
-    Node := VirtualDrawTree.GetFirst;
-    if Assigned(Node) then
-      VirtualDrawTree.Selected[Node] := True;
+    LNode := VirtualDrawTree.GetFirst;
+    if Assigned(LNode) then
+      VirtualDrawTree.Selected[LNode] := True;
     VirtualDrawTree.EndUpdate;
   finally
     Free;
-    ToolBarItems.Free;
+    LToolBarItems.Free;
   end;
 end;
 
@@ -299,23 +299,23 @@ var
 
   procedure AddNode(ActionName: string);
   var
-    Data: PTreeData;
-    Action: TAction;
+    LData: PTreeData;
+    LAction: TAction;
   begin
     Node := VirtualDrawTree.AddChild(nil);
-    Data := VirtualDrawTree.GetNodeData(Node);
+    LData := VirtualDrawTree.GetNodeData(Node);
     if ActionName <> '-' then
     begin
-      Action := FindItemByName(ActionName);
-      if Assigned(Action) then
-        Action.Tag := 1;
+      LAction := FindItemByName(ActionName);
+      if Assigned(LAction) then
+        LAction.Tag := 1;
     end
     else
     begin
-      Action := TAction.Create(nil);
-      Action.Caption := '-';
+      LAction := TAction.Create(nil);
+      LAction.Caption := '-';
     end;
-    Data^.Action := Action;
+    LData^.Action := LAction;
   end;
 
 begin

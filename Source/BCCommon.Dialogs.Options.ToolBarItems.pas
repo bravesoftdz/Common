@@ -157,20 +157,20 @@ end;
 
 procedure TOptionsToolBarItemsDialog.GetToolBarItems;
 var
-  Action: TAction;
-  Node: PVirtualNode;
-  Data: PTreeData;
+  LAction: TAction;
+  LNode: PVirtualNode;
+  LData: PTreeData;
 begin
   VirtualDrawTreeAddItems.BeginUpdate;
   VirtualDrawTreeAddItems.Clear;
-  for Action in FActionList do
+  for LAction in FActionList do
   begin
-    if Action.Tag <> 1 then
+    if LAction.Tag <> 1 then
     begin
-      Node := VirtualDrawTreeAddItems.AddChild(nil);
-      Node.CheckType := ctCheckBox;
-      Data := VirtualDrawTreeAddItems.GetNodeData(Node);
-      Data^.Action := Action;
+      LNode := VirtualDrawTreeAddItems.AddChild(nil);
+      LNode.CheckType := ctCheckBox;
+      LData := VirtualDrawTreeAddItems.GetNodeData(LNode);
+      LData^.Action := LAction;
     end;
   end;
   VirtualDrawTreeAddItems.EndUpdate;
