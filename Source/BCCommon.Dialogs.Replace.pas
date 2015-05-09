@@ -11,7 +11,7 @@ uses
 type
   TReplaceDialog = class(TBCBaseDialog)
     ButtonCancel: TBCButton;
-    ButtonFind: TBCButton;
+    ButtonOK: TBCButton;
     ButtonReplaceAll: TBCButton;
     CheckBoxCaseSensitive: TBCCheckBox;
     CheckBoxPromptOnReplace: TBCCheckBox;
@@ -34,16 +34,19 @@ type
     procedure ComboBoxSearchForKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure CheckBoxWildCardClick(Sender: TObject);
+    procedure CheckBoxRegularExpressionClick(Sender: TObject);
   private
-    {$if Defined(EDITBONE) or Defined(ORABONE)}
+    function GetReplaceInWholeFile: Boolean;
     procedure ReadIniFile;
     procedure WriteIniFile;
-    {$endif}
-    procedure GetOptions(Editor: TBCEditor);
-    procedure SetOptions(Editor: TBCEditor);
   public
-    class procedure ClassShowModal(Editor: TBCEditor);
+    procedure GetOptions(Editor: TBCEditor);
+    property ReplaceInWholeFile: Boolean read GetReplaceInWholeFile;
   end;
+
+function ReplaceDialog: TReplaceDialog;
 
 implementation
 
@@ -52,36 +55,14 @@ implementation
 uses
   System.Math, System.IniFiles, BCCommon.FileUtils, BCCommon.Utils;
 
-class procedure TReplaceDialog.ClassShowModal(Editor: TBCEditor);
 var
   FReplaceDialog: TReplaceDialog;
+
+function ReplaceDialog: TReplaceDialog;
 begin
-  Application.CreateForm(TReplaceDialog, FReplaceDialog);
-
-  FReplaceDialog.SetOptions(Editor);
-  if FReplaceDialog.ShowModal in [mrOk, mrYes] then
-  begin
-    FReplaceDialog.GetOptions(Editor);
-    Editor.CaretZero;
-    Editor.ReplaceText(FReplaceDialog.ComboBoxSearchFor.Text, FReplaceDialog.ComboBoxReplaceWith.Text);
-  end;
-
-  FReplaceDialog.Free;
-  FReplaceDialog := nil;
-end;
-
-procedure TReplaceDialog.SetOptions(Editor: TBCEditor);
-begin
-  if Editor.SelectionAvailable then
-    ComboBoxSearchFor.Text := Editor.SelectedText;
-  CheckBoxCaseSensitive.Checked := roCaseSensitive in Editor.Replace.Options;
-  CheckBoxWholeWords.Checked := roWholeWordsOnly in Editor.Replace.Options;
-  CheckBoxPromptOnReplace.Checked := roPrompt in Editor.Replace.Options;
-  CheckBoxSelectedOnly.Checked := roSelectedOnly in Editor.Replace.Options;
-  RadioButtonReplaceWith.Checked := Editor.Replace.Action = eraReplace;
-  RadioButtonDeleteLine.Checked := Editor.Replace.Action = eraDeleteLine;
-  CheckBoxRegularExpression.Checked := Editor.Replace.Engine = seRegularExpression;
-  CheckBoxWildCard.Checked := Editor.Replace.Engine = seWildCard;
+  if not Assigned(FReplaceDialog) then
+    Application.CreateForm(TReplaceDialog, FReplaceDialog);
+  Result := FReplaceDialog;
 end;
 
 procedure TReplaceDialog.GetOptions(Editor: TBCEditor);
@@ -96,10 +77,10 @@ procedure TReplaceDialog.GetOptions(Editor: TBCEditor);
 
 begin
   SetOption(CheckBoxCaseSensitive.Checked, roCaseSensitive);
-  SetOption(CheckBoxWholeWords.Checked, roWholeWordsOnly);
   SetOption(CheckBoxPromptOnReplace.Checked, roPrompt);
-  SetOption(ModalResult = mrYes, roReplaceAll);
   SetOption(CheckBoxSelectedOnly.Checked, roSelectedOnly);
+  SetOption(CheckBoxWholeWords.Checked, roWholeWordsOnly);
+  SetOption(ModalResult = mrYes, roReplaceAll);
   if RadioButtonReplaceWith.Checked then
     Editor.Replace.Action := eraReplace
   else
@@ -116,26 +97,32 @@ end;
 procedure TReplaceDialog.FormShow(Sender: TObject);
 begin
   inherited;
-  {$if Defined(EDITBONE) or Defined(ORABONE)}
   ReadIniFile;
-  {$endif}
   if ComboBoxSearchFor.CanFocus then
     ComboBoxSearchFor.SetFocus;
 end;
 
+procedure TReplaceDialog.CheckBoxRegularExpressionClick(Sender: TObject);
+begin
+  CheckBoxWildCard.Checked := False;
+end;
+
+procedure TReplaceDialog.CheckBoxWildCardClick(Sender: TObject);
+begin
+  CheckBoxRegularExpression.Checked := False;
+end;
+
 procedure TReplaceDialog.ComboBoxSearchForKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-  ButtonFind.Enabled := ComboBoxSearchFor.Text <> '';
-  ButtonReplaceAll.Enabled := ButtonFind.Enabled;
+  ButtonOK.Enabled := ComboBoxSearchFor.Text <> '';
+  ButtonReplaceAll.Enabled := ButtonOK.Enabled;
 end;
 
 procedure TReplaceDialog.FormCloseQuery(Sender: TObject;
   var CanClose: Boolean);
 begin
   inherited;
-  {$if Defined(EDITBONE) or Defined(ORABONE)}
   WriteIniFile;
-  {$endif}
   if ModalResult in [mrOK, mrYes] then
   begin
     InsertTextToCombo(ComboBoxSearchFor);
@@ -143,15 +130,23 @@ begin
   end;
 end;
 
-{$if Defined(EDITBONE) or Defined(ORABONE)}
+procedure TReplaceDialog.FormDestroy(Sender: TObject);
+begin
+  FReplaceDialog := nil;
+end;
+
 procedure TReplaceDialog.ReadIniFile;
 begin
   with TIniFile.Create(GetIniFilename) do
   try
+    RadioButtonReplaceWith.Checked := ReadBool('ReplaceOptions', 'ReplaceWith', True);
+    RadioButtonDeleteLine.Checked := ReadBool('ReplaceOptions', 'DeleteLine', False);
     CheckBoxCaseSensitive.Checked := ReadBool('ReplaceOptions', 'CaseSensitive', False);
-    CheckBoxWholeWords.Checked := ReadBool('ReplaceOptions', 'WholeWords', False);
-    CheckBoxRegularExpression.Checked := ReadBool('ReplaceOptions', 'RegularExpressions', False);
     CheckBoxPromptOnReplace.Checked := ReadBool('ReplaceOptions', 'PromptOnReplace', True);
+    CheckBoxRegularExpression.Checked := ReadBool('ReplaceOptions', 'RegularExpressions', False);
+    CheckBoxSelectedOnly.Checked := ReadBool('ReplaceOptions', 'SelectedOnly', False);
+    CheckBoxWholeWords.Checked := ReadBool('ReplaceOptions', 'WholeWords', False);
+    CheckBoxWildCard.Checked := ReadBool('ReplaceOptions', 'WildCard', False);
     RadioButtonWholeFile.Checked := ReadBool('ReplaceOptions', 'WholeFile', True);
     RadioButtonAllOpenFiles.Checked := ReadBool('ReplaceOptions', 'AllOpenFiles', False);
   finally
@@ -163,18 +158,25 @@ procedure TReplaceDialog.WriteIniFile;
 begin
   with TIniFile.Create(GetIniFilename) do
   try
+    WriteBool('ReplaceOptions', 'ReplaceWith', RadioButtonReplaceWith.Checked);
+    WriteBool('ReplaceOptions', 'DeleteLine', RadioButtonDeleteLine.Checked);
     WriteBool('ReplaceOptions', 'CaseSensitive', CheckBoxCaseSensitive.Checked);
-    WriteBool('ReplaceOptions', 'WholeWords', CheckBoxWholeWords.Checked);
-    WriteBool('ReplaceOptions', 'RegularExpressions', CheckBoxRegularExpression.Checked);
     WriteBool('ReplaceOptions', 'PromptOnReplace', CheckBoxPromptOnReplace.Checked);
+    WriteBool('ReplaceOptions', 'RegularExpressions', CheckBoxRegularExpression.Checked);
+    WriteBool('ReplaceOptions', 'SelectedOnly', CheckBoxSelectedOnly.Checked);
+    WriteBool('ReplaceOptions', 'WholeWords', CheckBoxWholeWords.Checked);
+    WriteBool('ReplaceOptions', 'WildCard', CheckBoxWildCard.Checked);
     WriteBool('ReplaceOptions', 'WholeFile', RadioButtonWholeFile.Checked);
     WriteBool('ReplaceOptions', 'AllOpenFiles', RadioButtonAllOpenFiles.Checked);
   finally
     Free;
   end;
 end;
-{$endif}
+
+function TReplaceDialog.GetReplaceInWholeFile: Boolean;
+begin
+  Result := RadioButtonWholeFile.Checked;
+end;
 
 end.
 
- 

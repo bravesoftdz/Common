@@ -3,7 +3,7 @@ object ReplaceDialog: TReplaceDialog
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Replace'
-  ClientHeight = 358
+  ClientHeight = 364
   ClientWidth = 369
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
@@ -17,6 +17,7 @@ object ReplaceDialog: TReplaceDialog
   OldCreateOrder = True
   Position = poMainFormCenter
   OnCloseQuery = FormCloseQuery
+  OnDestroy = FormDestroy
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -25,7 +26,7 @@ object ReplaceDialog: TReplaceDialog
     Left = 6
     Top = 91
     Width = 357
-    Height = 150
+    Height = 156
     Margins.Left = 0
     Margins.Right = 0
     Align = alTop
@@ -35,7 +36,7 @@ object ReplaceDialog: TReplaceDialog
     Checked = False
     object CheckBoxCaseSensitive: TBCCheckBox
       Left = 12
-      Top = 17
+      Top = 20
       Width = 92
       Height = 20
       Caption = ' Case sensitive'
@@ -46,57 +47,59 @@ object ReplaceDialog: TReplaceDialog
     end
     object CheckBoxWholeWords: TBCCheckBox
       Left = 12
-      Top = 38
+      Top = 104
       Width = 108
       Height = 20
       Caption = ' Whole words only'
-      TabOrder = 1
+      TabOrder = 4
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
     end
     object CheckBoxRegularExpression: TBCCheckBox
       Left = 12
-      Top = 59
+      Top = 62
       Width = 120
       Height = 20
       Caption = ' Regular expressions'
       TabOrder = 2
+      OnClick = CheckBoxRegularExpressionClick
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
     end
     object CheckBoxPromptOnReplace: TBCCheckBox
       Left = 12
-      Top = 101
+      Top = 41
       Width = 110
       Height = 20
       Caption = ' Prompt on replace'
       Checked = True
       State = cbChecked
-      TabOrder = 4
+      TabOrder = 1
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
     end
     object CheckBoxWildCard: TBCCheckBox
       Left = 12
-      Top = 80
+      Top = 126
       Width = 67
       Height = 20
       Caption = ' Wild card'
-      TabOrder = 3
+      TabOrder = 5
+      OnClick = CheckBoxWildCardClick
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
     end
     object CheckBoxSelectedOnly: TBCCheckBox
       Left = 12
-      Top = 122
+      Top = 83
       Width = 87
       Height = 20
       Caption = ' Selected only'
-      TabOrder = 5
+      TabOrder = 3
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
@@ -223,7 +226,7 @@ object ReplaceDialog: TReplaceDialog
   object PanelButtons: TBCPanel
     AlignWithMargins = True
     Left = 9
-    Top = 314
+    Top = 320
     Width = 354
     Height = 41
     Margins.Right = 0
@@ -233,7 +236,7 @@ object ReplaceDialog: TReplaceDialog
     Padding.Bottom = 8
     TabOrder = 3
     SkinData.SkinSection = 'CHECKBOX'
-    object ButtonFind: TBCButton
+    object ButtonOK: TBCButton
       AlignWithMargins = True
       Left = 119
       Top = 8
@@ -283,51 +286,33 @@ object ReplaceDialog: TReplaceDialog
   end
   object GroupBoxReplaceIn: TBCGroupBox
     Left = 6
-    Top = 244
+    Top = 250
     Width = 357
-    Height = 68
+    Height = 70
     Align = alTop
+    BiDiMode = bdLeftToRight
     Caption = ' Replace in'
+    ParentBiDiMode = False
     TabOrder = 0
     SkinData.SkinSection = 'GROUPBOX'
     Checked = False
     object RadioButtonWholeFile: TBCRadioButton
       Left = 12
-      Top = 17
+      Top = 20
       Width = 67
       Height = 20
-      Alignment = taLeftJustify
-      BiDiMode = bdRightToLeft
       Caption = 'Whole file'
       Checked = True
-      Enabled = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBtnFace
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentBiDiMode = False
-      ParentFont = False
       TabOrder = 0
       TabStop = True
       SkinData.SkinSection = 'CHECKBOX'
     end
     object RadioButtonAllOpenFiles: TBCRadioButton
       Left = 12
-      Top = 37
+      Top = 41
       Width = 80
       Height = 20
-      Alignment = taLeftJustify
-      BiDiMode = bdRightToLeft
       Caption = 'All open files'
-      Enabled = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBtnFace
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentBiDiMode = False
-      ParentFont = False
       TabOrder = 1
       SkinData.SkinSection = 'CHECKBOX'
     end
