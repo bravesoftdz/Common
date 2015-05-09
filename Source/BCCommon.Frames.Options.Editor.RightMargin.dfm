@@ -58,7 +58,6 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 80
     end
     object CheckBoxVisible: TBCCheckBox
       Left = 0

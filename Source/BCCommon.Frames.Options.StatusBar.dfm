@@ -86,7 +86,6 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 0
     end
   end
   object ActionList: TActionList

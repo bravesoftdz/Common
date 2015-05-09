@@ -131,7 +131,6 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 3
-      Text = '0'
       OnChange = EditFontSizeChange
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -151,7 +150,6 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 0
     end
   end
   object BookmarkImagesList: TBCImageList

@@ -69,7 +69,6 @@ inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
       NumbersWithSpots = False
       ErrorColor = clBlack
       NumbersAllowNegative = False
-      ValueInt = 2
     end
     object CheckBoxTabsToSpaces: TBCCheckBox
       Left = 0

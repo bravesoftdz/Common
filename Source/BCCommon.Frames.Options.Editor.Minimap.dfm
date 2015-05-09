@@ -57,7 +57,6 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 100
     end
     object CheckBoxVisible: TBCCheckBox
       Left = 0

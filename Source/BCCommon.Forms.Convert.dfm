@@ -61,7 +61,6 @@ object ConvertForm: TConvertForm
     Margins.Right = 4
     Margins.Bottom = 4
     TabOrder = 3
-    Text = '0'
     OnChange = ActionConvertExecute
     SkinData.SkinSection = 'EDIT'
     BoundLabel.Active = True
@@ -81,7 +80,6 @@ object ConvertForm: TConvertForm
     NumbersWithSpots = False
     ErrorColor = 14803198
     NumbersAllowNegative = False
-    ValueInt = 0
   end
   object EditResult: TBCEdit
     Left = 203
@@ -96,7 +94,6 @@ object ConvertForm: TConvertForm
     Color = clBtnFace
     ReadOnly = True
     TabOrder = 4
-    Text = '0'
     SkinData.SkinSection = 'EDIT'
     BoundLabel.Active = True
     BoundLabel.Caption = 'Result'
@@ -115,7 +112,6 @@ object ConvertForm: TConvertForm
     NumbersWithSpots = False
     ErrorColor = 14803198
     NumbersAllowNegative = False
-    ValueInt = 0
   end
   object ComboBoxType: TBCComboBox
     Left = 9

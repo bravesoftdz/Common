@@ -73,7 +73,6 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 2
     end
     object EditTabSize: TBCEdit
       Left = 0
@@ -105,7 +104,6 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 2
     end
     object EditFunctionBodyIndent: TBCEdit
       Left = 0
@@ -137,7 +135,6 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 2
     end
     object CheckBoxBlockOnNewLine: TBCCheckBox
       Left = 2
@@ -190,7 +187,6 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 2
     end
     object EditBlockRightIndentSize: TBCEdit
       Left = 0
@@ -222,7 +218,6 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 2
     end
     object EditBlockIndentSize: TBCEdit
       Left = 0
@@ -254,7 +249,6 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 2
     end
     object EditSingleStatementIndent: TBCEdit
       Left = 0
@@ -286,7 +280,6 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 2
     end
   end
 end

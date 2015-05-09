@@ -60,7 +60,6 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 20
     end
     object CheckBoxShowCheckBox: TBCCheckBox
       Left = 0

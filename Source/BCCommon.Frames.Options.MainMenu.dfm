@@ -68,7 +68,6 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      Text = '0'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
       BoundLabel.Caption = 'Font size'
@@ -87,7 +86,6 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 0
     end
   end
   inherited FrameAdapter: TsFrameAdapter

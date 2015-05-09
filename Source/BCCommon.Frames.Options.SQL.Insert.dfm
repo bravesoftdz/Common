@@ -125,7 +125,6 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 0
     end
   end
 end

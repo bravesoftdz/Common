@@ -234,11 +234,11 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Top = 41
       Width = 447
       Height = 158
-      ActivePage = TabSheetSkin
+      ActivePage = TabSheetEditor
       Align = alTop
       TabOrder = 2
       SkinData.SkinSection = 'PAGECONTROL'
-      ActivePageCaption = 'Skin'
+      ActivePageCaption = 'Editor'
       HoldShiftToDragDrop = False
       TabDragDrop = False
       object TabSheetEditor: TsTabSheet
@@ -526,7 +526,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           Width = 90
           Height = 21
           TabOrder = 0
-          Text = '0'
           OnChange = EditChange
           SkinData.SkinSection = 'EDIT'
           BoundLabel.Active = True
@@ -546,7 +545,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           NumbersWithSpots = False
           ErrorColor = 14803455
           NumbersAllowNegative = False
-          ValueInt = 0
         end
         object DateEditDate: TBCDateEdit
           Left = 8
@@ -586,7 +584,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           Width = 237
           Height = 21
           TabOrder = 0
-          Text = '0'
           OnChange = EditChange
           SkinData.SkinSection = 'EDIT'
           BoundLabel.Active = True
@@ -606,7 +603,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           NumbersWithSpots = False
           ErrorColor = 14803455
           NumbersAllowNegative = False
-          ValueInt = 0
         end
         object EditEmail: TBCEdit
           Left = 6
@@ -614,7 +610,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           Width = 237
           Height = 21
           TabOrder = 1
-          Text = '0'
           OnChange = EditChange
           SkinData.SkinSection = 'EDIT'
           BoundLabel.Active = True
@@ -634,7 +629,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           NumbersWithSpots = False
           ErrorColor = 14803455
           NumbersAllowNegative = False
-          ValueInt = 0
         end
       end
       object TabSheetSkin: TsTabSheet

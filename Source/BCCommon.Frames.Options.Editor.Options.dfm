@@ -86,7 +86,6 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 0
     end
     object CheckBoxAutoSave: TBCCheckBox
       Left = 0

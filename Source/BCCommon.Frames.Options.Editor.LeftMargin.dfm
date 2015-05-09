@@ -104,7 +104,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 48
     end
     object CheckBoxShowLineState: TBCCheckBox
       Left = 0
@@ -262,7 +261,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       NumbersWithSpots = False
       ErrorColor = 14803198
       NumbersAllowNegative = False
-      ValueInt = 20
     end
     object CheckBoxShowBookmarkPanel: TBCCheckBox
       Left = 0

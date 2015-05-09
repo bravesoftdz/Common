@@ -244,6 +244,11 @@ object LanguageDataModule: TLanguageDataModule
           'Footer - Right')
       end
       item
+        Name = 'GoToLine'
+        Strings.Strings = (
+          'Go to line')
+      end
+      item
         Name = 'HalfBlock'
         Strings.Strings = (
           'Half Block')
@@ -277,6 +282,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'Insert'
         Strings.Strings = (
           'Insert')
+      end
+      item
+        Name = 'InsertTags'
+        Strings.Strings = (
+          'Insert HTML/XML Tags')
       end
       item
         Name = 'InvalidName'
