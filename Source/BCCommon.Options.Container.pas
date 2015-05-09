@@ -47,7 +47,7 @@ type
     FMatchingPairHighlightUnmatched: Boolean;
     { Minimap }
     FMinimapVisible: Boolean;
-    FMinimapShowMoveDirectionCursors: Boolean;
+    FMinimapShowIndentGuides: Boolean;
     FMinimapWidth: Integer;
     { Editor }
     FAutoIndent: Boolean;
@@ -198,8 +198,8 @@ type
     { Minimap }
     [IniValue('Options', 'MinimapChecked', 'False')]
     property MinimapVisible: Boolean read FMinimapVisible write FMinimapVisible;
-    [IniValue('Options', 'MinimapShowMoveDirectionCursors', 'False')]
-    property MinimapShowMoveDirectionCursors: Boolean read FMinimapShowMoveDirectionCursors write FMinimapShowMoveDirectionCursors;
+    [IniValue('Options', 'MinimapShowIndentGuides', 'False')]
+    property MinimapShowIndentGuides: Boolean read FMinimapShowIndentGuides write FMinimapShowIndentGuides;
     [IniValue('Options', 'MinimapWidth', '100')]
     property MinimapWidth: Integer read FMinimapWidth write FMinimapWidth;
     { Editor }
@@ -761,10 +761,10 @@ begin
       MatchingPair.Options := MatchingPair.Options - [mpoHighlightUnmatched];
     { Minimap }
     Minimap.Visible := FMinimapVisible;
-    if FMinimapShowMoveDirectionCursors then
-      Minimap.Options := Minimap.Options + [moShowMoveDirectionCursors]
+    if FMinimapShowIndentGuides then
+      Minimap.Options := Minimap.Options + [moShowIndentGuides]
     else
-      Minimap.Options := Minimap.Options - [moShowMoveDirectionCursors];
+      Minimap.Options := Minimap.Options - [moShowIndentGuides];
     Minimap.Width := FMinimapWidth;
     { Editor }
     if FAutoIndent then

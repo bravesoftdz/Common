@@ -9,7 +9,7 @@ uses
 
 type
   TOptionsEditorMinimapFrame = class(TBCOptionsBaseFrame)
-    CheckBoxShowMoveDirectionCursors: TBCCheckBox;
+    CheckBoxShowIndentGuides: TBCCheckBox;
     CheckBoxVisible: TBCCheckBox;
     EditWidth: TBCEdit;
     TopPanel: TBCPanel;
@@ -48,14 +48,14 @@ end;
 procedure TOptionsEditorMinimapFrame.PutData;
 begin
   OptionsContainer.MinimapVisible := CheckBoxVisible.Checked;
-  OptionsContainer.MinimapShowMoveDirectionCursors := CheckBoxShowMoveDirectionCursors.Checked;
+  OptionsContainer.MinimapShowIndentGuides := CheckBoxShowIndentGuides.Checked;
   OptionsContainer.MinimapWidth := StrToIntDef(EditWidth.Text, 100);
 end;
 
 procedure TOptionsEditorMinimapFrame.GetData;
 begin
   CheckBoxVisible.Checked := OptionsContainer.MinimapVisible;
-  CheckBoxShowMoveDirectionCursors.Checked := OptionsContainer.MinimapShowMoveDirectionCursors;
+  CheckBoxShowIndentGuides.Checked := OptionsContainer.MinimapShowIndentGuides;
   EditWidth.Text := IntToStr(OptionsContainer.MinimapWidth);
 end;
 

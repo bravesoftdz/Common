@@ -111,13 +111,13 @@ object ReplaceDialog: TReplaceDialog
     AutoSize = True
     BevelOuter = bvNone
     TabOrder = 1
-    SkinData.SkinSection = 'PANEL'
+    SkinData.SkinSection = 'CHECKBOX'
     object ComboBoxSearchFor: TBCComboBox
       Left = 0
       Top = 17
       Width = 357
       Height = 21
-      Align = alClient
+      Align = alBottom
       Alignment = taLeftJustify
       BoundLabel.Active = True
       BoundLabel.Caption = 'Search for'
@@ -147,7 +147,7 @@ object ReplaceDialog: TReplaceDialog
     Color = clWindow
     ParentBackground = False
     TabOrder = 2
-    SkinData.SkinSection = 'PANEL'
+    SkinData.SkinSection = 'CHECKBOX'
     object RadioButtonReplaceWith: TBCRadioButton
       AlignWithMargins = True
       Left = 2
@@ -232,7 +232,7 @@ object ReplaceDialog: TReplaceDialog
     Padding.Top = 8
     Padding.Bottom = 8
     TabOrder = 3
-    SkinData.SkinSection = 'PANEL'
+    SkinData.SkinSection = 'CHECKBOX'
     object ButtonFind: TBCButton
       AlignWithMargins = True
       Left = 119

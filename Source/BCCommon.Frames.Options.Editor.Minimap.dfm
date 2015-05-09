@@ -74,16 +74,16 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
       ImgChecked = 0
       ImgUnchecked = 0
     end
-    object CheckBoxShowMoveDirectionCursors: TBCCheckBox
+    object CheckBoxShowIndentGuides: TBCCheckBox
       Left = 0
       Top = 20
-      Width = 160
+      Width = 116
       Height = 20
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show move direction cursors'
+      Caption = ' Show indent guides'
       TabOrder = 1
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
