@@ -45,7 +45,7 @@ object ReplaceDialog: TReplaceDialog
       ImgChecked = 0
       ImgUnchecked = 0
     end
-    object CheckBoxWholeWords: TBCCheckBox
+    object CheckBoxWholeWordsOnly: TBCCheckBox
       Left = 12
       Top = 104
       Width = 108

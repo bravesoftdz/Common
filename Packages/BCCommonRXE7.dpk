@@ -96,6 +96,7 @@ contains
   BCCommon.Frames.Options.Editor.MatchingPair in '..\Source\BCCommon.Frames.Options.Editor.MatchingPair.pas' {OptionsEditorMatchingPairFrame: TFrame},
   BCCommon.Frames.Options.Editor.Color in '..\Source\BCCommon.Frames.Options.Editor.Color.pas' {OptionsEditorColorFrame: TFrame},
   BCCommon.Frames.Options.Editor.Selection in '..\Source\BCCommon.Frames.Options.Editor.Selection.pas' {OptionsEditorSelectionFrame: TFrame},
-  BCCommon.Frames.Options.Editor.SpecialChars in '..\Source\BCCommon.Frames.Options.Editor.SpecialChars.pas' {OptionsEditorSpecialCharsFrame: TFrame};
+  BCCommon.Frames.Options.Editor.SpecialChars in '..\Source\BCCommon.Frames.Options.Editor.SpecialChars.pas' {OptionsEditorSpecialCharsFrame: TFrame},
+  BCCommon.Dialogs.InputQuery in '..\Source\BCCommon.Dialogs.InputQuery.pas' {InputQueryDialog};
 
 end.

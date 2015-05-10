@@ -54,7 +54,7 @@ object SearchForFilesForm: TSearchForFilesForm
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object SearchingFilesPanel: TBCPanel
+  object PanelSearchingFiles: TBCPanel
     Left = 0
     Top = 29
     Width = 383

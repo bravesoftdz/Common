@@ -17,7 +17,7 @@ type
     ActionSearch: TAction;
     EditSearchFor: TBCButtonedEdit;
     ImageList: TBCImageList;
-    SearchingFilesPanel: TBCPanel;
+    PanelSearchingFiles: TBCPanel;
     SkinProvider: TsSkinProvider;
     StatusBar: TBCStatusBar;
     Taskbar: TTaskbar;
@@ -316,7 +316,7 @@ var
   Min, Secs: Integer;
   TimeDifference: string;
 begin
-  SearchingFilesPanel.Visible := True;
+  PanelSearchingFiles.Visible := True;
   EditSearchFor.ReadOnly := True;
   ReadIniFile;
   Show;
@@ -348,7 +348,7 @@ begin
       VirtualDrawTreeSearch.Sort(nil, 0, sdAscending, False);
 
       VirtualDrawTreeSearch.EndUpdate;
-      SearchingFilesPanel.Visible := False;
+      PanelSearchingFiles.Visible := False;
       EditSearchFor.ReadOnly := False;
     end;
   end;

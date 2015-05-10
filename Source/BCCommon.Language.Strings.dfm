@@ -304,6 +304,16 @@ object LanguageDataModule: TLanguageDataModule
           'Line')
       end
       item
+        Name = 'MatchFound'
+        Strings.Strings = (
+          '%d match%s found')
+      end
+      item
+        Name = 'MatchFoundPluralExtension'
+        Strings.Strings = (
+          'es')
+      end
+      item
         Name = 'Minute'
         Strings.Strings = (
           'min')
@@ -432,16 +442,6 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'VerticalLine'
         Strings.Strings = (
           'Vertical line')
-      end
-      item
-        Name = 'MatchFound'
-        Strings.Strings = (
-          '%d match%s found')
-      end
-      item
-        Name = 'MatchFoundPluralExtension'
-        Strings.Strings = (
-          'es')
       end>
     Left = 88
     Top = 254
@@ -1246,98 +1246,102 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'Assembler 68HC11'
         Strings.Strings = (
-          '68HC11 Assembler Files (*.hc11;*.asc)')
+          '68HC11 Assembler files (*.hc11;*.asc)')
       end
       item
         Name = 'AutoIt v3'
         Strings.Strings = (
-          'AutoIt Files (*.au3)')
+          'AutoIt files (*.au3)')
       end
       item
         Name = 'AWK'
         Strings.Strings = (
-          'AWK Scripts (*.awk)')
+          'AWK scripts (*.awk)')
       end
       item
         Name = 'C#'
         Strings.Strings = (
-          'C# Files (*.cs)')
+          'C# files (*.cs)')
       end
       item
         Name = 'C++'
         Strings.Strings = (
-          'C/C++ Files (*.c;*.cpp;*.h;*.hpp)')
+          'C/C++ files (*.c;*.cpp;*.h;*.hpp)')
       end
       item
         Name = 'CSS'
         Strings.Strings = (
-          'Cascading Stylesheets (*.css)')
+          'Cascading Stylesheet files (*.css)')
       end
       item
         Name = 'Delphi Form Module'
         Strings.Strings = (
-          'Delphi Form Module (*.dfm)')
+          'Delphi Form Module files (*.dfm)')
       end
       item
         Name = 'HTML with Scripts'
         Strings.Strings = (
-          'HTML Files (*.html;*.htm)')
+          'HTML files (*.html;*.htm)')
       end
       item
         Name = 'Java'
         Strings.Strings = (
-          'Java Files (*.java)')
+          'Java files (*.java)')
       end
       item
         Name = 'JavaScript'
         Strings.Strings = (
-          'Javascript Files (*.js)')
+          'JavaScript files (*.js)')
       end
       item
         Name = 'JSON'
         Strings.Strings = (
-          'JSON Files (*.json)')
+          'JSON files (*.json)')
       end
       item
         Name = 'MS-DOS Batch'
         Strings.Strings = (
-          'MS-DOS Batch Files (*.bat;*.cmd)')
+          'MS-DOS Batch files (*.bat;*.cmd)')
       end
       item
         Name = 'Object Pascal'
         Strings.Strings = (
-          'Pascal Files (*.pas;*.dpr)'
-          '')
+          'Pascal files (*.pas;*.dpr)')
       end
       item
         Name = 'Perl'
         Strings.Strings = (
-          'Perl Files (*.pl;*.pm;*.cgi)')
+          'Perl files (*.pl;*.pm;*.cgi)')
       end
       item
         Name = 'PHP'
         Strings.Strings = (
-          'PHP Files (*.php;*.class;*.inc)')
+          'PHP files (*.php;*.class;*.inc)')
       end
       item
         Name = 'Python'
         Strings.Strings = (
-          'Python Files (*.py)')
+          'Python files (*.py)')
+      end
+      item
+        Name = 'Ruby'
+        Strings.Strings = (
+          'Ruby files (*.rb;*.rbw)')
       end
       item
         Name = 'SQL'
         Strings.Strings = (
-          'SQL Files (*.sql)')
+          'SQL files (*.sql)')
       end
       item
         Name = 'Visual Basic'
         Strings.Strings = (
-          'Visual Basic Files (*.vb;*.bas)')
+          'Visual Basic files (*.vb;*.bas)')
       end
       item
         Name = 'XML'
         Strings.Strings = (
-          'XML Files (*.xml;*.xsd;*.xsl;*.xslt;*.dtd)')
+          'XML files (*.xml;*.xsd;*.xsl;*.xslt;*.dtd)')
       end
       item
         Name = 'Macro'
@@ -1347,7 +1351,7 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'Language'
         Strings.Strings = (
-          'Language Files (*.lng)|*.lng')
+          'Language files (*.lng)|*.lng')
       end>
     Left = 93
     Top = 316

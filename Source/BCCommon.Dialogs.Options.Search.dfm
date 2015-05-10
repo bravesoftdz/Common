@@ -52,9 +52,9 @@ object SearchOptionsDialog: TSearchOptionsDialog
   object CheckBoxWildCard: TBCCheckBox
     Left = 8
     Top = 192
-    Width = 67
+    Width = 64
     Height = 20
-    Caption = ' Wild card'
+    Caption = ' Wildcard'
     TabOrder = 8
     SkinData.SkinSection = 'CHECKBOX'
     ImgChecked = 0

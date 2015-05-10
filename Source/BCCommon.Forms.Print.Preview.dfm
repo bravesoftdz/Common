@@ -505,6 +505,21 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Images = ImagesDataModule.ImageList
     Left = 106
     Top = 115
+    object ActionColors: TAction
+      AutoCheck = True
+      Caption = 'Colors'
+      GroupIndex = 3
+      Hint = 'Toggle colors'
+      ImageIndex = 83
+      OnExecute = ActionColorsExecute
+      OnUpdate = ActionColorsUpdate
+    end
+    object ActionExit: TAction
+      Caption = 'Exit'
+      Hint = 'Exit the print preview'
+      ImageIndex = 11
+      OnExecute = ActionExitExecute
+    end
     object ActionFirst: TAction
       Caption = 'First'
       Hint = 'First|Go to first page'
@@ -513,13 +528,29 @@ object PrintPreviewDialog: TPrintPreviewDialog
       OnExecute = ActionFirstExecute
       OnUpdate = ActionFirstUpdate
     end
-    object ActionPrevious: TAction
-      Caption = 'Previous'
-      Hint = 'Previous|Go to previous page'
-      ImageIndex = 38
-      ShortCut = 32848
-      OnExecute = ActionPreviousExecute
-      OnUpdate = ActionPreviousUpdate
+    object ActionHighlight: TAction
+      AutoCheck = True
+      Caption = 'Highlight'
+      GroupIndex = 4
+      Hint = 'Toggle highlight'
+      ImageIndex = 84
+      OnExecute = ActionHighlightExecute
+    end
+    object ActionLast: TAction
+      Caption = 'Last'
+      Hint = 'Last|Go to last page'
+      ImageIndex = 80
+      ShortCut = 32844
+      OnExecute = ActionLastExecute
+      OnUpdate = ActionLastUpdate
+    end
+    object ActionLineNumbers: TAction
+      AutoCheck = True
+      Caption = 'Line numbers'
+      GroupIndex = 1
+      Hint = 'Toggle line numbers'
+      ImageIndex = 58
+      OnExecute = ActionLineNumbersExecute
     end
     object ActionNext: TAction
       Caption = 'Next'
@@ -529,13 +560,28 @@ object PrintPreviewDialog: TPrintPreviewDialog
       OnExecute = ActionNextExecute
       OnUpdate = ActionNextUpdate
     end
-    object ActionLast: TAction
-      Caption = 'Last'
-      Hint = 'Last|Go to last page'
-      ImageIndex = 80
-      ShortCut = 32844
-      OnExecute = ActionLastExecute
-      OnUpdate = ActionLastUpdate
+    object ActionPrevious: TAction
+      Caption = 'Previous'
+      Hint = 'Previous|Go to previous page'
+      ImageIndex = 38
+      ShortCut = 32848
+      OnExecute = ActionPreviousExecute
+      OnUpdate = ActionPreviousUpdate
+    end
+    object ActionPrint: TAction
+      Caption = 'Print'
+      Hint = 'Print|Print the document'
+      ImageIndex = 9
+      ShortCut = 16464
+      OnExecute = ActionPrintExecute
+    end
+    object ActionWordWrap: TAction
+      AutoCheck = True
+      Caption = 'Word wrap'
+      GroupIndex = 2
+      Hint = 'Toggle word wrap'
+      ImageIndex = 57
+      OnExecute = ActionWordWrapExecute
     end
     object ActionZoomIn: TAction
       Caption = 'Zoom in'
@@ -554,52 +600,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
       Hint = 'Zoom|Zoom In/Out'
       ImageIndex = 34
       ShortCut = 32858
-    end
-    object ActionLineNumbers: TAction
-      AutoCheck = True
-      Caption = 'Line numbers'
-      GroupIndex = 1
-      Hint = 'Toggle line numbers'
-      ImageIndex = 58
-      OnExecute = ActionLineNumbersExecute
-    end
-    object ActionWordWrap: TAction
-      AutoCheck = True
-      Caption = 'Word wrap'
-      GroupIndex = 2
-      Hint = 'Toggle word wrap'
-      ImageIndex = 57
-      OnExecute = ActionWordWrapExecute
-    end
-    object ActionColors: TAction
-      AutoCheck = True
-      Caption = 'Colors'
-      GroupIndex = 3
-      Hint = 'Toggle colors'
-      ImageIndex = 83
-      OnExecute = ActionColorsExecute
-      OnUpdate = ActionColorsUpdate
-    end
-    object ActionHighlight: TAction
-      AutoCheck = True
-      Caption = 'Highlight'
-      GroupIndex = 4
-      Hint = 'Toggle highlight'
-      ImageIndex = 84
-      OnExecute = ActionHighlightExecute
-    end
-    object ActionPrint: TAction
-      Caption = 'Print'
-      Hint = 'Print|Print the document'
-      ImageIndex = 9
-      ShortCut = 16464
-      OnExecute = ActionPrintExecute
-    end
-    object ActionExit: TAction
-      Caption = 'Exit'
-      Hint = 'Exit the print preview'
-      ImageIndex = 11
-      OnExecute = ActionExitExecute
     end
   end
   object PopupMenuZoom: TPopupMenu

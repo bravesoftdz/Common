@@ -17,7 +17,7 @@ type
     CheckBoxPromptOnReplace: TBCCheckBox;
     CheckBoxRegularExpression: TBCCheckBox;
     CheckBoxSelectedOnly: TBCCheckBox;
-    CheckBoxWholeWords: TBCCheckBox;
+    CheckBoxWholeWordsOnly: TBCCheckBox;
     CheckBoxWildCard: TBCCheckBox;
     ComboBoxReplaceWith: TBCComboBox;
     ComboBoxSearchFor: TBCComboBox;
@@ -79,7 +79,7 @@ begin
   SetOption(CheckBoxCaseSensitive.Checked, roCaseSensitive);
   SetOption(CheckBoxPromptOnReplace.Checked, roPrompt);
   SetOption(CheckBoxSelectedOnly.Checked, roSelectedOnly);
-  SetOption(CheckBoxWholeWords.Checked, roWholeWordsOnly);
+  SetOption(CheckBoxWholeWordsOnly.Checked, roWholeWordsOnly);
   SetOption(ModalResult = mrYes, roReplaceAll);
   if RadioButtonReplaceWith.Checked then
     Editor.Replace.Action := eraReplace
@@ -145,7 +145,7 @@ begin
     CheckBoxPromptOnReplace.Checked := ReadBool('ReplaceOptions', 'PromptOnReplace', True);
     CheckBoxRegularExpression.Checked := ReadBool('ReplaceOptions', 'RegularExpressions', False);
     CheckBoxSelectedOnly.Checked := ReadBool('ReplaceOptions', 'SelectedOnly', False);
-    CheckBoxWholeWords.Checked := ReadBool('ReplaceOptions', 'WholeWords', False);
+    CheckBoxWholeWordsOnly.Checked := ReadBool('ReplaceOptions', 'WholeWordsOnly', False);
     CheckBoxWildCard.Checked := ReadBool('ReplaceOptions', 'WildCard', False);
     RadioButtonWholeFile.Checked := ReadBool('ReplaceOptions', 'WholeFile', True);
     RadioButtonAllOpenFiles.Checked := ReadBool('ReplaceOptions', 'AllOpenFiles', False);
@@ -164,7 +164,7 @@ begin
     WriteBool('ReplaceOptions', 'PromptOnReplace', CheckBoxPromptOnReplace.Checked);
     WriteBool('ReplaceOptions', 'RegularExpressions', CheckBoxRegularExpression.Checked);
     WriteBool('ReplaceOptions', 'SelectedOnly', CheckBoxSelectedOnly.Checked);
-    WriteBool('ReplaceOptions', 'WholeWords', CheckBoxWholeWords.Checked);
+    WriteBool('ReplaceOptions', 'WholeWordsOnly', CheckBoxWholeWordsOnly.Checked);
     WriteBool('ReplaceOptions', 'WildCard', CheckBoxWildCard.Checked);
     WriteBool('ReplaceOptions', 'WholeFile', RadioButtonWholeFile.Checked);
     WriteBool('ReplaceOptions', 'AllOpenFiles', RadioButtonAllOpenFiles.Checked);
