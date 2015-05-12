@@ -234,11 +234,11 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Top = 41
       Width = 606
       Height = 158
-      ActivePage = TabSheetEditor
+      ActivePage = TabSheetSkin
       Align = alTop
       TabOrder = 2
       SkinData.SkinSection = 'PAGECONTROL'
-      ActivePageCaption = 'Editor'
+      ActivePageCaption = 'Skin'
       HoldShiftToDragDrop = False
       TabDragDrop = False
       object TabSheetEditor: TsTabSheet

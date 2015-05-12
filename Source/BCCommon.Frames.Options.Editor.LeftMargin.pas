@@ -12,7 +12,7 @@ type
 
   TOptionsEditorLeftMarginFrame = class(TBCOptionsBaseFrame)
     CheckBoxAutosize: TBCCheckBox;
-    CheckBoxIShownTens: TBCCheckBox;
+    CheckBoxShowInTens: TBCCheckBox;
     CheckBoxShowAfterLastLine: TBCCheckBox;
     CheckBoxShowBookmarkPanel: TBCCheckBox;
     CheckBoxShowBookmarks: TBCCheckBox;
@@ -62,7 +62,7 @@ begin
   OptionsContainer.LeftMarginShowBookmarks := CheckBoxShowBookmarks.Checked;
   OptionsContainer.LeftMarginShowBookmarkPanel := CheckBoxShowBookmarkPanel.Checked;
   OptionsContainer.LeftMarginShowLineState := CheckBoxShowLineState.Checked;
-  OptionsContainer.LeftMarginLineNumbersShowInTens := CheckBoxIShownTens.Checked;
+  OptionsContainer.LeftMarginLineNumbersShowInTens := CheckBoxShowInTens.Checked;
   OptionsContainer.LeftMarginLineNumbersShowLeadingZeros := CheckBoxShowLeadingZeros.Checked;
   OptionsContainer.LeftMarginLineNumbersShowAfterLastLine := CheckBoxShowAfterLastLine.Checked;
   OptionsContainer.LeftMarginWidth := StrToIntDef(EditWidth.Text, 57);
@@ -76,7 +76,7 @@ begin
   CheckBoxShowBookmarks.Checked := OptionsContainer.LeftMarginShowBookmarks;
   CheckBoxShowBookmarkPanel.Checked := OptionsContainer.LeftMarginShowBookmarkPanel;
   CheckBoxShowLineState.Checked := OptionsContainer.LeftMarginShowLineState;
-  CheckBoxIShownTens.Checked := OptionsContainer.LeftMarginLineNumbersShowInTens;
+  CheckBoxShowInTens.Checked := OptionsContainer.LeftMarginLineNumbersShowInTens;
   CheckBoxShowLeadingZeros.Checked := OptionsContainer.LeftMarginLineNumbersShowLeadingZeros;
   CheckBoxShowAfterLastLine.Checked := OptionsContainer.LeftMarginLineNumbersShowAfterLastLine;
   EditWidth.Text := IntToStr(OptionsContainer.LeftMarginWidth);

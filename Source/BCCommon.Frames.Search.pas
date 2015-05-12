@@ -17,7 +17,7 @@ type
     ActionList: TActionList;
     ActionOptions: TAction;
     ComboBoxSearchText: TBCComboBox;
-    LabelSearchCount: TBCLabelFX;
+    LabelSearchResultCount: TBCLabelFX;
     PanelRight: TBCPanel;
     PanelToolBar: TBCPanel;
     SpeedButtonSearchClose: TBCSpeedButton;
@@ -88,12 +88,12 @@ var
 begin
   s := '';
 
-  if Assigned(Editor) and (Editor.SearchCount > 1) then
+  if Assigned(Editor) and (Editor.SearchResultCount > 1) then
     s := LanguageDataModule.GetConstant('MatchFoundPluralExtension');
-  if Assigned(Editor) and (Editor.SearchCount > 0) then
-    s := Format(LanguageDataModule.GetConstant('MatchFound'), [Editor.SearchCount, s]);
+  if Assigned(Editor) and (Editor.SearchResultCount > 0) then
+    s := Format(LanguageDataModule.GetConstant('MatchFound'), [Editor.SearchResultCount, s]);
 
-  LabelSearchCount.Caption := s;
+  LabelSearchResultCount.Caption := s;
 end;
 
 procedure TBCSearchFrame.ClearText;

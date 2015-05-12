@@ -137,7 +137,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       TabOrder = 5
       SkinData.SkinSection = 'GROUPBOX'
       Checked = False
-      object CheckBoxIShownTens: TBCCheckBox
+      object CheckBoxShowInTens: TBCCheckBox
         Left = 12
         Top = 20
         Width = 84

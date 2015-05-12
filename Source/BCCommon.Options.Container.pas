@@ -791,13 +791,13 @@ begin
     { Right margin }
     RightMargin.Visible := FRightMarginVisible;
     if FRightMarginMouseMove then
-      RightMargin.Options := RightMargin.Options + [reoMouseMove]
+      RightMargin.Options := RightMargin.Options + [rmoMouseMove]
     else
-      RightMargin.Options := RightMargin.Options - [reoMouseMove];
+      RightMargin.Options := RightMargin.Options - [rmoMouseMove];
     if FRightMarginShowMovingHint then
-      RightMargin.Options := RightMargin.Options + [reoShowMovingHint]
+      RightMargin.Options := RightMargin.Options + [rmoShowMovingHint]
     else
-      RightMargin.Options := RightMargin.Options - [reoShowMovingHint];
+      RightMargin.Options := RightMargin.Options - [rmoShowMovingHint];
     RightMargin.Position := FRightMarginPosition;
     { Scroll }
     if FScrollAutosizeMaxWidth then

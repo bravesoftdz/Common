@@ -123,7 +123,7 @@ inherited BCSearchFrame: TBCSearchFrame
       ParentColor = True
       TabOrder = 1
       SkinData.SkinSection = 'CHECKBOX'
-      object LabelSearchCount: TBCLabelFX
+      object LabelSearchResultCount: TBCLabelFX
         Left = 269
         Top = 0
         Width = 12
