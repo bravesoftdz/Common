@@ -88,11 +88,39 @@ begin
           TBCPanel(Form.Components[i]).Caption := Format(' %s ', [s])
       end
       else
+      if Form.Components[i] is TBCComboBox then
+      begin
+        s := ReadString(Form.Name, TBCComboBox(Form.Components[i]).Name, '');
+        if s <> '' then
+          TBCComboBox(Form.Components[i]).BoundLabel.Caption := s
+      end
+      else
+      if Form.Components[i] is TBCFontComboBox then
+      begin
+        s := ReadString(Form.Name, TBCFontComboBox(Form.Components[i]).Name, '');
+        if s <> '' then
+          TBCFontComboBox(Form.Components[i]).BoundLabel.Caption := s
+      end
+      else
+      if Form.Components[i] is TBCColorComboBox then
+      begin
+        s := ReadString(Form.Name, TBCColorComboBox(Form.Components[i]).Name, '');
+        if s <> '' then
+          TBCColorComboBox(Form.Components[i]).BoundLabel.Caption := s
+      end
+      else
+      if Form.Components[i] is TBCDateEdit then
+      begin
+        s := ReadString(Form.Name, TBCDateEdit(Form.Components[i]).Name, '');
+        if s <> '' then
+          TBCDateEdit(Form.Components[i]).BoundLabel.Caption := s
+      end
+      else
       if Form.Components[i] is TBCEdit then
       begin
         s := ReadString(Form.Name, TBCEdit(Form.Components[i]).Name, '');
         if s <> '' then
-          TBCEdit(Form.Components[i]).Caption := s
+          TBCEdit(Form.Components[i]).BoundLabel.Caption := s
       end
       else
       if Form.Components[i] is TAction then
