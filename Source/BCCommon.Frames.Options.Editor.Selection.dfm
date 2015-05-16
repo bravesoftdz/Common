@@ -42,13 +42,13 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     object CheckBoxTripleClickRowSelect: TBCCheckBox
       Left = 0
       Top = 40
-      Width = 123
+      Width = 124
       Height = 20
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Triple click row select'
+      Caption = ' Triple-click row select'
       Checked = True
       State = cbChecked
       TabOrder = 2

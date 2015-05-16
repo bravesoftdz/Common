@@ -25,13 +25,13 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
     object CheckBoxUseTab: TBCCheckBox
       Left = 2
       Top = 41
-      Width = 57
+      Width = 60
       Height = 20
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = 'Use tab'
+      Caption = ' Use tab'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -139,13 +139,13 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
     object CheckBoxBlockOnNewLine: TBCCheckBox
       Left = 2
       Top = 147
-      Width = 101
+      Width = 104
       Height = 20
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = 'Block on new line'
+      Caption = ' Block on new line'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11

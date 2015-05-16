@@ -1,12 +1,12 @@
 inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
   Width = 190
-  Height = 358
+  Height = 360
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 186
-    Height = 358
+    Height = 360
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -24,7 +24,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     SkinData.SkinSection = 'CHECKBOX'
     object ComboBoxKeywords: TBCComboBox
       Left = 0
-      Top = 16
+      Top = 17
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -58,7 +58,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     end
     object ComboBoxIdentifier: TBCComboBox
       Left = 0
-      Top = 56
+      Top = 57
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -86,7 +86,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     end
     object ComboBoxQuotedIdentifier: TBCComboBox
       Left = 0
-      Top = 96
+      Top = 97
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -114,7 +114,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     end
     object ComboBoxTableName: TBCComboBox
       Left = 0
-      Top = 136
+      Top = 137
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -142,7 +142,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     end
     object ComboBoxColumnName: TBCComboBox
       Left = 0
-      Top = 177
+      Top = 178
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -170,7 +170,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     end
     object ComboBoxAliasName: TBCComboBox
       Left = 0
-      Top = 216
+      Top = 217
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -198,7 +198,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     end
     object ComboBoxVariableName: TBCComboBox
       Left = 0
-      Top = 256
+      Top = 257
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -226,7 +226,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     end
     object ComboBoxFunctionName: TBCComboBox
       Left = 0
-      Top = 296
+      Top = 297
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -254,7 +254,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
     end
     object ComboBoxDataType: TBCComboBox
       Left = 0
-      Top = 337
+      Top = 338
       Width = 186
       Height = 22
       Margins.Left = 4

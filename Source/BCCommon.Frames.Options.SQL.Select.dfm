@@ -22,7 +22,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = TabSheetColumnList
+      ActivePage = TabSheetOrderByClause
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -33,7 +33,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       ParentFont = False
       TabOrder = 0
       SkinData.SkinSection = 'PAGECONTROL'
-      ActivePageCaption = 'Column list'
+      ActivePageCaption = 'ORDER BY clause'
       HoldShiftToDragDrop = False
       TabDragDrop = False
       object TabSheetColumnList: TsTabSheet

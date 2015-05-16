@@ -1,11 +1,11 @@
 inherited BCSearchFrame: TBCSearchFrame
   Width = 635
-  Height = 21
+  Height = 27
   object SearchPanel: TBCPanel [0]
     Left = 0
     Top = 0
     Width = 635
-    Height = 21
+    Height = 27
     Align = alClient
     AutoSize = True
     BevelOuter = bvNone
@@ -15,7 +15,7 @@ inherited BCSearchFrame: TBCSearchFrame
       Left = 614
       Top = 0
       Width = 21
-      Height = 21
+      Height = 27
       Action = ActionClose
       Align = alRight
       Flat = True
@@ -78,17 +78,20 @@ inherited BCSearchFrame: TBCSearchFrame
     object Splitter: TBCSplitter
       Left = 200
       Top = 0
-      Height = 21
+      Height = 27
       Color = clBtnFace
       ParentColor = False
       SkinData.SkinSection = 'SPLITTER'
     end
     object ComboBoxSearchText: TBCComboBox
+      AlignWithMargins = True
       Left = 0
-      Top = 0
+      Top = 3
       Width = 200
       Height = 21
       Hint = 'Search text'
+      Margins.Left = 0
+      Margins.Right = 0
       Align = alLeft
       Alignment = taLeftJustify
       BoundLabel.Indent = 0
@@ -117,7 +120,7 @@ inherited BCSearchFrame: TBCSearchFrame
       Left = 333
       Top = 0
       Width = 281
-      Height = 21
+      Height = 27
       Align = alClient
       BevelOuter = bvNone
       ParentColor = True
@@ -127,7 +130,7 @@ inherited BCSearchFrame: TBCSearchFrame
         Left = 269
         Top = 0
         Width = 12
-        Height = 24
+        Height = 27
         Align = alRight
         ParentFont = False
         Layout = tlCenter
@@ -143,10 +146,13 @@ inherited BCSearchFrame: TBCSearchFrame
       end
     end
     object PanelToolBar: TBCPanel
+      AlignWithMargins = True
       Left = 206
-      Top = 0
+      Top = 3
       Width = 127
       Height = 21
+      Margins.Left = 0
+      Margins.Right = 0
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 2
