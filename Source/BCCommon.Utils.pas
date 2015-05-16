@@ -7,7 +7,6 @@ uses
 
 function BrowseURL(const URL: string): Boolean;
 function GetOSInfo: string;
-//function PointInRect(const P: TPoint; const R: TRect): Boolean;
 //procedure AutosizeCol(Grid: TBCStringGrid; StartCol: Integer = 0);
 procedure InsertTextToCombo(ComboBox: TBCComboBox);
 //function LightenColor(AColor: TColor; APercent: Byte): TColor;
@@ -65,12 +64,6 @@ begin
       Result := Format('Windows %d.%d %s', [OS.dwMajorVersion, OS.dwMinorVersion, OS.szCSDVersion]);
   end;
 end;
-
-{function PointInRect(const P: TPoint; const R: TRect): Boolean;
-begin
-  with R do
-    Result := (Left <= P.X) and (Top <= P.Y) and (Right >= P.X) and (Bottom >= P.Y);
-end;}
 
 {procedure AutosizeCol(Grid: TBCStringGrid; StartCol: Integer);
 var

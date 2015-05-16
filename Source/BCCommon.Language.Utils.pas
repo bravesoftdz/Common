@@ -13,7 +13,8 @@ implementation
 uses
   BigIni, BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
   Vcl.ExtCtrls, VirtualTrees, BCCommon.Language.Strings, BCControls.CheckBox, sPageControl,
-  BCControls.GroupBox, BCControls.RadioButton, BCControls.Panel;
+  BCControls.GroupBox, BCControls.RadioButton, BCControls.Panel, BCControls.Edit,
+  BCControls.DateEdit, BCControls.ComboBox;
 
 function GetSelectedLanguage(Default: string): string;
 begin
@@ -85,6 +86,13 @@ begin
         s := ReadString(Form.Name, TBCPanel(Form.Components[i]).Name, '');
         if s <> '' then
           TBCPanel(Form.Components[i]).Caption := Format(' %s ', [s])
+      end
+      else
+      if Form.Components[i] is TBCEdit then
+      begin
+        s := ReadString(Form.Name, TBCEdit(Form.Components[i]).Name, '');
+        if s <> '' then
+          TBCEdit(Form.Components[i]).Caption := s
       end
       else
       if Form.Components[i] is TAction then

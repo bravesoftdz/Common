@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sCheckBox, BCControls.CheckBox, Vcl.ExtCtrls,
-  sPanel, BCControls.Panel, sComboBox, BCControls.ComboBox, Vcl.ComCtrls, sComboBoxes, BCControls.ColorComboBox,
+  sPanel, BCControls.Panel, sComboBox, BCControls.ComboBox, Vcl.ComCtrls, sComboBoxes,
   sGroupBox, BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter;
 
 type

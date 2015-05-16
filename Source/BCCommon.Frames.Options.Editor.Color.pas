@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, JsonDataObjects,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sComboBox, BCControls.ComboBox, Vcl.ComCtrls,
-  sComboBoxes, BCControls.ColorComboBox, sGroupBox, Vcl.ExtCtrls, sPanel, BCControls.Panel, sCheckBox,
+  sComboBoxes, sGroupBox, Vcl.ExtCtrls, sPanel, BCControls.Panel, sCheckBox,
   BCControls.CheckBox, BCEditor.Editor.Base, BCEditor.Editor, Vcl.Buttons, sSpeedButton, BCControls.SpeedButton,
   BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter, System.Actions, Vcl.ActnList, BCControls.ScrollBox,
   sScrollBox, sDialogs, BCComponents.MultiStringHolder, sPageControl, BCControls.PageControl, sSplitter, sEdit,
@@ -293,7 +293,7 @@ begin
   LFileName := GetColorFileName;
   with Editor do
   begin
-    Highlighter.LoadColorsFromFile(LFileName);
+    Highlighter.Colors.LoadFromFile(LFileName);
     Invalidate;
   end;
 end;
@@ -382,7 +382,7 @@ procedure TOptionsEditorColorFrame.ComboBoxHighlighterChange(Sender: TObject);
 begin
   with Editor do
   begin
-    Highlighter.LoadFromFile(Format('%sHighlighters\%s.json', [ExtractFilePath(Application.ExeName), ComboBoxHighlighter.Text]));
+    Highlighter.LoadFromFile(Format('%s.json', [ComboBoxHighlighter.Text]));
     ClearCodeFolding;
     Lines.Text := Highlighter.Info.General.Sample;
     InitCodeFolding;

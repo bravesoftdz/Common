@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, sComboBoxes, BCControls.ColorComboBox, Vcl.StdCtrls,
-  sComboBox, BCControls.ComboBox, sCheckBox, BCControls.CheckBox, Vcl.ExtCtrls, sPanel,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, sComboBoxes, BCControls.ComboBox, Vcl.StdCtrls,
+  sComboBox, sCheckBox, BCControls.CheckBox, Vcl.ExtCtrls, sPanel,
   BCControls.Panel, sGroupBox, BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter;
 
 type

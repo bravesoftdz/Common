@@ -1,13 +1,13 @@
 inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
-  Width = 610
-  Height = 429
+  Width = 451
+  Height = 304
   Align = alClient
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 606
-    Height = 429
+    Width = 447
+    Height = 304
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -27,7 +27,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object Splitter: TsSplitter
       Left = 0
       Top = 199
-      Width = 606
+      Width = 447
       Height = 6
       Cursor = crVSplit
       Align = alTop
@@ -37,7 +37,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object PanelTop: TBCPanel
       Left = 0
       Top = 0
-      Width = 606
+      Width = 447
       Height = 41
       Align = alTop
       BevelOuter = bvNone
@@ -174,8 +174,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object Editor: TBCEditor
       Left = 0
       Top = 205
-      Width = 606
-      Height = 224
+      Width = 447
+      Height = 99
       Cursor = crIBeam
       Margins.Left = 0
       Margins.Top = 5
@@ -200,6 +200,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       CompletionProposal.ShortCut = 16416
       CompletionProposal.Trigger.Chars = '.'
       CompletionProposal.Trigger.Enabled = False
+      Directories.Colors = 'Colors'
+      Directories.Highlighters = 'Highlighters'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -221,6 +223,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Minimap.Font.Height = -4
       Minimap.Font.Name = 'Courier New'
       Minimap.Font.Style = []
+      Minimap.Width = 140
       RightMargin.Position = 80
       RightMargin.Visible = True
       SpecialChars.Style = scsDot
@@ -232,7 +235,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object PageControl: TBCPageControl
       Left = 0
       Top = 41
-      Width = 606
+      Width = 447
       Height = 158
       ActivePage = TabSheetSkin
       Align = alTop
