@@ -3,16 +3,18 @@ unit BCCommon.Frames.Options.Editor.CompletionProposal;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.CheckBox, Vcl.ExtCtrls,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
   BCControls.ComboBox, BCCommon.Options.Container, BCCommon.Frames.Options.Base, sComboBox, BCControls.Panel,
-  sCheckBox, sPanel, sFrameAdapter;
+  sPanel, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsEditorCompletionProposalFrame = class(TBCOptionsBaseFrame)
-    CheckBoxCaseSensitive: TBCCheckBox;
-    CheckBoxEnabled: TBCCheckBox;
     ComboBoxShortcut: TBCComboBox;
     Panel: TBCPanel;
+    StickyLabelCaseSensitive: TsStickyLabel;
+    SliderCaseSensitive: TsSlider;
+    StickyLabelEnabled: TsStickyLabel;
+    SliderEnabled: TsSlider;
   protected
     procedure Init; override;
     procedure GetData; override;
@@ -28,7 +30,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Vcl.Menus, BCCommon.Consts;
+  Vcl.Menus, BCCommon.Utils, BCCommon.Consts;
 
 var
   FOptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame;
@@ -38,6 +40,7 @@ begin
   if not Assigned(FOptionsEditorCompletionProposalFrame) then
     FOptionsEditorCompletionProposalFrame := TOptionsEditorCompletionProposalFrame.Create(AOwner);
   Result := FOptionsEditorCompletionProposalFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsEditorCompletionProposalFrame.Destroy;
@@ -56,15 +59,15 @@ end;
 
 procedure TOptionsEditorCompletionProposalFrame.PutData;
 begin
-  OptionsContainer.CompletionProposalEnabled := CheckBoxEnabled.Checked;
-  OptionsContainer.CompletionProposalCaseSensitive := CheckBoxCaseSensitive.Checked;
+  OptionsContainer.CompletionProposalEnabled := SliderEnabled.SliderOn;
+  OptionsContainer.CompletionProposalCaseSensitive := SliderCaseSensitive.SliderOn;
   OptionsContainer.CompletionProposalShortcut := ComboBoxShortcut.Text;
 end;
 
 procedure TOptionsEditorCompletionProposalFrame.GetData;
 begin
-  CheckBoxEnabled.Checked := OptionsContainer.CompletionProposalEnabled;
-  CheckBoxCaseSensitive.Checked := OptionsContainer.CompletionProposalCaseSensitive;
+  SliderEnabled.SliderOn := OptionsContainer.CompletionProposalEnabled;
+  SliderCaseSensitive.SliderOn := OptionsContainer.CompletionProposalCaseSensitive;
   ComboBoxShortcut.ItemIndex := ComboBoxShortcut.Items.IndexOf(OptionsContainer.CompletionProposalShortcut);
 end;
 

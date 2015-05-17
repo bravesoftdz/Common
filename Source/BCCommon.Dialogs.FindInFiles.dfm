@@ -3,7 +3,7 @@ object FindInFilesDialog: TFindInFilesDialog
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Find in Files'
-  ClientHeight = 286
+  ClientHeight = 290
   ClientWidth = 499
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
@@ -25,7 +25,7 @@ object FindInFilesDialog: TFindInFilesDialog
   object PanelButtons: TBCPanel
     AlignWithMargins = True
     Left = 9
-    Top = 242
+    Top = 246
     Width = 484
     Height = 41
     Margins.Right = 0
@@ -74,16 +74,40 @@ object FindInFilesDialog: TFindInFilesDialog
     TabOrder = 1
     SkinData.SkinSection = 'GROUPBOX'
     Checked = False
-    object CheckBoxCaseSensitive: TBCCheckBox
+    object StickyLabelCaseSensitive: TsStickyLabel
       Left = 12
-      Top = 22
-      Width = 92
-      Height = 20
-      Caption = ' Case sensitive'
+      Top = 23
+      Width = 69
+      Height = 13
+      Caption = 'Case sensitive'
+      AttachTo = SliderCaseSensitive
+      Gap = 8
+    end
+    object SliderCaseSensitive: TsSlider
+      Left = 89
+      Top = 19
+      Width = 50
+      AutoSize = True
       TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
   object GroupBoxSearchDirectoryOptions: TBCGroupBox
@@ -91,7 +115,7 @@ object FindInFilesDialog: TFindInFilesDialog
     Left = 6
     Top = 103
     Width = 487
-    Height = 137
+    Height = 142
     Margins.Left = 0
     Margins.Right = 0
     Align = alTop
@@ -238,24 +262,52 @@ object FindInFilesDialog: TFindInFilesDialog
       TabOrder = 1
       Text = '*.*'
     end
-    object CheckBoxIncludeSubdirectories: TBCCheckBox
-      AlignWithMargins = True
-      Left = 14
-      Top = 106
-      Width = 459
-      Height = 20
-      Margins.Left = 12
-      Margins.Right = 12
-      Caption = ' Include subdirectories'
+    object BCPanel1: TBCPanel
+      Left = 2
+      Top = 103
+      Width = 483
+      Height = 27
       Align = alTop
-      Checked = True
-      Color = clBtnFace
-      ParentColor = False
-      State = cbChecked
+      AutoSize = True
+      BevelOuter = bvNone
+      Padding.Top = 6
       TabOrder = 2
       SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      object StickyLabelIncludeSubdirectories: TsStickyLabel
+        Left = 10
+        Top = 10
+        Width = 105
+        Height = 13
+        Caption = 'Include subdirectories'
+        AttachTo = SliderIncludeSubdirectories
+        Gap = 8
+      end
+      object SliderIncludeSubdirectories: TsSlider
+        Left = 123
+        Top = 6
+        Width = 50
+        AutoSize = True
+        TabOrder = 0
+        BoundLabel.Indent = 0
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'Tahoma'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+        ImageIndexOff = 0
+        ImageIndexOn = 0
+        FontOn.Charset = DEFAULT_CHARSET
+        FontOn.Color = clWindowText
+        FontOn.Height = -11
+        FontOn.Name = 'Tahoma'
+        FontOn.Style = []
+        SliderOn = False
+        SliderCaptionOn = 'Yes'
+        SliderCaptionOff = 'No'
+      end
     end
   end
   object ComboBoxTextToFind: TBCComboBox

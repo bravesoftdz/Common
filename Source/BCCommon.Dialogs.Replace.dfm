@@ -3,7 +3,7 @@ object ReplaceDialog: TReplaceDialog
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Replace'
-  ClientHeight = 364
+  ClientHeight = 413
   ClientWidth = 369
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
@@ -24,9 +24,9 @@ object ReplaceDialog: TReplaceDialog
   object GroupBoxOptions: TBCGroupBox
     AlignWithMargins = True
     Left = 6
-    Top = 91
+    Top = 120
     Width = 357
-    Height = 156
+    Height = 173
     Margins.Left = 0
     Margins.Right = 0
     Align = alTop
@@ -34,75 +34,222 @@ object ReplaceDialog: TReplaceDialog
     TabOrder = 5
     SkinData.SkinSection = 'GROUPBOX'
     Checked = False
-    object CheckBoxCaseSensitive: TBCCheckBox
+    object StickyLabelCaseSensitive: TsStickyLabel
       Left = 12
-      Top = 20
-      Width = 92
-      Height = 20
-      Caption = ' Case sensitive'
+      Top = 26
+      Width = 102
+      Height = 13
+      AutoSize = False
+      Caption = 'Case sensitive'
+      AttachTo = SliderCaseSensitive
+      Gap = 8
+    end
+    object StickyLabelPromptOnReplace: TsStickyLabel
+      Left = 12
+      Top = 49
+      Width = 102
+      Height = 13
+      AutoSize = False
+      Caption = 'Prompt on replace'
+      AttachTo = SliderPromptOnReplace
+      Gap = 8
+    end
+    object StickyLabelRegularExpression: TsStickyLabel
+      Left = 12
+      Top = 72
+      Width = 102
+      Height = 13
+      AutoSize = False
+      Caption = 'Regular expressions'
+      AttachTo = SliderRegularExpression
+      Gap = 8
+    end
+    object StickyLabelSelectedOnly: TsStickyLabel
+      Left = 12
+      Top = 95
+      Width = 102
+      Height = 13
+      AutoSize = False
+      Caption = 'Selected only'
+      AttachTo = SliderSelectedOnly
+      Gap = 8
+    end
+    object StickyLabelWholeWordsOnly: TsStickyLabel
+      Left = 12
+      Top = 118
+      Width = 102
+      Height = 13
+      AutoSize = False
+      Caption = 'Whole words only'
+      AttachTo = SliderWholeWordsOnly
+      Gap = 8
+    end
+    object StickyLabelWildCard: TsStickyLabel
+      Left = 12
+      Top = 141
+      Width = 102
+      Height = 13
+      AutoSize = False
+      Caption = 'Wild card'
+      AttachTo = SliderWildCard
+      Gap = 8
+    end
+    object SliderCaseSensitive: TsSlider
+      Left = 122
+      Top = 22
+      Width = 50
+      AutoSize = True
       TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxWholeWordsOnly: TBCCheckBox
-      Left = 12
-      Top = 104
-      Width = 108
-      Height = 20
-      Caption = ' Whole words only'
-      TabOrder = 4
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
-    end
-    object CheckBoxRegularExpression: TBCCheckBox
-      Left = 12
-      Top = 62
-      Width = 120
-      Height = 20
-      Caption = ' Regular expressions'
-      TabOrder = 2
-      OnClick = CheckBoxRegularExpressionClick
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
-    end
-    object CheckBoxPromptOnReplace: TBCCheckBox
-      Left = 12
-      Top = 41
-      Width = 110
-      Height = 20
-      Caption = ' Prompt on replace'
-      Checked = True
-      State = cbChecked
+    object SliderPromptOnReplace: TsSlider
+      Left = 122
+      Top = 45
+      Width = 50
+      AutoSize = True
       TabOrder = 1
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxWildCard: TBCCheckBox
-      Left = 12
-      Top = 126
-      Width = 67
-      Height = 20
-      Caption = ' Wild card'
-      TabOrder = 5
-      OnClick = CheckBoxWildCardClick
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+    object SliderRegularExpression: TsSlider
+      Left = 122
+      Top = 68
+      Width = 50
+      AutoSize = True
+      TabOrder = 2
+      OnClick = SliderRegularExpressionClick
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxSelectedOnly: TBCCheckBox
-      Left = 12
-      Top = 83
-      Width = 87
-      Height = 20
-      Caption = ' Selected only'
+    object SliderSelectedOnly: TsSlider
+      Left = 122
+      Top = 91
+      Width = 50
+      AutoSize = True
       TabOrder = 3
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderWholeWordsOnly: TsSlider
+      Left = 122
+      Top = 114
+      Width = 50
+      AutoSize = True
+      TabOrder = 4
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderWildCard: TsSlider
+      Left = 122
+      Top = 137
+      Width = 50
+      AutoSize = True
+      TabOrder = 5
+      OnClick = SliderWildCardClick
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
   object PanelSearchForComboBox: TBCPanel
@@ -144,7 +291,7 @@ object ReplaceDialog: TReplaceDialog
     Left = 6
     Top = 44
     Width = 357
-    Height = 23
+    Height = 26
     Align = alTop
     BevelOuter = bvNone
     Color = clWindow
@@ -153,15 +300,14 @@ object ReplaceDialog: TReplaceDialog
     SkinData.SkinSection = 'CHECKBOX'
     object RadioButtonReplaceWith: TBCRadioButton
       AlignWithMargins = True
-      Left = 2
+      Left = 0
       Top = 0
       Width = 81
-      Height = 23
-      Margins.Left = 2
+      Height = 26
+      Margins.Left = 0
       Margins.Top = 0
       Margins.Bottom = 0
       Align = alLeft
-      Alignment = taLeftJustify
       BiDiMode = bdLeftToRight
       Caption = 'Replace with'
       Checked = True
@@ -169,31 +315,13 @@ object ReplaceDialog: TReplaceDialog
       ParentColor = False
       TabOrder = 0
       TabStop = True
-      SkinData.SkinSection = 'CHECKBOX'
-    end
-    object RadioButtonDeleteLine: TBCRadioButton
-      AlignWithMargins = True
-      Left = 285
-      Top = 0
-      Width = 70
-      Height = 23
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 2
-      Margins.Bottom = 0
-      Align = alRight
-      Alignment = taLeftJustify
-      BiDiMode = bdLeftToRight
-      Caption = 'Delete line'
-      ParentBiDiMode = False
-      ParentColor = False
-      TabOrder = 1
+      OnClick = RadioButtonReplaceWithClick
       SkinData.SkinSection = 'CHECKBOX'
     end
   end
   object PanelReplaceWithComboBox: TBCPanel
     Left = 6
-    Top = 67
+    Top = 70
     Width = 357
     Height = 21
     Align = alTop
@@ -226,7 +354,7 @@ object ReplaceDialog: TReplaceDialog
   object PanelButtons: TBCPanel
     AlignWithMargins = True
     Left = 9
-    Top = 320
+    Top = 369
     Width = 354
     Height = 41
     Margins.Right = 0
@@ -286,7 +414,7 @@ object ReplaceDialog: TReplaceDialog
   end
   object GroupBoxReplaceIn: TBCGroupBox
     Left = 6
-    Top = 250
+    Top = 296
     Width = 357
     Height = 70
     Align = alTop
@@ -314,6 +442,37 @@ object ReplaceDialog: TReplaceDialog
       Height = 20
       Caption = 'All open files'
       TabOrder = 1
+      SkinData.SkinSection = 'CHECKBOX'
+    end
+  end
+  object BCPanel1: TBCPanel
+    Left = 6
+    Top = 91
+    Width = 357
+    Height = 26
+    Align = alTop
+    BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
+    TabOrder = 6
+    SkinData.SkinSection = 'CHECKBOX'
+    object RadioButtonDeleteLine: TBCRadioButton
+      AlignWithMargins = True
+      Left = 0
+      Top = 0
+      Width = 70
+      Height = 26
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      Align = alLeft
+      BiDiMode = bdLeftToRight
+      Caption = 'Delete line'
+      ParentBiDiMode = False
+      ParentColor = False
+      TabOrder = 0
+      OnClick = RadioButtonDeleteLineClick
       SkinData.SkinSection = 'CHECKBOX'
     end
   end

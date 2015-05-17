@@ -22,7 +22,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = TabSheetOrderByClause
+      ActivePage = TabSheetAndOrKeyword
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -31,9 +31,11 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Font.Style = []
       MultiLine = True
       ParentFont = False
+      TabHeight = 22
       TabOrder = 0
+      TabMargin = 2
       SkinData.SkinSection = 'PAGECONTROL'
-      ActivePageCaption = 'ORDER BY clause'
+      ActivePageCaption = 'AND/OR keyword'
       HoldShiftToDragDrop = False
       TabDragDrop = False
       object TabSheetColumnList: TsTabSheet

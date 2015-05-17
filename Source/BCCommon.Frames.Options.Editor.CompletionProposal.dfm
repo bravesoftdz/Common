@@ -22,49 +22,25 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
     ParentFont = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object CheckBoxEnabled: TBCCheckBox
+    object StickyLabelCaseSensitive: TsStickyLabel
       Left = 0
-      Top = 0
-      Width = 58
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = 'Enabled'
-      Checked = True
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
-    end
-    object CheckBoxCaseSensitive: TBCCheckBox
-      Left = 0
-      Top = 20
-      Width = 89
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
+      Top = 26
+      Width = 102
+      Height = 13
+      AutoSize = False
       Caption = 'Case sensitive'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 1
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      AttachTo = SliderCaseSensitive
+      Gap = 8
+    end
+    object StickyLabelEnabled: TsStickyLabel
+      Left = 0
+      Top = 4
+      Width = 102
+      Height = 13
+      AutoSize = False
+      Caption = 'Enabled'
+      AttachTo = SliderEnabled
+      Gap = 8
     end
     object ComboBoxShortcut: TBCComboBox
       Left = 0
@@ -98,7 +74,58 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       Font.Style = []
       ItemIndex = -1
       ParentFont = False
+      TabOrder = 0
+    end
+    object SliderCaseSensitive: TsSlider
+      Left = 110
+      Top = 22
+      Width = 50
+      AutoSize = True
+      TabOrder = 1
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderEnabled: TsSlider
+      Left = 110
+      Top = 0
+      Width = 50
+      AutoSize = True
       TabOrder = 2
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
 end

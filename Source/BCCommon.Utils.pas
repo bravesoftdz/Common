@@ -3,7 +3,7 @@ unit BCCommon.Utils;
 interface
 
 uses
-  Winapi.Windows, System.Classes, System.Types, {BCControls.StringGrid,} BCControls.ComboBox;
+  Winapi.Windows, System.Classes, System.Types, {BCControls.StringGrid,} BCControls.ComboBox, Vcl.Controls;
 
 function BrowseURL(const URL: string): Boolean;
 function GetOSInfo: string;
@@ -13,11 +13,12 @@ procedure InsertTextToCombo(ComboBox: TBCComboBox);
 procedure RunCommand(const Cmd, Params: String);
 function SetFormInsideWorkArea(Left, Width: Integer): Integer;
 function PostInc(var i: Integer) : Integer; inline;
+procedure AlignSliders(AWinControl: TWinControl);
 
 implementation
 
 uses
-  System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, BCCommon.Language.Strings;
+  System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, BCCommon.Language.Strings, sLabel;
 
 function BrowseURL(const URL: string): Boolean;
 var
@@ -181,6 +182,30 @@ function PostInc(var i: Integer) : Integer; inline;
 begin
   Result := i;
   Inc(i)
+end;
+
+procedure AlignSliders(AWinControl: TWinControl);
+var
+  i: Integer;
+  LMaxLength: Integer;
+  LLabel: TsStickyLabel;
+begin
+  LMaxLength := 0;
+  for i := 0 to AWinControl.ControlCount - 1 do
+  if AWinControl.Controls[i] is TsStickyLabel then
+  begin
+    LLabel := AWinControl.Controls[i] as TsStickyLabel;
+    LLabel.AutoSize := True;
+    if LLabel.Width > LMaxLength then
+      LMaxLength := LLabel.Width;
+    LLabel.AutoSize := False;
+  end;
+  for i := 0 to AWinControl.ControlCount - 1 do
+    if AWinControl.Controls[i] is TsStickyLabel then
+    begin
+      LLabel := AWinControl.Controls[i] as TsStickyLabel;
+      LLabel.Width := LMaxLength;
+    end;
 end;
 
 end.

@@ -1,11 +1,11 @@
 inherited OptionsOutputFrame: TOptionsOutputFrame
-  Width = 104
+  Width = 115
   Height = 79
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 100
+    Width = 111
     Height = 79
     Margins.Left = 4
     Margins.Top = 0

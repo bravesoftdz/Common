@@ -4,21 +4,15 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCCommon.Dialogs.Base, Vcl.ExtCtrls,
-  BCControls.ComboBox, Vcl.StdCtrls, BCControls.CheckBox, BCControls.Panel,
+  BCControls.ComboBox, Vcl.StdCtrls, BCControls.Panel,
   BCControls.RadioButton, BCEditor.Editor, BCEditor.Types, BCControls.Button, sButton, sComboBox,
-  sPanel, sRadioButton, sCheckBox, sGroupBox, BCControls.GroupBox;
+  sPanel, sRadioButton, sGroupBox, BCControls.GroupBox, sLabel, acSlider;
 
 type
   TReplaceDialog = class(TBCBaseDialog)
     ButtonCancel: TBCButton;
     ButtonOK: TBCButton;
     ButtonReplaceAll: TBCButton;
-    CheckBoxCaseSensitive: TBCCheckBox;
-    CheckBoxPromptOnReplace: TBCCheckBox;
-    CheckBoxRegularExpression: TBCCheckBox;
-    CheckBoxSelectedOnly: TBCCheckBox;
-    CheckBoxWholeWordsOnly: TBCCheckBox;
-    CheckBoxWildCard: TBCCheckBox;
     ComboBoxReplaceWith: TBCComboBox;
     ComboBoxSearchFor: TBCComboBox;
     GroupBoxOptions: TBCGroupBox;
@@ -28,15 +22,30 @@ type
     PanelReplaceWithComboBox: TBCPanel;
     PanelSearchForComboBox: TBCPanel;
     RadioButtonAllOpenFiles: TBCRadioButton;
-    RadioButtonDeleteLine: TBCRadioButton;
     RadioButtonReplaceWith: TBCRadioButton;
     RadioButtonWholeFile: TBCRadioButton;
+    SliderCaseSensitive: TsSlider;
+    StickyLabelCaseSensitive: TsStickyLabel;
+    StickyLabelPromptOnReplace: TsStickyLabel;
+    SliderPromptOnReplace: TsSlider;
+    SliderRegularExpression: TsSlider;
+    StickyLabelRegularExpression: TsStickyLabel;
+    SliderSelectedOnly: TsSlider;
+    StickyLabelSelectedOnly: TsStickyLabel;
+    StickyLabelWholeWordsOnly: TsStickyLabel;
+    SliderWholeWordsOnly: TsSlider;
+    StickyLabelWildCard: TsStickyLabel;
+    SliderWildCard: TsSlider;
+    BCPanel1: TBCPanel;
+    RadioButtonDeleteLine: TBCRadioButton;
     procedure ComboBoxSearchForKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure CheckBoxWildCardClick(Sender: TObject);
-    procedure CheckBoxRegularExpressionClick(Sender: TObject);
+    procedure RadioButtonDeleteLineClick(Sender: TObject);
+    procedure RadioButtonReplaceWithClick(Sender: TObject);
+    procedure SliderRegularExpressionClick(Sender: TObject);
+    procedure SliderWildCardClick(Sender: TObject);
   private
     function GetReplaceInWholeFile: Boolean;
     procedure ReadIniFile;
@@ -53,7 +62,7 @@ implementation
 {$R *.DFM}
 
 uses
-  System.Math, System.IniFiles, BCCommon.FileUtils, BCCommon.Utils;
+  System.Math, System.IniFiles, BCCommon.FileUtils, BCControls.Utils, BCCommon.Utils;
 
 var
   FReplaceDialog: TReplaceDialog;
@@ -76,19 +85,19 @@ procedure TReplaceDialog.GetOptions(Editor: TBCEditor);
   end;
 
 begin
-  SetOption(CheckBoxCaseSensitive.Checked, roCaseSensitive);
-  SetOption(CheckBoxPromptOnReplace.Checked, roPrompt);
-  SetOption(CheckBoxSelectedOnly.Checked, roSelectedOnly);
-  SetOption(CheckBoxWholeWordsOnly.Checked, roWholeWordsOnly);
+  SetOption(SliderCaseSensitive.SliderOn, roCaseSensitive);
+  SetOption(SliderPromptOnReplace.SliderOn, roPrompt);
+  SetOption(SliderSelectedOnly.SliderOn, roSelectedOnly);
+  SetOption(SliderWholeWordsOnly.SliderOn, roWholeWordsOnly);
   SetOption(ModalResult = mrYes, roReplaceAll);
   if RadioButtonReplaceWith.Checked then
     Editor.Replace.Action := eraReplace
   else
     Editor.Replace.Action := eraDeleteLine;
-  if CheckBoxRegularExpression.Checked then
+  if SliderRegularExpression.SliderOn then
     Editor.Replace.Engine := seRegularExpression
   else
-  if CheckBoxWildCard.Checked then
+  if SliderWildCard.SliderOn then
     Editor.Replace.Engine := seWildCard
   else
     Editor.Replace.Engine := seNormal;
@@ -100,16 +109,7 @@ begin
   ReadIniFile;
   if ComboBoxSearchFor.CanFocus then
     ComboBoxSearchFor.SetFocus;
-end;
-
-procedure TReplaceDialog.CheckBoxRegularExpressionClick(Sender: TObject);
-begin
-  CheckBoxWildCard.Checked := False;
-end;
-
-procedure TReplaceDialog.CheckBoxWildCardClick(Sender: TObject);
-begin
-  CheckBoxRegularExpression.Checked := False;
+  AlignSliders(GroupBoxOptions);
 end;
 
 procedure TReplaceDialog.ComboBoxSearchForKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -135,23 +135,46 @@ begin
   FReplaceDialog := nil;
 end;
 
+procedure TReplaceDialog.RadioButtonDeleteLineClick(Sender: TObject);
+begin
+  RadioButtonReplaceWith.Checked := False;
+  ComboBoxReplaceWith.Text := '';
+  ComboBoxReplaceWith.Enabled := False;
+end;
+
+procedure TReplaceDialog.RadioButtonReplaceWithClick(Sender: TObject);
+begin
+  RadioButtonDeleteLine.Checked := False;
+  ComboBoxReplaceWith.Enabled := True;
+end;
+
 procedure TReplaceDialog.ReadIniFile;
 begin
   with TIniFile.Create(GetIniFilename) do
   try
     RadioButtonReplaceWith.Checked := ReadBool('ReplaceOptions', 'ReplaceWith', True);
     RadioButtonDeleteLine.Checked := ReadBool('ReplaceOptions', 'DeleteLine', False);
-    CheckBoxCaseSensitive.Checked := ReadBool('ReplaceOptions', 'CaseSensitive', False);
-    CheckBoxPromptOnReplace.Checked := ReadBool('ReplaceOptions', 'PromptOnReplace', True);
-    CheckBoxRegularExpression.Checked := ReadBool('ReplaceOptions', 'RegularExpressions', False);
-    CheckBoxSelectedOnly.Checked := ReadBool('ReplaceOptions', 'SelectedOnly', False);
-    CheckBoxWholeWordsOnly.Checked := ReadBool('ReplaceOptions', 'WholeWordsOnly', False);
-    CheckBoxWildCard.Checked := ReadBool('ReplaceOptions', 'WildCard', False);
+    SliderCaseSensitive.SliderOn := ReadBool('ReplaceOptions', 'CaseSensitive', False);
+    SliderPromptOnReplace.SliderOn := ReadBool('ReplaceOptions', 'PromptOnReplace', True);
+    SliderRegularExpression.SliderOn := ReadBool('ReplaceOptions', 'RegularExpressions', False);
+    SliderSelectedOnly.SliderOn := ReadBool('ReplaceOptions', 'SelectedOnly', False);
+    SliderWholeWordsOnly.SliderOn := ReadBool('ReplaceOptions', 'WholeWordsOnly', False);
+    SliderWildCard.SliderOn := ReadBool('ReplaceOptions', 'WildCard', False);
     RadioButtonWholeFile.Checked := ReadBool('ReplaceOptions', 'WholeFile', True);
     RadioButtonAllOpenFiles.Checked := ReadBool('ReplaceOptions', 'AllOpenFiles', False);
   finally
     Free;
   end;
+end;
+
+procedure TReplaceDialog.SliderRegularExpressionClick(Sender: TObject);
+begin
+  SliderWildCard.SliderOn := False
+end;
+
+procedure TReplaceDialog.SliderWildCardClick(Sender: TObject);
+begin
+  SliderRegularExpression.SliderOn := False;
 end;
 
 procedure TReplaceDialog.WriteIniFile;
@@ -160,12 +183,12 @@ begin
   try
     WriteBool('ReplaceOptions', 'ReplaceWith', RadioButtonReplaceWith.Checked);
     WriteBool('ReplaceOptions', 'DeleteLine', RadioButtonDeleteLine.Checked);
-    WriteBool('ReplaceOptions', 'CaseSensitive', CheckBoxCaseSensitive.Checked);
-    WriteBool('ReplaceOptions', 'PromptOnReplace', CheckBoxPromptOnReplace.Checked);
-    WriteBool('ReplaceOptions', 'RegularExpressions', CheckBoxRegularExpression.Checked);
-    WriteBool('ReplaceOptions', 'SelectedOnly', CheckBoxSelectedOnly.Checked);
-    WriteBool('ReplaceOptions', 'WholeWordsOnly', CheckBoxWholeWordsOnly.Checked);
-    WriteBool('ReplaceOptions', 'WildCard', CheckBoxWildCard.Checked);
+    WriteBool('ReplaceOptions', 'CaseSensitive', SliderCaseSensitive.SliderOn);
+    WriteBool('ReplaceOptions', 'PromptOnReplace', SliderPromptOnReplace.SliderOn);
+    WriteBool('ReplaceOptions', 'RegularExpressions', SliderRegularExpression.SliderOn);
+    WriteBool('ReplaceOptions', 'SelectedOnly', SliderSelectedOnly.SliderOn);
+    WriteBool('ReplaceOptions', 'WholeWordsOnly', SliderWholeWordsOnly.SliderOn);
+    WriteBool('ReplaceOptions', 'WildCard', SliderWildCard.SliderOn);
     WriteBool('ReplaceOptions', 'WholeFile', RadioButtonWholeFile.Checked);
     WriteBool('ReplaceOptions', 'AllOpenFiles', RadioButtonAllOpenFiles.Checked);
   finally

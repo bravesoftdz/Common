@@ -26,7 +26,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     SkinData.SkinSection = 'CHECKBOX'
     object Splitter: TsSplitter
       Left = 0
-      Top = 199
+      Top = 205
       Width = 447
       Height = 6
       Cursor = crVSplit
@@ -48,7 +48,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       object ScrollBox: TBCScrollBox
         Left = 0
         Top = 0
-        Width = 606
+        Width = 447
         Height = 41
         Align = alClient
         BorderStyle = bsNone
@@ -173,9 +173,9 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     end
     object Editor: TBCEditor
       Left = 0
-      Top = 205
+      Top = 211
       Width = 447
-      Height = 99
+      Height = 93
       Cursor = crIBeam
       Margins.Left = 0
       Margins.Top = 5
@@ -236,10 +236,12 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Left = 0
       Top = 41
       Width = 447
-      Height = 158
+      Height = 164
       ActivePage = TabSheetSkin
       Align = alTop
+      TabHeight = 22
       TabOrder = 2
+      TabMargin = 2
       SkinData.SkinSection = 'PAGECONTROL'
       ActivePageCaption = 'Skin'
       HoldShiftToDragDrop = False

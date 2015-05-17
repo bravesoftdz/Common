@@ -4,7 +4,7 @@ object SearchOptionsDialog: TSearchOptionsDialog
   BorderStyle = bsDialog
   Caption = 'Search options'
   ClientHeight = 279
-  ClientWidth = 206
+  ClientWidth = 269
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,139 +13,392 @@ object SearchOptionsDialog: TSearchOptionsDialog
   Font.Style = []
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object CheckBoxCaseSensitive: TBCCheckBox
-    Left = 8
-    Top = 31
-    Width = 92
-    Height = 20
-    Caption = ' Case sensitive'
-    ParentColor = False
-    TabOrder = 1
-    SkinData.SkinSection = 'CHECKBOX'
-    ImgChecked = 0
-    ImgUnchecked = 0
-  end
-  object CheckBoxWholeWordsOnly: TBCCheckBox
-    Left = 8
-    Top = 215
-    Width = 108
-    Height = 20
-    Caption = ' Whole words only'
-    TabOrder = 9
-    SkinData.SkinSection = 'CHECKBOX'
-    ImgChecked = 0
-    ImgUnchecked = 0
-  end
-  object CheckBoxRegularExpression: TBCCheckBox
-    Left = 8
-    Top = 100
-    Width = 115
-    Height = 20
-    Caption = ' Regular expression'
-    TabOrder = 4
-    SkinData.SkinSection = 'CHECKBOX'
-    ImgChecked = 0
-    ImgUnchecked = 0
-  end
-  object CheckBoxWildCard: TBCCheckBox
-    Left = 8
-    Top = 192
-    Width = 64
-    Height = 20
-    Caption = ' Wildcard'
-    TabOrder = 8
-    SkinData.SkinSection = 'CHECKBOX'
-    ImgChecked = 0
-    ImgUnchecked = 0
-  end
-  object CheckBoxBeepIfSearchStringNotFound: TBCCheckBox
-    Left = 8
-    Top = 8
-    Width = 171
-    Height = 20
-    Caption = ' Beep if search string not found'
-    Checked = True
-    State = cbChecked
+  object Panel: TBCPanel
+    Left = 0
+    Top = 0
+    Width = 269
+    Height = 247
+    Align = alClient
+    BevelOuter = bvNone
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    ImgChecked = 0
-    ImgUnchecked = 0
-  end
-  object CheckBoxSearchOnTyping: TBCCheckBox
-    Left = 8
-    Top = 123
-    Width = 104
-    Height = 20
-    Caption = ' Search on typing'
-    Checked = True
-    State = cbChecked
-    TabOrder = 5
-    SkinData.SkinSection = 'CHECKBOX'
-    ImgChecked = 0
-    ImgUnchecked = 0
-  end
-  object CheckBoxEntireScope: TBCCheckBox
-    Left = 8
-    Top = 54
-    Width = 82
-    Height = 20
-    Caption = ' Entire scope'
-    TabOrder = 2
-    SkinData.SkinSection = 'CHECKBOX'
-    ImgChecked = 0
-    ImgUnchecked = 0
-  end
-  object CheckBoxHighlightResult: TBCCheckBox
-    Left = 8
-    Top = 77
-    Width = 99
-    Height = 20
-    Caption = ' Highlight results'
-    Checked = True
-    State = cbChecked
-    TabOrder = 3
-    SkinData.SkinSection = 'CHECKBOX'
-    ImgChecked = 0
-    ImgUnchecked = 0
-  end
-  object CheckBoxSelectedOnly: TBCCheckBox
-    Left = 8
-    Top = 146
-    Width = 87
-    Height = 20
-    Caption = ' Selected only'
-    TabOrder = 6
-    SkinData.SkinSection = 'CHECKBOX'
-    ImgChecked = 0
-    ImgUnchecked = 0
-  end
-  object CheckBoxShowSearchStringNotFound: TBCCheckBox
-    Left = 8
-    Top = 169
-    Width = 164
-    Height = 20
-    Caption = ' Show search string not found'
-    TabOrder = 7
-    SkinData.SkinSection = 'CHECKBOX'
-    ImgChecked = 0
-    ImgUnchecked = 0
+    object StickyLabelBeepIfSearchStringNotFound: TsStickyLabel
+      Left = 8
+      Top = 12
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Beep if search string not found'
+      AttachTo = SliderBeepIfSearchStringNotFound
+      Gap = 8
+    end
+    object StickyLabelCaseSensitive: TsStickyLabel
+      Left = 8
+      Top = 35
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Case sensitive'
+      AttachTo = SliderCaseSensitive
+      Gap = 8
+    end
+    object StickyLabelWholeWordsOnly: TsStickyLabel
+      Left = 8
+      Top = 219
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Whole words only'
+      AttachTo = SliderWholeWordsOnly
+      Gap = 8
+    end
+    object StickyLabelRegularExpression: TsStickyLabel
+      Left = 8
+      Top = 104
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Regular expression'
+      AttachTo = SliderRegularExpression
+      Gap = 8
+    end
+    object StickyLabelWildCard: TsStickyLabel
+      Left = 8
+      Top = 196
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Wildcard'
+      AttachTo = SliderWildCard
+      Gap = 8
+    end
+    object StickyLabelSearchOnTyping: TsStickyLabel
+      Left = 8
+      Top = 127
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Search on typing'
+      AttachTo = SliderSearchOnTyping
+      Gap = 8
+    end
+    object StickyLabelEntireScope: TsStickyLabel
+      Left = 8
+      Top = 58
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Entire scope'
+      AttachTo = SliderEntireScope
+      Gap = 8
+    end
+    object StickyLabelHighlightResult: TsStickyLabel
+      Left = 8
+      Top = 81
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Highlight results'
+      AttachTo = SliderHighlightResult
+      Gap = 8
+    end
+    object StickyLabelSelectedOnly: TsStickyLabel
+      Left = 8
+      Top = 150
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Selected only'
+      AttachTo = SliderSelectedOnly
+      Gap = 8
+    end
+    object StickyLabelShowSearchStringNotFound: TsStickyLabel
+      Left = 8
+      Top = 173
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Show search string not found'
+      AttachTo = SliderShowSearchStringNotFound
+      Gap = 8
+    end
+    object SliderBeepIfSearchStringNotFound: TsSlider
+      Left = 194
+      Top = 8
+      Width = 50
+      AutoSize = True
+      TabOrder = 0
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderCaseSensitive: TsSlider
+      Left = 194
+      Top = 31
+      Width = 50
+      AutoSize = True
+      TabOrder = 1
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderEntireScope: TsSlider
+      Left = 194
+      Top = 54
+      Width = 50
+      AutoSize = True
+      TabOrder = 2
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderHighlightResult: TsSlider
+      Left = 194
+      Top = 77
+      Width = 50
+      AutoSize = True
+      TabOrder = 3
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderRegularExpression: TsSlider
+      Left = 194
+      Top = 100
+      Width = 50
+      AutoSize = True
+      TabOrder = 4
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderSearchOnTyping: TsSlider
+      Left = 194
+      Top = 123
+      Width = 50
+      AutoSize = True
+      TabOrder = 5
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderSelectedOnly: TsSlider
+      Left = 194
+      Top = 146
+      Width = 50
+      AutoSize = True
+      TabOrder = 6
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderShowSearchStringNotFound: TsSlider
+      Left = 194
+      Top = 169
+      Width = 50
+      AutoSize = True
+      TabOrder = 7
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderWildCard: TsSlider
+      Left = 194
+      Top = 192
+      Width = 50
+      AutoSize = True
+      TabOrder = 8
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderWholeWordsOnly: TsSlider
+      Left = 194
+      Top = 215
+      Width = 50
+      AutoSize = True
+      TabOrder = 9
+      BoundLabel.Indent = 6
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
   end
   object PanelButton: TBCPanel
     Left = 0
     Top = 247
-    Width = 206
+    Width = 269
     Height = 32
     Align = alBottom
     BevelOuter = bvNone
     Padding.Left = 8
     Padding.Right = 8
     Padding.Bottom = 8
-    TabOrder = 10
+    TabOrder = 1
     SkinData.SkinSection = 'CHECKBOX'
     object ButtonOK: TBCButton
-      Left = 43
+      Left = 106
       Top = 0
       Width = 75
       Height = 24
@@ -158,7 +411,7 @@ object SearchOptionsDialog: TSearchOptionsDialog
     end
     object ButtonCancel: TBCButton
       AlignWithMargins = True
-      Left = 123
+      Left = 186
       Top = 0
       Width = 75
       Height = 24

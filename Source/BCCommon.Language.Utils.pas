@@ -12,8 +12,8 @@ implementation
 
 uses
   BigIni, BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
-  Vcl.ExtCtrls, VirtualTrees, BCCommon.Language.Strings, BCControls.CheckBox, sPageControl,
-  BCControls.GroupBox, BCControls.RadioButton, BCControls.Panel, BCControls.Edit,
+  Vcl.ExtCtrls, VirtualTrees, BCCommon.Language.Strings, sPageControl, Vcl.Consts,
+  BCControls.GroupBox, BCControls.RadioButton, BCControls.Panel, BCControls.Edit, sLabel, acSlider,
   BCControls.DateEdit, BCControls.ComboBox;
 
 function GetSelectedLanguage(Default: string): string;
@@ -28,7 +28,7 @@ end;
 
 procedure UpdateLanguage(Form: TForm; SelectedLanguage: string);
 var
-  i, j: Integer;
+  i, j, LLeft: Integer;
   s: string;
   LanguagePath: string;
 begin
@@ -46,6 +46,12 @@ begin
     if s <> '' then
       Form.Caption := s;
     for i := 0 to Form.ComponentCount - 1 do
+      if Form.Components[i] is TFrame then
+        UpdateLanguage(TForm(Form.Components[i]), SelectedLanguage)
+      else
+      if Form.Components[i] is TMenuItem then
+        Continue
+      else
       if Form.Components[i] is TButton then
       begin
         s := ReadString(Form.Name, TButton(Form.Components[i]).Name, '');
@@ -60,11 +66,19 @@ begin
           TLabel(Form.Components[i]).Caption := s
       end
       else
-      if Form.Components[i] is TBCCheckBox then
+      if Form.Components[i] is TsStickyLabel then
       begin
-        s := ReadString(Form.Name, TBCCheckBox(Form.Components[i]).Name, '');
+        s := ReadString(Form.Name, TsStickyLabel(Form.Components[i]).Name, '');
         if s <> '' then
-          TBCCheckBox(Form.Components[i]).Caption := Format(' %s', [s]);
+          TsStickyLabel(Form.Components[i]).Caption := s
+      end
+      else
+      if Form.Components[i] is TsSlider then
+      begin
+        LLeft := TsSlider(Form.Components[i]).Left;
+        TsSlider(Form.Components[i]).SliderCaptionOn := StringReplace(SMsgDlgYes, '&', '', [rfReplaceAll]);
+        TsSlider(Form.Components[i]).SliderCaptionOff := StringReplace(SMsgDlgNo, '&', '', [rfReplaceAll]);
+        TsSlider(Form.Components[i]).Left := LLeft;
       end
       else
       if Form.Components[i] is TBCRadioButton then
@@ -92,7 +106,10 @@ begin
       begin
         s := ReadString(Form.Name, TBCComboBox(Form.Components[i]).Name, '');
         if s <> '' then
-          TBCComboBox(Form.Components[i]).BoundLabel.Caption := s
+          TBCComboBox(Form.Components[i]).BoundLabel.Caption := s;
+        s := ReadString(Form.Name, Format('%s:h', [TBCComboBox(Form.Components[i]).Name]), '');
+        if s <> '' then
+          TBCComboBox(Form.Components[i]).Hint := s
       end
       else
       if Form.Components[i] is TBCFontComboBox then

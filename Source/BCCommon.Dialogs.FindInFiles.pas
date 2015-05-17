@@ -7,7 +7,7 @@ uses
   BCControls.ComboBox, Vcl.ActnList, Vcl.Buttons, BCCommon.Dialogs.Base, System.Actions,
   Vcl.ComCtrls, BCControls.CheckBox,
   sCheckBox, sComboBox, sSpeedButton, BCControls.SpeedButton, BCControls.Panel, sPanel,
-  sGroupBox, BCControls.GroupBox;
+  sGroupBox, BCControls.GroupBox, sLabel, acSlider;
 
 type
   TFindInFilesDialog = class(TBCBaseDialog)
@@ -15,7 +15,6 @@ type
     ActionList: TActionList;
     ButtonCancel: TButton;
     ButtonFind: TButton;
-    CheckBoxCaseSensitive: TBCCheckBox;
     ComboBoxDirectory: TBCComboBox;
     GroupBoxSearchDirectoryOptions: TBCGroupBox;
     GroupBoxSearchOptions: TBCGroupBox;
@@ -25,7 +24,11 @@ type
     SpeedButtonDirectory: TBCSpeedButton;
     ComboBoxTextToFind: TBCComboBox;
     ComboBoxFileMask: TBCComboBox;
-    CheckBoxIncludeSubdirectories: TBCCheckBox;
+    SliderCaseSensitive: TsSlider;
+    StickyLabelCaseSensitive: TsStickyLabel;
+    BCPanel1: TBCPanel;
+    StickyLabelIncludeSubdirectories: TsStickyLabel;
+    SliderIncludeSubdirectories: TsSlider;
     procedure ComboBoxTextToFindKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ActionFolderButtonClickExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -115,12 +118,12 @@ end;
 
 function TFindInFilesDialog.GetSearchCaseSensitive: Boolean;
 begin
-  Result := CheckBoxCaseSensitive.Checked;
+  Result := SliderCaseSensitive.SliderOn;
 end;
 
 function TFindInFilesDialog.GetLookInSubfolders: Boolean;
 begin
-  Result := CheckBoxIncludeSubdirectories.Checked;
+  Result := SliderIncludeSubdirectories.SliderOn;
 end;
 
 procedure TFindInFilesDialog.SetButtons;
@@ -179,7 +182,7 @@ procedure TFindInFilesDialog.ReadIniFile;
 begin
   with TIniFile.Create(GetIniFilename) do
   try
-    CheckBoxCaseSensitive.Checked := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
+    SliderCaseSensitive.SliderOn := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
   finally
     Free;
   end;
@@ -189,7 +192,7 @@ procedure TFindInFilesDialog.WriteIniFile;
 begin
   with TIniFile.Create(GetIniFilename) do
   try
-    WriteBool('FindInFilesOptions', 'CaseSensitive', CheckBoxCaseSensitive.Checked);
+    WriteBool('FindInFilesOptions', 'CaseSensitive', SliderCaseSensitive.SliderOn);
   finally
     Free;
   end;

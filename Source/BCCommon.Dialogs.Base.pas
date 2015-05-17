@@ -24,8 +24,9 @@ implementation
 
 {$R *.dfm}
 
-{$IFNDEF SHIFTER}
-
+{$IFDEF EDITBONE}
+uses
+  BCCommon.Language.Utils;
 {$ENDIF}
 
 constructor TBCBaseDialog.Create(AOwner: TComponent);
@@ -46,8 +47,8 @@ end;
 
 procedure TBCBaseDialog.FormShow(Sender: TObject);
 begin
-  {$IFDEF UPDATE_LANGUAGE}
-  BCCommon.LanguageUtils.UpdateLanguage(Self);
+  {$IFDEF EDITBONE}
+  BCCommon.Language.Utils.UpdateLanguage(Self);
   {$ENDIF}
 end;
 
