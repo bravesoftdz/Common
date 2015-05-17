@@ -1,12 +1,12 @@
 inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
-  Width = 190
-  Height = 142
+  Width = 200
+  Height = 148
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 186
-    Height = 142
+    Width = 196
+    Height = 148
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -16,26 +16,23 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
     ParentBackground = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object CheckBoxParenthesisInSeparateLines: TBCCheckBox
+    object StickyLabelParenthesisInSeparateLines: TsStickyLabel
       Left = 0
-      Top = 125
-      Width = 157
-      Height = 20
+      Top = 131
+      Width = 137
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = 'Parenthesis in separate lines'
-      Checked = True
-      State = cbChecked
-      TabOrder = 2
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      ParentColor = False
+      AttachTo = SliderParenthesisInSeparateLines
+      Gap = 8
     end
     object ComboBoxColumnListStyle: TBCComboBox
       Left = 0
-      Top = 16
+      Top = 17
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -63,7 +60,7 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
     end
     object ComboBoxValueListStyle: TBCComboBox
       Left = 0
-      Top = 58
+      Top = 59
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -97,7 +94,7 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
     end
     object EditInsertColumnsPerLine: TBCEdit
       Left = 0
-      Top = 100
+      Top = 101
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -105,7 +102,7 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       Margins.Right = 4
       Margins.Bottom = 4
       AutoSize = False
-      TabOrder = 3
+      TabOrder = 2
       Text = '0'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -126,5 +123,34 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       ErrorColor = 14803198
       NumbersAllowNegative = False
     end
+    object SliderParenthesisInSeparateLines: TsSlider
+      Left = 145
+      Top = 127
+      Width = 50
+      AutoSize = True
+      TabOrder = 3
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+  end
+  inherited FrameAdapter: TsFrameAdapter
+    Left = 104
+    Top = 40
   end
 end

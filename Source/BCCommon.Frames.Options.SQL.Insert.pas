@@ -4,16 +4,17 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, BCCommon.Options.Container.SQL.Formatter,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Frames.Options.Base, Vcl.StdCtrls, BCControls.ComboBox, BCControls.CheckBox,
-  Vcl.ExtCtrls, BCControls.Edit, sEdit, sComboBox, sCheckBox, BCControls.Panel, sPanel, sFrameAdapter;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Frames.Options.Base, Vcl.StdCtrls, BCControls.ComboBox,
+  Vcl.ExtCtrls, BCControls.Edit, sEdit, sComboBox, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsSQLInsertFrame = class(TBCOptionsBaseFrame)
-    CheckBoxParenthesisInSeparateLines: TBCCheckBox;
     ComboBoxColumnListStyle: TBCComboBox;
     ComboBoxValueListStyle: TBCComboBox;
     EditInsertColumnsPerLine: TBCEdit;
     Panel: TBCPanel;
+    StickyLabelParenthesisInSeparateLines: TsStickyLabel;
+    SliderParenthesisInSeparateLines: TsSlider;
   protected
     procedure GetData; override;
     procedure Init; override;
@@ -66,7 +67,7 @@ begin
   ComboBoxColumnListStyle.ItemIndex := SQLFormatterOptionsContainer.InsertColumnListStyle;
   ComboBoxValueListStyle.ItemIndex := SQLFormatterOptionsContainer.InsertValueListStyle;
   EditInsertColumnsPerLine.Text := IntToStr(SQLFormatterOptionsContainer.InsertColumnsPerLine);
-  CheckBoxParenthesisInSeparateLines.Checked := SQLFormatterOptionsContainer.InsertParenthesisInSeparateLine;
+  SliderParenthesisInSeparateLines.SliderOn := SQLFormatterOptionsContainer.InsertParenthesisInSeparateLine;
 end;
 
 procedure TOptionsSQLInsertFrame.PutData;
@@ -74,7 +75,7 @@ begin
   SQLFormatterOptionsContainer.InsertColumnListStyle := ComboBoxColumnListStyle.ItemIndex;
   SQLFormatterOptionsContainer.InsertValueListStyle := ComboBoxValueListStyle.ItemIndex;
   SQLFormatterOptionsContainer.InsertColumnsPerLine := StrToIntDef(EditInsertColumnsPerLine.Text, 0);
-  SQLFormatterOptionsContainer.InsertParenthesisInSeparateLine := CheckBoxParenthesisInSeparateLines.Checked;
+  SQLFormatterOptionsContainer.InsertParenthesisInSeparateLine := SliderParenthesisInSeparateLines.SliderOn;
 end;
 
 

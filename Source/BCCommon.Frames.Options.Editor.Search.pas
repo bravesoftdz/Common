@@ -3,15 +3,18 @@ unit BCCommon.Frames.Options.Editor.Search;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.CheckBox, Vcl.ExtCtrls,
-  BCCommon.Frames.Options.Base, sCheckBox, BCControls.Panel, sPanel, sFrameAdapter;
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  BCCommon.Frames.Options.Base, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsEditorSearchFrame = class(TBCOptionsBaseFrame)
-    CheckBoxDocumentSpecificSearch: TBCCheckBox;
-    CheckBoxHighlightResults: TBCCheckBox;
-    CheckBoxShowSearchMap: TBCCheckBox;
     Panel: TBCPanel;
+    StickyLabelDocumentSpecificSearch: TsStickyLabel;
+    SliderDocumentSpecificSearch: TsSlider;
+    StickyLabelHighlightResults: TsStickyLabel;
+    SliderHighlightResults: TsSlider;
+    StickyLabelShowSearchMap: TsStickyLabel;
+    SliderShowSearchMap: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -26,7 +29,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Options.Container;
+  BCCommon.Options.Container, BCCommon.Utils;
 
 var
   FOptionsEditorSearchFrame: TOptionsEditorSearchFrame;
@@ -36,6 +39,7 @@ begin
   if not Assigned(FOptionsEditorSearchFrame) then
     FOptionsEditorSearchFrame := TOptionsEditorSearchFrame.Create(AOwner);
   Result := FOptionsEditorSearchFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsEditorSearchFrame.Destroy;
@@ -46,16 +50,16 @@ end;
 
 procedure TOptionsEditorSearchFrame.PutData;
 begin
-  OptionsContainer.DocumentSpecificSearch := CheckBoxDocumentSpecificSearch.Checked;
-  OptionsContainer.ShowSearchMap := CheckBoxShowSearchMap.Checked;
-  OptionsContainer.ShowSearchHighlighter := CheckBoxHighlightResults.Checked;
+  OptionsContainer.DocumentSpecificSearch := SliderDocumentSpecificSearch.SliderOn;
+  OptionsContainer.ShowSearchMap := SliderShowSearchMap.SliderOn;
+  OptionsContainer.ShowSearchHighlighter := SliderHighlightResults.SliderOn;
 end;
 
 procedure TOptionsEditorSearchFrame.GetData;
 begin
-  CheckBoxDocumentSpecificSearch.Checked := OptionsContainer.DocumentSpecificSearch;
-  CheckBoxShowSearchMap.Checked := OptionsContainer.ShowSearchMap;
-  CheckBoxHighlightResults.Checked := OptionsContainer.ShowSearchHighlighter;
+  SliderDocumentSpecificSearch.SliderOn := OptionsContainer.DocumentSpecificSearch;
+  SliderShowSearchMap.SliderOn := OptionsContainer.ShowSearchMap;
+  SliderHighlightResults.SliderOn := OptionsContainer.ShowSearchHighlighter;
 end;
 
 end.

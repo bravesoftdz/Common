@@ -3,20 +3,25 @@ unit BCCommon.Frames.Options.Editor.Scroll;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls,
-  sCheckBox, BCControls.CheckBox, Vcl.ExtCtrls, sPanel,
-  BCControls.Panel, BCCommon.Frames.Options.Base, sFrameAdapter;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls,
+  Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls, sPanel, BCControls.Panel,
+  BCCommon.Frames.Options.Base, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsEditorScrollFrame = class(TBCOptionsBaseFrame)
-    CheckBoxAutosizeMaxWidth: TBCCheckBox;
-    CheckBoxHalfPage: TBCCheckBox;
-    CheckBoxHintFollows: TBCCheckBox;
-    CheckBoxPastEndOfFile: TBCCheckBox;
-    CheckBoxPastEndOfLineMarker: TBCCheckBox;
-    CheckBoxShowHint: TBCCheckBox;
     Panel: TBCPanel;
+    StickyLabelAutosizeMaxWidth: TsStickyLabel;
+    SliderAutosizeMaxWidth: TsSlider;
+    StickyLabelHalfPage: TsStickyLabel;
+    SliderHalfPage: TsSlider;
+    StickyLabelHintFollows: TsStickyLabel;
+    SliderHintFollows: TsSlider;
+    StickyLabelPastEndOfFile: TsStickyLabel;
+    SliderPastEndOfFile: TsSlider;
+    StickyLabelPastEndOfLineMarker: TsStickyLabel;
+    SliderPastEndOfLineMarker: TsSlider;
+    StickyLabelShowHint: TsStickyLabel;
+    SliderShowHint: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -31,7 +36,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Options.Container;
+  BCCommon.Options.Container, BCCommon.Utils;
 
 var
   FOptionsEditorScrollFrame: TOptionsEditorScrollFrame;
@@ -41,6 +46,7 @@ begin
   if not Assigned(FOptionsEditorScrollFrame) then
     FOptionsEditorScrollFrame := TOptionsEditorScrollFrame.Create(AOwner);
   Result := FOptionsEditorScrollFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsEditorScrollFrame.Destroy;
@@ -51,22 +57,22 @@ end;
 
 procedure TOptionsEditorScrollFrame.PutData;
 begin
-  OptionsContainer.ScrollAutosizeMaxWidth := CheckBoxAutosizeMaxWidth.Checked;
-  OptionsContainer.ScrollHalfPage := CheckBoxHalfPage.Checked;
-  OptionsContainer.ScrollHintFollows := CheckBoxHintFollows.Checked;
-  OptionsContainer.ScrollPastEndOfFile := CheckBoxPastEndOfFile.Checked;
-  OptionsContainer.ScrollPastEndOfLineMarker := CheckBoxPastEndOfLineMarker.Checked;
-  OptionsContainer.ScrollShowHint := CheckBoxShowHint.Checked;
+  OptionsContainer.ScrollAutosizeMaxWidth := SliderAutosizeMaxWidth.SliderOn;
+  OptionsContainer.ScrollHalfPage := SliderHalfPage.SliderOn;
+  OptionsContainer.ScrollHintFollows := SliderHintFollows.SliderOn;
+  OptionsContainer.ScrollPastEndOfFile := SliderPastEndOfFile.SliderOn;
+  OptionsContainer.ScrollPastEndOfLineMarker := SliderPastEndOfLineMarker.SliderOn;
+  OptionsContainer.ScrollShowHint := SliderShowHint.SliderOn;
 end;
 
 procedure TOptionsEditorScrollFrame.GetData;
 begin
-  CheckBoxAutosizeMaxWidth.Checked := OptionsContainer.ScrollAutosizeMaxWidth;
-  CheckBoxHalfPage.Checked := OptionsContainer.ScrollHalfPage;
-  CheckBoxHintFollows.Checked := OptionsContainer.ScrollHintFollows;
-  CheckBoxPastEndOfFile.Checked := OptionsContainer.ScrollPastEndOfFile;
-  CheckBoxPastEndOfLineMarker.Checked := OptionsContainer.ScrollPastEndOfLineMarker;
-  CheckBoxShowHint.Checked := OptionsContainer.ScrollShowHint;
+  SliderAutosizeMaxWidth.SliderOn := OptionsContainer.ScrollAutosizeMaxWidth;
+  SliderHalfPage.SliderOn := OptionsContainer.ScrollHalfPage;
+  SliderHintFollows.SliderOn := OptionsContainer.ScrollHintFollows;
+  SliderPastEndOfFile.SliderOn := OptionsContainer.ScrollPastEndOfFile;
+  SliderPastEndOfLineMarker.SliderOn := OptionsContainer.ScrollPastEndOfLineMarker;
+  SliderShowHint.SliderOn := OptionsContainer.ScrollShowHint;
 end;
 
 end.

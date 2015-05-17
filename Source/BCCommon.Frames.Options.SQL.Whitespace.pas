@@ -4,18 +4,24 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCCommon.Options.Container.SQL.Formatter,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.CheckBox, Vcl.ExtCtrls,
-  BCCommon.Frames.Options.Base, sCheckBox, BCControls.Panel, sPanel, sFrameAdapter;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  BCCommon.Frames.Options.Base, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsSQLWhitespaceFrame = class(TBCOptionsBaseFrame)
-    CheckBoxSpaceAroundOperator: TBCCheckBox;
-    CheckBoxSpaceInsideCreate: TBCCheckBox;
-    CheckBoxSpaceInsideExpression: TBCCheckBox;
-    CheckBoxSpaceInsideFunction: TBCCheckBox;
-    CheckBoxSpaceInsideSubquery: TBCCheckBox;
-    CheckBoxSpaceInsideTypename: TBCCheckBox;
     Panel: TBCPanel;
+    StickyLabelSpaceAroundOperator: TsStickyLabel;
+    SliderSpaceAroundOperator: TsSlider;
+    StickyLabelSpaceInsideCreate: TsStickyLabel;
+    SliderSpaceInsideCreate: TsSlider;
+    StickyLabelSpaceInsideExpression: TsStickyLabel;
+    SliderSpaceInsideExpression: TsSlider;
+    StickyLabelSpaceInsideSubquery: TsStickyLabel;
+    SliderSpaceInsideSubquery: TsSlider;
+    StickyLabelSpaceInsideFunction: TsStickyLabel;
+    SliderSpaceInsideFunction: TsSlider;
+    StickyLabelSpaceInsideTypename: TsStickyLabel;
+    SliderSpaceInsideTypename: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -29,6 +35,9 @@ implementation
 
 {$R *.dfm}
 
+uses
+  BCCommon.Utils;
+
 var
   FOptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame;
 
@@ -37,6 +46,7 @@ begin
   if not Assigned(FOptionsSQLWhitespaceFrame) then
     FOptionsSQLWhitespaceFrame := TOptionsSQLWhitespaceFrame.Create(AOwner);
   Result := FOptionsSQLWhitespaceFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsSQLWhitespaceFrame.Destroy;
@@ -47,22 +57,22 @@ end;
 
 procedure TOptionsSQLWhitespaceFrame.GetData;
 begin
-  CheckBoxSpaceAroundOperator.Checked := SQLFormatterOptionsContainer.WhitespaceSpaceAroundOperator;
-  CheckBoxSpaceInsideCreate.Checked := SQLFormatterOptionsContainer.WhitespaceSpaceInsideCreate;
-  CheckBoxSpaceInsideExpression.Checked := SQLFormatterOptionsContainer.WhitespaceSpaceInsideExpression;
-  CheckBoxSpaceInsideSubquery.Checked := SQLFormatterOptionsContainer.WhitespaceSpaceInsideSubquery;
-  CheckBoxSpaceInsideFunction.Checked := SQLFormatterOptionsContainer.WhitespaceSpaceInsideFunction;
-  CheckBoxSpaceInsideTypename.Checked := SQLFormatterOptionsContainer.WhitespaceSpaceInsideTypename;
+  SliderSpaceAroundOperator.SliderOn := SQLFormatterOptionsContainer.WhitespaceSpaceAroundOperator;
+  SliderSpaceInsideCreate.SliderOn := SQLFormatterOptionsContainer.WhitespaceSpaceInsideCreate;
+  SliderSpaceInsideExpression.SliderOn := SQLFormatterOptionsContainer.WhitespaceSpaceInsideExpression;
+  SliderSpaceInsideSubquery.SliderOn := SQLFormatterOptionsContainer.WhitespaceSpaceInsideSubquery;
+  SliderSpaceInsideFunction.SliderOn := SQLFormatterOptionsContainer.WhitespaceSpaceInsideFunction;
+  SliderSpaceInsideTypename.SliderOn := SQLFormatterOptionsContainer.WhitespaceSpaceInsideTypename;
 end;
 
 procedure TOptionsSQLWhitespaceFrame.PutData;
 begin
-  SQLFormatterOptionsContainer.WhitespaceSpaceAroundOperator := CheckBoxSpaceAroundOperator.Checked;
-  SQLFormatterOptionsContainer.WhitespaceSpaceInsideCreate := CheckBoxSpaceInsideCreate.Checked;
-  SQLFormatterOptionsContainer.WhitespaceSpaceInsideExpression := CheckBoxSpaceInsideExpression.Checked;
-  SQLFormatterOptionsContainer.WhitespaceSpaceInsideSubquery := CheckBoxSpaceInsideSubquery.Checked;
-  SQLFormatterOptionsContainer.WhitespaceSpaceInsideFunction := CheckBoxSpaceInsideFunction.Checked;
-  SQLFormatterOptionsContainer.WhitespaceSpaceInsideTypename := CheckBoxSpaceInsideTypename.Checked;
+  SQLFormatterOptionsContainer.WhitespaceSpaceAroundOperator := SliderSpaceAroundOperator.SliderOn;
+  SQLFormatterOptionsContainer.WhitespaceSpaceInsideCreate := SliderSpaceInsideCreate.SliderOn;
+  SQLFormatterOptionsContainer.WhitespaceSpaceInsideExpression := SliderSpaceInsideExpression.SliderOn;
+  SQLFormatterOptionsContainer.WhitespaceSpaceInsideSubquery := SliderSpaceInsideSubquery.SliderOn;
+  SQLFormatterOptionsContainer.WhitespaceSpaceInsideFunction := SliderSpaceInsideFunction.SliderOn;
+  SQLFormatterOptionsContainer.WhitespaceSpaceInsideTypename := SliderSpaceInsideTypename.SliderOn;
 end;
 
 end.

@@ -23,6 +23,21 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
     ParentFont = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
+    object StickyLabelVisible: TsStickyLabel
+      Left = -71
+      Top = 4
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Visible'
+      ParentColor = False
+      AttachTo = SliderVisible
+      Gap = 8
+    end
     object EditPosition: TBCEdit
       Left = 0
       Top = 82
@@ -38,7 +53,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 2
       Text = '80'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -59,29 +74,6 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       ErrorColor = 14803198
       NumbersAllowNegative = False
     end
-    object CheckBoxVisible: TBCCheckBox
-      Left = 0
-      Top = 0
-      Width = 52
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Visible'
-      Checked = True
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      State = cbChecked
-      TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
-    end
     object CheckBoxMouseMove: TBCCheckBox
       Left = 0
       Top = 20
@@ -95,7 +87,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Checked = True
       ParentColor = False
       State = cbChecked
-      TabOrder = 1
+      TabOrder = 0
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
@@ -113,10 +105,35 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Checked = True
       ParentColor = False
       State = cbChecked
-      TabOrder = 2
+      TabOrder = 1
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
+    end
+    object SliderVisible: TsSlider
+      Left = 57
+      Top = 0
+      Width = 50
+      AutoSize = True
+      TabOrder = 3
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
 end

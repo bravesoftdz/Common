@@ -1,12 +1,12 @@
 inherited OptionsEditorScrollFrame: TOptionsEditorScrollFrame
-  Width = 137
-  Height = 120
+  Width = 212
+  Height = 136
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 133
-    Height = 120
+    Width = 208
+    Height = 136
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -22,99 +22,245 @@ inherited OptionsEditorScrollFrame: TOptionsEditorScrollFrame
     ParentFont = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object CheckBoxPastEndOfFile: TBCCheckBox
+    object StickyLabelAutosizeMaxWidth: TsStickyLabel
       Left = 0
-      Top = 60
-      Width = 95
-      Height = 20
+      Top = 4
+      Width = 150
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Past end of file'
-      TabOrder = 3
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      AutoSize = False
+      Caption = 'Autosize max width'
+      ParentColor = False
+      AttachTo = SliderAutosizeMaxWidth
+      Gap = 8
     end
-    object CheckBoxPastEndOfLineMarker: TBCCheckBox
+    object StickyLabelHalfPage: TsStickyLabel
       Left = 0
-      Top = 80
-      Width = 133
-      Height = 20
+      Top = 27
+      Width = 150
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Past end of line marker'
-      Checked = True
-      State = cbChecked
-      TabOrder = 4
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      AutoSize = False
+      Caption = 'Half page'
+      ParentColor = False
+      AttachTo = SliderHalfPage
+      Gap = 8
     end
-    object CheckBoxShowHint: TBCCheckBox
+    object StickyLabelHintFollows: TsStickyLabel
       Left = 0
-      Top = 100
-      Width = 70
-      Height = 20
+      Top = 50
+      Width = 150
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Show hint'
-      Checked = True
-      State = cbChecked
-      TabOrder = 5
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      AutoSize = False
+      Caption = 'Hint follows'
+      ParentColor = False
+      AttachTo = SliderHintFollows
+      Gap = 8
     end
-    object CheckBoxAutosizeMaxWidth: TBCCheckBox
+    object StickyLabelPastEndOfFile: TsStickyLabel
       Left = 0
+      Top = 73
+      Width = 150
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Past end of file'
+      ParentColor = False
+      AttachTo = SliderPastEndOfFile
+      Gap = 8
+    end
+    object StickyLabelPastEndOfLineMarker: TsStickyLabel
+      Left = 0
+      Top = 96
+      Width = 150
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Past end of line marker'
+      ParentColor = False
+      AttachTo = SliderPastEndOfLineMarker
+      Gap = 8
+    end
+    object StickyLabelShowHint: TsStickyLabel
+      Left = 0
+      Top = 119
+      Width = 150
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show hint'
+      ParentColor = False
+      AttachTo = SliderShowHint
+      Gap = 8
+    end
+    object SliderAutosizeMaxWidth: TsSlider
+      Left = 158
       Top = 0
-      Width = 116
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Autosize max width'
+      Width = 50
+      AutoSize = True
       TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxHalfPage: TBCCheckBox
-      Left = 0
-      Top = 20
-      Width = 69
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Half page'
+    object SliderHalfPage: TsSlider
+      Left = 158
+      Top = 23
+      Width = 50
+      AutoSize = True
       TabOrder = 1
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxHintFollows: TBCCheckBox
-      Left = 0
-      Top = 40
-      Width = 78
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Hint follows'
+    object SliderHintFollows: TsSlider
+      Left = 158
+      Top = 46
+      Width = 50
+      AutoSize = True
       TabOrder = 2
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderPastEndOfFile: TsSlider
+      Left = 158
+      Top = 69
+      Width = 50
+      AutoSize = True
+      TabOrder = 3
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderPastEndOfLineMarker: TsSlider
+      Left = 158
+      Top = 92
+      Width = 50
+      AutoSize = True
+      TabOrder = 4
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderShowHint: TsSlider
+      Left = 158
+      Top = 115
+      Width = 50
+      AutoSize = True
+      TabOrder = 5
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
 end

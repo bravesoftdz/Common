@@ -6,7 +6,7 @@ uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.CheckBox,
   BCControls.Edit, Vcl.Buttons, BCCommon.Frames.Options.Base, BCControls.Panel,
   Vcl.ComCtrls, sEdit, sCheckBox, sGroupBox, sPanel, sFrameAdapter,
-  BCControls.GroupBox;
+  BCControls.GroupBox, acSlider, sLabel;
 
 type
 
@@ -18,11 +18,12 @@ type
     CheckBoxShowBookmarks: TBCCheckBox;
     CheckBoxShowLeadingZeros: TBCCheckBox;
     CheckBoxShowLineState: TBCCheckBox;
-    CheckBoxVisible: TBCCheckBox;
     EditBookmarkPanelWidth: TBCEdit;
     EditWidth: TBCEdit;
     GroupBoxLineNumbers: TBCGroupBox;
     Panel: TBCPanel;
+    StickyLabelVisible: TsStickyLabel;
+    SliderVisible: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -57,7 +58,7 @@ end;
 
 procedure TOptionsEditorLeftMarginFrame.PutData;
 begin
-  OptionsContainer.LeftMarginVisible := CheckBoxVisible.Checked;
+  OptionsContainer.LeftMarginVisible := SliderVisible.SliderOn;
   OptionsContainer.LeftMarginAutosize := CheckBoxAutosize.Checked;
   OptionsContainer.LeftMarginShowBookmarks := CheckBoxShowBookmarks.Checked;
   OptionsContainer.LeftMarginShowBookmarkPanel := CheckBoxShowBookmarkPanel.Checked;
@@ -71,7 +72,7 @@ end;
 
 procedure TOptionsEditorLeftMarginFrame.GetData;
 begin
-  CheckBoxVisible.Checked := OptionsContainer.LeftMarginVisible;
+  SliderVisible.SliderOn := OptionsContainer.LeftMarginVisible;
   CheckBoxAutosize.Checked := OptionsContainer.LeftMarginAutosize;
   CheckBoxShowBookmarks.Checked := OptionsContainer.LeftMarginShowBookmarks;
   CheckBoxShowBookmarkPanel.Checked := OptionsContainer.LeftMarginShowBookmarkPanel;

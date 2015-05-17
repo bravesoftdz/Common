@@ -5,12 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCCommon.Options.Container.SQL.Formatter,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Frames.Options.Base, Vcl.StdCtrls, BCControls.Edit,
-  BCControls.CheckBox, Vcl.ExtCtrls, sEdit, sCheckBox, BCControls.Panel, sPanel, sFrameAdapter;
+  Vcl.ExtCtrls, sEdit, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsSQLIndentationFrame = class(TBCOptionsBaseFrame)
-    CheckBoxBlockOnNewLine: TBCCheckBox;
-    CheckBoxUseTab: TBCCheckBox;
     EditBlockIndentSize: TBCEdit;
     EditBlockLeftIndentSize: TBCEdit;
     EditBlockRightIndentSize: TBCEdit;
@@ -19,6 +17,10 @@ type
     EditSingleStatementIndent: TBCEdit;
     EditTabSize: TBCEdit;
     Panel: TBCPanel;
+    StickyLabelUseTab: TsStickyLabel;
+    SliderUseTab: TsSlider;
+    StickyLabelBlockOnNewLine: TsStickyLabel;
+    SliderBlockOnNewLine: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -32,6 +34,9 @@ implementation
 
 {$R *.dfm}
 
+uses
+  BCCommon.Utils;
+
 var
   FOptionsSQLIndentationFrame: TOptionsSQLIndentationFrame;
 
@@ -40,6 +45,7 @@ begin
   if not Assigned(FOptionsSQLIndentationFrame) then
     FOptionsSQLIndentationFrame := TOptionsSQLIndentationFrame.Create(AOwner);
   Result := FOptionsSQLIndentationFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsSQLIndentationFrame.Destroy;
@@ -51,10 +57,10 @@ end;
 procedure TOptionsSQLIndentationFrame.GetData;
 begin
   EditIndentLength.Text := IntToStr(SQLFormatterOptionsContainer.IndentationIndentLength);
-  CheckBoxUseTab.Checked := SQLFormatterOptionsContainer.IndentationUseTab;
+  SliderUseTab.SliderOn := SQLFormatterOptionsContainer.IndentationUseTab;
   EditTabSize.Text := IntToStr(SQLFormatterOptionsContainer.IndentationTabSize);
   EditFunctionBodyIndent.Text := IntToStr(SQLFormatterOptionsContainer.IndentationFunctionBodyIndent);
-  CheckBoxBlockOnNewLine.Checked := SQLFormatterOptionsContainer.IndentationBlockLeftOnNewline;
+  SliderBlockOnNewLine.SliderOn := SQLFormatterOptionsContainer.IndentationBlockLeftOnNewline;
   EditBlockLeftIndentSize.Text := IntToStr(SQLFormatterOptionsContainer.IndentationBlockLeftIndentSize);
   EditBlockRightIndentSize.Text := IntToStr(SQLFormatterOptionsContainer.IndentationBlockRightIndentSize);
   EditBlockIndentSize.Text := IntToStr(SQLFormatterOptionsContainer.IndentationBlockIndentSize);
@@ -64,10 +70,10 @@ end;
 procedure TOptionsSQLIndentationFrame.PutData;
 begin
   SQLFormatterOptionsContainer.IndentationIndentLength := StrToIntDef(EditIndentLength.Text, 2);
-  SQLFormatterOptionsContainer.IndentationUseTab := CheckBoxUseTab.Checked;
+  SQLFormatterOptionsContainer.IndentationUseTab := SliderUseTab.SliderOn;
   SQLFormatterOptionsContainer.IndentationTabSize := StrToIntDef(EditTabSize.Text, 2);
   SQLFormatterOptionsContainer.IndentationFunctionBodyIndent := StrToIntDef(EditFunctionBodyIndent.Text, 2);
-  SQLFormatterOptionsContainer.IndentationBlockLeftOnNewline := CheckBoxBlockOnNewLine.Checked;
+  SQLFormatterOptionsContainer.IndentationBlockLeftOnNewline := SliderBlockOnNewLine.SliderOn;
   SQLFormatterOptionsContainer.IndentationBlockLeftIndentSize := StrToIntDef(EditBlockLeftIndentSize.Text, 2);
   SQLFormatterOptionsContainer.IndentationBlockRightIndentSize := StrToIntDef(EditBlockRightIndentSize.Text, 2);
   SQLFormatterOptionsContainer.IndentationBlockIndentSize := StrToIntDef(EditBlockIndentSize.Text, 2);

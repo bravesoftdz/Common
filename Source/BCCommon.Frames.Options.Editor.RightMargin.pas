@@ -5,15 +5,16 @@ interface
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.CheckBox,
   BCControls.Edit, Vcl.Buttons, BCCommon.Frames.Options.Base,
-  sCheckBox, sEdit, BCControls.Panel, sPanel, sFrameAdapter;
+  sCheckBox, sEdit, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsEditorRightMarginFrame = class(TBCOptionsBaseFrame)
     CheckBoxMouseMove: TBCCheckBox;
     CheckBoxShowMovingHint: TBCCheckBox;
-    CheckBoxVisible: TBCCheckBox;
     EditPosition: TBCEdit;
     Panel: TBCPanel;
+    StickyLabelVisible: TsStickyLabel;
+    SliderVisible: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -48,7 +49,7 @@ end;
 
 procedure TOptionsEditorRightMarginFrame.PutData;
 begin
-  OptionsContainer.RightMarginVisible := CheckBoxVisible.Checked;
+  OptionsContainer.RightMarginVisible := SliderVisible.SliderOn;
   OptionsContainer.RightMarginMouseMove := CheckBoxMouseMove.Checked;
   OptionsContainer.RightMarginShowMovingHint := CheckBoxShowMovingHint.Checked;
   OptionsContainer.RightMarginPosition := StrToIntDef(EditPosition.Text, 80);
@@ -56,7 +57,7 @@ end;
 
 procedure TOptionsEditorRightMarginFrame.GetData;
 begin
-  CheckBoxVisible.Checked := OptionsContainer.RightMarginVisible;
+  SliderVisible.SliderOn := OptionsContainer.RightMarginVisible;
   CheckBoxMouseMove.Checked := OptionsContainer.RightMarginMouseMove;
   CheckBoxShowMovingHint.Checked := OptionsContainer.RightMarginShowMovingHint;
   EditPosition.Text := IntToStr(OptionsContainer.RightMarginPosition);

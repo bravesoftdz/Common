@@ -5,14 +5,16 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sEdit, BCControls.Edit, Vcl.ExtCtrls, sPanel,
-  BCControls.Panel, sCheckBox, BCControls.CheckBox, BCCommon.Frames.Options.Base, sFrameAdapter;
+  BCControls.Panel, BCCommon.Frames.Options.Base, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsEditorMinimapFrame = class(TBCOptionsBaseFrame)
-    CheckBoxShowIndentGuides: TBCCheckBox;
-    CheckBoxVisible: TBCCheckBox;
     EditWidth: TBCEdit;
-    TopPanel: TBCPanel;
+    Panel: TBCPanel;
+    StickyLabelVisible: TsStickyLabel;
+    SliderVisible: TsSlider;
+    StickyLabelShowIndentGuides: TsStickyLabel;
+    SliderShowIndentGuides: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -27,7 +29,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.SysUtils, BCCommon.Options.Container;
+  System.SysUtils, BCCommon.Options.Container, BCCommon.Utils;
 
 var
   FOptionsEditorMinimapFrame: TOptionsEditorMinimapFrame;
@@ -37,6 +39,7 @@ begin
   if not Assigned(FOptionsEditorMinimapFrame) then
     FOptionsEditorMinimapFrame := TOptionsEditorMinimapFrame.Create(AOwner);
   Result := FOptionsEditorMinimapFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsEditorMinimapFrame.Destroy;
@@ -47,15 +50,15 @@ end;
 
 procedure TOptionsEditorMinimapFrame.PutData;
 begin
-  OptionsContainer.MinimapVisible := CheckBoxVisible.Checked;
-  OptionsContainer.MinimapShowIndentGuides := CheckBoxShowIndentGuides.Checked;
+  OptionsContainer.MinimapVisible := SliderVisible.SliderOn;
+  OptionsContainer.MinimapShowIndentGuides := SliderShowIndentGuides.SliderOn;
   OptionsContainer.MinimapWidth := StrToIntDef(EditWidth.Text, 100);
 end;
 
 procedure TOptionsEditorMinimapFrame.GetData;
 begin
-  CheckBoxVisible.Checked := OptionsContainer.MinimapVisible;
-  CheckBoxShowIndentGuides.Checked := OptionsContainer.MinimapShowIndentGuides;
+  SliderVisible.SliderOn := OptionsContainer.MinimapVisible;
+  SliderShowIndentGuides.SliderOn := OptionsContainer.MinimapShowIndentGuides;
   EditWidth.Text := IntToStr(OptionsContainer.MinimapWidth);
 end;
 

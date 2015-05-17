@@ -5,14 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, sComboBoxes, BCControls.ComboBox, Vcl.StdCtrls,
-  sComboBox, sCheckBox, BCControls.CheckBox, Vcl.ExtCtrls, sPanel,
-  BCControls.Panel, sGroupBox, BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter, acSlider, sLabel;
+  sComboBox, Vcl.ExtCtrls, sPanel, BCControls.Panel, sGroupBox, BCControls.GroupBox, BCCommon.Frames.Options.Base,
+  sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsEditorCaretFrame = class(TBCOptionsBaseFrame)
-    CheckBoxNonblinkingCaretEnabled: TBCCheckBox;
-    CheckBoxRightMouseClickMovesCaret: TBCCheckBox;
-    CheckBoxVisible: TBCCheckBox;
     ColorBoxNonblinkingCaretBackground: TBCColorComboBox;
     ColorBoxNonblinkingCaretForeground: TBCColorComboBox;
     ComboBoxStylesInsertCaret: TBCComboBox;
@@ -20,6 +17,12 @@ type
     GroupBoxNonBlinkingCaret: TBCGroupBox;
     GroupBoxStyles: TBCGroupBox;
     Panel: TBCPanel;
+    StickyLabelVisible: TsStickyLabel;
+    SliderVisible: TsSlider;
+    StickyLabelRightMouseClickMovesCaret: TsStickyLabel;
+    SliderRightMouseClickMovesCaret: TsSlider;
+    StickyLabelNonblinkingCaretEnabled: TsStickyLabel;
+    SliderNonblinkingCaretEnabled: TsSlider;
   public
     destructor Destroy; override;
     procedure Init; override;
@@ -34,7 +37,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Options.Container, BCCommon.Language.Strings;
+  BCCommon.Options.Container, BCCommon.Language.Strings, BCCommon.Utils;
 
 var
   FOptionsEditorCaretFrame: TOptionsEditorCaretFrame;
@@ -44,6 +47,7 @@ begin
   if not Assigned(FOptionsEditorCaretFrame) then
     FOptionsEditorCaretFrame := TOptionsEditorCaretFrame.Create(AOwner);
   Result := FOptionsEditorCaretFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsEditorCaretFrame.Destroy;
@@ -77,9 +81,9 @@ end;
 
 procedure TOptionsEditorCaretFrame.PutData;
 begin
-  OptionsContainer.ShowCaret := CheckBoxVisible.Checked;
-  OptionsContainer.RightMouseClickMovesCaret := CheckBoxRightMouseClickMovesCaret.Checked;
-  OptionsContainer.ShowNonblinkingCaret := CheckBoxNonblinkingCaretEnabled.Checked;
+  OptionsContainer.ShowCaret := SliderVisible.SliderOn;
+  OptionsContainer.RightMouseClickMovesCaret := SliderRightMouseClickMovesCaret.SliderOn;
+  OptionsContainer.ShowNonblinkingCaret := SliderNonblinkingCaretEnabled.SliderOn;
   OptionsContainer.NonblinkingCaretBackgroundColor := ColorBoxNonblinkingCaretBackground.Text;
   OptionsContainer.NonblinkingCaretForegroundColor := ColorBoxNonblinkingCaretForeground.Text;
   OptionsContainer.InsertCaret := ComboBoxStylesInsertCaret.ItemIndex;
@@ -88,8 +92,9 @@ end;
 
 procedure TOptionsEditorCaretFrame.GetData;
 begin
-  CheckBoxVisible.Checked := OptionsContainer.ShowCaret;
-  CheckBoxRightMouseClickMovesCaret.Checked := OptionsContainer.RightMouseClickMovesCaret;
+  SliderVisible.SliderOn := OptionsContainer.ShowCaret;
+  SliderRightMouseClickMovesCaret.SliderOn := OptionsContainer.RightMouseClickMovesCaret;
+  SliderNonblinkingCaretEnabled.SliderOn := OptionsContainer.ShowNonblinkingCaret;
   ColorBoxNonblinkingCaretBackground.Text := OptionsContainer.NonblinkingCaretBackgroundColor;
   ColorBoxNonblinkingCaretForeground.Text := OptionsContainer.NonblinkingCaretForegroundColor;
   ComboBoxStylesInsertCaret.ItemIndex := OptionsContainer.InsertCaret;

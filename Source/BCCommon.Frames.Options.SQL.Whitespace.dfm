@@ -1,12 +1,12 @@
 inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
-  Width = 316
-  Height = 117
+  Width = 373
+  Height = 136
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 312
-    Height = 117
+    Width = 369
+    Height = 136
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -22,103 +22,249 @@ inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
     ParentFont = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object CheckBoxSpaceAroundOperator: TBCCheckBox
+    object StickyLabelSpaceAroundOperator: TsStickyLabel
       Left = 0
-      Top = 0
-      Width = 253
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = 'Space around operator of arithmetric expression'
-      Checked = True
-      State = cbChecked
-      TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
-    end
-    object CheckBoxSpaceInsideCreate: TBCCheckBox
-      Left = 0
-      Top = 20
+      Top = 4
       Width = 311
-      Height = 20
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Space around operator of arithmetric expression'
+      ParentColor = False
+      AttachTo = SliderSpaceAroundOperator
+      Gap = 8
+    end
+    object StickyLabelSpaceInsideCreate: TsStickyLabel
+      Left = 0
+      Top = 27
+      Width = 311
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
       Caption = 'Space inside parenthesis in CREATE FUNCTION/PROCEDURE'
-      TabOrder = 1
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      ParentColor = False
+      AttachTo = SliderSpaceInsideCreate
+      Gap = 8
     end
-    object CheckBoxSpaceInsideExpression: TBCCheckBox
+    object StickyLabelSpaceInsideExpression: TsStickyLabel
       Left = 0
-      Top = 40
-      Width = 204
-      Height = 20
+      Top = 50
+      Width = 311
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      AutoSize = False
       Caption = 'Space inside parenthesis in expression'
-      TabOrder = 2
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      ParentColor = False
+      AttachTo = SliderSpaceInsideExpression
+      Gap = 8
     end
-    object CheckBoxSpaceInsideSubquery: TBCCheckBox
+    object StickyLabelSpaceInsideSubquery: TsStickyLabel
       Left = 0
-      Top = 60
-      Width = 197
-      Height = 20
+      Top = 73
+      Width = 311
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      AutoSize = False
       Caption = 'Space inside parenthesis in subquery'
-      TabOrder = 3
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      ParentColor = False
+      AttachTo = SliderSpaceInsideSubquery
+      Gap = 8
     end
-    object CheckBoxSpaceInsideFunction: TBCCheckBox
+    object StickyLabelSpaceInsideFunction: TsStickyLabel
       Left = 0
-      Top = 80
-      Width = 209
-      Height = 20
+      Top = 96
+      Width = 311
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      AutoSize = False
       Caption = 'Space inside parenthesis in function call'
-      TabOrder = 4
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      ParentColor = False
+      AttachTo = SliderSpaceInsideFunction
+      Gap = 8
     end
-    object CheckBoxSpaceInsideTypename: TBCCheckBox
+    object StickyLabelSpaceInsideTypename: TsStickyLabel
       Left = 0
-      Top = 100
-      Width = 288
-      Height = 20
+      Top = 119
+      Width = 311
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      AutoSize = False
       Caption = 'Space inside parenthesis of typename in CREATE TABLE'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 5
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      ParentColor = False
+      AttachTo = SliderSpaceInsideTypename
+      Gap = 8
     end
+    object SliderSpaceAroundOperator: TsSlider
+      Left = 319
+      Top = 0
+      Width = 50
+      AutoSize = True
+      TabOrder = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderSpaceInsideCreate: TsSlider
+      Left = 319
+      Top = 23
+      Width = 50
+      AutoSize = True
+      TabOrder = 1
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderSpaceInsideExpression: TsSlider
+      Left = 319
+      Top = 46
+      Width = 50
+      AutoSize = True
+      TabOrder = 2
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderSpaceInsideSubquery: TsSlider
+      Left = 319
+      Top = 69
+      Width = 50
+      AutoSize = True
+      TabOrder = 3
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderSpaceInsideFunction: TsSlider
+      Left = 319
+      Top = 92
+      Width = 50
+      AutoSize = True
+      TabOrder = 4
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderSpaceInsideTypename: TsSlider
+      Left = 319
+      Top = 115
+      Width = 50
+      AutoSize = True
+      TabOrder = 5
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+  end
+  inherited FrameAdapter: TsFrameAdapter
+    Left = 160
+    Top = 56
   end
 end

@@ -4,14 +4,16 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCCommon.Options.Container.SQL.Formatter,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.CheckBox, Vcl.ExtCtrls,
-  BCControls.ComboBox, BCCommon.Frames.Options.Base, sComboBox, sCheckBox, BCControls.Panel, sPanel, sFrameAdapter;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  BCControls.ComboBox, BCCommon.Frames.Options.Base, sComboBox, BCControls.Panel, sPanel, sFrameAdapter,
+  acSlider, sLabel;
 
 type
   TOptionsSQLAlignmentsFrame = class(TBCOptionsBaseFrame)
-    CheckBoxKeywordAlignmentLeftJustify: TBCCheckBox;
     ComboBoxKeywordAlign: TBCComboBox;
     Panel: TBCPanel;
+    StickyLabelKeywordAlignmentLeftJustify: TsStickyLabel;
+    SliderKeywordAlignmentLeftJustify: TsSlider;
   protected
     procedure GetData; override;
     procedure Init; override;
@@ -58,13 +60,13 @@ end;
 procedure TOptionsSQLAlignmentsFrame.GetData;
 begin
   ComboBoxKeywordAlign.ItemIndex := SQLFormatterOptionsContainer.KeywordAlign;
-  CheckBoxKeywordAlignmentLeftJustify.Checked := SQLFormatterOptionsContainer.KeywordAlignmentLeftJustify;
+  SliderKeywordAlignmentLeftJustify.SliderOn := SQLFormatterOptionsContainer.KeywordAlignmentLeftJustify;
 end;
 
 procedure TOptionsSQLAlignmentsFrame.PutData;
 begin
   SQLFormatterOptionsContainer.KeywordAlign := ComboBoxKeywordAlign.ItemIndex;
-  SQLFormatterOptionsContainer.KeywordAlignmentLeftJustify := CheckBoxKeywordAlignmentLeftJustify.Checked;
+  SQLFormatterOptionsContainer.KeywordAlignmentLeftJustify := SliderKeywordAlignmentLeftJustify.SliderOn;
 end;
 
 end.

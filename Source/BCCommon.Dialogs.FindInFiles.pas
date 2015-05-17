@@ -5,8 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls,
   BCControls.ComboBox, Vcl.ActnList, Vcl.Buttons, BCCommon.Dialogs.Base, System.Actions,
-  Vcl.ComCtrls, BCControls.CheckBox,
-  sCheckBox, sComboBox, sSpeedButton, BCControls.SpeedButton, BCControls.Panel, sPanel,
+  Vcl.ComCtrls, sComboBox, sSpeedButton, BCControls.SpeedButton, BCControls.Panel, sPanel,
   sGroupBox, BCControls.GroupBox, sLabel, acSlider;
 
 type

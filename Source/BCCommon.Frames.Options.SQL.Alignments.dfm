@@ -1,12 +1,12 @@
 inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
-  Width = 190
-  Height = 58
+  Width = 199
+  Height = 65
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 186
-    Height = 58
+    Width = 195
+    Height = 65
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -16,26 +16,23 @@ inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
     ParentBackground = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object CheckBoxKeywordAlignmentLeftJustify: TBCCheckBox
+    object StickyLabelKeywordAlignmentLeftJustify: TsStickyLabel
       Left = 0
-      Top = 41
-      Width = 157
-      Height = 20
+      Top = 48
+      Width = 137
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = 'Keyword alignment strict left'
-      Checked = True
-      State = cbChecked
-      TabOrder = 1
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      ParentColor = False
+      AttachTo = SliderKeywordAlignmentLeftJustify
+      Gap = 8
     end
     object ComboBoxKeywordAlign: TBCComboBox
       Left = 0
-      Top = 16
+      Top = 17
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -61,5 +58,34 @@ inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
       ItemIndex = -1
       TabOrder = 0
     end
+    object SliderKeywordAlignmentLeftJustify: TsSlider
+      Left = 145
+      Top = 44
+      Width = 50
+      AutoSize = True
+      TabOrder = 1
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+  end
+  inherited FrameAdapter: TsFrameAdapter
+    Left = 130
+    Top = 65532
   end
 end

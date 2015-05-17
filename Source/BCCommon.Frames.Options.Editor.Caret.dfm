@@ -1,12 +1,12 @@
 inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
   Width = 223
-  Height = 306
+  Height = 310
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 219
-    Height = 306
+    Height = 310
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -22,29 +22,59 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
     ParentFont = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
+    object StickyLabelVisible: TsStickyLabel
+      Left = 0
+      Top = 4
+      Width = 150
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Visible'
+      ParentColor = False
+      AttachTo = SliderVisible
+      Gap = 8
+    end
+    object StickyLabelRightMouseClickMovesCaret: TsStickyLabel
+      Left = 0
+      Top = 27
+      Width = 150
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Right mouse click moves caret'
+      ParentColor = False
+      AttachTo = SliderRightMouseClickMovesCaret
+      Gap = 8
+    end
     object GroupBoxNonBlinkingCaret: TBCGroupBox
       Left = 0
-      Top = 43
+      Top = 47
       Width = 219
       Height = 142
       Caption = ' Non-blinking caret'
-      TabOrder = 2
+      TabOrder = 0
       SkinData.SkinSection = 'GROUPBOX'
       Checked = False
-      object CheckBoxNonblinkingCaretEnabled: TBCCheckBox
+      object StickyLabelNonblinkingCaretEnabled: TsStickyLabel
         Left = 10
         Top = 20
-        Width = 61
-        Height = 20
+        Width = 140
+        Height = 13
         Margins.Left = 4
         Margins.Top = 4
         Margins.Right = 4
         Margins.Bottom = 4
-        Caption = ' Enabled'
-        TabOrder = 0
-        SkinData.SkinSection = 'CHECKBOX'
-        ImgChecked = 0
-        ImgUnchecked = 0
+        AutoSize = False
+        Caption = 'Enabled'
+        ParentColor = False
+        AttachTo = SliderNonblinkingCaretEnabled
+        Gap = 8
       end
       object ColorBoxNonblinkingCaretBackground: TBCColorComboBox
         Left = 10
@@ -70,7 +100,7 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 0
         Text = 'clWindow'
       end
       object ColorBoxNonblinkingCaretForeground: TBCColorComboBox
@@ -98,34 +128,42 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 1
         Text = 'clWindow'
       end
-    end
-    object CheckBoxVisible: TBCCheckBox
-      Left = 0
-      Top = 0
-      Width = 52
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Visible'
-      Checked = True
-      State = cbChecked
-      TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      object SliderNonblinkingCaretEnabled: TsSlider
+        Left = 158
+        Top = 16
+        Width = 50
+        AutoSize = True
+        TabOrder = 2
+        BoundLabel.Indent = 0
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'Tahoma'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+        ImageIndexOff = 0
+        ImageIndexOn = 0
+        FontOn.Charset = DEFAULT_CHARSET
+        FontOn.Color = clWindowText
+        FontOn.Height = -11
+        FontOn.Name = 'Tahoma'
+        FontOn.Style = []
+        SliderCaptionOn = 'Yes'
+        SliderCaptionOff = 'No'
+      end
     end
     object GroupBoxStyles: TBCGroupBox
       Left = 0
-      Top = 187
+      Top = 191
       Width = 219
       Height = 119
       Caption = ' Styles'
-      TabOrder = 3
+      TabOrder = 1
       SkinData.SkinSection = 'GROUPBOX'
       Checked = False
       object ComboBoxStylesInsertCaret: TBCComboBox
@@ -185,20 +223,55 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         TabOrder = 1
       end
     end
-    object CheckBoxRightMouseClickMovesCaret: TBCCheckBox
-      Left = 0
-      Top = 20
-      Width = 166
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Right mouse click moves caret'
-      TabOrder = 1
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+    object SliderVisible: TsSlider
+      Left = 158
+      Top = 0
+      Width = 50
+      AutoSize = True
+      TabOrder = 2
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderRightMouseClickMovesCaret: TsSlider
+      Left = 158
+      Top = 23
+      Width = 50
+      AutoSize = True
+      TabOrder = 3
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
 end

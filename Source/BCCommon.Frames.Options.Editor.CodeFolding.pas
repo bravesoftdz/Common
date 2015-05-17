@@ -4,23 +4,30 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sCheckBox, BCControls.CheckBox, Vcl.ExtCtrls,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
   sPanel, BCControls.Panel, sComboBox, BCControls.ComboBox, BCCommon.Frames.Options.Base, sFrameAdapter, acSlider,
   sLabel;
 
 type
   TOptionsEditorCodeFoldingFrame = class(TBCOptionsBaseFrame)
-    CheckBoxFoldMultilineComments: TBCCheckBox;
-    CheckBoxHighlightIndenGuides: TBCCheckBox;
-    CheckBoxHighlightMatchingPair: TBCCheckBox;
-    CheckBoxShowCollapsedCodeHint: TBCCheckBox;
-    CheckBoxShowCollapsedLine: TBCCheckBox;
-    CheckBoxShowIndentGuides: TBCCheckBox;
-    CheckBoxUncollapseByHintClick: TBCCheckBox;
     ComboBoxMarkStyle: TBCComboBox;
     Panel: TBCPanel;
     StickyLabelVisible: TsStickyLabel;
     SliderVisible: TsSlider;
+    StickyLabelFoldMultilineComments: TsStickyLabel;
+    SliderFoldMultilineComments: TsSlider;
+    StickyLabelHighlightIndenGuides: TsStickyLabel;
+    SliderHighlightIndenGuides: TsSlider;
+    StickyLabelHighlightMatchingPair: TsStickyLabel;
+    SliderHighlightMatchingPair: TsSlider;
+    StickyLabelShowCollapsedCodeHint: TsStickyLabel;
+    SliderShowCollapsedCodeHint: TsSlider;
+    StickyLabelShowCollapsedLine: TsStickyLabel;
+    SliderShowCollapsedLine: TsSlider;
+    StickyLabelShowIndentGuides: TsStickyLabel;
+    SliderShowIndentGuides: TsSlider;
+    StickyLabelUncollapseByHintClick: TsStickyLabel;
+    SliderUncollapseByHintClick: TsSlider;
   protected
     procedure Init; override;
     procedure GetData; override;
@@ -36,7 +43,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Options.Container, BCCommon.Language.Strings;
+  BCCommon.Options.Container, BCCommon.Language.Strings, BCCommon.Utils;
 
 var
   FOptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame;
@@ -46,6 +53,7 @@ begin
   if not Assigned(FOptionsEditorCodeFoldingFrame) then
     FOptionsEditorCodeFoldingFrame := TOptionsEditorCodeFoldingFrame.Create(AOwner);
   Result := FOptionsEditorCodeFoldingFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsEditorCodeFoldingFrame.Destroy;
@@ -67,27 +75,27 @@ end;
 
 procedure TOptionsEditorCodeFoldingFrame.PutData;
 begin
-  OptionsContainer.ShowCodeFolding := CheckBoxVisible.Checked;
-  OptionsContainer.FoldMultilineComments := CheckBoxFoldMultilineComments.Checked;
-  OptionsContainer.HighlightIndentGuides := CheckBoxShowIndentGuides.Checked;
-  OptionsContainer.HighlightMatchingPair := CheckBoxHighlightMatchingPair.Checked;
-  OptionsContainer.ShowCollapsedCodeHint := CheckBoxShowCollapsedCodeHint.Checked;
-  OptionsContainer.ShowCollapsedLine := CheckBoxShowCollapsedLine.Checked;
-  OptionsContainer.ShowIndentGuides := CheckBoxShowIndentGuides.Checked;
-  OptionsContainer.UncollapseByHintClick := CheckBoxUncollapseByHintClick.Checked;
+  OptionsContainer.ShowCodeFolding := SliderVisible.SliderOn;
+  OptionsContainer.FoldMultilineComments := SliderFoldMultilineComments.SliderOn;
+  OptionsContainer.HighlightIndentGuides := SliderShowIndentGuides.SliderOn;
+  OptionsContainer.HighlightMatchingPair := SliderHighlightMatchingPair.SliderOn;
+  OptionsContainer.ShowCollapsedCodeHint := SliderShowCollapsedCodeHint.SliderOn;
+  OptionsContainer.ShowCollapsedLine := SliderShowCollapsedLine.SliderOn;
+  OptionsContainer.ShowIndentGuides := SliderShowIndentGuides.SliderOn;
+  OptionsContainer.UncollapseByHintClick := SliderUncollapseByHintClick.SliderOn;
   OptionsContainer.CodeFoldingMarkStyle := ComboBoxMarkStyle.ItemIndex;
 end;
 
 procedure TOptionsEditorCodeFoldingFrame.GetData;
 begin
-  CheckBoxVisible.Checked := OptionsContainer.ShowCodeFolding;
-  CheckBoxFoldMultilineComments.Checked := OptionsContainer.FoldMultilineComments;
-  CheckBoxShowIndentGuides.Checked := OptionsContainer.HighlightIndentGuides;
-  CheckBoxHighlightMatchingPair.Checked := OptionsContainer.HighlightMatchingPair;
-  CheckBoxShowCollapsedCodeHint.Checked := OptionsContainer.ShowCollapsedCodeHint;
-  CheckBoxShowCollapsedLine.Checked := OptionsContainer.ShowCollapsedLine;
-  CheckBoxShowIndentGuides.Checked := OptionsContainer.ShowIndentGuides;
-  CheckBoxUncollapseByHintClick.Checked := OptionsContainer.UncollapseByHintClick;
+  SliderVisible.SliderOn := OptionsContainer.ShowCodeFolding;
+  SliderFoldMultilineComments.SliderOn := OptionsContainer.FoldMultilineComments;
+  SliderShowIndentGuides.SliderOn := OptionsContainer.HighlightIndentGuides;
+  SliderHighlightMatchingPair.SliderOn := OptionsContainer.HighlightMatchingPair;
+  SliderShowCollapsedCodeHint.SliderOn := OptionsContainer.ShowCollapsedCodeHint;
+  SliderShowCollapsedLine.SliderOn := OptionsContainer.ShowCollapsedLine;
+  SliderShowIndentGuides.SliderOn := OptionsContainer.ShowIndentGuides;
+  SliderUncollapseByHintClick.SliderOn := OptionsContainer.UncollapseByHintClick;
   ComboBoxMarkStyle.ItemIndex := OptionsContainer.CodeFoldingMarkStyle;
 end;
 
