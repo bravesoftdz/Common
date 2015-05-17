@@ -4,16 +4,20 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sCheckBox, BCControls.CheckBox, Vcl.ExtCtrls,
-  sPanel, BCControls.Panel, BCCommon.Frames.Options.Base, sFrameAdapter;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  sPanel, BCControls.Panel, BCCommon.Frames.Options.Base, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsEditorSelectionFrame = class(TBCOptionsBaseFrame)
-    CheckBoxALTSetsColumnMode: TBCCheckBox;
-    CheckBoxHighlightSimilarTerms: TBCCheckBox;
-    CheckBoxTripleClickRowSelect: TBCCheckBox;
-    CheckBoxVisible: TBCCheckBox;
     Panel: TBCPanel;
+    StickyLabelTripleClickRowSelect: TsStickyLabel;
+    SliderTripleClickRowSelect: TsSlider;
+    StickyLabelHighlightSimilarTerms: TsStickyLabel;
+    SliderHighlightSimilarTerms: TsSlider;
+    StickyLabelVisible: TsStickyLabel;
+    SliderVisible: TsSlider;
+    StickyLabelALTSetsColumnMode: TsStickyLabel;
+    SliderALTSetsColumnMode: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -28,7 +32,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Options.Container;
+  BCCommon.Options.Container, BCCommon.Utils;
 
 var
   FOptionsEditorSelectionFrame: TOptionsEditorSelectionFrame;
@@ -38,6 +42,7 @@ begin
   if not Assigned(FOptionsEditorSelectionFrame) then
     FOptionsEditorSelectionFrame := TOptionsEditorSelectionFrame.Create(AOwner);
   Result := FOptionsEditorSelectionFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsEditorSelectionFrame.Destroy;
@@ -48,18 +53,18 @@ end;
 
 procedure TOptionsEditorSelectionFrame.PutData;
 begin
-  OptionsContainer.SelectionVisible := CheckBoxVisible.Checked;
-  OptionsContainer.ALTSetsColumnMode := CheckBoxALTSetsColumnMode.Checked;
-  OptionsContainer.HighlightSimilarTerms := CheckBoxHighlightSimilarTerms.Checked;
-  OptionsContainer.TripleClickRowSelect := CheckBoxTripleClickRowSelect.Checked;
+  OptionsContainer.SelectionVisible := SliderVisible.SliderOn;
+  OptionsContainer.ALTSetsColumnMode := SliderALTSetsColumnMode.SliderOn;
+  OptionsContainer.HighlightSimilarTerms := SliderHighlightSimilarTerms.SliderOn;
+  OptionsContainer.TripleClickRowSelect := SliderTripleClickRowSelect.SliderOn;
 end;
 
 procedure TOptionsEditorSelectionFrame.GetData;
 begin
-  CheckBoxVisible.Checked := OptionsContainer.SelectionVisible;
-  CheckBoxALTSetsColumnMode.Checked := OptionsContainer.ALTSetsColumnMode;
-  CheckBoxHighlightSimilarTerms.Checked := OptionsContainer.HighlightSimilarTerms;
-  CheckBoxTripleClickRowSelect.Checked := OptionsContainer.TripleClickRowSelect;
+  SliderVisible.SliderOn := OptionsContainer.SelectionVisible;
+  SliderALTSetsColumnMode.SliderOn := OptionsContainer.ALTSetsColumnMode;
+  SliderHighlightSimilarTerms.SliderOn := OptionsContainer.HighlightSimilarTerms;
+  SliderTripleClickRowSelect.SliderOn := OptionsContainer.TripleClickRowSelect;
 end;
 
 end.

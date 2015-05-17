@@ -1,12 +1,13 @@
 inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
-  Width = 147
-  Height = 219
+  Width = 307
+  Height = 358
+  AutoSize = False
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 143
-    Height = 219
+    Width = 273
+    Height = 321
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -22,20 +23,20 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
     ParentFont = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object CheckBoxVisible: TBCCheckBox
+    object StickyLabelVisible: TsStickyLabel
       Left = 0
-      Top = 0
-      Width = 52
-      Height = 20
+      Top = 4
+      Width = 120
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Visible'
-      TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      AutoSize = False
+      Caption = 'Visible'
+      ParentColor = False
+      AttachTo = SliderVisible
+      Gap = 8
     end
     object CheckBoxFoldMultilineComments: TBCCheckBox
       Left = 0
@@ -47,7 +48,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Fold multiline comments'
-      TabOrder = 1
+      TabOrder = 0
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
@@ -64,7 +65,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       Caption = ' Highlight indent guides'
       Checked = True
       State = cbChecked
-      TabOrder = 2
+      TabOrder = 1
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
@@ -81,7 +82,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       Caption = ' Highlight matching pair'
       Checked = True
       State = cbChecked
-      TabOrder = 3
+      TabOrder = 2
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
@@ -98,7 +99,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       Caption = ' Show collapsed code hint'
       Checked = True
       State = cbChecked
-      TabOrder = 4
+      TabOrder = 3
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
@@ -113,7 +114,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       Margins.Right = 4
       Margins.Bottom = 4
       Caption = ' Show collapsed line'
-      TabOrder = 5
+      TabOrder = 4
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
@@ -130,7 +131,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       Caption = ' Show indent guides'
       Checked = True
       State = cbChecked
-      TabOrder = 6
+      TabOrder = 5
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
@@ -147,14 +148,14 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       Caption = ' Uncollapse by hint click'
       Checked = True
       State = cbChecked
-      TabOrder = 7
+      TabOrder = 6
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
     end
     object ComboBoxMarkStyle: TBCComboBox
       Left = 0
-      Top = 197
+      Top = 231
       Width = 133
       Height = 22
       Margins.Left = 4
@@ -178,7 +179,32 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
+      TabOrder = 7
+    end
+    object SliderVisible: TsSlider
+      Left = 128
+      Top = 0
+      Width = 50
+      AutoSize = True
       TabOrder = 8
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
 end

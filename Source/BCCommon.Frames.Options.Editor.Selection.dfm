@@ -1,12 +1,12 @@
 inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
-  Width = 133
-  Height = 80
+  Width = 182
+  Height = 90
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 129
-    Height = 80
+    Width = 178
+    Height = 90
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -22,73 +22,169 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     ParentFont = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object CheckBoxALTSetsColumnMode: TBCCheckBox
+    object StickyLabelTripleClickRowSelect: TsStickyLabel
       Left = 0
-      Top = 20
-      Width = 129
-      Height = 20
+      Top = 73
+      Width = 120
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' ALT sets column mode'
-      Checked = True
-      State = cbChecked
-      TabOrder = 1
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      AutoSize = False
+      Caption = 'Triple-click row select'
+      ParentColor = False
+      AttachTo = SliderTripleClickRowSelect
+      Gap = 8
     end
-    object CheckBoxTripleClickRowSelect: TBCCheckBox
+    object StickyLabelHighlightSimilarTerms: TsStickyLabel
       Left = 0
-      Top = 60
-      Width = 124
-      Height = 20
+      Top = 50
+      Width = 120
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Triple-click row select'
-      Checked = True
-      State = cbChecked
-      TabOrder = 3
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      AutoSize = False
+      Caption = 'Highlight similar terms'
+      ParentColor = False
+      AttachTo = SliderHighlightSimilarTerms
+      Gap = 8
     end
-    object CheckBoxVisible: TBCCheckBox
+    object StickyLabelVisible: TsStickyLabel
       Left = 0
-      Top = 0
-      Width = 52
-      Height = 20
+      Top = 4
+      Width = 120
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Visible'
-      Checked = True
-      State = cbChecked
+      AutoSize = False
+      Caption = 'Visible'
+      ParentColor = False
+      AttachTo = SliderVisible
+      Gap = 8
+    end
+    object StickyLabelALTSetsColumnMode: TsStickyLabel
+      Left = 0
+      Top = 27
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'ALT sets column mode'
+      ParentColor = False
+      AttachTo = SliderALTSetsColumnMode
+      Gap = 8
+    end
+    object SliderTripleClickRowSelect: TsSlider
+      Left = 128
+      Top = 69
+      Width = 50
+      AutoSize = True
       TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxHighlightSimilarTerms: TBCCheckBox
-      Left = 0
-      Top = 40
-      Width = 126
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Highlight similar terms'
-      Checked = True
-      State = cbChecked
+    object SliderHighlightSimilarTerms: TsSlider
+      Left = 128
+      Top = 46
+      Width = 50
+      AutoSize = True
+      TabOrder = 1
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderVisible: TsSlider
+      Left = 128
+      Top = 0
+      Width = 50
+      AutoSize = True
       TabOrder = 2
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
+    object SliderALTSetsColumnMode: TsSlider
+      Left = 128
+      Top = 23
+      Width = 50
+      AutoSize = True
+      TabOrder = 3
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+  end
+  inherited FrameAdapter: TsFrameAdapter
+    Left = 62
+    Top = 65534
   end
 end

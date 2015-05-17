@@ -5,30 +5,17 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, JsonDataObjects,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sComboBox, BCControls.ComboBox, Vcl.ComCtrls,
-  sComboBoxes, sGroupBox, Vcl.ExtCtrls, sPanel, BCControls.Panel, sCheckBox,
-  BCControls.CheckBox, BCEditor.Editor.Base, BCEditor.Editor, Vcl.Buttons, sSpeedButton, BCControls.SpeedButton,
+  sComboBoxes, sGroupBox, Vcl.ExtCtrls, sPanel, BCControls.Panel,
+  BCEditor.Editor.Base, BCEditor.Editor, Vcl.Buttons, sSpeedButton, BCControls.SpeedButton,
   BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter, System.Actions, Vcl.ActnList, BCControls.ScrollBox,
   sScrollBox, sDialogs, BCComponents.MultiStringHolder, sPageControl, BCControls.PageControl, sSplitter, sEdit,
-  BCControls.Edit, Vcl.Mask, sMaskEdit, sCustomComboEdit, sToolEdit, BCControls.DateEdit, sLabel, BCControls.Labels;
+  BCControls.Edit, Vcl.Mask, sMaskEdit, sCustomComboEdit, sToolEdit, BCControls.DateEdit, sLabel, BCControls.Labels,
+  acSlider;
 
 type
   TOptionsEditorColorFrame = class(TBCOptionsBaseFrame)
     ActionAddColor: TAction;
     ActionList: TActionList;
-    CheckBoxElementsAttributesBold: TBCCheckBox;
-    CheckBoxElementsAttributesItalic: TBCCheckBox;
-    CheckBoxElementsAttributesUnderline: TBCCheckBox;
-    CheckBoxSkinActiveLineBackground: TBCCheckBox;
-    CheckBoxSkinBackground: TBCCheckBox;
-    CheckBoxSkinBookmarkPanelBackground: TBCCheckBox;
-    CheckBoxSkinCodeFoldingBackground: TBCCheckBox;
-    CheckBoxSkinCodeFoldingHintBackground: TBCCheckBox;
-    CheckBoxSkinCompletionProposalBackground: TBCCheckBox;
-    CheckBoxSkinCompletionProposalSelectionBackground: TBCCheckBox;
-    CheckBoxSkinForeground: TBCCheckBox;
-    CheckBoxSkinLeftMarginBackground: TBCCheckBox;
-    CheckBoxSkinSelectionBackground: TBCCheckBox;
-    CheckBoxSkinSelectionForeground: TBCCheckBox;
     ColorComboBoxEditorColor: TBCColorComboBox;
     ColorComboBoxElementsBackground: TBCColorComboBox;
     ColorComboBoxElementsForeground: TBCColorComboBox;
@@ -42,7 +29,6 @@ type
     Editor: TBCEditor;
     EditVersion: TBCEdit;
     GroupBoxAttributes: TBCGroupBox;
-    LabelSkinDescription: TBCLabel;
     MultiStringHolder: TBCMultiStringHolder;
     PageControl: TBCPageControl;
     Panel: TBCPanel;
@@ -54,18 +40,48 @@ type
     TabSheetEditor: TsTabSheet;
     TabSheetElements: TsTabSheet;
     TabSheetGeneral: TsTabSheet;
-    TabSheetSkin: TsTabSheet;
+    TabSheetUseSkinColor: TsTabSheet;
+    StickyLabelElementsAttributesBold: TsStickyLabel;
+    SliderElementsAttributesBold: TsSlider;
+    StickyLabelElementsAttributesItalic: TsStickyLabel;
+    SliderElementsAttributesItalic: TsSlider;
+    StickyLabelElementsAttributesUnderline: TsStickyLabel;
+    SliderElementsAttributesUnderline: TsSlider;
+    PanelUseSkinColorLeft: TBCPanel;
+    SliderSkinActiveLineBackground: TsSlider;
+    StickyLabelSkinActiveLineBackground: TsStickyLabel;
+    StickyLabelSkinForeground: TsStickyLabel;
+    SliderSkinForeground: TsSlider;
+    StickyLabelSkinSelectionForeground: TsStickyLabel;
+    SliderSkinSelectionForeground: TsSlider;
+    StickyLabelSkinLeftMarginBackground: TsStickyLabel;
+    SliderSkinLeftMarginBackground: TsSlider;
+    StickyLabelSkinCodeFoldingBackground: TsStickyLabel;
+    SliderSkinCodeFoldingBackground: TsSlider;
+    StickyLabelSkinCompletionProposalBackground: TsStickyLabel;
+    SliderSkinCompletionProposalBackground: TsSlider;
+    PanelUseSkinColorRight: TBCPanel;
+    StickyLabelSkinBackground: TsStickyLabel;
+    SliderSkinBackground: TsSlider;
+    StickyLabelSkinSelectionBackground: TsStickyLabel;
+    SliderSkinSelectionBackground: TsSlider;
+    StickyLabelSkinBookmarkPanelBackground: TsStickyLabel;
+    SliderSkinBookmarkPanelBackground: TsSlider;
+    StickyLabelSkinCodeFoldingHintBackground: TsStickyLabel;
+    SliderSkinCodeFoldingHintBackground: TsSlider;
+    StickyLabelSkinCompletionProposalSelectionBackground: TsStickyLabel;
+    SliderSkinCompletionProposalSelectionBackground: TsSlider;
     procedure ActionAddColorExecute(Sender: TObject);
     procedure ComboBoxColorChange(Sender: TObject);
     procedure ColorComboBoxEditorColorChange(Sender: TObject);
     procedure ColorComboBoxElementsForegroundChange(Sender: TObject);
     procedure ColorComboBoxElementsBackgroundChange(Sender: TObject);
-    procedure CheckBoxElementsAttributesClick(Sender: TObject);
+    procedure SliderElementsAttributesClick(Sender: TObject);
     procedure ComboBoxHighlighterChange(Sender: TObject);
     procedure ComboBoxEditorElementChange(Sender: TObject);
     procedure ComboBoxElementsNameChange(Sender: TObject);
     procedure EditChange(Sender: TObject);
-    procedure CheckBoxSkinValueClick(Sender: TObject);
+    procedure SliderSkinValueClick(Sender: TObject);
   private
     FFileName: string;
     FJSONObject: TJsonObject;
@@ -92,7 +108,8 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Options.Container, BCCommon.Language.Strings, BCCommon.StringUtils, BCEditor.Highlighter.Colors;
+  BCCommon.Options.Container, BCCommon.Language.Strings, BCCommon.StringUtils, BCEditor.Highlighter.Colors,
+  BCCommon.Utils;
 
 var
   FOptionsEditorColorFrame: TOptionsEditorColorFrame;
@@ -102,6 +119,9 @@ begin
   if not Assigned(FOptionsEditorColorFrame) then
     FOptionsEditorColorFrame := TOptionsEditorColorFrame.Create(AOwner);
   Result := FOptionsEditorColorFrame;
+  AlignSliders(Result.GroupBoxAttributes);
+  AlignSliders(Result.PanelUseSkinColorLeft);
+  AlignSliders(Result.PanelUseSkinColorRight);
 end;
 
 procedure TOptionsEditorColorFrame.FreeJSONObject;
@@ -128,17 +148,17 @@ end;
 
 procedure TOptionsEditorColorFrame.PutData;
 begin
-  OptionsContainer.SkinActiveLineBackground := CheckBoxSkinActiveLineBackground.Checked;
-  OptionsContainer.SkinBackground := CheckBoxSkinBackground.Checked;
-  OptionsContainer.SkinBookmarkPanelBackground := CheckBoxSkinBookmarkPanelBackground.Checked;
-  OptionsContainer.SkinCodeFoldingBackground := CheckBoxSkinCodeFoldingBackground.Checked;
-  OptionsContainer.SkinCodeFoldingHintBackground := CheckBoxSkinCodeFoldingHintBackground.Checked;
-  OptionsContainer.SkinCompletionProposalBackground := CheckBoxSkinCompletionProposalBackground.Checked;
-  OptionsContainer.SkinCompletionProposalSelectionBackground := CheckBoxSkinCompletionProposalSelectionBackground.Checked;
-  OptionsContainer.SkinForeground := CheckBoxSkinForeground.Checked;
-  OptionsContainer.SkinLeftMarginBackground := CheckBoxSkinLeftMarginBackground.Checked;
-  OptionsContainer.SkinSelectionBackground := CheckBoxSkinSelectionBackground.Checked;
-  OptionsContainer.SkinSelectionForeground := CheckBoxSkinSelectionForeground.Checked;
+  OptionsContainer.SkinActiveLineBackground := SliderSkinActiveLineBackground.SliderOn;
+  OptionsContainer.SkinBackground := SliderSkinBackground.SliderOn;
+  OptionsContainer.SkinBookmarkPanelBackground := SliderSkinBookmarkPanelBackground.SliderOn;
+  OptionsContainer.SkinCodeFoldingBackground := SliderSkinCodeFoldingBackground.SliderOn;
+  OptionsContainer.SkinCodeFoldingHintBackground := SliderSkinCodeFoldingHintBackground.SliderOn;
+  OptionsContainer.SkinCompletionProposalBackground := SliderSkinCompletionProposalBackground.SliderOn;
+  OptionsContainer.SkinCompletionProposalSelectionBackground := SliderSkinCompletionProposalSelectionBackground.SliderOn;
+  OptionsContainer.SkinForeground := SliderSkinForeground.SliderOn;
+  OptionsContainer.SkinLeftMarginBackground := SliderSkinLeftMarginBackground.SliderOn;
+  OptionsContainer.SkinSelectionBackground := SliderSkinSelectionBackground.SliderOn;
+  OptionsContainer.SkinSelectionForeground := SliderSkinSelectionForeground.SliderOn;
   SaveColor(False);
 end;
 
@@ -158,7 +178,7 @@ begin
   end;
 end;
 
-procedure TOptionsEditorColorFrame.CheckBoxElementsAttributesClick(Sender: TObject);
+procedure TOptionsEditorColorFrame.SliderElementsAttributesClick(Sender: TObject);
 var
   LStyle: string;
   LElementDataValue: PJsonDataValue;
@@ -168,15 +188,15 @@ begin
   begin
     FModified := True;
     LStyle := '';
-    if CheckBoxElementsAttributesBold.Checked then
+    if SliderElementsAttributesBold.SliderOn then
       LStyle := 'Bold';
-    if CheckBoxElementsAttributesItalic.Checked then
+    if SliderElementsAttributesItalic.SliderOn then
     begin
       if LStyle <> '' then
         LStyle := LStyle + ';';
       LStyle := LStyle + 'Italic';
     end;
-    if CheckBoxElementsAttributesUnderline.Checked then
+    if SliderElementsAttributesUnderline.SliderOn then
     begin
       if LStyle <> '' then
         LStyle := LStyle + ';';
@@ -187,7 +207,7 @@ begin
   end;
 end;
 
-procedure TOptionsEditorColorFrame.CheckBoxSkinValueClick(Sender: TObject);
+procedure TOptionsEditorColorFrame.SliderSkinValueClick(Sender: TObject);
 begin
   inherited;
 
@@ -201,32 +221,32 @@ var
   LColor: TColor;
 begin
   LColor := FrameAdapter.SkinData.SkinManager.GetActiveEditColor;
-  if CheckBoxSkinActiveLineBackground.Checked then
+  if SliderSkinActiveLineBackground.SliderOn then
     Editor.ActiveLine.Color := FrameAdapter.SkinData.SkinManager.GetHighLightColor(False);
-  if CheckBoxSkinBackground.Checked then
+  if SliderSkinBackground.SliderOn then
     Editor.BackgroundColor := LColor;
-  if CheckBoxSkinCodeFoldingBackground.Checked then
+  if SliderSkinCodeFoldingBackground.SliderOn then
     Editor.CodeFolding.Colors.Background := LColor;
-  if CheckBoxSkinCodeFoldingHintBackground.Checked then
+  if SliderSkinCodeFoldingHintBackground.SliderOn then
     Editor.CodeFolding.Hint.Colors.Background := LColor;
-  if CheckBoxSkinCompletionProposalBackground.Checked then
+  if SliderSkinCompletionProposalBackground.SliderOn then
     Editor.CompletionProposal.Colors.Background := LColor;
-  if CheckBoxSkinCompletionProposalSelectionBackground.Checked then
+  if SliderSkinCompletionProposalSelectionBackground.SliderOn then
     Editor.CompletionProposal.Colors.SelectedBackground := LColor;
-  if CheckBoxSkinLeftMarginBackground.Checked then
+  if SliderSkinLeftMarginBackground.SliderOn then
     Editor.LeftMargin.Color := LColor;
-  if CheckBoxSkinBookmarkPanelBackground.Checked then
+  if SliderSkinBookmarkPanelBackground.SliderOn then
     Editor.LeftMargin.Bookmarks.Panel.Color := LColor;
-  if CheckBoxSkinSelectionForeground.Checked then
+  if SliderSkinSelectionForeground.SliderOn then
     Editor.Selection.Colors.Foreground := FrameAdapter.SkinData.SkinManager.GetHighLightFontColor;
-  if CheckBoxSkinSelectionBackground.Checked then
+  if SliderSkinSelectionBackground.SliderOn then
     Editor.Selection.Colors.Background := FrameAdapter.SkinData.SkinManager.GetHighLightColor;
   for i := 0 to Editor.Highlighter.Colors.Styles.Count - 1 do
   if PBCEditorHighlighterElement(Editor.Highlighter.Colors.Styles.Items[i])^.Name = 'Editor' then
   begin
-    if CheckBoxSkinForeground.Checked then
+    if SliderSkinForeground.SliderOn then
       PBCEditorHighlighterElement(Editor.Highlighter.Colors.Styles.Items[i])^.ForeGround := FrameAdapter.SkinData.SkinManager.GetActiveEditFontColor;
-    if CheckBoxSkinBackground.Checked then
+    if SliderSkinBackground.SliderOn then
       PBCEditorHighlighterElement(Editor.Highlighter.Colors.Styles.Items[i])^.Background := LColor;
     Break;
   end;
@@ -235,17 +255,17 @@ end;
 
 procedure TOptionsEditorColorFrame.GetData;
 begin
-  CheckBoxSkinActiveLineBackground.Checked := OptionsContainer.SkinActiveLineBackground;
-  CheckBoxSkinBackground.Checked := OptionsContainer.SkinBackground;
-  CheckBoxSkinBookmarkPanelBackground.Checked := OptionsContainer.SkinBookmarkPanelBackground;
-  CheckBoxSkinCodeFoldingBackground.Checked := OptionsContainer.SkinCodeFoldingBackground;
-  CheckBoxSkinCodeFoldingHintBackground.Checked := OptionsContainer.SkinCodeFoldingHintBackground;
-  CheckBoxSkinCompletionProposalBackground.Checked := OptionsContainer.SkinCompletionProposalBackground;
-  CheckBoxSkinCompletionProposalSelectionBackground.Checked := OptionsContainer.SkinCompletionProposalSelectionBackground;
-  CheckBoxSkinForeground.Checked := OptionsContainer.SkinForeground;
-  CheckBoxSkinLeftMarginBackground.Checked := OptionsContainer.SkinLeftMarginBackground;
-  CheckBoxSkinSelectionBackground.Checked := OptionsContainer.SkinSelectionBackground;
-  CheckBoxSkinSelectionForeground.Checked := OptionsContainer.SkinSelectionForeground;
+  SliderSkinActiveLineBackground.SliderOn := OptionsContainer.SkinActiveLineBackground;
+  SliderSkinBackground.SliderOn := OptionsContainer.SkinBackground;
+  SliderSkinBookmarkPanelBackground.SliderOn := OptionsContainer.SkinBookmarkPanelBackground;
+  SliderSkinCodeFoldingBackground.SliderOn := OptionsContainer.SkinCodeFoldingBackground;
+  SliderSkinCodeFoldingHintBackground.SliderOn := OptionsContainer.SkinCodeFoldingHintBackground;
+  SliderSkinCompletionProposalBackground.SliderOn := OptionsContainer.SkinCompletionProposalBackground;
+  SliderSkinCompletionProposalSelectionBackground.SliderOn := OptionsContainer.SkinCompletionProposalSelectionBackground;
+  SliderSkinForeground.SliderOn := OptionsContainer.SkinForeground;
+  SliderSkinLeftMarginBackground.SliderOn := OptionsContainer.SkinLeftMarginBackground;
+  SliderSkinSelectionBackground.SliderOn := OptionsContainer.SkinSelectionBackground;
+  SliderSkinSelectionForeground.SliderOn := OptionsContainer.SkinSelectionForeground;
 end;
 
 procedure TOptionsEditorColorFrame.ColorComboBoxEditorColorChange(Sender: TObject);
@@ -345,20 +365,6 @@ begin
       Exit(LElementArray.Items[i])
 end;
 
-{ Avoid OnClick event when checked property is set... damn. }
-procedure SetCheckedState(const ACheckBox: TBCCheckBox; const AChecked: Boolean);
-var
-  LOnClickHandler: TNotifyEvent;
-begin
-  with ACheckBox do
-  begin
-    LOnClickHandler := OnClick;
-    OnClick := nil;
-    Checked := AChecked;
-    OnClick := LOnClickHandler;
-  end;
-end;
-
 procedure TOptionsEditorColorFrame.ComboBoxElementsNameChange(Sender: TObject);
 var
   LStyle: string;
@@ -372,9 +378,10 @@ begin
     ColorComboBoxElementsBackground.Selected := clNone;
     ColorComboBoxElementsBackground.Selected := StringToColor(LElementDataValue.ObjectValue['Background']);
     LStyle := LElementDataValue.ObjectValue['Style'];
-    SetCheckedState(CheckBoxElementsAttributesBold, Pos('Bold', LStyle) <> 0);
-    SetCheckedState(CheckBoxElementsAttributesItalic, Pos('Italic', LStyle) <> 0);
-    SetCheckedState(CheckBoxElementsAttributesUnderline, Pos('Underline', LStyle) <> 0);
+    SliderElementsAttributesBold.SliderOn := Pos('Bold', LStyle) <> 0;
+    SliderElementsAttributesItalic.SliderOn := Pos('Italic', LStyle) <> 0;
+    SliderElementsAttributesUnderline.SliderOn := Pos('Underline', LStyle) <> 0;
+    GroupBoxAttributes.Invalidate;
   end;
 end;
 

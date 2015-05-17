@@ -22,22 +22,14 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
     ParentFont = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object CheckBoxUseTextColor: TBCCheckBox
+    object StickyLabelUseTextColor: TsStickyLabel
       Left = 0
-      Top = 0
-      Width = 90
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Use text color'
-      Checked = True
-      State = cbChecked
-      TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      Top = 4
+      Width = 67
+      Height = 13
+      Caption = 'Use text color'
+      AttachTo = SliderUseTextColor
+      Gap = 8
     end
     object GroupBoxSelection: TBCGroupBox
       Left = 0
@@ -45,9 +37,18 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       Width = 219
       Height = 93
       Caption = ' Selection'
-      TabOrder = 4
+      TabOrder = 3
       SkinData.SkinSection = 'GROUPBOX'
       Checked = False
+      object StickyLabelSelectionVisible: TsStickyLabel
+        Left = 12
+        Top = 24
+        Width = 29
+        Height = 13
+        Caption = 'Visible'
+        AttachTo = SliderSelectionVisible
+        Gap = 8
+      end
       object ColorComboBoxSelectionColor: TBCColorComboBox
         Left = 10
         Top = 59
@@ -72,25 +73,34 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 0
         Text = 'clWindow'
       end
-      object CheckBoxSelectionVisible: TBCCheckBox
-        Left = 10
+      object SliderSelectionVisible: TsSlider
+        Left = 49
         Top = 20
-        Width = 52
-        Height = 20
-        Margins.Left = 4
-        Margins.Top = 4
-        Margins.Right = 4
-        Margins.Bottom = 4
-        Caption = ' Visible'
-        Checked = True
-        State = cbChecked
-        TabOrder = 0
-        SkinData.SkinSection = 'CHECKBOX'
-        ImgChecked = 0
-        ImgUnchecked = 0
+        Width = 50
+        AutoSize = True
+        TabOrder = 1
+        BoundLabel.Indent = 0
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'Tahoma'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+        ImageIndexOff = 0
+        ImageIndexOn = 0
+        FontOn.Charset = DEFAULT_CHARSET
+        FontOn.Color = clWindowText
+        FontOn.Height = -11
+        FontOn.Name = 'Tahoma'
+        FontOn.Style = []
+        SliderOn = False
+        SliderCaptionOn = 'Yes'
+        SliderCaptionOff = 'No'
       end
     end
     object ColorComboBoxColor: TBCColorComboBox
@@ -117,7 +127,7 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
       Text = 'clWindow'
     end
     object ComboBoxStyle: TBCComboBox
@@ -146,7 +156,7 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
-      TabOrder = 2
+      TabOrder = 1
     end
     object GroupBoxEndOfLine: TBCGroupBox
       Left = 0
@@ -154,9 +164,18 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       Width = 219
       Height = 137
       Caption = ' End of line'
-      TabOrder = 3
+      TabOrder = 2
       SkinData.SkinSection = 'GROUPBOX'
       Checked = False
+      object StickyEndOfLineVisible: TsStickyLabel
+        Left = 10
+        Top = 22
+        Width = 29
+        Height = 13
+        Caption = 'Visible'
+        AttachTo = SliderEndOfLineVisible
+        Gap = 8
+      end
       object ColorComboBoxEndOfLineColor: TBCColorComboBox
         Left = 10
         Top = 59
@@ -181,25 +200,8 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        TabOrder = 1
-        Text = 'clWindow'
-      end
-      object CheckBoxEndOfLineVisible: TBCCheckBox
-        Left = 10
-        Top = 20
-        Width = 52
-        Height = 20
-        Margins.Left = 4
-        Margins.Top = 4
-        Margins.Right = 4
-        Margins.Bottom = 4
-        Caption = ' Visible'
-        Checked = True
-        State = cbChecked
         TabOrder = 0
-        SkinData.SkinSection = 'CHECKBOX'
-        ImgChecked = 0
-        ImgUnchecked = 0
+        Text = 'clWindow'
       end
       object ComboBoxEndOfLineStyle: TBCComboBox
         Left = 10
@@ -227,8 +229,60 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         VerticalAlignment = taAlignTop
         Style = csOwnerDrawFixed
         ItemIndex = -1
-        TabOrder = 2
+        TabOrder = 1
       end
+      object SliderEndOfLineVisible: TsSlider
+        Left = 47
+        Top = 18
+        Width = 50
+        AutoSize = True
+        TabOrder = 2
+        BoundLabel.Indent = 0
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'Tahoma'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+        ImageIndexOff = 0
+        ImageIndexOn = 0
+        FontOn.Charset = DEFAULT_CHARSET
+        FontOn.Color = clWindowText
+        FontOn.Height = -11
+        FontOn.Name = 'Tahoma'
+        FontOn.Style = []
+        SliderOn = False
+        SliderCaptionOn = 'Yes'
+        SliderCaptionOff = 'No'
+      end
+    end
+    object SliderUseTextColor: TsSlider
+      Left = 75
+      Top = 0
+      Width = 50
+      AutoSize = True
+      TabOrder = 4
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderOn = False
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
 end

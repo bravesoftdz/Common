@@ -4,15 +4,18 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sCheckBox, BCControls.CheckBox, Vcl.ExtCtrls,
-  sPanel, BCControls.Panel, BCCommon.Frames.Options.Base, sFrameAdapter;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  sPanel, BCControls.Panel, BCCommon.Frames.Options.Base, sFrameAdapter, sLabel, acSlider;
 
 type
   TOptionsEditorMatchingPairFrame = class(TBCOptionsBaseFrame)
-    CheckBoxEnabled: TBCCheckBox;
-    CheckBoxHighlightAfterToken: TBCCheckBox;
-    CheckBoxHighlightUnmatched: TBCCheckBox;
     Panel: TBCPanel;
+    SliderEnabled: TsSlider;
+    StickyLabelEnabled: TsStickyLabel;
+    StickyLabelHighlightAfterToken: TsStickyLabel;
+    SliderHighlightAfterToken: TsSlider;
+    StickyLabelHighlightUnmatched: TsStickyLabel;
+    SliderHighlightUnmatched: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -27,7 +30,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Options.Container;
+  BCCommon.Options.Container, BCCommon.Utils;
 
 var
   FOptionsEditorMatchingPairFrame: TOptionsEditorMatchingPairFrame;
@@ -37,6 +40,7 @@ begin
   if not Assigned(FOptionsEditorMatchingPairFrame) then
     FOptionsEditorMatchingPairFrame := TOptionsEditorMatchingPairFrame.Create(AOwner);
   Result := FOptionsEditorMatchingPairFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsEditorMatchingPairFrame.Destroy;
@@ -47,16 +51,16 @@ end;
 
 procedure TOptionsEditorMatchingPairFrame.PutData;
 begin
-  OptionsContainer.MatchingPairEnabled := CheckBoxEnabled.Checked;
-  OptionsContainer.MatchingPairHighlightAfterToken := CheckBoxHighlightAfterToken.Checked;
-  OptionsContainer.MatchingPairHighlightUnmatched := CheckBoxHighlightUnmatched.Checked;
+  OptionsContainer.MatchingPairEnabled := SliderEnabled.SliderOn;
+  OptionsContainer.MatchingPairHighlightAfterToken := SliderHighlightAfterToken.SliderOn;
+  OptionsContainer.MatchingPairHighlightUnmatched := SliderHighlightUnmatched.SliderOn;
 end;
 
 procedure TOptionsEditorMatchingPairFrame.GetData;
 begin
-  CheckBoxEnabled.Checked := OptionsContainer.MatchingPairEnabled;
-  CheckBoxHighlightAfterToken.Checked := OptionsContainer.MatchingPairHighlightAfterToken;
-  CheckBoxHighlightUnmatched.Checked := OptionsContainer.MatchingPairHighlightUnmatched;
+  SliderEnabled.SliderOn := OptionsContainer.MatchingPairEnabled;
+  SliderHighlightAfterToken.SliderOn := OptionsContainer.MatchingPairHighlightAfterToken;
+  SliderHighlightUnmatched.SliderOn := OptionsContainer.MatchingPairHighlightUnmatched;
 end;
 
 end.

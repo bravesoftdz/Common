@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sCheckBox, BCControls.CheckBox, Vcl.ExtCtrls,
-  sPanel, BCControls.Panel, sComboBox, BCControls.ComboBox, BCCommon.Frames.Options.Base, sFrameAdapter;
+  sPanel, BCControls.Panel, sComboBox, BCControls.ComboBox, BCCommon.Frames.Options.Base, sFrameAdapter, acSlider,
+  sLabel;
 
 type
   TOptionsEditorCodeFoldingFrame = class(TBCOptionsBaseFrame)
@@ -16,9 +17,10 @@ type
     CheckBoxShowCollapsedLine: TBCCheckBox;
     CheckBoxShowIndentGuides: TBCCheckBox;
     CheckBoxUncollapseByHintClick: TBCCheckBox;
-    CheckBoxVisible: TBCCheckBox;
     ComboBoxMarkStyle: TBCComboBox;
     Panel: TBCPanel;
+    StickyLabelVisible: TsStickyLabel;
+    SliderVisible: TsSlider;
   protected
     procedure Init; override;
     procedure GetData; override;
