@@ -10,6 +10,7 @@ uses
 type
   TOptionsEditorSelectionFrame = class(TBCOptionsBaseFrame)
     CheckBoxALTSetsColumnMode: TBCCheckBox;
+    CheckBoxHighlightSimilarTerms: TBCCheckBox;
     CheckBoxTripleClickRowSelect: TBCCheckBox;
     CheckBoxVisible: TBCCheckBox;
     Panel: TBCPanel;
@@ -49,6 +50,7 @@ procedure TOptionsEditorSelectionFrame.PutData;
 begin
   OptionsContainer.SelectionVisible := CheckBoxVisible.Checked;
   OptionsContainer.ALTSetsColumnMode := CheckBoxALTSetsColumnMode.Checked;
+  OptionsContainer.HighlightSimilarTerms := CheckBoxHighlightSimilarTerms.Checked;
   OptionsContainer.TripleClickRowSelect := CheckBoxTripleClickRowSelect.Checked;
 end;
 
@@ -56,6 +58,7 @@ procedure TOptionsEditorSelectionFrame.GetData;
 begin
   CheckBoxVisible.Checked := OptionsContainer.SelectionVisible;
   CheckBoxALTSetsColumnMode.Checked := OptionsContainer.ALTSetsColumnMode;
+  CheckBoxHighlightSimilarTerms.Checked := OptionsContainer.HighlightSimilarTerms;
   CheckBoxTripleClickRowSelect.Checked := OptionsContainer.TripleClickRowSelect;
 end;
 

@@ -1,12 +1,12 @@
 inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
   Width = 133
-  Height = 60
+  Height = 80
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 129
-    Height = 60
+    Height = 80
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -41,7 +41,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     end
     object CheckBoxTripleClickRowSelect: TBCCheckBox
       Left = 0
-      Top = 40
+      Top = 60
       Width = 124
       Height = 20
       Margins.Left = 4
@@ -51,7 +51,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       Caption = ' Triple-click row select'
       Checked = True
       State = cbChecked
-      TabOrder = 2
+      TabOrder = 3
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0
@@ -69,6 +69,23 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       Checked = True
       State = cbChecked
       TabOrder = 0
+      SkinData.SkinSection = 'CHECKBOX'
+      ImgChecked = 0
+      ImgUnchecked = 0
+    end
+    object CheckBoxHighlightSimilarTerms: TBCCheckBox
+      Left = 0
+      Top = 40
+      Width = 126
+      Height = 20
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Caption = ' Highlight similar terms'
+      Checked = True
+      State = cbChecked
+      TabOrder = 2
       SkinData.SkinSection = 'CHECKBOX'
       ImgChecked = 0
       ImgUnchecked = 0

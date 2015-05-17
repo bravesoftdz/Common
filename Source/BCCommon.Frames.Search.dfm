@@ -1,11 +1,11 @@
 inherited BCSearchFrame: TBCSearchFrame
   Width = 635
-  Height = 27
+  Height = 21
   object SearchPanel: TBCPanel [0]
     Left = 0
     Top = 0
     Width = 635
-    Height = 27
+    Height = 21
     Align = alClient
     AutoSize = True
     BevelOuter = bvNone
@@ -15,16 +15,13 @@ inherited BCSearchFrame: TBCSearchFrame
       Left = 614
       Top = 0
       Width = 21
-      Height = 27
+      Height = 21
       Action = ActionClose
       Align = alRight
       Flat = True
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
-        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
-        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
-        00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
         FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
@@ -69,8 +66,11 @@ inherited BCSearchFrame: TBCSearchFrame
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
         FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+        00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
-      Margin = 2
+      Margin = 0
       NumGlyphs = 2
       SkinData.SkinSection = 'CHECKBOX'
       Images = ImagesDataModule.ImageListSmall
@@ -78,15 +78,14 @@ inherited BCSearchFrame: TBCSearchFrame
     object Splitter: TBCSplitter
       Left = 200
       Top = 0
-      Height = 27
+      Height = 21
       Color = clBtnFace
       ParentColor = False
       SkinData.SkinSection = 'SPLITTER'
     end
     object ComboBoxSearchText: TBCComboBox
-      AlignWithMargins = True
       Left = 0
-      Top = 3
+      Top = 0
       Width = 200
       Height = 21
       Hint = 'Search text'
@@ -120,7 +119,7 @@ inherited BCSearchFrame: TBCSearchFrame
       Left = 333
       Top = 0
       Width = 281
-      Height = 27
+      Height = 21
       Align = alClient
       BevelOuter = bvNone
       ParentColor = True
@@ -130,7 +129,7 @@ inherited BCSearchFrame: TBCSearchFrame
         Left = 269
         Top = 0
         Width = 12
-        Height = 27
+        Height = 21
         Align = alRight
         ParentFont = False
         Layout = tlCenter
@@ -146,13 +145,13 @@ inherited BCSearchFrame: TBCSearchFrame
       end
     end
     object PanelToolBar: TBCPanel
-      AlignWithMargins = True
       Left = 206
-      Top = 3
+      Top = 0
       Width = 127
       Height = 21
       Margins.Left = 0
       Margins.Right = 0
+      Margins.Bottom = 1
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 2
@@ -221,20 +220,24 @@ inherited BCSearchFrame: TBCSearchFrame
     Left = 514
     Top = 65534
     object ActionFindNext: TAction
+      Hint = 'Find next'
       ImageIndex = 37
       ShortCut = 114
       OnExecute = ActionFindNextExecute
     end
     object ActionFindPrevious: TAction
+      Hint = 'Find previous'
       ImageIndex = 38
       ShortCut = 8306
       OnExecute = ActionFindPreviousExecute
     end
     object ActionOptions: TAction
+      Hint = 'Options'
       ImageIndex = 78
       OnExecute = ActionOptionsExecute
     end
     object ActionClose: TAction
+      Hint = 'Close'
       OnExecute = ActionCloseExecute
     end
   end

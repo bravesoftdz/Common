@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, sComboBoxes, BCControls.ComboBox, Vcl.StdCtrls,
   sComboBox, sCheckBox, BCControls.CheckBox, Vcl.ExtCtrls, sPanel,
-  BCControls.Panel, sGroupBox, BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter;
+  BCControls.Panel, sGroupBox, BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsEditorCaretFrame = class(TBCOptionsBaseFrame)

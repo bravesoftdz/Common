@@ -2,6 +2,8 @@ unit BCCommon.Frames.Compare;
 
 interface
 
+{$hints off} // TODO: remove this after implemented
+
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Diff,
   Vcl.Grids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ActnList, BCControls.Panel,

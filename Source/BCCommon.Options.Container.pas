@@ -77,6 +77,7 @@ type
     { Selection }
     FSelectionVisible: Boolean;
     FALTSetsColumnMode: Boolean;
+    FHighlightSimilarTerms: Boolean;
     FTripleClickRowSelect: Boolean;
     { Special chars }
     FSpecialCharsUseTextColor: Boolean;
@@ -253,6 +254,8 @@ type
     property SelectionVisible: Boolean read FSelectionVisible write FSelectionVisible;
     [IniValue('Options', 'ALTSetsColumnMode', 'True')]
     property ALTSetsColumnMode: Boolean read FALTSetsColumnMode write FALTSetsColumnMode;
+    [IniValue('Options', 'HighlightSimilarTerms', 'True')]
+    property HighlightSimilarTerms: Boolean read FHighlightSimilarTerms write FHighlightSimilarTerms;
     [IniValue('Options', 'TripleClickRowSelect', 'True')]
     property TripleClickRowSelect: Boolean read FTripleClickRowSelect write FTripleClickRowSelect;
     { Special chars }
@@ -836,6 +839,10 @@ begin
       Selection.Options := Selection.Options + [soALTSetsColumnMode]
     else
       Selection.Options := Selection.Options - [soALTSetsColumnMode];
+    if FHighlightSimilarTerms then
+      Selection.Options := Selection.Options + [soHighlightSimilarTerms]
+    else
+      Selection.Options := Selection.Options - [soHighlightSimilarTerms];
     if FTripleClickRowSelect then
       Selection.Options := Selection.Options + [soTripleClickRowSelect]
     else
