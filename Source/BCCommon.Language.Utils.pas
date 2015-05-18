@@ -36,11 +36,11 @@ begin
     SelectedLanguage := GetSelectedLanguage;
   if SelectedLanguage = '' then
     Exit;
-  LanguagePath := IncludeTrailingPathDelimiter(Format('%s%s', [ExtractFilePath(ParamStr(0)), 'Languages']));
+  LanguagePath := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)) + 'Languages');
   if not DirectoryExists(LanguagePath) then
     Exit;
 
-  with TMemIniFile.Create(Format('%s%s.%s', [LanguagePath, SelectedLanguage, 'lng']), TEncoding.Unicode) do
+  with TMemIniFile.Create(LanguagePath + SelectedLanguage + '.lng', TEncoding.Unicode) do
   try
     s := ReadString(Form.Name, 'Caption', '');
     if s <> '' then
@@ -85,7 +85,7 @@ begin
       begin
         s := ReadString(Form.Name, TBCRadioButton(Form.Components[i]).Name, '');
         if s <> '' then
-          TBCRadioButton(Form.Components[i]).Caption := Format(' %s', [s]);
+          TBCRadioButton(Form.Components[i]).Caption := ' ' + s;
       end
       else
       if Form.Components[i] is TBCGroupBox then
@@ -99,7 +99,7 @@ begin
       begin
         s := ReadString(Form.Name, TBCPanel(Form.Components[i]).Name, '');
         if s <> '' then
-          TBCPanel(Form.Components[i]).Caption := Format(' %s ', [s])
+          TBCPanel(Form.Components[i]).Caption := ' ' + s + ' '
       end
       else
       if Form.Components[i] is TBCComboBox then
@@ -107,7 +107,7 @@ begin
         s := ReadString(Form.Name, TBCComboBox(Form.Components[i]).Name, '');
         if s <> '' then
           TBCComboBox(Form.Components[i]).BoundLabel.Caption := s;
-        s := ReadString(Form.Name, Format('%s:h', [TBCComboBox(Form.Components[i]).Name]), '');
+        s := ReadString(Form.Name, TBCComboBox(Form.Components[i]).Name + ':h', '');
         if s <> '' then
           TBCComboBox(Form.Components[i]).Hint := s
       end
@@ -145,12 +145,15 @@ begin
         s := ReadString(Form.Name, TAction(Form.Components[i]).Name, '');
         if (TAction(Form.Components[i]).Caption <> '') and (s <> '') then
           TAction(Form.Components[i]).Caption := s;
-        s := ReadString(Form.Name, Format('%s:s', [TAction(Form.Components[i]).Name]), '');
+        s := ReadString(Form.Name, TAction(Form.Components[i]).Name + ':h', '');
         if s <> '' then
+          TAction(Form.Components[i]).Hint := s;
+        s := ReadString(Form.Name, TAction(Form.Components[i]).Name + ':s', '');
+        if s <> '' then
+        begin
+          TAction(Form.Components[i]).Hint := TAction(Form.Components[i]).Hint + ' (' + s + ')';
           TAction(Form.Components[i]).ShortCut := TextToShortCut(s);
-        s := ReadString(Form.Name, Format('%s:h', [TAction(Form.Components[i]).Name]), '');
-        if s <> '' then
-          TAction(Form.Components[i]).Hint := s
+        end;
       end
       else
       if Form.Components[i] is TsTabSheet then
@@ -181,7 +184,7 @@ begin
       else
       if Form.Components[i] is TVirtualDrawTree then
       begin
-        s := ReadString(Form.Name, Format('%s:h', [TVirtualDrawTree(Form.Components[i]).Name]), '');
+        s := ReadString(Form.Name, TVirtualDrawTree(Form.Components[i]).Name + ':h', '');
         if s <> '' then
           TVirtualDrawTree(Form.Components[i]).Hint := s;
         for j := 0 to TVirtualDrawTree(Form.Components[i]).Header.Columns.Count - 1 do

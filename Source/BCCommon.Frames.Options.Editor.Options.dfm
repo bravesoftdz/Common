@@ -1,13 +1,12 @@
 inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
-  Width = 283
-  Height = 363
-  AutoSize = False
+  Width = 182
+  Height = 202
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 243
-    Height = 349
+    Width = 178
+    Height = 202
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
