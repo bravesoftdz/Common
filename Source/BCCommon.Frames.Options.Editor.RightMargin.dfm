@@ -1,13 +1,13 @@
 inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
-  Width = 111
-  Height = 103
+  Width = 183
+  Height = 111
   Visible = False
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 107
-    Height = 103
+    Width = 179
+    Height = 111
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -24,7 +24,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
     object StickyLabelVisible: TsStickyLabel
-      Left = -71
+      Left = 0
       Top = 4
       Width = 120
       Height = 13
@@ -38,9 +38,39 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       AttachTo = SliderVisible
       Gap = 8
     end
+    object StickyLabelMouseMove: TsStickyLabel
+      Left = 0
+      Top = 27
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Mouse move'
+      ParentColor = False
+      AttachTo = SliderMouseMove
+      Gap = 8
+    end
+    object StickyLabelShowMovingHint: TsStickyLabel
+      Left = 1
+      Top = 51
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show moving hint'
+      ParentColor = False
+      AttachTo = SliderShowMovingHint
+      Gap = 8
+    end
     object EditPosition: TBCEdit
       Left = 0
-      Top = 82
+      Top = 90
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -53,7 +83,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 0
       Text = '80'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -74,45 +104,59 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       ErrorColor = 14803198
       NumbersAllowNegative = False
     end
-    object CheckBoxMouseMove: TBCCheckBox
-      Left = 0
-      Top = 20
-      Width = 83
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Mouse move'
-      Checked = True
-      ParentColor = False
-      State = cbChecked
-      TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
-    end
-    object CheckBoxShowMovingHint: TBCCheckBox
-      Left = 0
-      Top = 40
-      Width = 107
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Show moving hint'
-      Checked = True
-      ParentColor = False
-      State = cbChecked
-      TabOrder = 1
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
-    end
     object SliderVisible: TsSlider
-      Left = 57
+      Left = 128
       Top = 0
+      Width = 50
+      AutoSize = True
+      TabOrder = 1
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderMouseMove: TsSlider
+      Left = 128
+      Top = 23
+      Width = 50
+      AutoSize = True
+      TabOrder = 2
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderShowMovingHint: TsSlider
+      Left = 129
+      Top = 47
       Width = 50
       AutoSize = True
       TabOrder = 3
@@ -135,5 +179,9 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
     end
+  end
+  inherited FrameAdapter: TsFrameAdapter
+    Left = 122
+    Top = 74
   end
 end

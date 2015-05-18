@@ -1,13 +1,13 @@
 inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
   Width = 164
-  Height = 100
+  Height = 106
   Visible = False
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 160
-    Height = 100
+    Height = 106
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -17,24 +17,49 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
     ParentBackground = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object CheckBoxUseSystemFont: TBCCheckBox
+    object StickyLabelUseSystemFont: TsStickyLabel
       Left = 0
-      Top = 0
-      Width = 98
-      Height = 20
+      Top = 4
+      Width = 90
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      AutoSize = False
       Caption = 'Use system font'
+      ParentColor = False
+      AttachTo = SliderUseSystemFont
+      Gap = 8
+    end
+    object SliderUseSystemFont: TsSlider
+      Left = 98
+      Top = 0
+      Width = 50
+      AutoSize = True
       TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
     object FontComboBoxFont: TBCFontComboBox
       Left = 0
-      Top = 37
+      Top = 43
       Width = 160
       Height = 22
       Alignment = taLeftJustify
@@ -54,7 +79,7 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
     end
     object EditFontSize: TBCEdit
       Left = 0
-      Top = 79
+      Top = 85
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -68,6 +93,7 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      Text = '0'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
       BoundLabel.Caption = 'Font size'
@@ -89,10 +115,7 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
     end
   end
   inherited FrameAdapter: TsFrameAdapter
-    Left = 146
-  end
-  object ActionList: TActionList
-    Left = 120
-    Top = 36
+    Left = 114
+    Top = 60
   end
 end

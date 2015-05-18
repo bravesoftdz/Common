@@ -3,27 +3,32 @@ unit BCCommon.Frames.Options.Editor.LeftMargin;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.CheckBox,
-  BCControls.Edit, Vcl.Buttons, BCCommon.Frames.Options.Base, BCControls.Panel,
-  Vcl.ComCtrls, sEdit, sCheckBox, sGroupBox, sPanel, sFrameAdapter,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.Edit, Vcl.Buttons,
+  BCCommon.Frames.Options.Base, BCControls.Panel, Vcl.ComCtrls, sEdit, sGroupBox, sPanel, sFrameAdapter,
   BCControls.GroupBox, acSlider, sLabel;
 
 type
-
   TOptionsEditorLeftMarginFrame = class(TBCOptionsBaseFrame)
-    CheckBoxAutosize: TBCCheckBox;
-    CheckBoxShowInTens: TBCCheckBox;
-    CheckBoxShowAfterLastLine: TBCCheckBox;
-    CheckBoxShowBookmarkPanel: TBCCheckBox;
-    CheckBoxShowBookmarks: TBCCheckBox;
-    CheckBoxShowLeadingZeros: TBCCheckBox;
-    CheckBoxShowLineState: TBCCheckBox;
     EditBookmarkPanelWidth: TBCEdit;
     EditWidth: TBCEdit;
     GroupBoxLineNumbers: TBCGroupBox;
     Panel: TBCPanel;
     StickyLabelVisible: TsStickyLabel;
     SliderVisible: TsSlider;
+    StickyLabelAutosize: TsStickyLabel;
+    SliderAutosize: TsSlider;
+    StickyLabelShowBookmarks: TsStickyLabel;
+    SliderShowBookmarks: TsSlider;
+    StickyLabelShowBookmarkPanel: TsStickyLabel;
+    SliderShowBookmarkPanel: TsSlider;
+    StickyLabelShowLineState: TsStickyLabel;
+    SliderShowLineState: TsSlider;
+    StickyLabelShowInTens: TsStickyLabel;
+    SliderShowInTens: TsSlider;
+    StickyLabelShowLeadingZeros: TsStickyLabel;
+    SliderShowLeadingZeros: TsSlider;
+    StickyLabelShowAfterLastLine: TsStickyLabel;
+    SliderShowAfterLastLine: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -38,7 +43,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.SysUtils, BCCommon.Options.Container;
+  System.SysUtils, BCCommon.Options.Container, BCCommon.Utils;
 
 var
   FOptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame;
@@ -48,6 +53,8 @@ begin
   if not Assigned(FOptionsEditorLeftMarginFrame) then
     FOptionsEditorLeftMarginFrame := TOptionsEditorLeftMarginFrame.Create(AOwner);
   Result := FOptionsEditorLeftMarginFrame;
+  AlignSliders(Result.Panel);
+  AlignSliders(Result.GroupBoxLineNumbers);
 end;
 
 destructor TOptionsEditorLeftMarginFrame.Destroy;
@@ -59,13 +66,13 @@ end;
 procedure TOptionsEditorLeftMarginFrame.PutData;
 begin
   OptionsContainer.LeftMarginVisible := SliderVisible.SliderOn;
-  OptionsContainer.LeftMarginAutosize := CheckBoxAutosize.Checked;
-  OptionsContainer.LeftMarginShowBookmarks := CheckBoxShowBookmarks.Checked;
-  OptionsContainer.LeftMarginShowBookmarkPanel := CheckBoxShowBookmarkPanel.Checked;
-  OptionsContainer.LeftMarginShowLineState := CheckBoxShowLineState.Checked;
-  OptionsContainer.LeftMarginLineNumbersShowInTens := CheckBoxShowInTens.Checked;
-  OptionsContainer.LeftMarginLineNumbersShowLeadingZeros := CheckBoxShowLeadingZeros.Checked;
-  OptionsContainer.LeftMarginLineNumbersShowAfterLastLine := CheckBoxShowAfterLastLine.Checked;
+  OptionsContainer.LeftMarginAutosize := SliderAutosize.SliderOn;
+  OptionsContainer.LeftMarginShowBookmarks := SliderShowBookmarks.SliderOn;
+  OptionsContainer.LeftMarginShowBookmarkPanel := SliderShowBookmarkPanel.SliderOn;
+  OptionsContainer.LeftMarginShowLineState := SliderShowLineState.SliderOn;
+  OptionsContainer.LeftMarginLineNumbersShowInTens := SliderShowInTens.SliderOn;
+  OptionsContainer.LeftMarginLineNumbersShowLeadingZeros := SliderShowLeadingZeros.SliderOn;
+  OptionsContainer.LeftMarginLineNumbersShowAfterLastLine := SliderShowAfterLastLine.SliderOn;
   OptionsContainer.LeftMarginWidth := StrToIntDef(EditWidth.Text, 57);
   OptionsContainer.LeftMarginBookmarkPanelWidth := StrToIntDef(EditBookmarkPanelWidth.Text, 20);
 end;
@@ -73,13 +80,13 @@ end;
 procedure TOptionsEditorLeftMarginFrame.GetData;
 begin
   SliderVisible.SliderOn := OptionsContainer.LeftMarginVisible;
-  CheckBoxAutosize.Checked := OptionsContainer.LeftMarginAutosize;
-  CheckBoxShowBookmarks.Checked := OptionsContainer.LeftMarginShowBookmarks;
-  CheckBoxShowBookmarkPanel.Checked := OptionsContainer.LeftMarginShowBookmarkPanel;
-  CheckBoxShowLineState.Checked := OptionsContainer.LeftMarginShowLineState;
-  CheckBoxShowInTens.Checked := OptionsContainer.LeftMarginLineNumbersShowInTens;
-  CheckBoxShowLeadingZeros.Checked := OptionsContainer.LeftMarginLineNumbersShowLeadingZeros;
-  CheckBoxShowAfterLastLine.Checked := OptionsContainer.LeftMarginLineNumbersShowAfterLastLine;
+  SliderAutosize.SliderOn := OptionsContainer.LeftMarginAutosize;
+  SliderShowBookmarks.SliderOn := OptionsContainer.LeftMarginShowBookmarks;
+  SliderShowBookmarkPanel.SliderOn := OptionsContainer.LeftMarginShowBookmarkPanel;
+  SliderShowLineState.SliderOn := OptionsContainer.LeftMarginShowLineState;
+  SliderShowInTens.SliderOn := OptionsContainer.LeftMarginLineNumbersShowInTens;
+  SliderShowLeadingZeros.SliderOn := OptionsContainer.LeftMarginLineNumbersShowLeadingZeros;
+  SliderShowAfterLastLine.SliderOn := OptionsContainer.LeftMarginLineNumbersShowAfterLastLine;
   EditWidth.Text := IntToStr(OptionsContainer.LeftMarginWidth);
   EditBookmarkPanelWidth.Text := IntToStr(OptionsContainer.LeftMarginBookmarkPanelWidth);
 end;

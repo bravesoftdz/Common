@@ -4,31 +4,12 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCCommon.Options.Container.SQL.Formatter,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.CheckBox, Vcl.ExtCtrls,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
   BCControls.ComboBox, Vcl.ComCtrls, BCControls.PageControl, BCControls.Panel,
-  BCCommon.Frames.Options.Base, sCheckBox, sComboBox, sPageControl, sPanel, sFrameAdapter;
+  BCCommon.Frames.Options.Base, sComboBox, sPageControl, sPanel, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsSQLSelectFrame = class(TBCOptionsBaseFrame)
-    CheckBoxAlignAlias: TBCCheckBox;
-    CheckBoxAlignAliasInFromClause: TBCCheckBox;
-    CheckBoxAlignAndOrWithOnInJoinClause: TBCCheckBox;
-    CheckBoxAlignJoinWithFromKeyword: TBCCheckBox;
-    CheckBoxAndOrUnderWhere: TBCCheckBox;
-    CheckBoxColumnInNewLine: TBCCheckBox;
-    CheckBoxFromClauseInNewLine: TBCCheckBox;
-    CheckBoxGroupByClauseInNewLine: TBCCheckBox;
-    CheckBoxHavingClauseInNewLine: TBCCheckBox;
-    CheckBoxIntoClauseInNewLine: TBCCheckBox;
-    CheckBoxJoinClauseInNewLine: TBCCheckBox;
-    CheckBoxNewlineAfterComparisonOperator: TBCCheckBox;
-    CheckBoxNewLineAfterExists: TBCCheckBox;
-    CheckBoxNewLineAfterIn: TBCCheckBox;
-    CheckBoxNewlineBeforeComparisonOperator: TBCCheckBox;
-    CheckBoxOrderByClauseInNewLine: TBCCheckBox;
-    CheckBoxTreatDistinctAsVirtualColumn: TBCCheckBox;
-    CheckBoxWhereClauseAlignExpr: TBCCheckBox;
-    CheckBoxWhereClauseInNewline: TBCCheckBox;
     ComboBoxAndOrLineBreak: TBCComboBox;
     ComboBoxColumnListLineBreak: TBCComboBox;
     ComboBoxColumnListStyle: TBCComboBox;
@@ -45,6 +26,44 @@ type
     TabSheetIntoClause: TsTabSheet;
     TabSheetOrderByClause: TsTabSheet;
     TabSheetSubquery: TsTabSheet;
+    StickyLabelAlignAlias: TsStickyLabel;
+    SliderAlignAlias: TsSlider;
+    StickyLabelColumnInNewLine: TsStickyLabel;
+    SliderColumnInNewLine: TsSlider;
+    StickyLabelTreatDistinctAsVirtualColumn: TsStickyLabel;
+    SliderTreatDistinctAsVirtualColumn: TsSlider;
+    StickyLabelNewLineAfterIn: TsStickyLabel;
+    SliderNewLineAfterIn: TsSlider;
+    StickyLabelNewLineAfterExists: TsStickyLabel;
+    SliderNewLineAfterExists: TsSlider;
+    StickyLabelNewlineAfterComparisonOperator: TsStickyLabel;
+    SliderNewlineAfterComparisonOperator: TsSlider;
+    StickyLabelNewlineBeforeComparisonOperator: TsStickyLabel;
+    SliderNewlineBeforeComparisonOperator: TsSlider;
+    StickyLabelIntoClauseInNewLine: TsStickyLabel;
+    SliderIntoClauseInNewLine: TsSlider;
+    StickyLabelFromClauseInNewLine: TsStickyLabel;
+    SliderFromClauseInNewLine: TsSlider;
+    SliderJoinClauseInNewLine: TsSlider;
+    StickyLabelJoinClauseInNewLine: TsStickyLabel;
+    SliderAlignJoinWithFromKeyword: TsSlider;
+    StickyLabelAlignJoinWithFromKeyword: TsStickyLabel;
+    SliderAlignAndOrWithOnInJoinClause: TsSlider;
+    StickyLabelAlignAndOrWithOnInJoinClause: TsStickyLabel;
+    SliderAlignAliasInFromClause: TsSlider;
+    StickyLabelAlignAliasInFromClause: TsStickyLabel;
+    StickyLabelAndOrUnderWhere: TsStickyLabel;
+    SliderAndOrUnderWhere: TsSlider;
+    StickyLabelWhereClauseInNewLine: TsStickyLabel;
+    SliderWhereClauseInNewLine: TsSlider;
+    StickyLabelWhereClauseAlignExpr: TsStickyLabel;
+    SliderWhereClauseAlignExpr: TsSlider;
+    StickyLabelGroupByClauseInNewLine: TsStickyLabel;
+    SliderGroupByClauseInNewLine: TsSlider;
+    StickyLabelHavingClauseInNewLine: TsStickyLabel;
+    SliderHavingClauseInNewLine: TsSlider;
+    StickyLabelOrderByClauseInNewLine: TsStickyLabel;
+    SliderOrderByClauseInNewLine: TsSlider;
   protected
     procedure GetData; override;
     procedure Init; override;
@@ -60,7 +79,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Language.Strings;
+  BCCommon.Language.Strings, BCCommon.Utils;
 
 var
   FOptionsSQLSelectFrame: TOptionsSQLSelectFrame;
@@ -70,6 +89,10 @@ begin
   if not Assigned(FOptionsSQLSelectFrame) then
     FOptionsSQLSelectFrame := TOptionsSQLSelectFrame.Create(AOwner);
   Result := FOptionsSQLSelectFrame;
+  AlignSliders(Result.TabSheetColumnList);
+  AlignSliders(Result.TabSheetSubquery);
+  AlignSliders(Result.TabSheetFromJoinClause);
+  AlignSliders(Result.TabSheetAndOrKeyword);
 end;
 
 destructor TOptionsSQLSelectFrame.Destroy;
@@ -122,36 +145,36 @@ begin
   { Column List }
   ComboBoxColumnListStyle.ItemIndex := SQLFormatterOptionsContainer.SelectColumnListStyle;
   ComboBoxColumnListLineBreak.ItemIndex := SQLFormatterOptionsContainer.SelectColumnListLineBreak;
-  CheckBoxColumnInNewLine.Checked := SQLFormatterOptionsContainer.SelectColumnListColumnInNewLine;
-  CheckBoxAlignAlias.Checked := SQLFormatterOptionsContainer.SelectColumnListAlignAlias;
-  CheckBoxTreatDistinctAsVirtualColumn.Checked := SQLFormatterOptionsContainer.SelectColumnListTreatDistinctAsVirtualColumn;
+  SliderColumnInNewLine.SliderOn := SQLFormatterOptionsContainer.SelectColumnListColumnInNewLine;
+  SliderAlignAlias.SliderOn := SQLFormatterOptionsContainer.SelectColumnListAlignAlias;
+  SliderTreatDistinctAsVirtualColumn.SliderOn := SQLFormatterOptionsContainer.SelectColumnListTreatDistinctAsVirtualColumn;
   { Subquery }
-  CheckBoxNewLineAfterIn.Checked := SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterIn;
-  CheckBoxNewLineAfterExists.Checked := SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterExists;
-  CheckBoxNewlineAfterComparisonOperator.Checked := SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterComparisonOperator;
-  CheckBoxNewlineBeforeComparisonOperator.Checked := SQLFormatterOptionsContainer.SelectSubqueryNewLineBeforeComparisonOperator;
+  SliderNewLineAfterIn.SliderOn := SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterIn;
+  SliderNewLineAfterExists.SliderOn := SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterExists;
+  SliderNewlineAfterComparisonOperator.SliderOn := SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterComparisonOperator;
+  SliderNewlineBeforeComparisonOperator.SliderOn := SQLFormatterOptionsContainer.SelectSubqueryNewLineBeforeComparisonOperator;
   { Into Clause }
-  CheckBoxIntoClauseInNewLine.Checked := SQLFormatterOptionsContainer.SelectIntoClauseInNewLine;
+  SliderIntoClauseInNewLine.SliderOn := SQLFormatterOptionsContainer.SelectIntoClauseInNewLine;
   { Select From/Join Clause }
   ComboBoxFromClauseStyle.ItemIndex := SQLFormatterOptionsContainer.SelectFromClauseStyle;
-  CheckBoxFromClauseInNewLine.Checked := SQLFormatterOptionsContainer.SelectFromClauseInNewLine;
-  CheckBoxJoinClauseInNewLine.Checked := SQLFormatterOptionsContainer.SelectJoinClauseInNewLine;
-  CheckBoxAlignJoinWithFromKeyword.Checked := SQLFormatterOptionsContainer.SelectAlignJoinWithFromKeyword;
-  CheckBoxAlignAndOrWithOnInJoinClause.Checked := SQLFormatterOptionsContainer.SelectAlignAndOrWithOnInJoinClause;
-  CheckBoxAlignAliasInFromClause.Checked := SQLFormatterOptionsContainer.SelectAlignAliasInFromClause;
+  SliderFromClauseInNewLine.SliderOn := SQLFormatterOptionsContainer.SelectFromClauseInNewLine;
+  SliderJoinClauseInNewLine.SliderOn := SQLFormatterOptionsContainer.SelectJoinClauseInNewLine;
+  SliderAlignJoinWithFromKeyword.SliderOn := SQLFormatterOptionsContainer.SelectAlignJoinWithFromKeyword;
+  SliderAlignAndOrWithOnInJoinClause.SliderOn := SQLFormatterOptionsContainer.SelectAlignAndOrWithOnInJoinClause;
+  SliderAlignAliasInFromClause.SliderOn := SQLFormatterOptionsContainer.SelectAlignAliasInFromClause;
   { And/Or Keyword }
   ComboBoxAndOrLineBreak.ItemIndex := SQLFormatterOptionsContainer.SelectAndOrLineBreak;
-  CheckBoxAndOrUnderWhere.Checked := SQLFormatterOptionsContainer.SelectAndOrUnderWhere;
-  CheckBoxWhereClauseInNewline.Checked := SQLFormatterOptionsContainer.SelectWhereClauseInNewline;
-  CheckBoxWhereClauseAlignExpr.Checked := SQLFormatterOptionsContainer.SelectWhereClauseAlignExpr;
+  SliderAndOrUnderWhere.SliderOn := SQLFormatterOptionsContainer.SelectAndOrUnderWhere;
+  SliderWhereClauseInNewline.SliderOn := SQLFormatterOptionsContainer.SelectWhereClauseInNewline;
+  SliderWhereClauseAlignExpr.SliderOn := SQLFormatterOptionsContainer.SelectWhereClauseAlignExpr;
   { Group By Clause }
   ComboBoxGroupByClauseStyle.ItemIndex := SQLFormatterOptionsContainer.SelectGroupByClauseStyle;
-  CheckBoxGroupByClauseInNewLine.Checked := SQLFormatterOptionsContainer.SelectGroupByClauseInNewLine;
+  SliderGroupByClauseInNewLine.SliderOn := SQLFormatterOptionsContainer.SelectGroupByClauseInNewLine;
   { Having Clause }
-  CheckBoxHavingClauseInNewLine.Checked := SQLFormatterOptionsContainer.SelectHavingClauseInNewLine;
+  SliderHavingClauseInNewLine.SliderOn := SQLFormatterOptionsContainer.SelectHavingClauseInNewLine;
   { Order By Clause }
   ComboBoxOrderByClauseStyle.ItemIndex := SQLFormatterOptionsContainer.SelectOrderByClauseStyle;
-  CheckBoxOrderByClauseInNewLine.Checked := SQLFormatterOptionsContainer.SelectOrderByClauseInNewLine;
+  SliderOrderByClauseInNewLine.SliderOn := SQLFormatterOptionsContainer.SelectOrderByClauseInNewLine;
 end;
 
 procedure TOptionsSQLSelectFrame.PutData;
@@ -159,36 +182,36 @@ begin
   { Column List }
   SQLFormatterOptionsContainer.SelectColumnListStyle := ComboBoxColumnListStyle.ItemIndex;
   SQLFormatterOptionsContainer.SelectColumnListLineBreak := ComboBoxColumnListLineBreak.ItemIndex;
-  SQLFormatterOptionsContainer.SelectColumnListColumnInNewLine := CheckBoxColumnInNewLine.Checked;
-  SQLFormatterOptionsContainer.SelectColumnListAlignAlias := CheckBoxAlignAlias.Checked;
-  SQLFormatterOptionsContainer.SelectColumnListTreatDistinctAsVirtualColumn := CheckBoxTreatDistinctAsVirtualColumn.Checked;
+  SQLFormatterOptionsContainer.SelectColumnListColumnInNewLine := SliderColumnInNewLine.SliderOn;
+  SQLFormatterOptionsContainer.SelectColumnListAlignAlias := SliderAlignAlias.SliderOn;
+  SQLFormatterOptionsContainer.SelectColumnListTreatDistinctAsVirtualColumn := SliderTreatDistinctAsVirtualColumn.SliderOn;
   { Subquery }
-  SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterIn := CheckBoxNewLineAfterIn.Checked;
-  SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterExists := CheckBoxNewLineAfterExists.Checked;
-  SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterComparisonOperator := CheckBoxNewlineAfterComparisonOperator.Checked;
-  SQLFormatterOptionsContainer.SelectSubqueryNewLineBeforeComparisonOperator := CheckBoxNewlineBeforeComparisonOperator.Checked;
+  SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterIn := SliderNewLineAfterIn.SliderOn;
+  SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterExists := SliderNewLineAfterExists.SliderOn;
+  SQLFormatterOptionsContainer.SelectSubqueryNewLineAfterComparisonOperator := SliderNewlineAfterComparisonOperator.SliderOn;
+  SQLFormatterOptionsContainer.SelectSubqueryNewLineBeforeComparisonOperator := SliderNewlineBeforeComparisonOperator.SliderOn;
   { Into Clause }
-  SQLFormatterOptionsContainer.SelectIntoClauseInNewLine := CheckBoxIntoClauseInNewLine.Checked;
+  SQLFormatterOptionsContainer.SelectIntoClauseInNewLine := SliderIntoClauseInNewLine.SliderOn;
   { Select From/Join Clause }
   SQLFormatterOptionsContainer.SelectFromClauseStyle := ComboBoxFromClauseStyle.ItemIndex;
-  SQLFormatterOptionsContainer.SelectFromClauseInNewLine := CheckBoxFromClauseInNewLine.Checked;
-  SQLFormatterOptionsContainer.SelectJoinClauseInNewLine := CheckBoxJoinClauseInNewLine.Checked;
-  SQLFormatterOptionsContainer.SelectAlignJoinWithFromKeyword := CheckBoxAlignJoinWithFromKeyword.Checked;
-  SQLFormatterOptionsContainer.SelectAlignAndOrWithOnInJoinClause := CheckBoxAlignAndOrWithOnInJoinClause.Checked;
-  SQLFormatterOptionsContainer.SelectAlignAliasInFromClause := CheckBoxAlignAliasInFromClause.Checked;
+  SQLFormatterOptionsContainer.SelectFromClauseInNewLine := SliderFromClauseInNewLine.SliderOn;
+  SQLFormatterOptionsContainer.SelectJoinClauseInNewLine := SliderJoinClauseInNewLine.SliderOn;
+  SQLFormatterOptionsContainer.SelectAlignJoinWithFromKeyword := SliderAlignJoinWithFromKeyword.SliderOn;
+  SQLFormatterOptionsContainer.SelectAlignAndOrWithOnInJoinClause := SliderAlignAndOrWithOnInJoinClause.SliderOn;
+  SQLFormatterOptionsContainer.SelectAlignAliasInFromClause := SliderAlignAliasInFromClause.SliderOn;
   { And/Or Keyword }
   SQLFormatterOptionsContainer.SelectAndOrLineBreak := ComboBoxAndOrLineBreak.ItemIndex;
-  SQLFormatterOptionsContainer.SelectAndOrUnderWhere := CheckBoxAndOrUnderWhere.Checked;
-  SQLFormatterOptionsContainer.SelectWhereClauseInNewline := CheckBoxWhereClauseInNewline.Checked;
-  SQLFormatterOptionsContainer.SelectWhereClauseAlignExpr := CheckBoxWhereClauseAlignExpr.Checked;
+  SQLFormatterOptionsContainer.SelectAndOrUnderWhere := SliderAndOrUnderWhere.SliderOn;
+  SQLFormatterOptionsContainer.SelectWhereClauseInNewline := SliderWhereClauseInNewline.SliderOn;
+  SQLFormatterOptionsContainer.SelectWhereClauseAlignExpr := SliderWhereClauseAlignExpr.SliderOn;
   { Group By Clause }
   SQLFormatterOptionsContainer.SelectGroupByClauseStyle := ComboBoxGroupByClauseStyle.ItemIndex;
-  SQLFormatterOptionsContainer.SelectGroupByClauseInNewLine := CheckBoxGroupByClauseInNewLine.Checked;
+  SQLFormatterOptionsContainer.SelectGroupByClauseInNewLine := SliderGroupByClauseInNewLine.SliderOn;
   { Having Clause }
-  SQLFormatterOptionsContainer.SelectHavingClauseInNewLine := CheckBoxHavingClauseInNewLine.Checked;
+  SQLFormatterOptionsContainer.SelectHavingClauseInNewLine := SliderHavingClauseInNewLine.SliderOn;
   { Order By Clause }
   SQLFormatterOptionsContainer.SelectOrderByClauseStyle := ComboBoxOrderByClauseStyle.ItemIndex;
-  SQLFormatterOptionsContainer.SelectOrderByClauseInNewLine := CheckBoxOrderByClauseInNewLine.Checked;
+  SQLFormatterOptionsContainer.SelectOrderByClauseInNewLine := SliderOrderByClauseInNewLine.SliderOn;
 end;
 
 end.

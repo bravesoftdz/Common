@@ -4,20 +4,27 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  BCControls.CheckBox, BCControls.Edit, Vcl.ComCtrls, BCCommon.Options.Container, BCCommon.Frames.Options.Base,
-  sEdit, sCheckBox, BCControls.Panel, sPanel, sFrameAdapter;
+  BCControls.Edit, Vcl.ComCtrls, BCCommon.Options.Container, BCCommon.Frames.Options.Base,
+  sEdit, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsEditorOptionsFrame = class(TBCOptionsBaseFrame)
-    CheckBoxAutoIndent: TBCCheckBox;
-    CheckBoxAutoSave: TBCCheckBox;
-    CheckBoxDragDropEditing: TBCCheckBox;
-    CheckBoxDropFiles: TBCCheckBox;
-    CheckBoxGroupUndo: TBCCheckBox;
-    CheckBoxTrimTrailingSpaces: TBCCheckBox;
-    CheckBoxUndoAfterSave: TBCCheckBox;
     EditLineSpacing: TBCEdit;
     Panel: TBCPanel;
+    StickyLabelAutoIndent: TsStickyLabel;
+    SliderAutoIndent: TsSlider;
+    SliderAutoSave: TsSlider;
+    StickyLabelAutoSave: TsStickyLabel;
+    StickyLabelDragDropEditing: TsStickyLabel;
+    SliderDragDropEditing: TsSlider;
+    SliderDropFiles: TsSlider;
+    StickyLabelDropFiles: TsStickyLabel;
+    StickyLabelGroupUndo: TsStickyLabel;
+    SliderGroupUndo: TsSlider;
+    StickyLabelTrimTrailingSpaces: TsStickyLabel;
+    SliderTrimTrailingSpaces: TsSlider;
+    StickyLabelUndoAfterSave: TsStickyLabel;
+    SliderUndoAfterSave: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -32,7 +39,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.SysUtils, BCCommon.Language.Strings;
+  System.SysUtils, BCCommon.Language.Strings, BCCommon.Utils;
 
 var
   FOptionsEditorOptionsFrame: TOptionsEditorOptionsFrame;
@@ -42,6 +49,7 @@ begin
   if not Assigned(FOptionsEditorOptionsFrame) then
     FOptionsEditorOptionsFrame := TOptionsEditorOptionsFrame.Create(AOwner);
   Result := FOptionsEditorOptionsFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsEditorOptionsFrame.Destroy;
@@ -52,25 +60,25 @@ end;
 
 procedure TOptionsEditorOptionsFrame.PutData;
 begin
-  OptionsContainer.AutoIndent := CheckBoxAutoIndent.Checked;
-  OptionsContainer.AutoSave := CheckBoxAutoSave.Checked;
-  OptionsContainer.DragDropEditing := CheckBoxDragDropEditing.Checked;
-  OptionsContainer.DropFiles := CheckBoxDropFiles.Checked;
-  OptionsContainer.GroupUndo := CheckBoxGroupUndo.Checked;
-  OptionsContainer.TrimTrailingSpaces := CheckBoxTrimTrailingSpaces.Checked;
-  OptionsContainer.UndoAfterSave := CheckBoxUndoAfterSave.Checked;
+  OptionsContainer.AutoIndent := SliderAutoIndent.SliderOn;
+  OptionsContainer.AutoSave := SliderAutoSave.SliderOn;
+  OptionsContainer.DragDropEditing := SliderDragDropEditing.SliderOn;
+  OptionsContainer.DropFiles := SliderDropFiles.SliderOn;
+  OptionsContainer.GroupUndo := SliderGroupUndo.SliderOn;
+  OptionsContainer.TrimTrailingSpaces := SliderTrimTrailingSpaces.SliderOn;
+  OptionsContainer.UndoAfterSave := SliderUndoAfterSave.SliderOn;
   OptionsContainer.LineSpacing := StrToIntDef(EditLineSpacing.Text, 0);
 end;
 
 procedure TOptionsEditorOptionsFrame.GetData;
 begin
-  CheckBoxAutoIndent.Checked := OptionsContainer.AutoIndent;
-  CheckBoxAutoSave.Checked := OptionsContainer.AutoSave;
-  CheckBoxDragDropEditing.Checked := OptionsContainer.DragDropEditing;
-  CheckBoxDropFiles.Checked := OptionsContainer.DropFiles;
-  CheckBoxGroupUndo.Checked := OptionsContainer.GroupUndo;
-  CheckBoxTrimTrailingSpaces.Checked := OptionsContainer.TrimTrailingSpaces;
-  CheckBoxUndoAfterSave.Checked := OptionsContainer.UndoAfterSave;
+  SliderAutoIndent.SliderOn := OptionsContainer.AutoIndent;
+  SliderAutoSave.SliderOn := OptionsContainer.AutoSave;
+  SliderDragDropEditing.SliderOn := OptionsContainer.DragDropEditing;
+  SliderDropFiles.SliderOn := OptionsContainer.DropFiles;
+  SliderGroupUndo.SliderOn := OptionsContainer.GroupUndo;
+  SliderTrimTrailingSpaces.SliderOn := OptionsContainer.TrimTrailingSpaces;
+  SliderUndoAfterSave.SliderOn := OptionsContainer.UndoAfterSave;
   EditLineSpacing.Text := IntToStr(OptionsContainer.LineSpacing);
 end;
 

@@ -4,17 +4,17 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  BCControls.CheckBox, Vcl.Buttons, BCControls.ComboBox, BCControls.Edit, Vcl.ActnList, System.Actions,
+  Vcl.Buttons, BCControls.ComboBox, BCControls.Edit, Vcl.ActnList, System.Actions,
   BCCommon.Options.Container, BCCommon.Frames.Options.Base, sEdit, sComboBox, sCheckBox, BCControls.Panel, sPanel,
-  sFrameAdapter, sFontCtrls;
+  sFrameAdapter, sFontCtrls, acSlider, sLabel;
 
 type
   TOptionsMainMenuFrame = class(TBCOptionsBaseFrame)
-    ActionList: TActionList;
-    CheckBoxUseSystemFont: TBCCheckBox;
-    EditFontSize: TBCEdit;
-    FontComboBoxFont: TBCFontComboBox;
     Panel: TBCPanel;
+    StickyLabelUseSystemFont: TsStickyLabel;
+    SliderUseSystemFont: TsSlider;
+    FontComboBoxFont: TBCFontComboBox;
+    EditFontSize: TBCEdit;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -29,7 +29,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Vcl.ActnMenus;
+  BCCommon.Utils;
 
 var
   FOptionsMainMenuFrame: TOptionsMainMenuFrame;
@@ -39,6 +39,7 @@ begin
   if not Assigned(FOptionsMainMenuFrame) then
     FOptionsMainMenuFrame := TOptionsMainMenuFrame.Create(AOwner);
   Result := FOptionsMainMenuFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsMainMenuFrame.Destroy;
@@ -49,14 +50,14 @@ end;
 
 procedure TOptionsMainMenuFrame.PutData;
 begin
-  OptionsContainer.MainMenuUseSystemFont := CheckBoxUseSystemFont.Checked;
+  OptionsContainer.MainMenuUseSystemFont := SliderUseSystemFont.SliderOn;
   OptionsContainer.MainMenuFontName := FontComboBoxFont.Text;
   OptionsContainer.MainMenuFontSize := EditFontSize.ValueInt;
 end;
 
 procedure TOptionsMainMenuFrame.GetData;
 begin
-  CheckBoxUseSystemFont.Checked := OptionsContainer.MainMenuUseSystemFont;
+  SliderUseSystemFont.SliderOn := OptionsContainer.MainMenuUseSystemFont;
   FontComboBoxFont.ItemIndex := FontComboBoxFont.Items.IndexOf(OptionsContainer.MainMenuFontName);
   EditFontSize.ValueInt := OptionsContainer.MainMenuFontSize;
 end;

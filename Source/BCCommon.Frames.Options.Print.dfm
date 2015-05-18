@@ -1,12 +1,12 @@
 inherited OptionsPrintFrame: TOptionsPrintFrame
   Width = 190
-  Height = 252
+  Height = 267
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 186
-    Height = 252
+    Height = 267
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -16,9 +16,69 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
     ParentBackground = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
+    object StickyLabelShowHeaderLine: TsStickyLabel
+      Left = 0
+      Top = 181
+      Width = 100
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show header line'
+      ParentColor = False
+      AttachTo = SliderShowHeaderLine
+      Gap = 8
+    end
+    object StickyLabelShowFooterLine: TsStickyLabel
+      Left = 0
+      Top = 204
+      Width = 100
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show footer line'
+      ParentColor = False
+      AttachTo = SliderShowFooterLine
+      Gap = 8
+    end
+    object StickyLabelShowLineNumbers: TsStickyLabel
+      Left = 0
+      Top = 227
+      Width = 100
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show line numbers'
+      ParentColor = False
+      AttachTo = SliderShowLineNumbers
+      Gap = 8
+    end
+    object StickyLabelWordWrap: TsStickyLabel
+      Left = 0
+      Top = 250
+      Width = 100
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Word wrap'
+      ParentColor = False
+      AttachTo = SliderWordWrap
+      Gap = 8
+    end
     object ComboBoxDateTime: TBCComboBox
       Left = 0
-      Top = 146
+      Top = 147
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -46,7 +106,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
     end
     object ComboBoxPrintedBy: TBCComboBox
       Left = 0
-      Top = 103
+      Top = 104
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -74,7 +134,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
     end
     object ComboBoxDocumentName: TBCComboBox
       Left = 0
-      Top = 16
+      Top = 17
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -102,7 +162,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
     end
     object ComboBoxPageNumber: TBCComboBox
       Left = 0
-      Top = 59
+      Top = 60
       Width = 186
       Height = 22
       Margins.Left = 4
@@ -128,69 +188,105 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       ItemIndex = -1
       TabOrder = 1
     end
-    object CheckBoxShowHeaderLine: TBCCheckBox
-      Left = 0
-      Top = 175
-      Width = 102
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = 'Show header line'
-      Checked = True
-      State = cbChecked
+    object SliderShowHeaderLine: TsSlider
+      Left = 108
+      Top = 177
+      Width = 50
+      AutoSize = True
       TabOrder = 4
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxShowFooterLine: TBCCheckBox
-      Left = 0
-      Top = 195
-      Width = 98
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = 'Show footer line'
-      Checked = True
-      State = cbChecked
+    object SliderShowFooterLine: TsSlider
+      Left = 108
+      Top = 200
+      Width = 50
+      AutoSize = True
       TabOrder = 5
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxShowLineNumbers: TBCCheckBox
-      Left = 0
-      Top = 215
-      Width = 109
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = 'Show line numbers'
+    object SliderShowLineNumbers: TsSlider
+      Left = 108
+      Top = 223
+      Width = 50
+      AutoSize = True
       TabOrder = 6
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxWordWrap: TBCCheckBox
-      Left = 0
-      Top = 235
-      Width = 73
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = 'Word wrap'
+    object SliderWordWrap: TsSlider
+      Left = 108
+      Top = 246
+      Width = 50
+      AutoSize = True
       TabOrder = 7
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
   inherited FrameAdapter: TsFrameAdapter

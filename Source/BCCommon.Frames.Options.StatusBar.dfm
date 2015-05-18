@@ -1,12 +1,12 @@
 inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
   Width = 164
-  Height = 100
+  Height = 106
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 160
-    Height = 100
+    Height = 106
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -16,24 +16,24 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
     ParentBackground = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object UseSystemFontCheckBox: TBCCheckBox
+    object StickyLabelUseSystemFont: TsStickyLabel
       Left = 0
-      Top = 0
-      Width = 98
-      Height = 20
+      Top = 4
+      Width = 90
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
+      AutoSize = False
       Caption = 'Use system font'
-      TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      ParentColor = False
+      AttachTo = SliderUseSystemFont
+      Gap = 8
     end
     object FontComboBoxFont: TBCFontComboBox
       Left = 0
-      Top = 37
+      Top = 43
       Width = 160
       Height = 22
       Alignment = taLeftJustify
@@ -49,11 +49,11 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       BoundLabel.MaxWidth = 0
       BoundLabel.UseSkinColor = True
       VerticalAlignment = taAlignTop
-      TabOrder = 1
+      TabOrder = 0
     end
     object EditFontSize: TBCEdit
       Left = 0
-      Top = 79
+      Top = 85
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -66,7 +66,7 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 1
       Text = '0'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -87,9 +87,34 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       ErrorColor = 14803198
       NumbersAllowNegative = False
     end
+    object SliderUseSystemFont: TsSlider
+      Left = 98
+      Top = 0
+      Width = 50
+      AutoSize = True
+      TabOrder = 2
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
   end
-  object ActionList: TActionList
-    Left = 104
-    Top = 4
+  inherited FrameAdapter: TsFrameAdapter
+    Left = 116
+    Top = 66
   end
 end

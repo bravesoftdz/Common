@@ -4,20 +4,24 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.ComboBox, Vcl.ExtCtrls,
-  BCControls.CheckBox, BCCommon.Options.Container, BCCommon.Frames.Options.Base, sCheckBox,
-  sComboBox, BCControls.Panel, sPanel, sFrameAdapter;
+  BCCommon.Options.Container, BCCommon.Frames.Options.Base, sComboBox, BCControls.Panel, sPanel, sFrameAdapter,
+  acSlider, sLabel;
 
 type
   TOptionsPrintFrame = class(TBCOptionsBaseFrame)
-    CheckBoxShowFooterLine: TBCCheckBox;
-    CheckBoxShowHeaderLine: TBCCheckBox;
-    CheckBoxShowLineNumbers: TBCCheckBox;
-    CheckBoxWordWrap: TBCCheckBox;
     ComboBoxDateTime: TBCComboBox;
     ComboBoxDocumentName: TBCComboBox;
     ComboBoxPageNumber: TBCComboBox;
     ComboBoxPrintedBy: TBCComboBox;
     Panel: TBCPanel;
+    StickyLabelShowHeaderLine: TsStickyLabel;
+    SliderShowHeaderLine: TsSlider;
+    StickyLabelShowFooterLine: TsStickyLabel;
+    SliderShowFooterLine: TsSlider;
+    StickyLabelShowLineNumbers: TsStickyLabel;
+    SliderShowLineNumbers: TsSlider;
+    StickyLabelWordWrap: TsStickyLabel;
+    SliderWordWrap: TsSlider;
   protected
     procedure Init; override;
     procedure GetData; override;
@@ -33,7 +37,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Language.Strings;
+  BCCommon.Language.Strings, BCCommon.Utils;
 
 var
   FOptionsPrintFrame: TOptionsPrintFrame;
@@ -43,6 +47,7 @@ begin
   if not Assigned(FOptionsPrintFrame) then
     FOptionsPrintFrame := TOptionsPrintFrame.Create(AOwner);
   Result := FOptionsPrintFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsPrintFrame.Destroy;
@@ -72,10 +77,10 @@ begin
   OptionsContainer.PrintPageNumber := ComboBoxPageNumber.ItemIndex;
   OptionsContainer.PrintPrintedBy := ComboBoxPrintedBy.ItemIndex;
   OptionsContainer.PrintDateTime := ComboBoxDateTime.ItemIndex;
-  OptionsContainer.PrintShowHeaderLine := CheckBoxShowHeaderLine.Checked;
-  OptionsContainer.PrintShowFooterLine := CheckBoxShowFooterLine.Checked;
-  OptionsContainer.PrintShowLineNumbers := CheckBoxShowLineNumbers.Checked;
-  OptionsContainer.PrintWordWrapLine := CheckBoxWordWrap.Checked;
+  OptionsContainer.PrintShowHeaderLine := SliderShowHeaderLine.SliderOn;
+  OptionsContainer.PrintShowFooterLine := SliderShowFooterLine.SliderOn;
+  OptionsContainer.PrintShowLineNumbers := SliderShowLineNumbers.SliderOn;
+  OptionsContainer.PrintWordWrapLine := SliderWordWrap.SliderOn;
 end;
 
 procedure TOptionsPrintFrame.GetData;
@@ -84,10 +89,10 @@ begin
   ComboBoxPageNumber.ItemIndex := OptionsContainer.PrintPageNumber;
   ComboBoxPrintedBy.ItemIndex := OptionsContainer.PrintPrintedBy;
   ComboBoxDateTime.ItemIndex := OptionsContainer.PrintDateTime;
-  CheckBoxShowHeaderLine.Checked := OptionsContainer.PrintShowHeaderLine;
-  CheckBoxShowFooterLine.Checked := OptionsContainer.PrintShowFooterLine;
-  CheckBoxShowLineNumbers.Checked := OptionsContainer.PrintShowLineNumbers;
-  CheckBoxWordWrap.Checked := OptionsContainer.PrintWordWrapLine;
+  SliderShowHeaderLine.SliderOn := OptionsContainer.PrintShowHeaderLine;
+  SliderShowFooterLine.SliderOn := OptionsContainer.PrintShowFooterLine;
+  SliderShowLineNumbers.SliderOn := OptionsContainer.PrintShowLineNumbers;
+  SliderWordWrap.SliderOn := OptionsContainer.PrintWordWrapLine;
 end;
 
 end.

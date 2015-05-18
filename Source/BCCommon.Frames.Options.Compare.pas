@@ -3,14 +3,17 @@ unit BCCommon.Frames.Options.Compare;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.CheckBox,
-  BCCommon.Options.Container, BCCommon.Frames.Options.Base, sCheckBox, BCControls.Panel, sPanel, sFrameAdapter;
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+  BCCommon.Options.Container, BCCommon.Frames.Options.Base, sCheckBox, BCControls.Panel, sPanel, sFrameAdapter,
+  acSlider, sLabel;
 
 type
   TOptionsCompareFrame = class(TBCOptionsBaseFrame)
     Panel: TBCPanel;
-    IgnoreCaseCheckBox: TBCCheckBox;
-    IgnoreBlanksCheckBox: TBCCheckBox;
+    StickyLabelIgnoreCase: TsStickyLabel;
+    SliderIgnoreCase: TsSlider;
+    SliderIgnoreBlanks: TsSlider;
+    StickyLabelIgnoreBlanks: TsStickyLabel;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -24,6 +27,9 @@ implementation
 
 {$R *.dfm}
 
+uses
+  BCCommon.Utils;
+
 var
   FOptionsCompareFrame: TOptionsCompareFrame;
 
@@ -32,6 +38,7 @@ begin
   if not Assigned(FOptionsCompareFrame) then
     FOptionsCompareFrame := TOptionsCompareFrame.Create(AOwner);
   Result := FOptionsCompareFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsCompareFrame.Destroy;
@@ -42,14 +49,14 @@ end;
 
 procedure TOptionsCompareFrame.PutData;
 begin
-  OptionsContainer.CompareIgnoreCase := IgnoreCaseCheckBox.Checked;
-  OptionsContainer.CompareIgnoreBlanks := IgnoreBlanksCheckBox.Checked;
+  OptionsContainer.CompareIgnoreCase := SliderIgnoreCase.SliderOn;
+  OptionsContainer.CompareIgnoreBlanks := SliderIgnoreBlanks.SliderOn;
 end;
 
 procedure TOptionsCompareFrame.GetData;
 begin
-  IgnoreCaseCheckBox.Checked := OptionsContainer.CompareIgnoreCase;
-  IgnoreBlanksCheckBox.Checked := OptionsContainer.CompareIgnoreBlanks;
+  SliderIgnoreCase.SliderOn := OptionsContainer.CompareIgnoreCase;
+  SliderIgnoreBlanks.SliderOn := OptionsContainer.CompareIgnoreBlanks;
 end;
 
 end.

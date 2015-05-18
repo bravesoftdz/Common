@@ -22,7 +22,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = TabSheetAndOrKeyword
+      ActivePage = TabSheetSubquery
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -35,7 +35,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       TabOrder = 0
       TabMargin = 2
       SkinData.SkinSection = 'PAGECONTROL'
-      ActivePageCaption = 'AND/OR keyword'
+      ActivePageCaption = 'Subquery'
       HoldShiftToDragDrop = False
       TabDragDrop = False
       object TabSheetColumnList: TsTabSheet
@@ -48,6 +48,51 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         ParentFont = False
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        object StickyLabelAlignAlias: TsStickyLabel
+          Left = 9
+          Top = 99
+          Width = 170
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          AutoSize = False
+          Caption = 'Align alias'
+          ParentColor = False
+          AttachTo = SliderAlignAlias
+          Gap = 8
+        end
+        object StickyLabelColumnInNewLine: TsStickyLabel
+          Left = 9
+          Top = 122
+          Width = 170
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          AutoSize = False
+          Caption = 'Columns in new line'
+          ParentColor = False
+          AttachTo = SliderColumnInNewLine
+          Gap = 8
+        end
+        object StickyLabelTreatDistinctAsVirtualColumn: TsStickyLabel
+          Left = 9
+          Top = 145
+          Width = 170
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          AutoSize = False
+          Caption = 'Treat DISTINCT as virtual column'
+          ParentColor = False
+          AttachTo = SliderTreatDistinctAsVirtualColumn
+          Gap = 8
+        end
         object ComboBoxColumnListStyle: TBCComboBox
           Left = 9
           Top = 20
@@ -104,56 +149,80 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           ItemIndex = -1
           TabOrder = 1
         end
-        object CheckBoxAlignAlias: TBCCheckBox
-          Left = 9
-          Top = 93
-          Width = 67
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'Align alias'
-          Checked = True
-          State = cbChecked
+        object SliderAlignAlias: TsSlider
+          Left = 187
+          Top = 95
+          Width = 50
+          AutoSize = True
           TabOrder = 2
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
-        object CheckBoxColumnInNewLine: TBCCheckBox
-          Left = 9
-          Top = 113
-          Width = 113
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'Columns in new line'
-          Checked = True
-          State = cbChecked
+        object SliderColumnInNewLine: TsSlider
+          Left = 187
+          Top = 118
+          Width = 50
+          AutoSize = True
           TabOrder = 3
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
-        object CheckBoxTreatDistinctAsVirtualColumn: TBCCheckBox
-          Left = 9
-          Top = 133
-          Width = 179
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'Treat DISTINCT as virtual column'
-          Checked = True
-          State = cbChecked
+        object SliderTreatDistinctAsVirtualColumn: TsSlider
+          Left = 187
+          Top = 141
+          Width = 50
+          AutoSize = True
           TabOrder = 4
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
       end
       object TabSheetSubquery: TsTabSheet
@@ -161,73 +230,165 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         ImageIndex = 1
         SkinData.CustomColor = False
         SkinData.CustomFont = False
-        object CheckBoxNewLineAfterIn: TBCCheckBox
+        object StickyLabelNewLineAfterIn: TsStickyLabel
           Left = 9
-          Top = 5
-          Width = 101
-          Height = 20
+          Top = 13
+          Width = 190
+          Height = 13
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
+          AutoSize = False
           Caption = 'New line after IN'
-          Checked = True
-          State = cbChecked
-          TabOrder = 0
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          ParentColor = False
+          AttachTo = SliderNewLineAfterIn
+          Gap = 8
         end
-        object CheckBoxNewLineAfterExists: TBCCheckBox
+        object StickyLabelNewLineAfterExists: TsStickyLabel
           Left = 9
-          Top = 25
-          Width = 124
-          Height = 20
+          Top = 36
+          Width = 190
+          Height = 13
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
+          AutoSize = False
           Caption = 'New line after EXISTS'
-          Checked = True
-          State = cbChecked
-          TabOrder = 1
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          ParentColor = False
+          AttachTo = SliderNewLineAfterExists
+          Gap = 8
         end
-        object CheckBoxNewlineAfterComparisonOperator: TBCCheckBox
+        object StickyLabelNewlineAfterComparisonOperator: TsStickyLabel
           Left = 9
-          Top = 45
-          Width = 189
-          Height = 20
+          Top = 59
+          Width = 190
+          Height = 13
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
+          AutoSize = False
           Caption = 'New line after comparison operator'
-          Checked = True
-          State = cbChecked
-          TabOrder = 2
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          ParentColor = False
+          AttachTo = SliderNewlineAfterComparisonOperator
+          Gap = 8
         end
-        object CheckBoxNewlineBeforeComparisonOperator: TBCCheckBox
+        object StickyLabelNewlineBeforeComparisonOperator: TsStickyLabel
           Left = 9
-          Top = 65
-          Width = 197
-          Height = 20
+          Top = 82
+          Width = 190
+          Height = 13
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
+          AutoSize = False
           Caption = 'New line before comparison operator'
-          Checked = True
-          State = cbChecked
+          ParentColor = False
+          AttachTo = SliderNewlineBeforeComparisonOperator
+          Gap = 8
+        end
+        object SliderNewLineAfterIn: TsSlider
+          Left = 207
+          Top = 9
+          Width = 50
+          AutoSize = True
+          TabOrder = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
+        end
+        object SliderNewLineAfterExists: TsSlider
+          Left = 207
+          Top = 32
+          Width = 50
+          AutoSize = True
+          TabOrder = 1
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
+        end
+        object SliderNewlineAfterComparisonOperator: TsSlider
+          Left = 207
+          Top = 55
+          Width = 50
+          AutoSize = True
+          TabOrder = 2
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
+        end
+        object SliderNewlineBeforeComparisonOperator: TsSlider
+          Left = 207
+          Top = 78
+          Width = 50
+          AutoSize = True
           TabOrder = 3
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
       end
       object TabSheetIntoClause: TsTabSheet
@@ -235,22 +396,44 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         ImageIndex = 2
         SkinData.CustomColor = False
         SkinData.CustomFont = False
-        object CheckBoxIntoClauseInNewLine: TBCCheckBox
-          Left = 9
-          Top = 5
-          Width = 131
-          Height = 20
+        object StickyLabelIntoClauseInNewLine: TsStickyLabel
+          Left = 11
+          Top = 13
+          Width = 111
+          Height = 13
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
           Caption = 'INTO clause in new line'
-          Checked = True
-          State = cbChecked
+          ParentColor = False
+          AttachTo = SliderIntoClauseInNewLine
+          Gap = 8
+        end
+        object SliderIntoClauseInNewLine: TsSlider
+          Left = 130
+          Top = 9
+          Width = 50
+          AutoSize = True
           TabOrder = 0
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
       end
       object TabSheetFromJoinClause: TsTabSheet
@@ -264,6 +447,81 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         ParentFont = False
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        object StickyLabelFromClauseInNewLine: TsStickyLabel
+          Left = 9
+          Top = 56
+          Width = 190
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          AutoSize = False
+          Caption = 'FROM clause in new line'
+          ParentColor = False
+          AttachTo = SliderFromClauseInNewLine
+          Gap = 8
+        end
+        object StickyLabelJoinClauseInNewLine: TsStickyLabel
+          Left = 9
+          Top = 79
+          Width = 190
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          AutoSize = False
+          Caption = 'JOIN clause in new line'
+          ParentColor = False
+          AttachTo = SliderJoinClauseInNewLine
+          Gap = 8
+        end
+        object StickyLabelAlignJoinWithFromKeyword: TsStickyLabel
+          Left = 9
+          Top = 102
+          Width = 190
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          AutoSize = False
+          Caption = 'Align JOIN with FROM keyword'
+          ParentColor = False
+          AttachTo = SliderAlignJoinWithFromKeyword
+          Gap = 8
+        end
+        object StickyLabelAlignAndOrWithOnInJoinClause: TsStickyLabel
+          Left = 9
+          Top = 125
+          Width = 190
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          AutoSize = False
+          Caption = 'Align AND/OR with ON in JOIN clause '
+          ParentColor = False
+          AttachTo = SliderAlignAndOrWithOnInJoinClause
+          Gap = 8
+        end
+        object StickyLabelAlignAliasInFromClause: TsStickyLabel
+          Left = 9
+          Top = 148
+          Width = 190
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          AutoSize = False
+          Caption = 'Align alias in FROM clause'
+          ParentColor = False
+          AttachTo = SliderAlignAliasInFromClause
+          Gap = 8
+        end
         object ComboBoxFromClauseStyle: TBCComboBox
           Left = 9
           Top = 23
@@ -292,90 +550,130 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           ItemIndex = -1
           TabOrder = 0
         end
-        object CheckBoxFromClauseInNewLine: TBCCheckBox
-          Left = 9
+        object SliderFromClauseInNewLine: TsSlider
+          Left = 207
           Top = 52
-          Width = 135
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'FROM clause in new line'
-          Checked = True
-          State = cbChecked
+          Width = 50
+          AutoSize = True
           TabOrder = 1
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
-        object CheckBoxJoinClauseInNewLine: TBCCheckBox
-          Left = 9
-          Top = 72
-          Width = 130
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'JOIN clause in new line'
-          Checked = True
-          State = cbChecked
+        object SliderJoinClauseInNewLine: TsSlider
+          Left = 207
+          Top = 75
+          Width = 50
+          AutoSize = True
           TabOrder = 2
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
-        object CheckBoxAlignJoinWithFromKeyword: TBCCheckBox
-          Left = 9
-          Top = 92
-          Width = 169
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'Align JOIN with FROM keyword'
-          Checked = True
-          State = cbChecked
+        object SliderAlignJoinWithFromKeyword: TsSlider
+          Left = 207
+          Top = 98
+          Width = 50
+          AutoSize = True
           TabOrder = 3
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
-        object CheckBoxAlignAndOrWithOnInJoinClause: TBCCheckBox
-          Left = 9
-          Top = 112
-          Width = 201
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'Align AND/OR with ON in JOIN clause '
-          Checked = True
-          State = cbChecked
+        object SliderAlignAndOrWithOnInJoinClause: TsSlider
+          Left = 207
+          Top = 121
+          Width = 50
+          AutoSize = True
           TabOrder = 4
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
-        object CheckBoxAlignAliasInFromClause: TBCCheckBox
-          Left = 9
-          Top = 132
-          Width = 143
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'Align alias in FROM clause'
-          Checked = True
-          State = cbChecked
+        object SliderAlignAliasInFromClause: TsSlider
+          Left = 207
+          Top = 144
+          Width = 50
+          AutoSize = True
           TabOrder = 5
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
       end
       object TabSheetAndOrKeyword: TsTabSheet
@@ -383,6 +681,51 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         ImageIndex = 4
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        object StickyLabelAndOrUnderWhere: TsStickyLabel
+          Left = 9
+          Top = 56
+          Width = 170
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          AutoSize = False
+          Caption = 'AND/OR under where'
+          ParentColor = False
+          AttachTo = SliderAndOrUnderWhere
+          Gap = 8
+        end
+        object StickyLabelWhereClauseInNewLine: TsStickyLabel
+          Left = 9
+          Top = 79
+          Width = 170
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          AutoSize = False
+          Caption = 'WHERE clause in new line'
+          ParentColor = False
+          AttachTo = SliderWhereClauseInNewLine
+          Gap = 8
+        end
+        object StickyLabelWhereClauseAlignExpr: TsStickyLabel
+          Left = 9
+          Top = 102
+          Width = 170
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          AutoSize = False
+          Caption = 'WHERE clause align expr'
+          ParentColor = False
+          AttachTo = SliderWhereClauseAlignExpr
+          Gap = 8
+        end
         object ComboBoxAndOrLineBreak: TBCComboBox
           Left = 9
           Top = 23
@@ -411,56 +754,80 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           ItemIndex = -1
           TabOrder = 0
         end
-        object CheckBoxAndOrUnderWhere: TBCCheckBox
-          Left = 9
+        object SliderAndOrUnderWhere: TsSlider
+          Left = 187
           Top = 52
-          Width = 124
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'AND/OR under where'
-          Checked = True
-          State = cbChecked
+          Width = 50
+          AutoSize = True
           TabOrder = 1
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
-        object CheckBoxWhereClauseInNewline: TBCCheckBox
-          Left = 9
-          Top = 72
-          Width = 142
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'WHERE clause in new line'
-          Checked = True
-          State = cbChecked
+        object SliderWhereClauseInNewLine: TsSlider
+          Left = 187
+          Top = 75
+          Width = 50
+          AutoSize = True
           TabOrder = 2
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
-        object CheckBoxWhereClauseAlignExpr: TBCCheckBox
-          Left = 9
-          Top = 92
-          Width = 139
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'WHERE clause align expr'
-          Checked = True
-          State = cbChecked
+        object SliderWhereClauseAlignExpr: TsSlider
+          Left = 187
+          Top = 98
+          Width = 50
+          AutoSize = True
           TabOrder = 3
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
       end
       object TabSheetGroupByClause: TsTabSheet
@@ -468,6 +835,20 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         ImageIndex = 5
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        object StickyLabelGroupByClauseInNewLine: TsStickyLabel
+          Left = 9
+          Top = 52
+          Width = 136
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = 'GROUP BY clause in new line'
+          ParentColor = False
+          AttachTo = SliderGroupByClauseInNewLine
+          Gap = 8
+        end
         object ComboBoxGroupByClauseStyle: TBCComboBox
           Left = 9
           Top = 22
@@ -496,22 +877,30 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           ItemIndex = -1
           TabOrder = 0
         end
-        object CheckBoxGroupByClauseInNewLine: TBCCheckBox
-          Left = 9
-          Top = 52
-          Width = 156
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'GROUP BY clause in new line'
-          Checked = True
-          State = cbChecked
+        object SliderGroupByClauseInNewLine: TsSlider
+          Left = 153
+          Top = 48
+          Width = 50
+          AutoSize = True
           TabOrder = 1
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
       end
       object TabSheetHavingClause: TsTabSheet
@@ -519,22 +908,44 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         ImageIndex = 6
         SkinData.CustomColor = False
         SkinData.CustomFont = False
-        object CheckBoxHavingClauseInNewLine: TBCCheckBox
-          Left = 9
-          Top = 5
-          Width = 147
-          Height = 20
+        object StickyLabelHavingClauseInNewLine: TsStickyLabel
+          Left = 11
+          Top = 15
+          Width = 124
+          Height = 13
           Margins.Left = 4
           Margins.Top = 4
           Margins.Right = 4
           Margins.Bottom = 4
-          Caption = ' HAVING clause in new line'
-          Checked = True
-          State = cbChecked
+          Caption = 'HAVING clause in new line'
+          ParentColor = False
+          AttachTo = SliderHavingClauseInNewLine
+          Gap = 8
+        end
+        object SliderHavingClauseInNewLine: TsSlider
+          Left = 143
+          Top = 11
+          Width = 50
+          AutoSize = True
           TabOrder = 0
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
       end
       object TabSheetOrderByClause: TsTabSheet
@@ -542,6 +953,20 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         ImageIndex = 7
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        object StickyLabelOrderByClauseInNewLine: TsStickyLabel
+          Left = 11
+          Top = 54
+          Width = 136
+          Height = 13
+          Margins.Left = 4
+          Margins.Top = 4
+          Margins.Right = 4
+          Margins.Bottom = 4
+          Caption = 'ORDER BY clause in new line'
+          ParentColor = False
+          AttachTo = SliderOrderByClauseInNewLine
+          Gap = 8
+        end
         object ComboBoxOrderByClauseStyle: TBCComboBox
           Left = 9
           Top = 23
@@ -570,24 +995,36 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           ItemIndex = -1
           TabOrder = 0
         end
-        object CheckBoxOrderByClauseInNewLine: TBCCheckBox
-          Left = 9
-          Top = 52
-          Width = 156
-          Height = 20
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Caption = 'ORDER BY clause in new line'
-          Checked = True
-          State = cbChecked
+        object SliderOrderByClauseInNewLine: TsSlider
+          Left = 155
+          Top = 50
+          Width = 50
+          AutoSize = True
           TabOrder = 1
-          SkinData.SkinSection = 'CHECKBOX'
-          ImgChecked = 0
-          ImgUnchecked = 0
+          BoundLabel.Indent = 0
+          BoundLabel.Font.Charset = DEFAULT_CHARSET
+          BoundLabel.Font.Color = clWindowText
+          BoundLabel.Font.Height = -11
+          BoundLabel.Font.Name = 'Tahoma'
+          BoundLabel.Font.Style = []
+          BoundLabel.Layout = sclLeft
+          BoundLabel.MaxWidth = 0
+          BoundLabel.UseSkinColor = True
+          ImageIndexOff = 0
+          ImageIndexOn = 0
+          FontOn.Charset = DEFAULT_CHARSET
+          FontOn.Color = clWindowText
+          FontOn.Height = -11
+          FontOn.Name = 'Tahoma'
+          FontOn.Style = []
+          SliderCaptionOn = 'Yes'
+          SliderCaptionOff = 'No'
         end
       end
     end
+  end
+  inherited FrameAdapter: TsFrameAdapter
+    Left = 128
+    Top = 144
   end
 end

@@ -3,18 +3,20 @@ unit BCCommon.Frames.Options.Editor.RightMargin;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.CheckBox,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls,
   BCControls.Edit, Vcl.Buttons, BCCommon.Frames.Options.Base,
   sCheckBox, sEdit, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsEditorRightMarginFrame = class(TBCOptionsBaseFrame)
-    CheckBoxMouseMove: TBCCheckBox;
-    CheckBoxShowMovingHint: TBCCheckBox;
     EditPosition: TBCEdit;
     Panel: TBCPanel;
     StickyLabelVisible: TsStickyLabel;
     SliderVisible: TsSlider;
+    StickyLabelMouseMove: TsStickyLabel;
+    SliderMouseMove: TsSlider;
+    SliderShowMovingHint: TsSlider;
+    StickyLabelShowMovingHint: TsStickyLabel;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -29,7 +31,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.SysUtils, BCCommon.Options.Container;
+  System.SysUtils, BCCommon.Utils, BCCommon.Options.Container;
 
 var
   FOptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame;
@@ -39,6 +41,7 @@ begin
   if not Assigned(FOptionsEditorRightMarginFrame) then
     FOptionsEditorRightMarginFrame := TOptionsEditorRightMarginFrame.Create(AOwner);
   Result := FOptionsEditorRightMarginFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsEditorRightMarginFrame.Destroy;
@@ -50,16 +53,16 @@ end;
 procedure TOptionsEditorRightMarginFrame.PutData;
 begin
   OptionsContainer.RightMarginVisible := SliderVisible.SliderOn;
-  OptionsContainer.RightMarginMouseMove := CheckBoxMouseMove.Checked;
-  OptionsContainer.RightMarginShowMovingHint := CheckBoxShowMovingHint.Checked;
+  OptionsContainer.RightMarginMouseMove := SliderMouseMove.SliderOn;
+  OptionsContainer.RightMarginShowMovingHint := SliderShowMovingHint.SliderOn;
   OptionsContainer.RightMarginPosition := StrToIntDef(EditPosition.Text, 80);
 end;
 
 procedure TOptionsEditorRightMarginFrame.GetData;
 begin
   SliderVisible.SliderOn := OptionsContainer.RightMarginVisible;
-  CheckBoxMouseMove.Checked := OptionsContainer.RightMarginMouseMove;
-  CheckBoxShowMovingHint.Checked := OptionsContainer.RightMarginShowMovingHint;
+  SliderMouseMove.SliderOn := OptionsContainer.RightMarginMouseMove;
+  SliderShowMovingHint.SliderOn := OptionsContainer.RightMarginShowMovingHint;
   EditPosition.Text := IntToStr(OptionsContainer.RightMarginPosition);
 end;
 

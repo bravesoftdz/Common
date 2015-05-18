@@ -64,13 +64,12 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
       object StickyLabelNonblinkingCaretEnabled: TsStickyLabel
         Left = 10
         Top = 20
-        Width = 140
+        Width = 38
         Height = 13
         Margins.Left = 4
         Margins.Top = 4
         Margins.Right = 4
         Margins.Bottom = 4
-        AutoSize = False
         Caption = 'Enabled'
         ParentColor = False
         AttachTo = SliderNonblinkingCaretEnabled
@@ -132,7 +131,7 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         Text = 'clWindow'
       end
       object SliderNonblinkingCaretEnabled: TsSlider
-        Left = 158
+        Left = 56
         Top = 16
         Width = 50
         AutoSize = True

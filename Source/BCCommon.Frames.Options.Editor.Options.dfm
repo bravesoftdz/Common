@@ -1,12 +1,13 @@
 inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
-  Width = 118
-  Height = 180
+  Width = 283
+  Height = 363
+  AutoSize = False
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 114
-    Height = 180
+    Width = 243
+    Height = 349
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -22,43 +23,114 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     ParentFont = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object CheckBoxAutoIndent: TBCCheckBox
+    object StickyLabelAutoIndent: TsStickyLabel
       Left = 0
-      Top = 0
-      Width = 79
-      Height = 20
+      Top = 4
+      Width = 120
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Auto indent'
-      Checked = True
-      State = cbChecked
-      TabOrder = 0
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      AutoSize = False
+      Caption = 'Auto indent'
+      ParentColor = False
+      AttachTo = SliderAutoIndent
+      Gap = 8
     end
-    object CheckBoxTrimTrailingSpaces: TBCCheckBox
+    object StickyLabelAutoSave: TsStickyLabel
       Left = 0
-      Top = 100
-      Width = 114
-      Height = 20
+      Top = 27
+      Width = 120
+      Height = 13
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      Caption = ' Trim trailing spaces'
-      Checked = True
-      State = cbChecked
-      TabOrder = 4
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      AutoSize = False
+      Caption = 'Auto save'
+      ParentColor = False
+      AttachTo = SliderAutoSave
+      Gap = 8
+    end
+    object StickyLabelDragDropEditing: TsStickyLabel
+      Left = 0
+      Top = 50
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Drag drop editing'
+      ParentColor = False
+      AttachTo = SliderDragDropEditing
+      Gap = 8
+    end
+    object StickyLabelDropFiles: TsStickyLabel
+      Left = 0
+      Top = 73
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Drop files'
+      ParentColor = False
+      AttachTo = SliderDropFiles
+      Gap = 8
+    end
+    object StickyLabelGroupUndo: TsStickyLabel
+      Left = 0
+      Top = 96
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Group undo'
+      ParentColor = False
+      AttachTo = SliderGroupUndo
+      Gap = 8
+    end
+    object StickyLabelTrimTrailingSpaces: TsStickyLabel
+      Left = 0
+      Top = 119
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Trim trailing spaces'
+      ParentColor = False
+      AttachTo = SliderTrimTrailingSpaces
+      Gap = 8
+    end
+    object StickyLabelUndoAfterSave: TsStickyLabel
+      Left = 0
+      Top = 142
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Undo after save'
+      ParentColor = False
+      AttachTo = SliderUndoAfterSave
+      Gap = 8
     end
     object EditLineSpacing: TBCEdit
       Left = 0
-      Top = 159
+      Top = 181
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -66,7 +138,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Right = 4
       Margins.Bottom = 4
       AutoSize = False
-      TabOrder = 7
+      TabOrder = 0
       Text = '0'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -87,86 +159,184 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       ErrorColor = 14803198
       NumbersAllowNegative = False
     end
-    object CheckBoxAutoSave: TBCCheckBox
-      Left = 0
-      Top = 20
-      Width = 72
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Auto save'
+    object SliderAutoIndent: TsSlider
+      Left = 128
+      Top = 0
+      Width = 50
+      AutoSize = True
       TabOrder = 1
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxUndoAfterSave: TBCCheckBox
-      Left = 0
-      Top = 120
-      Width = 101
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Undo after save'
-      TabOrder = 6
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
-    end
-    object CheckBoxDragDropEditing: TBCCheckBox
-      Left = 0
-      Top = 40
-      Width = 106
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Drag drop editing'
-      Checked = True
-      State = cbChecked
+    object SliderAutoSave: TsSlider
+      Left = 128
+      Top = 23
+      Width = 50
+      AutoSize = True
       TabOrder = 2
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxDropFiles: TBCCheckBox
-      Left = 0
-      Top = 60
-      Width = 68
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Drop files'
+    object SliderDragDropEditing: TsSlider
+      Left = 128
+      Top = 46
+      Width = 50
+      AutoSize = True
       TabOrder = 3
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
-    object CheckBoxGroupUndo: TBCCheckBox
-      Left = 0
-      Top = 80
-      Width = 79
-      Height = 20
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      Caption = ' Group undo'
+    object SliderDropFiles: TsSlider
+      Left = 128
+      Top = 69
+      Width = 50
+      AutoSize = True
+      TabOrder = 4
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderGroupUndo: TsSlider
+      Left = 128
+      Top = 92
+      Width = 50
+      AutoSize = True
       TabOrder = 5
-      SkinData.SkinSection = 'CHECKBOX'
-      ImgChecked = 0
-      ImgUnchecked = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderTrimTrailingSpaces: TsSlider
+      Left = 128
+      Top = 115
+      Width = 50
+      AutoSize = True
+      TabOrder = 6
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderUndoAfterSave: TsSlider
+      Left = 128
+      Top = 138
+      Width = 50
+      AutoSize = True
+      TabOrder = 7
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
   inherited FrameAdapter: TsFrameAdapter
-    Left = 72
-    Top = 50
+    Left = 134
+    Top = 154
   end
 end

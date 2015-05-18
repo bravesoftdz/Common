@@ -4,17 +4,17 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  BCControls.CheckBox, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ActnList, System.Actions, BCCommon.Options.Container,
-  BCCommon.Frames.Options.Base, sCheckBox, BCControls.Panel, sPanel, sFrameAdapter, sEdit, BCControls.Edit, sComboBox,
-  sFontCtrls, BCControls.ComboBox;
+  Vcl.Buttons, Vcl.ExtCtrls, Vcl.ActnList, System.Actions, BCCommon.Options.Container,
+  BCCommon.Frames.Options.Base, BCControls.Panel, sPanel, sFrameAdapter, sEdit, BCControls.Edit, sComboBox,
+  sFontCtrls, BCControls.ComboBox, acSlider, sLabel;
 
 type
   TOptionsStatusBarFrame = class(TBCOptionsBaseFrame)
-    ActionList: TActionList;
     EditFontSize: TBCEdit;
     FontComboBoxFont: TBCFontComboBox;
     Panel: TBCPanel;
-    UseSystemFontCheckBox: TBCCheckBox;
+    StickyLabelUseSystemFont: TsStickyLabel;
+    SliderUseSystemFont: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -28,6 +28,9 @@ implementation
 
 {$R *.dfm}
 
+uses
+  BCCommon.Utils;
+
 var
   FOptionsStatusBarFrame: TOptionsStatusBarFrame;
 
@@ -36,6 +39,7 @@ begin
   if not Assigned(FOptionsStatusBarFrame) then
     FOptionsStatusBarFrame := TOptionsStatusBarFrame.Create(AOwner);
   Result := FOptionsStatusBarFrame;
+  AlignSliders(Result.Panel);
 end;
 
 destructor TOptionsStatusBarFrame.Destroy;
@@ -46,14 +50,14 @@ end;
 
 procedure TOptionsStatusBarFrame.PutData;
 begin
-  OptionsContainer.StatusBarUseSystemFont := UseSystemFontCheckBox.Checked;
+  OptionsContainer.StatusBarUseSystemFont := SliderUseSystemFont.SliderOn;
   OptionsContainer.StatusBarFontName := FontComboBoxFont.Text;
   OptionsContainer.StatusBarFontSize := EditFontSize.ValueInt;
 end;
 
 procedure TOptionsStatusBarFrame.GetData;
 begin
-  UseSystemFontCheckBox.Checked := OptionsContainer.StatusBarUseSystemFont;
+  SliderUseSystemFont.SliderOn := OptionsContainer.StatusBarUseSystemFont;
   FontComboBoxFont.ItemIndex := FontComboBoxFont.Items.IndexOf(OptionsContainer.StatusBarFontName);
   EditFontSize.ValueInt := OptionsContainer.StatusBarFontSize;
 end;
