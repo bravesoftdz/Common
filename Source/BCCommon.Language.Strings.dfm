@@ -349,6 +349,11 @@ object LanguageDataModule: TLanguageDataModule
           'Pilcrow')
       end
       item
+        Name = 'Position'
+        Strings.Strings = (
+          'Position: %d')
+      end
+      item
         Name = 'PreviewDocumentPage'
         Strings.Strings = (
           'Page: $PAGENUM$ of $PAGECOUNT$')

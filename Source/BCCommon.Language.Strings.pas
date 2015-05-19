@@ -28,6 +28,7 @@ type
     function GetErrorMessage(Name: string): string;
     function GetFileTypes(Name: string): string;
     function GetMessage(Name: string): string;
+    function GetPAskYesOrNo(Name: string): PWideChar;
     function GetPColor(AIndex: Integer): PWideChar;
     function GetPConstant(Name: string): PWideChar;
     function GetPDialog(AIndex: Integer): PWideChar;
@@ -47,7 +48,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Winapi.Windows, Vcl.Consts, Vcl.ActnList, System.IniFiles, BCControls.Language;
+  Winapi.Windows, Vcl.Consts, Vcl.ActnList, System.IniFiles, BCControls.Language, BCEditor.Language;
 
 procedure HookResourceString(aResStringRec: PResStringRec; aNewStr: PChar);
 var
@@ -101,6 +102,7 @@ begin
   finally
     BigIniFile.Free;
   end;
+
   { colors }
   HookResourceString(@SNameBlack, LanguageDataModule.GetPColor(0));
   HookResourceString(@SNameMaroon, LanguageDataModule.GetPColor(1));
@@ -178,6 +180,11 @@ begin
   HookResourceString(@SBCControlsFileControlEndEditInvalidName, LanguageDataModule.GetPConstant('InvalidName'));
   HookResourceString(@SBCControlsFileControlEndEditRename, LanguageDataModule.GetPConstant('Rename'));
   HookResourceString(@SBCControlsFileControlEndEditRenameFailed, LanguageDataModule.GetPConstant('RenameFailed'));
+  HookResourceString(@SBCEditorScrollInfoTopLine, LanguageDataModule.GetPConstant('TopLine'));
+  HookResourceString(@SBCEditorSearchStringNotFound, LanguageDataModule.GetPAskYesOrNo('SearchStringNotFound'));
+  HookResourceString(@SBCEditorSearchStringNotFound, LanguageDataModule.GetPAskYesOrNo('SearchMatchNotFound'));
+  HookResourceString(@SBCEditorRightMarginPosition, LanguageDataModule.GetPConstant('Position'));
+
 end;
 
 function TLanguageDataModule.GetYesOrNoMessage(Name: string): string;
@@ -218,6 +225,16 @@ end;
 function TLanguageDataModule.GetSQLFormatter(Name: string): string;
 begin
   Result := Trim(MultiStringHolderSQLFormatter.StringsByName[Name].Text);
+end;
+
+function TLanguageDataModule.GetPAskYesOrNo(Name: string): PWideChar;
+var
+  LConstant: string;
+begin
+  LConstant := GetYesOrNoMessage(Name);
+  GetMem(Result, SizeOf(WideChar) * Succ(Length(LConstant)));
+  StringToWideChar(LConstant, Result, Length(LConstant) + 1);
+  FHookedConstantsList.Add(Result);
 end;
 
 function TLanguageDataModule.GetPColor(AIndex: Integer): PWideChar;

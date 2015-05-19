@@ -52,14 +52,9 @@ object PrintPreviewDialog: TPrintPreviewDialog
   TextHeight = 13
   object StatusBar: TBCStatusBar
     Left = 0
-    Top = 502
+    Top = 504
     Width = 869
-    Height = 21
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
-    Font.Style = []
+    Height = 19
     Panels = <
       item
         Width = 120
@@ -69,8 +64,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       end>
     ParentShowHint = False
     ShowHint = True
-    UseSystemFont = False
     SkinData.SkinSection = 'STATUSBAR'
+    ExplicitTop = 502
   end
   object PanelButtons: TBCPanel
     Left = 0
@@ -479,17 +474,18 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Left = 0
     Top = 62
     Width = 869
-    Height = 440
+    Height = 442
     Align = alClient
     BevelOuter = bvLowered
     TabOrder = 2
     SkinData.SkinSection = 'CHECKBOX'
+    ExplicitHeight = 440
     object PrintPreview: TBCEditorPrintPreview
       AlignWithMargins = True
       Left = 3
       Top = 1
       Width = 863
-      Height = 436
+      Height = 438
       Margins.Left = 2
       Margins.Top = 0
       Margins.Right = 2
@@ -499,6 +495,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
       OnMouseDown = PrintPreviewMouseDown
       OnPreviewPage = PrintPreviewPreviewPage
       ScaleMode = pscPageWidth
+      ExplicitHeight = 436
     end
   end
   object ActionList: TActionList

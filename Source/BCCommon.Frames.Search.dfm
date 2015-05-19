@@ -1,6 +1,8 @@
 inherited BCSearchFrame: TBCSearchFrame
   Width = 635
   Height = 21
+  ExplicitWidth = 635
+  ExplicitHeight = 21
   object SearchPanel: TBCPanel [0]
     Left = 0
     Top = 0
@@ -129,7 +131,7 @@ inherited BCSearchFrame: TBCSearchFrame
         Left = 269
         Top = 0
         Width = 12
-        Height = 21
+        Height = 24
         Align = alRight
         ParentFont = False
         Layout = tlCenter
