@@ -27,7 +27,7 @@ type
     StickyLabelCaseSensitive: TsStickyLabel;
     BCPanel1: TBCPanel;
     StickyLabelIncludeSubdirectories: TsStickyLabel;
-    SliderIncludeSubdirectories: TsSlider;
+    SliderIncludeSubDirectories: TsSlider;
     procedure ComboBoxTextToFindKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ActionFolderButtonClickExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -182,6 +182,7 @@ begin
   with TIniFile.Create(GetIniFilename) do
   try
     SliderCaseSensitive.SliderOn := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
+    SliderIncludeSubDirectories.SliderOn := ReadBool('FindInFilesOptions', 'IncludeSubDirectories', True);
   finally
     Free;
   end;
@@ -192,6 +193,7 @@ begin
   with TIniFile.Create(GetIniFilename) do
   try
     WriteBool('FindInFilesOptions', 'CaseSensitive', SliderCaseSensitive.SliderOn);
+    WriteBool('FindInFilesOptions', 'IncludeSubDirectories', SliderIncludeSubDirectories.SliderOn);
   finally
     Free;
   end;

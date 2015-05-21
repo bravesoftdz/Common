@@ -51,6 +51,7 @@ end;
 
 procedure TBCForm.FormCreate(Sender: TObject);
 begin
+  inherited;
   SkinManager.SkinName := 'MetroUI';
   SkinManager.Active := True;
   CreateProgressBar;

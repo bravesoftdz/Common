@@ -279,10 +279,10 @@ object FindInFilesDialog: TFindInFilesDialog
         Width = 105
         Height = 13
         Caption = 'Include subdirectories'
-        AttachTo = SliderIncludeSubdirectories
+        AttachTo = SliderIncludeSubDirectories
         Gap = 8
       end
-      object SliderIncludeSubdirectories: TsSlider
+      object SliderIncludeSubDirectories: TsSlider
         Left = 123
         Top = 6
         Width = 50
@@ -304,7 +304,6 @@ object FindInFilesDialog: TFindInFilesDialog
         FontOn.Height = -11
         FontOn.Name = 'Tahoma'
         FontOn.Style = []
-        SliderOn = False
         SliderCaptionOn = 'Yes'
         SliderCaptionOff = 'No'
       end
