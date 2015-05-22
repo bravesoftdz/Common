@@ -1,13 +1,15 @@
 inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
-  Width = 451
-  Height = 304
+  Width = 541
+  Height = 365
   Align = alClient
+  ExplicitWidth = 541
+  ExplicitHeight = 365
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 447
-    Height = 304
+    Width = 537
+    Height = 365
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -27,17 +29,18 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object Splitter: TsSplitter
       Left = 0
       Top = 213
-      Width = 447
+      Width = 537
       Height = 6
       Cursor = crVSplit
       Align = alTop
       ShowGrip = True
       SkinData.SkinSection = 'SPLITTER'
+      ExplicitWidth = 447
     end
     object PanelTop: TBCPanel
       Left = 0
       Top = 0
-      Width = 447
+      Width = 537
       Height = 41
       Align = alTop
       BevelOuter = bvNone
@@ -48,7 +51,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       object ScrollBox: TBCScrollBox
         Left = 0
         Top = 0
-        Width = 447
+        Width = 537
         Height = 41
         Align = alClient
         BorderStyle = bsNone
@@ -174,8 +177,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object Editor: TBCEditor
       Left = 0
       Top = 219
-      Width = 447
-      Height = 85
+      Width = 537
+      Height = 146
       Cursor = crIBeam
       Margins.Left = 0
       Margins.Top = 5
@@ -185,6 +188,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Align = alClient
       Caret.NonBlinking.Enabled = False
       Caret.Options = []
+      CodeFolding.Colors.Indent = clBlack
       CodeFolding.Hint.Font.Charset = DEFAULT_CHARSET
       CodeFolding.Hint.Font.Color = clWindowText
       CodeFolding.Hint.Font.Height = -11
@@ -235,7 +239,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object PageControl: TBCPageControl
       Left = 0
       Top = 41
-      Width = 447
+      Width = 537
       Height = 172
       ActivePage = TabSheetUseSkinColor
       Align = alTop
@@ -799,7 +803,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             Width = 50
             AutoSize = True
             TabOrder = 0
-            OnClick = SliderSkinValueClick
             BoundLabel.Indent = 0
             BoundLabel.Font.Charset = DEFAULT_CHARSET
             BoundLabel.Font.Color = clWindowText
@@ -818,6 +821,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinForeground: TsSlider
             Left = 168
@@ -825,7 +829,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             Width = 50
             AutoSize = True
             TabOrder = 1
-            OnClick = SliderSkinValueClick
             BoundLabel.Indent = 0
             BoundLabel.Font.Charset = DEFAULT_CHARSET
             BoundLabel.Font.Color = clWindowText
@@ -844,6 +847,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinSelectionForeground: TsSlider
             Left = 168
@@ -851,7 +855,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             Width = 50
             AutoSize = True
             TabOrder = 2
-            OnClick = SliderSkinValueClick
             BoundLabel.Indent = 0
             BoundLabel.Font.Charset = DEFAULT_CHARSET
             BoundLabel.Font.Color = clWindowText
@@ -870,6 +873,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinLeftMarginBackground: TsSlider
             Left = 168
@@ -877,7 +881,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             Width = 50
             AutoSize = True
             TabOrder = 3
-            OnClick = SliderSkinValueClick
             BoundLabel.Indent = 0
             BoundLabel.Font.Charset = DEFAULT_CHARSET
             BoundLabel.Font.Color = clWindowText
@@ -896,6 +899,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinCodeFoldingBackground: TsSlider
             Left = 168
@@ -903,7 +907,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             Width = 50
             AutoSize = True
             TabOrder = 4
-            OnClick = SliderSkinValueClick
             BoundLabel.Indent = 0
             BoundLabel.Font.Charset = DEFAULT_CHARSET
             BoundLabel.Font.Color = clWindowText
@@ -922,6 +925,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinCompletionProposalBackground: TsSlider
             Left = 168
@@ -929,7 +933,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             Width = 50
             AutoSize = True
             TabOrder = 5
-            OnClick = SliderSkinValueClick
             BoundLabel.Indent = 0
             BoundLabel.Font.Charset = DEFAULT_CHARSET
             BoundLabel.Font.Color = clWindowText
@@ -948,10 +951,11 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            OnSliderChange = SliderSkinValueClick
           end
         end
         object PanelUseSkinColorRight: TBCPanel
-          Left = 215
+          Left = 305
           Top = 0
           Width = 218
           Height = 135
@@ -1046,7 +1050,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             Width = 50
             AutoSize = True
             TabOrder = 0
-            OnClick = SliderSkinValueClick
             BoundLabel.Indent = 0
             BoundLabel.Font.Charset = DEFAULT_CHARSET
             BoundLabel.Font.Color = clWindowText
@@ -1065,6 +1068,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinSelectionBackground: TsSlider
             Left = 168
@@ -1072,7 +1076,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             Width = 50
             AutoSize = True
             TabOrder = 1
-            OnClick = SliderSkinValueClick
             BoundLabel.Indent = 0
             BoundLabel.Font.Charset = DEFAULT_CHARSET
             BoundLabel.Font.Color = clWindowText
@@ -1091,6 +1094,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinBookmarkPanelBackground: TsSlider
             Left = 168
@@ -1098,7 +1102,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             Width = 50
             AutoSize = True
             TabOrder = 2
-            OnClick = SliderSkinValueClick
             BoundLabel.Indent = 0
             BoundLabel.Font.Charset = DEFAULT_CHARSET
             BoundLabel.Font.Color = clWindowText
@@ -1117,6 +1120,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinCodeFoldingHintBackground: TsSlider
             Left = 168
@@ -1124,7 +1128,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             Width = 50
             AutoSize = True
             TabOrder = 3
-            OnClick = SliderSkinValueClick
             BoundLabel.Indent = 0
             BoundLabel.Font.Charset = DEFAULT_CHARSET
             BoundLabel.Font.Color = clWindowText
@@ -1143,6 +1146,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinCompletionProposalSelectionBackground: TsSlider
             Left = 168
@@ -1150,7 +1154,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             Width = 50
             AutoSize = True
             TabOrder = 4
-            OnClick = SliderSkinValueClick
             BoundLabel.Indent = 0
             BoundLabel.Font.Charset = DEFAULT_CHARSET
             BoundLabel.Font.Color = clWindowText
@@ -1169,6 +1172,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            OnSliderChange = SliderSkinValueClick
           end
         end
       end

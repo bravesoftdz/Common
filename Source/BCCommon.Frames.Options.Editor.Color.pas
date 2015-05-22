@@ -210,7 +210,6 @@ end;
 procedure TOptionsEditorColorFrame.SliderSkinValueClick(Sender: TObject);
 begin
   inherited;
-
   LoadColors;
   SetSkinColors;
 end;
@@ -266,6 +265,9 @@ begin
   SliderSkinLeftMarginBackground.SliderOn := OptionsContainer.SkinLeftMarginBackground;
   SliderSkinSelectionBackground.SliderOn := OptionsContainer.SkinSelectionBackground;
   SliderSkinSelectionForeground.SliderOn := OptionsContainer.SkinSelectionForeground;
+
+  LoadColors;
+  SetSkinColors;
 end;
 
 procedure TOptionsEditorColorFrame.ColorComboBoxEditorColorChange(Sender: TObject);
@@ -405,7 +407,7 @@ begin
   FModified := False;
   ComboBoxHighlighter.Items := OptionsContainer.HighlighterStrings;
   ComboBoxHighlighter.ItemIndex := ComboBoxHighlighter.Items.IndexOf(OptionsContainer.DefaultHighlighter);
-  ComboBoxHighlighterChange(Self);
+  //ComboBoxHighlighterChange(Self);
   ComboBoxColor.Items := OptionsContainer.ColorStrings;
   ComboBoxColor.ItemIndex := ComboBoxColor.Items.IndexOf(OptionsContainer.DefaultColor);
   FFileName := ComboBoxColor.Text;
