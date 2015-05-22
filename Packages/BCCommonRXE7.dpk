@@ -100,6 +100,7 @@ contains
   BCCommon.Dialogs.InputQuery in '..\Source\BCCommon.Dialogs.InputQuery.pas' {InputQueryDialog},
   BigIni in '..\Source\BigIni.pas',
   Diff in '..\Source\Diff.pas',
-  IniPersist in '..\Source\IniPersist.pas';
+  IniPersist in '..\Source\IniPersist.pas',
+  BCCommon.Dialogs.ItemList in '..\Source\BCCommon.Dialogs.ItemList.pas' {ItemListDialog};
 
 end.

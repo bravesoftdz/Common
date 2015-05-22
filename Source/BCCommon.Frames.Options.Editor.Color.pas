@@ -33,7 +33,6 @@ type
     PageControl: TBCPageControl;
     Panel: TBCPanel;
     SaveDialog: TsSaveDialog;
-    ScrollBox: TBCScrollBox;
     SpeedButtonColor: TBCSpeedButton;
     Splitter: TsSplitter;
     TabSheetAuthor: TsTabSheet;
@@ -407,7 +406,6 @@ begin
   FModified := False;
   ComboBoxHighlighter.Items := OptionsContainer.HighlighterStrings;
   ComboBoxHighlighter.ItemIndex := ComboBoxHighlighter.Items.IndexOf(OptionsContainer.DefaultHighlighter);
-  //ComboBoxHighlighterChange(Self);
   ComboBoxColor.Items := OptionsContainer.ColorStrings;
   ComboBoxColor.ItemIndex := ComboBoxColor.Items.IndexOf(OptionsContainer.DefaultColor);
   FFileName := ComboBoxColor.Text;

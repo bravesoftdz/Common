@@ -2,6 +2,8 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
   Width = 451
   Height = 304
   Align = alClient
+  ExplicitWidth = 451
+  ExplicitHeight = 304
   object Panel: TBCPanel [0]
     Left = 0
     Top = 0
@@ -79,7 +81,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
       ParentColor = True
       TabOrder = 1
       SkinData.SkinSection = 'CHECKBOX'
-      object SpeedButtonDivider3: TBCSpeedButton
+      object SpeedButtonDivider1: TBCSpeedButton
         AlignWithMargins = True
         Left = 182
         Top = 6
@@ -102,7 +104,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         SkinData.SkinSection = 'SPEEDBUTTON'
         ImageIndex = 1
       end
-      object SpeedButtonDivider4: TBCSpeedButton
+      object SpeedButtonDivider2: TBCSpeedButton
         AlignWithMargins = True
         Left = 252
         Top = 6
@@ -125,7 +127,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         SkinData.SkinSection = 'SPEEDBUTTON'
         ImageIndex = 1
       end
-      object SpeedButtonHighlighter: TBCSpeedButton
+      object SpeedButtonDelete: TBCSpeedButton
         Left = 122
         Top = 2
         Width = 60
@@ -148,7 +150,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         ImageIndex = 22
         Images = ImagesDataModule.ImageList
       end
-      object SpeedButtonColors: TBCSpeedButton
+      object SpeedButtonAddDivider: TBCSpeedButton
         Left = 62
         Top = 2
         Width = 60
@@ -171,7 +173,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         ImageIndex = 127
         Images = ImagesDataModule.ImageList
       end
-      object SpeedButtonWordWrap: TBCSpeedButton
+      object SpeedButtonAddItem: TBCSpeedButton
         Left = 2
         Top = 2
         Width = 60
@@ -194,7 +196,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         ImageIndex = 18
         Images = ImagesDataModule.ImageList
       end
-      object SpeedButtonPrint: TBCSpeedButton
+      object SpeedButtonReset: TBCSpeedButton
         Left = 192
         Top = 2
         Width = 60
@@ -216,7 +218,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         ImageIndex = 128
         Images = ImagesDataModule.ImageList
       end
-      object SpeedButtonExit: TBCSpeedButton
+      object SpeedButtonMoveDown: TBCSpeedButton
         Left = 322
         Top = 2
         Width = 60
@@ -238,7 +240,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         ImageIndex = 130
         Images = ImagesDataModule.ImageList
       end
-      object BCSpeedButton1: TBCSpeedButton
+      object SpeedButtonMoveUp: TBCSpeedButton
         Left = 262
         Top = 2
         Width = 60

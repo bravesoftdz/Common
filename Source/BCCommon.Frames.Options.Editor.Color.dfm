@@ -1,15 +1,15 @@
 inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
-  Width = 541
-  Height = 365
+  Width = 451
+  Height = 304
   Align = alClient
-  ExplicitWidth = 541
-  ExplicitHeight = 365
+  ExplicitWidth = 451
+  ExplicitHeight = 304
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 537
-    Height = 365
+    Width = 447
+    Height = 304
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -28,157 +28,150 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     SkinData.SkinSection = 'CHECKBOX'
     object Splitter: TsSplitter
       Left = 0
-      Top = 213
-      Width = 537
+      Top = 216
+      Width = 447
       Height = 6
       Cursor = crVSplit
       Align = alTop
       ShowGrip = True
       SkinData.SkinSection = 'SPLITTER'
-      ExplicitWidth = 447
+      ExplicitTop = 213
     end
     object PanelTop: TBCPanel
+      AlignWithMargins = True
       Left = 0
       Top = 0
-      Width = 537
+      Width = 447
       Height = 41
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
       Align = alTop
       BevelOuter = bvNone
       Color = clWindow
       ParentBackground = False
       TabOrder = 0
       SkinData.SkinSection = 'CHECKBOX'
-      object ScrollBox: TBCScrollBox
+      object SpeedButtonColor: TBCSpeedButton
+        Left = 226
+        Top = 14
+        Width = 21
+        Height = 21
+        Action = ActionAddColor
+        Flat = True
+        Glyph.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000000000000000000000000000000000000FFFFFF000000
+          000000000000000000000000000A000000250000003300000033000000330000
+          0033000000250000000A000000000000000000000000FFFFFF00FFFFFF000000
+          00000000000000000022004F2B5C008347C9008C4BFF008B4AFF008B4AFF008C
+          4BFF008347C9004F2B5C0000001E0000000000000000FFFFFF00FFFFFF000000
+          00000000001E008046BB009050FF01A169FF00AA76FF00AB77FF00AB77FF00AA
+          76FF01A169FF009050FF007C44AA0000001E00000000FFFFFF00FFFFFF000000
+          000A007C43AA009152FF02AC77FF00C38CFF00D699FF18DEA8FF18DEA8FF00D6
+          99FF00C38CFF01AB76FF009253FF007C44AA0000000AFFFFFF00FFFFFF000059
+          3151009051FF0FB483FF02D299FF00D69BFF00D193FFFFFFFFFFFFFFFFFF00D1
+          93FF00D69BFF00D198FF01AB76FF009050FF005A3151FFFFFF00FFFFFF000083
+          45C916AB78FF11C997FF00D49AFF00D297FF00CD8EFFFFFFFFFFFFFFFFFF00CD
+          8EFF00D297FF00D59BFF00C18CFF01A169FF008447C9FFFFFF00FFFFFF00008A
+          48FF38C49CFF00D198FF00CD92FF00CB8EFF00C787FFFFFFFFFFFFFFFFFF00C7
+          87FF00CB8EFF00CE93FF00D09AFF00AB76FF008C4BFFFFFFFF00FFFFFF000089
+          46FF51D2AFFF12D4A3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFF00CF97FF00AD78FF008B4AFFFFFFFF00FFFFFF000088
+          45FF66DDBEFF10D0A2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFF00CD97FF00AD78FF008B4AFFFFFFFF00FFFFFF000088
+          46FF76E0C5FF00CA98FF00C590FF00C48EFF00C187FFFFFFFFFFFFFFFFFF00C1
+          87FF00C48EFF00C793FF00CB99FF00AB76FF008C4BFFFFFFFF00FFFFFF000088
+          46BE59C9A4FF49DEBCFF00C794FF00C794FF00C38EFFFFFFFFFFFFFFFFFF00C3
+          8EFF00C896FF00CB9AFF06C190FF00A168FF008B4BBFFFFFFF00FFFFFF00008C
+          4B330A9458FFADF8E9FF18D0A7FF00C494FF00C290FFFFFFFFFFFFFFFFFF00C3
+          91FF00C799FF05C89BFF18B787FF009050FF008E4D33FFFFFF00FFFFFF000000
+          0000008A48AA199C63FFBCFFF7FF5DE4C9FF00C397FF00BF90FF00C091FF00C4
+          98FF22CAA2FF31C297FF039355FF008D4C9500000000FFFFFF00FFFFFF000000
+          000000000000008A48950E9659FF74D5B6FF9FF3E0FF92EFDAFF79E5CAFF5DD6
+          B5FF2EB586FF039152FF008C4CAA0000000000000000FFFFFF00FFFFFF000000
+          00000000000000000000008C4A33008946BB008744FF008743FF008744FF0089
+          46FF008B49BB008D4C33000000000000000000000000FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
+        SkinData.SkinSection = 'TOOLBUTTON'
+      end
+      object ComboBoxColor: TBCComboBox
         Left = 0
-        Top = 0
-        Width = 537
-        Height = 41
-        Align = alClient
-        BorderStyle = bsNone
-        ParentColor = False
+        Top = 14
+        Width = 219
+        Height = 22
+        Margins.Left = 4
+        Margins.Top = 4
+        Margins.Right = 4
+        Margins.Bottom = 4
+        Alignment = taLeftJustify
+        BoundLabel.Active = True
+        BoundLabel.Caption = 'Color'
+        BoundLabel.Indent = 4
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'Tahoma'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclTopLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+        DropDownCount = 9
+        SkinData.SkinSection = 'COMBOBOX'
+        VerticalAlignment = taAlignTop
+        Style = csOwnerDrawFixed
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ItemIndex = -1
+        ParentFont = False
         TabOrder = 0
-        SkinData.SkinSection = 'CHECKBOX'
-        object SpeedButtonColor: TBCSpeedButton
-          Left = 226
-          Top = 14
-          Width = 21
-          Height = 21
-          Action = ActionAddColor
-          Flat = True
-          Glyph.Data = {
-            36040000424D3604000000000000360000002800000010000000100000000100
-            2000000000000004000000000000000000000000000000000000FFFFFF000000
-            000000000000000000000000000A000000250000003300000033000000330000
-            0033000000250000000A000000000000000000000000FFFFFF00FFFFFF000000
-            00000000000000000022004F2B5C008347C9008C4BFF008B4AFF008B4AFF008C
-            4BFF008347C9004F2B5C0000001E0000000000000000FFFFFF00FFFFFF000000
-            00000000001E008046BB009050FF01A169FF00AA76FF00AB77FF00AB77FF00AA
-            76FF01A169FF009050FF007C44AA0000001E00000000FFFFFF00FFFFFF000000
-            000A007C43AA009152FF02AC77FF00C38CFF00D699FF18DEA8FF18DEA8FF00D6
-            99FF00C38CFF01AB76FF009253FF007C44AA0000000AFFFFFF00FFFFFF000059
-            3151009051FF0FB483FF02D299FF00D69BFF00D193FFFFFFFFFFFFFFFFFF00D1
-            93FF00D69BFF00D198FF01AB76FF009050FF005A3151FFFFFF00FFFFFF000083
-            45C916AB78FF11C997FF00D49AFF00D297FF00CD8EFFFFFFFFFFFFFFFFFF00CD
-            8EFF00D297FF00D59BFF00C18CFF01A169FF008447C9FFFFFF00FFFFFF00008A
-            48FF38C49CFF00D198FF00CD92FF00CB8EFF00C787FFFFFFFFFFFFFFFFFF00C7
-            87FF00CB8EFF00CE93FF00D09AFF00AB76FF008C4BFFFFFFFF00FFFFFF000089
-            46FF51D2AFFF12D4A3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFF00CF97FF00AD78FF008B4AFFFFFFFF00FFFFFF000088
-            45FF66DDBEFF10D0A2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFF00CD97FF00AD78FF008B4AFFFFFFFF00FFFFFF000088
-            46FF76E0C5FF00CA98FF00C590FF00C48EFF00C187FFFFFFFFFFFFFFFFFF00C1
-            87FF00C48EFF00C793FF00CB99FF00AB76FF008C4BFFFFFFFF00FFFFFF000088
-            46BE59C9A4FF49DEBCFF00C794FF00C794FF00C38EFFFFFFFFFFFFFFFFFF00C3
-            8EFF00C896FF00CB9AFF06C190FF00A168FF008B4BBFFFFFFF00FFFFFF00008C
-            4B330A9458FFADF8E9FF18D0A7FF00C494FF00C290FFFFFFFFFFFFFFFFFF00C3
-            91FF00C799FF05C89BFF18B787FF009050FF008E4D33FFFFFF00FFFFFF000000
-            0000008A48AA199C63FFBCFFF7FF5DE4C9FF00C397FF00BF90FF00C091FF00C4
-            98FF22CAA2FF31C297FF039355FF008D4C9500000000FFFFFF00FFFFFF000000
-            000000000000008A48950E9659FF74D5B6FF9FF3E0FF92EFDAFF79E5CAFF5DD6
-            B5FF2EB586FF039152FF008C4CAA0000000000000000FFFFFF00FFFFFF000000
-            00000000000000000000008C4A33008946BB008744FF008743FF008744FF0089
-            46FF008B49BB008D4C33000000000000000000000000FFFFFF00FFFFFF00FFFF
-            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00}
-          SkinData.SkinSection = 'TOOLBUTTON'
-        end
-        object ComboBoxColor: TBCComboBox
-          Left = 0
-          Top = 14
-          Width = 219
-          Height = 22
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Alignment = taLeftJustify
-          BoundLabel.Active = True
-          BoundLabel.Caption = 'Color'
-          BoundLabel.Indent = 4
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclTopLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          DropDownCount = 9
-          SkinData.SkinSection = 'COMBOBOX'
-          VerticalAlignment = taAlignTop
-          Style = csOwnerDrawFixed
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ItemIndex = -1
-          ParentFont = False
-          TabOrder = 0
-          OnChange = ComboBoxColorChange
-        end
-        object ComboBoxHighlighter: TBCComboBox
-          Left = 256
-          Top = 14
-          Width = 241
-          Height = 22
-          Margins.Left = 4
-          Margins.Top = 4
-          Margins.Right = 4
-          Margins.Bottom = 4
-          Alignment = taLeftJustify
-          BoundLabel.Active = True
-          BoundLabel.Caption = 'Highlighter'
-          BoundLabel.Indent = 4
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclTopLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
-          DropDownCount = 9
-          SkinData.SkinSection = 'COMBOBOX'
-          VerticalAlignment = taAlignTop
-          Style = csOwnerDrawFixed
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ItemIndex = -1
-          ParentFont = False
-          TabOrder = 1
-          OnChange = ComboBoxHighlighterChange
-        end
+        OnChange = ComboBoxColorChange
+      end
+      object ComboBoxHighlighter: TBCComboBox
+        Left = 256
+        Top = 14
+        Width = 241
+        Height = 22
+        Margins.Left = 4
+        Margins.Top = 4
+        Margins.Right = 4
+        Margins.Bottom = 4
+        Alignment = taLeftJustify
+        BoundLabel.Active = True
+        BoundLabel.Caption = 'Highlighter'
+        BoundLabel.Indent = 4
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'Tahoma'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclTopLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+        DropDownCount = 9
+        SkinData.SkinSection = 'COMBOBOX'
+        VerticalAlignment = taAlignTop
+        Style = csOwnerDrawFixed
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ItemIndex = -1
+        ParentFont = False
+        TabOrder = 1
+        OnChange = ComboBoxHighlighterChange
       end
     end
     object Editor: TBCEditor
       Left = 0
-      Top = 219
-      Width = 537
-      Height = 146
+      Top = 222
+      Width = 447
+      Height = 82
       Cursor = crIBeam
       Margins.Left = 0
       Margins.Top = 5
@@ -235,11 +228,13 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       WordWrap.Enabled = False
       WordWrap.Position = 80
       WordWrap.Style = wwsClientWidth
+      ExplicitTop = 219
+      ExplicitHeight = 85
     end
     object PageControl: TBCPageControl
       Left = 0
-      Top = 41
-      Width = 537
+      Top = 44
+      Width = 447
       Height = 172
       ActivePage = TabSheetUseSkinColor
       Align = alTop
@@ -250,6 +245,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       ActivePageCaption = 'Use skin color'
       HoldShiftToDragDrop = False
       TabDragDrop = False
+      ExplicitTop = 41
       object TabSheetEditor: TsTabSheet
         Caption = 'Editor'
         SkinData.CustomColor = False
@@ -955,7 +951,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           end
         end
         object PanelUseSkinColorRight: TBCPanel
-          Left = 305
+          Left = 215
           Top = 0
           Width = 218
           Height = 135

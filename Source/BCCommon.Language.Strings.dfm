@@ -1341,7 +1341,7 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'Text'
         Strings.Strings = (
-          'Text files (*.txt)')
+          'Text files (*.txt;*.ini)')
       end
       item
         Name = 'Visual Basic'

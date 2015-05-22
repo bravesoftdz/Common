@@ -10,7 +10,7 @@ uses
 
 type
   TFindInFilesDialog = class(TBCBaseDialog)
-    ActionFolderButtonClick: TAction;
+    ActionDirectoryButtonClick: TAction;
     ActionList: TActionList;
     ButtonCancel: TButton;
     ButtonFind: TButton;
@@ -28,8 +28,13 @@ type
     BCPanel1: TBCPanel;
     StickyLabelIncludeSubdirectories: TsStickyLabel;
     SliderIncludeSubDirectories: TsSlider;
+    BCPanel2: TBCPanel;
+    BCPanel3: TBCPanel;
+    BCSpeedButton1: TBCSpeedButton;
+    ActionFileMaskItemsButtonClick: TAction;
+    ActionDirectoryItemsButtonClick: TAction;
     procedure ComboBoxTextToFindKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure ActionFolderButtonClickExecute(Sender: TObject);
+    procedure ActionDirectoryButtonClickExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -136,7 +141,7 @@ begin
   SetButtons;
 end;
 
-procedure TFindInFilesDialog.ActionFolderButtonClickExecute(Sender: TObject);
+procedure TFindInFilesDialog.ActionDirectoryButtonClickExecute(Sender: TObject);
 var
   Dir: string;
 begin
