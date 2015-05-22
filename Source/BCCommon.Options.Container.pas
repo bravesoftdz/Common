@@ -915,7 +915,7 @@ begin
   inherited;
 
   FFileTypes := TStringList.Create;
-  for i := 0 to LanguageDataModule.MultiStringHolderFileTypes.MultipleStrings.Count - 1 do
+  for i := 0 to LanguageDataModule.MultiStringHolderFileTypes.MultipleStrings.Count - 1 - 2 do // TODO -2 Macro and Language...
     FFileTypes.Add(LanguageDataModule.MultiStringHolderFileTypes.MultipleStrings.Items[i].Name + '=' +
       LanguageDataModule.MultiStringHolderFileTypes.MultipleStrings.Items[i].Strings.Text);
 

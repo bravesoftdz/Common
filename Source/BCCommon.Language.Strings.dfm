@@ -1339,6 +1339,11 @@ object LanguageDataModule: TLanguageDataModule
           'SQL files (*.sql)')
       end
       item
+        Name = 'Text'
+        Strings.Strings = (
+          'Text files (*.txt)')
+      end
+      item
         Name = 'Visual Basic'
         Strings.Strings = (
           'Visual Basic files (*.vb;*.bas)')
