@@ -194,6 +194,11 @@ object LanguageDataModule: TLanguageDataModule
           'Counting files...')
       end
       item
+        Name = 'DirectoryItems'
+        Strings.Strings = (
+          'Directory items')
+      end
+      item
         Name = 'Document'
         Strings.Strings = (
           'Document')
@@ -227,6 +232,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'Encoding'
         Strings.Strings = (
           'Encoding')
+      end
+      item
+        Name = 'FileMaskItems'
+        Strings.Strings = (
+          'File mask items')
       end
       item
         Name = 'FilesFound'

@@ -496,8 +496,10 @@ object FindInFilesDialog: TFindInFilesDialog
       OnExecute = ActionDirectoryButtonClickExecute
     end
     object ActionFileMaskItemsButtonClick: TAction
+      OnExecute = ActionFileMaskItemsButtonClickExecute
     end
     object ActionDirectoryItemsButtonClick: TAction
+      OnExecute = ActionDirectoryItemsButtonClickExecute
     end
   end
 end

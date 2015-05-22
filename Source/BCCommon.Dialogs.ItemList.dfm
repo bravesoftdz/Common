@@ -27,9 +27,6 @@ object ItemListDialog: TItemListDialog
     Padding.Bottom = 8
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    ExplicitLeft = -115
-    ExplicitTop = 246
-    ExplicitWidth = 484
     object ButtonFind: TButton
       Left = 108
       Top = 8
@@ -41,7 +38,6 @@ object ItemListDialog: TItemListDialog
       Enabled = False
       ModalResult = 1
       TabOrder = 0
-      ExplicitLeft = 329
     end
     object ButtonCancel: TButton
       AlignWithMargins = True
@@ -58,7 +54,6 @@ object ItemListDialog: TItemListDialog
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 1
-      ExplicitLeft = 409
     end
   end
   object ListBox: TsListBox
@@ -72,6 +67,7 @@ object ItemListDialog: TItemListDialog
     Margins.Right = 6
     Margins.Bottom = 0
     Align = alClient
+    Sorted = True
     TabOrder = 1
     BoundLabel.Indent = 0
     BoundLabel.Font.Charset = DEFAULT_CHARSET
@@ -83,10 +79,6 @@ object ItemListDialog: TItemListDialog
     BoundLabel.MaxWidth = 0
     BoundLabel.UseSkinColor = True
     SkinData.SkinSection = 'EDIT'
-    ExplicitLeft = 14
-    ExplicitTop = 94
-    ExplicitWidth = 121
-    ExplicitHeight = 97
   end
   object PanelTop: TBCPanel
     Left = 0
@@ -102,8 +94,6 @@ object ItemListDialog: TItemListDialog
     ParentColor = True
     TabOrder = 2
     SkinData.SkinSection = 'CHECKBOX'
-    ExplicitLeft = -82
-    ExplicitWidth = 451
     object SpeedButtonDivider: TBCSpeedButton
       AlignWithMargins = True
       Left = 122
@@ -133,6 +123,7 @@ object ItemListDialog: TItemListDialog
       Top = 2
       Width = 60
       Height = 58
+      Action = ActionDelete
       Align = alLeft
       AllowAllUp = True
       Flat = True
@@ -156,6 +147,7 @@ object ItemListDialog: TItemListDialog
       Top = 2
       Width = 60
       Height = 58
+      Action = ActionInsert
       Align = alLeft
       AllowAllUp = True
       Flat = True
@@ -178,6 +170,7 @@ object ItemListDialog: TItemListDialog
       Top = 2
       Width = 60
       Height = 58
+      Action = ActionClearAll
       Align = alLeft
       Flat = True
       Font.Charset = DEFAULT_CHARSET
@@ -194,6 +187,26 @@ object ItemListDialog: TItemListDialog
       ImageIndex = 65
       Images = ImagesDataModule.ImageList
       ExplicitLeft = 192
+    end
+  end
+  object ActionList: TActionList
+    Images = ImagesDataModule.ImageList
+    Left = 190
+    Top = 104
+    object ActionInsert: TAction
+      Caption = 'Insert'
+      ImageIndex = 18
+      OnExecute = ActionInsertExecute
+    end
+    object ActionDelete: TAction
+      Caption = 'Delete'
+      ImageIndex = 22
+      OnExecute = ActionDeleteExecute
+    end
+    object ActionClearAll: TAction
+      Caption = 'Clear all'
+      ImageIndex = 65
+      OnExecute = ActionClearAllExecute
     end
   end
 end

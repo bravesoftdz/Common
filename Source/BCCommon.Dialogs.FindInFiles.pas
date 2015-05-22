@@ -39,6 +39,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure ActionFileMaskItemsButtonClickExecute(Sender: TObject);
+    procedure ActionDirectoryItemsButtonClickExecute(Sender: TObject);
   private
     function GetFileTypeText: string;
     function GetFindWhatText: string;
@@ -70,7 +72,7 @@ uses
   {$WARNINGS OFF}
   Vcl.FileCtrl, { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}
-  BCCommon.FileUtils;
+  BCCommon.FileUtils, BCCommon.Dialogs.ItemList;
 
 var
   FFindInFilesDialog: TFindInFilesDialog;
@@ -135,6 +137,32 @@ begin
   ButtonFind.Enabled := Trim(ComboBoxTextToFind.Text) <> '';
 end;
 
+procedure TFindInFilesDialog.ActionDirectoryItemsButtonClickExecute(Sender: TObject);
+begin
+  with TItemListDialog.Create(Self) do
+  try
+    Caption := LanguageDataModule.GetConstant('DirectoryItems');
+    ListBox.Items.Assign(ComboBoxDirectory.Items);
+    if ShowModal = mrOk then
+      ComboBoxDirectory.Items.Assign(ListBox.Items);
+  finally
+    Free;
+  end;
+end;
+
+procedure TFindInFilesDialog.ActionFileMaskItemsButtonClickExecute(Sender: TObject);
+begin
+  with TItemListDialog.Create(Self) do
+  try
+    Caption := LanguageDataModule.GetConstant('FileMaskItems');
+    ListBox.Items.Assign(ComboBoxFileMask.Items);
+    if ShowModal = mrOk then
+      ComboBoxFileMask.Items.Assign(ListBox.Items);
+  finally
+    Free;
+  end;
+end;
+
 procedure TFindInFilesDialog.ComboBoxTextToFindKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -153,12 +181,12 @@ end;
 
 procedure TFindInFilesDialog.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
-  WriteIniFile;
   if ModalResult = mrOK then
   begin
     InsertTextToCombo(ComboBoxTextToFind);
     InsertTextToCombo(ComboBoxDirectory);
   end;
+  WriteIniFile;
 end;
 
 procedure TFindInFilesDialog.FormCreate(Sender: TObject);
@@ -183,22 +211,63 @@ begin
 end;
 
 procedure TFindInFilesDialog.ReadIniFile;
+var
+  LItems: TStrings;
+
+  procedure InsertItemsToComboBox(AComboBox: TBCComboBox);
+  var
+    i: Integer;
+    s: string;
+  begin
+    if LItems.Count > 0 then
+    begin
+      AComboBox.Clear;
+      for i := 0 to LItems.Count - 1 do
+      begin
+        s := GetTokenAfter('=', LItems.Strings[i]);
+        AComboBox.Items.Add(s);
+      end;
+    end;
+  end;
+
 begin
+  LItems := TStringList.Create;
   with TIniFile.Create(GetIniFilename) do
   try
     SliderCaseSensitive.SliderOn := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
     SliderIncludeSubDirectories.SliderOn := ReadBool('FindInFilesOptions', 'IncludeSubDirectories', True);
+
+    ReadSectionValues('FindInFilesFileMasks', LItems);
+    InsertItemsToComboBox(ComboBoxFileMask);
+    ReadSectionValues('FindInFilesDirectories', LItems);
+    InsertItemsToComboBox(ComboBoxDirectory);
+
+    ComboBoxFileMask.ItemIndex := ReadInteger('FindInFilesOptions', 'FileMaskItem', -1);
+    ComboBoxDirectory.ItemIndex := ReadInteger('FindInFilesOptions', 'DirectoryItem', -1);
   finally
+    LItems.Free;
     Free;
   end;
 end;
 
 procedure TFindInFilesDialog.WriteIniFile;
+var
+  i: Integer;
 begin
   with TIniFile.Create(GetIniFilename) do
   try
     WriteBool('FindInFilesOptions', 'CaseSensitive', SliderCaseSensitive.SliderOn);
     WriteBool('FindInFilesOptions', 'IncludeSubDirectories', SliderIncludeSubDirectories.SliderOn);
+
+    EraseSection('FindInFilesFileMasks');
+    for i := 0 to ComboBoxFileMask.Items.Count - 1 do
+      WriteString('FindInFilesFileMasks', IntToStr(i), ComboBoxFileMask.Items[i]);
+    EraseSection('FindInFilesDirectories');
+    for i := 0 to ComboBoxDirectory.Items.Count - 1 do
+      WriteString('FindInFilesDirectories', IntToStr(i), ComboBoxDirectory.Items[i]);
+
+    WriteInteger('FindInFilesOptions', 'FileMaskItem', ComboBoxFileMask.IndexOf(ComboBoxFileMask.Text));
+    WriteInteger('FindInFilesOptions', 'DirectoryItem', ComboBoxDirectory.IndexOf(ComboBoxDirectory.Text));
   finally
     Free;
   end;
