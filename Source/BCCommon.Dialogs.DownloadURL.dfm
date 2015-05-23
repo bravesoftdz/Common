@@ -53,10 +53,9 @@ object DownloadURLDialog: TDownloadURLDialog
       Width = 342
       Height = 17
       Align = alBottom
-      DoubleBuffered = False
-      ParentDoubleBuffered = False
-      TabOrder = 0
       SkinData.SkinSection = 'GAUGE'
+      ForeColor = clBlack
+      Suffix = '%'
     end
   end
   object PanelProgress: TBCPanel

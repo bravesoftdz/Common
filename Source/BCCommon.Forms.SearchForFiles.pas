@@ -6,7 +6,7 @@ uses
   Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
   System.Actions, Vcl.ActnList, Vcl.ImgList, BCControls.ImageList, Vcl.StdCtrls, VirtualTrees, BCControls.ProgressBar,
   Vcl.ComCtrls, BCControls.ButtonedEdit, System.Win.TaskbarCore, Vcl.Taskbar, acAlphaImageList, BCControls.Panel, sPanel,
-  sSkinProvider, BCControls.Statusbar, sStatusBar;
+  sSkinProvider, BCControls.Statusbar, sStatusBar, System.ImageList;
 
 type
   TOpenFileEvent = procedure(var FileName: string);
@@ -89,16 +89,16 @@ begin
   if Assigned(FProgressBar) then
   begin
     Statusbar.Perform(SB_GETRECT, 0, Integer(@R));
-    FProgressBar.Top    := R.Top;
+    FProgressBar.Top    := R.Top + 3;
     FProgressBar.Left   := R.Left;
-    FProgressBar.Width  := R.Right - R.Left;
-    FProgressBar.Height := R.Bottom - R.Top;
+    FProgressBar.Width  := R.Right - R.Left - 3;
+    FProgressBar.Height := R.Bottom - R.Top - 3;
   end;
 end;
 
 procedure TSearchForFilesForm.TaskBarStepChange(Sender: TObject);
 begin
-  Taskbar.ProgressValue := FProgressBar.Position;
+  Taskbar.ProgressValue := FProgressBar.Progress;
 end;
 
 procedure TSearchForFilesForm.TaskBarShow(Sender: TObject);
@@ -316,11 +316,10 @@ var
   Min, Secs: Integer;
   TimeDifference: string;
 begin
-  PanelSearchingFiles.Visible := True;
-  EditSearchFor.ReadOnly := True;
+  Caption := Format('%s - [%s]', [Caption, RootDirectory]);
+  PanelSearchingFiles.Visible := False; // True;
   ReadIniFile;
   Show;
-  VirtualDrawTreeSearch.BeginUpdate;
   Screen.Cursor := crHourGlass;
   try
     StatusBar.Panels[0].Text := LanguageDataModule.GetConstant('CountingFiles');
@@ -345,11 +344,8 @@ begin
       else
         TimeDifference := FormatDateTime(Format('n "%s" s.zzz "%s"', [LanguageDataModule.GetConstant('Minute'), LanguageDataModule.GetConstant('Second')]), T2 - T1);
       StatusBar.Panels[0].Text := Format(LanguageDataModule.GetConstant('FilesFound'), [FProgressBar.Count, TimeDifference]);
-      VirtualDrawTreeSearch.Sort(nil, 0, sdAscending, False);
 
-      VirtualDrawTreeSearch.EndUpdate;
       PanelSearchingFiles.Visible := False;
-      EditSearchFor.ReadOnly := False;
     end;
   end;
 end;
@@ -438,7 +434,11 @@ begin
             NodeData.FilePath := ExcludeTrailingBackslash(RootDirectory);
             NodeData.ImageIndex := GetIconIndex(IncludeTrailingBackslash(RootDirectory) + FName);
             {$WARNINGS ON}
+            VirtualDrawTreeSearch.IsVisible[Node] := (Pos(UpperCase(EditSearchFor.Text), UpperCase(NodeData.FileName)) <> 0) or (EditSearchFor.Text = '');
           end;
+          VirtualDrawTreeSearch.Sort(nil, 0, sdAscending, False);
+          VirtualDrawTreeSearch.Invalidate;
+          Application.ProcessMessages;
         end;
       end;
     until not FindNextFile(shFindFile, sWin32FD) and not FFormClosing;

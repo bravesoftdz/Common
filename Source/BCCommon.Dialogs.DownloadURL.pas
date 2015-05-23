@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ActnList, Vcl.StdCtrls, Vcl.ComCtrls,
   BCControls.ProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, BCCommon.Dialogs.Base, System.Actions, acProgressBar, BCControls.Panel,
-  sPanel, Vcl.Dialogs, sDialogs;
+  sPanel, Vcl.Dialogs, sDialogs, sGauge;
 
 type
   TDownloadURLDialog = class(TBCBaseDialog)
@@ -114,8 +114,8 @@ end;
 
 procedure TDownloadURLDialog.OnURLDownloadProgress;
 begin
-  ProgressBar.Max := ProgressMax;
-  ProgressBar.Position := Progress;
+  ProgressBar.Count := ProgressMax;
+  ProgressBar.Progress := Progress;
   Invalidate;
   Cancel := FCancel;
   Application.ProcessMessages;

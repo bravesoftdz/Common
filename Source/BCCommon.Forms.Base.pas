@@ -17,17 +17,18 @@ type
     SkinManager: TBCSkinManager;
     SkinProvider: TBCSkinProvider;
     StatusBar: TBCStatusBar;
-    Taskbar: TTaskbar;
     TitleBar: TBCTitleBar;
     procedure ActionFileExitExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure SkinMenuClick(Sender: TObject);
-    procedure TaskBarHide(Sender: TObject);
-    procedure TaskBarShow(Sender: TObject);
-    procedure TaskBarStepChange(Sender: TObject);
+    procedure ProgressBarHide(Sender: TObject);
+    procedure ProgressBarShow(Sender: TObject);
+    procedure ProgressBarStepChange(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     FProgressBar: TBCProgressBar;
     FSkinChange: TNotifyEvent;
+    FTaskbar: TTaskbar;
     procedure CreateProgressBar;
     procedure ResizeProgressBar;
   protected
@@ -54,7 +55,14 @@ begin
   inherited;
   SkinManager.SkinName := 'MetroUI';
   SkinManager.Active := True;
+  FTaskbar := TTaskBar.Create(Self);
   CreateProgressBar;
+end;
+
+procedure TBCForm.FormDestroy(Sender: TObject);
+begin
+  FTaskbar.Free;
+  FProgressBar.Free;
 end;
 
 procedure TBCForm.CreateSkinsMenu(AMenuItem: TMenuItem);
@@ -103,37 +111,38 @@ var
 begin
   if Assigned(FProgressBar) then
   begin
-    Statusbar.Perform(SB_GETRECT, 3, Integer(@LRect));
-    FProgressBar.Top := LRect.Top;
+    Statusbar.Perform(SB_GETRECT, 4, Integer(@LRect));
+    FProgressBar.Top := LRect.Top + 3;
     FProgressBar.Left := LRect.Left;
-    FProgressBar.Width := LRect.Right - LRect.Left;
-    FProgressBar.Height := LRect.Bottom - LRect.Top;
+    FProgressBar.Width := LRect.Right - LRect.Left - 3;
+    FProgressBar.Height := LRect.Bottom - LRect.Top - 3;
   end;
 end;
 
-procedure TBCForm.TaskBarStepChange(Sender: TObject);
+procedure TBCForm.ProgressBarStepChange(Sender: TObject);
 begin
-  Taskbar.ProgressValue := FProgressBar.Position;
+  FTaskbar.ProgressValue := FProgressBar.Progress;
 end;
 
-procedure TBCForm.TaskBarShow(Sender: TObject);
+procedure TBCForm.ProgressBarShow(Sender: TObject);
 begin
-  Taskbar.ProgressState := TTaskBarProgressState.Normal;
+  ResizeProgressBar;
+  FTaskbar.ProgressMaxValue := FProgressBar.Count;
+  FTaskbar.ProgressState := TTaskBarProgressState.Normal;
 end;
 
-procedure TBCForm.TaskBarHide(Sender: TObject);
+procedure TBCForm.ProgressBarHide(Sender: TObject);
 begin
-  Taskbar.ProgressState := TTaskBarProgressState.None;
+  FTaskbar.ProgressState := TTaskBarProgressState.None;
 end;
 
 procedure TBCForm.CreateProgressBar;
 begin
   FProgressBar := TBCProgressBar.Create(StatusBar);
-  FProgressBar.OnStepChange := TaskBarStepChange;
-  FProgressBar.OnShow := TaskBarShow;
-  FProgressBar.OnHide := TaskBarHide;
+  FProgressBar.OnStepChange := ProgressBarStepChange;
+  FProgressBar.OnShow := ProgressBarShow;
+  FProgressBar.OnHide := ProgressBarHide;
   FProgressBar.Hide;
-  ResizeProgressBar;
   FProgressBar.Parent := Statusbar;
 end;
 

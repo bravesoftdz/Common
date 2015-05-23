@@ -13,6 +13,7 @@ object BCForm: TBCForm
   Menu = MainMenu
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
   object StatusBar: TBCStatusBar
@@ -102,13 +103,6 @@ object BCForm: TBCForm
       ShortCut = 32883
       OnExecute = ActionFileExitExecute
     end
-  end
-  object Taskbar: TTaskbar
-    TaskBarButtons = <>
-    ProgressMaxValue = 100
-    TabProperties = []
-    Left = 132
-    Top = 24
   end
   object MainMenu: TMainMenu
     Left = 39
