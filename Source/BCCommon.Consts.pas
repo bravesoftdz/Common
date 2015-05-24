@@ -16,6 +16,7 @@ const
   OUTPUT_FILE_SEPARATOR = '@#/%&';
 
   PARAM_NO_INI = '-noini';
+  PARAM_NO_SKIN = '-noskin';
 
   //TAnimationStyleStr: array[Low(TAnimationStyle)..High(TAnimationStyle)] of String = ('None',
   //  'Default', 'Unfold', 'Slide', 'Fade');

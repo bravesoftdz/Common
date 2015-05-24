@@ -471,6 +471,7 @@ type
     FDocRightClickSelect: Boolean;
     FDocSaveTabs: Boolean;
     FDocShowCloseButton: Boolean;
+    FDocShowNewDocumentButton: Boolean;
     FDocShowImage: Boolean;
     FFileTypes: TStrings;
     FOutputCloseTabByDblClick: Boolean;
@@ -567,6 +568,8 @@ type
     property DocSaveTabs: Boolean read FDocSaveTabs write FDocSaveTabs;
     [IniValue('Options', 'DocShowCloseButton', 'True')]
     property DocShowCloseButton: Boolean read FDocShowCloseButton write FDocShowCloseButton;
+    [IniValue('Options', 'DocShowNewDocumentButton', 'True')]
+    property DocShowNewDocumentButton: Boolean read FDocShowNewDocumentButton write FDocShowNewDocumentButton;
     [IniValue('Options', 'DocShowImage', 'True')]
     property DocShowImage: Boolean read FDocShowImage write FDocShowImage;
     { Output }
