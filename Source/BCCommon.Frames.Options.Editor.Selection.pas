@@ -18,6 +18,8 @@ type
     SliderVisible: TsSlider;
     StickyLabelALTSetsColumnMode: TsStickyLabel;
     SliderALTSetsColumnMode: TsSlider;
+    StickyLabelToEndOfLine: TsStickyLabel;
+    SliderToEndOfLine: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -56,6 +58,7 @@ begin
   OptionsContainer.SelectionVisible := SliderVisible.SliderOn;
   OptionsContainer.ALTSetsColumnMode := SliderALTSetsColumnMode.SliderOn;
   OptionsContainer.HighlightSimilarTerms := SliderHighlightSimilarTerms.SliderOn;
+  OptionsContainer.SelectionToEndOfLine := SliderToEndOfLine.SliderOn;
   OptionsContainer.TripleClickRowSelect := SliderTripleClickRowSelect.SliderOn;
 end;
 
@@ -64,6 +67,7 @@ begin
   SliderVisible.SliderOn := OptionsContainer.SelectionVisible;
   SliderALTSetsColumnMode.SliderOn := OptionsContainer.ALTSetsColumnMode;
   SliderHighlightSimilarTerms.SliderOn := OptionsContainer.HighlightSimilarTerms;
+  SliderToEndOfLine.SliderOn := OptionsContainer.SelectionToEndOfLine;
   SliderTripleClickRowSelect.SliderOn := OptionsContainer.TripleClickRowSelect;
 end;
 

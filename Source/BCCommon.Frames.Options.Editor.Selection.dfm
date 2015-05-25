@@ -1,12 +1,14 @@
 inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
   Width = 182
-  Height = 90
+  Height = 113
+  ExplicitWidth = 182
+  ExplicitHeight = 113
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 178
-    Height = 90
+    Height = 113
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -24,7 +26,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     SkinData.SkinSection = 'CHECKBOX'
     object StickyLabelTripleClickRowSelect: TsStickyLabel
       Left = 0
-      Top = 73
+      Top = 96
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -82,12 +84,27 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       AttachTo = SliderALTSetsColumnMode
       Gap = 8
     end
+    object StickyLabelToEndOfLine: TsStickyLabel
+      Left = 0
+      Top = 73
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'To end of line'
+      ParentColor = False
+      AttachTo = SliderToEndOfLine
+      Gap = 8
+    end
     object SliderTripleClickRowSelect: TsSlider
       Left = 128
-      Top = 69
+      Top = 92
       Width = 50
       AutoSize = True
-      TabOrder = 0
+      TabOrder = 4
       BoundLabel.Indent = 0
       BoundLabel.Font.Charset = DEFAULT_CHARSET
       BoundLabel.Font.Color = clWindowText
@@ -112,7 +129,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       Top = 46
       Width = 50
       AutoSize = True
-      TabOrder = 1
+      TabOrder = 2
       BoundLabel.Indent = 0
       BoundLabel.Font.Charset = DEFAULT_CHARSET
       BoundLabel.Font.Color = clWindowText
@@ -137,7 +154,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       Top = 0
       Width = 50
       AutoSize = True
-      TabOrder = 2
+      TabOrder = 0
       BoundLabel.Indent = 0
       BoundLabel.Font.Charset = DEFAULT_CHARSET
       BoundLabel.Font.Color = clWindowText
@@ -162,6 +179,31 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       Top = 23
       Width = 50
       AutoSize = True
+      TabOrder = 1
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderToEndOfLine: TsSlider
+      Left = 128
+      Top = 69
+      Width = 50
+      AutoSize = True
       TabOrder = 3
       BoundLabel.Indent = 0
       BoundLabel.Font.Charset = DEFAULT_CHARSET
@@ -184,7 +226,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     end
   end
   inherited FrameAdapter: TsFrameAdapter
-    Left = 62
-    Top = 65534
+    Left = 72
+    Top = 2
   end
 end
