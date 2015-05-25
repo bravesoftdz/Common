@@ -36,7 +36,7 @@ type
     SliderWholeWordsOnly: TsSlider;
     StickyLabelWildCard: TsStickyLabel;
     SliderWildCard: TsSlider;
-    BCPanel1: TBCPanel;
+    PanelDeleteLine: TBCPanel;
     RadioButtonDeleteLine: TBCRadioButton;
     procedure ComboBoxSearchForKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);

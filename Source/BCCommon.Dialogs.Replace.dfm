@@ -31,7 +31,8 @@ object ReplaceDialog: TReplaceDialog
     Margins.Right = 0
     Align = alTop
     Caption = ' Options'
-    TabOrder = 5
+    TabOrder = 4
+    TabStop = True
     SkinData.SkinSection = 'GROUPBOX'
     Checked = False
     object StickyLabelCaseSensitive: TsStickyLabel
@@ -260,7 +261,7 @@ object ReplaceDialog: TReplaceDialog
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    TabOrder = 1
+    TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
     object ComboBoxSearchFor: TBCComboBox
       Left = 0
@@ -296,7 +297,7 @@ object ReplaceDialog: TReplaceDialog
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
-    TabOrder = 2
+    TabOrder = 1
     SkinData.SkinSection = 'CHECKBOX'
     object RadioButtonReplaceWith: TBCRadioButton
       AlignWithMargins = True
@@ -327,7 +328,7 @@ object ReplaceDialog: TReplaceDialog
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
-    TabOrder = 4
+    TabOrder = 2
     SkinData.SkinSection = 'PANEL'
     object ComboBoxReplaceWith: TBCComboBox
       Left = 0
@@ -362,7 +363,7 @@ object ReplaceDialog: TReplaceDialog
     BevelOuter = bvNone
     Padding.Top = 8
     Padding.Bottom = 8
-    TabOrder = 3
+    TabOrder = 6
     SkinData.SkinSection = 'CHECKBOX'
     object ButtonOK: TBCButton
       AlignWithMargins = True
@@ -421,7 +422,8 @@ object ReplaceDialog: TReplaceDialog
     BiDiMode = bdLeftToRight
     Caption = ' Replace in'
     ParentBiDiMode = False
-    TabOrder = 0
+    TabOrder = 5
+    TabStop = True
     SkinData.SkinSection = 'GROUPBOX'
     Checked = False
     object RadioButtonWholeFile: TBCRadioButton
@@ -445,7 +447,7 @@ object ReplaceDialog: TReplaceDialog
       SkinData.SkinSection = 'CHECKBOX'
     end
   end
-  object BCPanel1: TBCPanel
+  object PanelDeleteLine: TBCPanel
     Left = 6
     Top = 91
     Width = 357
@@ -454,7 +456,7 @@ object ReplaceDialog: TReplaceDialog
     BevelOuter = bvNone
     Color = clWindow
     ParentBackground = False
-    TabOrder = 6
+    TabOrder = 3
     SkinData.SkinSection = 'CHECKBOX'
     object RadioButtonDeleteLine: TBCRadioButton
       AlignWithMargins = True
@@ -472,6 +474,7 @@ object ReplaceDialog: TReplaceDialog
       ParentBiDiMode = False
       ParentColor = False
       TabOrder = 0
+      TabStop = True
       OnClick = RadioButtonDeleteLineClick
       SkinData.SkinSection = 'CHECKBOX'
     end
