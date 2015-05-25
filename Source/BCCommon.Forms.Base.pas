@@ -127,7 +127,7 @@ end;
 procedure TBCForm.ProgressBarShow(Sender: TObject);
 begin
   ResizeProgressBar;
-  FTaskbar.ProgressMaxValue := FProgressBar.Count;
+  FTaskbar.ProgressMaxValue := FProgressBar.MaxValue;
   FTaskbar.ProgressState := TTaskBarProgressState.Normal;
 end;
 
