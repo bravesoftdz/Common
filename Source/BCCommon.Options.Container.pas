@@ -257,7 +257,7 @@ type
     property ALTSetsColumnMode: Boolean read FALTSetsColumnMode write FALTSetsColumnMode;
     [IniValue('Options', 'HighlightSimilarTerms', 'True')]
     property HighlightSimilarTerms: Boolean read FHighlightSimilarTerms write FHighlightSimilarTerms;
-    [IniValue('Options', 'SelectionToEndOfLine', 'True')]
+    [IniValue('Options', 'SelectionToEndOfLine', 'False')]
     property SelectionToEndOfLine: Boolean read FSelectionToEndOfLine write FSelectionToEndOfLine;
     [IniValue('Options', 'TripleClickRowSelect', 'False')]
     property TripleClickRowSelect: Boolean read FTripleClickRowSelect write FTripleClickRowSelect;

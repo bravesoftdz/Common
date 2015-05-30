@@ -185,6 +185,7 @@ begin
   begin
     InsertTextToCombo(ComboBoxTextToFind);
     InsertTextToCombo(ComboBoxDirectory);
+    InsertTextToCombo(ComboBoxFileMask);
   end;
   WriteIniFile;
 end;

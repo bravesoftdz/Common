@@ -285,6 +285,7 @@ object FindInFilesDialog: TFindInFilesDialog
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           ItemIndex = -1
+          Sorted = True
           TabOrder = 0
         end
       end
@@ -343,6 +344,7 @@ object FindInFilesDialog: TFindInFilesDialog
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           ItemIndex = -1
+          Sorted = True
           TabOrder = 0
           Text = '*.*'
         end
@@ -485,6 +487,7 @@ object FindInFilesDialog: TFindInFilesDialog
     SkinData.SkinSection = 'COMBOBOX'
     VerticalAlignment = taAlignTop
     ItemIndex = -1
+    Sorted = True
     TabOrder = 3
     OnKeyUp = ComboBoxTextToFindKeyUp
   end

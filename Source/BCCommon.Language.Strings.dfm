@@ -1299,6 +1299,11 @@ object LanguageDataModule: TLanguageDataModule
           'HTML files (*.html;*.htm)')
       end
       item
+        Name = 'Inno Setup'
+        Strings.Strings = (
+          'Inno Setup files (*.iss)')
+      end
+      item
         Name = 'Java'
         Strings.Strings = (
           'Java files (*.java)')
