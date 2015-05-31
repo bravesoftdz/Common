@@ -243,8 +243,8 @@ begin
     ReadSectionValues('FindInFilesDirectories', LItems);
     InsertItemsToComboBox(ComboBoxDirectory);
 
-    ComboBoxFileMask.ItemIndex := ReadInteger('FindInFilesOptions', 'FileMaskItem', -1);
-    ComboBoxDirectory.ItemIndex := ReadInteger('FindInFilesOptions', 'DirectoryItem', -1);
+    ComboBoxFileMask.ItemIndex := ComboBoxFileMask.Items.IndexOf(ReadString('FindInFilesOptions', 'FileMask', '*.*'));
+    ComboBoxDirectory.ItemIndex := ComboBoxDirectory.Items.IndexOf(ReadString('FindInFilesOptions', 'Directory', ''));
   finally
     LItems.Free;
     Free;
@@ -267,8 +267,8 @@ begin
     for i := 0 to ComboBoxDirectory.Items.Count - 1 do
       WriteString('FindInFilesDirectories', IntToStr(i), ComboBoxDirectory.Items[i]);
 
-    WriteInteger('FindInFilesOptions', 'FileMaskItem', ComboBoxFileMask.IndexOf(ComboBoxFileMask.Text));
-    WriteInteger('FindInFilesOptions', 'DirectoryItem', ComboBoxDirectory.IndexOf(ComboBoxDirectory.Text));
+    WriteString('FindInFilesOptions', 'FileMask', ComboBoxFileMask.Text);
+    WriteString('FindInFilesOptions', 'Directory', ComboBoxDirectory.Text);
   finally
     Free;
   end;

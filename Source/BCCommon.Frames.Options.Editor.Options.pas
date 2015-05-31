@@ -67,7 +67,7 @@ begin
   OptionsContainer.GroupUndo := SliderGroupUndo.SliderOn;
   OptionsContainer.TrimTrailingSpaces := SliderTrimTrailingSpaces.SliderOn;
   OptionsContainer.UndoAfterSave := SliderUndoAfterSave.SliderOn;
-  OptionsContainer.LineSpacing := StrToIntDef(EditLineSpacing.Text, 0);
+  OptionsContainer.LineSpacing := StrToIntDef(EditLineSpacing.Text, 1);
 end;
 
 procedure TOptionsEditorOptionsFrame.GetData;

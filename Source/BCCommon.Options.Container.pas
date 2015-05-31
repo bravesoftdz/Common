@@ -219,7 +219,7 @@ type
     property TrimTrailingSpaces: Boolean read FTrimTrailingSpaces write FTrimTrailingSpaces;
     [IniValue('Options', 'UndoAfterSave', 'False')]
     property UndoAfterSave: Boolean read FUndoAfterSave write FUndoAfterSave;
-    [IniValue('Options', 'LineSpacing', '0')]
+    [IniValue('Options', 'LineSpacing', '1')]
     property LineSpacing: Integer read FLineSpacing write FLineSpacing;
     { Right margin }
     [IniValue('Options', 'RightMarginVisible', 'True')]
