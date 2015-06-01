@@ -517,7 +517,7 @@ type
     { Defaults }
     [IniValue('Options', 'DefaultColor', 'Default')]
     property DefaultColor: string read FDefaultColor write FDefaultColor;
-    [IniValue('Options', 'DefaultEncoding', '1')]
+    [IniValue('Options', 'DefaultEncoding', '0')]
     property DefaultEncoding: Integer read FDefaultEncoding write FDefaultEncoding;
     [IniValue('Options', 'DefaultHighlighter', 'Text')]
     property DefaultHighlighter: string read FDefaultHighlighter write FDefaultHighlighter;

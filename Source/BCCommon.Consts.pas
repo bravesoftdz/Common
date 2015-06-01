@@ -18,6 +18,14 @@ const
   PARAM_NO_INI = '-noini';
   PARAM_NO_SKIN = '-noskin';
 
+  ENCODING_ANSI = 0;
+  ENCODING_ASCII = 1;
+  ENCODING_BIG_ENDIAN_UNICODE = 2;
+  ENCODING_UNICODE = 3;
+  ENCODING_UTF7 = 4;
+  ENCODING_UTF8 = 5;
+  ENCODING_UTF_WITHOUT_BOM = 6;
+
   //TAnimationStyleStr: array[Low(TAnimationStyle)..High(TAnimationStyle)] of String = ('None',
   //  'Default', 'Unfold', 'Slide', 'Fade');
   //TSynEditCaretTypeStr: array[0..3] of String =

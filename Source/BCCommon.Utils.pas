@@ -109,7 +109,13 @@ begin
         Text := s;
       end
       else
-        Items.Insert(0, s);
+      begin
+        i := 0;
+        if Sorted then
+        while (i < Items.Count) and (Items[i] < s) do
+          Inc(i);
+        Items.Insert(i, s);
+      end
     end;
   end;
 end;

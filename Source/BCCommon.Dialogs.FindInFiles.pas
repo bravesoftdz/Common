@@ -37,7 +37,6 @@ type
     procedure ActionDirectoryButtonClickExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ActionFileMaskItemsButtonClickExecute(Sender: TObject);
     procedure ActionDirectoryItemsButtonClickExecute(Sender: TObject);
@@ -48,12 +47,10 @@ type
     function GetLookInSubfolders: Boolean;
     function GetSearchCaseSensitive: Boolean;
     procedure SetButtons;
-    procedure SetExtensions(Value: string);
     procedure SetFolderText(Value: string);
     procedure ReadIniFile;
     procedure WriteIniFile;
   public
-    property Extensions: string write SetExtensions;
     property FileTypeText: string read GetFileTypeText;
     property FindWhatText: string read GetFindWhatText;
     property FolderText: string read GetFolderText write SetFolderText;
@@ -190,27 +187,6 @@ begin
   WriteIniFile;
 end;
 
-procedure TFindInFilesDialog.FormCreate(Sender: TObject);
-begin
-  ReadIniFile;
-end;
-
-procedure TFindInFilesDialog.SetExtensions(Value: string);
-var
-  Temp: string;
-begin
-  Temp := Value;
-  with ComboBoxFileMask.Items do
-  begin
-    Clear;
-    while Pos('|', Temp) <> 0 do
-    begin
-      Add(GetNextToken('|', Temp));
-      Temp := RemoveTokenFromStart('|', Temp);
-    end;
-  end;
-end;
-
 procedure TFindInFilesDialog.ReadIniFile;
 var
   LItems: TStrings;
@@ -226,7 +202,8 @@ var
       for i := 0 to LItems.Count - 1 do
       begin
         s := GetTokenAfter('=', LItems.Strings[i]);
-        AComboBox.Items.Add(s);
+        if AComboBox.Items.IndexOf(s) = -1 then
+          AComboBox.Items.Add(s);
       end;
     end;
   end;
@@ -265,7 +242,7 @@ begin
       WriteString('FindInFilesFileMasks', IntToStr(i), ComboBoxFileMask.Items[i]);
     EraseSection('FindInFilesDirectories');
     for i := 0 to ComboBoxDirectory.Items.Count - 1 do
-      WriteString('FindInFilesDirectories', IntToStr(i), ComboBoxDirectory.Items[i]);
+      WriteString('FindInFilesDirectories', IntToStr(i), IncludeTrailingPathDelimiter(ComboBoxDirectory.Items[i]));
 
     WriteString('FindInFilesOptions', 'FileMask', ComboBoxFileMask.Text);
     WriteString('FindInFilesOptions', 'Directory', ComboBoxDirectory.Text);
