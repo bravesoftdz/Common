@@ -212,7 +212,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       LeftMargin.Width = 55
       Lines.Strings = (
         '')
-      LineSpacing.Rule = lsSpecified
       LineSpacing.Spacing = 0
       MatchingPair.Enabled = True
       Minimap.Font.Charset = DEFAULT_CHARSET
@@ -228,24 +227,21 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       WordWrap.Enabled = False
       WordWrap.Position = 80
       WordWrap.Style = wwsClientWidth
-      ExplicitTop = 219
-      ExplicitHeight = 85
     end
     object PageControl: TBCPageControl
       Left = 0
       Top = 44
       Width = 447
       Height = 172
-      ActivePage = TabSheetUseSkinColor
+      ActivePage = TabSheetGeneral
       Align = alTop
       TabHeight = 22
       TabOrder = 2
       TabMargin = 2
       SkinData.SkinSection = 'PAGECONTROL'
-      ActivePageCaption = 'Use skin color'
+      ActivePageCaption = 'General'
       HoldShiftToDragDrop = False
       TabDragDrop = False
-      ExplicitTop = 41
       object TabSheetEditor: TsTabSheet
         Caption = 'Editor'
         SkinData.CustomColor = False
@@ -596,18 +592,16 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           ErrorColor = 14803455
           NumbersAllowNegative = False
         end
-        object DateEditDate: TBCDateEdit
+        object DateEditDate: TBCEdit
           Left = 6
           Top = 60
-          Width = 90
+          Width = 89
           Height = 21
           AutoSize = False
-          EditMask = '!99/99/9999;1; '
           MaxLength = 10
           TabOrder = 1
-          Text = '  .  .    '
           OnChange = EditChange
-          CheckOnExit = True
+          SkinData.SkinSection = 'EDIT'
           BoundLabel.Active = True
           BoundLabel.Caption = 'Date'
           BoundLabel.Indent = 4
@@ -619,9 +613,12 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           BoundLabel.Layout = sclTopLeft
           BoundLabel.MaxWidth = 0
           BoundLabel.UseSkinColor = True
-          SkinData.SkinSection = 'EDIT'
-          GlyphMode.Blend = 0
-          GlyphMode.Grayed = False
+          EnterToTab = False
+          OnlyNumbers = False
+          NumbersWithDots = False
+          NumbersWithSpots = False
+          ErrorColor = 14803455
+          NumbersAllowNegative = False
         end
       end
       object TabSheetAuthor: TsTabSheet

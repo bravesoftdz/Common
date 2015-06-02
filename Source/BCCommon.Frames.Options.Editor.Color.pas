@@ -9,7 +9,7 @@ uses
   BCEditor.Editor.Base, BCEditor.Editor, Vcl.Buttons, sSpeedButton, BCControls.SpeedButton,
   BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter, System.Actions, Vcl.ActnList, BCControls.ScrollBox,
   sScrollBox, sDialogs, BCComponents.MultiStringHolder, sPageControl, BCControls.PageControl, sSplitter, sEdit,
-  BCControls.Edit, Vcl.Mask, sMaskEdit, sCustomComboEdit, sToolEdit, BCControls.DateEdit, sLabel, BCControls.Labels,
+  BCControls.Edit, Vcl.Mask, sMaskEdit, sCustomComboEdit, sToolEdit, sLabel, BCControls.Labels,
   acSlider;
 
 type
@@ -23,7 +23,7 @@ type
     ComboBoxEditorElement: TBCComboBox;
     ComboBoxElementsName: TBCComboBox;
     ComboBoxHighlighter: TBCComboBox;
-    DateEditDate: TBCDateEdit;
+    DateEditDate: TBCEdit;
     EditEmail: TBCEdit;
     EditName: TBCEdit;
     Editor: TBCEditor;
@@ -166,7 +166,7 @@ begin
   if Assigned(FJSONObject) then
   begin
     FJSONObject['Colors']['Info']['General']['Version'] := EditVersion.Text;
-    FJSONObject['Colors']['Info']['General']['Date'] := DateToStr(DateEditDate.Date);
+    FJSONObject['Colors']['Info']['General']['Date'] := DateEditDate.Text;
     FJSONObject['Colors']['Info']['Author']['Name'] := EditName.Text;
     FJSONObject['Colors']['Info']['Author']['Email'] := EditEmail.Text;
 
@@ -341,7 +341,7 @@ begin
   ComboBoxEditorElementChange(Self);
   ComboBoxElementsNameChange(Self);
   EditVersion.Text := FJSONObject['Colors']['Info']['General']['Version'];
-  DateEditDate.Date := StrToDate(FJSONObject['Colors']['Info']['General']['Date']);
+  DateEditDate.Text := FJSONObject['Colors']['Info']['General']['Date'];
   EditName.Text := FJSONObject['Colors']['Info']['Author']['Name'];
   EditEmail.Text := FJSONObject['Colors']['Info']['Author']['Email'];
 end;
@@ -408,6 +408,7 @@ begin
   ComboBoxHighlighter.ItemIndex := ComboBoxHighlighter.Items.IndexOf(OptionsContainer.DefaultHighlighter);
   ComboBoxColor.Items := OptionsContainer.ColorStrings;
   ComboBoxColor.ItemIndex := ComboBoxColor.Items.IndexOf(OptionsContainer.DefaultColor);
+  ComboBoxHighlighterChange(nil);
   FFileName := ComboBoxColor.Text;
   ComboBoxColorChange(Self);
   ComboBoxEditorElementChange(Self);
