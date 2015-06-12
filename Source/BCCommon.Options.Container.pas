@@ -699,7 +699,8 @@ begin
     Caret.Styles.Insert := TBCEditorCaretStyle(FInsertCaret);
     Caret.Styles.Overwrite := TBCEditorCaretStyle(FOverwriteCaret);
     { Code folding }
-    CodeFolding.Visible := FShowCodeFolding;
+    if CodeFolding.Visible then
+      CodeFolding.Visible := FShowCodeFolding;
     if FFoldMultilineComments then
       CodeFolding.Options := CodeFolding.Options + [cfoFoldMultilineComments]
     else

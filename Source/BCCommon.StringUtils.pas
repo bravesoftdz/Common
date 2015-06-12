@@ -8,7 +8,8 @@ interface
   function DeleteChars(const S: string; Chr: Char): string;
   function DeleteWhiteSpace(const s: string): string;
   function EncryptString(Data: string): string;
-  function FormatXML(XML: string): string;
+  function FormatJSON(AJSON: string): string;
+  function FormatXML(AXML: string): string;
   function GetNextToken(ASeparator: string; AText: string): string;
   function GetTokenAfter(ASeparator: string; AText: string): string;
   function RemoveTokenFromStart(ASeparator: string; AText: string): string;
@@ -163,15 +164,20 @@ begin
   SetLength(Result, j);
 end;
 
+function FormatJSON(AJSON: string): string;
+begin
+
+end;
+
 { Note! The default encoding for XML files is UTF-8, so if no encoding attribute is found UTF-8 is
   assumed. If encoding is UTF-8, FormatXMLData function will remove the encoding attribute. }
-function FormatXML(XML: string): string;
+function FormatXML(AXML: string): string;
 var
   XMLDocument: TXMLDocument;
 begin
   XMLDocument := TXMLDocument.Create(nil);
   try
-    XMLDocument.LoadFromXML(XML);
+    XMLDocument.LoadFromXML(AXML);
     XMLDocument.XML.Text := FormatXMLData(XMLDocument.XML.Text);
     Result := XMLDocument.XML.Text;
   finally

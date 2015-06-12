@@ -71,6 +71,7 @@ begin
   begin
     Clear;
     Add(LanguageDatamodule.GetConstant('Arrow'));
+    Add(LanguageDatamodule.GetConstant('Enter'));
     Add(LanguageDatamodule.GetConstant('Pilcrow'));
   end;
 end;

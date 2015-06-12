@@ -1,6 +1,8 @@
 inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
   Width = 223
   Height = 345
+  ExplicitWidth = 223
+  ExplicitHeight = 345
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4

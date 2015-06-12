@@ -233,13 +233,13 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Top = 44
       Width = 447
       Height = 172
-      ActivePage = TabSheetGeneral
+      ActivePage = TabSheetEditor
       Align = alTop
       TabHeight = 22
       TabOrder = 2
       TabMargin = 2
       SkinData.SkinSection = 'PAGECONTROL'
-      ActivePageCaption = 'General'
+      ActivePageCaption = 'Editor'
       HoldShiftToDragDrop = False
       TabDragDrop = False
       object TabSheetEditor: TsTabSheet
@@ -271,13 +271,13 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           Style = csOwnerDrawFixed
-          ItemIndex = 0
+          ItemIndex = -1
           TabOrder = 0
-          Text = 'Active line'
           OnChange = ComboBoxEditorElementChange
           Items.Strings = (
             'Active line'
             'Background'
+            'Code folding active line background'
             'Code folding background'
             'Code folding collapsed line'
             'Code folding folding line'
@@ -290,8 +290,11 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             'Completion proposal foreground'
             'Completion proposal selected background'
             'Completion proposal selected text'
+            'Left margin active line background'
             'Left margin background'
             'Left margin bookmark panel'
+            'Left margin border'
+            'Left margin line number line'
             'Left margin line numbers'
             'Left margin line state modified'
             'Left margin line state normal'
@@ -625,6 +628,10 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'Author'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object EditName: TBCEdit
           Left = 6
           Top = 20
@@ -684,6 +691,10 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'Use skin color'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object PanelUseSkinColorLeft: TBCPanel
           Left = 0
           Top = 0

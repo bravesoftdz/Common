@@ -52,9 +52,9 @@ object PrintPreviewDialog: TPrintPreviewDialog
   TextHeight = 13
   object StatusBar: TBCStatusBar
     Left = 0
-    Top = 504
+    Top = 501
     Width = 869
-    Height = 19
+    Height = 22
     Panels = <
       item
         Width = 120
@@ -65,7 +65,6 @@ object PrintPreviewDialog: TPrintPreviewDialog
     ParentShowHint = False
     ShowHint = True
     SkinData.SkinSection = 'STATUSBAR'
-    ExplicitTop = 502
   end
   object PanelButtons: TBCPanel
     Left = 0
@@ -474,18 +473,17 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Left = 0
     Top = 62
     Width = 869
-    Height = 442
+    Height = 439
     Align = alClient
     BevelOuter = bvLowered
     TabOrder = 2
     SkinData.SkinSection = 'CHECKBOX'
-    ExplicitHeight = 440
     object PrintPreview: TBCEditorPrintPreview
       AlignWithMargins = True
       Left = 3
       Top = 1
       Width = 863
-      Height = 438
+      Height = 435
       Margins.Left = 2
       Margins.Top = 0
       Margins.Right = 2
@@ -495,13 +493,12 @@ object PrintPreviewDialog: TPrintPreviewDialog
       OnMouseDown = PrintPreviewMouseDown
       OnPreviewPage = PrintPreviewPreviewPage
       ScaleMode = pscPageWidth
-      ExplicitHeight = 436
     end
   end
   object ActionList: TActionList
     Images = ImagesDataModule.ImageList
-    Left = 106
-    Top = 115
+    Left = 104
+    Top = 111
     object ActionColors: TAction
       AutoCheck = True
       Caption = 'Colors'

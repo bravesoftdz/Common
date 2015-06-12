@@ -53,7 +53,10 @@ end;
 procedure TBCForm.FormCreate(Sender: TObject);
 begin
   inherited;
-  SkinManager.SkinName := 'MetroUI';
+  {$WARN SYMBOL_PLATFORM OFF}
+  SkinManager.SkinDirectory := Format('%s%s', [IncludeTrailingBackslash(ExtractFilePath(Application.ExeName)),
+    SkinManager.SkinDirectory]);
+  {$WARN SYMBOL_PLATFORM ON}
   SkinManager.Active := True;
   FTaskbar := TTaskBar.Create(Self);
   CreateProgressBar;
@@ -81,6 +84,7 @@ begin
     begin
       LMenuItem := TMenuItem.Create(Application);
       LMenuItem.Caption := LStringList[i];
+
       if LMenuItem.Caption = SkinManager.SkinName then
         LMenuItem.Checked := True;
 
@@ -100,7 +104,6 @@ procedure TBCForm.SkinMenuClick(Sender: TObject);
 begin
   TMenuItem(Sender).Checked := True;
   SkinManager.SkinName := DeleteChars(TMenuItem(Sender).Caption, '&');
-  SkinManager.Active := True;
   if Assigned(FSkinChange) then
     FSkinChange(Sender);
 end;

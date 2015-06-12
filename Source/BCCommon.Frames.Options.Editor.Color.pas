@@ -232,9 +232,9 @@ begin
   if SliderSkinCompletionProposalSelectionBackground.SliderOn then
     Editor.CompletionProposal.Colors.SelectedBackground := LColor;
   if SliderSkinLeftMarginBackground.SliderOn then
-    Editor.LeftMargin.Color := LColor;
+    Editor.LeftMargin.Colors.Background := LColor;
   if SliderSkinBookmarkPanelBackground.SliderOn then
-    Editor.LeftMargin.Bookmarks.Panel.Color := LColor;
+    Editor.LeftMargin.Colors.BookmarkPanelBackground := LColor;
   if SliderSkinSelectionForeground.SliderOn then
     Editor.Selection.Colors.Foreground := FrameAdapter.SkinData.SkinManager.GetHighLightFontColor;
   if SliderSkinSelectionBackground.SliderOn then

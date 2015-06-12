@@ -246,7 +246,7 @@ end;
 
 procedure TPrintPreviewDialog.ApplicationEventsHint(Sender: TObject);
 begin
-  StatusBar.Panels[1].Text := Format('  %s', [Application.Hint]);
+  StatusBar.Panels[1].Text := Application.Hint;
 end;
 
 procedure TPrintPreviewDialog.PrintPreviewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState;
@@ -281,6 +281,7 @@ end;
 procedure TPrintPreviewDialog.PrintPreviewPreviewPage(Sender: TObject; PageNumber: Integer);
 begin
   StatusBar.Panels[0].Text := Format(LanguageDataModule.GetConstant('PreviewPage'), [PrintPreview.PageNumber, PrintPreview.PageCount]);
+  StatusBar.Panels[0].Width := StatusBar.Canvas.TextWidth(StatusBar.Panels[0].Text) + 16;
 end;
 
 procedure TPrintPreviewDialog.ActionWordWrapExecute(Sender: TObject);

@@ -43,6 +43,7 @@ object BCForm: TBCForm
     MenuSupport.ExtraLineFont.Name = 'Tahoma'
     MenuSupport.ExtraLineFont.Style = [fsBold]
     SkinDirectory = 'Skins'
+    SkinName = 'MetroUI'
     SkinInfo = 'N/A'
     ThirdParty.ThirdEdits = 'TBCEditor'#13#10'TBCEditorPrintPreview'
     ThirdParty.ThirdButtons = 'TButton'

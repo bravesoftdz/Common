@@ -6,7 +6,7 @@ uses
   Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
   System.Actions, Vcl.ActnList, Vcl.ImgList, BCControls.ImageList, Vcl.StdCtrls, VirtualTrees, BCControls.ProgressBar,
   Vcl.ComCtrls, BCControls.ButtonedEdit, System.Win.TaskbarCore, Vcl.Taskbar, acAlphaImageList, BCControls.Panel, sPanel,
-  sSkinProvider, BCControls.Statusbar, sStatusBar, System.ImageList;
+  sSkinProvider, BCControls.Statusbar, sStatusBar, System.ImageList, System.Diagnostics;
 
 type
   TOpenFileEvent = procedure(var FileName: string);
@@ -42,6 +42,7 @@ type
     FFormClosing: Boolean;
     FOpenFile: TOpenFileEvent;
     FProgressBar: TBCProgressBar;
+    FStopWatch: TStopWatch;
     procedure CreateProgressBar;
     procedure ReadFiles(RootDirectory: string);
     procedure ReadIniFile;
@@ -312,8 +313,6 @@ end;
 
 procedure TSearchForFilesForm.Open(RootDirectory: string);
 var
-  T1, T2: TTime;
-  Min, Secs: Integer;
   TimeDifference: string;
 begin
   Caption := Format('%s - [%s]', [Caption, RootDirectory]);
@@ -329,20 +328,19 @@ begin
     Screen.Cursor := crDefault;
   end;
   FProgressBar.Show;
-  T1 := Now;
+  FStopWatch.Reset;
+  FStopWatch.Start;
   try
     ReadFiles(RootDirectory);
   finally
     FProgressBar.Hide;
     if not FFormClosing then
     begin
-      T2 := Now;
-      Min := StrToInt(FormatDateTime('n', T2 - T1));
-      Secs := Min * 60 + StrToInt(FormatDateTime('s', T2 - T1));
-      if Secs < 60 then
-        TimeDifference := FormatDateTime(Format('s.zzz "%s"', [LanguageDataModule.GetConstant('Second')]), T2 - T1)
+      FStopWatch.Stop;
+      if StrToInt(FormatDateTime('n', FStopWatch.ElapsedMilliseconds / MSecsPerDay)) < 1 then
+        TimeDifference := FormatDateTime(Format('s.zzz "%s"', [LanguageDataModule.GetConstant('Second')]), FStopWatch.ElapsedMilliseconds / MSecsPerDay)
       else
-        TimeDifference := FormatDateTime(Format('n "%s" s.zzz "%s"', [LanguageDataModule.GetConstant('Minute'), LanguageDataModule.GetConstant('Second')]), T2 - T1);
+        TimeDifference := FormatDateTime(Format('n "%s" s.zzz "%s"', [LanguageDataModule.GetConstant('Minute'), LanguageDataModule.GetConstant('Second')]), FStopWatch.ElapsedMilliseconds / MSecsPerDay);
       StatusBar.Panels[0].Text := Format(LanguageDataModule.GetConstant('FilesFound'), [FProgressBar.Count, TimeDifference]);
 
       PanelSearchingFiles.Visible := False;

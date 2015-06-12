@@ -234,6 +234,11 @@ object LanguageDataModule: TLanguageDataModule
           'Encoding')
       end
       item
+        Name = 'Enter'
+        Strings.Strings = (
+          'Enter')
+      end
+      item
         Name = 'FileMaskItems'
         Strings.Strings = (
           'File mask items')
@@ -401,7 +406,7 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'SearchFor'
         Strings.Strings = (
-          'Search for '#39#39'%s'#39#39)
+          'Search for '#39'%s'#39)
       end
       item
         Name = 'Second'
@@ -1281,12 +1286,22 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'C++'
         Strings.Strings = (
-          'C/C++ files (*.c;*.cpp;*.h;*.hpp)')
+          'C++ files (*.cpp;*.hpp)')
+      end
+      item
+        Name = 'C'
+        Strings.Strings = (
+          'C files (*.c;*.h)')
       end
       item
         Name = 'CSS'
         Strings.Strings = (
           'Cascading Stylesheet files (*.css)')
+      end
+      item
+        Name = 'D'
+        Strings.Strings = (
+          'D files (*.d;*.di)')
       end
       item
         Name = 'Delphi Form Module'
@@ -1354,7 +1369,7 @@ object LanguageDataModule: TLanguageDataModule
           'Ruby files (*.rb;*.rbw)')
       end
       item
-        Name = 'SQL'
+        Name = 'SQL - Standard'
         Strings.Strings = (
           'SQL files (*.sql)')
       end
