@@ -90,7 +90,7 @@ begin
 
       LMenuItem.OnClick := SkinMenuClick;
       LMenuItem.RadioItem := True;
-      if (i <> 0) and (i mod 20 = 0) then
+      if (i <> 0) and (i mod 30 = 0) then
         LMenuItem.Break := mbBreak;
 
       AMenuItem.Add(LMenuItem);

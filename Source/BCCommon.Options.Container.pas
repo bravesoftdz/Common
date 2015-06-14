@@ -451,8 +451,8 @@ type
     FDefaultEncoding: Integer;
     FEncodingStrings: TStrings;
     FDefaultHighlighter: string;
-    FHighlighterStrings: TStrings;
     FDefaultHighlighterColor: string;
+    FDefaultSQLHighlighter: string;
     FDirCloseTabByDblClick: Boolean;
     FDirCloseTabByMiddleClick: Boolean;
     FDirDoubleBuffered: Boolean;
@@ -477,6 +477,7 @@ type
     FDocShowNewDocumentButton: Boolean;
     FDocShowImage: Boolean;
     FFileTypes: TStrings;
+    FHighlighterStrings: TStrings;
     FOutputCloseTabByDblClick: Boolean;
     FOutputCloseTabByMiddleClick: Boolean;
     FOutputDoubleBuffered: Boolean;
@@ -486,7 +487,7 @@ type
     FOutputShowCloseButton: Boolean;
     FOutputShowImage: Boolean;
     FShowXMLTree: Boolean;
-    FSupportedFileExts: string;
+    FSupportedFileExtensions: string;
     FToolBarVisible: Boolean;
     FMenuBarVisible: Boolean;
     FMainMenuVisible: Boolean;
@@ -510,7 +511,7 @@ type
     //function FileType(FileType: TFileType): string;
     function GetFilterExt(FilterIndex: Cardinal): string;
     function GetFilterIndex(FileExt: string): Cardinal;
-    function SupportedFileExts(Refresh: Boolean = False): string;
+    function SupportedFileExtensions(Refresh: Boolean = False): string;
    // procedure AssignTo(Dest: TPersistent); override;
     procedure ReadIniFile; override;
   published
@@ -523,6 +524,8 @@ type
     property DefaultHighlighter: string read FDefaultHighlighter write FDefaultHighlighter;
     [IniValue('Options', 'DefaultHighlighterColor', 'Default')]
     property DefaultHighlighterColor: string read FDefaultHighlighterColor write FDefaultHighlighterColor;
+     [IniValue('Options', 'DefaultSQLHighlighter', 'SQL - Standard')]
+    property DefaultSQLHighlighter: string read FDefaultSQLHighlighter write FDefaultSQLHighlighter;
     { Strings }
     property ColorStrings: TStrings read FColorStrings write FColorStrings;
     property EncodingStrings: TStrings read FEncodingStrings write FEncodingStrings;
@@ -1002,14 +1005,14 @@ begin
     Result := Format('%s%s|', [Result, StringBetween(FFileTypes.Strings[i], '(', ')')]);
 end;
 
-function TEditBoneOptionsContainer.SupportedFileExts(Refresh: Boolean): string;
+function TEditBoneOptionsContainer.SupportedFileExtensions(Refresh: Boolean): string;
 var
   i: Integer;
 begin
-  if (FSupportedFileExts = '') or Refresh then
+  if (FSupportedFileExtensions = '') or Refresh then
     for i := 0 to FFileTypes.Count - 1 do
-      FSupportedFileExts := Format('%s%s;', [FSupportedFileExts, StringBetween(FFileTypes.Strings[i], '(', ')')]);
-  Result := FSupportedFileExts;
+      FSupportedFileExtensions := Format('%s%s;', [FSupportedFileExtensions, StringBetween(FFileTypes.Strings[i], '(', ')')]);
+  Result := FSupportedFileExtensions;
 end;
 
 {$endif}

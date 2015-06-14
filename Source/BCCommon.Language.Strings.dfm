@@ -1264,6 +1264,11 @@ object LanguageDataModule: TLanguageDataModule
   object MultiStringHolderFileTypes: TBCMultiStringHolder
     MultipleStrings = <
       item
+        Name = 'ActionScript'
+        Strings.Strings = (
+          'ActionScript files (*.as)')
+      end
+      item
         Name = 'Assembler 68HC11'
         Strings.Strings = (
           '68HC11 Assembler files (*.hc11;*.asc)')
@@ -1307,6 +1312,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'Delphi Form Module'
         Strings.Strings = (
           'Delphi Form Module files (*.dfm)')
+      end
+      item
+        Name = 'Free Pascal'
+        Strings.Strings = (
+          'Free Pascal files (*.pp)')
       end
       item
         Name = 'HTML with Scripts'

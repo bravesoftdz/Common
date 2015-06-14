@@ -51,6 +51,7 @@ type
     procedure ReadIniFile;
     procedure WriteIniFile;
   public
+    function GetFileExtensions(AFileExtensions: string): string;
     property FileTypeText: string read GetFileTypeText;
     property FindWhatText: string read GetFindWhatText;
     property FolderText: string read GetFolderText write SetFolderText;
@@ -98,6 +99,33 @@ end;
 function TFindInFilesDialog.GetFindWhatText: string;
 begin
   Result := ComboBoxTextToFind.Text;
+end;
+
+function TFindInFilesDialog.GetFileExtensions(AFileExtensions: string): string;
+var
+  i: Integer;
+  s, LFileExtension: string;
+
+  procedure AddFileExtension;
+  begin
+    if Pos(LFileExtension, Result) = 0 then
+      Result := Result + LFileExtension;
+  end;
+
+begin
+  Result := AFileExtensions;
+  for i := 1 to ComboBoxFileMask.Items.Count - 1 do { start from 1 because first is *.* }
+  begin
+    s := ComboBoxFileMask.Items[i];
+    while Pos(';', s) <> 0 do
+    begin
+      LFileExtension := Copy(s, 1, Pos(';', s));
+      AddFileExtension;
+      s := Copy(s, Pos(';', s) + 1, Length(s));
+    end;
+    LFileExtension := s + ';';
+    AddFileExtension;
+  end;
 end;
 
 function TFindInFilesDialog.GetFileTypeText: string;
