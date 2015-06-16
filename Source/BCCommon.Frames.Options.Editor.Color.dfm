@@ -33,7 +33,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Height = 6
       Cursor = crVSplit
       Align = alTop
-      ShowGrip = True
       SkinData.SkinSection = 'SPLITTER'
       ExplicitTop = 213
     end
@@ -271,11 +270,12 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           Style = csOwnerDrawFixed
-          ItemIndex = -1
+          ItemIndex = 0
           TabOrder = 0
+          Text = 'Active line background'
           OnChange = ComboBoxEditorElementChange
           Items.Strings = (
-            'Active line'
+            'Active line background'
             'Background'
             'Code folding active line background'
             'Code folding background'
@@ -628,10 +628,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'Author'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object EditName: TBCEdit
           Left = 6
           Top = 20
@@ -691,10 +687,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'Use skin color'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object PanelUseSkinColorLeft: TBCPanel
           Left = 0
           Top = 0
