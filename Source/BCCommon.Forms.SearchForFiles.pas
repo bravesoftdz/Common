@@ -6,7 +6,7 @@ uses
   Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
   System.Actions, Vcl.ActnList, Vcl.ImgList, BCControls.ImageList, Vcl.StdCtrls, VirtualTrees, BCControls.ProgressBar,
   Vcl.ComCtrls, BCControls.ButtonedEdit, System.Win.TaskbarCore, Vcl.Taskbar, acAlphaImageList, BCControls.Panel, sPanel,
-  sSkinProvider, BCControls.Statusbar, sStatusBar, System.ImageList, System.Diagnostics;
+  sSkinProvider, BCControls.Statusbar, sStatusBar, System.ImageList, System.Diagnostics, System.UITypes;
 
 type
   TOpenFileEvent = procedure(var FileName: string);
@@ -16,7 +16,6 @@ type
     ActionList: TActionList;
     ActionSearch: TAction;
     EditSearchFor: TBCButtonedEdit;
-    ImageList: TBCImageList;
     PanelSearchingFiles: TBCPanel;
     SkinProvider: TsSkinProvider;
     StatusBar: TBCStatusBar;
@@ -36,8 +35,9 @@ type
     procedure VirtualDrawTreeSearchDblClick(Sender: TObject);
     procedure VirtualDrawTreeSearchDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
     procedure VirtualDrawTreeSearchFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
-    procedure VirtualDrawTreeSearchGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
     procedure VirtualDrawTreeSearchGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; var NodeWidth: Integer);
+    procedure VirtualDrawTreeSearchGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind;
+      Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
   private
     FFormClosing: Boolean;
     FOpenFile: TOpenFileEvent;
@@ -244,7 +244,7 @@ begin
 end;
 
 procedure TSearchForFilesForm.VirtualDrawTreeSearchGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
-  Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
+  Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
 var
   Data: PSearchRec;
 begin
@@ -282,12 +282,12 @@ var
 begin
   FFormClosing := False;
   VirtualDrawTreeSearch.NodeDataSize := SizeOf(TSearchRec);
-  VirtualDrawTreeSearch.Images := TBCImageList.Create(Self);
+  VirtualDrawTreeSearch.Images := TImageList.Create(Self);
   SysImageList := GetSysImageList;
   if SysImageList <> 0 then
   begin
     VirtualDrawTreeSearch.Images.Handle := SysImageList;
-    VirtualDrawTreeSearch.Images.BkColor := ClNone;
+    VirtualDrawTreeSearch.Images.BkColor := clNone;
     VirtualDrawTreeSearch.Images.ShareImages := True;
   end;
 end;

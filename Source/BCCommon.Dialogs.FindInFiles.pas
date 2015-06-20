@@ -33,13 +33,13 @@ type
     BCSpeedButton1: TBCSpeedButton;
     ActionFileMaskItemsButtonClick: TAction;
     ActionDirectoryItemsButtonClick: TAction;
-    procedure ComboBoxTextToFindKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ActionDirectoryButtonClickExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ActionFileMaskItemsButtonClickExecute(Sender: TObject);
     procedure ActionDirectoryItemsButtonClickExecute(Sender: TObject);
+    procedure ComboBoxTextToFindChange(Sender: TObject);
   private
     function GetFileTypeText: string;
     function GetFindWhatText: string;
@@ -188,8 +188,7 @@ begin
   end;
 end;
 
-procedure TFindInFilesDialog.ComboBoxTextToFindKeyUp(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TFindInFilesDialog.ComboBoxTextToFindChange(Sender: TObject);
 begin
   SetButtons;
 end;

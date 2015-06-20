@@ -79,7 +79,6 @@ object SearchForFilesForm: TSearchForFilesForm
     Margins.Bottom = 2
     Align = alTop
     DoubleBuffered = True
-    Images = ImageList
     LeftButton.Enabled = False
     ParentDoubleBuffered = False
     RightButton.HotImageIndex = 1
@@ -140,11 +139,6 @@ object SearchForFilesForm: TSearchForFilesForm
       Caption = 'ActionSearch'
       OnExecute = ActionSearchExecute
     end
-  end
-  object ImageList: TBCImageList
-    Items = <>
-    Left = 142
-    Top = 112
   end
   object Taskbar: TTaskbar
     TaskBarButtons = <>

@@ -488,7 +488,7 @@ object FindInFilesDialog: TFindInFilesDialog
     ItemIndex = -1
     Sorted = True
     TabOrder = 3
-    OnKeyUp = ComboBoxTextToFindKeyUp
+    OnChange = ComboBoxTextToFindChange
   end
   object ActionList: TActionList
     Left = 434
