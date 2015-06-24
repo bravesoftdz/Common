@@ -466,6 +466,7 @@ type
     FDirShowCloseButton: Boolean;
     FDirShowHiddenFiles: Boolean;
     FDirShowImage: Boolean;
+    FDirShowOpenDirectoryButton: Boolean;
     FDirShowSystemFiles: Boolean;
     FDirShowTreeLines: Boolean;
     FDirShowOverlayIcons: Boolean;
@@ -555,6 +556,8 @@ type
     property DirShowHiddenFiles: Boolean read FDirShowHiddenFiles write FDirShowHiddenFiles;
     [IniValue('Options', 'DirShowImage', 'True')]
     property DirShowImage: Boolean read FDirShowImage write FDirShowImage;
+    [IniValue('Options', 'DirShowOpenDirectoryButton', 'True')]
+    property DirShowOpenDirectoryButton: Boolean read FDirShowOpenDirectoryButton write FDirShowOpenDirectoryButton;
     [IniValue('Options', 'DirShowSystemFiles', 'False')]
     property DirShowSystemFiles: Boolean read FDirShowSystemFiles write FDirShowSystemFiles;
     [IniValue('Options', 'DirShowTreeLines', 'False')]
