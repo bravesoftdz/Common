@@ -34,11 +34,13 @@ type
     procedure ComboBoxSearchTextKeyPress(Sender: TObject; var Key: Char);
   private
     FEditor: TBCEditor;
+    FOnSearchText: TNotifyEvent;
     procedure SetMatchesFound;
   public
     procedure ClearText;
   published
     property Editor: TBCEditor read FEditor write FEditor;
+    property OnSearchText: TNotifyEvent read FOnSearchText write FOnSearchText;
   end;
 
 implementation
@@ -80,6 +82,8 @@ begin
       Editor.Search.SearchText := ComboBoxSearchText.Text;
     SetMatchesFound;
   end;
+  if Assigned(FOnSearchText) then
+    FOnSearchText(Sender);
 end;
 
 procedure TBCSearchFrame.SetMatchesFound;

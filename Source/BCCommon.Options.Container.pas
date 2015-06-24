@@ -72,6 +72,7 @@ type
     FScrollShowHint: Boolean;
     { Search }
     FDocumentSpecificSearch: Boolean;
+    FDocumentSpecificSearchText: string;
     FShowSearchMap: Boolean;
     FShowSearchHighlighter: Boolean;
     { Selection }
@@ -246,6 +247,7 @@ type
     { Search }
     [IniValue('Options', 'DocumentSpecificSearch', 'True')]
     property DocumentSpecificSearch: Boolean read FDocumentSpecificSearch write FDocumentSpecificSearch;
+    property DocumentSpecificSearchText: string read FDocumentSpecificSearchText write FDocumentSpecificSearchText;
     [IniValue('Options', 'ShowSearchMap', 'True')]
     property ShowSearchMap: Boolean read FShowSearchMap write FShowSearchMap;
     [IniValue('Options', 'ShowSearchHighlighter', 'True')]

@@ -11,6 +11,8 @@ inherited BCSearchFrame: TBCSearchFrame
     Align = alClient
     AutoSize = True
     BevelOuter = bvNone
+    Color = clWindow
+    ParentBackground = False
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
     object SpeedButtonSearchClose: TBCSpeedButton
@@ -81,7 +83,6 @@ inherited BCSearchFrame: TBCSearchFrame
       Left = 200
       Top = 0
       Height = 21
-      Color = clBtnFace
       ParentColor = False
       SkinData.SkinSection = 'SPLITTER'
     end
@@ -131,7 +132,7 @@ inherited BCSearchFrame: TBCSearchFrame
         Left = 269
         Top = 0
         Width = 12
-        Height = 24
+        Height = 21
         Align = alRight
         ParentFont = False
         Layout = tlCenter
@@ -144,6 +145,7 @@ inherited BCSearchFrame: TBCSearchFrame
         Shadow.AlphaValue = 0
         Shadow.OffsetKeeper.LeftTop = -3
         Shadow.OffsetKeeper.RightBottom = 5
+        ExplicitHeight = 24
       end
     end
     object PanelToolBar: TBCPanel
