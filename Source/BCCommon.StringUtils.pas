@@ -192,6 +192,7 @@ var
 begin
   IsWhiteOld := True;
   Result := 0;
+  if Trim(s) <> '' then
   for i := 0 to Length(s) - 1 do
   begin
     IsWhite := s[i].IsWhiteSpace;
