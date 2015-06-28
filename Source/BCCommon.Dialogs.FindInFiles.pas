@@ -21,7 +21,6 @@ type
     PanelDirectoryComboBox: TBCPanel;
     PanelDirectoryComboBoxAndButton: TBCPanel;
     SpeedButtonDirectory: TBCSpeedButton;
-    ComboBoxTextToFind: TBCComboBox;
     ComboBoxFileMask: TBCComboBox;
     SliderCaseSensitive: TsSlider;
     StickyLabelCaseSensitive: TsStickyLabel;
@@ -33,6 +32,13 @@ type
     BCSpeedButton1: TBCSpeedButton;
     ActionFileMaskItemsButtonClick: TAction;
     ActionDirectoryItemsButtonClick: TAction;
+    Panel1: TBCPanel;
+    BCPanel4: TBCPanel;
+    BCPanel5: TBCPanel;
+    BCSpeedButton2: TBCSpeedButton;
+    Panel2: TBCPanel;
+    ComboBoxTextToFind: TBCComboBox;
+    ActionTextToFindItemsButtonClick: TAction;
     procedure ActionDirectoryButtonClickExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
@@ -40,6 +46,7 @@ type
     procedure ActionFileMaskItemsButtonClickExecute(Sender: TObject);
     procedure ActionDirectoryItemsButtonClickExecute(Sender: TObject);
     procedure ComboBoxTextToFindChange(Sender: TObject);
+    procedure ActionTextToFindItemsButtonClickExecute(Sender: TObject);
   private
     function GetFileTypeText: string;
     function GetFindWhatText: string;
@@ -188,6 +195,19 @@ begin
   end;
 end;
 
+procedure TFindInFilesDialog.ActionTextToFindItemsButtonClickExecute(Sender: TObject);
+begin
+  with TItemListDialog.Create(Self) do
+  try
+    Caption := LanguageDataModule.GetConstant('TextToFindItems');
+    ListBox.Items.Assign(ComboBoxTextToFind.Items);
+    if ShowModal = mrOk then
+      ComboBoxTextToFind.Items.Assign(ListBox.Items);
+  finally
+    Free;
+  end;
+end;
+
 procedure TFindInFilesDialog.ComboBoxTextToFindChange(Sender: TObject);
 begin
   SetButtons;
@@ -242,6 +262,8 @@ begin
     SliderCaseSensitive.SliderOn := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
     SliderIncludeSubDirectories.SliderOn := ReadBool('FindInFilesOptions', 'IncludeSubDirectories', True);
 
+    ReadSectionValues('TextToFindItems', LItems);
+    InsertItemsToComboBox(ComboBoxTextToFind);
     ReadSectionValues('FindInFilesFileMasks', LItems);
     InsertItemsToComboBox(ComboBoxFileMask);
     ReadSectionValues('FindInFilesDirectories', LItems);
@@ -264,6 +286,9 @@ begin
     WriteBool('FindInFilesOptions', 'CaseSensitive', SliderCaseSensitive.SliderOn);
     WriteBool('FindInFilesOptions', 'IncludeSubDirectories', SliderIncludeSubDirectories.SliderOn);
 
+    EraseSection('TextToFindItems');
+    for i := 0 to ComboBoxTextToFind.Items.Count - 1 do
+      WriteString('TextToFindItems', IntToStr(i), ComboBoxTextToFind.Items[i]);
     EraseSection('FindInFilesFileMasks');
     for i := 0 to ComboBoxFileMask.Items.Count - 1 do
       WriteString('FindInFilesFileMasks', IntToStr(i), ComboBoxFileMask.Items[i]);

@@ -132,7 +132,7 @@ inherited BCSearchFrame: TBCSearchFrame
         Left = 269
         Top = 0
         Width = 12
-        Height = 21
+        Height = 24
         Align = alRight
         ParentFont = False
         Layout = tlCenter
@@ -145,7 +145,6 @@ inherited BCSearchFrame: TBCSearchFrame
         Shadow.AlphaValue = 0
         Shadow.OffsetKeeper.LeftTop = -3
         Shadow.OffsetKeeper.RightBottom = 5
-        ExplicitHeight = 24
       end
     end
     object PanelToolBar: TBCPanel

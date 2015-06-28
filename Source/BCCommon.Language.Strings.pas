@@ -272,7 +272,7 @@ var
   i: Integer;
 begin
   for i := 0 to FHookedConstantsList.Count - 1 do
-    Dispose(FHookedConstantsList.Items[i]);
+    Dispose(PWideChar(FHookedConstantsList.Items[i]));
   FHookedConstantsList.Free;
 end;
 

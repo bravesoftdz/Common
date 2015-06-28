@@ -434,6 +434,11 @@ object LanguageDataModule: TLanguageDataModule
           'Square')
       end
       item
+        Name = 'TextToFindItems'
+        Strings.Strings = (
+          'Text to find items')
+      end
+      item
         Name = 'ThinHorizontalLine'
         Strings.Strings = (
           'Thin horizontal line')

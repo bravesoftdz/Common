@@ -3,7 +3,7 @@ object FindInFilesDialog: TFindInFilesDialog
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Find in Files'
-  ClientHeight = 290
+  ClientHeight = 296
   ClientWidth = 499
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
@@ -24,7 +24,7 @@ object FindInFilesDialog: TFindInFilesDialog
   object PanelButtons: TBCPanel
     AlignWithMargins = True
     Left = 9
-    Top = 246
+    Top = 252
     Width = 484
     Height = 41
     Margins.Right = 0
@@ -65,7 +65,7 @@ object FindInFilesDialog: TFindInFilesDialog
   end
   object GroupBoxSearchOptions: TBCGroupBox
     Left = 6
-    Top = 50
+    Top = 54
     Width = 487
     Height = 50
     Align = alTop
@@ -112,7 +112,7 @@ object FindInFilesDialog: TFindInFilesDialog
   object GroupBoxSearchDirectoryOptions: TBCGroupBox
     AlignWithMargins = True
     Left = 6
-    Top = 103
+    Top = 107
     Width = 487
     Height = 142
     Margins.Left = 0
@@ -461,44 +461,140 @@ object FindInFilesDialog: TFindInFilesDialog
       end
     end
   end
-  object ComboBoxTextToFind: TBCComboBox
+  object Panel1: TBCPanel
     AlignWithMargins = True
-    Left = 6
-    Top = 26
-    Width = 487
-    Height = 21
-    Margins.Left = 0
-    Margins.Top = 20
-    Margins.Right = 0
+    Left = 9
+    Top = 6
+    Width = 481
+    Height = 42
+    Margins.Top = 0
+    Margins.Bottom = 6
     Align = alTop
-    Alignment = taLeftJustify
-    BoundLabel.Active = True
-    BoundLabel.Caption = 'Text to find'
-    BoundLabel.Indent = 4
-    BoundLabel.Font.Charset = DEFAULT_CHARSET
-    BoundLabel.Font.Color = clWindowText
-    BoundLabel.Font.Height = -11
-    BoundLabel.Font.Name = 'Tahoma'
-    BoundLabel.Font.Style = []
-    BoundLabel.Layout = sclTopLeft
-    BoundLabel.MaxWidth = 0
-    BoundLabel.UseSkinColor = True
-    SkinData.SkinSection = 'COMBOBOX'
-    VerticalAlignment = taAlignTop
-    ItemIndex = -1
-    Sorted = True
+    BevelOuter = bvNone
     TabOrder = 3
-    OnChange = ComboBoxTextToFindChange
+    SkinData.SkinSection = 'CHECKBOX'
+    object BCPanel4: TBCPanel
+      Left = 460
+      Top = 0
+      Width = 21
+      Height = 42
+      Align = alRight
+      BevelOuter = bvNone
+      ParentColor = True
+      TabOrder = 0
+      SkinData.SkinSection = 'CHECKBOX'
+      object BCPanel5: TBCPanel
+        Left = 0
+        Top = 21
+        Width = 21
+        Height = 21
+        Align = alBottom
+        BevelOuter = bvNone
+        ParentColor = True
+        TabOrder = 0
+        SkinData.SkinSection = 'CHECKBOX'
+        object BCSpeedButton2: TBCSpeedButton
+          Left = 0
+          Top = 0
+          Width = 21
+          Height = 21
+          Action = ActionTextToFindItemsButtonClick
+          Align = alLeft
+          Flat = True
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000000000000000000000000000000000000FFFFFF000000
+            0000000000000000000000000000000000000000000000000033000000330000
+            0033000000000000000000000000000000000000000000000000FFFFFF000000
+            00000000000000000024000000230000000000000000757371FF73716FFF7573
+            71FF00000000000000000000002F000000230000000000000000FFFFFF000000
+            0000000000236D6B69C16C6A69BF0000002F00000033716F6DFFEEECEBFF716F
+            6DFF0000003300000033747270F16C6A69C00000002400000000FFFFFF000000
+            00006F6D6BBFA19F9DFF9E9C9AFF706E6CEF716F6DFF898785FFE1DFDEFF8987
+            85FF716F6DFF72706EFE9F9D9BFFA19F9DFF716F6DBD00000000FFFFFF000000
+            00007A7876ED9F9D9BFFDFDDDBFFB8B6B4FFDBD9D7FFD8D6D4FFD6D4D2FFD8D6
+            D4FFDBD9D7FFB8B6B4FFDFDDDBFF9F9D9BFF7A7876AF00000000FFFFFF000000
+            000000000000767572FEB7B3B3FFD2D0CFFFD1CFCFFFD3D1D0FFD3D1D0FFD3D1
+            D0FFD1CFCFFFD2D0CFFFB7B3B3FF757371EF0000000000000000FFFFFF000000
+            003300000033787674FFD2D0CEFFCECCCAFFBEBCBAFF92908EFF8D8B89FF9290
+            8EFFBEBCBAFFCECCCAFFD2D0CEFF787674FF0000003300000033FFFFFF00817F
+            7DFF7C7A78FF9D9B99FFCCC9C8FFCCC9C8FF93918FFF7A78769C7E7C7A227A78
+            769C93918FFFCCC9C8FFCCC9C8FF9D9B99FF7C7A78FF817F7DFFFFFFFF00817F
+            7DFFE3E1DFFFDCDAD8FFC6C5C2FFC8C6C4FF8F8D8BFF4847463D000000074847
+            463D8F8D8BFFC8C6C4FFC6C5C2FFDCDAD8FFE3E1DFFF817F7DFFFFFFFF008482
+            80FF807E7CFF949492FFD0CECCFFC3C0BFFF93918FFF72716FAD3A39384E7271
+            6FAD939290FFC3C0BFFFD0CECCFF949492FF807E7CFF848280FFFFFFFF000000
+            000000000000807E7CFFDAD9D8FFBEBBB9FFBCB9B7FF94918EFF928F8DFF9491
+            8FFFB3B2B0FFBEBBB9FFDBD9D8FF807E7CFF0000000000000000FFFFFF000000
+            000000000023827F7DEFACAAA8FFC7C5C3FFBBB8B7FFBAB7B6FFBBB8B7FFBBB8
+            B7FFBBB8B7FFC7C5C3FFACAAA8FF817F7DEF0000002300000000FFFFFF000000
+            000082807EBAA4A2A0FFDAD8D7FFC6C4C2FFE4E3E1FFDBD9D7FFC2BFBEFFD7D5
+            D4FFE4E3E1FFC5C4C2FFDAD8D7FFA4A2A0FF82807EBA00000000FFFFFF000000
+            00008B8987B2B2B1AFFFAFAEACFF858381EB868482FF9A9897FFBCBAB7FF9A98
+            97FF868482FF858381FEAFAEACFFB2B1AFFF8B8987B200000000FFFFFF000000
+            0000000000008D8B89B28D8B89AF00000000000000008B8987FFE9E7E7FF8B89
+            87FF00000000000000008C8A88ED8D8B89B00000000000000000FFFFFF000000
+            00000000000000000000000000000000000000000000908E8CFF8F8D8BFF908E
+            8CFF000000000000000000000000000000000000000000000000}
+          SkinData.SkinSection = 'TOOLBUTTON'
+        end
+      end
+    end
+    object Panel2: TBCPanel
+      AlignWithMargins = True
+      Left = 0
+      Top = 0
+      Width = 457
+      Height = 42
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Bottom = 0
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 1
+      SkinData.SkinSection = 'CHECKBOX'
+      object ComboBoxTextToFind: TBCComboBox
+        Left = 0
+        Top = 21
+        Width = 457
+        Height = 21
+        Margins.Left = 0
+        Margins.Top = 20
+        Margins.Right = 0
+        Align = alBottom
+        Alignment = taLeftJustify
+        BoundLabel.Active = True
+        BoundLabel.Caption = 'Text to find'
+        BoundLabel.Indent = 4
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'Tahoma'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclTopLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+        SkinData.SkinSection = 'COMBOBOX'
+        VerticalAlignment = taAlignTop
+        ItemIndex = -1
+        Sorted = True
+        TabOrder = 0
+        OnChange = ComboBoxTextToFindChange
+      end
+    end
   end
   object ActionList: TActionList
-    Left = 434
+    Left = 378
     Top = 6
-    object ActionDirectoryButtonClick: TAction
-      ImageIndex = 0
-      OnExecute = ActionDirectoryButtonClickExecute
+    object ActionTextToFindItemsButtonClick: TAction
+      OnExecute = ActionTextToFindItemsButtonClickExecute
     end
     object ActionFileMaskItemsButtonClick: TAction
       OnExecute = ActionFileMaskItemsButtonClickExecute
+    end
+    object ActionDirectoryButtonClick: TAction
+      ImageIndex = 0
+      OnExecute = ActionDirectoryButtonClickExecute
     end
     object ActionDirectoryItemsButtonClick: TAction
       OnExecute = ActionDirectoryItemsButtonClickExecute
