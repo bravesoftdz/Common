@@ -1,16 +1,8 @@
-object ReplaceDialog: TReplaceDialog
-  Left = 0
-  Top = 0
+inherited ReplaceDialog: TReplaceDialog
   BorderStyle = bsDialog
   Caption = 'Replace'
   ClientHeight = 413
   ClientWidth = 369
-  Color = clWindow
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
   Padding.Left = 6
   Padding.Top = 6
   Padding.Right = 6
@@ -18,7 +10,8 @@ object ReplaceDialog: TReplaceDialog
   Position = poMainFormCenter
   OnCloseQuery = FormCloseQuery
   OnDestroy = FormDestroy
-  OnShow = FormShow
+  ExplicitWidth = 375
+  ExplicitHeight = 441
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBoxOptions: TBCGroupBox

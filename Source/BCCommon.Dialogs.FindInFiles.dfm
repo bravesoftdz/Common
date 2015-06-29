@@ -1,24 +1,15 @@
-object FindInFilesDialog: TFindInFilesDialog
-  Left = 0
-  Top = 0
-  BorderStyle = bsDialog
+inherited FindInFilesDialog: TFindInFilesDialog
   Caption = 'Find in Files'
   ClientHeight = 296
   ClientWidth = 499
-  Color = clWindow
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
   Padding.Left = 6
   Padding.Top = 6
   Padding.Right = 6
-  OldCreateOrder = False
   Position = poMainFormCenter
   OnCloseQuery = FormCloseQuery
   OnDestroy = FormDestroy
-  OnShow = FormShow
+  ExplicitWidth = 505
+  ExplicitHeight = 324
   PixelsPerInch = 96
   TextHeight = 13
   object PanelButtons: TBCPanel

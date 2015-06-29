@@ -1,18 +1,11 @@
-object InputQueryDialog: TInputQueryDialog
-  Left = 0
-  Top = 0
+inherited InputQueryDialog: TInputQueryDialog
   BorderStyle = bsDialog
   Caption = 'Caption'
   ClientHeight = 72
   ClientWidth = 170
-  Color = clWindow
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
-  OldCreateOrder = False
   Position = poMainFormCenter
+  ExplicitWidth = 176
+  ExplicitHeight = 100
   PixelsPerInch = 96
   TextHeight = 13
   object PanelButton: TBCPanel

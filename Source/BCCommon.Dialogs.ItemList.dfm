@@ -1,17 +1,10 @@
-object ItemListDialog: TItemListDialog
-  Left = 0
-  Top = 0
+inherited ItemListDialog: TItemListDialog
   Caption = 'ItemListDialog'
   ClientHeight = 416
   ClientWidth = 272
-  Color = clWindow
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
-  OldCreateOrder = False
   Position = poMainFormCenter
+  ExplicitWidth = 288
+  ExplicitHeight = 454
   PixelsPerInch = 96
   TextHeight = 13
   object PanelButtons: TBCPanel

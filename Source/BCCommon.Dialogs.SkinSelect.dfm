@@ -1,0 +1,100 @@
+inherited SkinSelectDialog: TSkinSelectDialog
+  Caption = 'Select skin'
+  ClientHeight = 383
+  ClientWidth = 534
+  Padding.Left = 6
+  Padding.Top = 6
+  Padding.Right = 6
+  Position = poMainFormCenter
+  ExplicitWidth = 540
+  ExplicitHeight = 411
+  PixelsPerInch = 96
+  TextHeight = 13
+  object BCSplitter1: TBCSplitter
+    Left = 146
+    Top = 6
+    Height = 330
+    SkinData.SkinSection = 'SPLITTER'
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitHeight = 29
+  end
+  object ListBoxSkins: TsListBox
+    Left = 6
+    Top = 6
+    Width = 140
+    Height = 330
+    Align = alLeft
+    TabOrder = 0
+    OnClick = ListBoxSkinsClick
+    BoundLabel.Indent = 0
+    BoundLabel.Font.Charset = DEFAULT_CHARSET
+    BoundLabel.Font.Color = clWindowText
+    BoundLabel.Font.Height = -11
+    BoundLabel.Font.Name = 'Tahoma'
+    BoundLabel.Font.Style = []
+    BoundLabel.Layout = sclLeft
+    BoundLabel.MaxWidth = 0
+    BoundLabel.UseSkinColor = True
+    SkinData.SkinSection = 'EDIT'
+  end
+  object PanelButtons: TBCPanel
+    AlignWithMargins = True
+    Left = 9
+    Top = 339
+    Width = 519
+    Height = 41
+    Margins.Right = 0
+    Align = alBottom
+    BevelOuter = bvNone
+    Padding.Top = 8
+    Padding.Bottom = 8
+    TabOrder = 1
+    SkinData.SkinSection = 'CHECKBOX'
+    object ButtonOK: TBCButton
+      AlignWithMargins = True
+      Left = 364
+      Top = 8
+      Width = 75
+      Height = 25
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 5
+      Margins.Bottom = 0
+      Align = alRight
+      Caption = 'OK'
+      Default = True
+      ModalResult = 1
+      TabOrder = 0
+      SkinData.SkinSection = 'BUTTON'
+    end
+    object ButtonCancel: TBCButton
+      Left = 444
+      Top = 8
+      Width = 75
+      Height = 25
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 8
+      Margins.Bottom = 0
+      Align = alRight
+      Cancel = True
+      Caption = 'Cancel'
+      ModalResult = 2
+      TabOrder = 1
+      SkinData.SkinSection = 'BUTTON'
+    end
+  end
+  object PanelPreviewArea: TBCPanel
+    Left = 152
+    Top = 6
+    Width = 376
+    Height = 330
+    Margins.Bottom = 0
+    Align = alClient
+    BevelOuter = bvNone
+    Caption = 'Preview area'
+    TabOrder = 2
+    SkinData.SkinSection = 'GROUPBOX'
+  end
+end

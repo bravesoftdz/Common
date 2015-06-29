@@ -1,4 +1,4 @@
-object ConfirmReplaceDialog: TConfirmReplaceDialog
+inherited ConfirmReplaceDialog: TConfirmReplaceDialog
   Left = 176
   Top = 158
   BorderStyle = bsDialog

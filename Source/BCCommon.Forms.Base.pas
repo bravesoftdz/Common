@@ -9,7 +9,7 @@ uses
   Vcl.AppEvnts, Vcl.Menus, sSkinManager, System.Win.TaskbarCore, Vcl.Taskbar, sSkinProvider, acTitleBar, sStatusBar;
 
 type
-  TBCForm = class(TForm)
+  TBCBaseForm = class(TForm)
     ActionFileExit: TAction;
     ActionList: TActionList;
     ApplicationEvents: TApplicationEvents;
@@ -20,7 +20,7 @@ type
     TitleBar: TBCTitleBar;
     procedure ActionFileExitExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure SkinMenuClick(Sender: TObject);
+    //procedure SkinMenuClick(Sender: TObject);
     procedure ProgressBarHide(Sender: TObject);
     procedure ProgressBarShow(Sender: TObject);
     procedure ProgressBarStepChange(Sender: TObject);
@@ -31,8 +31,8 @@ type
     FTaskbar: TTaskbar;
     procedure CreateProgressBar;
     procedure ResizeProgressBar;
-  protected
-    procedure CreateSkinsMenu(AMenuItem: TMenuItem);
+  //protected
+  //  procedure CreateSkinsMenu(AMenuItem: TMenuItem);
   public
     property ProgressBar: TBCProgressBar read FProgressBar write FProgressBar;
     property OnSkinChange: TNotifyEvent read FSkinChange write FSkinChange;
@@ -45,12 +45,12 @@ implementation
 uses
   BCCommon.StringUtils, Winapi.CommCtrl;
 
-procedure TBCForm.ActionFileExitExecute(Sender: TObject);
+procedure TBCBaseForm.ActionFileExitExecute(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TBCForm.FormCreate(Sender: TObject);
+procedure TBCBaseForm.FormCreate(Sender: TObject);
 begin
   inherited;
   {$WARN SYMBOL_PLATFORM OFF}
@@ -62,13 +62,13 @@ begin
   CreateProgressBar;
 end;
 
-procedure TBCForm.FormDestroy(Sender: TObject);
+procedure TBCBaseForm.FormDestroy(Sender: TObject);
 begin
   FTaskbar.Free;
   FProgressBar.Free;
 end;
 
-procedure TBCForm.CreateSkinsMenu(AMenuItem: TMenuItem);
+{procedure TBCBaseForm.CreateSkinsMenu(AMenuItem: TMenuItem);
 var
   i: integer;
   LStringList: TStringList;
@@ -98,17 +98,17 @@ begin
   finally
     FreeAndNil(LStringList);
   end;
-end;
+end; }
 
-procedure TBCForm.SkinMenuClick(Sender: TObject);
+{procedure TBCBaseForm.SkinMenuClick(Sender: TObject);
 begin
   TMenuItem(Sender).Checked := True;
   SkinManager.SkinName := DeleteChars(TMenuItem(Sender).Caption, '&');
   if Assigned(FSkinChange) then
     FSkinChange(Sender);
-end;
+end; }
 
-procedure TBCForm.ResizeProgressBar;
+procedure TBCBaseForm.ResizeProgressBar;
 var
   LRect: TRect;
 begin
@@ -122,24 +122,24 @@ begin
   end;
 end;
 
-procedure TBCForm.ProgressBarStepChange(Sender: TObject);
+procedure TBCBaseForm.ProgressBarStepChange(Sender: TObject);
 begin
   FTaskbar.ProgressValue := FProgressBar.Progress;
 end;
 
-procedure TBCForm.ProgressBarShow(Sender: TObject);
+procedure TBCBaseForm.ProgressBarShow(Sender: TObject);
 begin
   ResizeProgressBar;
   FTaskbar.ProgressMaxValue := FProgressBar.MaxValue;
   FTaskbar.ProgressState := TTaskBarProgressState.Normal;
 end;
 
-procedure TBCForm.ProgressBarHide(Sender: TObject);
+procedure TBCBaseForm.ProgressBarHide(Sender: TObject);
 begin
   FTaskbar.ProgressState := TTaskBarProgressState.None;
 end;
 
-procedure TBCForm.CreateProgressBar;
+procedure TBCBaseForm.CreateProgressBar;
 begin
   FProgressBar := TBCProgressBar.Create(StatusBar);
   FProgressBar.OnStepChange := ProgressBarStepChange;

@@ -99,7 +99,7 @@
         <DCCReference Include="VirtualTreesR.dcp"/>
         <DCCReference Include="vclactnband.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
-        <DCCReference Include="BC3rdPartyRXE7.dcp"/>
+        <DCCReference Include="acntDelphiXE8.dcp"/>
         <DCCReference Include="..\Source\BCCommon.Images.pas">
             <Form>ImagesDataModule</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -112,7 +112,7 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Dialogs.Base.pas">
-            <Form>Dialog</Form>
+            <Form>BCBaseDialog</Form>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Dialogs.Options.Search.pas">
             <Form>SearchOptionsDialog</Form>
@@ -125,7 +125,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Forms.Base.pas">
-            <Form>BCForm</Form>
+            <Form>BCBaseForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Consts.pas"/>
@@ -332,6 +332,10 @@
         <DCCReference Include="..\Source\IniPersist.pas"/>
         <DCCReference Include="..\Source\BCCommon.Dialogs.ItemList.pas">
             <Form>ItemListDialog</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Source\BCCommon.Dialogs.SkinSelect.pas">
+            <Form>SkinSelectDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

@@ -40,7 +40,7 @@ type
     procedure GetOptions(Editor: TBCEditor);
     procedure WriteIniFile;
   public
-    class procedure ClassShowModal(Editor: TBCEditor);
+    class procedure ClassShowModal(AEditor: TBCEditor);
   end;
 
 implementation
@@ -50,20 +50,22 @@ implementation
 uses
   BigIni, BCCommon.Utils, BCCommon.FileUtils;
 
-class procedure TSearchOptionsDialog.ClassShowModal(Editor: TBCEditor);
+class procedure TSearchOptionsDialog.ClassShowModal(AEditor: TBCEditor);
 var
   FSearchOptionsDialog: TSearchOptionsDialog;
 begin
   Application.CreateForm(TSearchOptionsDialog, FSearchOptionsDialog);
 
-  FSearchOptionsDialog.SetOptions(Editor);
-  if FSearchOptionsDialog.ShowModal = mrOk then
+  with FSearchOptionsDialog do
   begin
-    FSearchOptionsDialog.GetOptions(Editor);
-    FSearchOptionsDialog.WriteIniFile;
+    SetOptions(AEditor);
+    if ShowModal = mrOk then
+    begin
+      GetOptions(AEditor);
+      WriteIniFile;
+    end;
+    Free;
   end;
-
-  FSearchOptionsDialog.Free;
   FSearchOptionsDialog := nil;
 end;
 

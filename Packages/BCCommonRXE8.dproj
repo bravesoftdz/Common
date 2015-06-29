@@ -99,6 +99,7 @@
         <DCCReference Include="VirtualTreesR.dcp"/>
         <DCCReference Include="vclactnband.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
+        <DCCReference Include="acntDelphiXE8.dcp"/>
         <DCCReference Include="..\Source\BCCommon.Images.pas">
             <Form>ImagesDataModule</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -111,7 +112,7 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Dialogs.Base.pas">
-            <Form>Dialog</Form>
+            <Form>BCBaseDialog</Form>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Dialogs.Options.Search.pas">
             <Form>SearchOptionsDialog</Form>
@@ -123,7 +124,7 @@
             <Form>ReplaceDialog</Form>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Forms.Base.pas">
-            <Form>BCForm</Form>
+            <Form>BCBaseForm</Form>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Consts.pas"/>
         <DCCReference Include="..\Source\BCCommon.Language.Strings.pas">
@@ -290,6 +291,10 @@
         <DCCReference Include="..\Source\IniPersist.pas"/>
         <DCCReference Include="..\Source\BCCommon.Dialogs.ItemList.pas">
             <Form>ItemListDialog</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Source\BCCommon.Dialogs.SkinSelect.pas">
+            <Form>SkinSelectDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -645,13 +650,13 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
                 <Platform value="Win32">True</Platform>

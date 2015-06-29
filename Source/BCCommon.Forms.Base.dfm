@@ -1,7 +1,7 @@
-object BCForm: TBCForm
+object BCBaseForm: TBCBaseForm
   Left = 0
   Top = 0
-  Caption = 'BCForm'
+  Caption = 'BCBaseForm'
   ClientHeight = 280
   ClientWidth = 635
   Color = clWindow

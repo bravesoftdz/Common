@@ -80,19 +80,19 @@ uses
   BCCommon.FileUtils, BCCommon.Dialogs.ItemList;
 
 var
-  FFindInFilesDialog: TFindInFilesDialog;
+  LFindInFilesDialog: TFindInFilesDialog;
 
 function FindInFilesDialog: TFindInFilesDialog;
 begin
-  if not Assigned(FFindInFilesDialog) then
-    Application.CreateForm(TFindInFilesDialog, FFindInFilesDialog);
-  Result := FFindInFilesDialog;
+  if not Assigned(LFindInFilesDialog) then
+    Application.CreateForm(TFindInFilesDialog, LFindInFilesDialog);
+  Result := LFindInFilesDialog;
   Result.ReadIniFile;
 end;
 
 procedure TFindInFilesDialog.FormDestroy(Sender: TObject);
 begin
-  FFindInFilesDialog := nil;
+  LFindInFilesDialog := nil;
 end;
 
 procedure TFindInFilesDialog.FormShow(Sender: TObject);

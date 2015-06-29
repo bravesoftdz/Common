@@ -1,9 +1,10 @@
 object BCBaseDialog: TBCBaseDialog
   Left = 0
   Top = 0
+  BorderStyle = bsDialog
   Caption = 'Dialog'
-  ClientHeight = 300
-  ClientWidth = 635
+  ClientHeight = 310
+  ClientWidth = 645
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

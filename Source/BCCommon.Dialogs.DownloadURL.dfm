@@ -1,20 +1,14 @@
-object DownloadURLDialog: TDownloadURLDialog
-  Left = 0
-  Top = 0
+inherited DownloadURLDialog: TDownloadURLDialog
   BorderStyle = bsToolWindow
   Caption = 'Download'
   ClientHeight = 116
   ClientWidth = 364
   Color = clActiveBorder
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
-  OldCreateOrder = False
   Position = poMainFormCenter
   Visible = True
   OnDestroy = FormDestroy
+  ExplicitWidth = 370
+  ExplicitHeight = 140
   PixelsPerInch = 96
   TextHeight = 13
   object PanelTop: TBCPanel
