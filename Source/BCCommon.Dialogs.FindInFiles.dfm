@@ -128,7 +128,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       BevelOuter = bvNone
       TabOrder = 1
       SkinData.SkinSection = 'CHECKBOX'
-      object PanelDirectoryButton: TBCPanel
+      object PanelDirectoryComboBoxRight: TBCPanel
         Left = 421
         Top = 0
         Width = 42
@@ -137,7 +137,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
         BevelOuter = bvNone
         TabOrder = 1
         SkinData.SkinSection = 'CHECKBOX'
-        object PanelDirectoryButton2: TBCPanel
+        object PanelDirectoryButton: TBCPanel
           Left = 0
           Top = 19
           Width = 42
@@ -240,7 +240,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
           end
         end
       end
-      object PanelDirectoryComboBox: TBCPanel
+      object PanelDirectoryComboBoxClient: TBCPanel
         Left = 0
         Top = 0
         Width = 421
@@ -275,7 +275,6 @@ inherited FindInFilesDialog: TFindInFilesDialog
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           ItemIndex = -1
-          Sorted = True
           TabOrder = 0
         end
       end
@@ -295,7 +294,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       BevelOuter = bvNone
       TabOrder = 0
       SkinData.SkinSection = 'CHECKBOX'
-      object PanelFileMaskComboBox: TBCPanel
+      object PanelFileMaskComboBoxClient: TBCPanel
         Left = 0
         Top = 0
         Width = 442
@@ -334,12 +333,11 @@ inherited FindInFilesDialog: TFindInFilesDialog
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           ItemIndex = -1
-          Sorted = True
           TabOrder = 0
           Text = '*.*'
         end
       end
-      object BCPanel2: TBCPanel
+      object PanelFileMaskComboBoxRight: TBCPanel
         Left = 442
         Top = 0
         Width = 21
@@ -348,7 +346,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
         BevelOuter = bvNone
         TabOrder = 1
         SkinData.SkinSection = 'CHECKBOX'
-        object BCPanel3: TBCPanel
+        object PanelFileMaskButton: TBCPanel
           Left = 0
           Top = 20
           Width = 21
@@ -357,7 +355,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
           BevelOuter = bvNone
           TabOrder = 0
           SkinData.SkinSection = 'CHECKBOX'
-          object BCSpeedButton1: TBCSpeedButton
+          object SpeedButtonFileMask: TBCSpeedButton
             Left = 0
             Top = 0
             Width = 21
@@ -405,7 +403,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
         end
       end
     end
-    object BCPanel1: TBCPanel
+    object PanelIncludeSubdirectories: TBCPanel
       Left = 2
       Top = 104
       Width = 483
@@ -452,7 +450,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       end
     end
   end
-  object Panel1: TBCPanel
+  object PanelTextToFind: TBCPanel
     AlignWithMargins = True
     Left = 9
     Top = 6
@@ -462,9 +460,10 @@ inherited FindInFilesDialog: TFindInFilesDialog
     Margins.Bottom = 6
     Align = alTop
     BevelOuter = bvNone
+    Color = clWindow
     TabOrder = 3
     SkinData.SkinSection = 'CHECKBOX'
-    object BCPanel4: TBCPanel
+    object PanelTextToFindRight: TBCPanel
       Left = 460
       Top = 0
       Width = 21
@@ -474,7 +473,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       ParentColor = True
       TabOrder = 0
       SkinData.SkinSection = 'CHECKBOX'
-      object BCPanel5: TBCPanel
+      object PanelTextToFindButton: TBCPanel
         Left = 0
         Top = 21
         Width = 21
@@ -484,7 +483,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
         ParentColor = True
         TabOrder = 0
         SkinData.SkinSection = 'CHECKBOX'
-        object BCSpeedButton2: TBCSpeedButton
+        object SpeedButtonTextToFind: TBCSpeedButton
           Left = 0
           Top = 0
           Width = 21
@@ -531,7 +530,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
         end
       end
     end
-    object Panel2: TBCPanel
+    object PanelTextToFindClient: TBCPanel
       AlignWithMargins = True
       Left = 0
       Top = 0
@@ -542,6 +541,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       Margins.Bottom = 0
       Align = alClient
       BevelOuter = bvNone
+      Color = clWindow
       TabOrder = 1
       SkinData.SkinSection = 'CHECKBOX'
       object ComboBoxTextToFind: TBCComboBox
@@ -568,7 +568,6 @@ inherited FindInFilesDialog: TFindInFilesDialog
         SkinData.SkinSection = 'COMBOBOX'
         VerticalAlignment = taAlignTop
         ItemIndex = -1
-        Sorted = True
         TabOrder = 0
         OnChange = ComboBoxTextToFindChange
       end

@@ -1,17 +1,17 @@
 inherited ItemListDialog: TItemListDialog
   Caption = 'ItemListDialog'
   ClientHeight = 416
-  ClientWidth = 272
+  ClientWidth = 406
   Position = poMainFormCenter
-  ExplicitWidth = 288
-  ExplicitHeight = 454
+  ExplicitWidth = 412
+  ExplicitHeight = 444
   PixelsPerInch = 96
   TextHeight = 13
   object PanelButtons: TBCPanel
     AlignWithMargins = True
     Left = 3
     Top = 372
-    Width = 263
+    Width = 397
     Height = 41
     Margins.Right = 6
     Align = alBottom
@@ -20,21 +20,22 @@ inherited ItemListDialog: TItemListDialog
     Padding.Bottom = 8
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
+    ExplicitWidth = 263
     object ButtonFind: TButton
-      Left = 108
+      Left = 242
       Top = 8
       Width = 75
       Height = 25
       Align = alRight
       Caption = '&OK'
       Default = True
-      Enabled = False
       ModalResult = 1
       TabOrder = 0
+      ExplicitLeft = 108
     end
     object ButtonCancel: TButton
       AlignWithMargins = True
-      Left = 188
+      Left = 322
       Top = 8
       Width = 75
       Height = 25
@@ -47,13 +48,14 @@ inherited ItemListDialog: TItemListDialog
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 1
+      ExplicitLeft = 188
     end
   end
   object ListBox: TsListBox
     AlignWithMargins = True
     Left = 6
     Top = 62
-    Width = 260
+    Width = 394
     Height = 307
     Margins.Left = 6
     Margins.Top = 0
@@ -76,7 +78,7 @@ inherited ItemListDialog: TItemListDialog
   object PanelTop: TBCPanel
     Left = 0
     Top = 0
-    Width = 272
+    Width = 406
     Height = 62
     Align = alTop
     BevelOuter = bvNone
@@ -87,7 +89,8 @@ inherited ItemListDialog: TItemListDialog
     ParentColor = True
     TabOrder = 2
     SkinData.SkinSection = 'CHECKBOX'
-    object SpeedButtonDivider: TBCSpeedButton
+    ExplicitWidth = 272
+    object SpeedButtonDivider1: TBCSpeedButton
       AlignWithMargins = True
       Left = 122
       Top = 6
@@ -181,6 +184,101 @@ inherited ItemListDialog: TItemListDialog
       Images = ImagesDataModule.ImageList
       ExplicitLeft = 192
     end
+    object SpeedButtonDivider2: TBCSpeedButton
+      AlignWithMargins = True
+      Left = 192
+      Top = 6
+      Width = 10
+      Height = 50
+      Margins.Left = 0
+      Margins.Top = 4
+      Margins.Right = 0
+      Margins.Bottom = 4
+      Align = alLeft
+      Flat = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Layout = blGlyphTop
+      ParentFont = False
+      ButtonStyle = tbsDivider
+      SkinData.SkinSection = 'SPEEDBUTTON'
+      ImageIndex = 1
+      ExplicitLeft = 195
+      ExplicitTop = 8
+    end
+    object SpeedButtonMoveUp: TBCSpeedButton
+      Left = 202
+      Top = 2
+      Width = 60
+      Height = 58
+      Action = ActionMoveUp
+      Align = alLeft
+      Flat = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      Layout = blGlyphTop
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = False
+      ButtonStyle = tbsTextButton
+      SkinData.SkinSection = 'TOOLBUTTON'
+      ImageIndex = 129
+      Images = ImagesDataModule.ImageList
+      ExplicitLeft = 262
+    end
+    object SpeedButtonMoveDown: TBCSpeedButton
+      Left = 262
+      Top = 2
+      Width = 60
+      Height = 58
+      Action = ActionMoveDown
+      Align = alLeft
+      Flat = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      Layout = blGlyphTop
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = False
+      ButtonStyle = tbsTextButton
+      SkinData.SkinSection = 'TOOLBUTTON'
+      ImageIndex = 130
+      Images = ImagesDataModule.ImageList
+      ExplicitLeft = 322
+    end
+    object SpeedButtonSort: TBCSpeedButton
+      Left = 322
+      Top = 2
+      Width = 60
+      Height = 58
+      Action = ActionSort
+      Align = alLeft
+      Flat = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      Layout = blGlyphTop
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = False
+      ButtonStyle = tbsTextButton
+      SkinData.SkinSection = 'TOOLBUTTON'
+      ImageIndex = 130
+      Images = ImagesDataModule.ImageList
+      ExplicitLeft = 330
+      ExplicitTop = 1
+    end
   end
   object ActionList: TActionList
     Images = ImagesDataModule.ImageList
@@ -200,6 +298,23 @@ inherited ItemListDialog: TItemListDialog
       Caption = 'Clear all'
       ImageIndex = 65
       OnExecute = ActionClearAllExecute
+    end
+    object ActionMoveUp: TAction
+      Caption = 'Move up'
+      Hint = 'Move selected item up'
+      ImageIndex = 129
+      OnExecute = ActionMoveUpExecute
+    end
+    object ActionMoveDown: TAction
+      Caption = 'Move down'
+      Hint = 'Move selected item down'
+      ImageIndex = 130
+      OnExecute = ActionMoveDownExecute
+    end
+    object ActionSort: TAction
+      Caption = 'Sort'
+      ImageIndex = 31
+      OnExecute = ActionSortExecute
     end
   end
 end

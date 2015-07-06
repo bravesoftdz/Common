@@ -1354,9 +1354,24 @@ object LanguageDataModule: TLanguageDataModule
           'JSON files (*.json)')
       end
       item
+        Name = 'Lua'
+        Strings.Strings = (
+          'Lua files (*.lua)')
+      end
+      item
+        Name = 'MATLAB'
+        Strings.Strings = (
+          'MATLAB files (*.matlab)')
+      end
+      item
         Name = 'MS-DOS Batch'
         Strings.Strings = (
           'MS-DOS Batch files (*.bat;*.cmd)')
+      end
+      item
+        Name = 'Objective-C'
+        Strings.Strings = (
+          'Objective-C files (*.m)')
       end
       item
         Name = 'Object Pascal'

@@ -18,25 +18,25 @@ type
     GroupBoxSearchDirectoryOptions: TBCGroupBox;
     GroupBoxSearchOptions: TBCGroupBox;
     PanelButtons: TBCPanel;
-    PanelDirectoryComboBox: TBCPanel;
+    PanelDirectoryComboBoxClient: TBCPanel;
     PanelDirectoryComboBoxAndButton: TBCPanel;
     SpeedButtonDirectory: TBCSpeedButton;
     ComboBoxFileMask: TBCComboBox;
     SliderCaseSensitive: TsSlider;
     StickyLabelCaseSensitive: TsStickyLabel;
-    BCPanel1: TBCPanel;
+    PanelIncludeSubdirectories: TBCPanel;
     StickyLabelIncludeSubdirectories: TsStickyLabel;
     SliderIncludeSubDirectories: TsSlider;
-    BCPanel2: TBCPanel;
-    BCPanel3: TBCPanel;
-    BCSpeedButton1: TBCSpeedButton;
+    PanelFileMaskComboBoxRight: TBCPanel;
+    PanelFileMaskButton: TBCPanel;
+    SpeedButtonFileMask: TBCSpeedButton;
     ActionFileMaskItemsButtonClick: TAction;
     ActionDirectoryItemsButtonClick: TAction;
-    Panel1: TBCPanel;
-    BCPanel4: TBCPanel;
-    BCPanel5: TBCPanel;
-    BCSpeedButton2: TBCSpeedButton;
-    Panel2: TBCPanel;
+    PanelTextToFind: TBCPanel;
+    PanelTextToFindRight: TBCPanel;
+    PanelTextToFindButton: TBCPanel;
+    SpeedButtonTextToFind: TBCSpeedButton;
+    PanelTextToFindClient: TBCPanel;
     ComboBoxTextToFind: TBCComboBox;
     ActionTextToFindItemsButtonClick: TAction;
     procedure ActionDirectoryButtonClickExecute(Sender: TObject);
@@ -269,6 +269,7 @@ begin
     ReadSectionValues('FindInFilesDirectories', LItems);
     InsertItemsToComboBox(ComboBoxDirectory);
 
+    ComboBoxTextToFind.ItemIndex := ComboBoxTextToFind.Items.IndexOf(ReadString('FindInFilesOptions', 'TextToFind', ''));
     ComboBoxFileMask.ItemIndex := ComboBoxFileMask.Items.IndexOf(ReadString('FindInFilesOptions', 'FileMask', '*.*'));
     ComboBoxDirectory.ItemIndex := ComboBoxDirectory.Items.IndexOf(ReadString('FindInFilesOptions', 'Directory', ''));
   finally
@@ -296,6 +297,7 @@ begin
     for i := 0 to ComboBoxDirectory.Items.Count - 1 do
       WriteString('FindInFilesDirectories', IntToStr(i), IncludeTrailingPathDelimiter(ComboBoxDirectory.Items[i]));
 
+    WriteString('FindInFilesOptions', 'TextToFind', ComboBoxTextToFind.Text);
     WriteString('FindInFilesOptions', 'FileMask', ComboBoxFileMask.Text);
     WriteString('FindInFilesOptions', 'Directory', ComboBoxDirectory.Text);
   finally

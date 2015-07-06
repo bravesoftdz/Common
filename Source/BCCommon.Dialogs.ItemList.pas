@@ -14,7 +14,7 @@ type
     ButtonCancel: TButton;
     ListBox: TsListBox;
     PanelTop: TBCPanel;
-    SpeedButtonDivider: TBCSpeedButton;
+    SpeedButtonDivider1: TBCSpeedButton;
     SpeedButtonDelete: TBCSpeedButton;
     SpeedButtonInsert: TBCSpeedButton;
     SpeedButtonClear: TBCSpeedButton;
@@ -22,9 +22,19 @@ type
     ActionInsert: TAction;
     ActionDelete: TAction;
     ActionClearAll: TAction;
+    SpeedButtonDivider2: TBCSpeedButton;
+    SpeedButtonMoveUp: TBCSpeedButton;
+    SpeedButtonMoveDown: TBCSpeedButton;
+    ActionMoveUp: TAction;
+    ActionMoveDown: TAction;
+    ActionSort: TAction;
+    SpeedButtonSort: TBCSpeedButton;
     procedure ActionInsertExecute(Sender: TObject);
     procedure ActionDeleteExecute(Sender: TObject);
     procedure ActionClearAllExecute(Sender: TObject);
+    procedure ActionSortExecute(Sender: TObject);
+    procedure ActionMoveUpExecute(Sender: TObject);
+    procedure ActionMoveDownExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,7 +44,7 @@ type
 implementation
 
 uses
-  BCCommon.Dialogs.InputQuery, BCCommon.Language.Strings;
+  System.Math, BCCommon.Dialogs.InputQuery, BCCommon.Language.Strings;
 
 {$R *.dfm}
 
@@ -54,6 +64,27 @@ var
 begin
   if TInputQueryDialog.ClassShowModal(Self, LanguageDataModule.GetConstant('Insert'), LValue) = mrOk then
     ListBox.Items.Insert(ListBox.ItemIndex, LValue);
+end;
+
+procedure TItemListDialog.ActionMoveDownExecute(Sender: TObject);
+begin
+  inherited;
+  if ListBox.ItemIndex <> -1 then
+    ListBox.Items.Move(ListBox.ItemIndex, Min(ListBox.ItemIndex + 1, ListBox.Count - 1));
+end;
+
+procedure TItemListDialog.ActionMoveUpExecute(Sender: TObject);
+begin
+  inherited;
+  if ListBox.ItemIndex <> -1 then
+    ListBox.Items.Move(ListBox.ItemIndex, Max(0, ListBox.ItemIndex - 1));
+end;
+
+procedure TItemListDialog.ActionSortExecute(Sender: TObject);
+begin
+  inherited;
+  ListBox.Sorted := True;
+  ListBox.Sorted := False;
 end;
 
 end.
