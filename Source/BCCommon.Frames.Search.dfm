@@ -92,8 +92,6 @@ inherited BCSearchFrame: TBCSearchFrame
       Width = 200
       Height = 21
       Hint = 'Search text'
-      Margins.Left = 0
-      Margins.Right = 0
       Align = alLeft
       Alignment = taLeftJustify
       BoundLabel.Indent = 0
@@ -117,6 +115,7 @@ inherited BCSearchFrame: TBCSearchFrame
       TabOrder = 0
       OnChange = ComboBoxSearchTextChange
       OnKeyPress = ComboBoxSearchTextKeyPress
+      ExplicitLeft = 2
     end
     object PanelRight: TBCPanel
       Left = 333
@@ -128,11 +127,13 @@ inherited BCSearchFrame: TBCSearchFrame
       ParentColor = True
       TabOrder = 1
       SkinData.SkinSection = 'CHECKBOX'
+      ExplicitLeft = 335
+      ExplicitWidth = 279
       object LabelSearchResultCount: TBCLabelFX
         Left = 269
         Top = 0
         Width = 12
-        Height = 24
+        Height = 21
         Align = alRight
         ParentFont = False
         Layout = tlCenter
@@ -145,6 +146,7 @@ inherited BCSearchFrame: TBCSearchFrame
         Shadow.AlphaValue = 0
         Shadow.OffsetKeeper.LeftTop = -3
         Shadow.OffsetKeeper.RightBottom = 5
+        ExplicitHeight = 24
       end
     end
     object PanelToolBar: TBCPanel
@@ -159,6 +161,7 @@ inherited BCSearchFrame: TBCSearchFrame
       BevelOuter = bvNone
       TabOrder = 2
       SkinData.SkinSection = 'CHECKBOX'
+      ExplicitLeft = 208
       object SpeedButtonFindPrevious: TBCSpeedButton
         Left = 0
         Top = 0

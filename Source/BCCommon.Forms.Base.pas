@@ -20,7 +20,6 @@ type
     TitleBar: TBCTitleBar;
     procedure ActionFileExitExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    //procedure SkinMenuClick(Sender: TObject);
     procedure ProgressBarHide(Sender: TObject);
     procedure ProgressBarShow(Sender: TObject);
     procedure ProgressBarStepChange(Sender: TObject);
@@ -31,8 +30,6 @@ type
     FTaskbar: TTaskbar;
     procedure CreateProgressBar;
     procedure ResizeProgressBar;
-  //protected
-  //  procedure CreateSkinsMenu(AMenuItem: TMenuItem);
   public
     property ProgressBar: TBCProgressBar read FProgressBar write FProgressBar;
     property OnSkinChange: TNotifyEvent read FSkinChange write FSkinChange;
@@ -54,8 +51,8 @@ procedure TBCBaseForm.FormCreate(Sender: TObject);
 begin
   inherited;
   {$WARN SYMBOL_PLATFORM OFF}
-  SkinManager.SkinDirectory := Format('%s%s', [IncludeTrailingBackslash(ExtractFilePath(Application.ExeName)),
-    SkinManager.SkinDirectory]);
+  SkinManager.SkinDirectory := IncludeTrailingBackslash(ExtractFilePath(Application.ExeName)) +
+    SkinManager.SkinDirectory;
   {$WARN SYMBOL_PLATFORM ON}
   SkinManager.Active := True;
   FTaskbar := TTaskBar.Create(Self);
@@ -67,46 +64,6 @@ begin
   FTaskbar.Free;
   FProgressBar.Free;
 end;
-
-{procedure TBCBaseForm.CreateSkinsMenu(AMenuItem: TMenuItem);
-var
-  i: integer;
-  LStringList: TStringList;
-  LMenuItem: TMenuItem;
-begin
-  AMenuItem.Clear;
-  LStringList := TStringList.Create;
-  SkinManager.GetExternalSkinNames(LStringList);
-  if LStringList.Count > 0 then
-  try
-    LStringList.Sort;
-    for i := 0 to LStringList.Count - 1 do
-    begin
-      LMenuItem := TMenuItem.Create(Application);
-      LMenuItem.Caption := LStringList[i];
-
-      if LMenuItem.Caption = SkinManager.SkinName then
-        LMenuItem.Checked := True;
-
-      LMenuItem.OnClick := SkinMenuClick;
-      LMenuItem.RadioItem := True;
-      if (i <> 0) and (i mod 30 = 0) then
-        LMenuItem.Break := mbBreak;
-
-      AMenuItem.Add(LMenuItem);
-    end;
-  finally
-    FreeAndNil(LStringList);
-  end;
-end; }
-
-{procedure TBCBaseForm.SkinMenuClick(Sender: TObject);
-begin
-  TMenuItem(Sender).Checked := True;
-  SkinManager.SkinName := DeleteChars(TMenuItem(Sender).Caption, '&');
-  if Assigned(FSkinChange) then
-    FSkinChange(Sender);
-end; }
 
 procedure TBCBaseForm.ResizeProgressBar;
 var

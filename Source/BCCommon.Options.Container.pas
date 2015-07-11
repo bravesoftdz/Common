@@ -346,7 +346,6 @@ type
   private
     FConnectionCloseTabByDblClick: Boolean;
     FConnectionCloseTabByMiddleClick: Boolean;
-    FConnectionDoubleBuffered: Boolean;
     FConnectionMultiLine: Boolean;
     FConnectionRightClickSelect: Boolean;
     FConnectionShowCloseButton: Boolean;
@@ -354,7 +353,6 @@ type
     FDateFormat: string;
     FEditorCloseTabByDblClick: Boolean;
     FEditorCloseTabByMiddleClick: Boolean;
-    FEditorDoubleBuffered: Boolean;
     FEditorMultiLine: Boolean;
     FEditorRightClickSelect: Boolean;
     FEditorShowCloseButton: Boolean;
@@ -363,7 +361,6 @@ type
     FObjectFrameAlign: string;
     FOutputCloseTabByDblClick: Boolean;
     FOutputCloseTabByMiddleClick: Boolean;
-    FOutputDoubleBuffered: Boolean;
     FOutputMultiLine: Boolean;
     FOutputRightClickSelect: Boolean;
     FOutputShowCloseButton: Boolean;
@@ -382,8 +379,6 @@ type
     property ConnectionCloseTabByDblClick: Boolean read FConnectionCloseTabByDblClick write FConnectionCloseTabByDblClick;
     [IniValue('Options', 'ConnectionCloseTabByMiddleClick', 'False')]
     property ConnectionCloseTabByMiddleClick: Boolean read FConnectionCloseTabByMiddleClick write FConnectionCloseTabByMiddleClick;
-    [IniValue('Options', 'ConnectionDoubleBuffered', 'True')]
-    property ConnectionDoubleBuffered: Boolean read FConnectionDoubleBuffered write FConnectionDoubleBuffered;
     [IniValue('Options', 'ConnectionMultiLine', 'False')]
     property ConnectionMultiLine: Boolean read FConnectionMultiLine write FConnectionMultiLine;
     [IniValue('Options', 'ConnectionRightClickSelect', 'True')]
@@ -398,8 +393,6 @@ type
     property EditorCloseTabByDblClick: Boolean read FEditorCloseTabByDblClick write FEditorCloseTabByDblClick;
     [IniValue('Options', 'EditorCloseTabByMiddleClick', 'False')]
     property EditorCloseTabByMiddleClick: Boolean read FEditorCloseTabByMiddleClick write FEditorCloseTabByMiddleClick;
-    [IniValue('Options', 'EditorDoubleBuffered', 'True')]
-    property EditorDoubleBuffered: Boolean read FEditorDoubleBuffered write FEditorDoubleBuffered;
     [IniValue('Options', 'EditorMultiLine', 'False')]
     property EditorMultiLine: Boolean read FEditorMultiLine write FEditorMultiLine;
     [IniValue('Options', 'EditorRightClickSelect', 'True')]
@@ -416,8 +409,6 @@ type
     property OutputCloseTabByDblClick: Boolean read FOutputCloseTabByDblClick write FOutputCloseTabByDblClick;
     [IniValue('Options', 'OutputCloseTabByMiddleClick', 'False')]
     property OutputCloseTabByMiddleClick: Boolean read FOutputCloseTabByMiddleClick write FOutputCloseTabByMiddleClick;
-    [IniValue('Options', 'OutputDoubleBuffered', 'True')]
-    property OutputDoubleBuffered: Boolean read FOutputDoubleBuffered write FOutputDoubleBuffered;
     [IniValue('Options', 'OutputMultiLine', 'False')]
     property OutputMultiLine: Boolean read FOutputMultiLine write FOutputMultiLine;
     [IniValue('Options', 'OutputRightClickSelect', 'True')]
@@ -457,7 +448,6 @@ type
     FDefaultSQLHighlighter: string;
     FDirCloseTabByDblClick: Boolean;
     FDirCloseTabByMiddleClick: Boolean;
-    FDirDoubleBuffered: Boolean;
     FDirIndent: Integer;
     FDirMultiLine: Boolean;
     FDirRightClickSelect: Boolean;
@@ -472,7 +462,6 @@ type
     FDirShowOverlayIcons: Boolean;
     FDocCloseTabByDblClick: Boolean;
     FDocCloseTabByMiddleClick: Boolean;
-    FDocDoubleBuffered: Boolean;
     FDocMultiLine: Boolean;
     FDocRightClickSelect: Boolean;
     FDocSaveTabs: Boolean;
@@ -483,7 +472,6 @@ type
     FHighlighterStrings: TStrings;
     FOutputCloseTabByDblClick: Boolean;
     FOutputCloseTabByMiddleClick: Boolean;
-    FOutputDoubleBuffered: Boolean;
     FOutputMultiLine: Boolean;
     FOutputRightClickSelect: Boolean;
     FOutputSaveTabs: Boolean;
@@ -538,8 +526,6 @@ type
     property DirCloseTabByDblClick: Boolean read FDirCloseTabByDblClick write FDirCloseTabByDblClick;
     [IniValue('Options', 'DirCloseTabByMiddleClick', 'False')]
     property DirCloseTabByMiddleClick: Boolean read FDirCloseTabByMiddleClick write FDirCloseTabByMiddleClick;
-    [IniValue('Options', 'DirDoubleBuffered', 'True')]
-    property DirDoubleBuffered: Boolean read FDirDoubleBuffered write FDirDoubleBuffered;
     [IniValue('Options', 'DirIndent', '20')]
     property DirIndent: Integer read FDirIndent write FDirIndent;
     [IniValue('Options', 'DirMultiLine', 'False')]
@@ -569,8 +555,6 @@ type
     property DocCloseTabByDblClick: Boolean read FDocCloseTabByDblClick write FDocCloseTabByDblClick;
     [IniValue('Options', 'DocCloseTabByMiddleClick', 'False')]
     property DocCloseTabByMiddleClick: Boolean read FDocCloseTabByMiddleClick write FDocCloseTabByMiddleClick;
-    [IniValue('Options', 'DocDoubleBuffered', 'True')]
-    property DocDoubleBuffered: Boolean read FDocDoubleBuffered write FDocDoubleBuffered;
     [IniValue('Options', 'DocMultiLine', 'False')]
     property DocMultiLine: Boolean read FDocMultiLine write FDocMultiLine;
     [IniValue('Options', 'DocRightClickSelect', 'True')]
@@ -588,8 +572,6 @@ type
     property OutputCloseTabByDblClick: Boolean read FOutputCloseTabByDblClick write FOutputCloseTabByDblClick;
     [IniValue('Options', 'OutputCloseTabByMiddleClick', 'False')]
     property OutputCloseTabByMiddleClick: Boolean read FOutputCloseTabByMiddleClick write FOutputCloseTabByMiddleClick;
-    [IniValue('Options', 'OutputDoubleBuffered', 'True')]
-    property OutputDoubleBuffered: Boolean read FOutputDoubleBuffered write FOutputDoubleBuffered;
     [IniValue('Options', 'OutputMultiLine', 'False')]
     property OutputMultiLine: Boolean read FOutputMultiLine write FOutputMultiLine;
     [IniValue('Options', 'OutputRightClickSelect', 'True')]
