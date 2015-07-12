@@ -1,6 +1,8 @@
 inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
   Width = 223
   Height = 310
+  ExplicitWidth = 223
+  ExplicitHeight = 310
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
@@ -100,7 +102,7 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        Text = 'clWindow'
+        ColorText = 'clWindow'
       end
       object ColorBoxNonblinkingCaretForeground: TBCColorComboBox
         Left = 10
@@ -128,7 +130,7 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         Font.Style = []
         ParentFont = False
         TabOrder = 1
-        Text = 'clWindow'
+        ColorText = 'clWindow'
       end
       object SliderNonblinkingCaretEnabled: TsSlider
         Left = 56

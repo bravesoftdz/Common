@@ -76,7 +76,7 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        Text = 'clWindow'
+        ColorText = 'clWindow'
       end
       object SliderSelectionVisible: TsSlider
         Left = 49
@@ -130,7 +130,7 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      Text = 'clWindow'
+      ColorText = 'clWindow'
     end
     object ComboBoxStyle: TBCComboBox
       Left = 0
@@ -203,7 +203,7 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        Text = 'clWindow'
+        ColorText = 'clWindow'
       end
       object ComboBoxEndOfLineStyle: TBCComboBox
         Left = 10

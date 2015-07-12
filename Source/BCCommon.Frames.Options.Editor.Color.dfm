@@ -226,6 +226,36 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       WordWrap.Enabled = False
       WordWrap.Position = 80
       WordWrap.Style = wwsClientWidth
+      WordWrap.Indicator.Glyph.Data = {
+        7E030000424D7E0300000000000036000000280000000F0000000E0000000100
+        2000000000004803000000000000000000000000000000000000FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
+        000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0080000000FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000000000000000
+        0000FFFFFF00FFFFFF00FFFFFF00FFFFFF008000000080000000FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF008000000080000000800000008000000080000000FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00000000000000000000000000FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF008000000080000000FFFFFF00FFFFFF0080000000FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF0080000000FFFFFF00FFFFFF0080000000FFFFFF00FFFF
+        FF00FFFFFF000000000000000000000000000000000000000000FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0080000000FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF0080000000FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00800000008000000080000000800000008000
+        00008000000080000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00}
     end
     object PageControl: TBCPageControl
       Left = 0
@@ -245,6 +275,10 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'Editor'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object ComboBoxEditorElement: TBCComboBox
           Left = 6
           Top = 22
@@ -336,13 +370,17 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           ParentFont = False
           TabOrder = 1
           OnChange = ColorComboBoxEditorColorChange
-          Text = 'clWindow'
+          ColorText = 'clWindow'
         end
       end
       object TabSheetElements: TsTabSheet
         Caption = 'Elements'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object ComboBoxElementsName: TBCComboBox
           Left = 6
           Top = 19
@@ -413,7 +451,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           ParentFont = False
           TabOrder = 1
           OnChange = ColorComboBoxElementsForegroundChange
-          Text = 'clWindow'
+          ColorText = 'clWindow'
         end
         object ColorComboBoxElementsBackground: TBCColorComboBox
           Left = 6
@@ -441,7 +479,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           ParentFont = False
           TabOrder = 2
           OnChange = ColorComboBoxElementsBackgroundChange
-          Text = 'clWindow'
+          ColorText = 'clWindow'
         end
         object GroupBoxAttributes: TBCGroupBox
           Left = 253
@@ -569,6 +607,10 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'General'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object EditVersion: TBCEdit
           Left = 6
           Top = 18
@@ -628,6 +670,10 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'Author'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object EditName: TBCEdit
           Left = 6
           Top = 20
@@ -687,6 +733,10 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'Use skin color'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object PanelUseSkinColorLeft: TBCPanel
           Left = 0
           Top = 0

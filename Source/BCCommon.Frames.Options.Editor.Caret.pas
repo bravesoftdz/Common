@@ -84,8 +84,8 @@ begin
   OptionsContainer.ShowCaret := SliderVisible.SliderOn;
   OptionsContainer.RightMouseClickMovesCaret := SliderRightMouseClickMovesCaret.SliderOn;
   OptionsContainer.ShowNonblinkingCaret := SliderNonblinkingCaretEnabled.SliderOn;
-  OptionsContainer.NonblinkingCaretBackgroundColor := ColorBoxNonblinkingCaretBackground.Text;
-  OptionsContainer.NonblinkingCaretForegroundColor := ColorBoxNonblinkingCaretForeground.Text;
+  OptionsContainer.NonblinkingCaretBackgroundColor := ColorBoxNonblinkingCaretBackground.ColorText;
+  OptionsContainer.NonblinkingCaretForegroundColor := ColorBoxNonblinkingCaretForeground.ColorText;
   OptionsContainer.InsertCaret := ComboBoxStylesInsertCaret.ItemIndex;
   OptionsContainer.OverwriteCaret := ComboBoxStylesOverwriteCaret.ItemIndex;
 end;
@@ -95,8 +95,8 @@ begin
   SliderVisible.SliderOn := OptionsContainer.ShowCaret;
   SliderRightMouseClickMovesCaret.SliderOn := OptionsContainer.RightMouseClickMovesCaret;
   SliderNonblinkingCaretEnabled.SliderOn := OptionsContainer.ShowNonblinkingCaret;
-  ColorBoxNonblinkingCaretBackground.Text := OptionsContainer.NonblinkingCaretBackgroundColor;
-  ColorBoxNonblinkingCaretForeground.Text := OptionsContainer.NonblinkingCaretForegroundColor;
+  ColorBoxNonblinkingCaretBackground.ColorText := OptionsContainer.NonblinkingCaretBackgroundColor;
+  ColorBoxNonblinkingCaretForeground.ColorText := OptionsContainer.NonblinkingCaretForegroundColor;
   ComboBoxStylesInsertCaret.ItemIndex := OptionsContainer.InsertCaret;
   ComboBoxStylesOverwriteCaret.ItemIndex := OptionsContainer.OverwriteCaret;
 end;

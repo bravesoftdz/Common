@@ -284,7 +284,7 @@ begin
   if Assigned(LElementDataValue) then
   begin
     FModified := True;
-    LElementDataValue.ObjectValue['Background'] := StringToColor(ColorComboBoxElementsBackground.Text);
+    LElementDataValue.ObjectValue['Background'] := ColorComboBoxElementsBackground.ColorText;
     SaveColor;
   end;
 end;
@@ -297,7 +297,7 @@ begin
   if Assigned(LElementDataValue) then
   begin
     FModified := True;
-    LElementDataValue.ObjectValue['Foreground'] := StringToColor(ColorComboBoxElementsForeground.Text);
+    LElementDataValue.ObjectValue['Foreground'] := ColorComboBoxElementsForeground.ColorText;
     SaveColor;
   end;
 end;

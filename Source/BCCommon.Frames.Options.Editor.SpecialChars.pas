@@ -81,10 +81,10 @@ begin
   OptionsContainer.SpecialCharsUseTextColor := SliderUseTextColor.SliderOn;
   OptionsContainer.SpecialCharsStyle := ComboBoxStyle.ItemIndex;
   OptionsContainer.SpecialEndOfLineVisible := SliderEndOfLineVisible.SliderOn;
-  OptionsContainer.SpecialEndOfLineColor := ColorComboBoxEndOfLineColor.Text;
+  OptionsContainer.SpecialEndOfLineColor := ColorComboBoxEndOfLineColor.ColorText;
   OptionsContainer.SpecialCharsEndOfLineStyle := ComboBoxEndOfLineStyle.ItemIndex;
   OptionsContainer.SpecialCharsSelectionVisible := SliderSelectionVisible.SliderOn;
-  OptionsContainer.SpecialSelectionColor := ColorComboBoxSelectionColor.Text;
+  OptionsContainer.SpecialSelectionColor := ColorComboBoxSelectionColor.ColorText;
 end;
 
 procedure TOptionsEditorSpecialCharsFrame.GetData;
@@ -92,10 +92,10 @@ begin
   SliderUseTextColor.SliderOn := OptionsContainer.SpecialCharsUseTextColor;
   ComboBoxStyle.ItemIndex := OptionsContainer.SpecialCharsStyle;
   SliderEndOfLineVisible.SliderOn := OptionsContainer.SpecialEndOfLineVisible;
-  ColorComboBoxEndOfLineColor.Text := OptionsContainer.SpecialEndOfLineColor;
+  ColorComboBoxEndOfLineColor.ColorText := OptionsContainer.SpecialEndOfLineColor;
   ComboBoxEndOfLineStyle.ItemIndex := OptionsContainer.SpecialCharsEndOfLineStyle;
   SliderSelectionVisible.SliderOn := OptionsContainer.SpecialCharsSelectionVisible;
-  ColorComboBoxSelectionColor.Text := OptionsContainer.SpecialSelectionColor;
+  ColorComboBoxSelectionColor.ColorText := OptionsContainer.SpecialSelectionColor;
 end;
 
 end.
