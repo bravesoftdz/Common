@@ -1376,7 +1376,7 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'Object Pascal'
         Strings.Strings = (
-          'Pascal files (*.pas;*.dpr)')
+          'Pascal files (*.pas;*.dpr;*.dpk)')
       end
       item
         Name = 'Perl'

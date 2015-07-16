@@ -182,7 +182,7 @@ begin
   HookResourceString(@SBCControlsFileControlEndEditRenameFailed, LanguageDataModule.GetPConstant('RenameFailed'));
   HookResourceString(@SBCEditorScrollInfoTopLine, LanguageDataModule.GetPConstant('TopLine'));
   HookResourceString(@SBCEditorSearchStringNotFound, LanguageDataModule.GetPAskYesOrNo('SearchStringNotFound'));
-  HookResourceString(@SBCEditorSearchStringNotFound, LanguageDataModule.GetPAskYesOrNo('SearchMatchNotFound'));
+  HookResourceString(@SBCEditorSearchMatchNotFound, LanguageDataModule.GetPAskYesOrNo('SearchMatchNotFound'));
   HookResourceString(@SBCEditorRightMarginPosition, LanguageDataModule.GetPConstant('Position'));
 
 end;
