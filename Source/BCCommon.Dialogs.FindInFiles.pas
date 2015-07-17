@@ -54,13 +54,14 @@ type
     function GetLookInSubfolders: Boolean;
     function GetSearchCaseSensitive: Boolean;
     procedure SetButtons;
+    procedure SetFindWhatText(AValue: string);
     procedure SetFolderText(Value: string);
     procedure ReadIniFile;
     procedure WriteIniFile;
   public
     function GetFileExtensions(AFileExtensions: string): string;
     property FileTypeText: string read GetFileTypeText;
-    property FindWhatText: string read GetFindWhatText;
+    property FindWhatText: string read GetFindWhatText write SetFindWhatText;
     property FolderText: string read GetFolderText write SetFolderText;
     property LookInSubfolders: Boolean read GetLookInSubfolders;
     property SearchCaseSensitive: Boolean read GetSearchCaseSensitive;
@@ -106,6 +107,12 @@ end;
 function TFindInFilesDialog.GetFindWhatText: string;
 begin
   Result := ComboBoxTextToFind.Text;
+end;
+
+procedure TFindInFilesDialog.SetFindWhatText(AValue: string);
+begin
+  ComboBoxTextToFind.Text := AValue;
+  SetButtons;
 end;
 
 function TFindInFilesDialog.GetFileExtensions(AFileExtensions: string): string;

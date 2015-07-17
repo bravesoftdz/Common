@@ -1,5 +1,4 @@
 inherited ReplaceDialog: TReplaceDialog
-  BorderStyle = bsDialog
   Caption = 'Replace'
   ClientHeight = 413
   ClientWidth = 369
@@ -278,7 +277,7 @@ inherited ReplaceDialog: TReplaceDialog
       VerticalAlignment = taAlignTop
       ItemIndex = -1
       TabOrder = 0
-      OnKeyUp = ComboBoxSearchForKeyUp
+      OnChange = ComboBoxSearchForChange
     end
   end
   object PanelReplaceWith: TBCPanel

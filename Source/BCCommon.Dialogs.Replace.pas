@@ -38,7 +38,6 @@ type
     SliderWildCard: TsSlider;
     PanelDeleteLine: TBCPanel;
     RadioButtonDeleteLine: TBCRadioButton;
-    procedure ComboBoxSearchForKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -46,12 +45,20 @@ type
     procedure RadioButtonReplaceWithClick(Sender: TObject);
     procedure SliderRegularExpressionClick(Sender: TObject);
     procedure SliderWildCardClick(Sender: TObject);
+    procedure ComboBoxSearchForChange(Sender: TObject);
   private
     function GetReplaceInWholeFile: Boolean;
+    function GetReplaceWith: string;
+    function GetSearchFor: string;
     procedure ReadIniFile;
+    procedure SetButtons;
+    procedure SetReplaceWith(AValue: string);
+    procedure SetSearchFor(AValue: string);
     procedure WriteIniFile;
   public
     procedure GetOptions(Editor: TBCEditor);
+    property SearchFor: string read GetSearchFor write SetSearchFor;
+    property ReplaceWith: string read GetReplaceWith write SetReplaceWith;
     property ReplaceInWholeFile: Boolean read GetReplaceInWholeFile;
   end;
 
@@ -112,10 +119,16 @@ begin
   AlignSliders(GroupBoxOptions);
 end;
 
-procedure TReplaceDialog.ComboBoxSearchForKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TReplaceDialog.SetButtons;
 begin
   ButtonOK.Enabled := ComboBoxSearchFor.Text <> '';
   ButtonReplaceAll.Enabled := ButtonOK.Enabled;
+end;
+
+procedure TReplaceDialog.ComboBoxSearchForChange(Sender: TObject);
+begin
+  inherited;
+  SetButtons;
 end;
 
 procedure TReplaceDialog.FormCloseQuery(Sender: TObject;
@@ -199,6 +212,27 @@ end;
 function TReplaceDialog.GetReplaceInWholeFile: Boolean;
 begin
   Result := RadioButtonWholeFile.Checked;
+end;
+
+function TReplaceDialog.GetReplaceWith: string;
+begin
+  Result := ComboBoxReplaceWith.Text;
+end;
+
+function TReplaceDialog.GetSearchFor: string;
+begin
+  Result := ComboBoxSearchFor.Text;
+end;
+
+procedure TReplaceDialog.SetReplaceWith(AValue: string);
+begin
+  ComboBoxReplaceWith.Text := AValue;
+end;
+
+procedure TReplaceDialog.SetSearchFor(AValue: string);
+begin
+  ComboBoxSearchFor.Text := AValue;
+  SetButtons;
 end;
 
 end.
