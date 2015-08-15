@@ -1,13 +1,16 @@
 inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
   Width = 229
-  Height = 300
+  Height = 340
+  AutoSize = False
   Visible = False
+  ExplicitWidth = 229
+  ExplicitHeight = 340
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 225
-    Height = 300
+    Height = 340
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -100,7 +103,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
     end
     object EditWidth: TBCEdit
       Left = 0
-      Top = 237
+      Top = 277
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -138,7 +141,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Left = 0
       Top = 116
       Width = 225
-      Height = 99
+      Height = 137
       Caption = ' Line numbers'
       TabOrder = 0
       SkinData.SkinSection = 'GROUPBOX'
@@ -263,10 +266,46 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
         SliderCaptionOn = 'Yes'
         SliderCaptionOff = 'No'
       end
+      object EditLineNumbersStartFrom: TBCEdit
+        Left = 9
+        Top = 108
+        Width = 64
+        Height = 21
+        Margins.Left = 4
+        Margins.Top = 4
+        Margins.Right = 4
+        Margins.Bottom = 4
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 3
+        Text = '1'
+        SkinData.SkinSection = 'EDIT'
+        BoundLabel.Active = True
+        BoundLabel.Caption = 'Start from'
+        BoundLabel.Indent = 4
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'Tahoma'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclTopLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+        EnterToTab = False
+        OnlyNumbers = True
+        NumbersWithDots = False
+        NumbersWithSpots = False
+        ErrorColor = 14803198
+        NumbersAllowNegative = False
+      end
     end
     object EditBookmarkPanelWidth: TBCEdit
       Left = 0
-      Top = 279
+      Top = 319
       Width = 64
       Height = 21
       Margins.Left = 4

@@ -43,7 +43,7 @@ object BCBaseForm: TBCBaseForm
     MenuSupport.ExtraLineFont.Name = 'Tahoma'
     MenuSupport.ExtraLineFont.Style = [fsBold]
     SkinDirectory = 'Skins'
-    SkinName = 'MetroUI'
+    SkinName = 'Windows 10'
     SkinInfo = 'N/A'
     ThirdParty.ThirdEdits = 'TBCEditorPrintPreview'#13#10
     ThirdParty.ThirdButtons = 'TButton'#13#10

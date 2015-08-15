@@ -29,6 +29,7 @@ type
     SliderShowLeadingZeros: TsSlider;
     StickyLabelShowAfterLastLine: TsStickyLabel;
     SliderShowAfterLastLine: TsSlider;
+    EditLineNumbersStartFrom: TBCEdit;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -73,6 +74,7 @@ begin
   OptionsContainer.LeftMarginLineNumbersShowInTens := SliderShowInTens.SliderOn;
   OptionsContainer.LeftMarginLineNumbersShowLeadingZeros := SliderShowLeadingZeros.SliderOn;
   OptionsContainer.LeftMarginLineNumbersShowAfterLastLine := SliderShowAfterLastLine.SliderOn;
+  OptionsContainer.LeftMarginLineNumbersStartFrom := StrToIntDef(EditLineNumbersStartFrom.Text, 1);
   OptionsContainer.LeftMarginWidth := StrToIntDef(EditWidth.Text, 57);
   OptionsContainer.LeftMarginBookmarkPanelWidth := StrToIntDef(EditBookmarkPanelWidth.Text, 20);
 end;
@@ -87,6 +89,7 @@ begin
   SliderShowInTens.SliderOn := OptionsContainer.LeftMarginLineNumbersShowInTens;
   SliderShowLeadingZeros.SliderOn := OptionsContainer.LeftMarginLineNumbersShowLeadingZeros;
   SliderShowAfterLastLine.SliderOn := OptionsContainer.LeftMarginLineNumbersShowAfterLastLine;
+  EditLineNumbersStartFrom.Text := IntToStr(OptionsContainer.LeftMarginLineNumbersStartFrom);
   EditWidth.Text := IntToStr(OptionsContainer.LeftMarginWidth);
   EditBookmarkPanelWidth.Text := IntToStr(OptionsContainer.LeftMarginBookmarkPanelWidth);
 end;

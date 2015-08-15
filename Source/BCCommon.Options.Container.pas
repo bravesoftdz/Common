@@ -39,6 +39,7 @@ type
     FLeftMarginLineNumbersShowInTens: Boolean;
     FLeftMarginLineNumbersShowLeadingZeros: Boolean;
     FLeftMarginLineNumbersShowAfterLastLine: Boolean;
+    FLeftMarginLineNumbersStartFrom: Integer;
     FLeftMarginWidth: Integer;
     FLeftMarginBookmarkPanelWidth: Integer;
     { Matching pair }
@@ -187,6 +188,8 @@ type
     property LeftMarginLineNumbersShowLeadingZeros: Boolean read FLeftMarginLineNumbersShowLeadingZeros write FLeftMarginLineNumbersShowLeadingZeros;
     [IniValue('Options', 'LeftMarginLineNumbersShowAfterLastLine', 'False')]
     property LeftMarginLineNumbersShowAfterLastLine: Boolean read FLeftMarginLineNumbersShowAfterLastLine write FLeftMarginLineNumbersShowAfterLastLine;
+    [IniValue('Options', 'LeftMarginLineNumbersStartFrom', '1')]
+    property LeftMarginLineNumbersStartFrom: Integer read FLeftMarginLineNumbersStartFrom write FLeftMarginLineNumbersStartFrom;
     [IniValue('Options', 'LeftMarginWidth', '57')]
     property LeftMarginWidth: Integer read FLeftMarginWidth write FLeftMarginWidth;
     [IniValue('Options', 'LeftMarginBookmarkPanelWidth', '20')]
@@ -747,6 +750,7 @@ begin
       LeftMargin.LineNumbers.Options := LeftMargin.LineNumbers.Options + [lnoAfterLastLine]
     else
       LeftMargin.LineNumbers.Options := LeftMargin.LineNumbers.Options - [lnoAfterLastLine];
+    LeftMargin.LineNumbers.StartFrom := FLeftMarginLineNumbersStartFrom;
     LeftMargin.Width := FLeftMarginWidth;
     LeftMargin.Bookmarks.Panel.Width := FLeftMarginBookmarkPanelWidth;
     { Matching pair }
