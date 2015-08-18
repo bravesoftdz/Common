@@ -37,7 +37,7 @@ type
     procedure VirtualDrawTreeSearchFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure VirtualDrawTreeSearchGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; var NodeWidth: Integer);
     procedure VirtualDrawTreeSearchGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind;
-      Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
+      Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
   private
     FFormClosing: Boolean;
     FOpenFile: TOpenFileEvent;
@@ -244,7 +244,7 @@ begin
 end;
 
 procedure TSearchForFilesForm.VirtualDrawTreeSearchGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
-  Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
+  Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
 var
   Data: PSearchRec;
 begin
@@ -313,21 +313,22 @@ end;
 
 procedure TSearchForFilesForm.Open(RootDirectory: string);
 var
-  TimeDifference: string;
+  LTimeDifference: string;
+  LCount: Integer;
 begin
   Caption := Format('%s - [%s]', [Caption, RootDirectory]);
-  PanelSearchingFiles.Visible := False; // True;
+  PanelSearchingFiles.Visible := False;
   ReadIniFile;
   Show;
   Screen.Cursor := crHourGlass;
   try
     StatusBar.Panels[0].Text := LanguageDataModule.GetConstant('CountingFiles');
     Application.ProcessMessages;
-    FProgressBar.Count := CountFilesInFolder(RootDirectory);
+    LCount := CountFilesInFolder(RootDirectory);
   finally
     Screen.Cursor := crDefault;
   end;
-  FProgressBar.Show;
+  FProgressBar.Show(LCount);
   FStopWatch.Reset;
   FStopWatch.Start;
   try
@@ -338,10 +339,10 @@ begin
     begin
       FStopWatch.Stop;
       if StrToInt(FormatDateTime('n', FStopWatch.ElapsedMilliseconds / MSecsPerDay)) < 1 then
-        TimeDifference := FormatDateTime(Format('s.zzz "%s"', [LanguageDataModule.GetConstant('Second')]), FStopWatch.ElapsedMilliseconds / MSecsPerDay)
+        LTimeDifference := FormatDateTime(Format('s.zzz "%s"', [LanguageDataModule.GetConstant('Second')]), FStopWatch.ElapsedMilliseconds / MSecsPerDay)
       else
-        TimeDifference := FormatDateTime(Format('n "%s" s.zzz "%s"', [LanguageDataModule.GetConstant('Minute'), LanguageDataModule.GetConstant('Second')]), FStopWatch.ElapsedMilliseconds / MSecsPerDay);
-      StatusBar.Panels[0].Text := Format(LanguageDataModule.GetConstant('FilesFound'), [FProgressBar.Count, TimeDifference]);
+        LTimeDifference := FormatDateTime(Format('n "%s" s.zzz "%s"', [LanguageDataModule.GetConstant('Minute'), LanguageDataModule.GetConstant('Second')]), FStopWatch.ElapsedMilliseconds / MSecsPerDay);
+      StatusBar.Panels[0].Text := Format(LanguageDataModule.GetConstant('FilesFound'), [LCount, LTimeDifference]);
 
       PanelSearchingFiles.Visible := False;
     end;
