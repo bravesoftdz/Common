@@ -306,7 +306,7 @@ begin
 
     WriteString('FindInFilesOptions', 'TextToFind', ComboBoxTextToFind.Text);
     WriteString('FindInFilesOptions', 'FileMask', ComboBoxFileMask.Text);
-    WriteString('FindInFilesOptions', 'Directory', ComboBoxDirectory.Text);
+    WriteString('FindInFilesOptions', 'Directory', IncludeTrailingPathDelimiter(ComboBoxDirectory.Text));
   finally
     Free;
   end;
