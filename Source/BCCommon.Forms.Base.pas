@@ -18,6 +18,7 @@ type
     SkinProvider: TBCSkinProvider;
     StatusBar: TBCStatusBar;
     TitleBar: TBCTitleBar;
+    Taskbar: TTaskbar;
     procedure ActionFileExitExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ProgressBarHide(Sender: TObject);
@@ -27,11 +28,12 @@ type
   private
     FProgressBar: TBCProgressBar;
     FSkinChange: TNotifyEvent;
-    FTaskbar: TTaskbar;
+    //FTaskbar: TTaskbar;
     procedure CreateProgressBar;
     procedure ResizeProgressBar;
   public
     property ProgressBar: TBCProgressBar read FProgressBar write FProgressBar;
+    //property Taskbar: TTaskbar read FTaskbar write FTaskbar;
     property OnSkinChange: TNotifyEvent read FSkinChange write FSkinChange;
   end;
 
@@ -55,13 +57,13 @@ begin
     SkinManager.SkinDirectory;
   {$WARN SYMBOL_PLATFORM ON}
   SkinManager.Active := True;
-  FTaskbar := TTaskBar.Create(Self);
+  //FTaskbar := TTaskBar.Create(Self);
   CreateProgressBar;
 end;
 
 procedure TBCBaseForm.FormDestroy(Sender: TObject);
 begin
-  FTaskbar.Free;
+  //FTaskbar.Free;
   FProgressBar.Free;
 end;
 
@@ -81,19 +83,19 @@ end;
 
 procedure TBCBaseForm.ProgressBarStepChange(Sender: TObject);
 begin
-  FTaskbar.ProgressValue := FProgressBar.Progress;
+  Taskbar.ProgressValue := FProgressBar.Progress;
 end;
 
 procedure TBCBaseForm.ProgressBarShow(Sender: TObject);
 begin
   ResizeProgressBar;
-  FTaskbar.ProgressMaxValue := FProgressBar.MaxValue;
-  FTaskbar.ProgressState := TTaskBarProgressState.Normal;
+  Taskbar.ProgressMaxValue := FProgressBar.MaxValue;
+  Taskbar.ProgressState := TTaskBarProgressState.Normal;
 end;
 
 procedure TBCBaseForm.ProgressBarHide(Sender: TObject);
 begin
-  FTaskbar.ProgressState := TTaskBarProgressState.None;
+  Taskbar.ProgressState := TTaskBarProgressState.None;
 end;
 
 procedure TBCBaseForm.CreateProgressBar;

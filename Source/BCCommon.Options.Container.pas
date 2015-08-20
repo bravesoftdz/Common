@@ -692,8 +692,7 @@ begin
     Caret.Styles.Insert := TBCEditorCaretStyle(FInsertCaret);
     Caret.Styles.Overwrite := TBCEditorCaretStyle(FOverwriteCaret);
     { Code folding }
-    if CodeFolding.Visible then
-      CodeFolding.Visible := FShowCodeFolding;
+    CodeFolding.Visible := FShowCodeFolding;
     if FFoldMultilineComments then
       CodeFolding.Options := CodeFolding.Options + [cfoFoldMultilineComments]
     else
@@ -738,6 +737,7 @@ begin
     LeftMargin.Bookmarks.Visible := FLeftMarginShowBookmarks;
     LeftMargin.Bookmarks.Panel.Visible := FLeftMarginShowBookmarkPanel;
     LeftMargin.LineState.Enabled := FLeftMarginShowLineState;
+    LeftMargin.LineNumbers.Visible := FEnableLineNumbers;
     if FLeftMarginLineNumbersShowInTens then
       LeftMargin.LineNumbers.Options := LeftMargin.LineNumbers.Options + [lnoIntens]
     else
@@ -852,7 +852,12 @@ begin
       Selection.Options := Selection.Options + [soTripleClickRowSelect]
     else
       Selection.Options := Selection.Options - [soTripleClickRowSelect];
+    if FEnableSelectionMode then
+      Selection.Mode := smColumn
+    else
+      Selection.Mode := smNormal;
     { Special chars }
+    SpecialChars.Visible := FEnableSpecialChars;
     if FSpecialCharsUseTextColor then
       SpecialChars.Options := SpecialChars.Options + [scoUseTextColor]
     else
@@ -873,13 +878,8 @@ begin
     else
       Tabs.Options := Tabs.Options - [toTabsToSpaces];
     TabWidth := FTabWidth;
-
+    { Word wrap }
     WordWrap.Enabled := FEnableWordWrap;
-
-    if FEnableSelectionMode then
-      Selection.Mode := smColumn
-    else
-      Selection.Mode := smNormal;
   end
   else
   if Assigned(Dest) and (Dest is TBCStatusBar) then
