@@ -232,7 +232,7 @@ var
   LConstant: string;
 begin
   LConstant := GetYesOrNoMessage(Name);
-  GetMem(Result, SizeOf(WideChar) * Succ(Length(LConstant)));
+  GetMem(Result, SizeOf(WideChar) * (Length(LConstant) + 1));
   StringToWideChar(LConstant, Result, Length(LConstant) + 1);
   FHookedConstantsList.Add(Result);
 end;
@@ -242,7 +242,7 @@ var
   LColor: string;
 begin
   LColor := Trim(MultiStringHolderColorConstant.MultipleStrings.Items[AIndex].Strings.Text);
-  GetMem(Result, SizeOf(WideChar) * Succ(Length(LColor)));
+  GetMem(Result, SizeOf(WideChar) * (Length(LColor) + 1));
   StringToWideChar(LColor, Result, Length(LColor) + 1);
   FHookedConstantsList.Add(Result);
 end;
@@ -252,7 +252,7 @@ var
   LConstant: string;
 begin
   LConstant := GetConstant(Name);
-  GetMem(Result, SizeOf(WideChar) * Succ(Length(LConstant)));
+  GetMem(Result, SizeOf(WideChar) * (Length(LConstant)+ 1));
   StringToWideChar(LConstant, Result, Length(LConstant) + 1);
   FHookedConstantsList.Add(Result);
 end;
@@ -262,7 +262,7 @@ var
   LText: string;
 begin
   LText := Trim(MultiStringHolderDialogConstant.MultipleStrings.Items[AIndex].Strings.Text);
-  GetMem(Result, SizeOf(WideChar) * Succ(Length(LText)));
+  GetMem(Result, SizeOf(WideChar) * (Length(LText) + 1));
   StringToWideChar(LText, Result, Length(LText) + 1);
   FHookedConstantsList.Add(Result);
 end;
