@@ -94,12 +94,12 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="BCControlsRXE8.dcp"/>
-        <DCCReference Include="BCEditorRXE8.dcp"/>
         <DCCReference Include="BCComponentsRXE8.dcp"/>
         <DCCReference Include="VirtualTreesR.dcp"/>
         <DCCReference Include="vclactnband.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
         <DCCReference Include="acntDelphiXE8.dcp"/>
+        <DCCReference Include="BCEditor.Delphi.XE8.Runtime.dcp"/>
         <DCCReference Include="..\Source\BCCommon.Images.pas">
             <Form>ImagesDataModule</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -122,9 +122,6 @@
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Dialogs.Replace.pas">
             <Form>ReplaceDialog</Form>
-        </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Forms.Base.pas">
-            <Form>BCBaseForm</Form>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Consts.pas"/>
         <DCCReference Include="..\Source\BCCommon.Language.Strings.pas">
@@ -295,6 +292,10 @@
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Dialogs.SkinSelect.pas">
             <Form>SkinSelectDialog</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Source\BCCommon.Forms.Base.pas">
+            <Form>BCBaseForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -654,8 +655,8 @@
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>

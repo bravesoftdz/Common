@@ -37,17 +37,17 @@ requires
   VirtualTreesR,
   vclactnband,
   xmlrtl,
-  acntDelphiXE8;
+  BC3rdPartyRXE7;
 
 contains
   BCCommon.Images in '..\Source\BCCommon.Images.pas' {ImagesDataModule: TDataModule},
   BCCommon.Frames.Base in '..\Source\BCCommon.Frames.Base.pas' {BCBaseFrame},
   BCCommon.Frames.Search in '..\Source\BCCommon.Frames.Search.pas' {BCSearchFrame: TFrame},
-  BCCommon.Dialogs.Base in '..\Source\BCCommon.Dialogs.Base.pas' {BCBaseDialog},
+  BCCommon.Dialogs.Base in '..\Source\BCCommon.Dialogs.Base.pas' {Dialog},
   BCCommon.Dialogs.Options.Search in '..\Source\BCCommon.Dialogs.Options.Search.pas' {SearchOptionsDialog},
   BCCommon.Forms.Print.Preview in '..\Source\BCCommon.Forms.Print.Preview.pas' {PrintPreviewDialog},
   BCCommon.Dialogs.Replace in '..\Source\BCCommon.Dialogs.Replace.pas' {ReplaceDialog},
-  BCCommon.Forms.Base in '..\Source\BCCommon.Forms.Base.pas' {BCBaseForm},
+  BCCommon.Forms.Base in '..\Source\BCCommon.Forms.Base.pas' {BCForm},
   BCCommon.Consts in '..\Source\BCCommon.Consts.pas',
   BCCommon.Language.Strings in '..\Source\BCCommon.Language.Strings.pas' {LanguageDataModule: TDataModule},
   BCCommon.Language.Utils in '..\Source\BCCommon.Language.Utils.pas',
@@ -101,7 +101,6 @@ contains
   BigIni in '..\Source\BigIni.pas',
   Diff in '..\Source\Diff.pas',
   IniPersist in '..\Source\IniPersist.pas',
-  BCCommon.Dialogs.ItemList in '..\Source\BCCommon.Dialogs.ItemList.pas' {ItemListDialog},
-  BCCommon.Dialogs.SkinSelect in '..\Source\BCCommon.Dialogs.SkinSelect.pas' {SkinSelectDialog};
+  BCCommon.Dialogs.ItemList in '..\Source\BCCommon.Dialogs.ItemList.pas' {ItemListDialog};
 
 end.
