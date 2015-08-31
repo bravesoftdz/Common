@@ -120,6 +120,10 @@ type
     FStatusBarFontName: string;
     FStatusBarFontSize: Integer;
     FStatusBarUseSystemFont: Boolean;
+    FStatusBarShowMacro: Boolean;
+    FStatusBarShowCaretPosition: Boolean;
+    FStatusBarShowKeyState: Boolean;
+    FStatusBarShowModified: Boolean;
     { View }
     FEnableLineNumbers: Boolean;
     FEnableSelectionMode: Boolean;
@@ -342,6 +346,14 @@ type
     property StatusBarFontSize: Integer read FStatusBarFontSize write FStatusBarFontSize;
     [IniValue('Options', 'StatusBarUseSystemFont', 'False')]
     property StatusBarUseSystemFont: Boolean read FStatusBarUseSystemFont write FStatusBarUseSystemFont;
+    [IniValue('Options', 'StatusBarShowMacro', 'True')]
+    property StatusBarShowMacro: Boolean read FStatusBarShowMacro write FStatusBarShowMacro;
+    [IniValue('Options', 'StatusBarShowCaretPosition', 'True')]
+    property StatusBarShowCaretPosition: Boolean read FStatusBarShowCaretPosition write FStatusBarShowCaretPosition;
+    [IniValue('Options', 'StatusBarShowKeyState', 'True')]
+    property StatusBarShowKeyState: Boolean read FStatusBarShowKeyState write FStatusBarShowKeyState;
+    [IniValue('Options', 'StatusBarShowModified', 'True')]
+    property StatusBarShowModified: Boolean read FStatusBarShowModified write FStatusBarShowModified;
   end;
 
   {$ifdef ORABONE}

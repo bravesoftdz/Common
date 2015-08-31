@@ -1,15 +1,13 @@
 inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
   Width = 451
-  Height = 304
+  Height = 305
   Align = alClient
-  ExplicitWidth = 451
-  ExplicitHeight = 304
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 447
-    Height = 304
+    Height = 305
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -34,7 +32,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Cursor = crVSplit
       Align = alTop
       SkinData.SkinSection = 'SPLITTER'
-      ExplicitTop = 213
     end
     object PanelTop: TBCPanel
       AlignWithMargins = True
@@ -170,7 +167,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Left = 0
       Top = 222
       Width = 447
-      Height = 82
+      Height = 83
       Cursor = crIBeam
       Margins.Left = 0
       Margins.Top = 5
@@ -256,6 +253,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00}
+      WordWrap.Indicator.MaskColor = clFuchsia
     end
     object PageControl: TBCPageControl
       Left = 0
@@ -275,10 +273,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'Editor'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ComboBoxEditorElement: TBCComboBox
           Left = 6
           Top = 22
@@ -362,6 +356,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           BoundLabel.UseSkinColor = True
           SkinData.SkinSection = 'COMBOBOX'
           Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor]
+          Selected = clWindow
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -377,10 +372,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'Elements'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ComboBoxElementsName: TBCComboBox
           Left = 6
           Top = 19
@@ -443,6 +434,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           BoundLabel.UseSkinColor = True
           SkinData.SkinSection = 'COMBOBOX'
           Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor]
+          Selected = clWindow
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -471,6 +463,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           BoundLabel.UseSkinColor = True
           SkinData.SkinSection = 'COMBOBOX'
           Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor]
+          Selected = clWindow
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -607,10 +600,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'General'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object EditVersion: TBCEdit
           Left = 6
           Top = 18
@@ -670,10 +659,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'Author'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object EditName: TBCEdit
           Left = 6
           Top = 20
@@ -733,10 +718,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         Caption = 'Use skin color'
         SkinData.CustomColor = False
         SkinData.CustomFont = False
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object PanelUseSkinColorLeft: TBCPanel
           Left = 0
           Top = 0

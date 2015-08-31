@@ -394,7 +394,7 @@ begin
     ClearCodeFolding;
     Lines.Text := Highlighter.Info.General.Sample;
     InitCodeFolding;
-    if Highlighter.CodeFoldingRegions.Count > 0 then
+    if Highlighter.CodeFoldingRangeCount > 0 then // Highlighter.CodeFoldingRegions.Count > 0 then
       CodeFolding.Visible := OptionsContainer.ShowCodeFolding;
     Invalidate;
   end;

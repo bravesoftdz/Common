@@ -1,12 +1,12 @@
 inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
   Width = 164
-  Height = 106
+  Height = 208
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 160
-    Height = 106
+    Height = 208
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -19,7 +19,7 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
     object StickyLabelUseSystemFont: TsStickyLabel
       Left = 0
       Top = 4
-      Width = 90
+      Width = 98
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
@@ -31,9 +31,69 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       AttachTo = SliderUseSystemFont
       Gap = 8
     end
+    object StickyLabelShowMacro: TsStickyLabel
+      Left = 0
+      Top = 28
+      Width = 98
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show macro'
+      ParentColor = False
+      AttachTo = SliderShowMacro
+      Gap = 8
+    end
+    object StickyLabelShowCaretPosition: TsStickyLabel
+      Left = 0
+      Top = 52
+      Width = 98
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show caret position'
+      ParentColor = False
+      AttachTo = SliderShowCaretPosition
+      Gap = 8
+    end
+    object StickyLabelShowKeyState: TsStickyLabel
+      Left = 0
+      Top = 76
+      Width = 98
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show key state'
+      ParentColor = False
+      AttachTo = SliderShowKeyState
+      Gap = 8
+    end
+    object StickyLabelShowModified: TsStickyLabel
+      Left = 0
+      Top = 100
+      Width = 98
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show modified'
+      ParentColor = False
+      AttachTo = SliderShowModified
+      Gap = 8
+    end
     object FontComboBoxFont: TBCFontComboBox
       Left = 0
-      Top = 43
+      Top = 141
       Width = 160
       Height = 22
       Alignment = taLeftJustify
@@ -49,11 +109,11 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       BoundLabel.MaxWidth = 0
       BoundLabel.UseSkinColor = True
       VerticalAlignment = taAlignTop
-      TabOrder = 0
+      TabOrder = 5
     end
     object EditFontSize: TBCEdit
       Left = 0
-      Top = 85
+      Top = 187
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -66,7 +126,7 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 6
       Text = '0'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -88,11 +148,115 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       NumbersAllowNegative = False
     end
     object SliderUseSystemFont: TsSlider
-      Left = 98
+      Left = 106
       Top = 0
       Width = 50
       AutoSize = True
+      TabOrder = 0
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderShowMacro: TsSlider
+      Left = 106
+      Top = 24
+      Width = 50
+      AutoSize = True
+      TabOrder = 1
+      BoundLabel.Caption = 'Show'
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderShowCaretPosition: TsSlider
+      Left = 106
+      Top = 48
+      Width = 50
+      AutoSize = True
       TabOrder = 2
+      BoundLabel.Caption = 'Show'
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderShowKeyState: TsSlider
+      Left = 106
+      Top = 72
+      Width = 50
+      AutoSize = True
+      TabOrder = 3
+      BoundLabel.Caption = 'Show'
+      BoundLabel.Indent = 0
+      BoundLabel.Font.Charset = DEFAULT_CHARSET
+      BoundLabel.Font.Color = clWindowText
+      BoundLabel.Font.Height = -11
+      BoundLabel.Font.Name = 'Tahoma'
+      BoundLabel.Font.Style = []
+      BoundLabel.Layout = sclLeft
+      BoundLabel.MaxWidth = 0
+      BoundLabel.UseSkinColor = True
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderShowModified: TsSlider
+      Left = 106
+      Top = 96
+      Width = 50
+      AutoSize = True
+      TabOrder = 4
+      BoundLabel.Caption = 'Show'
       BoundLabel.Indent = 0
       BoundLabel.Font.Charset = DEFAULT_CHARSET
       BoundLabel.Font.Color = clWindowText
@@ -115,6 +279,6 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
   end
   inherited FrameAdapter: TsFrameAdapter
     Left = 116
-    Top = 66
+    Top = 170
   end
 end

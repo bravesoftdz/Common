@@ -15,6 +15,14 @@ type
     Panel: TBCPanel;
     StickyLabelUseSystemFont: TsStickyLabel;
     SliderUseSystemFont: TsSlider;
+    SliderShowMacro: TsSlider;
+    StickyLabelShowMacro: TsStickyLabel;
+    SliderShowCaretPosition: TsSlider;
+    StickyLabelShowCaretPosition: TsStickyLabel;
+    SliderShowKeyState: TsSlider;
+    StickyLabelShowKeyState: TsStickyLabel;
+    SliderShowModified: TsSlider;
+    StickyLabelShowModified: TsStickyLabel;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -53,6 +61,10 @@ begin
   OptionsContainer.StatusBarUseSystemFont := SliderUseSystemFont.SliderOn;
   OptionsContainer.StatusBarFontName := FontComboBoxFont.Text;
   OptionsContainer.StatusBarFontSize := EditFontSize.ValueInt;
+  OptionsContainer.StatusBarShowMacro := SliderShowMacro.SliderOn;
+  OptionsContainer.StatusBarShowCaretPosition := SliderShowCaretPosition.SliderOn;
+  OptionsContainer.StatusBarShowKeyState := SliderShowKeyState.SliderOn;
+  OptionsContainer.StatusBarShowModified := SliderShowModified.SliderOn;
 end;
 
 procedure TOptionsStatusBarFrame.GetData;
@@ -60,6 +72,10 @@ begin
   SliderUseSystemFont.SliderOn := OptionsContainer.StatusBarUseSystemFont;
   FontComboBoxFont.ItemIndex := FontComboBoxFont.Items.IndexOf(OptionsContainer.StatusBarFontName);
   EditFontSize.ValueInt := OptionsContainer.StatusBarFontSize;
+  SliderShowMacro.SliderOn := OptionsContainer.StatusBarShowMacro;
+  SliderShowCaretPosition.SliderOn := OptionsContainer.StatusBarShowCaretPosition;
+  SliderShowKeyState.SliderOn := OptionsContainer.StatusBarShowKeyState;
+  SliderShowModified.SliderOn := OptionsContainer.StatusBarShowModified;
 end;
 
 end.
