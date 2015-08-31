@@ -26,6 +26,7 @@ type
     FShowIndentGuides: Boolean;
     FUncollapseByHintClick: Boolean;
     FCodeFoldingMarkStyle: Integer;
+    FCodeFoldingHintRowCount: Integer;
     { Completion proposal }
     FCompletionProposalCaseSensitive: Boolean;
     FCompletionProposalEnabled: Boolean;
@@ -168,6 +169,8 @@ type
     property UncollapseByHintClick: Boolean read FUncollapseByHintClick write FUncollapseByHintClick;
     [IniValue('Options', 'CodeFoldingMarkStyle', '0')]
     property CodeFoldingMarkStyle: Integer read FCodeFoldingMarkStyle write FCodeFoldingMarkStyle;
+    [IniValue('Options', 'CodeFoldingHintRowCount', '40')]
+    property CodeFoldingHintRowCount: Integer read FCodeFoldingHintRowCount write FCodeFoldingHintRowCount;
     { Completion proposal }
     [IniValue('Options', 'CompletionProposalCaseSensitive', 'True')]
     property CompletionProposalCaseSensitive: Boolean read FCompletionProposalCaseSensitive write FCompletionProposalCaseSensitive;
@@ -734,6 +737,7 @@ begin
     else
       CodeFolding.Options := CodeFolding.Options - [cfoUncollapseByHintClick];
     CodeFolding.MarkStyle := TBCEditorCodeFoldingMarkStyle(FCodeFoldingMarkStyle);
+    CodeFolding.Hint.RowCount := FCodeFoldingHintRowCount;
     { Completion proposal }
     if not FCompletionProposalEnabled then
       CompletionProposal.ShortCut := TextToShortCut('')

@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
   sPanel, BCControls.Panel, sComboBox, BCControls.ComboBox, BCCommon.Frames.Options.Base, sFrameAdapter, acSlider,
-  sLabel;
+  sLabel, sEdit, BCControls.Edit;
 
 type
   TOptionsEditorCodeFoldingFrame = class(TBCOptionsBaseFrame)
@@ -16,8 +16,8 @@ type
     SliderVisible: TsSlider;
     StickyLabelFoldMultilineComments: TsStickyLabel;
     SliderFoldMultilineComments: TsSlider;
-    StickyLabelHighlightIndenGuides: TsStickyLabel;
-    SliderHighlightIndenGuides: TsSlider;
+    StickyLabelHighlightIndentGuides: TsStickyLabel;
+    SliderHighlightIndentGuides: TsSlider;
     StickyLabelHighlightMatchingPair: TsStickyLabel;
     SliderHighlightMatchingPair: TsSlider;
     StickyLabelShowCollapsedCodeHint: TsStickyLabel;
@@ -28,6 +28,7 @@ type
     SliderShowIndentGuides: TsSlider;
     StickyLabelUncollapseByHintClick: TsStickyLabel;
     SliderUncollapseByHintClick: TsSlider;
+    EditHintRowCount: TBCEdit;
   protected
     procedure Init; override;
     procedure GetData; override;
@@ -77,26 +78,28 @@ procedure TOptionsEditorCodeFoldingFrame.PutData;
 begin
   OptionsContainer.ShowCodeFolding := SliderVisible.SliderOn;
   OptionsContainer.FoldMultilineComments := SliderFoldMultilineComments.SliderOn;
-  OptionsContainer.HighlightIndentGuides := SliderShowIndentGuides.SliderOn;
+  OptionsContainer.HighlightIndentGuides := SliderHighlightIndentGuides.SliderOn;
   OptionsContainer.HighlightMatchingPair := SliderHighlightMatchingPair.SliderOn;
   OptionsContainer.ShowCollapsedCodeHint := SliderShowCollapsedCodeHint.SliderOn;
   OptionsContainer.ShowCollapsedLine := SliderShowCollapsedLine.SliderOn;
   OptionsContainer.ShowIndentGuides := SliderShowIndentGuides.SliderOn;
   OptionsContainer.UncollapseByHintClick := SliderUncollapseByHintClick.SliderOn;
   OptionsContainer.CodeFoldingMarkStyle := ComboBoxMarkStyle.ItemIndex;
+  OptionsContainer.CodeFoldingHintRowCount := StrToIntDef(EditHintRowCount.Text, 40);
 end;
 
 procedure TOptionsEditorCodeFoldingFrame.GetData;
 begin
   SliderVisible.SliderOn := OptionsContainer.ShowCodeFolding;
   SliderFoldMultilineComments.SliderOn := OptionsContainer.FoldMultilineComments;
-  SliderShowIndentGuides.SliderOn := OptionsContainer.HighlightIndentGuides;
+  SliderHighlightIndentGuides.SliderOn := OptionsContainer.HighlightIndentGuides;
   SliderHighlightMatchingPair.SliderOn := OptionsContainer.HighlightMatchingPair;
   SliderShowCollapsedCodeHint.SliderOn := OptionsContainer.ShowCollapsedCodeHint;
   SliderShowCollapsedLine.SliderOn := OptionsContainer.ShowCollapsedLine;
   SliderShowIndentGuides.SliderOn := OptionsContainer.ShowIndentGuides;
   SliderUncollapseByHintClick.SliderOn := OptionsContainer.UncollapseByHintClick;
   ComboBoxMarkStyle.ItemIndex := OptionsContainer.CodeFoldingMarkStyle;
+  EditHintRowCount.Text := IntToStr(OptionsContainer.CodeFoldingHintRowCount);
 end;
 
 end.
