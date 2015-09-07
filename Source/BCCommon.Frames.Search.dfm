@@ -1,8 +1,6 @@
 inherited BCSearchFrame: TBCSearchFrame
   Width = 635
   Height = 21
-  ExplicitWidth = 635
-  ExplicitHeight = 21
   object SearchPanel: TBCPanel [0]
     Left = 0
     Top = 0
@@ -94,15 +92,8 @@ inherited BCSearchFrame: TBCSearchFrame
       Hint = 'Search text'
       Align = alLeft
       Alignment = taLeftJustify
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
+      BoundLabel.Indent = 4
+      BoundLabel.Layout = sclTopLeft
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       Font.Charset = DEFAULT_CHARSET
