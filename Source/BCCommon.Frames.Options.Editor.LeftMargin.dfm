@@ -3,8 +3,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
   Height = 340
   AutoSize = False
   Visible = False
-  ExplicitWidth = 229
-  ExplicitHeight = 340
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
@@ -122,20 +120,14 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Width'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = True
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
     object GroupBoxLineNumbers: TBCGroupBox
       Left = 0
@@ -197,15 +189,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
         Width = 50
         AutoSize = True
         TabOrder = 0
-        BoundLabel.Indent = 0
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
-        BoundLabel.Layout = sclLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         ImageIndexOff = 0
         ImageIndexOn = 0
         FontOn.Charset = DEFAULT_CHARSET
@@ -222,15 +205,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
         Width = 50
         AutoSize = True
         TabOrder = 1
-        BoundLabel.Indent = 0
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
-        BoundLabel.Layout = sclLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         ImageIndexOff = 0
         ImageIndexOn = 0
         FontOn.Charset = DEFAULT_CHARSET
@@ -247,15 +221,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
         Width = 50
         AutoSize = True
         TabOrder = 2
-        BoundLabel.Indent = 0
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
-        BoundLabel.Layout = sclLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         ImageIndexOff = 0
         ImageIndexOn = 0
         FontOn.Charset = DEFAULT_CHARSET
@@ -287,20 +252,14 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
         BoundLabel.Active = True
         BoundLabel.Caption = 'Start from'
         BoundLabel.Indent = 4
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
         BoundLabel.Layout = sclTopLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         EnterToTab = False
         OnlyNumbers = True
         NumbersWithDots = False
         NumbersWithSpots = False
         ErrorColor = 14803198
-        NumbersAllowNegative = False
+        NumbersAllowMinus = False
+        NumbersAllowPlus = False
       end
     end
     object EditBookmarkPanelWidth: TBCEdit
@@ -324,20 +283,14 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Bookmark panel width'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = True
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
     object SliderVisible: TsSlider
       Left = 128
@@ -345,15 +298,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Width = 50
       AutoSize = True
       TabOrder = 3
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -370,15 +314,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Width = 50
       AutoSize = True
       TabOrder = 4
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -395,15 +330,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Width = 50
       AutoSize = True
       TabOrder = 5
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -420,15 +346,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Width = 50
       AutoSize = True
       TabOrder = 6
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -445,15 +362,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Width = 50
       AutoSize = True
       TabOrder = 7
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET

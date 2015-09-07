@@ -68,20 +68,14 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Indent length'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = True
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
     object EditTabSize: TBCEdit
       Left = 0
@@ -99,20 +93,14 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Tab size'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = True
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
     object EditFunctionBodyIndent: TBCEdit
       Left = 0
@@ -130,20 +118,14 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Function body indent'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = True
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
     object EditBlockLeftIndentSize: TBCEdit
       Left = 0
@@ -161,20 +143,14 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Block left indent size'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = True
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
     object EditBlockRightIndentSize: TBCEdit
       Left = 0
@@ -192,20 +168,14 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Block right indent size'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = True
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
     object EditBlockIndentSize: TBCEdit
       Left = 0
@@ -223,20 +193,14 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Block indent size'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = True
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
     object EditSingleStatementIndent: TBCEdit
       Left = 0
@@ -254,20 +218,14 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'IF/ELSE single statement indent size'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = True
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
     object SliderUseTab: TsSlider
       Left = 116
@@ -275,15 +233,6 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       Width = 50
       AutoSize = True
       TabOrder = 7
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -300,15 +249,6 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       Width = 50
       AutoSize = True
       TabOrder = 8
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET

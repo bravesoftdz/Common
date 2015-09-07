@@ -66,20 +66,14 @@ object ConvertForm: TConvertForm
     BoundLabel.Active = True
     BoundLabel.Caption = 'Value'
     BoundLabel.Indent = 4
-    BoundLabel.Font.Charset = DEFAULT_CHARSET
-    BoundLabel.Font.Color = clWindowText
-    BoundLabel.Font.Height = -11
-    BoundLabel.Font.Name = 'Tahoma'
-    BoundLabel.Font.Style = []
     BoundLabel.Layout = sclTopLeft
-    BoundLabel.MaxWidth = 0
-    BoundLabel.UseSkinColor = True
     EnterToTab = False
     OnlyNumbers = False
     NumbersWithDots = False
     NumbersWithSpots = False
     ErrorColor = 14803198
-    NumbersAllowNegative = False
+    NumbersAllowMinus = False
+    NumbersAllowPlus = False
   end
   object EditResult: TBCEdit
     Left = 203
@@ -98,20 +92,14 @@ object ConvertForm: TConvertForm
     BoundLabel.Active = True
     BoundLabel.Caption = 'Result'
     BoundLabel.Indent = 4
-    BoundLabel.Font.Charset = DEFAULT_CHARSET
-    BoundLabel.Font.Color = clWindowText
-    BoundLabel.Font.Height = -11
-    BoundLabel.Font.Name = 'Tahoma'
-    BoundLabel.Font.Style = []
     BoundLabel.Layout = sclTopLeft
-    BoundLabel.MaxWidth = 0
-    BoundLabel.UseSkinColor = True
     EnterToTab = False
     OnlyNumbers = False
     NumbersWithDots = False
     NumbersWithSpots = False
     ErrorColor = 14803198
-    NumbersAllowNegative = False
+    NumbersAllowMinus = False
+    NumbersAllowPlus = False
   end
   object ComboBoxType: TBCComboBox
     Left = 9
@@ -126,14 +114,7 @@ object ConvertForm: TConvertForm
     BoundLabel.Active = True
     BoundLabel.Caption = 'Type'
     BoundLabel.Indent = 4
-    BoundLabel.Font.Charset = DEFAULT_CHARSET
-    BoundLabel.Font.Color = clWindowText
-    BoundLabel.Font.Height = -11
-    BoundLabel.Font.Name = 'Tahoma'
-    BoundLabel.Font.Style = []
     BoundLabel.Layout = sclTopLeft
-    BoundLabel.MaxWidth = 0
-    BoundLabel.UseSkinColor = True
     DropDownCount = 9
     SkinData.SkinSection = 'COMBOBOX'
     VerticalAlignment = taAlignTop
@@ -155,14 +136,7 @@ object ConvertForm: TConvertForm
     BoundLabel.Active = True
     BoundLabel.Caption = 'From'
     BoundLabel.Indent = 4
-    BoundLabel.Font.Charset = DEFAULT_CHARSET
-    BoundLabel.Font.Color = clWindowText
-    BoundLabel.Font.Height = -11
-    BoundLabel.Font.Name = 'Tahoma'
-    BoundLabel.Font.Style = []
     BoundLabel.Layout = sclTopLeft
-    BoundLabel.MaxWidth = 0
-    BoundLabel.UseSkinColor = True
     DropDownCount = 9
     SkinData.SkinSection = 'COMBOBOX'
     VerticalAlignment = taAlignTop
@@ -184,14 +158,7 @@ object ConvertForm: TConvertForm
     BoundLabel.Active = True
     BoundLabel.Caption = 'To'
     BoundLabel.Indent = 4
-    BoundLabel.Font.Charset = DEFAULT_CHARSET
-    BoundLabel.Font.Color = clWindowText
-    BoundLabel.Font.Height = -11
-    BoundLabel.Font.Name = 'Tahoma'
-    BoundLabel.Font.Style = []
     BoundLabel.Layout = sclTopLeft
-    BoundLabel.MaxWidth = 0
-    BoundLabel.UseSkinColor = True
     DropDownCount = 9
     SkinData.SkinSection = 'COMBOBOX'
     VerticalAlignment = taAlignTop

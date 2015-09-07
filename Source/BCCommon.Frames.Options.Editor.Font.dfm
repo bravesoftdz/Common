@@ -30,14 +30,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Color'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
@@ -65,14 +58,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Element'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
@@ -103,14 +89,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Font'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       VerticalAlignment = taAlignTop
       TabOrder = 2
       OnChange = FontComboBoxFontChange
@@ -136,20 +115,14 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Font size'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = True
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
   end
   object BookmarkImagesList: TBCImageList

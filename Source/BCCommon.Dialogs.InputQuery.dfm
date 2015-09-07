@@ -1,11 +1,8 @@
 inherited InputQueryDialog: TInputQueryDialog
-  BorderStyle = bsDialog
   Caption = 'Caption'
   ClientHeight = 72
   ClientWidth = 170
   Position = poMainFormCenter
-  ExplicitWidth = 176
-  ExplicitHeight = 100
   PixelsPerInch = 96
   TextHeight = 13
   object PanelButton: TBCPanel
@@ -72,21 +69,13 @@ inherited InputQueryDialog: TInputQueryDialog
       Align = alTop
       TabOrder = 0
       SkinData.SkinSection = 'EDIT'
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = False
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
   end
 end

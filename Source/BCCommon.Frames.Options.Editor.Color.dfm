@@ -540,7 +540,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           NumbersWithDots = False
           NumbersWithSpots = False
           ErrorColor = 14803455
-          NumbersAllowNegative = False
+          NumbersAllowMinus = False
+          NumbersAllowPlus = False
         end
         object DateEditDate: TBCEdit
           Left = 6
@@ -561,7 +562,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           NumbersWithDots = False
           NumbersWithSpots = False
           ErrorColor = 14803455
-          NumbersAllowNegative = False
+          NumbersAllowMinus = False
+          NumbersAllowPlus = False
         end
       end
       object TabSheetAuthor: TsTabSheet
@@ -585,7 +587,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           NumbersWithDots = False
           NumbersWithSpots = False
           ErrorColor = 14803455
-          NumbersAllowNegative = False
+          NumbersAllowMinus = False
+          NumbersAllowPlus = False
         end
         object EditEmail: TBCEdit
           Left = 6
@@ -604,7 +607,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           NumbersWithDots = False
           NumbersWithSpots = False
           ErrorColor = 14803455
-          NumbersAllowNegative = False
+          NumbersAllowMinus = False
+          NumbersAllowPlus = False
         end
       end
       object TabSheetUseSkinColor: TsTabSheet

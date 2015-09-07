@@ -28,7 +28,8 @@ begin
   try
     Caption := ACaption;
     Result := ShowModal;
-    Value := EditValue.Text;
+    if Result = mrOk then
+      Value := EditValue.Text;
   finally
     Free;
   end;
@@ -41,7 +42,8 @@ begin
     Caption := ACaption;
     EditValue.OnlyNumbers := True;
     Result := ShowModal;
-    Value := EditValue.ValueInt;
+    if Result = mrOk then
+      Value := EditValue.ValueInt;
   finally
     Free;
   end;

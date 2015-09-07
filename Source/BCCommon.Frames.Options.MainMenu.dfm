@@ -38,15 +38,6 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       Width = 50
       AutoSize = True
       TabOrder = 0
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -66,14 +57,7 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Font'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       VerticalAlignment = taAlignTop
       TabOrder = 1
     end
@@ -98,20 +82,14 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Font size'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       EnterToTab = False
       OnlyNumbers = True
       NumbersWithDots = False
       NumbersWithSpots = False
       ErrorColor = 14803198
-      NumbersAllowNegative = False
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter
