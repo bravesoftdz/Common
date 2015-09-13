@@ -165,8 +165,69 @@ begin
 end;
 
 function FormatJSON(AJSON: string): string;
-begin
+const
+  INDENT_SIZE = 3;
+var
+  LPChar: PChar;
+  LInsideString: Boolean;
+  LIndentLevel: Integer;
 
+  function Indent(AIndentLevel: Integer): string;
+  begin
+    Result := StringOfChar(' ', AIndentLevel * INDENT_SIZE);
+  end;
+
+begin
+  Result := '';
+  LInsideString := False;
+  LIndentLevel := 0;
+  LPChar := PChar(AJSON);
+  while LPChar^ <> #0 do
+  begin
+    case LPChar^ of
+      '{', '[':
+        begin
+          Result := Result + LPChar^;
+          if not LInsideString then
+          begin
+            Result := Result + sLineBreak +  Indent(LIndentLevel + 1);
+            Inc(LIndentLevel);
+          end
+        end;
+      '}', ']':
+        if not LInsideString then
+        begin
+          Dec(LIndentLevel);
+          Result := Result + sLineBreak + Indent(LIndentLevel) + LPChar^;
+        end
+        else
+          Result := Result + LPChar^;
+      ',':
+        begin
+          Result := Result + LPChar^;
+          if not LInsideString then
+            Result := Result + sLineBreak + Indent(LIndentLevel);
+        end;
+      ':':
+        begin
+          Result := Result + LPChar^;
+          if not LInsideString then
+            Result := Result + ' '
+        end;
+      #9, #10, #13, #32:
+        if LInsideString then
+          Result := Result + LPChar^;
+      '"':
+        begin
+          if (LPChar - 1)^ <> '\' then
+            LInsideString := not LInsideString;
+          Result := Result + LPChar^;
+        end
+      else
+        Result := Result + LPChar^;
+    end;
+    Inc(LPChar);
+  end;
 end;
 
 { Note! The default encoding for XML files is UTF-8, so if no encoding attribute is found UTF-8 is

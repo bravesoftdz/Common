@@ -8,7 +8,6 @@ uses
 const
   CHR_ENTER = Chr(13) + Chr(10);
   CHR_DOUBLE_ENTER = CHR_ENTER + CHR_ENTER;
-  //CHR_TAB = '  ';
 
   BONECODE_URL = 'http://www.bonecode.com';
   DONATION_URL = 'https://www.paypal.com/fi/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=C8UTAHKHAFG8L';
@@ -25,11 +24,6 @@ const
   ENCODING_UTF7 = 4;
   ENCODING_UTF8 = 5;
   ENCODING_UTF_WITHOUT_BOM = 6;
-
-  //TAnimationStyleStr: array[Low(TAnimationStyle)..High(TAnimationStyle)] of String = ('None',
-  //  'Default', 'Unfold', 'Slide', 'Fade');
-  //TSynEditCaretTypeStr: array[0..3] of String =
-  //  ('Vertical Line', 'Horizontal Line', 'Half Block', 'Block');
 
   ShortCuts: array[0..110] of TShortCut = (
     scNone,
