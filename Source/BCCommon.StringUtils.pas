@@ -176,6 +176,19 @@ var
     Result := StringOfChar(' ', AIndentLevel * AIndentSize);
   end;
 
+  function CountCharsBefore(TextPtr: PChar; Character: Char): Integer;
+  var
+    TempPtr: PChar;
+  begin
+    Result := 0;
+    TempPtr := TextPtr - 1;
+    while TempPtr^ = Character do
+    begin
+      Inc(Result);
+      Dec(TempPtr);
+    end;
+  end;
+
 begin
   Result := '';
   LInsideString := False;
@@ -226,7 +239,7 @@ begin
           Result := Result + LPChar^;
       '"':
         begin
-          if (LPChar - 1)^ <> '\' then
+          if not Odd(CountCharsBefore(LPChar, '\')) then
             LInsideString := not LInsideString;
           Result := Result + LPChar^;
         end
