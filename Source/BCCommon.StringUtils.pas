@@ -8,7 +8,7 @@ interface
   function DeleteChars(const S: string; Chr: Char): string;
   function DeleteWhiteSpace(const s: string): string;
   function EncryptString(Data: string): string;
-  function FormatJSON(AJSON: string): string;
+  function FormatJSON(AJSON: string; AIndentSize: Integer = 3): string;
   function FormatXML(AXML: string): string;
   function GetNextToken(ASeparator: string; AText: string): string;
   function GetTokenAfter(ASeparator: string; AText: string): string;
@@ -164,9 +164,8 @@ begin
   SetLength(Result, j);
 end;
 
-function FormatJSON(AJSON: string): string;
-const
-  INDENT_SIZE = 3;
+{ Minimize when AIndentSize < 0 }
+function FormatJSON(AJSON: string; AIndentSize: Integer = 3): string;
 var
   LPChar: PChar;
   LInsideString: Boolean;
@@ -174,7 +173,7 @@ var
 
   function Indent(AIndentLevel: Integer): string;
   begin
-    Result := StringOfChar(' ', AIndentLevel * INDENT_SIZE);
+    Result := StringOfChar(' ', AIndentLevel * AIndentSize);
   end;
 
 begin
@@ -190,7 +189,9 @@ begin
           Result := Result + LPChar^;
           if not LInsideString then
           begin
-            Result := Result + sLineBreak +  Indent(LIndentLevel + 1);
+            if AIndentSize > 0 then
+              Result := Result + sLineBreak;
+            Result := Result + Indent(LIndentLevel + 1);
             Inc(LIndentLevel);
           end
         end;
@@ -198,7 +199,9 @@ begin
         if not LInsideString then
         begin
           Dec(LIndentLevel);
-          Result := Result + sLineBreak + Indent(LIndentLevel) + LPChar^;
+          if AIndentSize > 0 then
+            Result := Result + sLineBreak;
+          Result := Result + Indent(LIndentLevel) + LPChar^;
         end
         else
           Result := Result + LPChar^;
@@ -206,7 +209,11 @@ begin
         begin
           Result := Result + LPChar^;
           if not LInsideString then
-            Result := Result + sLineBreak + Indent(LIndentLevel);
+          begin
+            if AIndentSize > 0 then
+              Result := Result + sLineBreak;
+            Result := Result + Indent(LIndentLevel);
+          end;
         end;
       ':':
         begin
