@@ -114,8 +114,9 @@ end;
 
 destructor TOptionsEditorFontFrame.Destroy;
 begin
-  inherited;
+  FreeJSONObject;
   FOptionsEditorFontFrame := nil;
+  inherited;
 end;
 
 procedure TOptionsEditorFontFrame.EditFontSizeChange(Sender: TObject);
