@@ -707,37 +707,40 @@ begin
     Caret.Styles.Insert := TBCEditorCaretStyle(FInsertCaret);
     Caret.Styles.Overwrite := TBCEditorCaretStyle(FOverwriteCaret);
     { Code folding }
-    CodeFolding.Visible := FShowCodeFolding;
-    if FFoldMultilineComments then
-      CodeFolding.Options := CodeFolding.Options + [cfoFoldMultilineComments]
-    else
-      CodeFolding.Options := CodeFolding.Options - [cfoFoldMultilineComments];
-    if FHighlightIndentGuides then
-      CodeFolding.Options := CodeFolding.Options + [cfoHighlightIndentGuides]
-    else
-      CodeFolding.Options := CodeFolding.Options - [cfoHighlightIndentGuides];
-    if FHighlightMatchingPair then
-      CodeFolding.Options := CodeFolding.Options + [cfoHighlightMatchingPair]
-    else
-      CodeFolding.Options := CodeFolding.Options - [cfoHighlightMatchingPair];
-    if FShowCollapsedCodeHint then
-      CodeFolding.Options := CodeFolding.Options + [cfoShowCollapsedCodeHint]
-    else
-      CodeFolding.Options := CodeFolding.Options - [cfoShowCollapsedCodeHint];
-    if FShowCollapsedLine then
-      CodeFolding.Options := CodeFolding.Options + [cfoShowCollapsedLine]
-    else
-      CodeFolding.Options := CodeFolding.Options - [cfoShowCollapsedLine];
-    if FShowIndentGuides then
-      CodeFolding.Options := CodeFolding.Options + [cfoShowIndentGuides]
-    else
-      CodeFolding.Options := CodeFolding.Options - [cfoShowIndentGuides];
-    if FUncollapseByHintClick then
-      CodeFolding.Options := CodeFolding.Options + [cfoUncollapseByHintClick]
-    else
-      CodeFolding.Options := CodeFolding.Options - [cfoUncollapseByHintClick];
-    CodeFolding.MarkStyle := TBCEditorCodeFoldingMarkStyle(FCodeFoldingMarkStyle);
-    CodeFolding.Hint.RowCount := FCodeFoldingHintRowCount;
+    if Highlighter.CodeFoldingRangeCount > 0 then
+    begin
+      CodeFolding.Visible := FShowCodeFolding;
+      if FFoldMultilineComments then
+        CodeFolding.Options := CodeFolding.Options + [cfoFoldMultilineComments]
+      else
+        CodeFolding.Options := CodeFolding.Options - [cfoFoldMultilineComments];
+      if FHighlightIndentGuides then
+        CodeFolding.Options := CodeFolding.Options + [cfoHighlightIndentGuides]
+      else
+        CodeFolding.Options := CodeFolding.Options - [cfoHighlightIndentGuides];
+      if FHighlightMatchingPair then
+        CodeFolding.Options := CodeFolding.Options + [cfoHighlightMatchingPair]
+      else
+        CodeFolding.Options := CodeFolding.Options - [cfoHighlightMatchingPair];
+      if FShowCollapsedCodeHint then
+        CodeFolding.Options := CodeFolding.Options + [cfoShowCollapsedCodeHint]
+      else
+        CodeFolding.Options := CodeFolding.Options - [cfoShowCollapsedCodeHint];
+      if FShowCollapsedLine then
+        CodeFolding.Options := CodeFolding.Options + [cfoShowCollapsedLine]
+      else
+        CodeFolding.Options := CodeFolding.Options - [cfoShowCollapsedLine];
+      if FShowIndentGuides then
+        CodeFolding.Options := CodeFolding.Options + [cfoShowIndentGuides]
+      else
+        CodeFolding.Options := CodeFolding.Options - [cfoShowIndentGuides];
+      if FUncollapseByHintClick then
+        CodeFolding.Options := CodeFolding.Options + [cfoUncollapseByHintClick]
+      else
+        CodeFolding.Options := CodeFolding.Options - [cfoUncollapseByHintClick];
+      CodeFolding.MarkStyle := TBCEditorCodeFoldingMarkStyle(FCodeFoldingMarkStyle);
+      CodeFolding.Hint.RowCount := FCodeFoldingHintRowCount;
+    end;
     { Completion proposal }
     if not FCompletionProposalEnabled then
       CompletionProposal.ShortCut := TextToShortCut('')
