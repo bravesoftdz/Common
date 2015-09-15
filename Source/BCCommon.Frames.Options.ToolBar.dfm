@@ -1,14 +1,12 @@
 inherited OptionsToolBarFrame: TOptionsToolBarFrame
-  Width = 451
-  Height = 304
+  Width = 509
+  Height = 313
   Align = alClient
-  ExplicitWidth = 451
-  ExplicitHeight = 304
   object Panel: TBCPanel [0]
     Left = 0
     Top = 0
-    Width = 451
-    Height = 304
+    Width = 509
+    Height = 313
     Align = alClient
     BevelOuter = bvNone
     Color = clWindow
@@ -19,8 +17,8 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
       AlignWithMargins = True
       Left = 4
       Top = 62
-      Width = 447
-      Height = 242
+      Width = 505
+      Height = 225
       Hint = 
         'Use drag and drop to move menu items. Right click popup menu to ' +
         'insert and delete items.'
@@ -47,7 +45,7 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
       PopupMenu = PopupActionBar
       SelectionBlendFactor = 255
       TabOrder = 0
-      TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand]
+      TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toDisableAutoscrollOnFocus]
       TreeOptions.MiscOptions = [toAcceptOLEDrop, toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning]
       TreeOptions.PaintOptions = [toHideFocusRect, toShowButtons, toShowDropmark, toShowRoot, toThemeAware]
       TreeOptions.SelectionOptions = [toFullRowSelect, toMiddleClickSelect, toAlwaysSelectNode]
@@ -63,14 +61,14 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         item
           Options = [coEnabled, coParentBidiMode, coParentColor, coVisible, coAutoSpring]
           Position = 0
-          Width = 443
+          Width = 501
           WideText = 'Menu Item'
         end>
     end
     object PanelButtons: TBCPanel
       Left = 0
       Top = 0
-      Width = 451
+      Width = 509
       Height = 62
       Align = alTop
       BevelOuter = bvNone
@@ -263,6 +261,37 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
         Images = ImagesDataModule.ImageList
       end
     end
+    object PanelBottom: TsPanel
+      Left = 0
+      Top = 287
+      Width = 509
+      Height = 26
+      Align = alBottom
+      BevelOuter = bvNone
+      TabOrder = 2
+      object RadioButtonLargeIcons: TsRadioButton
+        AlignWithMargins = True
+        Left = 6
+        Top = 3
+        Width = 74
+        Height = 20
+        Margins.Left = 6
+        Action = ActionLargeIcons
+        Align = alLeft
+        TabOrder = 0
+      end
+      object RadioButtonSmallIcons: TsRadioButton
+        AlignWithMargins = True
+        Left = 89
+        Top = 3
+        Width = 71
+        Height = 20
+        Margins.Left = 6
+        Action = ActionSmallIcons
+        Align = alLeft
+        TabOrder = 1
+      end
+    end
   end
   object MenuActionList: TActionList
     Images = ImagesDataModule.ImageList
@@ -303,6 +332,14 @@ inherited OptionsToolBarFrame: TOptionsToolBarFrame
       Hint = 'Move selected item down'
       ImageIndex = 130
       OnExecute = ActionMoveDownExecute
+    end
+    object ActionLargeIcons: TAction
+      Caption = 'Large icons'
+      OnExecute = ActionLargeIconsExecute
+    end
+    object ActionSmallIcons: TAction
+      Caption = 'Small icons'
+      OnExecute = ActionSmallIconsExecute
     end
   end
   object PopupActionBar: TPopupMenu

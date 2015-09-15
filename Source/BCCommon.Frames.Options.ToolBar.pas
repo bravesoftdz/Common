@@ -6,7 +6,7 @@ uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, BCCommon.Frames.Options.Base,
   Vcl.ComCtrls, System.Actions, Vcl.ActnList, System.Generics.Collections, System.Types, VirtualTrees, Winapi.ActiveX,
   Vcl.Menus, BCCommon.Images, Vcl.PlatformDefaultStyleActnCtrls, BCControls.Panel, sPanel, sFrameAdapter, Vcl.Buttons,
-  sSpeedButton, BCControls.SpeedButton;
+  sSpeedButton, BCControls.SpeedButton, Vcl.StdCtrls, sRadioButton;
 
 type
   TOptionsToolBarFrame = class(TBCOptionsBaseFrame)
@@ -34,6 +34,11 @@ type
     SpeedButtonMoveUp: TBCSpeedButton;
     ActionMoveUp: TAction;
     ActionMoveDown: TAction;
+    PanelBottom: TsPanel;
+    RadioButtonLargeIcons: TsRadioButton;
+    RadioButtonSmallIcons: TsRadioButton;
+    ActionLargeIcons: TAction;
+    ActionSmallIcons: TAction;
     procedure ActionAddDividerExecute(Sender: TObject);
     procedure ActionAddItemExecute(Sender: TObject);
     procedure ActionDeleteExecute(Sender: TObject);
@@ -47,12 +52,15 @@ type
     procedure VirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; var NodeWidth: Integer);
     procedure ActionMoveUpExecute(Sender: TObject);
     procedure ActionMoveDownExecute(Sender: TObject);
+    procedure ActionLargeIconsExecute(Sender: TObject);
+    procedure ActionSmallIconsExecute(Sender: TObject);
   private
     FActionList: TObjectList<TAction>;
     FIsChanged: Boolean;
     function FindItemByName(ItemName: string): TAction;
     procedure MoveSelectedNodesDown;
     procedure MoveSelectedNodesUp;
+    procedure SetNodeHeight;
   protected
     procedure PutData; override;
   public
@@ -75,7 +83,7 @@ implementation
 
 uses
   Winapi.Windows, BigIni, BCCommon.FileUtils, BCCommon.Dialogs.Options.ToolBarItems, BCCommon.Consts,
-  System.SysUtils, BCCommon.Utils;
+  System.SysUtils, BCCommon.Utils, BCCommon.Options.Container;
 
 var
   FOptionsToolBarFrame: TOptionsToolBarFrame;
@@ -86,7 +94,16 @@ begin
     FOptionsToolBarFrame := TOptionsToolBarFrame.Create(AOwner);
 
   FOptionsToolBarFrame.VirtualDrawTree.NodeDataSize := SizeOf(TTreeData);
-  FOptionsToolBarFrame.VirtualDrawTree.Images := ImagesDataModule.ImageListSmall; { IDE can lose this }
+  if OptionsContainer.ToolbarIconSizeSmall then
+  begin
+    FOptionsToolBarFrame.RadioButtonSmallIcons.Checked := True;
+    FOptionsToolBarFrame.VirtualDrawTree.Images := ImagesDataModule.ImageListSmall { IDE can lose this }
+  end
+  else
+  begin
+    FOptionsToolBarFrame.RadioButtonLargeIcons.Checked := True;
+    FOptionsToolBarFrame.VirtualDrawTree.Images := ImagesDataModule.ImageList;
+  end;
   FOptionsToolBarFrame.ActionList := ActionList;
   FOptionsToolBarFrame.GetToolBarItems;
 
@@ -172,6 +189,30 @@ begin
   end;
 end;
 
+procedure TOptionsToolBarFrame.SetNodeHeight;
+var
+  LNode: PVirtualNode;
+  LData: PTreeData;
+begin
+  LNode := VirtualDrawTree.GetFirst;
+  while Assigned(LNode) do
+  begin
+    LData := VirtualDrawTree.GetNodeData(LNode);
+    if Assigned(LData) then
+      if LData^.Action.Caption <> '-' then
+        LNode.NodeHeight := VirtualDrawTree.Images.Height + 2;
+    LNode := VirtualDrawTree.GetNext(LNode);
+  end;
+end;
+
+procedure TOptionsToolBarFrame.ActionLargeIconsExecute(Sender: TObject);
+begin
+  inherited;
+  VirtualDrawTree.Images := ImagesDataModule.ImageList;
+  SetNodeHeight;
+  FIsChanged := True;
+end;
+
 procedure TOptionsToolBarFrame.ActionMoveDownExecute(Sender: TObject);
 begin
   FIsChanged := True;
@@ -228,6 +269,7 @@ begin
         LAction := FindItemByName(s);
         if Assigned(LAction) then
           LAction.Tag := 1;
+        LNode.NodeHeight := VirtualDrawTree.Images.Height + 2;
       end
       else
       begin
@@ -256,6 +298,7 @@ begin
   { write to ini }
   if FIsChanged then
   begin
+    OptionsContainer.ToolbarIconSizeSmall := RadioButtonSmallIcons.Checked;
     with TBigIniFile.Create(GetIniFilename) do
     try
       WriteBool('ToolBarItemsChanged', 'Changed', True);
@@ -308,6 +351,7 @@ var
       LAction := FindItemByName(ActionName);
       if Assigned(LAction) then
         LAction.Tag := 1;
+      Node.NodeHeight := VirtualDrawTree.Images.Height + 2;
     end
     else
     begin
@@ -375,6 +419,14 @@ begin
   if Assigned(Node) then
     VirtualDrawTree.Selected[Node] := True;
   VirtualDrawTree.EndUpdate;
+  FIsChanged := True;
+end;
+
+procedure TOptionsToolBarFrame.ActionSmallIconsExecute(Sender: TObject);
+begin
+  inherited;
+  VirtualDrawTree.Images := ImagesDataModule.ImageListSmall;
+  SetNodeHeight;
   FIsChanged := True;
 end;
 
@@ -517,7 +569,7 @@ begin
   if Assigned(Data) then
     if Data^.Action.Caption = '-' then
       Data^.Action.Free;
-  //Finalize(Data^);
+
   inherited;
 end;
 

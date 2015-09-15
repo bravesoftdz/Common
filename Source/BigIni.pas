@@ -1305,16 +1305,26 @@ end;
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 function TBigIniFile.ReadBool(const aSection, aKey: string;
   aDefault: Boolean): Boolean;
+var
+  IStr: string;
 begin
-  Result := ReadInteger(aSection, aKey, Ord(aDefault)) <> 0;
+  IStr := ReadString(aSection, aKey, '');
+  if (IStr = 'True') or (IStr = '1') then
+    Result := True
+  else
+  if (IStr = 'False') or (IStr = '0') then
+    Result := False
+  else
+    Result := ADefault;
+  //Result := ReadInteger(aSection, aKey, Ord(aDefault)) <> 0;
 end;
 
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 procedure TBigIniFile.WriteBool(const aSection, aKey: string; aValue: Boolean);
-const
-  BoolText: array[Boolean] of string[1] = ('0', '1');
+//const
+//  BoolText: array[Boolean] of string[1] = ('False', 'True');
 begin
-  WriteString(aSection, aKey, BoolText[aValue]);
+  WriteString(aSection, aKey, BoolToStr(AValue, True)); // BoolText[aValue]);
 end;
 
 // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .

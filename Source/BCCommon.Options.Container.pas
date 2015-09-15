@@ -498,6 +498,7 @@ type
     FShowXMLTree: Boolean;
     FSupportedFileExtensions: string;
     FToolBarVisible: Boolean;
+    FToolBarIconSizeSmall: Boolean;
     FMenuBarVisible: Boolean;
     FMainMenuVisible: Boolean;
     { Skin colors }
@@ -605,6 +606,8 @@ type
     property ShowXMLTree: Boolean read FShowXMLTree write FShowXMLTree;
     [IniValue('Options', 'ToolbarVisible', 'False')]
     property ToolBarVisible: Boolean read FToolBarVisible write FToolBarVisible;
+    [IniValue('Options', 'ToolbarIconSizeSmall', 'True')]
+    property ToolbarIconSizeSmall: Boolean read FToolbarIconSizeSmall write FToolbarIconSizeSmall;
     [IniValue('Options', 'MenuBarVisible', 'True')]
     property MenuBarVisible: Boolean read FMenuBarVisible write FMenuBarVisible;
     [IniValue('Options', 'MainMenuVisible', 'False')]
