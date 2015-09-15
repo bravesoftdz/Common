@@ -109,10 +109,4 @@ object BCBaseForm: TBCBaseForm
     Left = 39
     Top = 190
   end
-  object Taskbar: TTaskbar
-    TaskBarButtons = <>
-    TabProperties = []
-    Left = 126
-    Top = 196
-  end
 end

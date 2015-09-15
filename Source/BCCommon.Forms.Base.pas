@@ -18,7 +18,6 @@ type
     SkinProvider: TBCSkinProvider;
     StatusBar: TBCStatusBar;
     TitleBar: TBCTitleBar;
-    Taskbar: TTaskbar;
     procedure ActionFileExitExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ProgressBarHide(Sender: TObject);
@@ -28,12 +27,12 @@ type
   private
     FProgressBar: TBCProgressBar;
     FSkinChange: TNotifyEvent;
-    //FTaskbar: TTaskbar;
+    FTaskbar: TTaskbar;
     procedure CreateProgressBar;
     procedure ResizeProgressBar;
   public
     property ProgressBar: TBCProgressBar read FProgressBar write FProgressBar;
-    //property Taskbar: TTaskbar read FTaskbar write FTaskbar;
+    property Taskbar: TTaskbar read FTaskbar write FTaskbar;
     property OnSkinChange: TNotifyEvent read FSkinChange write FSkinChange;
   end;
 
@@ -57,13 +56,13 @@ begin
     SkinManager.SkinDirectory;
   {$WARN SYMBOL_PLATFORM ON}
   SkinManager.Active := True;
-  //FTaskbar := TTaskBar.Create(Self);
+  FTaskbar := TTaskBar.Create(Self);
   CreateProgressBar;
 end;
 
 procedure TBCBaseForm.FormDestroy(Sender: TObject);
 begin
-  //FTaskbar.Free;
+  FTaskbar.Free;
   FProgressBar.Free;
 end;
 
