@@ -464,6 +464,7 @@ type
     FDefaultHighlighter: string;
     FDefaultHighlighterColor: string;
     FDefaultSQLHighlighter: string;
+    FDirAutoHide: Boolean;
     FDirCloseTabByDblClick: Boolean;
     FDirCloseTabByMiddleClick: Boolean;
     FDirIndent: Integer;
@@ -541,6 +542,8 @@ type
     property EncodingStrings: TStrings read FEncodingStrings write FEncodingStrings;
     property HighlighterStrings: TStrings read FHighlighterStrings write FHighlighterStrings;
     { Directory }
+    [IniValue('Options', 'DirAutoHide', 'True')]
+    property DirAutoHide: Boolean read FDirAutoHide write FDirAutoHide;
     [IniValue('Options', 'DirCloseTabByDblClick', 'False')]
     property DirCloseTabByDblClick: Boolean read FDirCloseTabByDblClick write FDirCloseTabByDblClick;
     [IniValue('Options', 'DirCloseTabByMiddleClick', 'False')]
