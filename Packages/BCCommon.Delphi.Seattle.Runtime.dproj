@@ -178,12 +178,12 @@
             <Form>OptionsOutputFrame</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.ToolBar.pas">
-            <Form>OptionsToolBarFrame</Form>
+        <DCCReference Include="..\Source\BCCommon.Frames.Options.Toolbar.pas">
+            <Form>OptionsToolbarFrame</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Dialogs.Options.ToolBarItems.pas">
-            <Form>OptionsToolBarItemsDialog</Form>
+        <DCCReference Include="..\Source\BCCommon.Dialogs.Options.ToolbarItems.pas">
+            <Form>OptionsToolbarItemsDialog</Form>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Frames.Options.Print.pas">
             <Form>OptionsPrintFrame</Form>

@@ -60,7 +60,7 @@ object BCBaseForm: TBCBaseForm
     ThirdParty.ThirdGridEh = ' '#13#10
     ThirdParty.ThirdPageControl = ' '#13#10
     ThirdParty.ThirdTabControl = ' '#13#10
-    ThirdParty.ThirdToolBar = ' '#13#10
+    ThirdParty.ThirdToolbar = ' '#13#10
     ThirdParty.ThirdStatusBar = ' '#13#10
     ThirdParty.ThirdSpeedButton = ' '#13#10
     ThirdParty.ThirdScrollControl = ' '#13#10

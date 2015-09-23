@@ -1,4 +1,4 @@
-inherited OptionsToolBarFrame: TOptionsToolBarFrame
+inherited OptionsToolbarFrame: TOptionsToolbarFrame
   Width = 509
   Height = 313
   Align = alClient

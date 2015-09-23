@@ -1,4 +1,4 @@
-object OptionsToolBarItemsDialog: TOptionsToolBarItemsDialog
+object OptionsToolbarItemsDialog: TOptionsToolbarItemsDialog
   Left = 0
   Top = 0
   Caption = 'Select Items'
@@ -77,7 +77,7 @@ object OptionsToolBarItemsDialog: TOptionsToolBarItemsDialog
     Header.Font.Style = []
     Header.Height = 20
     Header.Options = [hoAutoResize, hoShowImages, hoShowSortGlyphs, hoVisible, hoAutoSpring]
-    Images = ImagesDataModule.ImageList
+    Images = ImagesDataModule.ImageListSmall
     Indent = 0
     ParentCtl3D = False
     SelectionBlendFactor = 255
@@ -105,6 +105,7 @@ object OptionsToolBarItemsDialog: TOptionsToolBarItemsDialog
     AddedTitle.Font.Height = -11
     AddedTitle.Font.Name = 'Tahoma'
     AddedTitle.Font.Style = []
+    FormHeader.AdditionalHeight = 0
     SkinData.SkinSection = 'FORM'
     TitleButtons = <>
     Left = 196

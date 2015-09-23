@@ -1,4 +1,4 @@
-unit BCCommon.Frames.Options.ToolBar;
+unit BCCommon.Frames.Options.Toolbar;
 
 interface
 
@@ -9,7 +9,7 @@ uses
   sSpeedButton, BCControls.SpeedButton, Vcl.StdCtrls, sRadioButton;
 
 type
-  TOptionsToolBarFrame = class(TBCOptionsBaseFrame)
+  TOptionsToolbarFrame = class(TBCOptionsBaseFrame)
     ActionAddDivider: TAction;
     ActionAddItem: TAction;
     ActionDelete: TAction;
@@ -66,7 +66,7 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    procedure GetToolBarItems;
+    procedure GetToolbarItems;
     property ActionList: TObjectList<TAction> read FActionList write FActionList;
   end;
 
@@ -75,42 +75,42 @@ type
     Action: TAction;
   end;
 
-function OptionsToolBarFrame(AOwner: TComponent; ActionList: TObjectList<TAction>): TOptionsToolBarFrame;
+function OptionsToolbarFrame(AOwner: TComponent; ActionList: TObjectList<TAction>): TOptionsToolbarFrame;
 
 implementation
 
 {$R *.dfm}
 
 uses
-  Winapi.Windows, BigIni, BCCommon.FileUtils, BCCommon.Dialogs.Options.ToolBarItems, BCCommon.Consts,
+  Winapi.Windows, BigIni, BCCommon.FileUtils, BCCommon.Dialogs.Options.ToolbarItems, BCCommon.Consts,
   System.SysUtils, BCCommon.Utils, BCCommon.Options.Container;
 
 var
-  FOptionsToolBarFrame: TOptionsToolBarFrame;
+  FOptionsToolbarFrame: TOptionsToolbarFrame;
 
-function OptionsToolBarFrame(AOwner: TComponent; ActionList: TObjectList<TAction>): TOptionsToolBarFrame;
+function OptionsToolbarFrame(AOwner: TComponent; ActionList: TObjectList<TAction>): TOptionsToolbarFrame;
 begin
-  if not Assigned(FOptionsToolBarFrame) then
-    FOptionsToolBarFrame := TOptionsToolBarFrame.Create(AOwner);
+  if not Assigned(FOptionsToolbarFrame) then
+    FOptionsToolbarFrame := TOptionsToolbarFrame.Create(AOwner);
 
-  FOptionsToolBarFrame.VirtualDrawTree.NodeDataSize := SizeOf(TTreeData);
+  FOptionsToolbarFrame.VirtualDrawTree.NodeDataSize := SizeOf(TTreeData);
   if OptionsContainer.ToolbarIconSizeSmall then
   begin
-    FOptionsToolBarFrame.RadioButtonSmallIcons.Checked := True;
-    FOptionsToolBarFrame.VirtualDrawTree.Images := ImagesDataModule.ImageListSmall { IDE can lose this }
+    FOptionsToolbarFrame.RadioButtonSmallIcons.Checked := True;
+    FOptionsToolbarFrame.VirtualDrawTree.Images := ImagesDataModule.ImageListSmall { IDE can lose this }
   end
   else
   begin
-    FOptionsToolBarFrame.RadioButtonLargeIcons.Checked := True;
-    FOptionsToolBarFrame.VirtualDrawTree.Images := ImagesDataModule.ImageList;
+    FOptionsToolbarFrame.RadioButtonLargeIcons.Checked := True;
+    FOptionsToolbarFrame.VirtualDrawTree.Images := ImagesDataModule.ImageList;
   end;
-  FOptionsToolBarFrame.ActionList := ActionList;
-  FOptionsToolBarFrame.GetToolBarItems;
+  FOptionsToolbarFrame.ActionList := ActionList;
+  FOptionsToolbarFrame.GetToolbarItems;
 
-  Result := FOptionsToolBarFrame;
+  Result := FOptionsToolbarFrame;
 end;
 
-constructor TOptionsToolBarFrame.Create(AOwner: TComponent);
+constructor TOptionsToolbarFrame.Create(AOwner: TComponent);
 begin
   inherited;
   { IDE is losing these }
@@ -119,7 +119,7 @@ begin
   VirtualDrawTree.Images := ImagesDataModule.ImageListSmall;
 end;
 
-procedure TOptionsToolBarFrame.ActionAddDividerExecute(Sender: TObject);
+procedure TOptionsToolbarFrame.ActionAddDividerExecute(Sender: TObject);
 var
   NewNode, CurrentNode: PVirtualNode;
   NewData: PTreeData;
@@ -136,13 +136,13 @@ begin
   FIsChanged := True;
 end;
 
-procedure TOptionsToolBarFrame.ActionAddItemExecute(Sender: TObject);
+procedure TOptionsToolbarFrame.ActionAddItemExecute(Sender: TObject);
 var
   Node, NewNode, CurrentNode: PVirtualNode;
   Data, NewData: PTreeData;
 begin
   inherited;
-   with OptionsToolBarItemsDialog(ActionList) do
+   with OptionsToolbarItemsDialog(ActionList) do
    try
      if Open then
      begin
@@ -172,7 +172,7 @@ begin
    end;
 end;
 
-procedure TOptionsToolBarFrame.ActionDeleteExecute(Sender: TObject);
+procedure TOptionsToolbarFrame.ActionDeleteExecute(Sender: TObject);
 var
   Node: PVirtualNode;
   Data: PTreeData;
@@ -189,7 +189,7 @@ begin
   end;
 end;
 
-procedure TOptionsToolBarFrame.SetNodeHeight;
+procedure TOptionsToolbarFrame.SetNodeHeight;
 var
   LNode: PVirtualNode;
   LData: PTreeData;
@@ -205,7 +205,7 @@ begin
   end;
 end;
 
-procedure TOptionsToolBarFrame.ActionLargeIconsExecute(Sender: TObject);
+procedure TOptionsToolbarFrame.ActionLargeIconsExecute(Sender: TObject);
 begin
   inherited;
   VirtualDrawTree.Images := ImagesDataModule.ImageList;
@@ -213,25 +213,25 @@ begin
   FIsChanged := True;
 end;
 
-procedure TOptionsToolBarFrame.ActionMoveDownExecute(Sender: TObject);
+procedure TOptionsToolbarFrame.ActionMoveDownExecute(Sender: TObject);
 begin
   FIsChanged := True;
   MoveSelectedNodesDown;
 end;
 
-procedure TOptionsToolBarFrame.ActionMoveUpExecute(Sender: TObject);
+procedure TOptionsToolbarFrame.ActionMoveUpExecute(Sender: TObject);
 begin
   FIsChanged := True;
   MoveSelectedNodesUp
 end;
 
-destructor TOptionsToolBarFrame.Destroy;
+destructor TOptionsToolbarFrame.Destroy;
 begin
   inherited;
-  FOptionsToolBarFrame := nil;
+  FOptionsToolbarFrame := nil;
 end;
 
-function TOptionsToolBarFrame.FindItemByName(ItemName: string): TAction;
+function TOptionsToolbarFrame.FindItemByName(ItemName: string): TAction;
 begin
   Result := nil;
   if Assigned(FActionList) then
@@ -240,30 +240,30 @@ begin
       Exit;
 end;
 
-procedure TOptionsToolBarFrame.GetToolBarItems;
+procedure TOptionsToolbarFrame.GetToolbarItems;
 var
   i: Integer;
   s: string;
-  LToolBarItems: TStrings;
+  LToolbarItems: TStrings;
   LAction: TAction;
   LNode: PVirtualNode;
   LData: PTreeData;
 begin
   { read from ini }
-  LToolBarItems := TStringList.Create;
+  LToolbarItems := TStringList.Create;
   with TBigIniFile.Create(GetIniFilename) do
   try
     { read items from ini }
-    ReadSectionValues('ToolBarItems', LToolBarItems);
+    ReadSectionValues('ToolbarItems', LToolbarItems);
     { add items to action bar }
     VirtualDrawTree.BeginUpdate;
     VirtualDrawTree.Clear;
-    for i := 0 to LToolBarItems.Count - 1 do
+    for i := 0 to LToolbarItems.Count - 1 do
     begin
       LNode := VirtualDrawTree.AddChild(nil);
       LData := VirtualDrawTree.GetNodeData(LNode);
 
-      s := System.Copy(LToolBarItems.Strings[i], Pos('=', LToolBarItems.Strings[i]) + 1, Length(LToolBarItems.Strings[i]));
+      s := System.Copy(LToolbarItems.Strings[i], Pos('=', LToolbarItems.Strings[i]) + 1, Length(LToolbarItems.Strings[i]));
       if s <> '-' then
       begin
         LAction := FindItemByName(s);
@@ -284,11 +284,11 @@ begin
     VirtualDrawTree.EndUpdate;
   finally
     Free;
-    LToolBarItems.Free;
+    LToolbarItems.Free;
   end;
 end;
 
-procedure TOptionsToolBarFrame.PutData;
+procedure TOptionsToolbarFrame.PutData;
 var
   i: Integer;
   Value: string;
@@ -301,9 +301,9 @@ begin
     OptionsContainer.ToolbarIconSizeSmall := RadioButtonSmallIcons.Checked;
     with TBigIniFile.Create(GetIniFilename) do
     try
-      WriteBool('ToolBarItemsChanged', 'Changed', True);
+      WriteBool('ToolbarItemsChanged', 'Changed', True);
       i := 0;
-      EraseSection('ToolBarItems');
+      EraseSection('ToolbarItems');
       Node := VirtualDrawTree.GetFirst;
       while Assigned(Node) do
       begin
@@ -312,7 +312,7 @@ begin
           Value := Data^.Action.Name
         else
           Value := '-';
-        WriteString('ToolBarItems', IntToStr(PostInc(i)), Value);
+        WriteString('ToolbarItems', IntToStr(PostInc(i)), Value);
         Node := VirtualDrawTree.GetNext(Node);
       end;
     finally
@@ -321,7 +321,7 @@ begin
   end;
 end;
 
-procedure TOptionsToolBarFrame.ActionResetExecute(Sender: TObject);
+procedure TOptionsToolbarFrame.ActionResetExecute(Sender: TObject);
 var
   i: Integer;
   Node: PVirtualNode;
@@ -366,8 +366,8 @@ begin
   VirtualDrawTree.BeginUpdate;
   DeleteNodes;
   {$ifdef EDITBONE}
-  for i := 1 to Length(ToolBarItemsArray) do
-    AddNode(ToolBarItemsArray[i]);
+  for i := 1 to Length(ToolbarItemsArray) do
+    AddNode(ToolbarItemsArray[i]);
   {$endif}
   {$ifdef ORABONE}
   AddNode('ExecuteStatementAction');
@@ -422,7 +422,7 @@ begin
   FIsChanged := True;
 end;
 
-procedure TOptionsToolBarFrame.ActionSmallIconsExecute(Sender: TObject);
+procedure TOptionsToolbarFrame.ActionSmallIconsExecute(Sender: TObject);
 begin
   inherited;
   VirtualDrawTree.Images := ImagesDataModule.ImageListSmall;
@@ -430,14 +430,14 @@ begin
   FIsChanged := True;
 end;
 
-procedure TOptionsToolBarFrame.VirtualDrawTreeDragAllowed(Sender: TBaseVirtualTree; Node: PVirtualNode;
+procedure TOptionsToolbarFrame.VirtualDrawTreeDragAllowed(Sender: TBaseVirtualTree; Node: PVirtualNode;
   Column: TColumnIndex; var Allowed: Boolean);
 begin
   inherited;
   Allowed := True;
 end;
 
-procedure TOptionsToolBarFrame.VirtualDrawTreeDragDrop(Sender: TBaseVirtualTree; Source: TObject;
+procedure TOptionsToolbarFrame.VirtualDrawTreeDragDrop(Sender: TBaseVirtualTree; Source: TObject;
   DataObject: IDataObject; Formats: TFormatArray; Shift: TShiftState; Pt: TPoint; var Effect: Integer; Mode: TDropMode);
 var
   pSource, pTarget: PVirtualNode;
@@ -458,7 +458,7 @@ begin
   FIsChanged := True;
 end;
 
-procedure TOptionsToolBarFrame.MoveSelectedNodesUp;
+procedure TOptionsToolbarFrame.MoveSelectedNodesUp;
 var
   i: integer;
   Node, PrevNode: PVirtualNode;
@@ -477,7 +477,7 @@ begin
   end;
 end;
 
-procedure TOptionsToolBarFrame.MoveSelectedNodesDown;
+procedure TOptionsToolbarFrame.MoveSelectedNodesDown;
 var
   Node, Next: PVirtualNode;
 begin
@@ -497,14 +497,14 @@ begin
   end;
 end;
 
-procedure TOptionsToolBarFrame.VirtualDrawTreeDragOver(Sender: TBaseVirtualTree; Source: TObject; Shift: TShiftState;
+procedure TOptionsToolbarFrame.VirtualDrawTreeDragOver(Sender: TBaseVirtualTree; Source: TObject; Shift: TShiftState;
   State: TDragState; Pt: TPoint; Mode: TDropMode; var Effect: Integer; var Accept: Boolean);
 begin
   inherited;
   Accept := Source = Sender;
 end;
 
-procedure TOptionsToolBarFrame.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
+procedure TOptionsToolbarFrame.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
 var
   Data: PTreeData;
   S: string;
@@ -561,7 +561,7 @@ begin
   end;
 end;
 
-procedure TOptionsToolBarFrame.VirtualDrawTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
+procedure TOptionsToolbarFrame.VirtualDrawTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
 var
   Data: PTreeData;
 begin
@@ -573,7 +573,7 @@ begin
   inherited;
 end;
 
-procedure TOptionsToolBarFrame.VirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
+procedure TOptionsToolbarFrame.VirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
   Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
 var
   Data: PTreeData;
@@ -586,7 +586,7 @@ begin
   end;
 end;
 
-procedure TOptionsToolBarFrame.VirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas;
+procedure TOptionsToolbarFrame.VirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas;
   Node: PVirtualNode; Column: TColumnIndex; var NodeWidth: Integer);
 begin
   NodeWidth := VirtualDrawTree.Width

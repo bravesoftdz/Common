@@ -1,4 +1,4 @@
-unit BCCommon.Dialogs.Options.ToolBarItems;
+unit BCCommon.Dialogs.Options.ToolbarItems;
 
 interface
 
@@ -8,7 +8,7 @@ uses
   System.Generics.Collections, BCControls.Panel, sPanel, sSkinProvider;
 
 type
-  TOptionsToolBarItemsDialog = class(TForm)
+  TOptionsToolbarItemsDialog = class(TForm)
     ButtonAdd: TButton;
     ButtonCancel: TButton;
     PanelButton: TBCPanel;
@@ -26,7 +26,7 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     function Open: Boolean;
-    procedure GetToolBarItems;
+    procedure GetToolbarItems;
     property ActionList: TObjectList<TAction> read FActionList write FActionList;
   end;
 
@@ -35,7 +35,7 @@ type
     Action: TAction;
   end;
 
-function OptionsToolBarItemsDialog(ActionList: TObjectList<TAction>): TOptionsToolBarItemsDialog;
+function OptionsToolbarItemsDialog(ActionList: TObjectList<TAction>): TOptionsToolbarItemsDialog;
 
 implementation
 
@@ -45,39 +45,39 @@ uses
   BCCommon.Images, System.Types;
 
 var
-  FOptionsToolBarItemsDialog: TOptionsToolBarItemsDialog;
+  FOptionsToolbarItemsDialog: TOptionsToolbarItemsDialog;
 
-function OptionsToolBarItemsDialog(ActionList: TObjectList<TAction>): TOptionsToolBarItemsDialog;
+function OptionsToolbarItemsDialog(ActionList: TObjectList<TAction>): TOptionsToolbarItemsDialog;
 begin
-  if not Assigned(FOptionsToolBarItemsDialog) then
-    Application.CreateForm(TOptionsToolBarItemsDialog, FOptionsToolBarItemsDialog);
+  if not Assigned(FOptionsToolbarItemsDialog) then
+    Application.CreateForm(TOptionsToolbarItemsDialog, FOptionsToolbarItemsDialog);
 
-  FOptionsToolBarItemsDialog.VirtualDrawTreeAddItems.NodeDataSize := SizeOf(TAction);
-  FOptionsToolBarItemsDialog.VirtualDrawTreeAddItems.Images := ImagesDataModule.ImageList; { IDE can lose this }
-  FOptionsToolBarItemsDialog.ActionList := ActionList;
-  FOptionsToolBarItemsDialog.GetToolBarItems;
+  FOptionsToolbarItemsDialog.VirtualDrawTreeAddItems.NodeDataSize := SizeOf(TAction);
+  FOptionsToolbarItemsDialog.VirtualDrawTreeAddItems.Images := ImagesDataModule.ImageList; { IDE can lose this }
+  FOptionsToolbarItemsDialog.ActionList := ActionList;
+  FOptionsToolbarItemsDialog.GetToolbarItems;
 
-  Result := FOptionsToolBarItemsDialog;
+  Result := FOptionsToolbarItemsDialog;
 end;
 
-constructor TOptionsToolBarItemsDialog.Create(AOwner: TComponent);
+constructor TOptionsToolbarItemsDialog.Create(AOwner: TComponent);
 begin
   inherited;
   { IDE is losing this }
   VirtualDrawTreeAddItems.Images := ImagesDataModule.ImageList;
 end;
 
-function TOptionsToolBarItemsDialog.Open: Boolean;
+function TOptionsToolbarItemsDialog.Open: Boolean;
 begin
   Result := ShowModal = mrOk;
 end;
 
-procedure TOptionsToolBarItemsDialog.FormDestroy(Sender: TObject);
+procedure TOptionsToolbarItemsDialog.FormDestroy(Sender: TObject);
 begin
-  FOptionsToolBarItemsDialog := nil;
+  FOptionsToolbarItemsDialog := nil;
 end;
 
-procedure TOptionsToolBarItemsDialog.VirtualDrawTreeAddItemsDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
+procedure TOptionsToolbarItemsDialog.VirtualDrawTreeAddItemsDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
 var
   Data: PTreeData;
   S: string;
@@ -126,7 +126,7 @@ begin
   end;
 end;
 
-procedure TOptionsToolBarItemsDialog.VirtualDrawTreeAddItemsFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
+procedure TOptionsToolbarItemsDialog.VirtualDrawTreeAddItemsFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
 var
   Data: PTreeData;
 begin
@@ -136,7 +136,7 @@ begin
   inherited;
 end;
 
-procedure TOptionsToolBarItemsDialog.VirtualDrawTreeAddItemsGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
+procedure TOptionsToolbarItemsDialog.VirtualDrawTreeAddItemsGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
   Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
 var
   Data: PTreeData;
@@ -149,13 +149,13 @@ begin
   end;
 end;
 
-procedure TOptionsToolBarItemsDialog.VirtualDrawTreeAddItemsGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas;
+procedure TOptionsToolbarItemsDialog.VirtualDrawTreeAddItemsGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas;
   Node: PVirtualNode; Column: TColumnIndex; var NodeWidth: Integer);
 begin
   NodeWidth := VirtualDrawTreeAddItems.Width
 end;
 
-procedure TOptionsToolBarItemsDialog.GetToolBarItems;
+procedure TOptionsToolbarItemsDialog.GetToolbarItems;
 var
   LAction: TAction;
   LNode: PVirtualNode;

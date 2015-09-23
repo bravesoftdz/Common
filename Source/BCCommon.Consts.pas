@@ -138,7 +138,7 @@ const
     VK_BACK or scAlt,
     VK_BACK or scShift or scAlt);
 
-    ToolBarItemsArray: array [1..42] of string = (
+    ToolbarItemsArray: array [1..42] of string = (
       'ActionFileNew',
       'ActionFileOpen',
       '-',

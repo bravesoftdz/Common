@@ -19,7 +19,7 @@ type
     ComboBoxSearchText: TBCComboBox;
     LabelSearchResultCount: TBCLabelFX;
     PanelRight: TBCPanel;
-    PanelToolBar: TBCPanel;
+    PanelToolbar: TBCPanel;
     SpeedButtonSearchClose: TBCSpeedButton;
     Splitter: TBCSplitter;
     SpeedButtonFindPrevious: TBCSpeedButton;

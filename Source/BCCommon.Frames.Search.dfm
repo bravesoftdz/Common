@@ -136,7 +136,7 @@ inherited BCSearchFrame: TBCSearchFrame
         Shadow.OffsetKeeper.RightBottom = 5
       end
     end
-    object PanelToolBar: TBCPanel
+    object PanelToolbar: TBCPanel
       Left = 206
       Top = 0
       Width = 127

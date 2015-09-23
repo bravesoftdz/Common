@@ -2,7 +2,7 @@
  * IntfDocHostUIHandler.pas
  *
  * Interfaces, records and constants used when hosting the IE WebBrowser Control
- * or automating IE to replace the menus, toolbars, and context menus. The
+ * or automating IE to replace the menus, Toolbars, and context menus. The
  * content of the unit is based on Microsoft UI documentation from MSDN. Not all
  * the structures and constants are used in CodeSnip.
  *
@@ -256,7 +256,7 @@ type
   {
   IDocHostUIHandler:
     This custom interface enables an application hosting the WebBrowser Control
-    or automating IE to replace the menus, toolbars, and context menus used by
+    or automating IE to replace the menus, Toolbars, and context menus used by
     MSHTML.
   }
   IDocHostUIHandler = interface(IUnknown)
@@ -309,7 +309,7 @@ type
       const pActiveObject: IOleInPlaceActiveObject;
       const pCommandTarget: IOleCommandTarget; const pFrame: IOleInPlaceFrame;
       const pDoc: IOleInPlaceUIWindow): HResult; stdcall;
-      {Called by MSHTML to enable the host to replace MSHTML menus and toolbars
+      {Called by MSHTML to enable the host to replace MSHTML menus and Toolbars
       etc. If the host uses any of the interfaces handed to it by this function,
       the host should call the interface's AddRef method to save the interface
       for later use. If the host calls the interface's AddRef method, the host
@@ -321,7 +321,7 @@ type
           for the active object.
         @param pCommandTarget [in] IOleCommandTarget interface for the object.
         @pFrame [in] IOleInPlaceFrame interface for the object. Menus and
-          toolbars must use this parameter.
+          Toolbars must use this parameter.
         @param pDoc [in] an IOleInPlaceUIWindow interface for the object.
           Toolbars must use this parameter.
         @return S_OK if host displayed its own UI (MSHTML will not display its
@@ -331,15 +331,15 @@ type
           compatibility with a previous version or display its own UI.
       }
     function HideUI: HResult; stdcall;
-      {Called when MSHTML removes its menus and toolbars. If a host displayed
-      menus and toolbars during the call to ShowUI, it should remove them when
+      {Called when MSHTML removes its menus and Toolbars. If a host displayed
+      menus and Toolbars during the call to ShowUI, it should remove them when
       this method is called. This method is called regardless of the return
       value from ShowUI.
         @return S_OK on success or error value on failure.
       }
     function UpdateUI: HResult; stdcall;
       {Called by MSHTML to notify the host that the command state has changed.
-      The host should update the state of toolbar buttons in an implementation
+      The host should update the state of Toolbar buttons in an implementation
       of this method. This method is called regardless of the return value from
       the IDocHostUIHandler.ShowUI method.
         @return S_OK on success or error value on failure.
