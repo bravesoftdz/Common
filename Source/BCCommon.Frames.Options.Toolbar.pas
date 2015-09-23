@@ -200,7 +200,7 @@ begin
     LData := VirtualDrawTree.GetNodeData(LNode);
     if Assigned(LData) then
       if LData^.Action.Caption <> '-' then
-        LNode.NodeHeight := VirtualDrawTree.Images.Height + 2;
+        VirtualDrawTree.NodeHeight[LNode] := VirtualDrawTree.Images.Height + 2;
     LNode := VirtualDrawTree.GetNext(LNode);
   end;
 end;

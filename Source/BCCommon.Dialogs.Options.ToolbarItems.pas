@@ -53,7 +53,7 @@ begin
     Application.CreateForm(TOptionsToolbarItemsDialog, FOptionsToolbarItemsDialog);
 
   FOptionsToolbarItemsDialog.VirtualDrawTreeAddItems.NodeDataSize := SizeOf(TAction);
-  FOptionsToolbarItemsDialog.VirtualDrawTreeAddItems.Images := ImagesDataModule.ImageList; { IDE can lose this }
+  FOptionsToolbarItemsDialog.VirtualDrawTreeAddItems.Images := ImagesDataModule.ImageListSmall; { IDE can lose this }
   FOptionsToolbarItemsDialog.ActionList := ActionList;
   FOptionsToolbarItemsDialog.GetToolbarItems;
 
