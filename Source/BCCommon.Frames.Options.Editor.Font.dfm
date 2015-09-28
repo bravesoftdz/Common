@@ -2,6 +2,8 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
   Width = 164
   Height = 162
   Visible = False
+  ExplicitWidth = 164
+  ExplicitHeight = 162
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4

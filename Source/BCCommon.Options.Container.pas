@@ -495,6 +495,7 @@ type
     FOutputRightClickSelect: Boolean;
     FOutputSaveTabs: Boolean;
     FOutputShowCloseButton: Boolean;
+    FOutputShowFindInFilesButton: Boolean;
     FOutputShowImage: Boolean;
     FShowXMLTree: Boolean;
     FSupportedFileExtensions: string;
@@ -602,6 +603,8 @@ type
     property OutputSaveTabs: Boolean read FOutputSaveTabs write FOutputSaveTabs;
     [IniValue('Options', 'OutputShowCloseButton', 'True')]
     property OutputShowCloseButton: Boolean read FOutputShowCloseButton write FOutputShowCloseButton;
+    [IniValue('Options', 'OutputShowFindInFilesButton', 'False')]
+    property OutputShowFindInFilesButton: Boolean read FOutputShowFindInFilesButton write FOutputShowFindInFilesButton;
     [IniValue('Options', 'OutputShowImage', 'True')]
     property OutputShowImage: Boolean read FOutputShowImage write FOutputShowImage;
     { View }

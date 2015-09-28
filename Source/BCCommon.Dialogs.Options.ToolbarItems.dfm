@@ -17,21 +17,19 @@ object OptionsToolbarItemsDialog: TOptionsToolbarItemsDialog
   TextHeight = 13
   object PanelButton: TBCPanel
     Left = 0
-    Top = 344
+    Top = 351
     Width = 314
-    Height = 32
+    Height = 25
     Align = alBottom
     BevelOuter = bvNone
     Padding.Left = 8
-    Padding.Right = 8
-    Padding.Bottom = 8
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
     object ButtonAdd: TButton
-      Left = 151
+      Left = 159
       Top = 0
       Width = 75
-      Height = 24
+      Height = 25
       Align = alRight
       Caption = 'Add'
       Default = True
@@ -40,10 +38,10 @@ object OptionsToolbarItemsDialog: TOptionsToolbarItemsDialog
     end
     object ButtonCancel: TButton
       AlignWithMargins = True
-      Left = 231
+      Left = 239
       Top = 0
       Width = 75
-      Height = 24
+      Height = 25
       Margins.Left = 5
       Margins.Top = 0
       Margins.Right = 0
@@ -56,13 +54,13 @@ object OptionsToolbarItemsDialog: TOptionsToolbarItemsDialog
   end
   object VirtualDrawTreeAddItems: TVirtualDrawTree
     AlignWithMargins = True
-    Left = 6
+    Left = 0
     Top = 6
-    Width = 302
-    Height = 332
-    Margins.Left = 6
+    Width = 314
+    Height = 339
+    Margins.Left = 0
     Margins.Top = 6
-    Margins.Right = 6
+    Margins.Right = 0
     Margins.Bottom = 6
     Align = alClient
     Ctl3D = True
@@ -83,7 +81,7 @@ object OptionsToolbarItemsDialog: TOptionsToolbarItemsDialog
     SelectionBlendFactor = 255
     TabOrder = 1
     TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand]
-    TreeOptions.MiscOptions = [toAcceptOLEDrop, toCheckSupport, toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning, toEditOnClick]
+    TreeOptions.MiscOptions = [toCheckSupport, toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning, toEditOnClick]
     TreeOptions.PaintOptions = [toHideFocusRect, toShowButtons, toShowDropmark, toShowRoot, toThemeAware, toGhostedIfUnfocused]
     TreeOptions.SelectionOptions = [toFullRowSelect, toMiddleClickSelect]
     WantTabs = True
@@ -95,7 +93,7 @@ object OptionsToolbarItemsDialog: TOptionsToolbarItemsDialog
       item
         Options = [coEnabled, coParentBidiMode, coParentColor, coVisible, coAutoSpring]
         Position = 0
-        Width = 298
+        Width = 310
         WideText = 'Menu Item'
       end>
   end
