@@ -269,7 +269,7 @@ begin
         LAction := FindItemByName(s);
         if Assigned(LAction) then
           LAction.Tag := 1;
-        LNode.NodeHeight := VirtualDrawTree.Images.Height + 2;
+        VirtualDrawTree.NodeHeight[LNode] := VirtualDrawTree.Images.Height + 2;
       end
       else
       begin
@@ -351,7 +351,7 @@ var
       LAction := FindItemByName(ActionName);
       if Assigned(LAction) then
         LAction.Tag := 1;
-      Node.NodeHeight := VirtualDrawTree.Images.Height + 2;
+      VirtualDrawTree.NodeHeight[Node] := VirtualDrawTree.Images.Height + 2;
     end
     else
     begin
