@@ -15,6 +15,8 @@ type
     SliderVisible: TsSlider;
     StickyLabelShowIndentGuides: TsStickyLabel;
     SliderShowIndentGuides: TsSlider;
+    SliderShowBookmarks: TsSlider;
+    StickyLabelShowBookmarks: TsStickyLabel;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -51,6 +53,7 @@ end;
 procedure TOptionsEditorMinimapFrame.PutData;
 begin
   OptionsContainer.MinimapVisible := SliderVisible.SliderOn;
+  OptionsContainer.MinimapShowBookmarks := SliderShowBookmarks.SliderOn;
   OptionsContainer.MinimapShowIndentGuides := SliderShowIndentGuides.SliderOn;
   OptionsContainer.MinimapWidth := StrToIntDef(EditWidth.Text, 100);
 end;
@@ -58,6 +61,7 @@ end;
 procedure TOptionsEditorMinimapFrame.GetData;
 begin
   SliderVisible.SliderOn := OptionsContainer.MinimapVisible;
+  SliderShowBookmarks.SliderOn := OptionsContainer.MinimapShowBookmarks;
   SliderShowIndentGuides.SliderOn := OptionsContainer.MinimapShowIndentGuides;
   EditWidth.Text := IntToStr(OptionsContainer.MinimapWidth);
 end;

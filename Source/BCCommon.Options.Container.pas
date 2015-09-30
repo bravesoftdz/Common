@@ -49,6 +49,7 @@ type
     FMatchingPairHighlightUnmatched: Boolean;
     { Minimap }
     FMinimapVisible: Boolean;
+    FMinimapShowBookmarks: Boolean;
     FMinimapShowIndentGuides: Boolean;
     FMinimapWidth: Integer;
     { Editor }
@@ -211,6 +212,8 @@ type
     { Minimap }
     [IniValue('Options', 'MinimapChecked', 'False')]
     property MinimapVisible: Boolean read FMinimapVisible write FMinimapVisible;
+    [IniValue('Options', 'MinimapShowBookmarks', 'False')]
+    property MinimapShowBookmarks: Boolean read FMinimapShowBookmarks write FMinimapShowBookmarks;
     [IniValue('Options', 'MinimapShowIndentGuides', 'False')]
     property MinimapShowIndentGuides: Boolean read FMinimapShowIndentGuides write FMinimapShowIndentGuides;
     [IniValue('Options', 'MinimapWidth', '100')]
@@ -239,7 +242,7 @@ type
     property RightMarginMouseMove: Boolean read FRightMarginMouseMove write FRightMarginMouseMove;
     [IniValue('Options', 'RightMarginShowMovingHint', 'True')]
     property RightMarginShowMovingHint: Boolean read FRightMarginShowMovingHint write FRightMarginShowMovingHint;
-    [IniValue('Options', 'RighthMarginPosition', '80')]
+    [IniValue('Options', 'RightMarginPosition', '80')]
     property RightMarginPosition: Integer read FRightMarginPosition write FRightMarginPosition;
     { Scroll }
     [IniValue('Options', 'ScrollAutosizeMaxWidth', 'False')]
@@ -792,7 +795,11 @@ begin
     else
       MatchingPair.Options := MatchingPair.Options - [mpoHighlightUnmatched];
     { Minimap }
-    Minimap.Visible := FMinimapVisible;
+    Minimap.Visible := Minimap.Visible or FMinimapVisible;
+    if FMinimapShowBookmarks then
+      Minimap.Options := Minimap.Options + [moShowBookmarks]
+    else
+      Minimap.Options := Minimap.Options - [moShowBookmarks];
     if FMinimapShowIndentGuides then
       Minimap.Options := Minimap.Options + [moShowIndentGuides]
     else

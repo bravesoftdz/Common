@@ -276,9 +276,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           Style = csOwnerDrawFixed
-          ItemIndex = 0
+          ItemIndex = -1
           TabOrder = 0
-          Text = 'Active line background'
           OnChange = ComboBoxEditorElementChange
           Items.Strings = (
             'Active line background'
@@ -306,6 +305,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             'Left margin line state normal'
             'Matching pair matched'
             'Matching pair unmatched'
+            'Minimap bookmark'
+            'Minimap visible lines'
             'Right margin'
             'Right moving edge'
             'Search highlighter background'
@@ -314,7 +315,9 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             'Search map background'
             'Search map foreground'
             'Selection background'
-            'Selection foreground')
+            'Selection foreground'
+            'Word wrap indicator arrow'
+            'Word wrap indicator lines')
         end
         object ColorComboBoxEditorColor: TBCColorComboBox
           Left = 6
@@ -477,9 +480,9 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Height = -11
             FontOn.Name = 'Tahoma'
             FontOn.Style = []
-            SliderOn = False
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            SliderOn = False
           end
           object SliderElementsAttributesItalic: TsSlider
             Left = 86
@@ -495,9 +498,9 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Height = -11
             FontOn.Name = 'Tahoma'
             FontOn.Style = []
-            SliderOn = False
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            SliderOn = False
           end
           object SliderElementsAttributesUnderline: TsSlider
             Left = 86
@@ -513,9 +516,9 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Height = -11
             FontOn.Name = 'Tahoma'
             FontOn.Style = []
-            SliderOn = False
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            SliderOn = False
           end
         end
       end
