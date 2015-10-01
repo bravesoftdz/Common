@@ -74,6 +74,7 @@ type
     FScrollPastEndOfLineMarker: Boolean;
     FScrollShowHint: Boolean;
     { Search }
+    FSearchVisible: Boolean;
     FDocumentSpecificSearch: Boolean;
     FDocumentSpecificSearchText: string;
     FShowSearchMap: Boolean;
@@ -258,7 +259,9 @@ type
     [IniValue('Options', 'ScrollShowHint', 'True')]
     property ScrollShowHint: Boolean read FScrollShowHint write FScrollShowHint;
     { Search }
-    [IniValue('Options', 'DocumentSpecificSearch', 'True')]
+    [IniValue('Options', 'SearchVisible', 'False')]
+    property SearchVisible: Boolean read FSearchVisible write FSearchVisible;
+    [IniValue('Options', 'DocumentSpecificSearch', 'False')]
     property DocumentSpecificSearch: Boolean read FDocumentSpecificSearch write FDocumentSpecificSearch;
     property DocumentSpecificSearchText: string read FDocumentSpecificSearchText write FDocumentSpecificSearchText;
     [IniValue('Options', 'ShowSearchMap', 'True')]

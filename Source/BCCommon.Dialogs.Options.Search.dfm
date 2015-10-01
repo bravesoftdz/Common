@@ -1,11 +1,8 @@
 inherited SearchOptionsDialog: TSearchOptionsDialog
-  BorderStyle = bsDialog
   Caption = 'Search options'
   ClientHeight = 279
   ClientWidth = 269
   Position = poMainFormCenter
-  ExplicitWidth = 275
-  ExplicitHeight = 307
   PixelsPerInch = 96
   TextHeight = 13
   object Panel: TBCPanel
@@ -124,14 +121,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       AutoSize = True
       TabOrder = 0
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -149,14 +138,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       AutoSize = True
       TabOrder = 1
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -164,9 +145,9 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderEntireScope: TsSlider
       Left = 194
@@ -175,14 +156,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       AutoSize = True
       TabOrder = 2
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -190,9 +163,9 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderHighlightResult: TsSlider
       Left = 194
@@ -201,14 +174,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       AutoSize = True
       TabOrder = 3
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -216,9 +181,9 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderRegularExpression: TsSlider
       Left = 194
@@ -227,14 +192,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       AutoSize = True
       TabOrder = 4
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -242,9 +199,9 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderSearchOnTyping: TsSlider
       Left = 194
@@ -253,14 +210,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       AutoSize = True
       TabOrder = 5
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -268,9 +217,9 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderSelectedOnly: TsSlider
       Left = 194
@@ -279,14 +228,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       AutoSize = True
       TabOrder = 6
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -294,9 +235,9 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderShowSearchStringNotFound: TsSlider
       Left = 194
@@ -305,14 +246,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       AutoSize = True
       TabOrder = 7
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -320,9 +253,9 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderWildCard: TsSlider
       Left = 194
@@ -331,14 +264,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       AutoSize = True
       TabOrder = 8
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -346,9 +271,9 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderWholeWordsOnly: TsSlider
       Left = 194
@@ -357,14 +282,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       AutoSize = True
       TabOrder = 9
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -372,9 +289,9 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
   end
   object PanelButton: TBCPanel

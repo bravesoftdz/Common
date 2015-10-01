@@ -1,12 +1,12 @@
 inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
   Width = 212
-  Height = 67
+  Height = 90
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 208
-    Height = 67
+    Height = 90
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -24,7 +24,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
     SkinData.SkinSection = 'CHECKBOX'
     object StickyLabelDocumentSpecificSearch: TsStickyLabel
       Left = 0
-      Top = 4
+      Top = 27
       Width = 150
       Height = 13
       Margins.Left = 4
@@ -39,7 +39,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
     end
     object StickyLabelHighlightResults: TsStickyLabel
       Left = 0
-      Top = 27
+      Top = 50
       Width = 150
       Height = 13
       Margins.Left = 4
@@ -54,7 +54,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
     end
     object StickyLabelShowSearchMap: TsStickyLabel
       Left = 0
-      Top = 50
+      Top = 73
       Width = 150
       Height = 13
       Margins.Left = 4
@@ -67,21 +67,27 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       AttachTo = SliderShowSearchMap
       Gap = 8
     end
+    object StickyLabelVisible: TsStickyLabel
+      Left = 0
+      Top = 4
+      Width = 150
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Visible'
+      ParentColor = False
+      AttachTo = SliderVisible
+      Gap = 8
+    end
     object SliderDocumentSpecificSearch: TsSlider
       Left = 158
-      Top = 0
+      Top = 23
       Width = 50
       AutoSize = True
-      TabOrder = 0
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
+      TabOrder = 1
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -94,19 +100,10 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
     end
     object SliderHighlightResults: TsSlider
       Left = 158
-      Top = 23
+      Top = 46
       Width = 50
       AutoSize = True
-      TabOrder = 1
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
+      TabOrder = 2
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -119,19 +116,26 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
     end
     object SliderShowSearchMap: TsSlider
       Left = 158
-      Top = 46
+      Top = 69
       Width = 50
       AutoSize = True
-      TabOrder = 2
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
+      TabOrder = 3
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderVisible: TsSlider
+      Left = 158
+      Top = 0
+      Width = 50
+      AutoSize = True
+      TabOrder = 0
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
