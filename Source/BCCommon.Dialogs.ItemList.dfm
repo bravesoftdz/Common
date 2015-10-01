@@ -3,8 +3,6 @@ inherited ItemListDialog: TItemListDialog
   ClientHeight = 416
   ClientWidth = 406
   Position = poMainFormCenter
-  ExplicitWidth = 412
-  ExplicitHeight = 444
   PixelsPerInch = 96
   TextHeight = 13
   object PanelButtons: TBCPanel
@@ -20,7 +18,6 @@ inherited ItemListDialog: TItemListDialog
     Padding.Bottom = 8
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    ExplicitWidth = 263
     object ButtonFind: TButton
       Left = 242
       Top = 8
@@ -31,7 +28,6 @@ inherited ItemListDialog: TItemListDialog
       Default = True
       ModalResult = 1
       TabOrder = 0
-      ExplicitLeft = 108
     end
     object ButtonCancel: TButton
       AlignWithMargins = True
@@ -48,7 +44,6 @@ inherited ItemListDialog: TItemListDialog
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 1
-      ExplicitLeft = 188
     end
   end
   object ListBox: TsListBox
@@ -62,17 +57,7 @@ inherited ItemListDialog: TItemListDialog
     Margins.Right = 6
     Margins.Bottom = 0
     Align = alClient
-    Sorted = True
     TabOrder = 1
-    BoundLabel.Indent = 0
-    BoundLabel.Font.Charset = DEFAULT_CHARSET
-    BoundLabel.Font.Color = clWindowText
-    BoundLabel.Font.Height = -11
-    BoundLabel.Font.Name = 'Tahoma'
-    BoundLabel.Font.Style = []
-    BoundLabel.Layout = sclLeft
-    BoundLabel.MaxWidth = 0
-    BoundLabel.UseSkinColor = True
     SkinData.SkinSection = 'EDIT'
   end
   object PanelTop: TBCPanel
@@ -89,7 +74,6 @@ inherited ItemListDialog: TItemListDialog
     ParentColor = True
     TabOrder = 2
     SkinData.SkinSection = 'CHECKBOX'
-    ExplicitWidth = 272
     object SpeedButtonDivider1: TBCSpeedButton
       AlignWithMargins = True
       Left = 122
@@ -112,7 +96,6 @@ inherited ItemListDialog: TItemListDialog
       ButtonStyle = tbsDivider
       SkinData.SkinSection = 'SPEEDBUTTON'
       ImageIndex = 1
-      ExplicitLeft = 182
     end
     object SpeedButtonDelete: TBCSpeedButton
       Left = 62
@@ -136,7 +119,6 @@ inherited ItemListDialog: TItemListDialog
       SkinData.SkinSection = 'TOOLBUTTON'
       ImageIndex = 22
       Images = ImagesDataModule.ImageList
-      ExplicitLeft = 122
     end
     object SpeedButtonInsert: TBCSpeedButton
       Left = 2
@@ -182,7 +164,6 @@ inherited ItemListDialog: TItemListDialog
       SkinData.SkinSection = 'TOOLBUTTON'
       ImageIndex = 65
       Images = ImagesDataModule.ImageList
-      ExplicitLeft = 192
     end
     object SpeedButtonDivider2: TBCSpeedButton
       AlignWithMargins = True
@@ -206,8 +187,6 @@ inherited ItemListDialog: TItemListDialog
       ButtonStyle = tbsDivider
       SkinData.SkinSection = 'SPEEDBUTTON'
       ImageIndex = 1
-      ExplicitLeft = 195
-      ExplicitTop = 8
     end
     object SpeedButtonMoveUp: TBCSpeedButton
       Left = 202
@@ -230,7 +209,6 @@ inherited ItemListDialog: TItemListDialog
       SkinData.SkinSection = 'TOOLBUTTON'
       ImageIndex = 129
       Images = ImagesDataModule.ImageList
-      ExplicitLeft = 262
     end
     object SpeedButtonMoveDown: TBCSpeedButton
       Left = 262
@@ -253,7 +231,6 @@ inherited ItemListDialog: TItemListDialog
       SkinData.SkinSection = 'TOOLBUTTON'
       ImageIndex = 130
       Images = ImagesDataModule.ImageList
-      ExplicitLeft = 322
     end
     object SpeedButtonSort: TBCSpeedButton
       Left = 322
@@ -274,10 +251,8 @@ inherited ItemListDialog: TItemListDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 130
+      ImageIndex = 31
       Images = ImagesDataModule.ImageList
-      ExplicitLeft = 330
-      ExplicitTop = 1
     end
   end
   object ActionList: TActionList

@@ -409,6 +409,11 @@ object LanguageDataModule: TLanguageDataModule
           'Search for '#39'%s'#39)
       end
       item
+        Name = 'SearchItems'
+        Strings.Strings = (
+          'Search items')
+      end
+      item
         Name = 'Second'
         Strings.Strings = (
           's')
