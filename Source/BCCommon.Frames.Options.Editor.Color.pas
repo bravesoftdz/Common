@@ -3,7 +3,7 @@ unit BCCommon.Frames.Options.Editor.Color;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, JsonDataObjects,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCEditor.JsonDataObjects,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sComboBox, BCControls.ComboBox, Vcl.ComCtrls,
   sComboBoxes, sGroupBox, Vcl.ExtCtrls, sPanel, BCControls.Panel,
   BCEditor.Editor.Base, BCEditor.Editor, Vcl.Buttons, sSpeedButton, BCControls.SpeedButton,

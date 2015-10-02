@@ -7,7 +7,7 @@ uses
   Vcl.StdCtrls, Vcl.ActnList, System.Actions, Vcl.ComCtrls, Vcl.ImgList,
   BCControls.ImageList, BCControls.Edit, BCControls.Panel,
   BCCommon.Frames.Options.Base, acAlphaImageList, sEdit, sPanel, sFrameAdapter, sComboBox,
-  BCControls.ComboBox, sFontCtrls, JsonDataObjects, System.ImageList;
+  BCControls.ComboBox, sFontCtrls, BCEditor.JsonDataObjects, System.ImageList;
 
 type
   TOptionsEditorFontFrame = class(TBCOptionsBaseFrame)
