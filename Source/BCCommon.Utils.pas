@@ -7,18 +7,17 @@ uses
 
 function BrowseURL(const URL: string): Boolean;
 function GetOSInfo: string;
-//procedure AutosizeCol(Grid: TBCStringGrid; StartCol: Integer = 0);
-procedure InsertTextToCombo(ComboBox: TBCComboBox);
-//function LightenColor(AColor: TColor; APercent: Byte): TColor;
-procedure RunCommand(const Cmd, Params: String);
 function SetFormInsideWorkArea(Left, Width: Integer): Integer;
 function PostInc(var i: Integer) : Integer; inline;
+procedure InsertItemsToComboBox(AItems: TStrings; AComboBox: TBCComboBox);
+procedure InsertTextToCombo(ComboBox: TBCComboBox);
+procedure RunCommand(const Cmd, Params: String);
 procedure AlignSliders(AWinControl: TWinControl);
 
 implementation
 
 uses
-  System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, BCCommon.Language.Strings, sLabel;
+  System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, BCCommon.Language.Strings, sLabel, BCCommon.StringUtils;
 
 function BrowseURL(const URL: string): Boolean;
 var
@@ -66,30 +65,22 @@ begin
   end;
 end;
 
-{procedure AutosizeCol(Grid: TBCStringGrid; StartCol: Integer);
+procedure InsertItemsToComboBox(AItems: TStrings; AComboBox: TBCComboBox);
 var
-  i, W, WMax, Column: Integer;
+  i: Integer;
+  s: string;
 begin
-  Screen.Cursor := crHourglass;
-  for Column := StartCol to Grid.ColCount - 1 do
+  if AItems.Count > 0 then
   begin
-    if not Grid.IsHidden(Column, 0) then
+    AComboBox.Clear;
+    for i := 0 to AItems.Count - 1 do
     begin
-      WMax := 0;
-      for i := 0 to Grid.RowCount - 1 do
-      begin
-        W := Grid.Canvas.TextWidth(Grid.Cells[Column, i]);
-        if W > WMax then
-          WMax := W;
-      end;
-      Grid.ColWidths[Column] := WMax + 7;
+      s := GetTokenAfter('=', AItems.Strings[i]);
+      if AComboBox.Items.IndexOf(s) = -1 then
+        AComboBox.Items.Add(s);
     end;
   end;
-
-  Grid.Width := Grid.ColWidths[0] + Grid.ColWidths[1] + 2;
-  Grid.Visible := True;
-  Screen.Cursor := crDefault;
-end; }
+end;
 
 procedure InsertTextToCombo(ComboBox: TBCComboBox);
 var
@@ -119,21 +110,6 @@ begin
     end;
   end;
 end;
-
-{function LightenColor(AColor: TColor; APercent: Byte): TColor;
-var
-  LRed, LGreen, LBlue: Byte;
-begin
-  LRed := GetRValue(AColor);
-  LGreen := GetGValue(AColor);
-  LBlue := GetBValue(AColor);
-
-  LRed := Round(LRed * APercent / 100) + Round(255 - APercent / 100 * 255);
-  LGreen := Round(LGreen * APercent / 100) + Round(255 - APercent / 100 * 255);
-  LBlue := Round(LBlue * APercent / 100) + Round(255 - APercent / 100 * 255);
-
-  Result := RGB(LRed, LGreen, LBlue);
-end; }
 
 procedure RunCommand(const Cmd, Params: String);
 var

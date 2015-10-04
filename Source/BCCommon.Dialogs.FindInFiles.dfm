@@ -8,8 +8,6 @@ inherited FindInFilesDialog: TFindInFilesDialog
   Position = poMainFormCenter
   OnCloseQuery = FormCloseQuery
   OnDestroy = FormDestroy
-  ExplicitWidth = 505
-  ExplicitHeight = 324
   PixelsPerInch = 96
   TextHeight = 13
   object PanelButtons: TBCPanel
@@ -79,15 +77,6 @@ inherited FindInFilesDialog: TFindInFilesDialog
       Width = 50
       AutoSize = True
       TabOrder = 0
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -95,9 +84,9 @@ inherited FindInFilesDialog: TFindInFilesDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
   end
   object GroupBoxSearchDirectoryOptions: TBCGroupBox
@@ -236,7 +225,6 @@ inherited FindInFilesDialog: TFindInFilesDialog
               00000000000000000000000000000000000000000000908E8CFF8F8D8BFF908E
               8CFF000000000000000000000000000000000000000000000000}
             SkinData.SkinSection = 'TOOLBUTTON'
-            ExplicitLeft = 28
           end
         end
       end
@@ -264,14 +252,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
           BoundLabel.Active = True
           BoundLabel.Caption = 'Directory'
           BoundLabel.Indent = 4
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
           BoundLabel.Layout = sclTopLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           ItemIndex = -1
@@ -321,14 +302,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
           BoundLabel.Active = True
           BoundLabel.Caption = 'File mask'
           BoundLabel.Indent = 4
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
           BoundLabel.Layout = sclTopLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
           DropDownCount = 20
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
@@ -429,15 +403,6 @@ inherited FindInFilesDialog: TFindInFilesDialog
         Width = 50
         AutoSize = True
         TabOrder = 0
-        BoundLabel.Indent = 0
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
-        BoundLabel.Layout = sclLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         ImageIndexOff = 0
         ImageIndexOn = 0
         FontOn.Charset = DEFAULT_CHARSET
@@ -557,14 +522,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
         BoundLabel.Active = True
         BoundLabel.Caption = 'Text to find'
         BoundLabel.Indent = 4
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
         BoundLabel.Layout = sclTopLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         SkinData.SkinSection = 'COMBOBOX'
         VerticalAlignment = taAlignTop
         ItemIndex = -1

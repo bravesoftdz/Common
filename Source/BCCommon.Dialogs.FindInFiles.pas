@@ -244,24 +244,6 @@ end;
 procedure TFindInFilesDialog.ReadIniFile;
 var
   LItems: TStrings;
-
-  procedure InsertItemsToComboBox(AComboBox: TBCComboBox);
-  var
-    i: Integer;
-    s: string;
-  begin
-    if LItems.Count > 0 then
-    begin
-      AComboBox.Clear;
-      for i := 0 to LItems.Count - 1 do
-      begin
-        s := GetTokenAfter('=', LItems.Strings[i]);
-        if AComboBox.Items.IndexOf(s) = -1 then
-          AComboBox.Items.Add(s);
-      end;
-    end;
-  end;
-
 begin
   LItems := TStringList.Create;
   with TIniFile.Create(GetIniFilename) do
@@ -270,11 +252,11 @@ begin
     SliderIncludeSubDirectories.SliderOn := ReadBool('FindInFilesOptions', 'IncludeSubDirectories', True);
 
     ReadSectionValues('TextToFindItems', LItems);
-    InsertItemsToComboBox(ComboBoxTextToFind);
+    InsertItemsToComboBox(LItems, ComboBoxTextToFind);
     ReadSectionValues('FindInFilesFileMasks', LItems);
-    InsertItemsToComboBox(ComboBoxFileMask);
+    InsertItemsToComboBox(LItems, ComboBoxFileMask);
     ReadSectionValues('FindInFilesDirectories', LItems);
-    InsertItemsToComboBox(ComboBoxDirectory);
+    InsertItemsToComboBox(LItems, ComboBoxDirectory);
 
     ComboBoxTextToFind.ItemIndex := ComboBoxTextToFind.Items.IndexOf(ReadString('FindInFilesOptions', 'TextToFind', ''));
     ComboBoxFileMask.ItemIndex := ComboBoxFileMask.Items.IndexOf(ReadString('FindInFilesOptions', 'FileMask', '*.*'));
