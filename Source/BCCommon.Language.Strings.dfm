@@ -1359,6 +1359,11 @@ object LanguageDataModule: TLanguageDataModule
           'JSON files (*.json)')
       end
       item
+        Name = 'LaTex'
+        Strings.Strings = (
+          'LaTex files (*.lat;*.tex;*.lex)')
+      end
+      item
         Name = 'Lua'
         Strings.Strings = (
           'Lua files (*.lua)')

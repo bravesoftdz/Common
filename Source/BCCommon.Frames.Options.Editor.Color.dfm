@@ -276,8 +276,9 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           Style = csOwnerDrawFixed
-          ItemIndex = -1
+          ItemIndex = 0
           TabOrder = 0
+          Text = 'Active line background'
           OnChange = ComboBoxEditorElementChange
           Items.Strings = (
             'Active line background'

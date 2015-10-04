@@ -349,7 +349,8 @@ end;
 procedure TOptionsEditorColorFrame.ComboBoxEditorElementChange(Sender: TObject);
 begin
   ColorComboBoxEditorColor.Selected := clNone;
-  ColorComboBoxEditorColor.Selected := StringToColor(FJSONObject['Colors']['Editor']['Colors'][CapitalizeText(ComboBoxEditorElement.Text)]);
+  if ComboBoxEditorElement.Text <> '' then
+    ColorComboBoxEditorColor.Selected := StringToColor(FJSONObject['Colors']['Editor']['Colors'][CapitalizeText(ComboBoxEditorElement.Text)]);
 end;
 
 function TOptionsEditorColorFrame.GetElementDataValue: PJsonDataValue;
