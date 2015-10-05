@@ -8,8 +8,8 @@ uses
   sComboBoxes, sGroupBox, Vcl.ExtCtrls, sPanel, BCControls.Panel,
   BCEditor.Editor.Base, BCEditor.Editor, Vcl.Buttons, sSpeedButton, BCControls.SpeedButton,
   BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter, System.Actions, Vcl.ActnList, BCControls.ScrollBox,
-  sScrollBox, sDialogs, BCComponents.MultiStringHolder, sPageControl, BCControls.PageControl, sSplitter, sEdit,
-  BCControls.Edit, Vcl.Mask, sMaskEdit, sCustomComboEdit, sToolEdit, sLabel, BCControls.Labels,
+  sDialogs, BCComponents.MultiStringHolder, sPageControl, BCControls.PageControl, sSplitter, sEdit,
+  BCControls.Edit, sLabel, BCControls.Labels,
   acSlider;
 
 type

@@ -41,7 +41,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.StringUtils, Winapi.CommCtrl;
+  Winapi.CommCtrl;
 
 procedure TBCBaseForm.ActionFileExitExecute(Sender: TObject);
 begin

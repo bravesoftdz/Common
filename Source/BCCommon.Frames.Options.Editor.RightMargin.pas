@@ -5,7 +5,7 @@ interface
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls,
   BCControls.Edit, Vcl.Buttons, BCCommon.Frames.Options.Base,
-  sCheckBox, sEdit, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
+  sEdit, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
 
 type
   TOptionsEditorRightMarginFrame = class(TBCOptionsBaseFrame)

@@ -74,7 +74,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.Math, BCCommon.Language.Strings, BCCommon.Utils, BCCommon.StringUtils, System.IniFiles,
+  System.Math, BCCommon.Language.Strings, BCCommon.Utils, System.IniFiles,
   {$WARNINGS OFF}
   Vcl.FileCtrl, { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}

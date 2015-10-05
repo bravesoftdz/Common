@@ -7,8 +7,6 @@ inherited DownloadURLDialog: TDownloadURLDialog
   Position = poMainFormCenter
   Visible = True
   OnDestroy = FormDestroy
-  ExplicitWidth = 370
-  ExplicitHeight = 140
   PixelsPerInch = 96
   TextHeight = 13
   object PanelTop: TBCPanel

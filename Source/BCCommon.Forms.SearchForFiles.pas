@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
   System.Actions, Vcl.ActnList, Vcl.ImgList, BCControls.ImageList, Vcl.StdCtrls, VirtualTrees, BCControls.ProgressBar,
-  Vcl.ComCtrls, BCControls.ButtonedEdit, System.Win.TaskbarCore, Vcl.Taskbar, acAlphaImageList, BCControls.Panel, sPanel,
-  sSkinProvider, BCControls.Statusbar, sStatusBar, System.ImageList, System.Diagnostics, System.UITypes;
+  Vcl.ComCtrls, BCControls.ButtonedEdit, System.Win.TaskbarCore, Vcl.Taskbar, BCControls.Panel, sPanel,
+  sSkinProvider, BCControls.Statusbar, sStatusBar, System.Diagnostics, System.UITypes;
 
 type
   TOpenFileEvent = procedure(var FileName: string);
