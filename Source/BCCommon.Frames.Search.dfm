@@ -106,6 +106,7 @@ inherited BCSearchFrame: TBCSearchFrame
       TabOrder = 0
       OnChange = ComboBoxSearchTextChange
       OnKeyPress = ComboBoxSearchTextKeyPress
+      UseMouseWheel = False
     end
     object PanelRight: TBCPanel
       Left = 333

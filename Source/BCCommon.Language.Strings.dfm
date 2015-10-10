@@ -1409,6 +1409,11 @@ object LanguageDataModule: TLanguageDataModule
           'Ruby files (*.rb;*.rbw)')
       end
       item
+        Name = 'Rust'
+        Strings.Strings = (
+          'Rust files (*.rc)')
+      end
+      item
         Name = 'SQL - Standard'
         Strings.Strings = (
           'SQL files (*.sql)')
