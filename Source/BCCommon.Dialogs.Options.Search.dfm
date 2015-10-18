@@ -1,19 +1,22 @@
 inherited SearchOptionsDialog: TSearchOptionsDialog
   Caption = 'Search options'
-  ClientHeight = 279
+  ClientHeight = 319
   ClientWidth = 269
   Position = poMainFormCenter
+  ExplicitWidth = 275
+  ExplicitHeight = 348
   PixelsPerInch = 96
   TextHeight = 13
   object Panel: TBCPanel
     Left = 0
     Top = 0
     Width = 269
-    Height = 247
+    Height = 287
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
+    ExplicitHeight = 247
     object StickyLabelBeepIfSearchStringNotFound: TsStickyLabel
       Left = 8
       Top = 12
@@ -36,7 +39,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
     end
     object StickyLabelWholeWordsOnly: TsStickyLabel
       Left = 8
-      Top = 219
+      Top = 242
       Width = 178
       Height = 13
       AutoSize = False
@@ -56,7 +59,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
     end
     object StickyLabelWildCard: TsStickyLabel
       Left = 8
-      Top = 196
+      Top = 219
       Width = 178
       Height = 13
       AutoSize = False
@@ -106,12 +109,22 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
     end
     object StickyLabelShowSearchStringNotFound: TsStickyLabel
       Left = 8
-      Top = 173
+      Top = 196
       Width = 178
       Height = 13
       AutoSize = False
       Caption = 'Show search string not found'
       AttachTo = SliderShowSearchStringNotFound
+      Gap = 8
+    end
+    object StickyLabelShowSearchMatchNotFound: TsStickyLabel
+      Left = 8
+      Top = 173
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Show search match not found'
+      AttachTo = SliderShowSearchMatchNotFound
       Gap = 8
     end
     object SliderBeepIfSearchStringNotFound: TsSlider
@@ -241,24 +254,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
     end
     object SliderShowSearchStringNotFound: TsSlider
       Left = 194
-      Top = 169
-      Width = 50
-      AutoSize = True
-      TabOrder = 7
-      BoundLabel.Indent = 6
-      ImageIndexOff = 0
-      ImageIndexOn = 0
-      FontOn.Charset = DEFAULT_CHARSET
-      FontOn.Color = clWindowText
-      FontOn.Height = -11
-      FontOn.Name = 'Tahoma'
-      FontOn.Style = []
-      SliderCaptionOn = 'Yes'
-      SliderCaptionOff = 'No'
-      SliderOn = False
-    end
-    object SliderWildCard: TsSlider
-      Left = 194
       Top = 192
       Width = 50
       AutoSize = True
@@ -275,7 +270,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       SliderCaptionOff = 'No'
       SliderOn = False
     end
-    object SliderWholeWordsOnly: TsSlider
+    object SliderWildCard: TsSlider
       Left = 194
       Top = 215
       Width = 50
@@ -293,10 +288,46 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       SliderCaptionOff = 'No'
       SliderOn = False
     end
+    object SliderWholeWordsOnly: TsSlider
+      Left = 194
+      Top = 238
+      Width = 50
+      AutoSize = True
+      TabOrder = 10
+      BoundLabel.Indent = 6
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+      SliderOn = False
+    end
+    object SliderShowSearchMatchNotFound: TsSlider
+      Left = 194
+      Top = 169
+      Width = 50
+      AutoSize = True
+      TabOrder = 7
+      BoundLabel.Indent = 6
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+      SliderOn = False
+    end
   end
   object PanelButton: TBCPanel
     Left = 0
-    Top = 247
+    Top = 287
     Width = 269
     Height = 32
     Align = alBottom
@@ -306,6 +337,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
     Padding.Bottom = 8
     TabOrder = 1
     SkinData.SkinSection = 'CHECKBOX'
+    ExplicitTop = 247
     object ButtonOK: TBCButton
       Left = 106
       Top = 0

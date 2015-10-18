@@ -34,6 +34,8 @@ type
     SliderWildCard: TsSlider;
     SliderWholeWordsOnly: TsSlider;
     Panel: TBCPanel;
+    SliderShowSearchMatchNotFound: TsSlider;
+    StickyLabelShowSearchMatchNotFound: TsStickyLabel;
     procedure FormShow(Sender: TObject);
   private
     procedure SetOptions(Editor: TBCEditor);
@@ -80,6 +82,7 @@ begin
     WriteBool('Options', 'SearchRegularExpression', SliderRegularExpression.SliderOn);
     WriteBool('Options', 'SearchOnTyping', SliderSearchOnTyping.SliderOn);
     WriteBool('Options', 'SearchSelectedOnly', SliderSelectedOnly.SliderOn);
+    WriteBool('Options', 'SearchShowSearchMatchNotFound', SliderShowSearchMatchNotFound.SliderOn);
     WriteBool('Options', 'SearchShowSearchStringNotFound', SliderShowSearchStringNotFound.SliderOn);
     WriteBool('Options', 'SearchWildCard', SliderWildCard.SliderOn);
     WriteBool('Options', 'SearchWholeWordsOnly', SliderWholeWordsOnly.SliderOn);
@@ -97,6 +100,7 @@ begin
   SliderRegularExpression.SliderOn := Editor.Search.Engine = seRegularExpression;
   SliderSearchOnTyping.SliderOn := soSearchOnTyping in Editor.Search.Options;
   SliderSelectedOnly.SliderOn := soSelectedOnly in Editor.Search.Options;
+  SliderShowSearchMatchNotFound.SliderOn := soShowSearchMatchNotFound in Editor.Search.Options;
   SliderShowSearchStringNotFound.SliderOn := soShowStringNotFound in Editor.Search.Options;
   SliderWildCard.SliderOn := Editor.Search.Engine = seWildCard;
   SliderWholeWordsOnly.SliderOn := soWholeWordsOnly in Editor.Search.Options;
@@ -133,6 +137,7 @@ begin
     Editor.Search.Engine := seNormal;
   SetOption(SliderSearchOnTyping.SliderOn, soSearchOnTyping);
   SetOption(SliderSelectedOnly.SliderOn, soSelectedOnly);
+  SetOption(SliderShowSearchMatchNotFound.SliderOn, soShowSearchMatchNotFound);
   SetOption(SliderShowSearchStringNotFound.SliderOn, soShowStringNotFound);
   SetOption(SliderWholeWordsOnly.SliderOn, soWholeWordsOnly);
 end;
