@@ -162,6 +162,7 @@ begin
            NewData^.Action := Data^.Action;
            NewData^.Action.Tag := 1;
            VirtualDrawTree.Selected[NewNode] := True;
+           VirtualDrawTree.NodeHeight[NewNode] := VirtualDrawTree.Images.Height + 2;
            FIsChanged := True;
          end;
          Node := VirtualDrawTreeAddItems.GetNext(Node);

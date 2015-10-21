@@ -165,7 +165,7 @@ begin
   VirtualDrawTreeAddItems.Clear;
   for LAction in FActionList do
   begin
-    if LAction.Tag <> 1 then
+    if (LAction.Tag <> 1) and (LAction.ImageIndex <> -1) and (LAction.Caption <> '') then
     begin
       LNode := VirtualDrawTreeAddItems.AddChild(nil);
       LNode.CheckType := ctCheckBox;

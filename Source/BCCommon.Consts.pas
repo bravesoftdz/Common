@@ -166,7 +166,7 @@ const
       'ActionEditUndo',
       'ActionEditRedo',
       '-',
-      'ActionSearchSearch',
+      'ActionSearchSearchButton',
       'ActionSearchReplace',
       'ActionSearchFindInFiles',
       '-',
