@@ -349,6 +349,11 @@ object LanguageDataModule: TLanguageDataModule
           'Open')
       end
       item
+        Name = 'OpenFiles'
+        Strings.Strings = (
+          'Open files')
+      end
+      item
         Name = 'OpenDirectory'
         Strings.Strings = (
           'Open Directory')
