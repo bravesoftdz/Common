@@ -77,10 +77,24 @@ begin
         FPreviewForm.Name := 'FormSkinPreview';
         FPreviewForm.PreviewManager.SkinDirectory := ASkinManager.SkinDirectory;
         FPreviewForm.PreviewManager.SkinName := ListBoxSkins.Items[ListBoxSkins.ItemIndex];
+        TrackBarHueOffset.Position := ASkinManager.HueOffset;
+        TrackBarSaturation.Position := ASkinManager.Saturation;
+        TrackBarBrightness.Position := ASkinManager.Brightness;
+        SliderBlendOnMove.SliderOn := ASkinManager.AnimEffects.BlendOnMoving.Active;
+        SliderExtendedBordersMode.SliderOn := ASkinManager.ExtendedBorders;
         FPreviewForm.PreviewManager.Active := True;
         FPreviewForm.Visible := True;
         if ShowModal = mrOk then
+        begin
           ASkinManager.SkinName := ListBoxSkins.Items[ListBoxSkins.ItemIndex];
+          ASkinManager.BeginUpdate;
+          ASkinManager.HueOffset := TrackBarHueOffset.Position;
+          ASkinManager.Saturation := TrackBarSaturation.Position;
+          ASkinManager.Brightness := TrackBarBrightness.Position;
+          ASkinManager.AnimEffects.BlendOnMoving.Active := SliderBlendOnMove.SliderOn;
+          ASkinManager.ExtendedBorders := SliderExtendedBordersMode.SliderOn;
+          ASkinManager.EndUpdate(True, False);
+        end;
       finally
         FPreviewForm.Free;
       end;
@@ -151,7 +165,7 @@ begin
   if FPreviewForm.PreviewManager.Saturation <> TrackBarSaturation.Position then
   begin
     FPreviewForm.PreviewManager.BeginUpdate;
-    LabelHueOffsetValue.Caption := IntToStr(TrackBarSaturation.Position);
+    LabelSaturationValue.Caption := IntToStr(TrackBarSaturation.Position);
     FPreviewForm.PreviewManager.Saturation := TrackBarSaturation.Position;
     FPreviewForm.PreviewManager.EndUpdate(True, False);
   end;
