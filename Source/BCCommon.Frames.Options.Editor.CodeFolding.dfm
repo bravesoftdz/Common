@@ -162,6 +162,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 0
+      UseMouseWheel = False
     end
     object SliderVisible: TsSlider
       Left = 128
