@@ -485,6 +485,7 @@ type
     FDirShowSystemFiles: Boolean;
     FDirShowTreeLines: Boolean;
     FDirShowOverlayIcons: Boolean;
+    FDirAlign: Integer;
     FDocCloseTabByDblClick: Boolean;
     FDocCloseTabByMiddleClick: Boolean;
     FDocMultiLine: Boolean;
@@ -579,6 +580,8 @@ type
     property DirShowTreeLines: Boolean read FDirShowTreeLines write FDirShowTreeLines;
     [IniValue('Options', 'DirShowOverlayIcons', 'True')]
     property DirShowOverlayIcons: Boolean read FDirShowOverlayIcons write FDirShowOverlayIcons;
+    [IniValue('Options', 'DirAlign', '0')]
+    property DirAlign: Integer read FDirAlign write FDirAlign;
     { Document }
     [IniValue('Options', 'DocCloseTabByDblClick', 'False')]
     property DocCloseTabByDblClick: Boolean read FDocCloseTabByDblClick write FDocCloseTabByDblClick;
