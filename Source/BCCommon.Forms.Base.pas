@@ -73,10 +73,10 @@ begin
   if Assigned(FProgressBar) then
   begin
     Statusbar.Perform(SB_GETRECT, 4, Integer(@LRect));
-    FProgressBar.Top := LRect.Top + 3;
-    FProgressBar.Left := LRect.Left;
+    FProgressBar.Top := LRect.Top;
+    FProgressBar.Left := LRect.Left - 3;
     FProgressBar.Width := LRect.Right - LRect.Left - 3;
-    FProgressBar.Height := LRect.Bottom - LRect.Top - 3;
+    FProgressBar.Height := LRect.Bottom - LRect.Top - 1;
   end;
 end;
 
