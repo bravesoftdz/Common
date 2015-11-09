@@ -3,13 +3,14 @@ unit BCCommon.FileUtils;
 interface
 
 uses
-  Winapi.Windows, System.Classes;
+  Winapi.Windows, System.Classes, System.Types;
 
-function CountFilesInFolder(FilePath: string; Count: Integer = 0): Integer;
+function CountFilesInFolder(AFolderText: string; AFileTypeText: string; AFileExtensions: string): Integer;
 function DisplayContextMenu(const Handle: THandle; const FileName: string; Pos: TPoint): Boolean;
 function FormatFileName(FileName: string; Modified: Boolean = False): string;
 function GetFileDateTime(FileName: string): TDateTime;
 function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
+function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStringDynArray;
 function GetFileVersion(FileName: string): string;
 function GetIniFilename: string;
 function GetOutFilename: string;
@@ -24,9 +25,8 @@ procedure FilePropertiesDialog(FileName: string);
 implementation
 
 uses
-  Winapi.ShellAPI, Winapi.ShlObj, Winapi.ActiveX, Winapi.Messages,
-  System.SysUtils, System.AnsiStrings, Vcl.Forms,
-  BCCommon.Language.Strings, BCControls.Utils;
+  Winapi.ShellAPI, Winapi.ShlObj, Winapi.ActiveX, Winapi.Messages, System.SysUtils, System.AnsiStrings, Vcl.Forms,
+  BCCommon.Language.Strings, BCControls.Utils, System.IOUtils, System.StrUtils, System.Masks;
 
 const
   DirDelimiter = '/';
@@ -227,27 +227,40 @@ begin
   end;
 end;
 
-function CountFilesInFolder(FilePath: string; Count: Integer = 0): Integer;
+function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStringDynArray;
 var
-  SearhcRec: TSearchRec;
+  MaskArray: TStringDynArray;
+  Predicate: TDirectory.TFilterPredicate;
+  LSearchOption: TSearchOption;
 begin
-  Result := Count;
-  FilePath := IncludeTrailingPathDelimiter(FilePath);
-{$WARNINGS OFF}
-  if FindFirst(IncludeTrailingBackslash(FilePath) + '*.*', faAnyFile, SearhcRec) = 0 then
-{$WARNINGS ON}
-  begin
-    repeat
-      if (SearhcRec.Name <> '.') and (SearhcRec.Name <> '..') then
-      begin
-        if SearhcRec.Attr and faDirectory = 0 then
-          Inc(Result)
-        else
-          Result := CountFilesInFolder(FilePath + SearhcRec.Name, Result);
-      end;
-    until FindNext(SearhcRec) <> 0;
-    FindClose(SearhcRec);
-  end;
+  if ALookInSubfolders then
+    LSearchOption := System.IOUtils.TSearchOption.soAllDirectories
+  else
+    LSearchOption := System.IOUtils.TSearchOption.soTopDirectoryOnly;
+
+  MaskArray := SplitString(AMasks, ';');
+  Predicate := function(const Path: string; const SearchRec: TSearchRec): Boolean
+    var
+      Mask: string;
+    begin
+      for Mask in MaskArray do
+        if MatchesMask(SearchRec.Name, Mask) then
+          Exit(True);
+      Exit(False);
+    end;
+  Result := TDirectory.GetFiles(APath, LSearchOption, Predicate);
+end;
+
+function CountFilesInFolder(AFolderText: string; AFileTypeText: string; AFileExtensions: string): Integer;
+var
+  FName: string;
+begin
+  Result := 0;
+  for FName in GetFiles(AFolderText, AFileTypeText, True) do
+  if (AFileExtensions = '*.*') or
+    (AFileTypeText = '*.*') and IsExtInFileType(ExtractFileExt(FName), AFileExtensions) or
+    IsExtInFileType(ExtractFileExt(FName), AFileTypeText) then
+    Inc(Result);
 end;
 
 function GetFileDateTime(FileName: string): TDateTime;

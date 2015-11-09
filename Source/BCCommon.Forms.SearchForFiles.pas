@@ -324,7 +324,7 @@ begin
   try
     StatusBar.Panels[0].Text := LanguageDataModule.GetConstant('CountingFiles');
     Application.ProcessMessages;
-    LCount := CountFilesInFolder(RootDirectory);
+    LCount := CountFilesInFolder(RootDirectory, '*.*', '*.*');
   finally
     Screen.Cursor := crDefault;
   end;
