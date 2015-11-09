@@ -237,8 +237,8 @@ begin
     InsertTextToCombo(ComboBoxTextToFind);
     InsertTextToCombo(ComboBoxDirectory);
     InsertTextToCombo(ComboBoxFileMask);
+    WriteIniFile;
   end;
-  WriteIniFile;
 end;
 
 procedure TFindInFilesDialog.ReadIniFile;

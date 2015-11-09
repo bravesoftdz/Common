@@ -158,8 +158,8 @@ inherited BCSearchFrame: TBCSearchFrame
         Align = alLeft
         Flat = True
         SkinData.SkinSection = 'TOOLBUTTON'
-        ImageIndex = 38
         Images = ImagesDataModule.ImageListSmall
+        ImageIndex = 38
       end
       object SpeedButtonFindNext: TBCSpeedButton
         Left = 21
@@ -170,8 +170,8 @@ inherited BCSearchFrame: TBCSearchFrame
         Align = alLeft
         Flat = True
         SkinData.SkinSection = 'TOOLBUTTON'
-        ImageIndex = 37
         Images = ImagesDataModule.ImageListSmall
+        ImageIndex = 37
       end
       object SpeedButtonDivider: TBCSpeedButton
         AlignWithMargins = True
@@ -199,8 +199,8 @@ inherited BCSearchFrame: TBCSearchFrame
         Align = alLeft
         Flat = True
         SkinData.SkinSection = 'TOOLBUTTON'
-        ImageIndex = 78
         Images = ImagesDataModule.ImageListSmall
+        ImageIndex = 78
       end
     end
   end

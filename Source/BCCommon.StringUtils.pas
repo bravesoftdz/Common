@@ -16,7 +16,6 @@ interface
   function RemoveNonAlpha(Source: string): string;
   function StringBetween(Str: string; SubStr1: string; SubStr2: string): string;
   function StrContainsChar(CharStr, Str: string): Boolean;
-  function WideUpperCase(const S: WideString): WideString;
   function WordCount(s: string): Integer;
 
 implementation
@@ -64,32 +63,6 @@ begin
   Result := Str;
   Result := Copy(Result, Pos(SubStr1, Result) + 1, Length(Result));
   Result := Copy(Result, 1, Pos(SubStr2, Result) - 1);
-end;
-
-function WideUpperCase(const S: WideString): WideString;
-var
-  I, Len: Integer;
-  DstP, SrcP: PChar;
-  Ch: Char;
-begin
-  Len := Length(S);
-  SetLength(Result, Len);
-  if Len > 0 then
-  begin
-    DstP := PChar(Pointer(Result));
-    SrcP := PChar(Pointer(S));
-    for I := Len downto 1 do
-    begin
-      Ch := SrcP^;
-      case Ch of
-        'a'..'z':
-          Ch := Char(Word(Ch) xor $0020);
-      end;
-      DstP^ := Ch;
-      Inc(DstP);
-      Inc(SrcP);
-    end;
-  end;
 end;
 
 function DecryptString(Data: string): string;
