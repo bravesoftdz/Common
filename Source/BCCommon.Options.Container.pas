@@ -83,6 +83,7 @@ type
     FSelectionVisible: Boolean;
     FALTSetsColumnMode: Boolean;
     FHighlightSimilarTerms: Boolean;
+    FSelectionFromEndOfLine: Boolean;
     FSelectionToEndOfLine: Boolean;
     FTripleClickRowSelect: Boolean;
     { Special chars }
@@ -275,6 +276,8 @@ type
     property ALTSetsColumnMode: Boolean read FALTSetsColumnMode write FALTSetsColumnMode;
     [IniValue('Options', 'HighlightSimilarTerms', 'True')]
     property HighlightSimilarTerms: Boolean read FHighlightSimilarTerms write FHighlightSimilarTerms;
+    [IniValue('Options', 'SelectionFromEndOfLine', 'False')]
+    property SelectionFromEndOfLine: Boolean read FSelectionFromEndOfLine write FSelectionFromEndOfLine;
     [IniValue('Options', 'SelectionToEndOfLine', 'False')]
     property SelectionToEndOfLine: Boolean read FSelectionToEndOfLine write FSelectionToEndOfLine;
     [IniValue('Options', 'TripleClickRowSelect', 'False')]
@@ -881,6 +884,10 @@ begin
       Selection.Options := Selection.Options + [soALTSetsColumnMode]
     else
       Selection.Options := Selection.Options - [soALTSetsColumnMode];
+    if FSelectionFromEndOfLine then
+      Selection.Options := Selection.Options + [soFromEndOfLine]
+    else
+      Selection.Options := Selection.Options - [soFromEndOfLine];
     if FSelectionToEndOfLine then
       Selection.Options := Selection.Options + [soToEndOfLine]
     else
