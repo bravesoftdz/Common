@@ -667,7 +667,7 @@ implementation
 
 uses
   System.SysUtils, Vcl.ComCtrls, Vcl.Graphics, Vcl.Menus, BCCommon.StringUtils, BCCommon.Language.Strings, BigIni,
-  BCEditor.Editor, BCEditor.Types, BCControls.Utils, BCControls.Statusbar, BCEditor.Editor.CodeFolding.Types;
+  BCEditor.Editor, BCEditor.Types, BCControls.Utils, BCControls.Statusbar;
 
 {$ifdef ORABONE}
 var
