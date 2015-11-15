@@ -233,12 +233,7 @@ end;
 procedure TFindInFilesDialog.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   if ModalResult = mrOK then
-  begin
-    InsertTextToCombo(ComboBoxTextToFind);
-    InsertTextToCombo(ComboBoxDirectory);
-    InsertTextToCombo(ComboBoxFileMask);
     WriteIniFile;
-  end;
 end;
 
 procedure TFindInFilesDialog.ReadIniFile;
@@ -268,23 +263,20 @@ begin
 end;
 
 procedure TFindInFilesDialog.WriteIniFile;
-var
-  i: Integer;
 begin
   with TIniFile.Create(GetIniFilename) do
   try
     WriteBool('FindInFilesOptions', 'CaseSensitive', SliderCaseSensitive.SliderOn);
     WriteBool('FindInFilesOptions', 'IncludeSubDirectories', SliderIncludeSubDirectories.SliderOn);
 
-    EraseSection('TextToFindItems');
-    for i := 0 to ComboBoxTextToFind.Items.Count - 1 do
-      WriteString('TextToFindItems', IntToStr(i), ComboBoxTextToFind.Items[i]);
-    EraseSection('FindInFilesFileMasks');
-    for i := 0 to ComboBoxFileMask.Items.Count - 1 do
-      WriteString('FindInFilesFileMasks', IntToStr(i), ComboBoxFileMask.Items[i]);
-    EraseSection('FindInFilesDirectories');
-    for i := 0 to ComboBoxDirectory.Items.Count - 1 do
-      WriteString('FindInFilesDirectories', IntToStr(i), IncludeTrailingPathDelimiter(ComboBoxDirectory.Items[i]));
+    if InsertTextToCombo(ComboBoxTextToFind) then
+      WriteString('TextToFindItems', '0', ComboBoxTextToFind.Items[0]);
+
+    if InsertTextToCombo(ComboBoxFileMask) then
+      WriteString('FindInFilesFileMasks','0', ComboBoxFileMask.Items[0]);
+
+    if InsertTextToCombo(ComboBoxDirectory) then
+      WriteString('FindInFilesDirectories', '0', IncludeTrailingPathDelimiter(ComboBoxDirectory.Items[0]));
 
     WriteString('FindInFilesOptions', 'TextToFind', ComboBoxTextToFind.Text);
     WriteString('FindInFilesOptions', 'FileMask', ComboBoxFileMask.Text);

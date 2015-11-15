@@ -3,14 +3,14 @@ unit BCCommon.Utils;
 interface
 
 uses
-  Winapi.Windows, System.Classes, System.Types, {BCControls.StringGrid,} BCControls.ComboBox, Vcl.Controls;
+  Winapi.Windows, System.Classes, System.Types, BCControls.ComboBox, Vcl.Controls;
 
 function BrowseURL(const URL: string): Boolean;
 function GetOSInfo: string;
+function InsertTextToCombo(ComboBox: TBCComboBox): Boolean;
 function SetFormInsideWorkArea(Left, Width: Integer): Integer;
 function PostInc(var i: Integer) : Integer; inline;
 procedure InsertItemsToComboBox(AItems: TStrings; AComboBox: TBCComboBox);
-procedure InsertTextToCombo(ComboBox: TBCComboBox);
 procedure RunCommand(const Cmd, Params: String);
 procedure AlignSliders(AWinControl: TWinControl);
 
@@ -82,11 +82,12 @@ begin
   end;
 end;
 
-procedure InsertTextToCombo(ComboBox: TBCComboBox);
+function InsertTextToCombo(ComboBox: TBCComboBox): Boolean;
 var
   s: string;
   i: Integer;
 begin
+  Result := True;
   with ComboBox do
   begin
     s := Text;
@@ -98,6 +99,7 @@ begin
         Items.Delete(i);
         Items.Insert(0, s);
         Text := s;
+        Result := False;
       end
       else
       begin
