@@ -1329,6 +1329,11 @@ object LanguageDataModule: TLanguageDataModule
           'Free Pascal files (*.pp)')
       end
       item
+        Name = 'Go'
+        Strings.Strings = (
+          'Go files (*.go)')
+      end
+      item
         Name = 'HTML with Scripts'
         Strings.Strings = (
           'HTML files (*.html;*.htm)')
@@ -1431,7 +1436,12 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'XML'
         Strings.Strings = (
-          'XML files (*.xml;*.xsd;*.xsl;*.xslt;*.dtd)')
+          'XML files (*.xml;*.xsd;*.dtd)')
+      end
+      item
+        Name = 'XSL'
+        Strings.Strings = (
+          'XSL files (*.xsl;*.xslt)')
       end
       item
         Name = 'Macro'

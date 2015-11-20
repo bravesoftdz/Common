@@ -297,8 +297,8 @@ inherited SkinSelectDialog: TSkinSelectDialog
         Top = 138
         Width = 188
         Height = 24
-        Max = 100
-        Min = -100
+        Max = 50
+        Min = -50
         PageSize = 24
         Frequency = 20
         TabOrder = 2
