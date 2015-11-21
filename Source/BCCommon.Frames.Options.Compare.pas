@@ -3,9 +3,9 @@ unit BCCommon.Frames.Options.Compare;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  BCCommon.Options.Container, BCCommon.Frames.Options.Base, BCControls.Panel, sPanel, sFrameAdapter,
-  acSlider, sLabel;
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  BCCommon.Options.Container, BCCommon.Frames.Options.Base, BCControls.Panel,
+  acSlider, sLabel, Vcl.StdCtrls, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsCompareFrame = class(TBCOptionsBaseFrame)

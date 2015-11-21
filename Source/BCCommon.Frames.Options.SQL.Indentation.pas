@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCCommon.Options.Container.SQL.Formatter,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Frames.Options.Base, Vcl.StdCtrls, BCControls.Edit,
-  Vcl.ExtCtrls, sEdit, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
+  BCControls.Panel, acSlider, sLabel, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsSQLIndentationFrame = class(TBCOptionsBaseFrame)

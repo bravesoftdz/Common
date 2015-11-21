@@ -1,8 +1,6 @@
 inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
   Width = 223
   Height = 345
-  ExplicitWidth = 223
-  ExplicitHeight = 345
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
@@ -59,16 +57,10 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         BoundLabel.Active = True
         BoundLabel.Caption = 'Color'
         BoundLabel.Indent = 4
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
         BoundLabel.Layout = sclTopLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         SkinData.SkinSection = 'COMBOBOX'
         Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor]
+        Selected = clWindow
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -84,15 +76,6 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         Width = 50
         AutoSize = True
         TabOrder = 1
-        BoundLabel.Indent = 0
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
-        BoundLabel.Layout = sclLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         ImageIndexOff = 0
         ImageIndexOn = 0
         FontOn.Charset = DEFAULT_CHARSET
@@ -100,9 +83,9 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         FontOn.Height = -11
         FontOn.Name = 'Tahoma'
         FontOn.Style = []
-        SliderOn = False
         SliderCaptionOn = 'Yes'
         SliderCaptionOff = 'No'
+        SliderOn = False
       end
     end
     object ColorComboBoxColor: TBCColorComboBox
@@ -113,16 +96,10 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Color'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       SkinData.SkinSection = 'COMBOBOX'
       Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor]
+      Selected = clWindow
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -145,20 +122,14 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Style'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 1
+      UseMouseWheel = False
     end
     object GroupBoxEndOfLine: TBCGroupBox
       Left = 0
@@ -186,16 +157,10 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         BoundLabel.Active = True
         BoundLabel.Caption = 'Color'
         BoundLabel.Indent = 4
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
         BoundLabel.Layout = sclTopLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         SkinData.SkinSection = 'COMBOBOX'
         Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor]
+        Selected = clWindow
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -218,20 +183,14 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         BoundLabel.Active = True
         BoundLabel.Caption = 'Style'
         BoundLabel.Indent = 4
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
         BoundLabel.Layout = sclTopLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         DropDownCount = 9
         SkinData.SkinSection = 'COMBOBOX'
         VerticalAlignment = taAlignTop
         Style = csOwnerDrawFixed
         ItemIndex = -1
         TabOrder = 1
+        UseMouseWheel = False
       end
       object SliderEndOfLineVisible: TsSlider
         Left = 47
@@ -239,15 +198,6 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         Width = 50
         AutoSize = True
         TabOrder = 2
-        BoundLabel.Indent = 0
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
-        BoundLabel.Layout = sclLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         ImageIndexOff = 0
         ImageIndexOn = 0
         FontOn.Charset = DEFAULT_CHARSET
@@ -255,9 +205,9 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         FontOn.Height = -11
         FontOn.Name = 'Tahoma'
         FontOn.Style = []
-        SliderOn = False
         SliderCaptionOn = 'Yes'
         SliderCaptionOff = 'No'
+        SliderOn = False
       end
     end
     object SliderUseTextColor: TsSlider
@@ -266,15 +216,6 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       Width = 50
       AutoSize = True
       TabOrder = 4
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -282,9 +223,9 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
   end
 end

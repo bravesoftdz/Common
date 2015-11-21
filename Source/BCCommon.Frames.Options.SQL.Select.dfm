@@ -112,6 +112,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Style = csOwnerDrawFixed
           ItemIndex = -1
           TabOrder = 0
+          UseMouseWheel = False
         end
         object ComboBoxColumnListLineBreak: TBCComboBox
           Left = 9
@@ -133,6 +134,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Style = csOwnerDrawFixed
           ItemIndex = -1
           TabOrder = 1
+          UseMouseWheel = False
         end
         object SliderAlignAlias: TsSlider
           Left = 187
@@ -455,6 +457,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Style = csOwnerDrawFixed
           ItemIndex = -1
           TabOrder = 0
+          UseMouseWheel = False
         end
         object SliderFromClauseInNewLine: TsSlider
           Left = 207
@@ -607,6 +610,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Style = csOwnerDrawFixed
           ItemIndex = -1
           TabOrder = 0
+          UseMouseWheel = False
         end
         object SliderAndOrUnderWhere: TsSlider
           Left = 187
@@ -696,6 +700,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Style = csOwnerDrawFixed
           ItemIndex = -1
           TabOrder = 0
+          UseMouseWheel = False
         end
         object SliderGroupByClauseInNewLine: TsSlider
           Left = 153
@@ -789,6 +794,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           Style = csOwnerDrawFixed
           ItemIndex = -1
           TabOrder = 0
+          UseMouseWheel = False
         end
         object SliderOrderByClauseInNewLine: TsSlider
           Left = 155

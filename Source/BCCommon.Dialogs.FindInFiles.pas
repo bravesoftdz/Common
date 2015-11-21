@@ -3,10 +3,10 @@ unit BCCommon.Dialogs.FindInFiles;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls,
-  BCControls.ComboBox, Vcl.ActnList, Vcl.Buttons, BCCommon.Dialogs.Base, System.Actions,
-  Vcl.ComCtrls, sComboBox, sSpeedButton, BCControls.SpeedButton, BCControls.Panel, sPanel,
-  sGroupBox, BCControls.GroupBox, sLabel, acSlider;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls,
+  BCControls.ComboBox, Vcl.ActnList, BCCommon.Dialogs.Base,
+  sComboBox, BCControls.SpeedButton, BCControls.Panel,
+  BCControls.GroupBox, sLabel, acSlider, System.Actions, Vcl.Buttons, sSpeedButton, sGroupBox, Vcl.ExtCtrls, sPanel;
 
 type
   TFindInFilesDialog = class(TBCBaseDialog)
@@ -74,7 +74,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.Math, BCCommon.Language.Strings, BCCommon.Utils, System.IniFiles,
+  BCCommon.Language.Strings, BCCommon.Utils, System.IniFiles,
   {$WARNINGS OFF}
   Vcl.FileCtrl, { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}

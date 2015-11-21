@@ -43,20 +43,14 @@ inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Keyword align'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 0
+      UseMouseWheel = False
     end
     object SliderKeywordAlignmentLeftJustify: TsSlider
       Left = 145
@@ -64,15 +58,6 @@ inherited OptionsSQLAlignmentsFrame: TOptionsSQLAlignmentsFrame
       Width = 50
       AutoSize = True
       TabOrder = 1
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET

@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls,
-  Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, sEdit, BCControls.Edit, Vcl.ExtCtrls, sPanel,
-  BCControls.Panel, BCCommon.Frames.Options.Base, sFrameAdapter, acSlider, sLabel;
+  Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.Edit,
+  BCControls.Panel, BCCommon.Frames.Options.Base, acSlider, sLabel, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorTabulatorFrame = class(TBCOptionsBaseFrame)

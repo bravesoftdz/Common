@@ -3,10 +3,10 @@ unit BCCommon.Frames.Options.MainMenu;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  Vcl.Buttons, BCControls.ComboBox, BCControls.Edit, Vcl.ActnList, System.Actions,
-  BCCommon.Options.Container, BCCommon.Frames.Options.Base, sEdit, sComboBox, BCControls.Panel, sPanel,
-  sFrameAdapter, sFontCtrls, acSlider, sLabel;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  BCControls.ComboBox, BCControls.Edit,
+  BCCommon.Options.Container, BCCommon.Frames.Options.Base, BCControls.Panel,
+  sFontCtrls, acSlider, sLabel, Vcl.StdCtrls, sEdit, sComboBox, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsMainMenuFrame = class(TBCOptionsBaseFrame)

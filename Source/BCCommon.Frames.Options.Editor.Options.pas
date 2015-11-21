@@ -3,9 +3,9 @@ unit BCCommon.Frames.Options.Editor.Options;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
-  BCControls.Edit, Vcl.ComCtrls, BCCommon.Options.Container, BCCommon.Frames.Options.Base,
-  sEdit, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  BCControls.Edit, BCCommon.Options.Container, BCCommon.Frames.Options.Base,
+  BCControls.Panel, acSlider, sLabel, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorOptionsFrame = class(TBCOptionsBaseFrame)
@@ -39,7 +39,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.SysUtils, BCCommon.Language.Strings, BCCommon.Utils;
+  System.SysUtils, BCCommon.Utils;
 
 var
   FOptionsEditorOptionsFrame: TOptionsEditorOptionsFrame;

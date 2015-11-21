@@ -3,11 +3,12 @@ unit BCCommon.Frames.Options.Editor.Font;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons,
-  Vcl.StdCtrls, Vcl.ActnList, System.Actions, Vcl.ComCtrls, Vcl.ImgList,
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls,
   BCControls.ImageList, BCControls.Edit, BCControls.Panel,
-  BCCommon.Frames.Options.Base, acAlphaImageList, sEdit, sPanel, sFrameAdapter, sComboBox,
-  BCControls.ComboBox, sFontCtrls, BCEditor.JsonDataObjects, System.ImageList;
+  BCCommon.Frames.Options.Base, sComboBox,
+  BCControls.ComboBox, sFontCtrls, BCEditor.JsonDataObjects, System.ImageList, Vcl.ImgList, acAlphaImageList, sEdit,
+  Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorFontFrame = class(TBCOptionsBaseFrame)

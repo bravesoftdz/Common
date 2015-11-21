@@ -35,14 +35,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Keywords'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
@@ -55,6 +48,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       ItemIndex = -1
       ParentFont = False
       TabOrder = 0
+      UseMouseWheel = False
     end
     object ComboBoxIdentifier: TBCComboBox
       Left = 0
@@ -69,20 +63,14 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Identifier'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 1
+      UseMouseWheel = False
     end
     object ComboBoxQuotedIdentifier: TBCComboBox
       Left = 0
@@ -97,20 +85,14 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Quoted identifier'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 2
+      UseMouseWheel = False
     end
     object ComboBoxTableName: TBCComboBox
       Left = 0
@@ -125,20 +107,14 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Table name'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 3
+      UseMouseWheel = False
     end
     object ComboBoxColumnName: TBCComboBox
       Left = 0
@@ -153,20 +129,14 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Column name'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 4
+      UseMouseWheel = False
     end
     object ComboBoxAliasName: TBCComboBox
       Left = 0
@@ -181,20 +151,14 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Alias name'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 5
+      UseMouseWheel = False
     end
     object ComboBoxVariableName: TBCComboBox
       Left = 0
@@ -209,20 +173,14 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Variable name'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 6
+      UseMouseWheel = False
     end
     object ComboBoxFunctionName: TBCComboBox
       Left = 0
@@ -237,20 +195,14 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Function name'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 7
+      UseMouseWheel = False
     end
     object ComboBoxDataType: TBCComboBox
       Left = 0
@@ -265,14 +217,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Data type'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
@@ -285,6 +230,7 @@ inherited OptionsSQLCapitalizationFrame: TOptionsSQLCapitalizationFrame
       ItemIndex = -1
       ParentFont = False
       TabOrder = 8
+      UseMouseWheel = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

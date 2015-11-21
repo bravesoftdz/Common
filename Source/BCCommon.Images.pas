@@ -3,8 +3,7 @@ unit BCCommon.Images;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.ImgList, Vcl.Controls, acAlphaImageList,
-  System.ImageList;
+  System.SysUtils, System.Classes, Vcl.Controls, acAlphaImageList, System.ImageList, Vcl.ImgList;
 
 const
   { small images }
@@ -24,7 +23,7 @@ var
 implementation
 
 uses
-  Forms;
+  Vcl.Forms;
 
 {$R *.dfm}
 

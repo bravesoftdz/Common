@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  sPanel, BCControls.Panel, BCCommon.Frames.Options.Base, sFrameAdapter, sLabel, acSlider;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  BCControls.Panel, BCCommon.Frames.Options.Base, sLabel, acSlider, Vcl.StdCtrls, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorMatchingPairFrame = class(TBCOptionsBaseFrame)

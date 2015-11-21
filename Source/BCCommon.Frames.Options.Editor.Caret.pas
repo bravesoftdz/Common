@@ -4,9 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, sComboBoxes, BCControls.ComboBox, Vcl.StdCtrls,
-  sComboBox, Vcl.ExtCtrls, sPanel, BCControls.Panel, sGroupBox, BCControls.GroupBox, BCCommon.Frames.Options.Base,
-  sFrameAdapter, acSlider, sLabel;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCControls.ComboBox, Vcl.StdCtrls,
+  sComboBox, BCControls.Panel, BCControls.GroupBox, BCCommon.Frames.Options.Base,
+  acSlider, sLabel, Vcl.ComCtrls, sComboBoxes, sGroupBox, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorCaretFrame = class(TBCOptionsBaseFrame)

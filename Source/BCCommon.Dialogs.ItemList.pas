@@ -3,9 +3,9 @@ unit BCCommon.Dialogs.ItemList;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, BCCommon.Images,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Dialogs.Base, Vcl.StdCtrls, Vcl.ExtCtrls, sPanel, BCControls.Panel,
-  Vcl.Buttons, sSpeedButton, BCControls.SpeedButton, sListBox, System.Actions, Vcl.ActnList;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Dialogs.Base, Vcl.StdCtrls, BCControls.Panel,
+  BCControls.SpeedButton, sListBox, Vcl.ActnList, System.Actions, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel;
 
 type
   TItemListDialog = class(TBCBaseDialog)

@@ -29,20 +29,14 @@ inherited OptionsSQLUpdateFrame: TOptionsSQLUpdateFrame
       BoundLabel.Active = True
       BoundLabel.Caption = 'Column list style'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 0
+      UseMouseWheel = False
     end
   end
 end

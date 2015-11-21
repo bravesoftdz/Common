@@ -3,8 +3,8 @@ unit BCCommon.Frames.Options.Editor.Search;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  BCCommon.Frames.Options.Base, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  BCCommon.Frames.Options.Base, BCControls.Panel, acSlider, sLabel, Vcl.StdCtrls, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorSearchFrame = class(TBCOptionsBaseFrame)

@@ -4,9 +4,10 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  sPanel, BCControls.Panel, sComboBox, BCControls.ComboBox, Vcl.ComCtrls, sComboBoxes,
-  sGroupBox, BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter, acSlider, sLabel;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  BCControls.Panel, sComboBox, BCControls.ComboBox,
+  BCControls.GroupBox, BCCommon.Frames.Options.Base, acSlider, sLabel, Vcl.ComCtrls, sComboBoxes, sGroupBox,
+  Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorSpecialCharsFrame = class(TBCOptionsBaseFrame)

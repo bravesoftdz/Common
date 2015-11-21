@@ -3,9 +3,9 @@ unit BCCommon.Frames.Options.Editor.RightMargin;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls,
-  BCControls.Edit, Vcl.Buttons, BCCommon.Frames.Options.Base,
-  sEdit, BCControls.Panel, sPanel, sFrameAdapter, acSlider, sLabel;
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls,
+  BCControls.Edit, BCCommon.Frames.Options.Base,
+  BCControls.Panel, acSlider, sLabel, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorRightMarginFrame = class(TBCOptionsBaseFrame)

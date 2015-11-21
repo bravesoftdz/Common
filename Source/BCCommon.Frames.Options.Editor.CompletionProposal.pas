@@ -3,9 +3,9 @@ unit BCCommon.Frames.Options.Editor.CompletionProposal;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   BCControls.ComboBox, BCCommon.Options.Container, BCCommon.Frames.Options.Base, sComboBox, BCControls.Panel,
-  sPanel, sFrameAdapter, acSlider, sLabel;
+  acSlider, sLabel, Vcl.StdCtrls, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorCompletionProposalFrame = class(TBCOptionsBaseFrame)

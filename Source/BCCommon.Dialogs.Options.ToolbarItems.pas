@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VirtualTrees, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ActnList,
-  System.Generics.Collections, BCControls.Panel, sPanel, sSkinProvider;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VirtualTrees, Vcl.StdCtrls, Vcl.ActnList,
+  System.Generics.Collections, BCControls.Panel, sSkinProvider, Vcl.ExtCtrls, sPanel;
 
 type
   TOptionsToolbarItemsDialog = class(TForm)

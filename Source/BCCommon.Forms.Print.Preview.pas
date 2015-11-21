@@ -3,11 +3,11 @@ unit BCCommon.Forms.Print.Preview;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls, Vcl.ComCtrls,
   Vcl.ActnList, BCEditor.Print.Preview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers,
-  BCCommon.Images, Vcl.PlatformDefaultStyleActnCtrls, System.Actions, System.Types,
-  BCControls.Panel, BCControls.StatusBar, sPanel, sStatusBar, Vcl.Dialogs, sSpeedButton,
-  BCControls.SpeedButton;
+  BCCommon.Images, System.Actions, System.Types,
+  BCControls.Panel, BCControls.StatusBar, Vcl.Dialogs,
+  BCControls.SpeedButton, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel, sStatusBar;
 
 type
   TPrintPreviewDialog = class(TForm)

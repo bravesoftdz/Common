@@ -3,9 +3,9 @@ unit BCCommon.Dialogs.DownloadURL;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ActnList, Vcl.StdCtrls, Vcl.ComCtrls,
-  BCControls.ProgressBar, Vcl.ExtCtrls, Vcl.ExtActns, BCCommon.Dialogs.Base, System.Actions, BCControls.Panel,
-  sPanel, Vcl.Dialogs, sDialogs, sGauge;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ActnList, Vcl.StdCtrls,
+  BCControls.ProgressBar, Vcl.ExtActns, BCCommon.Dialogs.Base, BCControls.Panel,
+  Vcl.Dialogs, sDialogs, sGauge, System.Actions, Vcl.ExtCtrls, sPanel;
 
 type
   TDownloadURLDialog = class(TBCBaseDialog)

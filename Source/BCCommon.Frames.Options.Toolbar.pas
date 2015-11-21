@@ -3,10 +3,10 @@ unit BCCommon.Frames.Options.Toolbar;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, BCCommon.Frames.Options.Base,
-  Vcl.ComCtrls, System.Actions, Vcl.ActnList, System.Generics.Collections, System.Types, VirtualTrees, Winapi.ActiveX,
-  Vcl.Menus, BCCommon.Images, Vcl.PlatformDefaultStyleActnCtrls, BCControls.Panel, sPanel, sFrameAdapter, Vcl.Buttons,
-  sSpeedButton, BCControls.SpeedButton, Vcl.StdCtrls, sRadioButton;
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Frames.Options.Base,
+  System.Actions, Vcl.ActnList, System.Generics.Collections, System.Types, VirtualTrees, Winapi.ActiveX,
+  Vcl.Menus, BCCommon.Images, BCControls.Panel, sPanel, sFrameAdapter,
+  BCControls.SpeedButton, Vcl.StdCtrls, sRadioButton, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls;
 
 type
   TOptionsToolbarFrame = class(TBCOptionsBaseFrame)

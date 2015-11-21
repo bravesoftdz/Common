@@ -3,9 +3,9 @@ unit BCCommon.Frames.Options.Editor.LeftMargin;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.StdCtrls, BCControls.Edit, Vcl.Buttons,
-  BCCommon.Frames.Options.Base, BCControls.Panel, Vcl.ComCtrls, sEdit, sGroupBox, sPanel, sFrameAdapter,
-  BCControls.GroupBox, acSlider, sLabel;
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, BCControls.Edit,
+  BCCommon.Frames.Options.Base, BCControls.Panel,
+  BCControls.GroupBox, acSlider, sLabel, sGroupBox, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorLeftMarginFrame = class(TBCOptionsBaseFrame)

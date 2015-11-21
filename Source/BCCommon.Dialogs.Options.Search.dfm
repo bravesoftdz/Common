@@ -3,8 +3,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
   ClientHeight = 319
   ClientWidth = 269
   Position = poMainFormCenter
-  ExplicitWidth = 275
-  ExplicitHeight = 348
   PixelsPerInch = 96
   TextHeight = 13
   object Panel: TBCPanel
@@ -16,7 +14,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
     BevelOuter = bvNone
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    ExplicitHeight = 247
     object StickyLabelBeepIfSearchStringNotFound: TsStickyLabel
       Left = 8
       Top = 12
@@ -337,7 +334,6 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
     Padding.Bottom = 8
     TabOrder = 1
     SkinData.SkinSection = 'CHECKBOX'
-    ExplicitTop = 247
     object ButtonOK: TBCButton
       Left = 106
       Top = 0

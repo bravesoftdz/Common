@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sEdit, BCControls.Edit, Vcl.ExtCtrls, sPanel,
-  BCControls.Panel, BCCommon.Frames.Options.Base, sFrameAdapter, acSlider, sLabel;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.Edit,
+  BCControls.Panel, BCCommon.Frames.Options.Base, acSlider, sLabel, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorMinimapFrame = class(TBCOptionsBaseFrame)

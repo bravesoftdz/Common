@@ -316,15 +316,6 @@ object CompareFrame: TCompareFrame
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           Alignment = taLeftJustify
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           ItemIndex = -1
@@ -333,6 +324,7 @@ object CompareFrame: TCompareFrame
           Visible = False
           OnChange = LeftComboBoxChangeActionExecute
           OnKeyPress = LeftComboBoxKeyPress
+          UseMouseWheel = False
         end
         object FilenameLeftMemo: TMemo
           Left = 0
@@ -980,21 +972,13 @@ object CompareFrame: TCompareFrame
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           Alignment = taLeftJustify
-          BoundLabel.Indent = 0
-          BoundLabel.Font.Charset = DEFAULT_CHARSET
-          BoundLabel.Font.Color = clWindowText
-          BoundLabel.Font.Height = -11
-          BoundLabel.Font.Name = 'Tahoma'
-          BoundLabel.Font.Style = []
-          BoundLabel.Layout = sclLeft
-          BoundLabel.MaxWidth = 0
-          BoundLabel.UseSkinColor = True
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           ItemIndex = -1
           TabOrder = 1
           OnChange = RightComboBoxChangeActionExecute
           OnKeyPress = LeftComboBoxKeyPress
+          UseMouseWheel = False
         end
         object FilenameRightMemo: TMemo
           Left = 48

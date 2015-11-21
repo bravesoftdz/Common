@@ -55,14 +55,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       BoundLabel.Active = True
       BoundLabel.Caption = 'Shortcut'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       DropDownCount = 9
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
@@ -75,6 +68,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       ItemIndex = -1
       ParentFont = False
       TabOrder = 0
+      UseMouseWheel = False
     end
     object SliderCaseSensitive: TsSlider
       Left = 110
@@ -83,14 +77,6 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       AutoSize = True
       TabOrder = 1
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -98,9 +84,9 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderEnabled: TsSlider
       Left = 110
@@ -109,14 +95,6 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       AutoSize = True
       TabOrder = 2
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET

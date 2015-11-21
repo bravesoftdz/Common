@@ -12,7 +12,7 @@ implementation
 
 uses
   BigIni, BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
-  Vcl.ExtCtrls, VirtualTrees, BCCommon.Language.Strings, sPageControl, Vcl.Consts,
+  Vcl.ExtCtrls, VirtualTrees, sPageControl, Vcl.Consts,
   BCControls.GroupBox, BCControls.RadioButton, BCControls.Panel, BCControls.Edit, sLabel, acSlider,
   BCControls.DateEdit, BCControls.ComboBox;
 

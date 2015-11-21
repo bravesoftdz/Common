@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCComponents.SkinProvider, BCComponents.TitleBar,
-  BCComponents.SkinManager, Vcl.ComCtrls, BCControls.StatusBar, System.Actions, Vcl.ActnList, BCControls.ProgressBar,
-  Vcl.AppEvnts, Vcl.Menus, sSkinManager, System.Win.TaskbarCore, Vcl.Taskbar, sSkinProvider, acTitleBar, sStatusBar;
+  BCComponents.SkinManager, BCControls.StatusBar, Vcl.ActnList, BCControls.ProgressBar,
+  Vcl.AppEvnts, Vcl.Menus, sSkinManager, System.Win.TaskbarCore, Vcl.Taskbar;
 
 type
   TBCBaseForm = class(TForm)

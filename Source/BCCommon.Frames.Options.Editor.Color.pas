@@ -4,13 +4,13 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCEditor.JsonDataObjects,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sComboBox, BCControls.ComboBox, Vcl.ComCtrls,
-  sComboBoxes, sGroupBox, Vcl.ExtCtrls, sPanel, BCControls.Panel,
-  BCEditor.Editor.Base, BCEditor.Editor, Vcl.Buttons, sSpeedButton, BCControls.SpeedButton,
-  BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter, System.Actions, Vcl.ActnList, BCControls.ScrollBox,
-  sDialogs, BCComponents.MultiStringHolder, sPageControl, BCControls.PageControl, sSplitter, sEdit,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sComboBox, BCControls.ComboBox,
+  sComboBoxes, BCControls.Panel,
+  BCEditor.Editor.Base, BCEditor.Editor, BCControls.SpeedButton,
+  BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter, Vcl.ActnList, BCControls.ScrollBox,
+  sDialogs, BCComponents.MultiStringHolder, sPageControl, BCControls.PageControl, sSplitter,
   BCControls.Edit, sLabel, BCControls.Labels,
-  acSlider;
+  acSlider, System.Actions, sEdit, sGroupBox, Vcl.ComCtrls, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel;
 
 type
   TOptionsEditorColorFrame = class(TBCOptionsBaseFrame)

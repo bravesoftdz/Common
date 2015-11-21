@@ -4,9 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  sPanel, BCControls.Panel, sComboBox, BCControls.ComboBox, BCCommon.Frames.Options.Base, sFrameAdapter, acSlider,
-  sLabel, sEdit, BCControls.Edit;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  BCControls.Panel, sComboBox, BCControls.ComboBox, BCCommon.Frames.Options.Base, acSlider,
+  sLabel, BCControls.Edit, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorCodeFoldingFrame = class(TBCOptionsBaseFrame)

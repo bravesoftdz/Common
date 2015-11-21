@@ -9,8 +9,6 @@ inherited ReplaceDialog: TReplaceDialog
   Position = poMainFormCenter
   OnCloseQuery = FormCloseQuery
   OnDestroy = FormDestroy
-  ExplicitWidth = 375
-  ExplicitHeight = 441
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBoxOptions: TBCGroupBox
@@ -94,14 +92,6 @@ inherited ReplaceDialog: TReplaceDialog
       AutoSize = True
       TabOrder = 0
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -109,9 +99,9 @@ inherited ReplaceDialog: TReplaceDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderPromptOnReplace: TsSlider
       Left = 122
@@ -120,14 +110,6 @@ inherited ReplaceDialog: TReplaceDialog
       AutoSize = True
       TabOrder = 1
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -146,14 +128,6 @@ inherited ReplaceDialog: TReplaceDialog
       TabOrder = 2
       OnClick = SliderRegularExpressionClick
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -161,9 +135,9 @@ inherited ReplaceDialog: TReplaceDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderSelectedOnly: TsSlider
       Left = 122
@@ -172,14 +146,6 @@ inherited ReplaceDialog: TReplaceDialog
       AutoSize = True
       TabOrder = 3
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -187,9 +153,9 @@ inherited ReplaceDialog: TReplaceDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderWholeWordsOnly: TsSlider
       Left = 122
@@ -198,14 +164,6 @@ inherited ReplaceDialog: TReplaceDialog
       AutoSize = True
       TabOrder = 4
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -213,9 +171,9 @@ inherited ReplaceDialog: TReplaceDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
     object SliderWildCard: TsSlider
       Left = 122
@@ -225,14 +183,6 @@ inherited ReplaceDialog: TReplaceDialog
       TabOrder = 5
       OnClick = SliderWildCardClick
       BoundLabel.Indent = 6
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -240,9 +190,9 @@ inherited ReplaceDialog: TReplaceDialog
       FontOn.Height = -11
       FontOn.Name = 'Tahoma'
       FontOn.Style = []
-      SliderOn = False
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
   end
   object PanelSearchForComboBox: TBCPanel
@@ -265,19 +215,13 @@ inherited ReplaceDialog: TReplaceDialog
       BoundLabel.Active = True
       BoundLabel.Caption = 'Search for'
       BoundLabel.Indent = 4
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
       BoundLabel.Layout = sclTopLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       ItemIndex = -1
       TabOrder = 0
       OnChange = ComboBoxSearchForChange
+      UseMouseWheel = False
     end
   end
   object PanelReplaceWith: TBCPanel
@@ -329,19 +273,11 @@ inherited ReplaceDialog: TReplaceDialog
       Height = 21
       Align = alClient
       Alignment = taLeftJustify
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       ItemIndex = -1
       TabOrder = 0
+      UseMouseWheel = False
     end
   end
   object PanelButtons: TBCPanel

@@ -48,7 +48,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Winapi.Windows, Vcl.Consts, Vcl.ActnList, System.IniFiles, BCControls.Language, BCEditor.Language;
+  Winapi.Windows, Vcl.Consts, System.IniFiles, BCControls.Language, BCEditor.Language;
 
 procedure HookResourceString(aResStringRec: PResStringRec; aNewStr: PChar);
 var

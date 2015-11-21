@@ -3,10 +3,10 @@ unit BCCommon.Dialogs.Replace;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCCommon.Dialogs.Base, Vcl.ExtCtrls,
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCCommon.Dialogs.Base,
   BCControls.ComboBox, Vcl.StdCtrls, BCControls.Panel,
-  BCControls.RadioButton, BCEditor.Editor, BCEditor.Types, BCControls.Button, sButton, sComboBox,
-  sPanel, sRadioButton, sGroupBox, BCControls.GroupBox, sLabel, acSlider;
+  BCControls.RadioButton, BCEditor.Editor, BCEditor.Types, BCControls.Button, sComboBox,
+  sRadioButton, BCControls.GroupBox, sLabel, acSlider, sButton, Vcl.ExtCtrls, sPanel, sGroupBox;
 
 type
   TReplaceDialog = class(TBCBaseDialog)
@@ -69,7 +69,7 @@ implementation
 {$R *.DFM}
 
 uses
-  System.Math, System.IniFiles, BCCommon.FileUtils, BCControls.Utils, BCCommon.Utils;
+  System.IniFiles, BCCommon.FileUtils, BCControls.Utils, BCCommon.Utils;
 
 var
   FReplaceDialog: TReplaceDialog;

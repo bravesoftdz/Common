@@ -3,7 +3,7 @@ unit BCCommon.Consts;
 interface
 
 uses
-  Winapi.Windows, System.Classes, Vcl.ActnMenus;
+  Winapi.Windows, System.Classes;
 
 const
   CHR_ENTER = Chr(13) + Chr(10);

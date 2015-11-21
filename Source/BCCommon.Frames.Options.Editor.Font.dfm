@@ -44,6 +44,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       ParentFont = False
       TabOrder = 0
       OnChange = ComboBoxColorChange
+      UseMouseWheel = False
     end
     object ComboBoxElement: TBCComboBox
       Left = 0
@@ -79,6 +80,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
         'Line numbers'
         'Minimap'
         'Text')
+      UseMouseWheel = False
     end
     object FontComboBoxFont: TBCFontComboBox
       Left = 0

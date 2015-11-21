@@ -119,6 +119,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         ParentFont = False
         TabOrder = 0
         OnChange = ComboBoxColorChange
+        UseMouseWheel = False
       end
       object ComboBoxHighlighter: TBCComboBox
         Left = 256
@@ -147,6 +148,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         ParentFont = False
         TabOrder = 1
         OnChange = ComboBoxHighlighterChange
+        UseMouseWheel = False
       end
     end
     object Editor: TBCEditor
@@ -170,7 +172,9 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       CodeFolding.Hint.Font.Name = 'Courier New'
       CodeFolding.Hint.Font.Style = []
       CompletionProposal.CloseChars = '()[]. '
-      CompletionProposal.Columns = <>
+      CompletionProposal.Columns = <
+        item
+        end>
       CompletionProposal.Font.Charset = DEFAULT_CHARSET
       CompletionProposal.Font.Color = clWindowText
       CompletionProposal.Font.Height = -11
@@ -207,8 +211,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       SpecialChars.Style = scsDot
       TabOrder = 1
       WordWrap.Enabled = False
-      WordWrap.Position = 80
-      WordWrap.Style = wwsClientWidth
       WordWrap.Indicator.Glyph.Data = {
         7E030000424D7E0300000000000036000000280000000F0000000E0000000100
         2000000000004803000000000000000000000000000000000000FFFFFF00FFFF
@@ -240,6 +242,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00}
       WordWrap.Indicator.MaskColor = clFuchsia
+      WordWrap.Position = 80
+      WordWrap.Style = wwsClientWidth
     end
     object PageControl: TBCPageControl
       Left = 0
@@ -319,6 +323,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             'Selection foreground'
             'Word wrap indicator arrow'
             'Word wrap indicator lines')
+          UseMouseWheel = False
         end
         object ColorComboBoxEditorColor: TBCColorComboBox
           Left = 6
@@ -383,6 +388,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             'Reserved word'
             'String'
             'Symbol')
+          UseMouseWheel = False
         end
         object ColorComboBoxElementsForeground: TBCColorComboBox
           Left = 6

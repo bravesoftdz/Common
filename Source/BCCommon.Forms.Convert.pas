@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  BCControls.ComboBox, BCControls.Edit, System.Actions, Vcl.ActnList, sComboBox, sEdit;
+  BCControls.ComboBox, BCControls.Edit, Vcl.ActnList, sComboBox, System.Actions, sEdit;
 
 type
   TConvertForm = class(TForm)

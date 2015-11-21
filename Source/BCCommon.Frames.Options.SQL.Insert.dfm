@@ -50,6 +50,7 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       Style = csOwnerDrawFixed
       ItemIndex = -1
       TabOrder = 0
+      UseMouseWheel = False
     end
     object ComboBoxValueListStyle: TBCComboBox
       Left = 0
@@ -77,6 +78,7 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       ItemIndex = -1
       ParentFont = False
       TabOrder = 1
+      UseMouseWheel = False
     end
     object EditInsertColumnsPerLine: TBCEdit
       Left = 0

@@ -4,10 +4,11 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCCommon.Frames.Base,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCEditor.Editor, Vcl.StdCtrls,
-  Vcl.Buttons, Vcl.ExtCtrls, System.Actions, Vcl.ActnList, BCControls.Panel, BCControls.ComboBox, BCControls.SpeedButton,
-  Vcl.ComCtrls, BCCommon.Images, BCControls.Splitter, BCControls.Labels,
-  sLabel, sPanel, sComboBox, sSplitter, sSpeedButton, sFrameAdapter;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCEditor.Editor,
+  Vcl.ActnList, BCControls.Panel, BCControls.ComboBox, BCControls.SpeedButton,
+  BCControls.Splitter, BCControls.Labels,
+  sLabel, sComboBox, System.Actions, Vcl.StdCtrls, Vcl.ExtCtrls, sSplitter, Vcl.Buttons, sSpeedButton, sPanel,
+  sFrameAdapter;
 
 type
   TBCSearchFrame = class(TBCBaseFrame)

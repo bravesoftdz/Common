@@ -4,9 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCCommon.Options.Container.SQL.Formatter,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
-  BCControls.ComboBox, BCCommon.Frames.Options.Base, sComboBox, BCControls.Panel, sPanel, sFrameAdapter,
-  acSlider, sLabel;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  BCControls.ComboBox, BCCommon.Frames.Options.Base, sComboBox, BCControls.Panel,
+  acSlider, sLabel, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsSQLAlignmentsFrame = class(TBCOptionsBaseFrame)

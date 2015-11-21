@@ -3,10 +3,10 @@ unit BCCommon.Frames.Options.StatusBar;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  Vcl.Buttons, Vcl.ExtCtrls, Vcl.ActnList, System.Actions, BCCommon.Options.Container,
-  BCCommon.Frames.Options.Base, BCControls.Panel, sPanel, sFrameAdapter, sEdit, BCControls.Edit, sComboBox,
-  sFontCtrls, BCControls.ComboBox, acSlider, sLabel;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  BCCommon.Options.Container,
+  BCCommon.Frames.Options.Base, BCControls.Panel, BCControls.Edit,
+  sFontCtrls, BCControls.ComboBox, acSlider, sLabel, Vcl.StdCtrls, sEdit, sComboBox, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsStatusBarFrame = class(TBCOptionsBaseFrame)

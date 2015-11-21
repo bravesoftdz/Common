@@ -1,8 +1,6 @@
 inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
   Width = 223
   Height = 310
-  ExplicitWidth = 223
-  ExplicitHeight = 310
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
@@ -85,16 +83,10 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         BoundLabel.Active = True
         BoundLabel.Caption = 'Background color'
         BoundLabel.Indent = 4
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
         BoundLabel.Layout = sclTopLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         SkinData.SkinSection = 'COMBOBOX'
         Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor]
+        Selected = clWindow
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -112,17 +104,10 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         BoundLabel.Active = True
         BoundLabel.Caption = 'Foreground color'
         BoundLabel.Indent = 4
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
         BoundLabel.Layout = sclTopLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         SkinData.SkinSection = 'COMBOBOX'
         Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbCustomColor]
-        Selected = clWhite
+        Selected = clWindow
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -138,15 +123,6 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         Width = 50
         AutoSize = True
         TabOrder = 2
-        BoundLabel.Indent = 0
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
-        BoundLabel.Layout = sclLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         ImageIndexOff = 0
         ImageIndexOn = 0
         FontOn.Charset = DEFAULT_CHARSET
@@ -180,20 +156,14 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         BoundLabel.Active = True
         BoundLabel.Caption = 'Insert'
         BoundLabel.Indent = 4
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
         BoundLabel.Layout = sclTopLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         DropDownCount = 9
         SkinData.SkinSection = 'COMBOBOX'
         VerticalAlignment = taAlignTop
         Style = csOwnerDrawFixed
         ItemIndex = -1
         TabOrder = 0
+        UseMouseWheel = False
       end
       object ComboBoxStylesOverwriteCaret: TBCComboBox
         Left = 10
@@ -208,20 +178,14 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         BoundLabel.Active = True
         BoundLabel.Caption = 'Overwrite'
         BoundLabel.Indent = 4
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
         BoundLabel.Layout = sclTopLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
         DropDownCount = 9
         SkinData.SkinSection = 'COMBOBOX'
         VerticalAlignment = taAlignTop
         Style = csOwnerDrawFixed
         ItemIndex = -1
         TabOrder = 1
+        UseMouseWheel = False
       end
     end
     object SliderVisible: TsSlider
@@ -230,15 +194,6 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
       Width = 50
       AutoSize = True
       TabOrder = 2
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -255,15 +210,6 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
       Width = 50
       AutoSize = True
       TabOrder = 3
-      BoundLabel.Indent = 0
-      BoundLabel.Font.Charset = DEFAULT_CHARSET
-      BoundLabel.Font.Color = clWindowText
-      BoundLabel.Font.Height = -11
-      BoundLabel.Font.Name = 'Tahoma'
-      BoundLabel.Font.Style = []
-      BoundLabel.Layout = sclLeft
-      BoundLabel.MaxWidth = 0
-      BoundLabel.UseSkinColor = True
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET

@@ -4,9 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Dialogs.Base, Vcl.StdCtrls, sButton, BCControls.Button, Vcl.ExtCtrls,
-  sPanel, BCControls.Panel, sListBox, sSplitter, acSkinPreview, BCControls.Splitter, BCComponents.SkinManager, acSlider,
-  Vcl.ComCtrls, sTrackBar, sLabel, sGroupBox;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Dialogs.Base, Vcl.StdCtrls, BCControls.Button,
+  BCControls.Panel, sListBox, acSkinPreview, BCControls.Splitter, BCComponents.SkinManager, acSlider,
+  Vcl.ComCtrls, sTrackBar, sLabel, sGroupBox, sButton, Vcl.ExtCtrls, sPanel, sSplitter;
 
 type
   TSkinSelectDialog = class(TBCBaseDialog)

@@ -308,7 +308,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
         ShowProgress = True
         BarOffsetV = 0
         BarOffsetH = 0
-        ShowProgressFrom = -100
+        ShowProgressFrom = -50
       end
     end
     object SliderExtendedBordersMode: TsSlider

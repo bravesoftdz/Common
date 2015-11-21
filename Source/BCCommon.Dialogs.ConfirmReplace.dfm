@@ -1,17 +1,9 @@
 inherited ConfirmReplaceDialog: TConfirmReplaceDialog
   Left = 176
   Top = 158
-  BorderStyle = bsDialog
   Caption = 'Confirm Replace'
   ClientHeight = 94
   ClientWidth = 333
-  Color = clWindow
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
-  OldCreateOrder = False
   Position = poMainFormCenter
   OnCreate = FormCreate
   PixelsPerInch = 96

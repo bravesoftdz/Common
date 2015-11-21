@@ -122,6 +122,7 @@ object ConvertForm: TConvertForm
     ItemIndex = -1
     TabOrder = 0
     OnChange = ComboBoxTypeChange
+    UseMouseWheel = False
   end
   object ComboBoxFrom: TBCComboBox
     Left = 9
@@ -144,6 +145,7 @@ object ConvertForm: TConvertForm
     ItemIndex = -1
     TabOrder = 1
     OnChange = ActionConvertExecute
+    UseMouseWheel = False
   end
   object ComboBoxTo: TBCComboBox
     Left = 203
@@ -166,6 +168,7 @@ object ConvertForm: TConvertForm
     ItemIndex = -1
     TabOrder = 2
     OnChange = ActionConvertExecute
+    UseMouseWheel = False
   end
   object ActionList: TActionList
     Left = 96

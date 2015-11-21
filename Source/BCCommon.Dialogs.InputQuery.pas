@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, BCCommon.Dialogs.Base, Vcl.StdCtrls, BCControls.Edit,
-  Vcl.ExtCtrls, sEdit, BCControls.Panel, sPanel;
+  BCControls.Panel, sEdit, Vcl.ExtCtrls, sPanel;
 
 type
   TInputQueryDialog = class(TBCBaseDialog)

@@ -17,7 +17,7 @@ procedure AlignSliders(AWinControl: TWinControl);
 implementation
 
 uses
-  System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, BCCommon.Language.Strings, sLabel, BCCommon.StringUtils;
+  System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, sLabel, BCCommon.StringUtils;
 
 function BrowseURL(const URL: string): Boolean;
 var
