@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCComponents.SkinProvider, BCComponents.TitleBar,
   BCComponents.SkinManager, BCControls.StatusBar, Vcl.ActnList, BCControls.ProgressBar,
-  Vcl.AppEvnts, Vcl.Menus, sSkinManager, System.Win.TaskbarCore, Vcl.Taskbar;
+  Vcl.AppEvnts, Vcl.Menus, sSkinManager, System.Win.TaskbarCore, Vcl.Taskbar, System.Actions, sSkinProvider, acTitleBar,
+  Vcl.ComCtrls, sStatusBar;
 
 type
   TBCBaseForm = class(TForm)

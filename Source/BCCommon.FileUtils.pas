@@ -369,8 +369,6 @@ begin
     Result := '';
 end;
 
-// if DefineDosDevice(DDD_RAW_TARGET_PATH, 'P:', 'F:\Backup\Music\Modules') then
-
 function SystemDir: string;
 begin
   SetLength(Result, Max_Path);
