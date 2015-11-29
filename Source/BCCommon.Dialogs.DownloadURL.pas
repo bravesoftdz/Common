@@ -24,7 +24,7 @@ type
   private
     FCancel: Boolean;
     procedure OnURLDownloadProgress(Sender: TDownLoadURL; Progress, ProgressMax: Cardinal;
-      StatusCode: TURLDownloadStatus; StatusText: String; var Cancel: Boolean);
+      StatusCode: TURLDownloadStatus; StatusText: string; var Cancel: Boolean);
     procedure SetInformationText(Value: string);
   public
     function Open(DefaultFileName: string; DownloadURL: string): string;

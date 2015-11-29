@@ -316,6 +316,8 @@ object CompareFrame: TCompareFrame
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           Alignment = taLeftJustify
+          BoundLabel.Indent = 4
+          BoundLabel.Layout = sclTopLeft
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           ItemIndex = -1
@@ -972,6 +974,8 @@ object CompareFrame: TCompareFrame
           Height = 21
           Anchors = [akLeft, akTop, akRight]
           Alignment = taLeftJustify
+          BoundLabel.Indent = 4
+          BoundLabel.Layout = sclTopLeft
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           ItemIndex = -1

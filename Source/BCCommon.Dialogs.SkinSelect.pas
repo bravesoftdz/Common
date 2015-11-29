@@ -139,7 +139,7 @@ const
   LINEHEIGHT = 3;
 var
   LRect: TRect;
-  X: integer;
+  X: Integer;
   LHUEValue, LHUEStep: Real;
 begin
   LRect := TrackBarHueOffset.ChannelRect;

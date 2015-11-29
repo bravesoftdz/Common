@@ -18,7 +18,7 @@ function GetSQLFormatterDLLFilename: string;
 function IsVirtualDrive(Drive: Char): Boolean;
 function SystemDir: string;
 function VirtualDrivePath(Drive: Char): string;
-procedure CreateVirtualDrive(const Drive: Char; const Path: String);
+procedure CreateVirtualDrive(const Drive: Char; const Path: string);
 procedure DeleteVirtualDrive(const Drive: Char);
 procedure FilePropertiesDialog(FileName: string);
 
@@ -375,9 +375,9 @@ begin
   GetSystemDirectory(@Result[1], Max_Path);
 end;
 
-procedure CreateVirtualDrive(const Drive: Char; const Path: String);
+procedure CreateVirtualDrive(const Drive: Char; const Path: string);
 var
-  Param: String;
+  Param: string;
 begin
   Param := Format('%s: "%s"', [Drive, Path]);
   ShellExecute(1, 'open', 'subst', PChar(Param), PChar(SystemDir), SW_HIDE);
@@ -385,7 +385,7 @@ end;
 
 procedure DeleteVirtualDrive(const Drive: Char);
 var
-  Param: String;
+  Param: string;
 begin
   Param := Format('%s: /d', [Drive]);
   ShellExecute(1, 'open', 'subst', PChar(Param), PChar(SystemDir), SW_HIDE);

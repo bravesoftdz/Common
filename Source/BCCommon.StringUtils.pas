@@ -242,7 +242,7 @@ end;
 function WordCount(s: string): Integer;
 var
   i: Integer;
-  IsWhite, IsWhiteOld: boolean;
+  IsWhite, IsWhiteOld: Boolean;
 begin
   IsWhiteOld := True;
   Result := 0;
@@ -258,7 +258,7 @@ end;
 
 function RemoveNonAlpha(Source: string): string;
 var
-  i: integer;
+  i: Integer;
 begin
   Result := '';
   for i :=0 to Length(Source) - 1 do

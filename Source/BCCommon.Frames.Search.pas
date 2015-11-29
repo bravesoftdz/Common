@@ -18,7 +18,7 @@ type
     ActionList: TActionList;
     ActionOptions: TAction;
     ComboBoxSearchText: TBCComboBox;
-    LabelSearchResultCount: TBCLabelFX;
+    LabelSearchResultCount: TsLabel;
     PanelRight: TBCPanel;
     PanelToolbar: TBCPanel;
     SpeedButtonSearchClose: TBCSpeedButton;
@@ -115,7 +115,7 @@ begin
   begin
     if Assigned(Editor) then
       if Editor.CanFocus then
-         Editor.SetFocus;
+        Editor.SetFocus;
     if ComboBoxSearchText.Items.IndexOf(ComboBoxSearchText.Text) = -1 then
       ComboBoxSearchText.Items.Add(ComboBoxSearchText.Text);
     Key := #0;

@@ -210,7 +210,7 @@ end; }
 constructor TCompareFrame.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  FDiff := TDiff.Create(self);
+  FDiff := TDiff.Create(Self);
   FSourceLeft := TStringList.Create;
   FSourceRight := TStringList.Create;
   FResultLeft := TStringList.Create;

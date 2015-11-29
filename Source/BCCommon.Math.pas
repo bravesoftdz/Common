@@ -2,7 +2,7 @@ unit BCCommon.Math;
 
 interface
 
-function BinToInt(Value: String): LongInt;
+function BinToInt(Value: string): LongInt;
 function IntToBin(Value: LongInt; Digits: Integer): string;
 function MinMax(x, mi, ma: Integer): Integer;
 
@@ -11,7 +11,7 @@ implementation
 uses
   System.Math;
 
-function BinToInt(Value: String): LongInt;
+function BinToInt(Value: string): LongInt;
 var
   i: Integer;
 begin

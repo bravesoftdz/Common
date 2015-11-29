@@ -47,6 +47,7 @@ inherited DownloadURLDialog: TDownloadURLDialog
       Align = alBottom
       SkinData.SkinSection = 'GAUGE'
       ForeColor = clBlack
+      Progress = 0
       Suffix = '%'
     end
   end

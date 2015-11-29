@@ -461,7 +461,7 @@ end;
 
 procedure TOptionsToolbarFrame.MoveSelectedNodesUp;
 var
-  i: integer;
+  i: Integer;
   Node, PrevNode: PVirtualNode;
 begin
   with VirtualDrawTree do

@@ -118,11 +118,15 @@ inherited BCSearchFrame: TBCSearchFrame
       ParentColor = True
       TabOrder = 1
       SkinData.SkinSection = 'CHECKBOX'
-      object LabelSearchResultCount: TBCLabelFX
-        Left = 269
+      object LabelSearchResultCount: TsLabel
+        AlignWithMargins = True
+        Left = 274
         Top = 0
-        Width = 12
-        Height = 24
+        Width = 4
+        Height = 16
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Bottom = 0
         Align = alRight
         ParentFont = False
         Layout = tlCenter
@@ -131,10 +135,6 @@ inherited BCSearchFrame: TBCSearchFrame
         Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = []
-        Angle = 0
-        Shadow.AlphaValue = 0
-        Shadow.OffsetKeeper.LeftTop = -3
-        Shadow.OffsetKeeper.RightBottom = 5
       end
     end
     object PanelToolbar: TBCPanel
