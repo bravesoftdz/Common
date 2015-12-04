@@ -1299,14 +1299,19 @@ object LanguageDataModule: TLanguageDataModule
           'C# files (*.cs)')
       end
       item
+        Name = 'C'
+        Strings.Strings = (
+          'C files (*.c;*.h)')
+      end
+      item
         Name = 'C++'
         Strings.Strings = (
           'C++ files (*.cpp;*.hpp)')
       end
       item
-        Name = 'C'
+        Name = 'CoffeeScript'
         Strings.Strings = (
-          'C files (*.c;*.h)')
+          'CoffeeScript files (*.coffee)')
       end
       item
         Name = 'CSS'
@@ -1332,6 +1337,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'Go'
         Strings.Strings = (
           'Go files (*.go)')
+      end
+      item
+        Name = 'Groovy'
+        Strings.Strings = (
+          'Groovy files (*.groovy;*.gvy;*.gy;*.gsh)')
       end
       item
         Name = 'HTML with Scripts'
