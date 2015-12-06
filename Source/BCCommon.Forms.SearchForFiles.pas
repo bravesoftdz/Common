@@ -10,7 +10,7 @@ uses
   sPanel;
 
 type
-  TOpenFileEvent = procedure(var FileName: string);
+  TOpenFileEvent = procedure(var AFileName: string);
 
   TSearchForFilesForm = class(TForm)
     ActionClear: TAction;
