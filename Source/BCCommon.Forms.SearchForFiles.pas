@@ -7,7 +7,7 @@ uses
   Vcl.ActnList, Vcl.ImgList, BCControls.ImageList, VirtualTrees, BCControls.ProgressBar,
   Vcl.ComCtrls, BCControls.ButtonedEdit, System.Win.TaskbarCore, Vcl.Taskbar, BCControls.Panel,
   sSkinProvider, BCControls.Statusbar, System.Diagnostics, System.UITypes, System.Actions, sStatusBar, Vcl.StdCtrls,
-  sPanel;
+  sPanel, System.ImageList;
 
 type
   TOpenFileEvent = procedure(var AFileName: string);
@@ -22,6 +22,7 @@ type
     StatusBar: TBCStatusBar;
     Taskbar: TTaskbar;
     VirtualDrawTreeSearch: TVirtualDrawTree;
+    ImageList: TImageList;
     procedure ActionClearExecute(Sender: TObject);
     procedure ActionSearchExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

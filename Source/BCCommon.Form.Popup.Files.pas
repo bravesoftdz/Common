@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VirtualTrees, Vcl.StdCtrls, Vcl.ExtCtrls, BCControls.ButtonedEdit, sSkinProvider,
-  System.Actions, Vcl.ActnList;
+  System.Actions, Vcl.ActnList, System.ImageList, Vcl.ImgList;
 
 type
   TSelectFileEvent = procedure(var APageIndex: Integer) of object;
@@ -17,6 +17,7 @@ type
     ActionList: TActionList;
     ActionClear: TAction;
     ActionSearch: TAction;
+    ImageList: TImageList;
     procedure FormShow(Sender: TObject);
     procedure ActionClearExecute(Sender: TObject);
     procedure ActionSearchExecute(Sender: TObject);
@@ -47,7 +48,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.Types, BCControls.Utils, sGraphUtils, sVclUtils, sDefaults;
+  System.Types, BCControls.Utils, sGraphUtils, sVclUtils, sDefaults, System.Math;
 
 type
   PSearchRec = ^TSearchRec;
@@ -79,13 +80,20 @@ var
   Node: PVirtualNode;
   NodeData: PSearchRec;
   LFileName, LSelectedFile: string;
+  LWidth, LMaxWidth: Integer;
 begin
+  LMaxWidth := 0;
   LSelectedFile := Copy(ASelectedFile, 2, Length(ASelectedFile) - 2); { Remove [] }
   for i := 0 to AFiles.Count - 1 do
   begin
     Node := VirtualDrawTreeSearch.AddChild(nil);
     NodeData := VirtualDrawTreeSearch.GetNodeData(Node);
     LFileName := AFiles[i];
+
+    LWidth := VirtualDrawTreeSearch.Canvas.TextWidth(LFileName);
+    if LWidth > LMaxWidth then
+      LMaxWidth := LWidth;
+
     NodeData.FileName := ExtractFileName(LFileName);
     NodeData.FilePath := ExtractFilePath(LFileName);
     NodeData.ImageIndex := GetIconIndex(LFileName);
@@ -97,6 +105,8 @@ begin
   {$WARNINGS ON}
   VirtualDrawTreeSearch.Sort(nil, 0, sdAscending, False);
   VirtualDrawTreeSearch.Invalidate;
+  Width := LMaxWidth + 80;
+  Height := Min(Integer(VirtualDrawTreeSearch.DefaultNodeHeight) * AFiles.Count + ButtonedEdit.Height + 13, TForm(Self.PopupParent).Height);
 
   Visible := True;
 end;
