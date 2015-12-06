@@ -37,7 +37,8 @@ object PopupFilesForm: TPopupFilesForm
     Indent = 0
     TabOrder = 0
     TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning]
-    TreeOptions.PaintOptions = [toShowRoot, toThemeAware]
+    TreeOptions.PaintOptions = [toHideFocusRect, toShowRoot, toThemeAware]
+    TreeOptions.SelectionOptions = [toFullRowSelect]
     OnCompareNodes = VirtualDrawTreeSearchCompareNodes
     OnDblClick = VirtualDrawTreeSearchDblClick
     OnDrawNode = VirtualDrawTreeSearchDrawNode
@@ -60,6 +61,8 @@ object PopupFilesForm: TPopupFilesForm
     RightButton.ImageIndex = 0
     RightButton.PressedImageIndex = 2
     TabOrder = 1
+    OnChange = ActionSearchExecute
+    OnRightButtonClick = ActionClearExecute
   end
   object SkinProvider: TsSkinProvider
     AddedTitle.Font.Charset = DEFAULT_CHARSET

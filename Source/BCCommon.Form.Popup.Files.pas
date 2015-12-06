@@ -89,6 +89,8 @@ begin
     NodeData.FileName := ExtractFileName(LFileName);
     NodeData.FilePath := ExtractFilePath(LFileName);
     NodeData.ImageIndex := GetIconIndex(LFileName);
+    if NodeData.ImageIndex = -1 then
+      NodeData.ImageIndex := 0;
     NodeData.PageIndex := Integer(AFiles.Objects[i]);
     VirtualDrawTreeSearch.Selected[Node] := LSelectedFile = LFileName;
   end;
@@ -176,11 +178,13 @@ begin
       Format := DT_TOP or DT_LEFT or DT_VCENTER or DT_SINGLELINE;
 
       DrawText(Canvas.Handle, S, Length(S), R, Format);
-      R.Left := R.Left + Canvas.TextWidth(S);
-      S := System.SysUtils.Format(' (%s)', [Data.FilePath]);
-      Canvas.Font.Color := MixColors(ColorToRGB(Font.Color), GetControlColor(Parent), DefDisabledBlend);
-
-      DrawText(Canvas.Handle, S, Length(S), R, Format);
+      if Data.FilePath <> '' then
+      begin
+        R.Left := R.Left + Canvas.TextWidth(S);
+        S := System.SysUtils.Format(' (%s)', [Data.FilePath]);
+        Canvas.Font.Color := MixColors(ColorToRGB(Font.Color), GetControlColor(Parent), DefDisabledBlend);
+        DrawText(Canvas.Handle, S, Length(S), R, Format);
+      end;
     end;
   end;
 end;

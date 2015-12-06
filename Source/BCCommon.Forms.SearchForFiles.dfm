@@ -56,9 +56,9 @@ object SearchForFilesForm: TSearchForFilesForm
   TextHeight = 13
   object PanelSearchingFiles: TBCPanel
     Left = 0
-    Top = 29
+    Top = 24
     Width = 383
-    Height = 353
+    Height = 358
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Searching files...'
@@ -70,13 +70,12 @@ object SearchForFilesForm: TSearchForFilesForm
   object EditSearchFor: TBCButtonedEdit
     AlignWithMargins = True
     Left = 0
-    Top = 6
+    Top = 3
     Width = 383
     Height = 21
     Margins.Left = 0
-    Margins.Top = 6
     Margins.Right = 0
-    Margins.Bottom = 2
+    Margins.Bottom = 0
     Align = alTop
     DoubleBuffered = True
     LeftButton.Enabled = False
@@ -91,12 +90,11 @@ object SearchForFilesForm: TSearchForFilesForm
   object VirtualDrawTreeSearch: TVirtualDrawTree
     AlignWithMargins = True
     Left = 0
-    Top = 32
+    Top = 27
     Width = 383
-    Height = 345
+    Height = 352
     Margins.Left = 0
     Margins.Right = 0
-    Margins.Bottom = 5
     Align = alClient
     Header.AutoSizeIndex = 0
     Header.Font.Charset = DEFAULT_CHARSET
@@ -108,7 +106,8 @@ object SearchForFilesForm: TSearchForFilesForm
     Indent = 0
     TabOrder = 1
     TreeOptions.MiscOptions = [toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning]
-    TreeOptions.PaintOptions = [toShowRoot, toThemeAware]
+    TreeOptions.PaintOptions = [toHideFocusRect, toShowRoot, toThemeAware]
+    TreeOptions.SelectionOptions = [toFullRowSelect]
     OnCompareNodes = VirtualDrawTreeSearchCompareNodes
     OnDblClick = VirtualDrawTreeSearchDblClick
     OnDrawNode = VirtualDrawTreeSearchDrawNode
