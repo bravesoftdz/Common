@@ -1429,6 +1429,11 @@ object LanguageDataModule: TLanguageDataModule
           'Rust files (*.rc)')
       end
       item
+        Name = 'Scala'
+        Strings.Strings = (
+          'Scala files (*.scala)')
+      end
+      item
         Name = 'SQL - Standard'
         Strings.Strings = (
           'SQL files (*.sql)')
