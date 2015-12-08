@@ -92,6 +92,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'LatestVersion'
         Strings.Strings = (
           'You are using the latest version.')
+      end
+      item
+        Name = 'SelectFilePathFromDirectory'
+        Strings.Strings = (
+          'Select file path from directory')
       end>
     Left = 90
     Top = 84

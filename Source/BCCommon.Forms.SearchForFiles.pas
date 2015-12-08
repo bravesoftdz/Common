@@ -318,6 +318,8 @@ var
   LTimeDifference: string;
   LCount: Integer;
 begin
+  if RootDirectory = '' then
+    Exit;
   Caption := Format('%s - [%s]', [Caption, RootDirectory]);
   PanelSearchingFiles.Visible := False;
   ReadIniFile;

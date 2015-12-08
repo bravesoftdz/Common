@@ -69,12 +69,10 @@ object SearchForFilesForm: TSearchForFilesForm
   end
   object EditSearchFor: TBCButtonedEdit
     AlignWithMargins = True
-    Left = 0
+    Left = 3
     Top = 3
-    Width = 383
+    Width = 377
     Height = 21
-    Margins.Left = 0
-    Margins.Right = 0
     Margins.Bottom = 0
     Align = alTop
     DoubleBuffered = True
@@ -90,12 +88,10 @@ object SearchForFilesForm: TSearchForFilesForm
   end
   object VirtualDrawTreeSearch: TVirtualDrawTree
     AlignWithMargins = True
-    Left = 0
+    Left = 3
     Top = 27
-    Width = 383
+    Width = 377
     Height = 352
-    Margins.Left = 0
-    Margins.Right = 0
     Align = alClient
     Header.AutoSizeIndex = 0
     Header.Font.Charset = DEFAULT_CHARSET
