@@ -1,4 +1,4 @@
-package BCCommonRXE8;
+package BCCommon.Delphi.XE8.Runtime;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -31,13 +31,15 @@ package BCCommonRXE8;
 
 requires
   rtl,
-  BCControlsRXE8,
-  BCComponentsRXE8,
+  BCControls.Delphi.XE8.Runtime,
+  BCComponents.Delphi.XE8.Runtime,
   VirtualTreesR,
   vclactnband,
   xmlrtl,
   acntDelphiXE8,
-  BCEditor.Delphi.XE8.Runtime;
+  BCEditor.Delphi.XE8.Runtime,
+  Jcl,
+  EhLib220;
 
 contains
   BCCommon.Images in '..\Source\BCCommon.Images.pas' {ImagesDataModule: TDataModule},

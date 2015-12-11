@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{DA99CD9C-F4BD-4109-843B-1C2969BB29EE}</ProjectGuid>
-        <MainSource>BCCommonRXE8.dpk</MainSource>
+        <MainSource>BCCommon.Delphi.XE8.Runtime.dpk</MainSource>
         <ProjectVersion>17.2</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
@@ -49,7 +49,7 @@
         <GenPackage>true</GenPackage>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <SanitizedProjectName>BCCommonRXE8</SanitizedProjectName>
+        <SanitizedProjectName>BCCommon_Delphi_XE8_Runtime</SanitizedProjectName>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
@@ -93,13 +93,15 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
-        <DCCReference Include="BCControlsRXE8.dcp"/>
-        <DCCReference Include="BCComponentsRXE8.dcp"/>
+        <DCCReference Include="BCControls.Delphi.XE8.Runtime.dcp"/>
+        <DCCReference Include="BCComponents.Delphi.XE8.Runtime.dcp"/>
         <DCCReference Include="VirtualTreesR.dcp"/>
         <DCCReference Include="vclactnband.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
         <DCCReference Include="acntDelphiXE8.dcp"/>
         <DCCReference Include="BCEditor.Delphi.XE8.Runtime.dcp"/>
+        <DCCReference Include="Jcl.dcp"/>
+        <DCCReference Include="EhLib220.dcp"/>
         <DCCReference Include="..\Source\BCCommon.Images.pas">
             <Form>ImagesDataModule</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -316,7 +318,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">BCCommonRXE8.dpk</Source>
+                    <Source Name="MainSource">BCCommon.Delphi.XE8.Runtime.dpk</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclDataSnapFireDAC210.bpl">Embarcadero DataSnap FireDAC</Excluded_Packages>
@@ -327,9 +329,9 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="1">
-                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\16.0\Bpl\BCCommonRXE8.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\16.0\Bpl\BCCommon.Delphi.XE8.Runtime.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>BCCommonRXE8.bpl</RemoteName>
+                        <RemoteName>BCCommon_Delphi_XE8_Runtime.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -651,12 +653,12 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
