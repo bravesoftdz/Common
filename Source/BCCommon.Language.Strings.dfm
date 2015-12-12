@@ -1409,6 +1409,11 @@ object LanguageDataModule: TLanguageDataModule
           'Pascal files (*.pas;*.dpr;*.dpk)')
       end
       item
+        Name = 'OCalm'
+        Strings.Strings = (
+          'OCalm files (*.ml)')
+      end
+      item
         Name = 'Perl'
         Strings.Strings = (
           'Perl files (*.pl;*.pm;*.cgi)')
@@ -1444,6 +1449,11 @@ object LanguageDataModule: TLanguageDataModule
           'SQL files (*.sql)')
       end
       item
+        Name = 'TclTk'
+        Strings.Strings = (
+          'Tcl/Tk files (*.tcl)')
+      end
+      item
         Name = 'Text'
         Strings.Strings = (
           'Text files (*.txt;*.ini)')
@@ -1456,7 +1466,7 @@ object LanguageDataModule: TLanguageDataModule
       item
         Name = 'XML'
         Strings.Strings = (
-          'XML files (*.xml;*.xsd;*.dtd)')
+          'XML files (*.xml;*.xsd;*.dtd;*.dproj;*.groupproj)')
       end
       item
         Name = 'XSL'

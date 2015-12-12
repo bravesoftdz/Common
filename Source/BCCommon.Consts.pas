@@ -17,14 +17,6 @@ const
   PARAM_NO_INI = '-noini';
   PARAM_NO_SKIN = '-noskin';
 
-  ENCODING_ANSI = 0;
-  ENCODING_ASCII = 1;
-  ENCODING_BIG_ENDIAN_UNICODE = 2;
-  ENCODING_UNICODE = 3;
-  ENCODING_UTF7 = 4;
-  ENCODING_UTF8 = 5;
-  ENCODING_UTF_WITHOUT_BOM = 6;
-
   ShortCuts: array[0..110] of TShortCut = (
     scNone,
     Byte('A') or scCtrl,

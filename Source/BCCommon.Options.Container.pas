@@ -469,7 +469,6 @@ type
     FDefaultColor: string;
     FColorStrings: TStrings;
     FDefaultEncoding: Integer;
-    FEncodingStrings: TStrings;
     FDefaultHighlighter: string;
     FDefaultHighlighterColor: string;
     FDefaultSQLHighlighter: string;
@@ -550,7 +549,6 @@ type
     property DefaultSQLHighlighter: string read FDefaultSQLHighlighter write FDefaultSQLHighlighter;
     { Strings }
     property ColorStrings: TStrings read FColorStrings write FColorStrings;
-    property EncodingStrings: TStrings read FEncodingStrings write FEncodingStrings;
     property HighlighterStrings: TStrings read FHighlighterStrings write FHighlighterStrings;
     { Directory }
     [IniValue('Options', 'DirAutoHide', 'True')]
@@ -951,8 +949,6 @@ destructor TEditBoneOptionsContainer.Destroy;
 begin
   if Assigned(FColorStrings) then
     FColorStrings.Free;
-  if Assigned(FEncodingStrings) then
-    FEncodingStrings.Free;
   if Assigned(FHighlighterStrings) then
     FHighlighterStrings.Free;
   if Assigned(FileTypes) then
@@ -962,7 +958,7 @@ end;
 
 procedure TEditBoneOptionsContainer.ReadIniFile;
 var
-  i, j: Integer;
+  i: Integer;
   LFileTypes: TStrings;
 begin
   inherited;
@@ -977,14 +973,7 @@ begin
   try
     ReadSectionValues('FileTypes', LFileTypes);
     for i := 0 to LFileTypes.Count - 1 do
-    begin
-      for j := 0 to FFileTypes.Count - 1 do
-      if LFileTypes.Names[i] = FFileTypes.Names[j] then
-      begin
-        FFileTypes.Values[FFileTypes.Names[j]] := LFileTypes.Values[LFileTypes.Names[i]];
-        Break;
-      end;
-    end;
+      FFileTypes.ValueFromIndex[i] := LFileTypes.ValueFromIndex[i];
   finally
     LFileTypes.Free;
     Free;

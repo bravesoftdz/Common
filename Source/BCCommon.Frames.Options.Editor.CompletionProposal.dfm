@@ -1,12 +1,12 @@
 inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
   Width = 164
-  Height = 85
+  Height = 89
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 160
-    Height = 85
+    Height = 89
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -24,7 +24,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
     SkinData.SkinSection = 'CHECKBOX'
     object StickyLabelCaseSensitive: TsStickyLabel
       Left = 0
-      Top = 26
+      Top = 27
       Width = 102
       Height = 13
       AutoSize = False
@@ -44,7 +44,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
     end
     object ComboBoxShortcut: TBCComboBox
       Left = 0
-      Top = 63
+      Top = 67
       Width = 160
       Height = 22
       Margins.Left = 4
@@ -72,7 +72,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
     end
     object SliderCaseSensitive: TsSlider
       Left = 110
-      Top = 22
+      Top = 23
       Width = 50
       AutoSize = True
       TabOrder = 1
