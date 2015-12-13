@@ -974,7 +974,7 @@ begin
     ReadSectionValues('FileTypes', LFileTypes);
     for i := 0 to LFileTypes.Count - 1 do
     begin
-      j := LFileTypes.IndexOfName(FFileTypes.ValueFromIndex[i]);
+      j := LFileTypes.IndexOfName(FFileTypes.Names[i]);
       if j <> -1 then
         FFileTypes.ValueFromIndex[i] := LFileTypes.ValueFromIndex[j];
     end;
