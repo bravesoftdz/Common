@@ -130,7 +130,7 @@ end;
 procedure TOptionsEditorFontFrame.Init;
 begin
   FModified := False;
-  ComboBoxColor.Items := OptionsContainer.ColorStrings;
+  ComboBoxColor.Items := OptionsContainer.HighlighterColorStrings;
   ComboBoxColor.ItemIndex := ComboBoxColor.Items.IndexOf(OptionsContainer.DefaultColor);
   FFileName := ComboBoxColor.Text;
   ComboBoxColorChange(Self);

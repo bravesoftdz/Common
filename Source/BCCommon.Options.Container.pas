@@ -467,7 +467,7 @@ type
   TEditBoneOptionsContainer = class(TOptionsContainer)
   private
     FDefaultColor: string;
-    FColorStrings: TStrings;
+    FHighlighterColorStrings: TStrings;
     FDefaultEncoding: Integer;
     FDefaultHighlighter: string;
     FDefaultHighlighterColor: string;
@@ -548,7 +548,7 @@ type
      [IniValue('Options', 'DefaultSQLHighlighter', 'SQL - Standard')]
     property DefaultSQLHighlighter: string read FDefaultSQLHighlighter write FDefaultSQLHighlighter;
     { Strings }
-    property ColorStrings: TStrings read FColorStrings write FColorStrings;
+    property HighlighterColorStrings: TStrings read FHighlighterColorStrings write FHighlighterColorStrings;
     property HighlighterStrings: TStrings read FHighlighterStrings write FHighlighterStrings;
     { Directory }
     [IniValue('Options', 'DirAutoHide', 'True')]
@@ -947,8 +947,8 @@ end;
 {$ifdef EDITBONE}
 destructor TEditBoneOptionsContainer.Destroy;
 begin
-  if Assigned(FColorStrings) then
-    FColorStrings.Free;
+  if Assigned(FHighlighterColorStrings) then
+    FHighlighterColorStrings.Free;
   if Assigned(FHighlighterStrings) then
     FHighlighterStrings.Free;
   if Assigned(FileTypes) then

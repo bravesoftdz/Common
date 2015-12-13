@@ -405,7 +405,7 @@ begin
   FModified := False;
   ComboBoxHighlighter.Items := OptionsContainer.HighlighterStrings;
   ComboBoxHighlighter.ItemIndex := ComboBoxHighlighter.Items.IndexOf(OptionsContainer.DefaultHighlighter);
-  ComboBoxColor.Items := OptionsContainer.ColorStrings;
+  ComboBoxColor.Items := OptionsContainer.HighlighterColorStrings;
   ComboBoxColor.ItemIndex := ComboBoxColor.Items.IndexOf(OptionsContainer.DefaultColor);
   ComboBoxHighlighterChange(nil);
   FFileName := ComboBoxColor.Text;
