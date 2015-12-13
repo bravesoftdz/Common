@@ -958,7 +958,7 @@ end;
 
 procedure TEditBoneOptionsContainer.ReadIniFile;
 var
-  i: Integer;
+  i, j: Integer;
   LFileTypes: TStrings;
 begin
   inherited;
@@ -973,7 +973,11 @@ begin
   try
     ReadSectionValues('FileTypes', LFileTypes);
     for i := 0 to LFileTypes.Count - 1 do
-      FFileTypes.ValueFromIndex[i] := LFileTypes.ValueFromIndex[i];
+    begin
+      j := LFileTypes.IndexOfName(FFileTypes.ValueFromIndex[i]);
+      if j <> -1 then
+        FFileTypes.ValueFromIndex[i] := LFileTypes.ValueFromIndex[j];
+    end;
   finally
     LFileTypes.Free;
     Free;
