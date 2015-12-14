@@ -12,6 +12,8 @@ function GetFileDateTime(FileName: string): TDateTime;
 function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
 function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStringDynArray;
 function GetFileVersion(FileName: string): string;
+function GetHighlighters: TStringList;
+function GetHighlighterColors: TStringList;
 function GetIniFilename: string;
 function GetOutFilename: string;
 function GetSQLFormatterDLLFilename: string;
@@ -403,6 +405,30 @@ begin
   ShellExecuteInfo.lpVerb := 'properties';
   ShellExecuteInfo.fMask  := SEE_MASK_INVOKEIDLIST;
   ShellExecuteEx(@ShellExecuteInfo);
+end;
+
+function GetHighlighters: TStringList;
+var
+  LFileName, LName: string;
+begin
+  Result := TStringList.Create;
+  for LFileName in GetFiles(ExtractFilePath(Application.ExeName) + '\Highlighters\', '*.json', False) do
+  begin
+    LName := ChangeFileExt(ExtractFileName(LFileName), '');
+    Result.Add(LName);
+  end;
+end;
+
+function GetHighlighterColors: TStringList;
+var
+  LFileName, LName: string;
+begin
+  Result := TStringList.Create;
+  for LFileName in GetFiles(ExtractFilePath(Application.ExeName) + '\Colors\', '*.json', False) do
+  begin
+    LName := ChangeFileExt(ExtractFileName(LFileName), '');
+    Result.Add(LName);
+  end;
 end;
 
 end.
