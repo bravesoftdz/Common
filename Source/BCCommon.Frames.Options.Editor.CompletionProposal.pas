@@ -15,6 +15,8 @@ type
     SliderCaseSensitive: TsSlider;
     StickyLabelEnabled: TsStickyLabel;
     SliderEnabled: TsSlider;
+    SliderAutoInvoke: TsSlider;
+    StickyLabelAutoInvoke: TsStickyLabel;
   protected
     procedure Init; override;
     procedure GetData; override;
@@ -59,16 +61,24 @@ end;
 
 procedure TOptionsEditorCompletionProposalFrame.PutData;
 begin
-  OptionsContainer.CompletionProposalEnabled := SliderEnabled.SliderOn;
-  OptionsContainer.CompletionProposalCaseSensitive := SliderCaseSensitive.SliderOn;
-  OptionsContainer.CompletionProposalShortcut := ComboBoxShortcut.Text;
+  with OptionsContainer do
+  begin
+    CompletionProposalEnabled := SliderEnabled.SliderOn;
+    CompletionProposalCaseSensitive := SliderCaseSensitive.SliderOn;
+    CompletionProposalAutoInvoke := SliderAutoInvoke.SliderOn;
+    CompletionProposalShortcut := ComboBoxShortcut.Text;
+  end;
 end;
 
 procedure TOptionsEditorCompletionProposalFrame.GetData;
 begin
-  SliderEnabled.SliderOn := OptionsContainer.CompletionProposalEnabled;
-  SliderCaseSensitive.SliderOn := OptionsContainer.CompletionProposalCaseSensitive;
-  ComboBoxShortcut.ItemIndex := ComboBoxShortcut.Items.IndexOf(OptionsContainer.CompletionProposalShortcut);
+  with OptionsContainer do
+  begin
+    SliderEnabled.SliderOn := CompletionProposalEnabled;
+    SliderCaseSensitive.SliderOn := CompletionProposalCaseSensitive;
+    SliderAutoInvoke.SliderOn := CompletionProposalAutoInvoke;
+    ComboBoxShortcut.ItemIndex := ComboBoxShortcut.Items.IndexOf(CompletionProposalShortcut);
+  end;
 end;
 
 end.

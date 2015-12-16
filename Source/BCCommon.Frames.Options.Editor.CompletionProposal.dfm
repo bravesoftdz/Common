@@ -1,12 +1,12 @@
 inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
   Width = 164
-  Height = 89
+  Height = 113
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 160
-    Height = 89
+    Height = 113
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -42,9 +42,19 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       AttachTo = SliderEnabled
       Gap = 8
     end
+    object StickyLabelAutoInvoke: TsStickyLabel
+      Left = 0
+      Top = 50
+      Width = 102
+      Height = 13
+      AutoSize = False
+      Caption = 'Auto invoke'
+      AttachTo = SliderAutoInvoke
+      Gap = 8
+    end
     object ComboBoxShortcut: TBCComboBox
       Left = 0
-      Top = 67
+      Top = 91
       Width = 160
       Height = 22
       Margins.Left = 4
@@ -67,7 +77,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       Font.Style = []
       ItemIndex = -1
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 3
       UseMouseWheel = False
     end
     object SliderCaseSensitive: TsSlider
@@ -93,6 +103,23 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       Top = 0
       Width = 50
       AutoSize = True
+      TabOrder = 0
+      BoundLabel.Indent = 6
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderAutoInvoke: TsSlider
+      Left = 110
+      Top = 46
+      Width = 50
+      AutoSize = True
       TabOrder = 2
       BoundLabel.Indent = 6
       ImageIndexOff = 0
@@ -104,6 +131,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      SliderOn = False
     end
   end
 end

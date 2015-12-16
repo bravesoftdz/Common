@@ -30,6 +30,7 @@ type
     { Completion proposal }
     FCompletionProposalCaseSensitive: Boolean;
     FCompletionProposalEnabled: Boolean;
+    FCompletionProposalAutoInvoke: Boolean;
     FCompletionProposalShortcut: string;
     { Left margin }
     FLeftMarginVisible: Boolean;
@@ -180,6 +181,8 @@ type
     property CompletionProposalCaseSensitive: Boolean read FCompletionProposalCaseSensitive write FCompletionProposalCaseSensitive;
     [IniValue('Options', 'CompletionProposalEnabled', 'True')]
     property CompletionProposalEnabled: Boolean read FCompletionProposalEnabled write FCompletionProposalEnabled;
+    [IniValue('Options', 'CompletionProposalAutoInvoke', 'False')]
+    property CompletionProposalAutoInvoke: Boolean read FCompletionProposalAutoInvoke write FCompletionProposalAutoInvoke;
     [IniValue('Options', 'CompletionProposalShortcut', 'Ctrl+Space')]
     property CompletionProposalShortcut: string read FCompletionProposalShortcut write FCompletionProposalShortcut;
     { Left margin }
@@ -772,6 +775,10 @@ begin
       CompletionProposal.Options := CompletionProposal.Options + [cpoCaseSensitive]
     else
       CompletionProposal.Options := CompletionProposal.Options - [cpoCaseSensitive];
+    if FCompletionProposalAutoInvoke then
+      CompletionProposal.Options := CompletionProposal.Options + [cpoAutoInvoke]
+    else
+      CompletionProposal.Options := CompletionProposal.Options - [cpoAutoInvoke];
     { Left margin }
     LeftMargin.Visible := FLeftMarginVisible;
     LeftMargin.Autosize := FLeftMarginAutosize;
