@@ -17,14 +17,14 @@ inherited OptionsToolbarFrame: TOptionsToolbarFrame
       AlignWithMargins = True
       Left = 4
       Top = 62
-      Width = 447
+      Width = 443
       Height = 217
       Hint = 
         'Use drag and drop to move menu items. Right click popup menu to ' +
         'insert and delete items.'
       Margins.Left = 4
       Margins.Top = 0
-      Margins.Right = 0
+      Margins.Right = 4
       Margins.Bottom = 0
       Align = alClient
       Ctl3D = True
@@ -61,7 +61,7 @@ inherited OptionsToolbarFrame: TOptionsToolbarFrame
         item
           Options = [coEnabled, coParentBidiMode, coParentColor, coVisible, coAutoSpring]
           Position = 0
-          Width = 443
+          Width = 439
           WideText = 'Menu Item'
         end>
     end
@@ -145,8 +145,8 @@ inherited OptionsToolbarFrame: TOptionsToolbarFrame
         ShowHint = False
         ButtonStyle = tbsCheck
         SkinData.SkinSection = 'TOOLBUTTON'
-        ImageIndex = 22
         Images = ImagesDataModule.ImageList
+        ImageIndex = 22
       end
       object SpeedButtonAddDivider: TBCSpeedButton
         Left = 62
@@ -168,8 +168,8 @@ inherited OptionsToolbarFrame: TOptionsToolbarFrame
         ShowHint = False
         ButtonStyle = tbsCheck
         SkinData.SkinSection = 'TOOLBUTTON'
-        ImageIndex = 127
         Images = ImagesDataModule.ImageList
+        ImageIndex = 127
       end
       object SpeedButtonAddItem: TBCSpeedButton
         Left = 2
@@ -191,8 +191,8 @@ inherited OptionsToolbarFrame: TOptionsToolbarFrame
         ShowHint = False
         ButtonStyle = tbsCheck
         SkinData.SkinSection = 'TOOLBUTTON'
-        ImageIndex = 18
         Images = ImagesDataModule.ImageList
+        ImageIndex = 18
       end
       object SpeedButtonReset: TBCSpeedButton
         Left = 192
@@ -213,8 +213,8 @@ inherited OptionsToolbarFrame: TOptionsToolbarFrame
         ShowHint = False
         ButtonStyle = tbsTextButton
         SkinData.SkinSection = 'TOOLBUTTON'
-        ImageIndex = 128
         Images = ImagesDataModule.ImageList
+        ImageIndex = 128
       end
       object SpeedButtonMoveDown: TBCSpeedButton
         Left = 322
@@ -235,8 +235,8 @@ inherited OptionsToolbarFrame: TOptionsToolbarFrame
         ShowHint = False
         ButtonStyle = tbsTextButton
         SkinData.SkinSection = 'TOOLBUTTON'
-        ImageIndex = 130
         Images = ImagesDataModule.ImageList
+        ImageIndex = 130
       end
       object SpeedButtonMoveUp: TBCSpeedButton
         Left = 262
@@ -257,8 +257,8 @@ inherited OptionsToolbarFrame: TOptionsToolbarFrame
         ShowHint = False
         ButtonStyle = tbsTextButton
         SkinData.SkinSection = 'TOOLBUTTON'
-        ImageIndex = 129
         Images = ImagesDataModule.ImageList
+        ImageIndex = 129
       end
     end
     object PanelBottom: TsPanel

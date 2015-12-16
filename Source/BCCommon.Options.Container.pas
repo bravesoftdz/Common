@@ -52,6 +52,7 @@ type
     FMinimapShowBookmarks: Boolean;
     FMinimapShowIndentGuides: Boolean;
     FMinimapWidth: Integer;
+    FMinimapAlign: Integer;
     { Editor }
     FAutoIndent: Boolean;
     FAutoSave: Boolean;
@@ -220,6 +221,8 @@ type
     property MinimapShowIndentGuides: Boolean read FMinimapShowIndentGuides write FMinimapShowIndentGuides;
     [IniValue('Options', 'MinimapWidth', '100')]
     property MinimapWidth: Integer read FMinimapWidth write FMinimapWidth;
+    [IniValue('Options', 'MinimapAlign', '1')]
+    property MinimapAlign: Integer read FMinimapAlign write FMinimapAlign;
     { Editor }
     [IniValue('Options', 'AutoIndent', 'True')]
     property AutoIndent: Boolean read FAutoIndent write FAutoIndent;
@@ -812,6 +815,7 @@ begin
     else
       Minimap.Options := Minimap.Options - [moShowIndentGuides];
     Minimap.Width := FMinimapWidth;
+    Minimap.Align := TBCEditorMinimapAlign(FMinimapAlign);
     { Editor }
     if FAutoIndent then
       Options := Options + [eoAutoIndent]

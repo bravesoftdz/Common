@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.Edit,
-  BCControls.Panel, BCCommon.Frames.Options.Base, acSlider, sLabel, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
+  BCControls.Panel, BCCommon.Frames.Options.Base, acSlider, sLabel, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter,
+  sComboBox, BCControls.ComboBox;
 
 type
   TOptionsEditorMinimapFrame = class(TBCOptionsBaseFrame)
@@ -17,8 +18,10 @@ type
     SliderShowIndentGuides: TsSlider;
     SliderShowBookmarks: TsSlider;
     StickyLabelShowBookmarks: TsStickyLabel;
+    ComboBoxAlign: TBCComboBox;
   protected
     procedure GetData; override;
+    procedure Init; override;
     procedure PutData; override;
   public
     destructor Destroy; override;
@@ -31,7 +34,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.SysUtils, BCCommon.Options.Container, BCCommon.Utils;
+  System.SysUtils, BCCommon.Options.Container, BCCommon.Utils, BCCommon.Language.Strings;
 
 var
   FOptionsEditorMinimapFrame: TOptionsEditorMinimapFrame;
@@ -50,20 +53,37 @@ begin
   FOptionsEditorMinimapFrame := nil;
 end;
 
+procedure TOptionsEditorMinimapFrame.Init;
+begin
+  with ComboBoxAlign.Items do
+  begin
+    Add(LanguageDatamodule.GetSQLFormatter('Left'));
+    Add(LanguageDatamodule.GetSQLFormatter('Right'));
+  end;
+end;
+
 procedure TOptionsEditorMinimapFrame.PutData;
 begin
-  OptionsContainer.MinimapVisible := SliderVisible.SliderOn;
-  OptionsContainer.MinimapShowBookmarks := SliderShowBookmarks.SliderOn;
-  OptionsContainer.MinimapShowIndentGuides := SliderShowIndentGuides.SliderOn;
-  OptionsContainer.MinimapWidth := StrToIntDef(EditWidth.Text, 100);
+  with OptionsContainer do
+  begin
+    MinimapVisible := SliderVisible.SliderOn;
+    MinimapShowBookmarks := SliderShowBookmarks.SliderOn;
+    MinimapShowIndentGuides := SliderShowIndentGuides.SliderOn;
+    MinimapWidth := StrToIntDef(EditWidth.Text, 100);
+    MinimapAlign := ComboBoxAlign.ItemIndex;
+  end;
 end;
 
 procedure TOptionsEditorMinimapFrame.GetData;
 begin
-  SliderVisible.SliderOn := OptionsContainer.MinimapVisible;
-  SliderShowBookmarks.SliderOn := OptionsContainer.MinimapShowBookmarks;
-  SliderShowIndentGuides.SliderOn := OptionsContainer.MinimapShowIndentGuides;
-  EditWidth.Text := IntToStr(OptionsContainer.MinimapWidth);
+  with OptionsContainer do
+  begin
+    SliderVisible.SliderOn := MinimapVisible;
+    SliderShowBookmarks.SliderOn := MinimapShowBookmarks;
+    SliderShowIndentGuides.SliderOn := MinimapShowIndentGuides;
+    EditWidth.Text := IntToStr(MinimapWidth);
+    ComboBoxAlign.ItemIndex := MinimapAlign;
+  end;
 end;
 
 end.
