@@ -80,7 +80,6 @@ type
     FDocumentSpecificSearch: Boolean;
     FDocumentSpecificSearchText: string;
     FShowSearchMap: Boolean;
-    FShowSearchHighlighter: Boolean;
     { Selection }
     FSelectionVisible: Boolean;
     FALTSetsColumnMode: Boolean;
@@ -273,8 +272,6 @@ type
     property DocumentSpecificSearchText: string read FDocumentSpecificSearchText write FDocumentSpecificSearchText;
     [IniValue('Options', 'ShowSearchMap', 'True')]
     property ShowSearchMap: Boolean read FShowSearchMap write FShowSearchMap;
-    [IniValue('Options', 'ShowSearchHighlighter', 'True')]
-    property ShowSearchHighlighter: Boolean read FShowSearchHighlighter write FShowSearchHighlighter;
     { Selection }
     [IniValue('Options', 'SelectionVisible', 'True')]
     property SelectionVisible: Boolean read FSelectionVisible write FSelectionVisible;
@@ -478,6 +475,7 @@ type
     FDefaultHighlighter: string;
     FDefaultHighlighterColor: string;
     FDefaultSQLHighlighter: string;
+    FDefaultBrowser: string;
     FDirAutoHide: Boolean;
     FDirCloseTabByDblClick: Boolean;
     FDirCloseTabByMiddleClick: Boolean;
@@ -551,8 +549,10 @@ type
     property DefaultHighlighter: string read FDefaultHighlighter write FDefaultHighlighter;
     [IniValue('Options', 'DefaultHighlighterColor', 'Default')]
     property DefaultHighlighterColor: string read FDefaultHighlighterColor write FDefaultHighlighterColor;
-     [IniValue('Options', 'DefaultSQLHighlighter', 'SQL - Standard')]
+    [IniValue('Options', 'DefaultSQLHighlighter', 'SQL - Standard')]
     property DefaultSQLHighlighter: string read FDefaultSQLHighlighter write FDefaultSQLHighlighter;
+    [IniValue('Options', 'DefaultBrowser', '')]
+    property DefaultBrowser: string read FDefaultBrowser write FDefaultBrowser;
     { Strings }
     property HighlighterColorStrings: TStrings read FHighlighterColorStrings write FHighlighterColorStrings;
     property HighlighterStrings: TStrings read FHighlighterStrings write FHighlighterStrings;
@@ -883,10 +883,6 @@ begin
       Scroll.Options := Scroll.Options - [soShowHint];
     { Search }
     Search.Map.Visible := FShowSearchMap;
-    if FShowSearchHighlighter then
-      Search.Options := Search.Options + [soHighlightResults]
-    else
-      Search.Options := Search.Options - [soHighlightResults];
     { Selection }
     Selection.Visible := FSelectionVisible;
     if FALTSetsColumnMode then

@@ -11,8 +11,6 @@ type
     Panel: TBCPanel;
     StickyLabelDocumentSpecificSearch: TsStickyLabel;
     SliderDocumentSpecificSearch: TsSlider;
-    StickyLabelHighlightResults: TsStickyLabel;
-    SliderHighlightResults: TsSlider;
     StickyLabelShowSearchMap: TsStickyLabel;
     SliderShowSearchMap: TsSlider;
     StickyLabelVisible: TsStickyLabel;
@@ -55,7 +53,6 @@ begin
   OptionsContainer.SearchVisible := SliderVisible.SliderOn;
   OptionsContainer.DocumentSpecificSearch := SliderDocumentSpecificSearch.SliderOn;
   OptionsContainer.ShowSearchMap := SliderShowSearchMap.SliderOn;
-  OptionsContainer.ShowSearchHighlighter := SliderHighlightResults.SliderOn;
 end;
 
 procedure TOptionsEditorSearchFrame.GetData;
@@ -63,7 +60,6 @@ begin
   SliderVisible.SliderOn := OptionsContainer.SearchVisible;
   SliderDocumentSpecificSearch.SliderOn := OptionsContainer.DocumentSpecificSearch;
   SliderShowSearchMap.SliderOn := OptionsContainer.ShowSearchMap;
-  SliderHighlightResults.SliderOn := OptionsContainer.ShowSearchHighlighter;
 end;
 
 end.

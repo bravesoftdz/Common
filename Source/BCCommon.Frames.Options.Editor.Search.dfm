@@ -1,12 +1,12 @@
 inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
   Width = 212
-  Height = 90
+  Height = 67
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 208
-    Height = 90
+    Height = 67
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -37,24 +37,9 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       AttachTo = SliderDocumentSpecificSearch
       Gap = 8
     end
-    object StickyLabelHighlightResults: TsStickyLabel
-      Left = 0
-      Top = 50
-      Width = 150
-      Height = 13
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      AutoSize = False
-      Caption = 'Highlight results'
-      ParentColor = False
-      AttachTo = SliderHighlightResults
-      Gap = 8
-    end
     object StickyLabelShowSearchMap: TsStickyLabel
       Left = 0
-      Top = 73
+      Top = 50
       Width = 150
       Height = 13
       Margins.Left = 4
@@ -98,28 +83,12 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
     end
-    object SliderHighlightResults: TsSlider
+    object SliderShowSearchMap: TsSlider
       Left = 158
       Top = 46
       Width = 50
       AutoSize = True
       TabOrder = 2
-      ImageIndexOff = 0
-      ImageIndexOn = 0
-      FontOn.Charset = DEFAULT_CHARSET
-      FontOn.Color = clWindowText
-      FontOn.Height = -11
-      FontOn.Name = 'Tahoma'
-      FontOn.Style = []
-      SliderCaptionOn = 'Yes'
-      SliderCaptionOff = 'No'
-    end
-    object SliderShowSearchMap: TsSlider
-      Left = 158
-      Top = 69
-      Width = 50
-      AutoSize = True
-      TabOrder = 3
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
