@@ -56,7 +56,7 @@ type
     property OnOpenFile: TOpenFileEvent read FOpenFile write FOpenFile;
   end;
 
-function SearchForFilesForm: TSearchForFilesForm;
+function SearchForFilesForm(AOwner: TForm): TSearchForFilesForm;
 
 implementation
 
@@ -77,10 +77,10 @@ type
 var
   FSearchForFilesForm: TSearchForFilesForm;
 
-function SearchForFilesForm: TSearchForFilesForm;
+function SearchForFilesForm(AOwner: TForm): TSearchForFilesForm;
 begin
   if not Assigned(FSearchForFilesForm) then
-    Application.CreateForm(TSearchForFilesForm, FSearchForFilesForm);
+    FSearchForFilesForm := TSearchForFilesForm.Create(AOwner);
   Result := FSearchForFilesForm;
   UpdateLanguage(FSearchForFilesForm, GetSelectedLanguage);
 end;
@@ -275,6 +275,7 @@ begin
   WriteIniFile;
   FFormClosing := True;
   Application.ProcessMessages;
+  TForm(Owner).SetFocus;
   Action := caFree;
 end;
 
