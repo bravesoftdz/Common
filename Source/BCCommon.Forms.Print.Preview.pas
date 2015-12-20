@@ -282,7 +282,7 @@ end;
 
 procedure TPrintPreviewDialog.PrintPreviewPreviewPage(Sender: TObject; PageNumber: Integer);
 begin
-  StatusBar.Panels[1].Text := Format(LanguageDataModule.GetConstant('PreviewPage'), [PrintPreview.PageNumber, PrintPreview.PageCount]);
+  StatusBar.Panels[1].Text := Format(LanguageDataModule.GetConstant('PreviewPage'), [PageNumber, PrintPreview.PageCount]);
   StatusBar.Panels[1].Width := StatusBar.Canvas.TextWidth(StatusBar.Panels[1].Text) + 16;
 end;
 
@@ -295,6 +295,7 @@ procedure TPrintPreviewDialog.ActionWordWrapExecute(Sender: TObject);
 begin
   PrintPreview.EditorPrint.Wrap := not PrintPreview.EditorPrint.Wrap;
   ActionWordWrap.Checked := PrintPreview.EditorPrint.Wrap;
+  Printpreview.UpdatePreview;
   PrintPreview.Refresh;
 end;
 
