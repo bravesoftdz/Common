@@ -52,10 +52,13 @@ object PrintPreviewDialog: TPrintPreviewDialog
   TextHeight = 13
   object StatusBar: TBCStatusBar
     Left = 0
-    Top = 501
+    Top = 498
     Width = 869
-    Height = 22
+    Height = 25
     Panels = <
+      item
+        Width = 172
+      end
       item
         Width = 120
       end
@@ -65,6 +68,23 @@ object PrintPreviewDialog: TPrintPreviewDialog
     ParentShowHint = False
     ShowHint = True
     SkinData.SkinSection = 'STATUSBAR'
+    object TrackBarZoom: TsTrackBar
+      Tag = 5
+      Left = 0
+      Top = 0
+      Width = 170
+      Height = 38
+      Max = 400
+      Min = 25
+      Position = 100
+      TabOrder = 0
+      TickStyle = tsNone
+      OnChange = TrackBarZoomChange
+      SkinData.SkinSection = 'TRACKBAR'
+      ShowProgress = True
+      BarOffsetV = 0
+      BarOffsetH = 0
+    end
   end
   object PanelButtons: TBCPanel
     Left = 0
@@ -99,8 +119,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 80
       Images = ImagesDataModule.ImageList
+      ImageIndex = 80
     end
     object SpeedButtonNext: TBCSpeedButton
       Left = 122
@@ -121,8 +141,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 37
       Images = ImagesDataModule.ImageList
+      ImageIndex = 37
     end
     object SpeedButtonPrevious: TBCSpeedButton
       Left = 62
@@ -143,8 +163,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 38
       Images = ImagesDataModule.ImageList
+      ImageIndex = 38
     end
     object SpeedButtonFirst: TBCSpeedButton
       Left = 2
@@ -165,8 +185,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 79
       Images = ImagesDataModule.ImageList
+      ImageIndex = 79
     end
     object SpeedButtonDivider2: TBCSpeedButton
       AlignWithMargins = True
@@ -281,8 +301,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ButtonStyle = tbsDropDown
       SkinData.SkinSection = 'TOOLBUTTON'
       DropdownMenu = PopupMenuZoom
-      ImageIndex = 34
       Images = ImagesDataModule.ImageList
+      ImageIndex = 34
     end
     object SpeedButtonZoomOut: TBCSpeedButton
       Left = 312
@@ -303,8 +323,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 82
       Images = ImagesDataModule.ImageList
+      ImageIndex = 82
     end
     object SpeedButtonZoomIn: TBCSpeedButton
       Left = 252
@@ -325,8 +345,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 81
       Images = ImagesDataModule.ImageList
+      ImageIndex = 81
     end
     object SpeedButtonHighlighter: TBCSpeedButton
       Left = 622
@@ -349,8 +369,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsCheck
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 84
       Images = ImagesDataModule.ImageList
+      ImageIndex = 84
     end
     object SpeedButtonColors: TBCSpeedButton
       Left = 562
@@ -373,8 +393,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsCheck
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 83
       Images = ImagesDataModule.ImageList
+      ImageIndex = 83
     end
     object SpeedButtonWordWrap: TBCSpeedButton
       Left = 502
@@ -397,8 +417,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsCheck
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 57
       Images = ImagesDataModule.ImageList
+      ImageIndex = 57
     end
     object SpeedButtonLineNumbers: TBCSpeedButton
       Left = 442
@@ -421,8 +441,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsCheck
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 58
       Images = ImagesDataModule.ImageList
+      ImageIndex = 58
     end
     object SpeedButtonPrint: TBCSpeedButton
       Left = 692
@@ -443,8 +463,8 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 9
       Images = ImagesDataModule.ImageList
+      ImageIndex = 9
     end
     object SpeedButtonExit: TBCSpeedButton
       Left = 762
@@ -465,15 +485,15 @@ object PrintPreviewDialog: TPrintPreviewDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 11
       Images = ImagesDataModule.ImageList
+      ImageIndex = 11
     end
   end
   object PanelPrintPreview: TBCPanel
     Left = 0
     Top = 62
     Width = 869
-    Height = 439
+    Height = 436
     Align = alClient
     BevelOuter = bvLowered
     TabOrder = 2
@@ -483,7 +503,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
       Left = 3
       Top = 1
       Width = 863
-      Height = 435
+      Height = 432
       Margins.Left = 2
       Margins.Top = 0
       Margins.Right = 2

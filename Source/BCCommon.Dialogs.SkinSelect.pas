@@ -38,6 +38,8 @@ type
     SliderExtendedBordersMode: TsSlider;
     StickyLabelBlendOnMove: TsStickyLabel;
     SliderBlendOnMove: TsSlider;
+    SliderAllowGlowing: TsSlider;
+    StickyLabelAllowGlowing: TsStickyLabel;
     procedure ListBoxSkinsClick(Sender: TObject);
     procedure TrackBarHueOffsetSkinPaint(Sender: TObject; Canvas: TCanvas);
     procedure TrackBarHueOffsetChange(Sender: TObject);
@@ -81,6 +83,7 @@ begin
         TrackBarSaturation.Position := ASkinManager.Saturation;
         TrackBarBrightness.Position := ASkinManager.Brightness;
         SliderBlendOnMove.SliderOn := ASkinManager.AnimEffects.BlendOnMoving.Active;
+        SliderAllowGlowing.SliderOn := ASkinManager.Effects.AllowGlowing;
         SliderExtendedBordersMode.SliderOn := ASkinManager.ExtendedBorders;
         FPreviewForm.PreviewManager.Active := True;
         FPreviewForm.Visible := True;
@@ -93,6 +96,7 @@ begin
           ASkinManager.Brightness := TrackBarBrightness.Position;
           ASkinManager.AnimEffects.BlendOnMoving.Active := SliderBlendOnMove.SliderOn;
           ASkinManager.ExtendedBorders := SliderExtendedBordersMode.SliderOn;
+          ASkinManager.Effects.AllowGlowing := SliderAllowGlowing.SliderOn;
           ASkinManager.EndUpdate(True, False);
         end;
       finally

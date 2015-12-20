@@ -7,7 +7,7 @@ uses
   Vcl.ActnList, BCEditor.Print.Preview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers,
   BCCommon.Images, System.Actions, System.Types,
   BCControls.Panel, BCControls.StatusBar, Vcl.Dialogs,
-  BCControls.SpeedButton, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel, sStatusBar;
+  BCControls.SpeedButton, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel, sStatusBar, sTrackBar;
 
 type
   TPrintPreviewDialog = class(TForm)
@@ -59,6 +59,7 @@ type
     SpeedButtonZoomIn: TBCSpeedButton;
     SpeedButtonZoomOut: TBCSpeedButton;
     StatusBar: TBCStatusBar;
+    TrackBarZoom: TsTrackBar;
     procedure ActionColorsExecute(Sender: TObject);
     procedure ActionColorsUpdate(Sender: TObject);
     procedure ActionExitExecute(Sender: TObject);
@@ -84,6 +85,7 @@ type
     procedure PercentClick(Sender: TObject);
     procedure PrintPreviewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure PrintPreviewPreviewPage(Sender: TObject; PageNumber: Integer);
+    procedure TrackBarZoomChange(Sender: TObject);
   private
     FLeft: Integer;
     FTop: Integer;
@@ -246,7 +248,7 @@ end;
 
 procedure TPrintPreviewDialog.ApplicationEventsHint(Sender: TObject);
 begin
-  StatusBar.Panels[1].Text := Application.Hint;
+  StatusBar.Panels[2].Text := Application.Hint;
 end;
 
 procedure TPrintPreviewDialog.PrintPreviewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState;
@@ -280,8 +282,13 @@ end;
 
 procedure TPrintPreviewDialog.PrintPreviewPreviewPage(Sender: TObject; PageNumber: Integer);
 begin
-  StatusBar.Panels[0].Text := Format(LanguageDataModule.GetConstant('PreviewPage'), [PrintPreview.PageNumber, PrintPreview.PageCount]);
-  StatusBar.Panels[0].Width := StatusBar.Canvas.TextWidth(StatusBar.Panels[0].Text) + 16;
+  StatusBar.Panels[1].Text := Format(LanguageDataModule.GetConstant('PreviewPage'), [PrintPreview.PageNumber, PrintPreview.PageCount]);
+  StatusBar.Panels[1].Width := StatusBar.Canvas.TextWidth(StatusBar.Panels[1].Text) + 16;
+end;
+
+procedure TPrintPreviewDialog.TrackBarZoomChange(Sender: TObject);
+begin
+  PrintPreview.ScalePercent := TrackBarZoom.Position;
 end;
 
 procedure TPrintPreviewDialog.ActionWordWrapExecute(Sender: TObject);
