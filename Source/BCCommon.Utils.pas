@@ -113,8 +113,11 @@ begin
   Result := True;
 
   MappingName := StringReplace(ParamStr(0), '\', '', [rfReplaceAll, rfIgnoreCase]);
+  {$IFDEF WIN64}
+  MappingHandle := CreateFileMapping($FFFFFFFFFFFFFFFF, nil, PAGE_READWRITE, 0, SizeOf(TInstanceInfo), PChar(MappingName));
+  {$ELSE}
   MappingHandle := CreateFileMapping($FFFFFFFF, nil, PAGE_READWRITE, 0, SizeOf(TInstanceInfo), PChar(MappingName));
-
+  {$ENDIF}
   if MappingHandle = 0 then
     RaiseLastOSError
   else
