@@ -16,7 +16,7 @@ procedure AlignSliders(AWinControl: TWinControl);
 implementation
 
 uses
-  System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, sLabel, BCCommon.StringUtils, JclSysInfo;
+  System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, sLabel, BCCommon.StringUtils, BCCommon.WindowsInfo;
 
 function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean;
 begin
@@ -26,7 +26,6 @@ begin
     Result := ShellExecute(0, 'open', PChar(ABrowserPath), PChar(AURL), nil, SW_SHOWNORMAL) > 32
 end;
 
-{ TODO: Remove JclSysInfo }
 function GetOSInfo: string;
 begin
   Result := GetWindowsVersionString + ' ' + GetWindowsEditionString;
