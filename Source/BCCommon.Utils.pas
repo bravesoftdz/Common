@@ -10,7 +10,7 @@ function GetOSInfo: string;
 function InsertTextToCombo(ComboBox: TBCComboBox): Integer;
 function SetFormInsideWorkArea(Left, Width: Integer): Integer;
 function PostInc(var i: Integer): Integer; inline;
-function RestoreIfRunning(const AAppHandle: THandle; AMaxInstances: Integer = 1): Boolean;
+function RestoreIfRunning(const AAppHandle: THandle): Boolean;
 procedure InsertItemsToComboBox(AItems: TStrings; AComboBox: TBCComboBox);
 procedure AlignSliders(AWinControl: TWinControl);
 
@@ -21,10 +21,16 @@ uses
 
 type
   PInstanceInfo = ^TInstanceInfo;
+
   TInstanceInfo = packed record
     PreviousHandle: THandle;
-    RunCounter: Integer;
   end;
+
+var
+  GMappingHandle: THandle = 0;
+  GInstanceInfo: PInstanceInfo = nil;
+  GCurrentAppHandle: THandle = 0;
+  GRemoveMe: Boolean = True;
 
 function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean;
 begin
@@ -80,20 +86,27 @@ function SetFormInsideWorkArea(Left, Width: Integer): Integer;
 var
   i: Integer;
   ScreenPos: Integer;
+  LMonitor: TMonitor;
 begin
   Result := Left;
   { check if the application is outside left side }
   ScreenPos := 0;
   for i := 0 to Screen.MonitorCount - 1 do
-    if Screen.Monitors[i].WorkareaRect.Left < ScreenPos then
-      ScreenPos := Screen.Monitors[i].WorkareaRect.Left;
+  begin
+    LMonitor := Screen.Monitors[i];
+    if LMonitor.WorkareaRect.Left < ScreenPos then
+      ScreenPos := LMonitor.WorkareaRect.Left;
+  end;
   if Left + Width < ScreenPos then
     Result := (Screen.Width - Width) div 2;
   { check if the application is outside right side }
   ScreenPos := 0;
   for i := 0 to Screen.MonitorCount - 1 do
-    if Screen.Monitors[i].WorkareaRect.Right > ScreenPos then
-      ScreenPos := Screen.Monitors[i].WorkareaRect.Right;
+  begin
+    LMonitor := Screen.Monitors[i];
+    if LMonitor.WorkareaRect.Right > ScreenPos then
+      ScreenPos := LMonitor.WorkareaRect.Right;
+  end;
   if Left > ScreenPos then
     Result := (Screen.Width - Width) div 2;
 end;
@@ -104,56 +117,43 @@ begin
   Inc(i)
 end;
 
-function RestoreIfRunning(const AAppHandle: THandle; AMaxInstances: Integer = 1): Boolean;
+function RestoreIfRunning(const AAppHandle: THandle): Boolean;
 var
-  MappingHandle: THandle;
-  InstanceInfo: PInstanceInfo;
-  MappingName: string;
+  LMappingName: string;
+  LAlreadyExists: Boolean;
 begin
   Result := True;
 
-  MappingName := StringReplace(ParamStr(0), '\', '', [rfReplaceAll, rfIgnoreCase]);
-  {$IFDEF WIN64}
-  MappingHandle := CreateFileMapping($FFFFFFFFFFFFFFFF, nil, PAGE_READWRITE, 0, SizeOf(TInstanceInfo), PChar(MappingName));
-  {$ELSE}
-  MappingHandle := CreateFileMapping($FFFFFFFF, nil, PAGE_READWRITE, 0, SizeOf(TInstanceInfo), PChar(MappingName));
-  {$ENDIF}
-  if MappingHandle = 0 then
-    RaiseLastOSError
-  else
+  GCurrentAppHandle := AAppHandle;
+
+  LMappingName := StringReplace(ParamStr(0), '\', '_', [rfReplaceAll, rfIgnoreCase]);
+  GMappingHandle := CreateFileMapping(INVALID_HANDLE_VALUE, nil, PAGE_READWRITE, 0, SizeOf(TInstanceInfo),
+    PChar(LMappingName));
+
+  if GMappingHandle = 0 then
+    RaiseLastOSError;
+
+  LAlreadyExists := GetLastError = ERROR_ALREADY_EXISTS;
+
+  GInstanceInfo := PInstanceInfo(MapViewOfFile(GMappingHandle, FILE_MAP_WRITE, 0, 0, SizeOf(TInstanceInfo)));
+  if not Assigned(GInstanceInfo) then
+    RaiseLastOSError;
+
+  if LAlreadyExists then
   begin
-    if GetLastError <> ERROR_ALREADY_EXISTS then
+    GRemoveMe := False;
+    if GInstanceInfo^.PreviousHandle <> 0 then
     begin
-      InstanceInfo := MapViewOfFile(MappingHandle, FILE_MAP_ALL_ACCESS, 0, 0, SizeOf(TInstanceInfo));
-
-      InstanceInfo^.PreviousHandle := AAppHandle;
-      InstanceInfo^.RunCounter := 1;
-
-      Result := False;
-    end
-    else { already runing }
-    begin
-      MappingHandle := OpenFileMapping(FILE_MAP_ALL_ACCESS, False, PChar(MappingName));
-      if MappingHandle <> 0 then
-      begin
-        InstanceInfo := MapViewOfFile(MappingHandle, FILE_MAP_ALL_ACCESS, 0, 0, SizeOf(TInstanceInfo));
-
-        if InstanceInfo^.RunCounter >= AMaxInstances then
-        begin
-          if IsIconic(InstanceInfo^.PreviousHandle) then
-            ShowWindow(InstanceInfo^.PreviousHandle, SW_RESTORE);
-          SetForegroundWindow(InstanceInfo^.PreviousHandle);
-        end
-        else
-        begin
-          InstanceInfo^.PreviousHandle := AAppHandle;
-          InstanceInfo^.RunCounter := 1 + InstanceInfo^.RunCounter;
-
-          Result := False;
-        end
-      end;
+      if IsIconic(GInstanceInfo^.PreviousHandle) then
+        ShowWindow(GInstanceInfo^.PreviousHandle, SW_RESTORE);
+      SetForegroundWindow(GInstanceInfo^.PreviousHandle);
     end;
-  end;
+    Exit;
+  end
+  else
+    GInstanceInfo^.PreviousHandle := AAppHandle;
+
+  Result := False;
 end;
 
 procedure AlignSliders(AWinControl: TWinControl);
@@ -179,5 +179,24 @@ begin
       LLabel.Width := LMaxLength;
     end;
 end;
+
+initialization
+
+finalization
+
+  if Assigned(GInstanceInfo) then
+  begin
+    if GRemoveMe then
+      if GInstanceInfo^.PreviousHandle = GCurrentAppHandle then
+        GInstanceInfo^.PreviousHandle := 0;
+    UnmapViewOfFile(GInstanceInfo);
+    GInstanceInfo := nil;
+  end;
+
+  if GMappingHandle <> 0 then
+  begin
+    CloseHandle(GMappingHandle);
+    GMappingHandle := 0;
+  end;
 
 end.
