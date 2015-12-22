@@ -38,7 +38,6 @@ requires
   xmlrtl,
   acntDelphiXE8,
   BCEditor.Delphi.XE8.Runtime,
-  Jcl,
   EhLib220;
 
 contains
@@ -104,6 +103,9 @@ contains
   IniPersist in '..\Source\IniPersist.pas',
   BCCommon.Dialogs.ItemList in '..\Source\BCCommon.Dialogs.ItemList.pas' {ItemListDialog},
   BCCommon.Dialogs.SkinSelect in '..\Source\BCCommon.Dialogs.SkinSelect.pas' {SkinSelectDialog},
-  BCCommon.Forms.Base in '..\Source\BCCommon.Forms.Base.pas' {BCBaseForm};
+  BCCommon.Forms.Base in '..\Source\BCCommon.Forms.Base.pas' {BCBaseForm},
+  BCCommon.Dialog.Popup.Highlighter.Color in '..\Source\BCCommon.Dialog.Popup.Highlighter.Color.pas' {PopupHighlighterColorDialog},
+  BCCommon.Dialog.Popup.Highlighter in '..\Source\BCCommon.Dialog.Popup.Highlighter.pas' {PopupHighlighterDialog},
+  BCCommon.WindowsInfo in '..\Source\BCCommon.WindowsInfo.pas';
 
 end.
