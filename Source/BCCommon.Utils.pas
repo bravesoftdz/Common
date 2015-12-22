@@ -10,7 +10,6 @@ function GetOSInfo: string;
 function InsertTextToCombo(ComboBox: TBCComboBox): Integer;
 function SetFormInsideWorkArea(Left, Width: Integer): Integer;
 function PostInc(var i: Integer): Integer; inline;
-function RestoreIfRunning(const AAppHandle: THandle): Boolean;
 procedure InsertItemsToComboBox(AItems: TStrings; AComboBox: TBCComboBox);
 procedure AlignSliders(AWinControl: TWinControl);
 
@@ -18,19 +17,6 @@ implementation
 
 uses
   System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, sLabel, BCCommon.StringUtils, JclSysInfo;
-
-type
-  PInstanceInfo = ^TInstanceInfo;
-
-  TInstanceInfo = packed record
-    PreviousHandle: THandle;
-  end;
-
-var
-  GMappingHandle: THandle = 0;
-  GInstanceInfo: PInstanceInfo = nil;
-  GCurrentAppHandle: THandle = 0;
-  GRemoveMe: Boolean = True;
 
 function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean;
 begin
@@ -117,45 +103,6 @@ begin
   Inc(i)
 end;
 
-function RestoreIfRunning(const AAppHandle: THandle): Boolean;
-var
-  LMappingName: string;
-  LAlreadyExists: Boolean;
-begin
-  Result := True;
-
-  GCurrentAppHandle := AAppHandle;
-
-  LMappingName := StringReplace(ParamStr(0), '\', '_', [rfReplaceAll, rfIgnoreCase]);
-  GMappingHandle := CreateFileMapping(INVALID_HANDLE_VALUE, nil, PAGE_READWRITE, 0, SizeOf(TInstanceInfo),
-    PChar(LMappingName));
-
-  if GMappingHandle = 0 then
-    RaiseLastOSError;
-
-  LAlreadyExists := GetLastError = ERROR_ALREADY_EXISTS;
-
-  GInstanceInfo := PInstanceInfo(MapViewOfFile(GMappingHandle, FILE_MAP_WRITE, 0, 0, SizeOf(TInstanceInfo)));
-  if not Assigned(GInstanceInfo) then
-    RaiseLastOSError;
-
-  if LAlreadyExists then
-  begin
-    GRemoveMe := False;
-    if GInstanceInfo^.PreviousHandle <> 0 then
-    begin
-      if IsIconic(GInstanceInfo^.PreviousHandle) then
-        ShowWindow(GInstanceInfo^.PreviousHandle, SW_RESTORE);
-      SetForegroundWindow(GInstanceInfo^.PreviousHandle);
-    end;
-    Exit;
-  end
-  else
-    GInstanceInfo^.PreviousHandle := AAppHandle;
-
-  Result := False;
-end;
-
 procedure AlignSliders(AWinControl: TWinControl);
 var
   i: Integer;
@@ -179,24 +126,5 @@ begin
       LLabel.Width := LMaxLength;
     end;
 end;
-
-initialization
-
-finalization
-
-  if Assigned(GInstanceInfo) then
-  begin
-    if GRemoveMe then
-      if GInstanceInfo^.PreviousHandle = GCurrentAppHandle then
-        GInstanceInfo^.PreviousHandle := 0;
-    UnmapViewOfFile(GInstanceInfo);
-    GInstanceInfo := nil;
-  end;
-
-  if GMappingHandle <> 0 then
-  begin
-    CloseHandle(GMappingHandle);
-    GMappingHandle := 0;
-  end;
 
 end.
