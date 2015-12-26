@@ -60,6 +60,10 @@ object PrintPreviewDialog: TPrintPreviewDialog
         Width = 172
       end
       item
+        Alignment = taCenter
+        Width = 50
+      end
+      item
         Width = 120
       end
       item
@@ -512,6 +516,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
       Color = clBtnFace
       OnMouseDown = PrintPreviewMouseDown
       OnPreviewPage = PrintPreviewPreviewPage
+      OnScaleChange = PrintPreviewScaleChange
       ScaleMode = pscPageWidth
     end
   end

@@ -206,6 +206,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      OnSliderChange = SliderToEndOfLineSliderChange
     end
     object SliderFromEndOfLine: TsSlider
       Left = 128
@@ -238,6 +239,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      OnSliderChange = SliderToEndOfLastLineSliderChange
     end
   end
   inherited FrameAdapter: TsFrameAdapter

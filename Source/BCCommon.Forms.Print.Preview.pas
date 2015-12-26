@@ -3,11 +3,10 @@ unit BCCommon.Forms.Print.Preview;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls, Vcl.ComCtrls,
-  Vcl.ActnList, BCEditor.Print.Preview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers,
-  BCCommon.Images, System.Actions, System.Types,
-  BCControls.Panel, BCControls.StatusBar, Vcl.Dialogs,
-  BCControls.SpeedButton, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel, sStatusBar, sTrackBar;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls, Vcl.ComCtrls, Vcl.ActnList,
+  BCEditor.Print.Preview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers, BCCommon.Images, System.Actions, System.Types,
+  BCControls.Panel, BCControls.StatusBar, Vcl.Dialogs, BCControls.SpeedButton, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls,
+  sPanel, sStatusBar, sTrackBar;
 
 type
   TPrintPreviewDialog = class(TForm)
@@ -86,6 +85,7 @@ type
     procedure PrintPreviewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure PrintPreviewPreviewPage(Sender: TObject; PageNumber: Integer);
     procedure TrackBarZoomChange(Sender: TObject);
+    procedure PrintPreviewScaleChange(Sender: TObject);
   private
     FLeft: Integer;
     FTop: Integer;
@@ -99,6 +99,11 @@ implementation
 
 uses
   UxTheme, BCCommon.Language.Utils, BCCommon.Language.Strings, WinApi.Windows, Math;
+
+const
+  STATUSBAR_SCALE = 1;
+  STATUSBAR_PAGE = 2;
+  STATUSBAR_HINT = 3;
 
 var
   FPrintPreviewDialog: TPrintPreviewDialog;
@@ -248,7 +253,7 @@ end;
 
 procedure TPrintPreviewDialog.ApplicationEventsHint(Sender: TObject);
 begin
-  StatusBar.Panels[2].Text := Application.Hint;
+  StatusBar.Panels[STATUSBAR_HINT].Text := Application.Hint;
 end;
 
 procedure TPrintPreviewDialog.PrintPreviewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState;
@@ -282,8 +287,15 @@ end;
 
 procedure TPrintPreviewDialog.PrintPreviewPreviewPage(Sender: TObject; PageNumber: Integer);
 begin
-  StatusBar.Panels[1].Text := Format(LanguageDataModule.GetConstant('PreviewPage'), [PageNumber, PrintPreview.PageCount]);
-  StatusBar.Panels[1].Width := StatusBar.Canvas.TextWidth(StatusBar.Panels[1].Text) + 16;
+  StatusBar.Panels[STATUSBAR_PAGE].Text := Format(LanguageDataModule.GetConstant('PreviewPage'), [PageNumber, PrintPreview.PageCount]);
+  StatusBar.Panels[STATUSBAR_PAGE].Width := StatusBar.Canvas.TextWidth(StatusBar.Panels[STATUSBAR_PAGE].Text) + 16;
+end;
+
+procedure TPrintPreviewDialog.PrintPreviewScaleChange(Sender: TObject);
+begin
+  StatusBar.Panels[STATUSBAR_SCALE].Text := Format('%d%%', [PrintPreview.ScalePercent]);
+  if TrackBarZoom.Position <> PrintPreview.ScalePercent then
+   TrackBarZoom.Position := PrintPreview.ScalePercent;
 end;
 
 procedure TPrintPreviewDialog.TrackBarZoomChange(Sender: TObject);

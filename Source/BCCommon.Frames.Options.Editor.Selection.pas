@@ -24,6 +24,8 @@ type
     StickyLabelFromEndOfLine: TsStickyLabel;
     SliderToEndOfLastLine: TsSlider;
     StickyLabelToEndOfLastLine: TsStickyLabel;
+    procedure SliderToEndOfLineSliderChange(Sender: TObject);
+    procedure SliderToEndOfLastLineSliderChange(Sender: TObject);
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -66,6 +68,20 @@ begin
   OptionsContainer.SelectionToEndOfLine := SliderToEndOfLine.SliderOn;
   OptionsContainer.SelectionToEndOfLastLine := SliderToEndOfLastLine.SliderOn;
   OptionsContainer.TripleClickRowSelect := SliderTripleClickRowSelect.SliderOn;
+end;
+
+procedure TOptionsEditorSelectionFrame.SliderToEndOfLastLineSliderChange(Sender: TObject);
+begin
+  inherited;
+  if SliderToEndOfLastLine.SliderOn then
+    SliderToEndOfLine.SliderOn := False;
+end;
+
+procedure TOptionsEditorSelectionFrame.SliderToEndOfLineSliderChange(Sender: TObject);
+begin
+  inherited;
+  if SliderToEndOfLine.SliderOn then
+    SliderToEndOfLastLine.SliderOn := False;
 end;
 
 procedure TOptionsEditorSelectionFrame.GetData;
