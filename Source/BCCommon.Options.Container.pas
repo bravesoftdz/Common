@@ -86,6 +86,7 @@ type
     FHighlightSimilarTerms: Boolean;
     FSelectionFromEndOfLine: Boolean;
     FSelectionToEndOfLine: Boolean;
+    FSelectionToEndOfLastLine: Boolean;
     FTripleClickRowSelect: Boolean;
     { Special chars }
     FSpecialCharsUseTextColor: Boolean;
@@ -283,6 +284,8 @@ type
     property SelectionFromEndOfLine: Boolean read FSelectionFromEndOfLine write FSelectionFromEndOfLine;
     [IniValue('Options', 'SelectionToEndOfLine', 'False')]
     property SelectionToEndOfLine: Boolean read FSelectionToEndOfLine write FSelectionToEndOfLine;
+    [IniValue('Options', 'SelectionToEndOfLastLine', 'False')]
+    property SelectionToEndOfLastLine: Boolean read FSelectionToEndOfLastLine write FSelectionToEndOfLastLine;
     [IniValue('Options', 'TripleClickRowSelect', 'False')]
     property TripleClickRowSelect: Boolean read FTripleClickRowSelect write FTripleClickRowSelect;
     { Special chars }
@@ -897,6 +900,10 @@ begin
       Selection.Options := Selection.Options + [soToEndOfLine]
     else
       Selection.Options := Selection.Options - [soToEndOfLine];
+    if FSelectionToEndOfLastLine then
+      Selection.Options := Selection.Options + [soToEndOfLastLine]
+    else
+      Selection.Options := Selection.Options - [soToEndOfLastLine];
     if FHighlightSimilarTerms then
       Selection.Options := Selection.Options + [soHighlightSimilarTerms]
     else

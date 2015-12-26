@@ -22,6 +22,8 @@ type
     SliderToEndOfLine: TsSlider;
     SliderFromEndOfLine: TsSlider;
     StickyLabelFromEndOfLine: TsStickyLabel;
+    SliderToEndOfLastLine: TsSlider;
+    StickyLabelToEndOfLastLine: TsStickyLabel;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -62,6 +64,7 @@ begin
   OptionsContainer.HighlightSimilarTerms := SliderHighlightSimilarTerms.SliderOn;
   OptionsContainer.SelectionFromEndOfLine := SliderFromEndOfLine.SliderOn;
   OptionsContainer.SelectionToEndOfLine := SliderToEndOfLine.SliderOn;
+  OptionsContainer.SelectionToEndOfLastLine := SliderToEndOfLastLine.SliderOn;
   OptionsContainer.TripleClickRowSelect := SliderTripleClickRowSelect.SliderOn;
 end;
 
@@ -72,6 +75,7 @@ begin
   SliderHighlightSimilarTerms.SliderOn := OptionsContainer.HighlightSimilarTerms;
   SliderFromEndOfLine.SliderOn := OptionsContainer.SelectionFromEndOfLine;
   SliderToEndOfLine.SliderOn := OptionsContainer.SelectionToEndOfLine;
+  SliderToEndOfLastLine.SliderOn := OptionsContainer.SelectionToEndOfLastLine;
   SliderTripleClickRowSelect.SliderOn := OptionsContainer.TripleClickRowSelect;
 end;
 
