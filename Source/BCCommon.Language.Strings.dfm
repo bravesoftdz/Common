@@ -1384,6 +1384,11 @@ object LanguageDataModule: TLanguageDataModule
           'LaTex files (*.lat;*.tex;*.lex)')
       end
       item
+        Name = 'Lisp'
+        Strings.Strings = (
+          'Lisp files (*.lisp)')
+      end
+      item
         Name = 'Lua'
         Strings.Strings = (
           'Lua files (*.lua)')

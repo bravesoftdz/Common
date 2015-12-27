@@ -4,8 +4,8 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls,
-  BCControls.Edit, BCCommon.Frames.Options.Base,
-  BCControls.Panel, acSlider, sLabel, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
+  BCControl.Edit, BCCommon.Frames.Options.Base,
+  BCControl.Panel, acSlider, sLabel, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorRightMarginFrame = class(TBCOptionsBaseFrame)

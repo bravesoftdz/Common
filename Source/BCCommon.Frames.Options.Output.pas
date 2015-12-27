@@ -3,8 +3,8 @@ unit BCCommon.Frames.Options.Output;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.Edit,
-  BCCommon.Options.Container, BCCommon.Frames.Options.Base, BCControls.Panel,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControl.Edit,
+  BCCommon.Options.Container, BCCommon.Frames.Options.Base, BCControl.Panel,
   acSlider, sLabel, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type

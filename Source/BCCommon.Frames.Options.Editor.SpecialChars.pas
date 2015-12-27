@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  BCControls.Panel, sComboBox, BCControls.ComboBox,
-  BCControls.GroupBox, BCCommon.Frames.Options.Base, acSlider, sLabel, Vcl.ComCtrls, sComboBoxes, sGroupBox,
+  BCControl.Panel, sComboBox, BCControl.ComboBox,
+  BCControl.GroupBox, BCCommon.Frames.Options.Base, acSlider, sLabel, Vcl.ComCtrls, sComboBoxes, sGroupBox,
   Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type

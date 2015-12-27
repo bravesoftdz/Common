@@ -4,9 +4,9 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCCommon.Dialogs.Base,
-  BCControls.ComboBox, Vcl.StdCtrls, BCControls.Panel,
-  BCControls.RadioButton, BCEditor.Editor, BCEditor.Types, BCControls.Button, sComboBox,
-  sRadioButton, BCControls.GroupBox, sLabel, acSlider, sButton, Vcl.ExtCtrls, sPanel, sGroupBox;
+  BCControl.ComboBox, Vcl.StdCtrls, BCControl.Panel,
+  BCControl.RadioButton, BCEditor.Editor, BCEditor.Types, BCControl.Button, sComboBox,
+  sRadioButton, BCControl.GroupBox, sLabel, acSlider, sButton, Vcl.ExtCtrls, sPanel, sGroupBox;
 
 type
   TReplaceDialog = class(TBCBaseDialog)
@@ -69,7 +69,7 @@ implementation
 {$R *.DFM}
 
 uses
-  System.IniFiles, BCCommon.FileUtils, BCControls.Utils, BCCommon.Utils;
+  System.IniFiles, BCCommon.FileUtils, BCControl.Utils, BCCommon.Utils;
 
 var
   FReplaceDialog: TReplaceDialog;

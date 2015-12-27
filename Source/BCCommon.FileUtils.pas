@@ -28,7 +28,7 @@ implementation
 
 uses
   Winapi.ShellAPI, Winapi.ShlObj, Winapi.ActiveX, Winapi.Messages, System.SysUtils, System.AnsiStrings, Vcl.Forms,
-  BCCommon.Language.Strings, BCControls.Utils, System.IOUtils, System.StrUtils, System.Masks;
+  BCCommon.Language.Strings, BCControl.Utils, System.IOUtils, System.StrUtils, System.Masks;
 
 const
   DirDelimiter = '/';

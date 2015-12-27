@@ -93,9 +93,9 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
-        <DCCReference Include="BCControlsRXE7.dcp"/>
+        <DCCReference Include="BCControlRXE7.dcp"/>
         <DCCReference Include="BCEditorRXE7.dcp"/>
-        <DCCReference Include="BCComponentsRXE7.dcp"/>
+        <DCCReference Include="BCComponentRXE7.dcp"/>
         <DCCReference Include="VirtualTreesR.dcp"/>
         <DCCReference Include="vclactnband.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>

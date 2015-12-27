@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, BCEditor.Types, BCEditor.Editor,
-  BCCommon.Dialogs.Base, BCControls.Panel, BCControls.CheckBox, BCControls.Button, sButton, sPanel, sCheckBox;
+  BCCommon.Dialogs.Base, BCControl.Panel, BCControl.CheckBox, BCControl.Button, sButton, sPanel, sCheckBox;
 
 type
   TSearchOptionsDialog = class(TBCBaseDialog)

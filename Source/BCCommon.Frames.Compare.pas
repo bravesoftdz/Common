@@ -6,8 +6,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Diff,
-  Vcl.Grids, Vcl.StdCtrls, Vcl.ActnList, BCControls.Panel,
-  BCControls.ComboBox, System.Actions, sComboBox, BCControls.SpeedButton, sFrameAdapter,
+  Vcl.Grids, Vcl.StdCtrls, Vcl.ActnList, BCControl.Panel,
+  BCControl.ComboBox, System.Actions, sComboBox, BCControl.SpeedButton, sFrameAdapter,
   Vcl.Dialogs, sDialogs, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel;
 
 type

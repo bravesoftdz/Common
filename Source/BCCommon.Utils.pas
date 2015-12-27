@@ -3,7 +3,7 @@ unit BCCommon.Utils;
 interface
 
 uses
-  Winapi.Windows, System.Classes, System.Types, BCControls.ComboBox, Vcl.Controls;
+  Winapi.Windows, System.Classes, System.Types, BCControl.ComboBox, Vcl.Controls;
 
 function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean;
 function GetOSInfo: string;

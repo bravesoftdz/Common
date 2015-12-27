@@ -4,9 +4,9 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls,
-  BCControls.ComboBox, Vcl.ActnList, BCCommon.Dialogs.Base,
-  sComboBox, BCControls.SpeedButton, BCControls.Panel,
-  BCControls.GroupBox, sLabel, acSlider, System.Actions, Vcl.Buttons, sSpeedButton, sGroupBox, Vcl.ExtCtrls, sPanel;
+  BCControl.ComboBox, Vcl.ActnList, BCCommon.Dialogs.Base,
+  sComboBox, BCControl.SpeedButton, BCControl.Panel,
+  BCControl.GroupBox, sLabel, acSlider, System.Actions, Vcl.Buttons, sSpeedButton, sGroupBox, Vcl.ExtCtrls, sPanel;
 
 type
   TFindInFilesDialog = class(TBCBaseDialog)

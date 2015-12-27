@@ -4,12 +4,12 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCEditor.JsonDataObjects,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sComboBox, BCControls.ComboBox,
-  sComboBoxes, BCControls.Panel,
-  BCEditor.Editor.Base, BCEditor.Editor, BCControls.SpeedButton,
-  BCControls.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter, Vcl.ActnList, BCControls.ScrollBox,
-  sDialogs, BCComponents.MultiStringHolder, sPageControl, BCControls.PageControl, sSplitter,
-  BCControls.Edit, sLabel, BCControls.Labels,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sComboBox, BCControl.ComboBox,
+  sComboBoxes, BCControl.Panel,
+  BCEditor.Editor.Base, BCEditor.Editor, BCControl.SpeedButton,
+  BCControl.GroupBox, BCCommon.Frames.Options.Base, sFrameAdapter, Vcl.ActnList, BCControl.ScrollBox,
+  sDialogs, BCComponent.MultiStringHolder, sPageControl, BCControl.PageControl, sSplitter,
+  BCControl.Edit, sLabel, BCControl.Labels,
   acSlider, System.Actions, sEdit, sGroupBox, Vcl.ComCtrls, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel;
 
 type

@@ -5,8 +5,8 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   BCCommon.Options.Container,
-  BCCommon.Frames.Options.Base, BCControls.Panel, BCControls.Edit,
-  sFontCtrls, BCControls.ComboBox, acSlider, sLabel, Vcl.StdCtrls, sEdit, sComboBox, Vcl.ExtCtrls, sPanel, sFrameAdapter;
+  BCCommon.Frames.Options.Base, BCControl.Panel, BCControl.Edit,
+  sFontCtrls, BCControl.ComboBox, acSlider, sLabel, Vcl.StdCtrls, sEdit, sComboBox, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsStatusBarFrame = class(TBCOptionsBaseFrame)

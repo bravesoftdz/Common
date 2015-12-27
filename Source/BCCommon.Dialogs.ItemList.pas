@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Dialogs.Base, Vcl.StdCtrls, BCControls.Panel,
-  BCControls.SpeedButton, sListBox, Vcl.ActnList, System.Actions, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Dialogs.Base, Vcl.StdCtrls, BCControl.Panel,
+  BCControl.SpeedButton, sListBox, Vcl.ActnList, System.Actions, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel;
 
 type
   TItemListDialog = class(TBCBaseDialog)

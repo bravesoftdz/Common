@@ -4,7 +4,7 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  BCControls.ComboBox, BCCommon.Options.Container, BCCommon.Frames.Options.Base, sComboBox, BCControls.Panel,
+  BCControl.ComboBox, BCCommon.Options.Container, BCCommon.Frames.Options.Base, sComboBox, BCControl.Panel,
   acSlider, sLabel, Vcl.StdCtrls, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type

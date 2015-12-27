@@ -5,9 +5,9 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   Vcl.StdCtrls,
-  BCControls.ImageList, BCControls.Edit, BCControls.Panel,
+  BCControl.ImageList, BCControl.Edit, BCControl.Panel,
   BCCommon.Frames.Options.Base, sComboBox,
-  BCControls.ComboBox, sFontCtrls, BCEditor.JsonDataObjects, System.ImageList, Vcl.ImgList, acAlphaImageList, sEdit,
+  BCControl.ComboBox, sFontCtrls, BCEditor.JsonDataObjects, System.ImageList, Vcl.ImgList, acAlphaImageList, sEdit,
   Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type

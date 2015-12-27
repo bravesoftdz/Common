@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCCommon.Options.Container.SQL.Formatter,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  BCControls.ComboBox, Vcl.ComCtrls, BCControls.PageControl, BCControls.Panel,
+  BCControl.ComboBox, Vcl.ComCtrls, BCControl.PageControl, BCControl.Panel,
   BCCommon.Frames.Options.Base, sComboBox, sPageControl, acSlider, sLabel, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type

@@ -3,8 +3,8 @@ unit BCCommon.Frames.Options.Print;
 interface
 
 uses
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControls.ComboBox,
-  BCCommon.Options.Container, BCCommon.Frames.Options.Base, sComboBox, BCControls.Panel,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControl.ComboBox,
+  BCCommon.Options.Container, BCCommon.Frames.Options.Base, sComboBox, BCControl.Panel,
   acSlider, sLabel, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type

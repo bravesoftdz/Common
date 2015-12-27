@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls,
-  BCCommon.Dialogs.Base, BCControls.Panel, sPanel;
+  BCCommon.Dialogs.Base, BCControl.Panel, sPanel;
 
 type
   TConfirmReplaceDialog = class(TBCBaseDialog)

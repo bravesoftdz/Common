@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, sFrameAdapter, BCControls.Panel;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, sFrameAdapter, BCControl.Panel;
 
 type
   TBCOptionsBaseFrame = class(TFrame)
@@ -26,7 +26,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Language.Utils, Vcl.ExtCtrls, BCControls.ScrollBox;
+  BCCommon.Language.Utils, Vcl.ExtCtrls, BCControl.ScrollBox;
 
 constructor TBCOptionsBaseFrame.Create(AOwner: TComponent);
 var

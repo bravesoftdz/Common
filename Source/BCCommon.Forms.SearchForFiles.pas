@@ -4,9 +4,9 @@ interface
 
 uses
   Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
-  Vcl.ActnList, Vcl.ImgList, BCControls.ImageList, VirtualTrees, BCControls.ProgressBar,
-  Vcl.ComCtrls, BCControls.ButtonedEdit, System.Win.TaskbarCore, Vcl.Taskbar, BCControls.Panel,
-  sSkinProvider, BCControls.Statusbar, System.Diagnostics, System.UITypes, System.Actions, sStatusBar, Vcl.StdCtrls,
+  Vcl.ActnList, Vcl.ImgList, BCControl.ImageList, VirtualTrees, BCControl.ProgressBar,
+  Vcl.ComCtrls, BCControl.ButtonedEdit, System.Win.TaskbarCore, Vcl.Taskbar, BCControl.Panel,
+  sSkinProvider, BCControl.Statusbar, System.Diagnostics, System.UITypes, System.Actions, sStatusBar, Vcl.StdCtrls,
   sPanel, System.ImageList;
 
 type
@@ -64,7 +64,7 @@ implementation
 
 uses
   Winapi.CommCtrl, BCCommon.Language.Utils, System.IniFiles, BCCommon.FileUtils,
-  BCCommon.Language.Strings, System.Types, BCCommon.Utils, BCControls.Utils, sGraphUtils, sVCLUtils, sDefaults;
+  BCCommon.Language.Strings, System.Types, BCCommon.Utils, BCControl.Utils, sGraphUtils, sVCLUtils, sDefaults;
 
 type
   PSearchRec = ^TSearchRec;

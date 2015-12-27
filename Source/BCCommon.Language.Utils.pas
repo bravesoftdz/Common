@@ -13,8 +13,8 @@ implementation
 uses
   BigIni, BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
   Vcl.ExtCtrls, VirtualTrees, sPageControl, Vcl.Consts,
-  BCControls.GroupBox, BCControls.RadioButton, BCControls.Panel, BCControls.Edit, sLabel, acSlider,
-  BCControls.DateEdit, BCControls.ComboBox;
+  BCControl.GroupBox, BCControl.RadioButton, BCControl.Panel, BCControl.Edit, sLabel, acSlider,
+  BCControl.DateEdit, BCControl.ComboBox;
 
 function GetSelectedLanguage(Default: string): string;
 begin

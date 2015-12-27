@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCCommon.Options.Container.SQL.Formatter,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  BCControls.ComboBox, BCCommon.Frames.Options.Base, sComboBox, BCControls.Panel, Vcl.ExtCtrls, sPanel, sFrameAdapter;
+  BCControl.ComboBox, BCCommon.Frames.Options.Base, sComboBox, BCControl.Panel, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsSQLFormatterFrame = class(TBCOptionsBaseFrame)

@@ -3,8 +3,8 @@ unit BCCommon.Dialogs.InputQuery;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, BCCommon.Dialogs.Base, Vcl.StdCtrls, BCControls.Edit,
-  BCControls.Panel, sEdit, Vcl.ExtCtrls, sPanel;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, BCCommon.Dialogs.Base, Vcl.StdCtrls, BCControl.Edit,
+  BCControl.Panel, sEdit, Vcl.ExtCtrls, sPanel;
 
 type
   TInputQueryDialog = class(TBCBaseDialog)

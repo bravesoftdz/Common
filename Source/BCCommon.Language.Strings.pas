@@ -3,7 +3,7 @@ unit BCCommon.Language.Strings;
 interface
 
 uses
-  System.SysUtils, System.Classes, BCComponents.MultiStringHolder;
+  System.SysUtils, System.Classes, BCComponent.MultiStringHolder;
 
 type
   TLanguageDataModule = class(TDataModule)
@@ -48,7 +48,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Winapi.Windows, Vcl.Consts, System.IniFiles, BCControls.Language, BCEditor.Language;
+  Winapi.Windows, Vcl.Consts, System.IniFiles, BCControl.Language, BCEditor.Language;
 
 procedure HookResourceString(aResStringRec: PResStringRec; aNewStr: PChar);
 var
@@ -177,9 +177,9 @@ begin
   HookResourceString(@SMsgDlgYesToAll, LanguageDataModule.GetPDialog(16));
   HookResourceString(@SMsgDlgClose, LanguageDataModule.GetPDialog(17));
 
-  HookResourceString(@SBCControlsFileControlEndEditInvalidName, LanguageDataModule.GetPConstant('InvalidName'));
-  HookResourceString(@SBCControlsFileControlEndEditRename, LanguageDataModule.GetPConstant('Rename'));
-  HookResourceString(@SBCControlsFileControlEndEditRenameFailed, LanguageDataModule.GetPConstant('RenameFailed'));
+  HookResourceString(@SBCControlFileControlEndEditInvalidName, LanguageDataModule.GetPConstant('InvalidName'));
+  HookResourceString(@SBCControlFileControlEndEditRename, LanguageDataModule.GetPConstant('Rename'));
+  HookResourceString(@SBCControlFileControlEndEditRenameFailed, LanguageDataModule.GetPConstant('RenameFailed'));
   HookResourceString(@SBCEditorScrollInfoTopLine, LanguageDataModule.GetPConstant('TopLine'));
   HookResourceString(@SBCEditorSearchStringNotFound, LanguageDataModule.GetPAskYesOrNo('SearchStringNotFound'));
   HookResourceString(@SBCEditorSearchMatchNotFound, LanguageDataModule.GetPAskYesOrNo('SearchMatchNotFound'));

@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls, Vcl.ComCtrls, Vcl.ActnList,
   BCEditor.Print.Preview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers, BCCommon.Images, System.Actions, System.Types,
-  BCControls.Panel, BCControls.StatusBar, Vcl.Dialogs, BCControls.SpeedButton, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls,
+  BCControl.Panel, BCControl.StatusBar, Vcl.Dialogs, BCControl.SpeedButton, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls,
   sPanel, sStatusBar, sTrackBar;
 
 type

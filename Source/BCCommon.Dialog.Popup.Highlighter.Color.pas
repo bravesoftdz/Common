@@ -4,8 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VirtualTrees, Vcl.StdCtrls, Vcl.ExtCtrls, BCControls.ButtonedEdit, sSkinProvider,
-  System.Actions, Vcl.ActnList, System.ImageList, Vcl.ImgList, sPanel, BCControls.Panel;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VirtualTrees, Vcl.StdCtrls, Vcl.ExtCtrls, BCControl.ButtonedEdit, sSkinProvider,
+  System.Actions, Vcl.ActnList, System.ImageList, Vcl.ImgList, sPanel, BCControl.Panel;
 
 type
   TSelectHighlighterColorEvent = procedure(AHighlighterColorName: string) of object;
@@ -33,7 +33,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.Types, BCControls.Utils, sGraphUtils, sVclUtils, sDefaults, System.Math;
+  System.Types, BCControl.Utils, sGraphUtils, sVclUtils, sDefaults, System.Math;
 
 type
   PSearchRec = ^TSearchRec;

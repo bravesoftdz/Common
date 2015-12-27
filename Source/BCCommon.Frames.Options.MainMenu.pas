@@ -4,8 +4,8 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  BCControls.ComboBox, BCControls.Edit,
-  BCCommon.Options.Container, BCCommon.Frames.Options.Base, BCControls.Panel,
+  BCControl.ComboBox, BCControl.Edit,
+  BCCommon.Options.Container, BCCommon.Frames.Options.Base, BCControl.Panel,
   sFontCtrls, acSlider, sLabel, Vcl.StdCtrls, sEdit, sComboBox, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
