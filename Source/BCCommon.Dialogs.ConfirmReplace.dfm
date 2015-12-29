@@ -4,8 +4,8 @@ inherited ConfirmReplaceDialog: TConfirmReplaceDialog
   Caption = 'Confirm Replace'
   ClientHeight = 94
   ClientWidth = 333
-  Position = poMainFormCenter
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
   object PanelBottom: TBCPanel
