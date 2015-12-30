@@ -1284,6 +1284,11 @@ object LanguageDataModule: TLanguageDataModule
           'ActionScript files (*.as)')
       end
       item
+        Name = 'ASP'
+        Strings.Strings = (
+          'ASP files (*.asp)')
+      end
+      item
         Name = 'Assembler 68HC11'
         Strings.Strings = (
           '68HC11 Assembler files (*.hc11;*.asc)')
@@ -1462,6 +1467,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'Text'
         Strings.Strings = (
           'Text files (*.txt;*.ini)')
+      end
+      item
+        Name = 'UnrealScript'
+        Strings.Strings = (
+          'UnrealScript files (*.uc)')
       end
       item
         Name = 'Visual Basic'
