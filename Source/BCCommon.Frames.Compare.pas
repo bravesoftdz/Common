@@ -8,43 +8,30 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Diff,
   Vcl.Grids, Vcl.StdCtrls, Vcl.ActnList, BCControl.Panel,
   BCControl.ComboBox, System.Actions, sComboBox, BCControl.SpeedButton, sFrameAdapter,
-  Vcl.Dialogs, sDialogs, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel;
+  Vcl.Dialogs, sDialogs, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel, BCEditor.Editor.Base, BCEditor.Editor;
 
 type
   TSyncKind = (skBoth, skVScroll, skHScroll);
 
   TCompareFrame = class(TFrame)
     ActionList: TActionList;
-    BitBtn1: TBCSpeedButton;
-    BottomPanel: TBCPanel;
-    BottomRightPanel: TBCPanel;
     CancelLeftRowAction: TAction;
-    CancelLeftSpeedButton: TBCSpeedButton;
     CancelRightRowAction: TAction;
-    CancelRightSpeedButton: TBCSpeedButton;
     CopyLeftSpeedButton: TBCSpeedButton;
     CopyRightSpeedButton: TBCSpeedButton;
     CopySelectionLeftAction: TAction;
     CopySelectionRightAction: TAction;
     DrawBarPanel: TBCPanel;
-    FilenameLeftMemo: TMemo;
-    FilenameRightMemo: TMemo;
     FindNextDifferenceAction: TAction;
     FindNextDifferenceSpeedButton: TBCSpeedButton;
     LeftComboBox: TBCComboBox;
     LeftComboBoxChangeAction: TAction;
     LeftDocumentButtonClickAction: TAction;
     LeftGridOnChangeAction: TAction;
-    LeftLabel: TLabel;
-    LeftMemo: TMemo;
     LeftPanel: TBCPanel;
-    LeftRightPanel: TBCPanel;
-    LeftScrollBox: TScrollBox;
     LeftTopPanel: TBCPanel;
     OpenDocumentsLeftAction: TAction;
-    OpenDocumentsLeftSpeedButton: TBCSpeedButton;
     OpenDocumentsRightAction: TAction;
-    OpenDocumentsRightSpeedButton: TBCSpeedButton;
     Panel: TBCPanel;
     RefreshAction: TAction;
     RefreshSpeedButton: TBCSpeedButton;
@@ -52,10 +39,7 @@ type
     RightComboBoxChangeAction: TAction;
     RightDocumentButtonClickAction: TAction;
     RightGridOnChangeAction: TAction;
-    RightLabel: TLabel;
-    RightMemo: TMemo;
     RightPanel: TBCPanel;
-    RightScrollBox: TScrollBox;
     RightTopPanel: TBCPanel;
     SaveLeftGridAction: TAction;
     SaveRightGridAction: TAction;
@@ -63,11 +47,16 @@ type
     SaveSpeedButton2: TBCSpeedButton;
     TopMiddlePanel: TBCPanel;
     UpdateLeftRowAction: TAction;
-    UpdateLeftSpeedButton: TBCSpeedButton;
     UpdateRightRowAction: TAction;
-    UpdateRightSpeedButton: TBCSpeedButton;
     FrameAdapter: TsFrameAdapter;
     OpenDialog: TsOpenDialog;
+    DrawGrid: TDrawGrid;
+    SpeedButtonDirectory: TBCSpeedButton;
+    BCSpeedButton1: TBCSpeedButton;
+    BCEditor1: TBCEditor;
+    BCEditor2: TBCEditor;
+    BCSpeedButton2: TBCSpeedButton;
+    BCSpeedButton3: TBCSpeedButton;
     procedure CancelLeftRowActionExecute(Sender: TObject);
     procedure CancelRightRowActionExecute(Sender: TObject);
     procedure CopySelectionLeftActionExecute(Sender: TObject);
@@ -460,19 +449,18 @@ end;
 procedure TCompareFrame.FilenameEditLeftKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key = VK_RETURN then
-    OpenFileToLeftGrid(FilenameLeftMemo.Text);
+    OpenFileToLeftGrid(LeftComboBox.Text);
 end;
 
 procedure TCompareFrame.FilenameEditRightKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key = VK_RETURN then
-    OpenFileToRightGrid(FilenameRightMemo.Text);
+    OpenFileToRightGrid(RightComboBox.Text);
 end;
 
 procedure TCompareFrame.LeftComboBoxChangeActionExecute(Sender: TObject);
 begin
-  FilenameLeftMemo.Text := LeftComboBox.Text;
-  OpenFileToLeftGrid(FilenameLeftMemo.Text);
+  OpenFileToLeftGrid(LeftComboBox.Text);
 end;
 
 procedure TCompareFrame.LeftComboBoxKeyPress(Sender: TObject; var Key: Char);
@@ -482,7 +470,7 @@ end;
 
 procedure TCompareFrame.LeftDocumentButtonClickActionExecute(Sender: TObject);
 begin
-  OpenDialog.InitialDir := FilenameLeftMemo.Text;
+  OpenDialog.InitialDir := LeftComboBox.Text;
   OpenDialog.Filter := Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]);
   OpenDialog.Title := LanguageDataModule.GetConstant('Open');
 
@@ -491,7 +479,7 @@ begin
     LanguageDataModule.GetConstant('Open')) then  }
   if OpenDialog.Execute(Handle) then
   begin
-    FilenameLeftMemo.Text := OpenDialog.Files[0];
+    LeftComboBox.Text := OpenDialog.Files[0];
     OpenFileToLeftGrid(OpenDialog.Files[0]);
   end;
 end;
@@ -863,19 +851,19 @@ end;
 procedure TCompareFrame.RefreshActionExecute(Sender: TObject);
 begin
   SaveGridChanges;
-  OpenFileToLeftGrid(FilenameLeftMemo.Text);
-  OpenFileToRightGrid(FilenameRightMemo.Text);
+  OpenFileToLeftGrid(LeftComboBox.Text);
+  OpenFileToRightGrid(RightComboBox.Text);
 end;
 
 procedure TCompareFrame.SaveLeftGridActionExecute(Sender: TObject);
 begin
-  FSourceLeft.SaveToFile(FilenameLeftMemo.Text);
+  FSourceLeft.SaveToFile(LeftComboBox.Text);
   SaveLeftGridAction.Enabled := False;
 end;
 
 procedure TCompareFrame.SaveRightGridActionExecute(Sender: TObject);
 begin
-  FSourceRight.SaveToFile(FilenameRightMemo.Text);
+  FSourceRight.SaveToFile(RightComboBox.Text);
   SaveRightGridAction.Enabled := False;
 end;
 
@@ -940,7 +928,7 @@ begin
   //if FSourceRight.Count <> 0 then
   //  AutosizeCol(RightGrid);
 
-  LeftMemo.Enabled := True;
+ // LeftMemo.Enabled := True;
   //LeftMemo.Text := LeftGrid.Cells[1, 0];
 
   //DrawGrid.Enabled := True;
@@ -980,7 +968,7 @@ begin
   //if FSourceLeft.Count <> 0 then
   //  AutosizeCol(LeftGrid);
 
-  RightMemo.Enabled := True;
+  //RightMemo.Enabled := True;
   //RightMemo.Text := RightGrid.Cells[1, 0];
 
   //DrawGrid.Enabled := True;
@@ -1002,8 +990,8 @@ begin
   FDiff.Clear;
   FindNextDifferenceAction.Enabled := False;
   RefreshAction.Enabled := False;
-  LeftMemo.Text := '';
-  LeftMemo.Enabled := False;
+  //LeftMemo.Text := '';
+  //LeftMemo.Enabled := False;
 end;
 
 procedure TCompareFrame.ClearRightGrid;
@@ -1020,19 +1008,18 @@ begin
   FDiff.Clear;
   FindNextDifferenceAction.Enabled := False;
   RefreshAction.Enabled := False;
-  RightMemo.Text := '';
-  RightMemo.Enabled := False;
+  //RightMemo.Text := '';
+  //RightMemo.Enabled := False;
 end;
 
 procedure TCompareFrame.RightComboBoxChangeActionExecute(Sender: TObject);
 begin
-  FilenameRightMemo.Text := RightComboBox.Text;
-  OpenFileToRightGrid(FilenameRightMemo.Text);
+  OpenFileToRightGrid(RightComboBox.Text);
 end;
 
 procedure TCompareFrame.RightDocumentButtonClickActionExecute(Sender: TObject);
 begin
-  OpenDialog.InitialDir := FilenameRightMemo.Text;
+  OpenDialog.InitialDir := RightComboBox.Text;
   OpenDialog.Filter := Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]);
   OpenDialog.Title := LanguageDataModule.GetConstant('Open');
 
@@ -1042,7 +1029,7 @@ begin
   if OpenDialog.Execute(Handle) then
   begin
     //Application.ProcessMessages; { style fix }
-    FilenameRightMemo.Text := OpenDialog.Files[0];
+    RightComboBox.Text := OpenDialog.Files[0];
     OpenFileToRightGrid(OpenDialog.Files[0]);
   end;
 end;
@@ -1171,14 +1158,11 @@ end;
 
 procedure TCompareFrame.FrameResize(Sender: TObject);
 begin
- { LeftPanel.Width := ((Width - DrawBarPanel.Width) div 2);
+  LeftPanel.Width := ((Width - DrawBarPanel.Width) div 2) - 2;
   RightPanel.Width := LeftPanel.Width;
-  if Width mod 2 <> 0 then
+  if Width mod 2 = 0 then
     RightPanel.Width := RightPanel.Width - 1;
   DrawGrid.Invalidate;
-  FilenameLeftMemo.Repaint;
-  FilenameRightMemo.Repaint;
-  Invalidate; }
 end;
 
 procedure TCompareFrame.Compare;
@@ -1309,12 +1293,12 @@ end;
 
 function TCompareFrame.GetComparedFilesSet: Boolean;
 begin
-  Result := (FilenameLeftMemo.Text <> '') and (FilenameRightMemo.Text <> '');
+  Result := (LeftComboBox.Text <> '') and (RightComboBox.Text <> '');
 end;
 
 procedure TCompareFrame.SetCompareFile(Filename: string; AFileDragDrop: Boolean);
 begin
-  if (not AFileDragDrop and (FilenameLeftMemo.Text = '')) or
+  {if (not AFileDragDrop and (FilenameLeftMemo.Text = '')) or
     (AFileDragDrop and LeftScrollBox.MouseInClient) then
   begin
     FilenameLeftMemo.Text := Filename;
@@ -1326,23 +1310,23 @@ begin
   begin
     FilenameRightMemo.Text := Filename;
     OpenFileToRightGrid(FilenameRightMemo.Text);;
-  end;
+  end;  }
 end;
 
 procedure TCompareFrame.UpdateLanguage(SelectedLanguage: string);
 begin
   BCCommon.Language.Utils.UpdateLanguage(TForm(Self), SelectedLanguage);
-  LeftRightPanel.Width := Max(LeftLabel.Width + 10, RightLabel.Width + 10);
+  //LeftRightPanel.Width := Max(LeftLabel.Width + 10, RightLabel.Width + 10);
 end;
 
 procedure TCompareFrame.RepaintFrame;
 begin
-  FilenameLeftMemo.Repaint;
-  FilenameRightMemo.Repaint;
+  //FilenameLeftMemo.Repaint;
+  //FilenameRightMemo.Repaint;
   //LeftGrid.Repaint;
   //RightGrid.Repaint;
-  LeftMemo.Repaint;
-  RightMemo.Repaint;
+  //LeftMemo.Repaint;
+  //RightMemo.Repaint;
 end;
 
 end.
