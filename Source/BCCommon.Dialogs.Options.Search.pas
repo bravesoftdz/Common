@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCEditor.Types, BCEditor.Editor,
-  BCCommon.Dialogs.Base, BCControl.Panel, BCControl.Button, acSlider,
+  BCCommon.Dialog.Base, BCControl.Panel, BCControl.Button, acSlider,
   sLabel, Vcl.StdCtrls, sButton, Vcl.ExtCtrls, sPanel;
 
 type

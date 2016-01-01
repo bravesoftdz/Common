@@ -1,4 +1,4 @@
-unit BCCommon.Dialogs.Base;
+unit BCCommon.Dialog.Base;
 
 interface
 

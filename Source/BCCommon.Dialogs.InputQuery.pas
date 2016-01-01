@@ -3,7 +3,7 @@ unit BCCommon.Dialogs.InputQuery;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, BCCommon.Dialogs.Base, Vcl.StdCtrls, BCControl.Edit,
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, BCCommon.Dialog.Base, Vcl.StdCtrls, BCControl.Edit,
   BCControl.Panel, sEdit, Vcl.ExtCtrls, sPanel;
 
 type

@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Dialogs.Base, Vcl.StdCtrls, BCControl.Button,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Dialog.Base, Vcl.StdCtrls, BCControl.Button,
   BCControl.Panel, sListBox, acSkinPreview, BCControl.Splitter, BCComponent.SkinManager, acSlider,
   Vcl.ComCtrls, sTrackBar, sLabel, sGroupBox, sButton, Vcl.ExtCtrls, sPanel, sSplitter;
 

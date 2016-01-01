@@ -3,7 +3,7 @@ unit BCCommon.Dialogs.Replace;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCCommon.Dialogs.Base,
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCCommon.Dialog.Base,
   BCControl.ComboBox, Vcl.StdCtrls, BCControl.Panel,
   BCControl.RadioButton, BCEditor.Editor, BCEditor.Types, BCControl.Button, sComboBox,
   sRadioButton, BCControl.GroupBox, sLabel, acSlider, sButton, Vcl.ExtCtrls, sPanel, sGroupBox;

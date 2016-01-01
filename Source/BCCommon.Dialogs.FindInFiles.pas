@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls,
-  BCControl.ComboBox, Vcl.ActnList, BCCommon.Dialogs.Base,
+  BCControl.ComboBox, Vcl.ActnList, BCCommon.Dialog.Base,
   sComboBox, BCControl.SpeedButton, BCControl.Panel,
   BCControl.GroupBox, sLabel, acSlider, System.Actions, Vcl.Buttons, sSpeedButton, sGroupBox, Vcl.ExtCtrls, sPanel;
 
