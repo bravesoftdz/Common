@@ -79,6 +79,8 @@ begin
         FPreviewForm.Name := 'FormSkinPreview';
         FPreviewForm.PreviewManager.SkinDirectory := ASkinManager.SkinDirectory;
         FPreviewForm.PreviewManager.SkinName := ListBoxSkins.Items[ListBoxSkins.ItemIndex];
+        FPreviewForm.Constraints.MinHeight := PanelPreviewArea.Height;
+        FPreviewForm.Constraints.MinWidth := PanelPreviewArea.Width;
         TrackBarHueOffset.Position := ASkinManager.HueOffset;
         TrackBarSaturation.Position := ASkinManager.Saturation;
         TrackBarBrightness.Position := ASkinManager.Brightness;
