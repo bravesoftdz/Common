@@ -1,4 +1,4 @@
-unit BCCommon.Forms.Base;
+unit BCCommon.Form.Base;
 
 interface
 

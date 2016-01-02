@@ -1,4 +1,4 @@
-unit BCCommon.Forms.SearchForFiles;
+unit BCCommon.Form.SearchForFiles;
 
 interface
 

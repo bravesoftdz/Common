@@ -1,4 +1,4 @@
-unit BCCommon.Forms.Print.Preview;
+unit BCCommon.Form.Print.Preview;
 
 interface
 

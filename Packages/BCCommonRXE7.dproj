@@ -117,14 +117,14 @@
         <DCCReference Include="..\Source\BCCommon.Dialog.Options.Search.pas">
             <Form>SearchOptionsDialog</Form>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Forms.Print.Preview.pas">
+        <DCCReference Include="..\Source\BCCommon.Form.Print.Preview.pas">
             <Form>PrintPreviewDialog</Form>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Dialog.Replace.pas">
             <Form>ReplaceDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Forms.Base.pas">
+        <DCCReference Include="..\Source\BCCommon.Form.Base.pas">
             <Form>BCForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -265,12 +265,12 @@
             <Form>DownloadURLDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Forms.Convert.pas">
+        <DCCReference Include="..\Source\BCCommon.Form.Convert.pas">
             <Form>ConvertForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Math.pas"/>
-        <DCCReference Include="..\Source\BCCommon.Forms.SearchForFiles.pas">
+        <DCCReference Include="..\Source\BCCommon.Form.SearchForFiles.pas">
             <Form>SearchForFilesForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
