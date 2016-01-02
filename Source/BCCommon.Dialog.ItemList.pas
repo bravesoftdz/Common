@@ -1,4 +1,4 @@
-unit BCCommon.Dialogs.ItemList;
+unit BCCommon.Dialog.ItemList;
 
 interface
 
@@ -44,7 +44,7 @@ type
 implementation
 
 uses
-  System.Math, BCCommon.Dialogs.InputQuery, BCCommon.Language.Strings;
+  System.Math, BCCommon.Dialog.InputQuery, BCCommon.Language.Strings;
 
 {$R *.dfm}
 

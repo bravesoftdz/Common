@@ -1,4 +1,4 @@
-unit BCCommon.Dialogs.Replace;
+unit BCCommon.Dialog.Replace;
 
 interface
 

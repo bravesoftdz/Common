@@ -1,4 +1,4 @@
-unit BCCommon.Dialogs.Options.ToolbarItems;
+unit BCCommon.Dialog.Options.ToolbarItems;
 
 interface
 

@@ -474,7 +474,7 @@ begin
   OpenDialog.Filter := Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]);
   OpenDialog.Title := LanguageDataModule.GetConstant('Open');
 
-  {if BCCommon.Dialogs.OpenFile(Handle, FilenameLeftMemo.Text,
+  {if BCCommon.Dialog.OpenFile(Handle, FilenameLeftMemo.Text,
     Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]),
     LanguageDataModule.GetConstant('Open')) then  }
   if OpenDialog.Execute(Handle) then
@@ -1023,7 +1023,7 @@ begin
   OpenDialog.Filter := Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]);
   OpenDialog.Title := LanguageDataModule.GetConstant('Open');
 
-  //if BCCommon.Dialogs.OpenFile(Handle, FilenameRightMemo.Text,
+  //if BCCommon.Dialog.OpenFile(Handle, FilenameRightMemo.Text,
   //  Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]),
   //  LanguageDataModule.GetConstant('Open')) then
   if OpenDialog.Execute(Handle) then

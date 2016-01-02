@@ -82,7 +82,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Winapi.Windows, BigIni, BCCommon.FileUtils, BCCommon.Dialogs.Options.ToolbarItems, BCCommon.Consts,
+  Winapi.Windows, BigIni, BCCommon.FileUtils, BCCommon.Dialog.Options.ToolbarItems, BCCommon.Consts,
   System.SysUtils, BCCommon.Utils, BCCommon.Options.Container;
 
 var

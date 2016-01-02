@@ -1,4 +1,4 @@
-unit BCCommon.Dialogs.SkinSelect;
+unit BCCommon.Dialog.SkinSelect;
 
 interface
 

@@ -1,4 +1,4 @@
-unit BCCommon.Dialogs.InputQuery;
+unit BCCommon.Dialog.InputQuery;
 
 interface
 

@@ -111,16 +111,16 @@
             <Form>BCSearchFrame</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Dialogs.Base.pas">
+        <DCCReference Include="..\Source\BCCommon.Dialog.Base.pas">
             <Form>Dialog</Form>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Dialogs.Options.Search.pas">
+        <DCCReference Include="..\Source\BCCommon.Dialog.Options.Search.pas">
             <Form>SearchOptionsDialog</Form>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Forms.Print.Preview.pas">
             <Form>PrintPreviewDialog</Form>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Dialogs.Replace.pas">
+        <DCCReference Include="..\Source\BCCommon.Dialog.Replace.pas">
             <Form>ReplaceDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -199,7 +199,7 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Dialogs.Options.ToolbarItems.pas">
+        <DCCReference Include="..\Source\BCCommon.Dialog.Options.ToolbarItems.pas">
             <Form>OptionsToolbarItemsDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -251,7 +251,7 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Dialogs.FindInFiles.pas">
+        <DCCReference Include="..\Source\BCCommon.Dialog.FindInFiles.pas">
             <Form>FindInFilesDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -261,7 +261,7 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Hash.pas"/>
-        <DCCReference Include="..\Source\BCCommon.Dialogs.DownloadURL.pas">
+        <DCCReference Include="..\Source\BCCommon.Dialog.DownloadURL.pas">
             <Form>DownloadURLDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -274,7 +274,7 @@
             <Form>SearchForFilesForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Dialogs.ConfirmReplace.pas">
+        <DCCReference Include="..\Source\BCCommon.Dialog.ConfirmReplace.pas">
             <Form>ConfirmReplaceDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -323,14 +323,14 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Dialogs.InputQuery.pas">
+        <DCCReference Include="..\Source\BCCommon.Dialog.InputQuery.pas">
             <Form>InputQueryDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Source\BigIni.pas"/>
         <DCCReference Include="..\Source\Diff.pas"/>
         <DCCReference Include="..\Source\IniPersist.pas"/>
-        <DCCReference Include="..\Source\BCCommon.Dialogs.ItemList.pas">
+        <DCCReference Include="..\Source\BCCommon.Dialog.ItemList.pas">
             <Form>ItemListDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>

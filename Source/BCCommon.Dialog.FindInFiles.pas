@@ -1,4 +1,4 @@
-unit BCCommon.Dialogs.FindInFiles;
+unit BCCommon.Dialog.FindInFiles;
 
 interface
 
@@ -78,7 +78,7 @@ uses
   {$WARNINGS OFF}
   Vcl.FileCtrl, { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}
-  BCCommon.FileUtils, BCCommon.Dialogs.ItemList;
+  BCCommon.FileUtils, BCCommon.Dialog.ItemList;
 
 var
   LFindInFilesDialog: TFindInFilesDialog;

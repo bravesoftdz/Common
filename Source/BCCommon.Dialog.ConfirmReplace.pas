@@ -1,4 +1,4 @@
-unit BCCommon.Dialogs.ConfirmReplace;
+unit BCCommon.Dialog.ConfirmReplace;
 
 interface
 

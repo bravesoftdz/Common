@@ -1,4 +1,4 @@
-unit BCCommon.Dialogs.Options.Search;
+unit BCCommon.Dialog.Options.Search;
 
 interface
 
