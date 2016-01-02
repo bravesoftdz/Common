@@ -104,10 +104,10 @@
             <Form>ImagesDataModule</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Base.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Base.pas">
             <Form>BCBaseFrame</Form>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Search.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Search.pas">
             <Form>BCSearchFrame</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
@@ -139,62 +139,62 @@
         <DCCReference Include="..\Source\BCCommon.FileUtils.pas"/>
         <DCCReference Include="..\Source\BCCommon.Utils.pas"/>
         <DCCReference Include="..\Source\BCCommon.Options.Container.pas"/>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Base.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Base.pas">
             <Form>BCOptionsBaseFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.CompletionProposal.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.CompletionProposal.pas">
             <Form>OptionsEditorCompletionProposalFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.Search.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.Search.pas">
             <Form>OptionsEditorSearchFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.Options.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.Options.pas">
             <Form>OptionsEditorOptionsFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.Font.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.Font.pas">
             <Form>OptionsEditorFontFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.LeftMargin.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.LeftMargin.pas">
             <Form>OptionsEditorLeftMarginFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.RightMargin.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.RightMargin.pas">
             <Form>OptionsEditorRightMarginFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Compare.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Compare.pas">
             <Form>OptionsCompareFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.MainMenu.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.MainMenu.pas">
             <Form>OptionsMainMenuFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.StatusBar.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.StatusBar.pas">
             <Form>OptionsStatusBarFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Output.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Output.pas">
             <Form>OptionsOutputFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Toolbar.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Toolbar.pas">
             <Form>OptionsToolbarFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
@@ -203,12 +203,12 @@
             <Form>OptionsToolbarItemsDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Print.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Print.pas">
             <Form>OptionsPrintFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.SQL.Select.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.SQL.Select.pas">
             <Form>OptionsSQLSelectFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
@@ -216,37 +216,37 @@
         <DCCReference Include="..\Source\BCCommon.Options.Container.SQL.Formatter.pas"/>
         <DCCReference Include="..\Source\BCCommon.SQL.Consts.pas"/>
         <DCCReference Include="..\Source\BCCommon.Messages.pas"/>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.SQL.Alignments.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.SQL.Alignments.pas">
             <Form>OptionsSQLAlignmentsFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.SQL.Insert.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.SQL.Insert.pas">
             <Form>OptionsSQLInsertFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.SQL.Update.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.SQL.Update.pas">
             <Form>OptionsSQLUpdateFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.SQL.Whitespace.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.SQL.Whitespace.pas">
             <Form>OptionsSQLWhitespaceFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.SQL.Capitalization.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.SQL.Capitalization.pas">
             <Form>OptionsSQLCapitalizationFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.SQL.Indentation.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.SQL.Indentation.pas">
             <Form>OptionsSQLIndentationFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.SQL.Formatter.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.SQL.Formatter.pas">
             <Form>OptionsSQLFormatterFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
@@ -255,7 +255,7 @@
             <Form>FindInFilesDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Compare.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Compare.pas">
             <Form>CompareFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
@@ -278,47 +278,47 @@
             <Form>ConfirmReplaceDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.Scroll.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.Scroll.pas">
             <Form>OptionsEditorScrollFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.Caret.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.Caret.pas">
             <Form>OptionsEditorCaretFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.Tabulator.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.Tabulator.pas">
             <Form>OptionsEditorTabulatorFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.Minimap.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.Minimap.pas">
             <Form>OptionsEditorMinimapFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.CodeFolding.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.CodeFolding.pas">
             <Form>OptionsEditorCodeFoldingFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.MatchingPair.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.MatchingPair.pas">
             <Form>OptionsEditorMatchingPairFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.Color.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.Color.pas">
             <Form>OptionsEditorColorFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.Selection.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.Selection.pas">
             <Form>OptionsEditorSelectionFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Source\BCCommon.Frames.Options.Editor.SpecialChars.pas">
+        <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.SpecialChars.pas">
             <Form>OptionsEditorSpecialCharsFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
