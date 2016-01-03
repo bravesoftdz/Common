@@ -33,8 +33,8 @@ type
     ActionRightDocumentButtonClick: TAction;
     RightPanel: TBCPanel;
     RightTopPanel: TBCPanel;
-    ActionSaveLeftGrid: TAction;
-    ActionSaveRightGrid: TAction;
+    ActionSaveLeftDocument: TAction;
+    ActionSaveRightDocument: TAction;
     SaveSpeedButton1: TBCSpeedButton;
     SaveSpeedButton2: TBCSpeedButton;
     TopMiddlePanel: TBCPanel;
@@ -43,78 +43,54 @@ type
     DrawGrid: TDrawGrid;
     SpeedButtonDirectory: TBCSpeedButton;
     BCSpeedButton1: TBCSpeedButton;
-    BCEditor1: TBCEditor;
-    BCEditor2: TBCEditor;
+    EditorLeft: TBCEditor;
+    EditorRight: TBCEditor;
     BCSpeedButton2: TBCSpeedButton;
     BCSpeedButton3: TBCSpeedButton;
     procedure ActionCopySelectionLeftExecute(Sender: TObject);
     procedure ActionCopySelectionRightExecute(Sender: TObject);
     procedure DrawGridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect; State: TGridDrawState);
-    procedure DrawGridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure DrawGridMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure DrawGridMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure FilenameEditLeftKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FilenameEditRightKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ActionFindNextDifferenceExecute(Sender: TObject);
     procedure FrameResize(Sender: TObject);
     procedure ActionLeftComboBoxChangeExecute(Sender: TObject);
-    procedure LeftComboBoxKeyPress(Sender: TObject; var Key: Char);
     procedure ActionLeftDocumentButtonClickExecute(Sender: TObject);
     procedure LeftGridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect; State: TGridDrawState);
     procedure LeftGridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure LeftGridKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure LeftGridMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure LeftGridMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
-    procedure OpenDocumentsLeftActionExecute(Sender: TObject);
-    procedure OpenDocumentsRightActionExecute(Sender: TObject);
     procedure ActionRefreshExecute(Sender: TObject);
     procedure ActionRightComboBoxChangeExecute(Sender: TObject);
     procedure ActionRightDocumentButtonClickExecute(Sender: TObject);
     procedure RightGridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect; State: TGridDrawState);
     procedure RightGridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure RightGridKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure RightGridMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure RightGridMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure UpdateLeftRowActionExecute(Sender: TObject);
     procedure UpdateRightRowActionExecute(Sender: TObject);
-    procedure DrawGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
-    procedure DrawGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
-    procedure LeftGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
-    procedure LeftGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
-    procedure RightGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
-    procedure RightGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
-    procedure DrawGridVerticalScroll(Sender: TObject);
   private
     FDiff: TDiff;
     FHashListLeft, FHashListRight: TList;
     FSpecialChars: Boolean;
     FLineNumbers: Boolean;
-//    OldLeftGridProc, OldRightGridProc, OldDrawGridProc, OldLeftScrollBoxProc, OldRightScrollBoxProc: TWndMethod;
+    procedure ClearLeftEditor;
+    procedure ClearRightEditor;
+    procedure OpenFileToLeftEditor(AFilename: string);
+    procedure OpenFileToRightEditor(AFilename: string);
+
+
     function CheckIfFileExists(Filename: string): Boolean;
-   // function FormatText(Text: string): string;
     function GetComparedFilesSet: Boolean;
     procedure BuildHashListLeft;
     procedure BuildHashListRight;
-    procedure ClearLeftGrid;
-    procedure ClearRightGrid;
+
     procedure Compare;
-//    procedure DrawGridWindowProc(var Message: TMessage);
-    procedure FillLeftGridFromSource;
-    procedure FillRightGridFromSource;
-//    procedure LeftGridWindowProc(var Message: TMessage);
-//    procedure LeftScrollBoxWindowProc(var Message: TMessage);
-    procedure OpenFileToLeftGrid(Filename: string);
-    procedure OpenFileToRightGrid(Filename: string);
-//    procedure RightGridWindowProc(var Message: TMessage);
- //   procedure RightScrollBoxWindowProc(var Message: TMessage);
- //   procedure ScrollGrids(Row: Integer);
+
     procedure SetMaxCounts;
     procedure SetOpenDocumentsList(Value: TStringList);
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
+
     procedure SetCompareFile(Filename: string; AFileDragDrop: Boolean = False);
-    procedure RepaintFrame;
+
     function ToggleSpecialChars: Boolean;
     function ToggleLineNumbers: Boolean;
     procedure UpdateLanguage(SelectedLanguage: string);
@@ -372,75 +348,21 @@ begin
   end; }
 end;
 
-procedure TCompareFrame.DrawGridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-begin
-  if (Key = VK_UP) or (Key = VK_DOWN) then
-  //  ScrollGrids(DrawGrid.Row);
-end;
-
-(*procedure TCompareFrame.ScrollGrids(Row: Integer);
-begin
-  //if (LeftGrid.RowCount = 1) and (RightGrid.RowCount = 1) then
-    Exit;
-
-  {DrawGrid.Row := Row;
-  DrawGrid.Invalidate;
-  LeftGrid.Row := Row;
-  RightGrid.Row := Row;
-
-  LeftMemo.Text := LeftGrid.Cells[1, Row];
-  RightMemo.Text := RightGrid.Cells[1, Row];  }
-end; *)
-
-procedure TCompareFrame.DrawGridMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-begin
-  //ScrollGrids(DrawGrid.Row);
-end;
-
-procedure TCompareFrame.DrawGridMouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: Integer);
-begin
-  if Shift = [ssLeft] then
-  //  ScrollGrids(DrawGrid.Row);
-end;
-
-procedure TCompareFrame.DrawGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
-  var Handled: Boolean);
-begin
-  //ScrollGrids(DrawGrid.Row);
-end;
-
-procedure TCompareFrame.DrawGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
-  var Handled: Boolean);
-begin
-  //ScrollGrids(DrawGrid.Row);
-end;
-
-procedure TCompareFrame.DrawGridVerticalScroll(Sender: TObject);
-begin
-  //DrawGrid.Invalidate;
-end;
-
 procedure TCompareFrame.FilenameEditLeftKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key = VK_RETURN then
-    OpenFileToLeftGrid(LeftComboBox.Text);
+    OpenFileToLeftEditor(LeftComboBox.Text);
 end;
 
 procedure TCompareFrame.FilenameEditRightKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key = VK_RETURN then
-    OpenFileToRightGrid(RightComboBox.Text);
+    OpenFileToRightEditor(RightComboBox.Text);
 end;
 
 procedure TCompareFrame.ActionLeftComboBoxChangeExecute(Sender: TObject);
 begin
-  OpenFileToLeftGrid(LeftComboBox.Text);
-end;
-
-procedure TCompareFrame.LeftComboBoxKeyPress(Sender: TObject; var Key: Char);
-begin
-  Key := #0;
+  OpenFileToLeftEditor(LeftComboBox.Text);
 end;
 
 procedure TCompareFrame.ActionLeftDocumentButtonClickExecute(Sender: TObject);
@@ -448,14 +370,10 @@ begin
   OpenDialog.InitialDir := LeftComboBox.Text;
   OpenDialog.Filter := Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]);
   OpenDialog.Title := LanguageDataModule.GetConstant('Open');
-
-  {if BCCommon.Dialog.OpenFile(Handle, FilenameLeftMemo.Text,
-    Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]),
-    LanguageDataModule.GetConstant('Open')) then  }
   if OpenDialog.Execute(Handle) then
   begin
     LeftComboBox.Text := OpenDialog.Files[0];
-    OpenFileToLeftGrid(OpenDialog.Files[0]);
+    OpenFileToLeftEditor(OpenDialog.Files[0]);
   end;
 end;
 
@@ -593,41 +511,7 @@ begin
     LeftGrid.Row := Min(LeftGrid.Row + LeftGrid.VisibleRowCount, LeftGrid.RowCount - 1);
   if (Key = VK_PRIOR) or (Key = VK_NEXT) then
     Key := 0;
-  if (Key = VK_UP) or (Key = VK_DOWN) or (Key = VK_PRIOR) or (Key = VK_NEXT) then
-    ScrollGrids(LeftGrid.Row); }
-end;
-
-procedure TCompareFrame.LeftGridKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-begin
-  if (Key = VK_UP) or (Key = VK_DOWN) or (Key = VK_PRIOR) or (Key = VK_NEXT) then
-  //  ScrollGrids(LeftGrid.Row);
-end;
-
-procedure TCompareFrame.LeftGridMouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-begin
-  //ScrollGrids(LeftGrid.Row);
-end;
-
-procedure TCompareFrame.LeftGridMouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: Integer);
-begin
-  if Shift = [ssLeft] then
-    //ScrollGrids(LeftGrid.Row);
-end;
-
-procedure TCompareFrame.LeftGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
-  var Handled: Boolean);
-begin
-  //ScrollGrids(LeftGrid.Row);
-  Handled := True;
-end;
-
-procedure TCompareFrame.LeftGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
-  var Handled: Boolean);
-begin
-  //ScrollGrids(LeftGrid.Row);
-  Handled := True;
+ }
 end;
 
 procedure TCompareFrame.RightGridDrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -752,47 +636,13 @@ begin
     RightGrid.Row := Min(RightGrid.Row + RightGrid.VisibleRowCount, RightGrid.RowCount - 1);
   if (Key = VK_PRIOR) or (Key = VK_NEXT) then
     Key := 0;
-  if (Key = VK_UP) or (Key = VK_DOWN) or (Key = VK_PRIOR) or (Key = VK_NEXT) then
-    ScrollGrids(RightGrid.Row); }
-end;
-
-procedure TCompareFrame.RightGridKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-begin
-  if (Key = VK_UP) or (Key = VK_DOWN) or (Key = VK_PRIOR) or (Key = VK_NEXT) then
-  //  ScrollGrids(RightGrid.Row);
-end;
-
-procedure TCompareFrame.RightGridMouseDown
-  (Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-begin
-  //ScrollGrids(RightGrid.Row);
-end;
-
-procedure TCompareFrame.RightGridMouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: Integer);
-begin
-  if Shift = [ssLeft] then
-  //  ScrollGrids(RightGrid.Row);
-end;
-
-procedure TCompareFrame.RightGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
-  var Handled: Boolean);
-begin
-  //ScrollGrids(RightGrid.Row);
-  Handled := True;
-end;
-
-procedure TCompareFrame.RightGridMouseWheelUp(Sender: TObject; Shift: TShiftState; MousePos: TPoint;
-  var Handled: Boolean);
-begin
-  //ScrollGrids(RightGrid.Row);
-  Handled := True;
+ }
 end;
 
 procedure TCompareFrame.ActionRefreshExecute(Sender: TObject);
 begin
-  OpenFileToLeftGrid(LeftComboBox.Text);
-  OpenFileToRightGrid(RightComboBox.Text);
+  OpenFileToLeftEditor(LeftComboBox.Text);
+  OpenFileToRightEditor(RightComboBox.Text);
 end;
 
 function TCompareFrame.CheckIfFileExists(Filename: string): Boolean;
@@ -802,23 +652,13 @@ begin
     ShowErrorMessage(Format(LanguageDataModule.GetErrorMessage('FileNotFound'), [Filename]))
 end;
 
-procedure TCompareFrame.OpenDocumentsLeftActionExecute(Sender: TObject);
-begin
-  //LeftComboBox.DroppedDown := not LeftComboBox.DroppedDown;
-end;
-
-procedure TCompareFrame.OpenDocumentsRightActionExecute(Sender: TObject);
-begin
- // RightComboBox.DroppedDown := not RightComboBox.DroppedDown;
-end;
-
-procedure TCompareFrame.OpenFileToLeftGrid(Filename: string);
+procedure TCompareFrame.OpenFileToLeftEditor(AFilename: string);
 var
   FName: string;
 begin
-  ClearLeftGrid;
+  ClearLeftEditor;
 
-  FName := Trim(System.SysUtils.StringReplace(Filename, '"', '', [rfReplaceAll]));
+  FName := Trim(System.SysUtils.StringReplace(AFilename, '"', '', [rfReplaceAll]));
   if FName = '' then
     Exit;
 
@@ -828,7 +668,6 @@ begin
 
   BuildHashListLeft;
   SetMaxCounts;
-  FillLeftGridFromSource;
   //if LeftComboBox.Items.IndexOf(FName) = -1 then
   //  LeftComboBox.Items.Add(FName);
   Compare;
@@ -851,13 +690,13 @@ begin
   //DrawGrid.Invalidate;
 end;
 
-procedure TCompareFrame.OpenFileToRightGrid(Filename: string);
+procedure TCompareFrame.OpenFileToRightEditor(AFilename: string);
 var
   FName: string;
 begin
-  ClearRightGrid;
+  ClearRightEditor;
 
-  FName :=  Trim(System.SysUtils.StringReplace(Filename, '"', '', [rfReplaceAll]));
+  FName :=  Trim(System.SysUtils.StringReplace(AFilename, '"', '', [rfReplaceAll]));
   if FName = '' then
     Exit;
 
@@ -866,7 +705,6 @@ begin
 
   BuildHashListRight;
   SetMaxCounts;
-  FillRightGridFromSource;
   //if RightComboBox.Items.IndexOf(FName) = -1 then
   //  RightComboBox.Items.Add(FName);
   Compare;
@@ -889,41 +727,31 @@ begin
   //DrawGrid.Invalidate;
 end;
 
-procedure TCompareFrame.ClearLeftGrid;
+procedure TCompareFrame.ClearLeftEditor;
 begin
-  FHashListLeft.Clear;
-  //LeftGrid.Clear;
-  //LeftGrid.RowCount := 0;
-  {SaveLeftGridAction.Enabled := False;
-  CopySelectionRightAction.Enabled := False;
-  UpdateLeftRowAction.Enabled := False;
-  CancelLeftRowAction.Enabled := False;  }
   FDiff.Clear;
-{  FindNextDifferenceAction.Enabled := False;
-  RefreshAction.Enabled := False;  }
-  //LeftMemo.Text := '';
-  //LeftMemo.Enabled := False;
+  FHashListLeft.Clear;
+  EditorLeft.Clear;
+  ActionSaveLeftDocument.Enabled := False;
+  ActionCopySelectionRight.Enabled := False;
+  ActionFindNextDifference.Enabled := False;
+  ActionRefresh.Enabled := False;
 end;
 
-procedure TCompareFrame.ClearRightGrid;
+procedure TCompareFrame.ClearRightEditor;
 begin
-  FHashListRight.Clear;
-  //RightGrid.Clear;
-  //RightGrid.RowCount := 0;
-  {SaveRightGridAction.Enabled := False;
-  CopySelectionLeftAction.Enabled := False;
-  UpdateRightRowAction.Enabled := False;
-  CancelRightRowAction.Enabled := False;    }
   FDiff.Clear;
-{  FindNextDifferenceAction.Enabled := False;
-  RefreshAction.Enabled := False;
-  //RightMemo.Text := '';          }
-  //RightMemo.Enabled := False;
+  FHashListRight.Clear;
+  EditorRight.Clear;
+  ActionSaveRightDocument.Enabled := False;
+  ActionCopySelectionLeft.Enabled := False;
+  ActionFindNextDifference.Enabled := False;
+  ActionRefresh.Enabled := False;
 end;
 
 procedure TCompareFrame.ActionRightComboBoxChangeExecute(Sender: TObject);
 begin
-  OpenFileToRightGrid(RightComboBox.Text);
+  OpenFileToRightEditor(RightComboBox.Text);
 end;
 
 procedure TCompareFrame.ActionRightDocumentButtonClickExecute(Sender: TObject);
@@ -931,15 +759,10 @@ begin
   OpenDialog.InitialDir := RightComboBox.Text;
   OpenDialog.Filter := Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]);
   OpenDialog.Title := LanguageDataModule.GetConstant('Open');
-
-  //if BCCommon.Dialog.OpenFile(Handle, FilenameRightMemo.Text,
-  //  Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]),
-  //  LanguageDataModule.GetConstant('Open')) then
   if OpenDialog.Execute(Handle) then
   begin
-    //Application.ProcessMessages; { style fix }
     RightComboBox.Text := OpenDialog.Files[0];
-    OpenFileToRightGrid(OpenDialog.Files[0]);
+    OpenFileToRightEditor(OpenDialog.Files[0]);
   end;
 end;
 
@@ -948,8 +771,8 @@ var
   i: Integer;
 begin
   FHashListLeft.Clear;
-  //for i := 0 to FSourceLeft.Count - 1 do
-  //  FHashListLeft.Add(HashLine(FSourceLeft[i], OptionsContainer.CompareIgnoreCase, OptionsContainer.CompareIgnoreBlanks));
+  for i := 0 to EditorLeft.Lines.Count - 1 do
+    FHashListLeft.Add(HashLine(EditorLeft.Lines[i], OptionsContainer.CompareIgnoreCase, OptionsContainer.CompareIgnoreBlanks));
 end;
 
 procedure TCompareFrame.BuildHashListRight;
@@ -957,8 +780,8 @@ var
   i: Integer;
 begin
   FHashListRight.Clear;
-  //for i := 0 to FSourceRight.Count - 1 do
-  //  FHashListRight.Add(HashLine(FSourceRight[i], OptionsContainer.CompareIgnoreCase, OptionsContainer.CompareIgnoreBlanks));
+  for i := 0 to EditorRight.Lines.Count - 1 do
+    FHashListRight.Add(HashLine(EditorRight.Lines[i], OptionsContainer.CompareIgnoreCase, OptionsContainer.CompareIgnoreBlanks));
 end;
 
 procedure TCompareFrame.SetMaxCounts;
@@ -1014,42 +837,6 @@ begin
   //CancelRightRowAction.Enabled := False;
 end;
 
-procedure TCompareFrame.FillLeftGridFromSource;
-//var
-//  i: Integer;
-begin
- { for i := 0 to 1 do
-    LeftGrid.Cols[i].BeginUpdate;
-  try
-    for i := 0 to FSourceLeft.Count - 1 do
-    begin
-      LeftGrid.Cells[0, i] := IntToStr(i + 1);
-      LeftGrid.Cells[1, i] := FSourceLeft[i];
-    end;
-  finally
-    for i := 0 to 1 do
-      LeftGrid.Cols[i].EndUpdate;
-  end;}
-end;
-
-procedure TCompareFrame.FillRightGridFromSource;
-//var
-//  i: Integer;
-begin
-  {for i := 0 to 1 do
-    RightGrid.Cols[i].BeginUpdate;
-  try
-    for i := 0 to FSourceRight.Count - 1 do
-    begin
-      RightGrid.Cells[0, i] := IntToStr(i + 1);
-      RightGrid.Cells[1, i] := FSourceRight[i];
-    end;
-  finally
-    for i := 0 to 1 do
-      RightGrid.Cols[i].EndUpdate;
-  end; }
-end;
-
 procedure TCompareFrame.ActionFindNextDifferenceExecute(Sender: TObject);
 //var
 //  Row: Integer;
@@ -1061,8 +848,7 @@ begin
   Row := Min(LeftGrid.Row + 1, LeftGrid.RowCount - 1);
   while (Row < LeftGrid.RowCount - 1) and (FDiff.Compares[Row].Kind = ckNone) do
     Inc(Row);
-  if FDiff.Compares[Row].Kind <> ckNone then
-    ScrollGrids(Row); }
+ }
 end;
 
 procedure TCompareFrame.FrameResize(Sender: TObject);
@@ -1207,35 +993,24 @@ end;
 
 procedure TCompareFrame.SetCompareFile(Filename: string; AFileDragDrop: Boolean);
 begin
-  {if (not AFileDragDrop and (FilenameLeftMemo.Text = '')) or
-    (AFileDragDrop and LeftScrollBox.MouseInClient) then
+  if (not AFileDragDrop and (EditorLeft.Text = '')) or
+    (AFileDragDrop and EditorLeft.MouseInClient) then
   begin
-    FilenameLeftMemo.Text := Filename;
-    OpenFileToLeftGrid(FilenameLeftMemo.Text);
+    LeftComboBox.Text := Filename;
+    OpenFileToLeftEditor(Filename);
   end
   else
-  if (not AFileDragDrop and (FilenameRightMemo.Text = '')) or
-    (AFileDragDrop and RightScrollBox.MouseInClient) then
+  if (not AFileDragDrop and (EditorRight.Text = '')) or
+    (AFileDragDrop and EditorRight.MouseInClient) then
   begin
-    FilenameRightMemo.Text := Filename;
-    OpenFileToRightGrid(FilenameRightMemo.Text);;
-  end;  }
+    RightComboBox.Text := Filename;
+    OpenFileToRightEditor(Filename);;
+  end;
 end;
 
 procedure TCompareFrame.UpdateLanguage(SelectedLanguage: string);
 begin
   BCCommon.Language.Utils.UpdateLanguage(TForm(Self), SelectedLanguage);
-  //LeftRightPanel.Width := Max(LeftLabel.Width + 10, RightLabel.Width + 10);
-end;
-
-procedure TCompareFrame.RepaintFrame;
-begin
-  //FilenameLeftMemo.Repaint;
-  //FilenameRightMemo.Repaint;
-  //LeftGrid.Repaint;
-  //RightGrid.Repaint;
-  //LeftMemo.Repaint;
-  //RightMemo.Repaint;
 end;
 
 end.

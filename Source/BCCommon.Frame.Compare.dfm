@@ -57,7 +57,7 @@ object CompareFrame: TCompareFrame
           Top = 0
           Width = 22
           Height = 22
-          Action = ActionSaveLeftGrid
+          Action = ActionSaveLeftDocument
           Align = alRight
           Flat = True
           Glyph.Data = {
@@ -220,11 +220,10 @@ object CompareFrame: TCompareFrame
           Sorted = True
           TabOrder = 0
           OnChange = ActionLeftComboBoxChangeExecute
-          OnKeyPress = LeftComboBoxKeyPress
           UseMouseWheel = False
         end
       end
-      object BCEditor1: TBCEditor
+      object EditorLeft: TBCEditor
         Left = 0
         Top = 25
         Width = 247
@@ -349,7 +348,7 @@ object CompareFrame: TCompareFrame
           Top = 0
           Width = 22
           Height = 22
-          Action = ActionSaveRightGrid
+          Action = ActionSaveRightDocument
           Align = alLeft
           Flat = True
           Glyph.Data = {
@@ -511,11 +510,10 @@ object CompareFrame: TCompareFrame
           ItemIndex = -1
           TabOrder = 0
           OnChange = ActionRightComboBoxChangeExecute
-          OnKeyPress = LeftComboBoxKeyPress
           UseMouseWheel = False
         end
       end
-      object BCEditor2: TBCEditor
+      object EditorRight: TBCEditor
         Left = 0
         Top = 25
         Width = 244
@@ -780,11 +778,11 @@ object CompareFrame: TCompareFrame
       Hint = 'Refresh documents'
       OnExecute = ActionRefreshExecute
     end
-    object ActionSaveLeftGrid: TAction
+    object ActionSaveLeftDocument: TAction
       Enabled = False
       Hint = 'Save the document'
     end
-    object ActionSaveRightGrid: TAction
+    object ActionSaveRightDocument: TAction
       Enabled = False
       Hint = 'Save the document'
     end
