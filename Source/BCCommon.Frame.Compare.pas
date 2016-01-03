@@ -2,52 +2,42 @@ unit BCCommon.Frame.Compare;
 
 interface
 
-{$hints off} // TODO: remove this after implemented
-
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Diff,
-  Vcl.Grids, Vcl.StdCtrls, Vcl.ActnList, BCControl.Panel,
-  BCControl.ComboBox, System.Actions, sComboBox, BCControl.SpeedButton, sFrameAdapter,
-  Vcl.Dialogs, sDialogs, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel, BCEditor.Editor.Base, BCEditor.Editor;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCCommon.Diff,
+  Vcl.Grids, Vcl.StdCtrls, Vcl.ActnList, BCControl.Panel, BCControl.ComboBox, System.Actions, sComboBox,
+  BCControl.SpeedButton, sFrameAdapter, Vcl.Dialogs, sDialogs, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel,
+  BCEditor.Editor.Base, BCEditor.Editor;
 
 type
   TSyncKind = (skBoth, skVScroll, skHScroll);
 
   TCompareFrame = class(TFrame)
     ActionList: TActionList;
-    CancelLeftRowAction: TAction;
-    CancelRightRowAction: TAction;
     CopyLeftSpeedButton: TBCSpeedButton;
     CopyRightSpeedButton: TBCSpeedButton;
-    CopySelectionLeftAction: TAction;
-    CopySelectionRightAction: TAction;
+    ActionCopySelectionLeft: TAction;
+    ActionCopySelectionRight: TAction;
     DrawBarPanel: TBCPanel;
-    FindNextDifferenceAction: TAction;
+    ActionFindNextDifference: TAction;
     FindNextDifferenceSpeedButton: TBCSpeedButton;
     LeftComboBox: TBCComboBox;
-    LeftComboBoxChangeAction: TAction;
-    LeftDocumentButtonClickAction: TAction;
-    LeftGridOnChangeAction: TAction;
+    ActionLeftComboBoxChange: TAction;
+    ActionLeftDocumentButtonClick: TAction;
     LeftPanel: TBCPanel;
     LeftTopPanel: TBCPanel;
-    OpenDocumentsLeftAction: TAction;
-    OpenDocumentsRightAction: TAction;
     Panel: TBCPanel;
-    RefreshAction: TAction;
+    ActionRefresh: TAction;
     RefreshSpeedButton: TBCSpeedButton;
     RightComboBox: TBCComboBox;
-    RightComboBoxChangeAction: TAction;
-    RightDocumentButtonClickAction: TAction;
-    RightGridOnChangeAction: TAction;
+    ActionRightComboBoxChange: TAction;
+    ActionRightDocumentButtonClick: TAction;
     RightPanel: TBCPanel;
     RightTopPanel: TBCPanel;
-    SaveLeftGridAction: TAction;
-    SaveRightGridAction: TAction;
+    ActionSaveLeftGrid: TAction;
+    ActionSaveRightGrid: TAction;
     SaveSpeedButton1: TBCSpeedButton;
     SaveSpeedButton2: TBCSpeedButton;
     TopMiddlePanel: TBCPanel;
-    UpdateLeftRowAction: TAction;
-    UpdateRightRowAction: TAction;
     FrameAdapter: TsFrameAdapter;
     OpenDialog: TsOpenDialog;
     DrawGrid: TDrawGrid;
@@ -57,40 +47,34 @@ type
     BCEditor2: TBCEditor;
     BCSpeedButton2: TBCSpeedButton;
     BCSpeedButton3: TBCSpeedButton;
-    procedure CancelLeftRowActionExecute(Sender: TObject);
-    procedure CancelRightRowActionExecute(Sender: TObject);
-    procedure CopySelectionLeftActionExecute(Sender: TObject);
-    procedure CopySelectionRightActionExecute(Sender: TObject);
+    procedure ActionCopySelectionLeftExecute(Sender: TObject);
+    procedure ActionCopySelectionRightExecute(Sender: TObject);
     procedure DrawGridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect; State: TGridDrawState);
     procedure DrawGridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure DrawGridMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure DrawGridMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure FilenameEditLeftKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FilenameEditRightKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure FindNextDifferenceActionExecute(Sender: TObject);
+    procedure ActionFindNextDifferenceExecute(Sender: TObject);
     procedure FrameResize(Sender: TObject);
-    procedure LeftComboBoxChangeActionExecute(Sender: TObject);
+    procedure ActionLeftComboBoxChangeExecute(Sender: TObject);
     procedure LeftComboBoxKeyPress(Sender: TObject; var Key: Char);
-    procedure LeftDocumentButtonClickActionExecute(Sender: TObject);
+    procedure ActionLeftDocumentButtonClickExecute(Sender: TObject);
     procedure LeftGridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect; State: TGridDrawState);
     procedure LeftGridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure LeftGridKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure LeftGridMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure LeftGridMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
-    procedure LeftMemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure OpenDocumentsLeftActionExecute(Sender: TObject);
     procedure OpenDocumentsRightActionExecute(Sender: TObject);
-    procedure RefreshActionExecute(Sender: TObject);
-    procedure RightComboBoxChangeActionExecute(Sender: TObject);
-    procedure RightDocumentButtonClickActionExecute(Sender: TObject);
+    procedure ActionRefreshExecute(Sender: TObject);
+    procedure ActionRightComboBoxChangeExecute(Sender: TObject);
+    procedure ActionRightDocumentButtonClickExecute(Sender: TObject);
     procedure RightGridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect; State: TGridDrawState);
     procedure RightGridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure RightGridKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure RightGridMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure RightGridMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
-    procedure RightMemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure SaveLeftGridActionExecute(Sender: TObject);
-    procedure SaveRightGridActionExecute(Sender: TObject);
     procedure UpdateLeftRowActionExecute(Sender: TObject);
     procedure UpdateRightRowActionExecute(Sender: TObject);
     procedure DrawGridMouseWheelDown(Sender: TObject; Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
@@ -103,11 +87,9 @@ type
   private
     FDiff: TDiff;
     FHashListLeft, FHashListRight: TList;
-    FResultLeft, FResultRight: TStringList;
-    FSourceLeft, FSourceRight: TStringList;
     FSpecialChars: Boolean;
     FLineNumbers: Boolean;
-    OldLeftGridProc, OldRightGridProc, OldDrawGridProc, OldLeftScrollBoxProc, OldRightScrollBoxProc: TWndMethod;
+//    OldLeftGridProc, OldRightGridProc, OldDrawGridProc, OldLeftScrollBoxProc, OldRightScrollBoxProc: TWndMethod;
     function CheckIfFileExists(Filename: string): Boolean;
    // function FormatText(Text: string): string;
     function GetComparedFilesSet: Boolean;
@@ -125,7 +107,6 @@ type
     procedure OpenFileToRightGrid(Filename: string);
 //    procedure RightGridWindowProc(var Message: TMessage);
  //   procedure RightScrollBoxWindowProc(var Message: TMessage);
-    procedure SaveGridChanges;
  //   procedure ScrollGrids(Row: Integer);
     procedure SetMaxCounts;
     procedure SetOpenDocumentsList(Value: TStringList);
@@ -199,11 +180,9 @@ end; }
 constructor TCompareFrame.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  FDiff := TDiff.Create(Self);
-  FSourceLeft := TStringList.Create;
-  FSourceRight := TStringList.Create;
-  FResultLeft := TStringList.Create;
-  FResultRight := TStringList.Create;
+
+  FDiff := TDiff.Create;
+
   FHashListLeft := TList.Create;
   FHashListRight := TList.Create;
 
@@ -237,10 +216,6 @@ end;
 
 destructor TCompareFrame.Destroy;
 begin
-  FSourceLeft.Free;
-  FSourceRight.Free;
-  FResultLeft.Free;
-  FResultRight.Free;
   FHashListLeft.Free;
   FHashListRight.Free;
   inherited Destroy;
@@ -252,9 +227,9 @@ const
   PaleRed: TColor = $9999FF;
   PaleBlue: TColor = $FF9999;
   PaleGray: TColor = $D0D0D0;
-var
+{var
   LeftRowColor, RightRowColor: TColor;
-  RowInsideVisibleRows: Boolean;
+  RowInsideVisibleRows: Boolean;      }
 begin
   {LStyles := StyleServices;
   LeftRowColor := clNone;
@@ -458,7 +433,7 @@ begin
     OpenFileToRightGrid(RightComboBox.Text);
 end;
 
-procedure TCompareFrame.LeftComboBoxChangeActionExecute(Sender: TObject);
+procedure TCompareFrame.ActionLeftComboBoxChangeExecute(Sender: TObject);
 begin
   OpenFileToLeftGrid(LeftComboBox.Text);
 end;
@@ -468,7 +443,7 @@ begin
   Key := #0;
 end;
 
-procedure TCompareFrame.LeftDocumentButtonClickActionExecute(Sender: TObject);
+procedure TCompareFrame.ActionLeftDocumentButtonClickExecute(Sender: TObject);
 begin
   OpenDialog.InitialDir := LeftComboBox.Text;
   OpenDialog.Filter := Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]);
@@ -481,18 +456,6 @@ begin
   begin
     LeftComboBox.Text := OpenDialog.Files[0];
     OpenFileToLeftGrid(OpenDialog.Files[0]);
-  end;
-end;
-
-procedure TCompareFrame.LeftMemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-begin
-  //if AnsiCompareStr(LeftGrid.Cells[1, LeftGrid.Row], LeftMemo.Text)<> 0 then
-  begin
-    UpdateLeftRowAction.Enabled := True;
-    CancelLeftRowAction.Enabled := True;
-
-    if Key = VK_RETURN then
-      UpdateLeftRowAction.Execute;
   end;
 end;
 
@@ -512,10 +475,10 @@ procedure TCompareFrame.LeftGridDrawCell(Sender: TObject; ACol, ARow: Integer;
 const
   PaleRed: TColor = $6666FF;
   PaleBlue: TColor = $FF6666;
-var
+{var
   s: string;
   clr: TColor;
-  LColor: TColor;
+  LColor: TColor; }
 begin
   (*LStyles := StyleServices;
 
@@ -667,27 +630,15 @@ begin
   Handled := True;
 end;
 
-procedure TCompareFrame.RightMemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-begin
-  //if AnsiCompareStr(RightGrid.Cells[1, RightGrid.Row], RightMemo.Text)<> 0 then
-  begin
-    UpdateRightRowAction.Enabled := True;
-    CancelRightRowAction.Enabled := True;
-
-    if Key = VK_RETURN then
-      UpdateRightRowAction.Execute;
-  end;
-end;
-
 procedure TCompareFrame.RightGridDrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 const
   PaleRed: TColor = $6666FF;
   PaleBlue: TColor = $FF6666;
-var
+{var
   s: string;
   clr: TColor;
-  LColor: TColor;
+  LColor: TColor; }
 begin
  { LStyles := StyleServices;
 
@@ -838,47 +789,10 @@ begin
   Handled := True;
 end;
 
-procedure TCompareFrame.SaveGridChanges;
+procedure TCompareFrame.ActionRefreshExecute(Sender: TObject);
 begin
-  if SaveLeftGridAction.Enabled then
-    if SaveChanges(False) = mrYes then
-      SaveLeftGridAction.Execute;
-  if SaveRightGridAction.Enabled then
-    if SaveChanges(False) = mrYes then
-      SaveRightGridAction.Execute;
-end;
-
-procedure TCompareFrame.RefreshActionExecute(Sender: TObject);
-begin
-  SaveGridChanges;
   OpenFileToLeftGrid(LeftComboBox.Text);
   OpenFileToRightGrid(RightComboBox.Text);
-end;
-
-procedure TCompareFrame.SaveLeftGridActionExecute(Sender: TObject);
-begin
-  FSourceLeft.SaveToFile(LeftComboBox.Text);
-  SaveLeftGridAction.Enabled := False;
-end;
-
-procedure TCompareFrame.SaveRightGridActionExecute(Sender: TObject);
-begin
-  FSourceRight.SaveToFile(RightComboBox.Text);
-  SaveRightGridAction.Enabled := False;
-end;
-
-procedure TCompareFrame.CancelLeftRowActionExecute(Sender: TObject);
-begin
-  //LeftMemo.Text := LeftGrid.Cells[1, LeftGrid.Row];
-  UpdateLeftRowAction.Enabled := False;
-  CancelLeftRowAction.Enabled := False;
-end;
-
-procedure TCompareFrame.CancelRightRowActionExecute(Sender: TObject);
-begin
-  //RightMemo.Text := RightGrid.Cells[1, RightGrid.Row];
-  UpdateRightRowAction.Enabled := False;
-  CancelRightRowAction.Enabled := False;
 end;
 
 function TCompareFrame.CheckIfFileExists(Filename: string): Boolean;
@@ -911,19 +825,19 @@ begin
   if not CheckIfFileExists(FName) then
     Exit;
 
-  FSourceLeft.LoadFromFile(FName);
+
   BuildHashListLeft;
   SetMaxCounts;
   FillLeftGridFromSource;
   //if LeftComboBox.Items.IndexOf(FName) = -1 then
   //  LeftComboBox.Items.Add(FName);
   Compare;
-  FindNextDifferenceAction.Enabled := ((FDiff.DiffStats.adds <> 0) or
+ { FindNextDifferenceAction.Enabled := ((FDiff.DiffStats.adds <> 0) or
     (FDiff.DiffStats.deletes <> 0) or (FDiff.DiffStats.modifies <> 0)) and
     (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);
   RefreshAction.Enabled := (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);
   CopySelectionRightAction.Enabled := (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);
-  CopySelectionLeftAction.Enabled := (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);
+  CopySelectionLeftAction.Enabled := (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);   }
   //AutosizeCol(LeftGrid);
   //if FSourceRight.Count <> 0 then
   //  AutosizeCol(RightGrid);
@@ -950,19 +864,18 @@ begin
   if not CheckIfFileExists(FName) then
     Exit;
 
-  FSourceRight.LoadFromFile(FName);
   BuildHashListRight;
   SetMaxCounts;
   FillRightGridFromSource;
   //if RightComboBox.Items.IndexOf(FName) = -1 then
   //  RightComboBox.Items.Add(FName);
   Compare;
-  FindNextDifferenceAction.Enabled := ((FDiff.DiffStats.adds <> 0) or
+  {FindNextDifferenceAction.Enabled := ((FDiff.DiffStats.adds <> 0) or
     (FDiff.DiffStats.deletes <> 0) or (FDiff.DiffStats.modifies <> 0)) and
     (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);
   RefreshAction.Enabled := (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);
   CopySelectionRightAction.Enabled := (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);
-  CopySelectionLeftAction.Enabled := (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);
+  CopySelectionLeftAction.Enabled := (FSourceRight.Count <> 0) and (FSourceLeft.Count <> 0);   }
   //AutosizeCol(RightGrid);
 
   //if FSourceLeft.Count <> 0 then
@@ -978,46 +891,42 @@ end;
 
 procedure TCompareFrame.ClearLeftGrid;
 begin
-  FSourceLeft.Clear;
-  FResultLeft.Clear;
   FHashListLeft.Clear;
   //LeftGrid.Clear;
   //LeftGrid.RowCount := 0;
-  SaveLeftGridAction.Enabled := False;
+  {SaveLeftGridAction.Enabled := False;
   CopySelectionRightAction.Enabled := False;
   UpdateLeftRowAction.Enabled := False;
-  CancelLeftRowAction.Enabled := False;
+  CancelLeftRowAction.Enabled := False;  }
   FDiff.Clear;
-  FindNextDifferenceAction.Enabled := False;
-  RefreshAction.Enabled := False;
+{  FindNextDifferenceAction.Enabled := False;
+  RefreshAction.Enabled := False;  }
   //LeftMemo.Text := '';
   //LeftMemo.Enabled := False;
 end;
 
 procedure TCompareFrame.ClearRightGrid;
 begin
-  FSourceRight.Clear;
-  FResultRight.Clear;
   FHashListRight.Clear;
   //RightGrid.Clear;
   //RightGrid.RowCount := 0;
-  SaveRightGridAction.Enabled := False;
+  {SaveRightGridAction.Enabled := False;
   CopySelectionLeftAction.Enabled := False;
   UpdateRightRowAction.Enabled := False;
-  CancelRightRowAction.Enabled := False;
+  CancelRightRowAction.Enabled := False;    }
   FDiff.Clear;
-  FindNextDifferenceAction.Enabled := False;
+{  FindNextDifferenceAction.Enabled := False;
   RefreshAction.Enabled := False;
-  //RightMemo.Text := '';
+  //RightMemo.Text := '';          }
   //RightMemo.Enabled := False;
 end;
 
-procedure TCompareFrame.RightComboBoxChangeActionExecute(Sender: TObject);
+procedure TCompareFrame.ActionRightComboBoxChangeExecute(Sender: TObject);
 begin
   OpenFileToRightGrid(RightComboBox.Text);
 end;
 
-procedure TCompareFrame.RightDocumentButtonClickActionExecute(Sender: TObject);
+procedure TCompareFrame.ActionRightDocumentButtonClickExecute(Sender: TObject);
 begin
   OpenDialog.InitialDir := RightComboBox.Text;
   OpenDialog.Filter := Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]);
@@ -1039,8 +948,8 @@ var
   i: Integer;
 begin
   FHashListLeft.Clear;
-  for i := 0 to FSourceLeft.Count - 1 do
-    FHashListLeft.Add(HashLine(FSourceLeft[i], OptionsContainer.CompareIgnoreCase, OptionsContainer.CompareIgnoreBlanks));
+  //for i := 0 to FSourceLeft.Count - 1 do
+  //  FHashListLeft.Add(HashLine(FSourceLeft[i], OptionsContainer.CompareIgnoreCase, OptionsContainer.CompareIgnoreBlanks));
 end;
 
 procedure TCompareFrame.BuildHashListRight;
@@ -1048,8 +957,8 @@ var
   i: Integer;
 begin
   FHashListRight.Clear;
-  for i := 0 to FSourceRight.Count - 1 do
-    FHashListRight.Add(HashLine(FSourceRight[i], OptionsContainer.CompareIgnoreCase, OptionsContainer.CompareIgnoreBlanks));
+  //for i := 0 to FSourceRight.Count - 1 do
+  //  FHashListRight.Add(HashLine(FSourceRight[i], OptionsContainer.CompareIgnoreCase, OptionsContainer.CompareIgnoreBlanks));
 end;
 
 procedure TCompareFrame.SetMaxCounts;
@@ -1060,10 +969,10 @@ begin
 end;
 
 procedure TCompareFrame.UpdateLeftRowActionExecute(Sender: TObject);
-var
-  i: Integer;
+//var
+//  i: Integer;
 begin
-  SaveLeftGridAction.Enabled := True;
+  //SaveLeftGridAction.Enabled := True;
   {LeftGrid.Cells[1, LeftGrid.Row] := LeftMemo.Text;
   if LeftGrid.Cells[0, LeftGrid.Row] = '' then
     LeftGrid.Cells[0, LeftGrid.Row] := '+';
@@ -1078,15 +987,15 @@ begin
   Compare;
   DrawGrid.Invalidate;  }
 
-  UpdateLeftRowAction.Enabled := False;
-  CancelLeftRowAction.Enabled := False;
+ // UpdateLeftRowAction.Enabled := False;
+ // CancelLeftRowAction.Enabled := False;
 end;
 
 procedure TCompareFrame.UpdateRightRowActionExecute(Sender: TObject);
-var
-  i: Integer;
+//var
+//  i: Integer;
 begin
-  SaveRightGridAction.Enabled := True;
+  //SaveRightGridAction.Enabled := True;
  { RightGrid.Cells[1, RightGrid.Row] := RightMemo.Text;
   if RightGrid.Cells[0, RightGrid.Row] = '' then
     RightGrid.Cells[0, RightGrid.Row] := '+';
@@ -1101,13 +1010,13 @@ begin
   Compare;
   DrawGrid.Invalidate;
   }
-  UpdateRightRowAction.Enabled := False;
-  CancelRightRowAction.Enabled := False;
+  //UpdateRightRowAction.Enabled := False;
+  //CancelRightRowAction.Enabled := False;
 end;
 
 procedure TCompareFrame.FillLeftGridFromSource;
-var
-  i: Integer;
+//var
+//  i: Integer;
 begin
  { for i := 0 to 1 do
     LeftGrid.Cols[i].BeginUpdate;
@@ -1124,8 +1033,8 @@ begin
 end;
 
 procedure TCompareFrame.FillRightGridFromSource;
-var
-  i: Integer;
+//var
+//  i: Integer;
 begin
   {for i := 0 to 1 do
     RightGrid.Cols[i].BeginUpdate;
@@ -1141,9 +1050,9 @@ begin
   end; }
 end;
 
-procedure TCompareFrame.FindNextDifferenceActionExecute(Sender: TObject);
-var
-  Row: Integer;
+procedure TCompareFrame.ActionFindNextDifferenceExecute(Sender: TObject);
+//var
+//  Row: Integer;
 begin
   {if (FDiff.DiffStats.adds = 0) and
      (FDiff.DiffStats.deletes = 0) and
@@ -1166,8 +1075,8 @@ begin
 end;
 
 procedure TCompareFrame.Compare;
-var
-  i: Integer;
+//var
+//  i: Integer;
 begin
   (*if (FHashListLeft.Count = 0) or (FHashListRight.Count = 0) then
     Exit;
@@ -1218,9 +1127,9 @@ begin
   end; *)
 end;
 
-procedure TCompareFrame.CopySelectionLeftActionExecute(Sender: TObject);
-var
-  i: Integer;
+procedure TCompareFrame.ActionCopySelectionLeftExecute(Sender: TObject);
+//var
+//  i: Integer;
 begin
   {SaveLeftGridAction.Enabled := True;
   for i := RightGrid.Selection.bottom downto RightGrid.Selection.top do
@@ -1251,9 +1160,9 @@ begin
   DrawGrid.Invalidate;}
 end;
 
-procedure TCompareFrame.CopySelectionRightActionExecute(Sender: TObject);
-var
-  i: Integer;
+procedure TCompareFrame.ActionCopySelectionRightExecute(Sender: TObject);
+//var
+//  i: Integer;
 begin
   {SaveRightGridAction.Enabled := True;
   for i := LeftGrid.Selection.Bottom downto LeftGrid.Selection.Top do

@@ -57,7 +57,7 @@ object CompareFrame: TCompareFrame
           Top = 0
           Width = 22
           Height = 22
-          Action = SaveLeftGridAction
+          Action = ActionSaveLeftGrid
           Align = alRight
           Flat = True
           Glyph.Data = {
@@ -103,7 +103,7 @@ object CompareFrame: TCompareFrame
           Top = 0
           Width = 22
           Height = 22
-          Action = CopySelectionRightAction
+          Action = ActionCopySelectionRight
           Align = alRight
           Flat = True
           Glyph.Data = {
@@ -219,7 +219,7 @@ object CompareFrame: TCompareFrame
           ItemIndex = -1
           Sorted = True
           TabOrder = 0
-          OnChange = LeftComboBoxChangeActionExecute
+          OnChange = ActionLeftComboBoxChangeExecute
           OnKeyPress = LeftComboBoxKeyPress
           UseMouseWheel = False
         end
@@ -265,6 +265,8 @@ object CompareFrame: TCompareFrame
         LeftMargin.Font.Name = 'Courier New'
         LeftMargin.Font.Style = []
         LeftMargin.Width = 55
+        Lines.Strings = (
+          '')
         MatchingPair.Enabled = True
         Minimap.Font.Charset = DEFAULT_CHARSET
         Minimap.Font.Color = clWindowText
@@ -347,7 +349,7 @@ object CompareFrame: TCompareFrame
           Top = 0
           Width = 22
           Height = 22
-          Action = SaveRightGridAction
+          Action = ActionSaveRightGrid
           Align = alLeft
           Flat = True
           Glyph.Data = {
@@ -393,7 +395,7 @@ object CompareFrame: TCompareFrame
           Top = 0
           Width = 22
           Height = 22
-          Action = CopySelectionLeftAction
+          Action = ActionCopySelectionLeft
           Align = alLeft
           Flat = True
           Glyph.Data = {
@@ -508,7 +510,7 @@ object CompareFrame: TCompareFrame
           VerticalAlignment = taAlignTop
           ItemIndex = -1
           TabOrder = 0
-          OnChange = RightComboBoxChangeActionExecute
+          OnChange = ActionRightComboBoxChangeExecute
           OnKeyPress = LeftComboBoxKeyPress
           UseMouseWheel = False
         end
@@ -554,6 +556,8 @@ object CompareFrame: TCompareFrame
         LeftMargin.Font.Name = 'Courier New'
         LeftMargin.Font.Style = []
         LeftMargin.Width = 55
+        Lines.Strings = (
+          '')
         MatchingPair.Enabled = True
         Minimap.Font.Charset = DEFAULT_CHARSET
         Minimap.Font.Color = clWindowText
@@ -640,7 +644,7 @@ object CompareFrame: TCompareFrame
           Margins.Top = 0
           Margins.Right = 2
           Margins.Bottom = 0
-          Action = FindNextDifferenceAction
+          Action = ActionFindNextDifference
           Align = alRight
           Flat = True
           Glyph.Data = {
@@ -708,7 +712,7 @@ object CompareFrame: TCompareFrame
           Margins.Top = 0
           Margins.Right = 0
           Margins.Bottom = 0
-          Action = RefreshAction
+          Action = ActionRefresh
           Align = alLeft
           Flat = True
           Glyph.Data = {
@@ -771,81 +775,51 @@ object CompareFrame: TCompareFrame
   object ActionList: TActionList
     Left = 128
     Top = 64
-    object RefreshAction: TAction
+    object ActionRefresh: TAction
       Enabled = False
       Hint = 'Refresh documents'
-      OnExecute = RefreshActionExecute
+      OnExecute = ActionRefreshExecute
     end
-    object SaveLeftGridAction: TAction
+    object ActionSaveLeftGrid: TAction
       Enabled = False
       Hint = 'Save the document'
-      OnExecute = SaveLeftGridActionExecute
     end
-    object SaveRightGridAction: TAction
+    object ActionSaveRightGrid: TAction
       Enabled = False
       Hint = 'Save the document'
-      OnExecute = SaveRightGridActionExecute
     end
-    object LeftGridOnChangeAction: TAction
-    end
-    object RightGridOnChangeAction: TAction
-    end
-    object FindNextDifferenceAction: TAction
+    object ActionFindNextDifference: TAction
       Enabled = False
       Hint = 'Find the next difference'
-      OnExecute = FindNextDifferenceActionExecute
+      OnExecute = ActionFindNextDifferenceExecute
     end
-    object CopySelectionRightAction: TAction
+    object ActionCopySelectionRight: TAction
       Enabled = False
       Hint = 'Copy the selection to right'
-      OnExecute = CopySelectionRightActionExecute
+      OnExecute = ActionCopySelectionRightExecute
     end
-    object CopySelectionLeftAction: TAction
+    object ActionCopySelectionLeft: TAction
       Enabled = False
       Hint = 'Copy the selection to left'
-      OnExecute = CopySelectionLeftActionExecute
+      OnExecute = ActionCopySelectionLeftExecute
     end
-    object UpdateLeftRowAction: TAction
-      Enabled = False
-      OnExecute = UpdateLeftRowActionExecute
+    object ActionLeftComboBoxChange: TAction
+      Caption = 'ActionLeftComboBoxChange'
+      OnExecute = ActionLeftComboBoxChangeExecute
     end
-    object UpdateRightRowAction: TAction
-      Enabled = False
-      OnExecute = UpdateRightRowActionExecute
+    object ActionRightComboBoxChange: TAction
+      Caption = 'ActionRightComboBoxChange'
+      OnExecute = ActionRightComboBoxChangeExecute
     end
-    object CancelLeftRowAction: TAction
-      Enabled = False
-      OnExecute = CancelLeftRowActionExecute
-    end
-    object CancelRightRowAction: TAction
-      Enabled = False
-      OnExecute = CancelRightRowActionExecute
-    end
-    object LeftComboBoxChangeAction: TAction
-      Caption = 'LeftComboBoxChangeAction'
-      OnExecute = LeftComboBoxChangeActionExecute
-    end
-    object RightComboBoxChangeAction: TAction
-      Caption = 'RightComboBoxChangeAction'
-      OnExecute = RightComboBoxChangeActionExecute
-    end
-    object OpenDocumentsLeftAction: TAction
-      Hint = 'Open a document'
-      OnExecute = OpenDocumentsLeftActionExecute
-    end
-    object OpenDocumentsRightAction: TAction
-      Hint = 'Open a document'
-      OnExecute = OpenDocumentsRightActionExecute
-    end
-    object LeftDocumentButtonClickAction: TAction
+    object ActionLeftDocumentButtonClick: TAction
       Hint = 'Open a document'
       ImageIndex = 0
-      OnExecute = LeftDocumentButtonClickActionExecute
+      OnExecute = ActionLeftDocumentButtonClickExecute
     end
-    object RightDocumentButtonClickAction: TAction
+    object ActionRightDocumentButtonClick: TAction
       Hint = 'Open a document'
       ImageIndex = 0
-      OnExecute = RightDocumentButtonClickActionExecute
+      OnExecute = ActionRightDocumentButtonClickExecute
     end
   end
   object FrameAdapter: TsFrameAdapter
