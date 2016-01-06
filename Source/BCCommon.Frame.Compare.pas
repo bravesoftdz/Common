@@ -62,7 +62,6 @@ type
     procedure ActionRightComboBoxChangeExecute(Sender: TObject);
     procedure ActionRightDocumentButtonClickExecute(Sender: TObject);
     procedure RightGridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect; State: TGridDrawState);
-    procedure RightGridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure UpdateLeftRowActionExecute(Sender: TObject);
     procedure UpdateRightRowActionExecute(Sender: TObject);
   private
@@ -70,11 +69,11 @@ type
     FHashListLeft, FHashListRight: TList;
     FSpecialChars: Boolean;
     FLineNumbers: Boolean;
+    function OpenDocument(AInitialDir: string; var AFileName: string): Boolean;
     procedure ClearLeftEditor;
     procedure ClearRightEditor;
     procedure OpenFileToLeftEditor(AFilename: string);
     procedure OpenFileToRightEditor(AFilename: string);
-
 
     function CheckIfFileExists(Filename: string): Boolean;
     function GetComparedFilesSet: Boolean;
@@ -108,50 +107,10 @@ uses
   BCCommon.Hash, System.Math, System.Types, BCCommon.Language.Strings,
   BCCommon.Options.Container, BCCommon.Messages, BCCommon.Language.Utils;
 
-const
+{const
   TabChar = WideChar($2192);       //'->'
   LineBreakChar = WideChar($00B6); //'¶'
-  SpaceChar = WideChar($2219);     //'·'
-
-{procedure TCompareFrame.LeftScrollBoxWindowProc(var Message: TMessage);
-begin
-  OldLeftScrollBoxProc(Message);
-  if (Message.Msg = WM_HSCROLL) or (Message.msg = WM_Mousewheel) then
-    OldRightScrollBoxProc(Message);
-end;
-
-procedure TCompareFrame.RightScrollBoxWindowProc(var Message: TMessage);
-begin
-  OldRightScrollBoxProc(Message);
-  if (Message.Msg = WM_HSCROLL) or (Message.msg = WM_Mousewheel) then
-    OldLeftScrollBoxProc(Message);
-end;
-
-procedure TCompareFrame.LeftGridWindowProc(var Message: TMessage);
-begin
-  OldLeftGridProc(Message);
-  if (Message.Msg = WM_VSCROLL) or (Message.msg = WM_Mousewheel) then
-    OldRightGridProc(Message);
-end;
-
-procedure TCompareFrame.RightGridWindowProc(var Message: TMessage);
-begin
-  OldRightGridProc(Message);
-  if (Message.Msg = WM_VSCROLL) or (Message.msg = WM_Mousewheel) then
-    OldLeftGridProc(Message);
-end;
-
-procedure TCompareFrame.DrawGridWindowProc(var Message: TMessage);
-begin
-  OldDrawGridProc(Message);
-  if (Message.Msg = WM_VSCROLL) or (Message.msg = WM_Mousewheel) then
-  begin
-    //DrawGrid.Invalidate;
-    OldLeftGridProc(Message);
-    OldRightGridProc(Message);
-    //DrawGrid.Invalidate;
-  end;
-end; }
+  SpaceChar = WideChar($2219);     //'·'    }
 
 constructor TCompareFrame.Create(AOwner: TComponent);
 begin
@@ -161,32 +120,17 @@ begin
 
   FHashListLeft := TList.Create;
   FHashListRight := TList.Create;
-
- { OldLeftGridProc := LeftGrid.WindowProc;
-  OldRightGridProc := RightGrid.WindowProc;
-  OldDrawGridProc := DrawGrid.WindowProc;
-  LeftGrid.WindowProc := LeftGridWindowProc;
-  RightGrid.WindowProc := RightGridWindowProc;
-  DrawGrid.WindowProc := DrawGridWindowProc;
-  OldLeftScrollBoxProc := LeftScrollBox.WindowProc;
-  OldRightScrollBoxProc := RightScrollBox.WindowProc;
-  LeftScrollBox.WindowProc := LeftScrollBoxWindowProc;
-  RightScrollBox.WindowProc := RightScrollBoxWindowProc;    }
 end;
 
 function TCompareFrame.ToggleSpecialChars: Boolean;
 begin
   FSpecialChars := not FSpecialChars;
-//  LeftGrid.Invalidate;
-//  RightGrid.Invalidate;
   Result := FSpecialChars;
 end;
 
 function TCompareFrame.ToggleLineNumbers: Boolean;
 begin
   FLineNumbers := not FLineNumbers;
-//  LeftGrid.Invalidate;
-//  RightGrid.Invalidate;
   Result := FLineNumbers;
 end;
 
@@ -194,6 +138,7 @@ destructor TCompareFrame.Destroy;
 begin
   FHashListLeft.Free;
   FHashListRight.Free;
+
   inherited Destroy;
 end;
 
@@ -365,28 +310,41 @@ begin
   OpenFileToLeftEditor(LeftComboBox.Text);
 end;
 
-procedure TCompareFrame.ActionLeftDocumentButtonClickExecute(Sender: TObject);
+function TCompareFrame.OpenDocument(AInitialDir: string; var AFileName: string): Boolean;
 begin
-  OpenDialog.InitialDir := LeftComboBox.Text;
+  Result := False;
+  AFileName := '';
+  OpenDialog.InitialDir := AInitialDir;
   OpenDialog.Filter := Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]);
   OpenDialog.Title := LanguageDataModule.GetConstant('Open');
   if OpenDialog.Execute(Handle) then
   begin
-    LeftComboBox.Text := OpenDialog.Files[0];
-    OpenFileToLeftEditor(OpenDialog.Files[0]);
+    AFileName := OpenDialog.Files[0];
+    Result := True;
   end;
 end;
 
-{function TCompareFrame.FormatText(Text: string): string;
+procedure TCompareFrame.ActionLeftDocumentButtonClickExecute(Sender: TObject);
+var
+  LFileName: string;
 begin
-  Result := Text;
-  if FSpecialChars then
-  begin
-    Result := StringReplace(Result, #9, TabChar, [rfReplaceAll]);
-    Result := StringReplace(Result, #32, SpaceChar, [rfReplaceAll]);
-    Result := Result + LineBreakChar;
+  if OpenDocument(LeftComboBox.Text, LFileName) then
+   begin
+    LeftComboBox.Text := LFileName;
+    OpenFileToLeftEditor(LFileName);
   end;
-end;  }
+end;
+
+procedure TCompareFrame.ActionRightDocumentButtonClickExecute(Sender: TObject);
+var
+  LFileName: string;
+begin
+  if OpenDocument(RightComboBox.Text, LFileName) then
+   begin
+    RightComboBox.Text := LFileName;
+    OpenFileToRightEditor(LFileName);
+  end;
+end;
 
 procedure TCompareFrame.LeftGridDrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
@@ -628,17 +586,6 @@ begin
   end; }
 end;
 
-procedure TCompareFrame.RightGridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-begin
-  {if Key = VK_PRIOR then
-    RightGrid.Row := Max(RightGrid.Row - RightGrid.VisibleRowCount, 0);
-  if Key = VK_NEXT then
-    RightGrid.Row := Min(RightGrid.Row + RightGrid.VisibleRowCount, RightGrid.RowCount - 1);
-  if (Key = VK_PRIOR) or (Key = VK_NEXT) then
-    Key := 0;
- }
-end;
-
 procedure TCompareFrame.ActionRefreshExecute(Sender: TObject);
 begin
   OpenFileToLeftEditor(LeftComboBox.Text);
@@ -752,18 +699,6 @@ end;
 procedure TCompareFrame.ActionRightComboBoxChangeExecute(Sender: TObject);
 begin
   OpenFileToRightEditor(RightComboBox.Text);
-end;
-
-procedure TCompareFrame.ActionRightDocumentButtonClickExecute(Sender: TObject);
-begin
-  OpenDialog.InitialDir := RightComboBox.Text;
-  OpenDialog.Filter := Format('%s'#0'*.*'#0#0, [LanguageDataModule.GetConstant('AllFiles')]);
-  OpenDialog.Title := LanguageDataModule.GetConstant('Open');
-  if OpenDialog.Execute(Handle) then
-  begin
-    RightComboBox.Text := OpenDialog.Files[0];
-    OpenFileToRightEditor(OpenDialog.Files[0]);
-  end;
 end;
 
 procedure TCompareFrame.BuildHashListLeft;
@@ -981,9 +916,9 @@ end;
 
 procedure TCompareFrame.SetOpenDocumentsList(Value: TStringList);
 begin
-  Value.Sort;
+{  Value.Sort;
   LeftComboBox.Items := Value;
-  RightComboBox.Items := Value;
+  RightComboBox.Items := Value;  }
 end;
 
 function TCompareFrame.GetComparedFilesSet: Boolean;

@@ -1,15 +1,15 @@
 inherited SearchOptionsDialog: TSearchOptionsDialog
   Caption = 'Search options'
-  ClientHeight = 319
-  ClientWidth = 269
+  ClientHeight = 329
+  ClientWidth = 253
   Position = poMainFormCenter
   PixelsPerInch = 96
   TextHeight = 13
   object Panel: TBCPanel
     Left = 0
     Top = 0
-    Width = 269
-    Height = 287
+    Width = 253
+    Height = 297
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -122,6 +122,16 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       AutoSize = False
       Caption = 'Show search match not found'
       AttachTo = SliderShowSearchMatchNotFound
+      Gap = 8
+    end
+    object StickyLabelWrapAround: TsStickyLabel
+      Left = 8
+      Top = 265
+      Width = 178
+      Height = 13
+      AutoSize = False
+      Caption = 'Wrap around'
+      AttachTo = SliderWrapAround
       Gap = 8
     end
     object SliderBeepIfSearchStringNotFound: TsSlider
@@ -321,11 +331,29 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       SliderCaptionOff = 'No'
       SliderOn = False
     end
+    object SliderWrapAround: TsSlider
+      Left = 194
+      Top = 261
+      Width = 50
+      AutoSize = True
+      TabOrder = 11
+      BoundLabel.Indent = 6
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+      SliderOn = False
+    end
   end
   object PanelButton: TBCPanel
     Left = 0
-    Top = 287
-    Width = 269
+    Top = 297
+    Width = 253
     Height = 32
     Align = alBottom
     BevelOuter = bvNone
@@ -335,7 +363,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
     TabOrder = 1
     SkinData.SkinSection = 'CHECKBOX'
     object ButtonOK: TBCButton
-      Left = 106
+      Left = 90
       Top = 0
       Width = 75
       Height = 24
@@ -348,7 +376,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
     end
     object ButtonCancel: TBCButton
       AlignWithMargins = True
-      Left = 186
+      Left = 170
       Top = 0
       Width = 75
       Height = 24

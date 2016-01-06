@@ -36,6 +36,8 @@ type
     Panel: TBCPanel;
     SliderShowSearchMatchNotFound: TsSlider;
     StickyLabelShowSearchMatchNotFound: TsStickyLabel;
+    SliderWrapAround: TsSlider;
+    StickyLabelWrapAround: TsStickyLabel;
     procedure FormShow(Sender: TObject);
   private
     procedure SetOptions(Editor: TBCEditor);
@@ -86,6 +88,7 @@ begin
     WriteBool('Options', 'SearchShowSearchStringNotFound', SliderShowSearchStringNotFound.SliderOn);
     WriteBool('Options', 'SearchWildCard', SliderWildCard.SliderOn);
     WriteBool('Options', 'SearchWholeWordsOnly', SliderWholeWordsOnly.SliderOn);
+    WriteBool('Options', 'SearchWrapAround', SliderWrapAround.SliderOn);
   finally
     Free;
   end;
@@ -104,6 +107,7 @@ begin
   SliderShowSearchStringNotFound.SliderOn := soShowStringNotFound in Editor.Search.Options;
   SliderWildCard.SliderOn := Editor.Search.Engine = seWildCard;
   SliderWholeWordsOnly.SliderOn := soWholeWordsOnly in Editor.Search.Options;
+  SliderWrapAround.SliderOn := soWrapAround in Editor.Search.Options;
 end;
 
 procedure TSearchOptionsDialog.FormShow(Sender: TObject);
@@ -140,6 +144,7 @@ begin
   SetOption(SliderShowSearchMatchNotFound.SliderOn, soShowSearchMatchNotFound);
   SetOption(SliderShowSearchStringNotFound.SliderOn, soShowStringNotFound);
   SetOption(SliderWholeWordsOnly.SliderOn, soWholeWordsOnly);
+  SetOption(SliderWrapAround.SliderOn, soWrapAround);
 end;
 
 end.

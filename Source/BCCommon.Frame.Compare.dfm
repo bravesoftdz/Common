@@ -214,6 +214,7 @@ object CompareFrame: TCompareFrame
           Alignment = taLeftJustify
           BoundLabel.Indent = 4
           BoundLabel.Layout = sclTopLeft
+          DropDownCount = 0
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           ItemIndex = -1
@@ -505,6 +506,7 @@ object CompareFrame: TCompareFrame
           Alignment = taLeftJustify
           BoundLabel.Indent = 4
           BoundLabel.Layout = sclTopLeft
+          DropDownCount = 0
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
           ItemIndex = -1
@@ -766,6 +768,7 @@ object CompareFrame: TCompareFrame
         FixedCols = 0
         RowCount = 1
         FixedRows = 0
+        ScrollBars = ssVertical
         TabOrder = 1
       end
     end
