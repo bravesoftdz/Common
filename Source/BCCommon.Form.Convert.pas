@@ -39,7 +39,7 @@ type
     procedure Open;
   end;
 
-function ConvertForm: TConvertForm;
+function ConvertForm(AOwner: TForm): TConvertForm;
 
 implementation
 
@@ -61,10 +61,10 @@ const
 var
   FConvertForm: TConvertForm;
 
-function ConvertForm: TConvertForm;
+function ConvertForm(AOwner: TForm): TConvertForm;
 begin
   if not Assigned(FConvertForm) then
-    Application.CreateForm(TConvertForm, FConvertForm);
+    FConvertForm := TConvertForm.Create(AOwner);
   Result := FConvertForm;
   UpdateLanguage(FConvertForm, GetSelectedLanguage);
 end;
@@ -118,6 +118,7 @@ end;
 procedure TConvertForm.FormDestroy(Sender: TObject);
 begin
   FConvertForm := nil;
+  TForm(Owner).SetFocus;
 end;
 
 procedure TConvertForm.Open;
