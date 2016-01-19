@@ -79,7 +79,7 @@ begin
   VirtualDrawTree.Invalidate;
 
   Width := LMaxWidth + 80;
-  Height := Min(Integer(VirtualDrawTree.DefaultNodeHeight) * 7 + VirtualDrawTree.BorderWidth * 2 + 2, TForm(Self.PopupParent).Height);
+  Height := Min(Integer(VirtualDrawTree.DefaultNodeHeight) * AHighlighterColors.Count + VirtualDrawTree.BorderWidth * 2 + 2, TForm(Self.PopupParent).Height);
 
   SetWindowPos(Handle, HWND_TOPMOST, Left, Top, 0, 0, SWP_NOSIZE or SWP_NOACTIVATE or SWP_SHOWWINDOW);
 
