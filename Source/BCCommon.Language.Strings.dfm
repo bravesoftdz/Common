@@ -1434,6 +1434,11 @@ object LanguageDataModule: TLanguageDataModule
           'PHP files (*.php;*.class;*.inc)')
       end
       item
+        Name = 'PowerShell'
+        Strings.Strings = (
+          'PowerShell files (*.ps1)')
+      end
+      item
         Name = 'Python'
         Strings.Strings = (
           'Python files (*.py)')
