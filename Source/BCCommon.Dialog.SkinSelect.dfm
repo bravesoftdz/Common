@@ -6,6 +6,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
   Padding.Top = 6
   Padding.Right = 6
   Position = poMainFormCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object SplitterLeft: TBCSplitter
@@ -43,6 +44,21 @@ inherited SkinSelectDialog: TSkinSelectDialog
     Padding.Bottom = 8
     TabOrder = 1
     SkinData.SkinSection = 'CHECKBOX'
+    object HTMLLabelAllSkinsDownload: TsHTMLLabel
+      Left = 0
+      Top = 14
+      Width = 86
+      Height = 13
+      Caption = 
+        '<a href="http://www.alphaskins.com/sfiles/skins/askins.zip">All ' +
+        'skins download</a>'
+      ParentFont = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+    end
     object ButtonOK: TBCButton
       AlignWithMargins = True
       Left = 578

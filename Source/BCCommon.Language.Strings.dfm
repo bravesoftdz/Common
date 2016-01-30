@@ -154,6 +154,11 @@ object LanguageDataModule: TLanguageDataModule
           'All Files')
       end
       item
+        Name = 'AllSkinsDownload'
+        Strings.Strings = (
+          'All skins download')
+      end
+      item
         Name = 'Arrow'
         Strings.Strings = (
           'Arrow')

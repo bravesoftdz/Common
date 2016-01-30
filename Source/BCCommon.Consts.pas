@@ -11,6 +11,7 @@ const
 
   BONECODE_URL = 'http://www.bonecode.com';
   DONATION_URL = 'https://www.paypal.com/fi/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=C8UTAHKHAFG8L';
+  SKINS_DOWNLOAD_URL = 'http://www.alphaskins.com/sfiles/skins/askins.zip';
 
   OUTPUT_FILE_SEPARATOR = '@#/%&';
 

@@ -40,6 +40,7 @@ type
     SliderBlendOnMove: TsSlider;
     SliderAllowGlowing: TsSlider;
     StickyLabelAllowGlowing: TsStickyLabel;
+    HTMLLabelAllSkinsDownload: TsHTMLLabel;
     procedure ListBoxSkinsClick(Sender: TObject);
     procedure TrackBarHueOffsetSkinPaint(Sender: TObject; Canvas: TCanvas);
     procedure TrackBarHueOffsetChange(Sender: TObject);
@@ -47,6 +48,7 @@ type
     procedure TrackBarBrightnessChange(Sender: TObject);
     procedure SliderBlendOnMoveSliderChange(Sender: TObject);
     procedure SliderExtendedBordersModeSliderChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     FPreviewForm: TFormSkinPreview;
@@ -60,7 +62,7 @@ implementation
 {$R *.dfm}
 
 uses
-  sGraphUtils, acntUtils;
+  sGraphUtils, acntUtils, BCCommon.Language.Strings, BCCommon.Consts;
 
 class procedure TSkinSelectDialog.ClassShowModal(ASkinManager: TBCSkinManager);
 var
@@ -108,6 +110,13 @@ begin
       Free;
       LSkinSelectDialog := nil;
     end;
+end;
+
+procedure TSkinSelectDialog.FormCreate(Sender: TObject);
+begin
+  inherited;
+  HTMLLabelAllSkinsDownload.Caption := Format('<a href="%s">%s</a>', [SKINS_DOWNLOAD_URL,
+    LanguageDataModule.GetConstant('AllSkinsDownload')]);
 end;
 
 procedure TSkinSelectDialog.ListBoxSkinsClick(Sender: TObject);
