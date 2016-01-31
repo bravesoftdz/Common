@@ -1,12 +1,12 @@
 inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
   Width = 182
-  Height = 154
+  Height = 224
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 178
-    Height = 154
+    Height = 224
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -67,9 +67,54 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
       AttachTo = SliderShowBookmarks
       Gap = 8
     end
+    object StickyLabelShowBorder: TsStickyLabel
+      Left = 0
+      Top = 73
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show border'
+      ParentColor = False
+      AttachTo = SliderShowBorder
+      Gap = 8
+    end
+    object StickyLabelUseBlending: TsStickyLabel
+      Left = 0
+      Top = 96
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Use blending'
+      ParentColor = False
+      AttachTo = SliderUseBlending
+      Gap = 8
+    end
+    object StickyLabelInvertBlending: TsStickyLabel
+      Left = 0
+      Top = 119
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Invert blending'
+      ParentColor = False
+      AttachTo = SliderInvertBlending
+      Gap = 8
+    end
     object EditWidth: TBCEdit
       Left = 0
-      Top = 89
+      Top = 159
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -147,7 +192,7 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
     end
     object ComboBoxAlign: TBCComboBox
       Left = 0
-      Top = 132
+      Top = 202
       Width = 157
       Height = 22
       Margins.Left = 4
@@ -166,6 +211,54 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
       ItemIndex = -1
       TabOrder = 4
       UseMouseWheel = False
+    end
+    object SliderShowBorder: TsSlider
+      Left = 128
+      Top = 69
+      Width = 50
+      AutoSize = True
+      TabOrder = 5
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderUseBlending: TsSlider
+      Left = 128
+      Top = 92
+      Width = 50
+      AutoSize = True
+      TabOrder = 6
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderInvertBlending: TsSlider
+      Left = 128
+      Top = 115
+      Width = 50
+      AutoSize = True
+      TabOrder = 7
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
   inherited FrameAdapter: TsFrameAdapter

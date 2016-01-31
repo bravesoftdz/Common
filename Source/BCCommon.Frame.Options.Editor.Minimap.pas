@@ -19,6 +19,12 @@ type
     SliderShowBookmarks: TsSlider;
     StickyLabelShowBookmarks: TsStickyLabel;
     ComboBoxAlign: TBCComboBox;
+    SliderShowBorder: TsSlider;
+    SliderUseBlending: TsSlider;
+    SliderInvertBlending: TsSlider;
+    StickyLabelShowBorder: TsStickyLabel;
+    StickyLabelUseBlending: TsStickyLabel;
+    StickyLabelInvertBlending: TsStickyLabel;
   protected
     procedure GetData; override;
     procedure Init; override;
@@ -69,6 +75,9 @@ begin
     MinimapVisible := SliderVisible.SliderOn;
     MinimapShowBookmarks := SliderShowBookmarks.SliderOn;
     MinimapShowIndentGuides := SliderShowIndentGuides.SliderOn;
+    MinimapShowBorder  := SliderShowBorder.SliderOn;
+    MinimapUseBlending := SliderUseBlending.SliderOn;
+    MinimapInvertBlending := SliderInvertBlending.SliderOn;
     MinimapWidth := StrToIntDef(EditWidth.Text, 100);
     MinimapAlign := ComboBoxAlign.ItemIndex;
   end;
@@ -81,6 +90,9 @@ begin
     SliderVisible.SliderOn := MinimapVisible;
     SliderShowBookmarks.SliderOn := MinimapShowBookmarks;
     SliderShowIndentGuides.SliderOn := MinimapShowIndentGuides;
+    SliderShowBorder.SliderOn := MinimapShowBorder;
+    SliderUseBlending.SliderOn := MinimapUseBlending;
+    SliderInvertBlending.SliderOn := MinimapInvertBlending;
     EditWidth.Text := IntToStr(MinimapWidth);
     ComboBoxAlign.ItemIndex := MinimapAlign;
   end;

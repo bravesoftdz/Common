@@ -52,6 +52,9 @@ type
     FMinimapVisible: Boolean;
     FMinimapShowBookmarks: Boolean;
     FMinimapShowIndentGuides: Boolean;
+    FMinimapShowBorder: Boolean;
+    FMinimapUseBlending: Boolean;
+    FMinimapInvertBlending: Boolean;
     FMinimapWidth: Integer;
     FMinimapAlign: Integer;
     { Editor }
@@ -222,6 +225,12 @@ type
     property MinimapShowBookmarks: Boolean read FMinimapShowBookmarks write FMinimapShowBookmarks;
     [IniValue('Options', 'MinimapShowIndentGuides', 'False')]
     property MinimapShowIndentGuides: Boolean read FMinimapShowIndentGuides write FMinimapShowIndentGuides;
+    [IniValue('Options', 'MinimapShowBorder', 'False')]
+    property MinimapShowBorder: Boolean read FMinimapShowBorder write FMinimapShowBorder;
+    [IniValue('Options', 'MinimapUseBlending', 'False')]
+    property MinimapUseBlending: Boolean read FMinimapUseBlending write FMinimapUseBlending;
+    [IniValue('Options', 'MinimapInvertBlending', 'False')]
+    property MinimapInvertBlending: Boolean read FMinimapInvertBlending write FMinimapInvertBlending;
     [IniValue('Options', 'MinimapWidth', '100')]
     property MinimapWidth: Integer read FMinimapWidth write FMinimapWidth;
     [IniValue('Options', 'MinimapAlign', '1')]
@@ -830,6 +839,18 @@ begin
       Minimap.Options := Minimap.Options + [moShowIndentGuides]
     else
       Minimap.Options := Minimap.Options - [moShowIndentGuides];
+    if FMinimapShowBorder then
+      Minimap.Indicator.Options := Minimap.Indicator.Options + [ioShowBorder]
+    else
+      Minimap.Indicator.Options := Minimap.Indicator.Options - [ioShowBorder];
+    if FMinimapUseBlending then
+      Minimap.Indicator.Options := Minimap.Indicator.Options + [ioUseBlending]
+    else
+      Minimap.Indicator.Options := Minimap.Indicator.Options - [ioUseBlending];
+    if FMinimapInvertBlending then
+      Minimap.Indicator.Options := Minimap.Indicator.Options + [ioInvertBlending]
+    else
+      Minimap.Indicator.Options := Minimap.Indicator.Options - [ioInvertBlending];
     Minimap.Width := FMinimapWidth;
     Minimap.Align := TBCEditorMinimapAlign(FMinimapAlign);
     { Editor }
