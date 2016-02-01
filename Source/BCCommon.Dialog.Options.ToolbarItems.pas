@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VirtualTrees, Vcl.StdCtrls, Vcl.ActnList,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VirtualTrees, Vcl.StdCtrls, Vcl.ActnList, System.UITypes,
   System.Generics.Collections, BCControl.Panel, sSkinProvider, Vcl.ExtCtrls, sPanel;
 
 type
@@ -16,7 +16,7 @@ type
     VirtualDrawTreeAddItems: TVirtualDrawTree;
     procedure VirtualDrawTreeAddItemsDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
     procedure VirtualDrawTreeAddItemsGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind;
-      Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
+      Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
     procedure VirtualDrawTreeAddItemsGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas; Node: PVirtualNode;
       Column: TColumnIndex; var NodeWidth: Integer);
     procedure FormDestroy(Sender: TObject);
@@ -137,7 +137,7 @@ begin
 end;
 
 procedure TOptionsToolbarItemsDialog.VirtualDrawTreeAddItemsGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
-  Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
+  Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
 var
   Data: PTreeData;
 begin

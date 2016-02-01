@@ -98,7 +98,7 @@ implementation
 {$R *.DFM}
 
 uses
-  UxTheme, BCCommon.Language.Utils, BCCommon.Language.Strings, WinApi.Windows, Math;
+  Winapi.UxTheme, BCCommon.Language.Utils, BCCommon.Language.Strings, BCCommon.Messages, WinApi.Windows, System.Math;
 
 const
   STATUSBAR_SCALE = 1;
@@ -135,6 +135,7 @@ procedure TPrintPreviewDialog.FormShow(Sender: TObject);
 begin
   PrintPreview.UpdatePreview;
   PrintPreview.FirstPage;
+
   if Printer.PrinterIndex >= 0 then
     ActionPrint.Hint := Format(LanguageDataModule.GetConstant('PreviewPrintDocument'),
       [Printer.Printers[Printer.PrinterIndex], Printer.Printers[Printer.PrinterIndex]]);

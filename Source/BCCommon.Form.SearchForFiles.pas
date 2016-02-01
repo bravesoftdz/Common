@@ -39,7 +39,7 @@ type
     procedure VirtualDrawTreeSearchFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure VirtualDrawTreeSearchGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; var NodeWidth: Integer);
     procedure VirtualDrawTreeSearchGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind;
-      Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
+      Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
   private
     FFormClosing: Boolean;
     FOpenFile: TOpenFileEvent;
@@ -246,7 +246,7 @@ begin
 end;
 
 procedure TSearchForFilesForm.VirtualDrawTreeSearchGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
-  Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
+  Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
 var
   Data: PSearchRec;
 begin

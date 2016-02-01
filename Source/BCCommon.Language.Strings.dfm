@@ -97,6 +97,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'SelectFilePathFromDirectory'
         Strings.Strings = (
           'Select file path from directory')
+      end
+      item
+        Name = 'NoDefaultPrinter'
+        Strings.Strings = (
+          'There is no default printer currently selected.')
       end>
     Left = 90
     Top = 84

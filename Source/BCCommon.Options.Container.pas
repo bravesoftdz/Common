@@ -99,6 +99,10 @@ type
     FSpecialCharsEndOfLineStyle: Integer;
     FSpecialCharsSelectionVisible: Boolean;
     FSpecialSelectionColor: string;
+    { Sync edit }
+    FSyncEditEnabled: Boolean;
+    FSyncEditCaseSensitive: Boolean;
+    FSyncEditShowActivateIcon: Boolean;
     { Tabs }
     FSelectedBlockIndent: Boolean;
     FTabsToSpaces: Boolean;
@@ -312,6 +316,13 @@ type
     property SpecialCharsSelectionVisible: Boolean read FSpecialCharsSelectionVisible write FSpecialCharsSelectionVisible;
     [IniValue('Options', 'SpecialSelectionColor', 'clBlack')]
     property SpecialSelectionColor: string read FSpecialSelectionColor write FSpecialSelectionColor;
+    { Sync edit }
+    [IniValue('Options', 'SyncEditEnabled', 'True')]
+    property SyncEditEnabled: Boolean read FSyncEditEnabled write FSyncEditEnabled;
+    [IniValue('Options', 'SyncEditCaseSensitive', 'True')]
+    property SyncEditCaseSensitive: Boolean read FSyncEditCaseSensitive write FSyncEditCaseSensitive;
+    [IniValue('Options', 'SyncEditShowActivateIcon', 'True')]
+    property SyncEditShowActivateIcon: Boolean read FSyncEditShowActivateIcon write FSyncEditShowActivateIcon;
     { Tabs }
     [IniValue('Options', 'SelectedBlockIndent', 'True')]
     property SelectedBlockIndent: Boolean read FSelectedBlockIndent write FSelectedBlockIndent;
@@ -955,6 +966,13 @@ begin
     SpecialChars.EndOfLine.Style := TBCEditorSpecialCharsEndOfLineStyle(FSpecialCharsEndOfLineStyle);
     SpecialChars.Selection.Visible := FSpecialCharsSelectionVisible;
     SpecialChars.Selection.Color := StringToColor(FSpecialSelectionColor);
+    { Sync edit }
+    SyncEdit.Enabled := FSyncEditEnabled;
+    if SyncEditCaseSensitive then
+      SyncEdit.Options := SyncEdit.Options + [seCaseSensitive]
+    else
+      SyncEdit.Options := SyncEdit.Options - [seCaseSensitive];
+    SyncEdit.Activator.Visible := FSyncEditShowActivateIcon;
     { Tabs }
     if FSelectedBlockIndent then
       Tabs.Options := Tabs.Options + [toSelectedBlockIndent]
