@@ -59,7 +59,7 @@ procedure TOptionsEditorTabulatorFrame.GetData;
 begin
   SliderSelectedBlockIndent.SliderOn := OptionsContainer.SelectedBlockIndent;
   SliderTabsToSpaces.SliderOn := OptionsContainer.TabsToSpaces;
-  EditWidth.Text := IntToStr(OptionsContainer.LeftMarginWidth);
+  EditWidth.Text := IntToStr(OptionsContainer.TabWidth);
 end;
 
 end.

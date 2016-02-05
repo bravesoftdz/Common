@@ -982,7 +982,7 @@ begin
       Tabs.Options := Tabs.Options + [toTabsToSpaces]
     else
       Tabs.Options := Tabs.Options - [toTabsToSpaces];
-    TabWidth := FTabWidth;
+    Tabs.Width := FTabWidth;
     { Word wrap }
     WordWrap.Enabled := FEnableWordWrap;
   end

@@ -111,7 +111,7 @@ inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
     end
   end
   inherited FrameAdapter: TsFrameAdapter
-    Left = 48
-    Top = 86
+    Left = 104
+    Top = 44
   end
 end
