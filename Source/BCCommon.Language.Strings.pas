@@ -184,7 +184,6 @@ begin
   HookResourceString(@SBCEditorSearchStringNotFound, LanguageDataModule.GetPAskYesOrNo('SearchStringNotFound'));
   HookResourceString(@SBCEditorSearchMatchNotFound, LanguageDataModule.GetPAskYesOrNo('SearchMatchNotFound'));
   HookResourceString(@SBCEditorRightMarginPosition, LanguageDataModule.GetPConstant('Position'));
-
 end;
 
 function TLanguageDataModule.GetYesOrNoMessage(Name: string): string;
