@@ -106,6 +106,8 @@ type
     { Tabs }
     FSelectedBlockIndent: Boolean;
     FTabsToSpaces: Boolean;
+    FTabsColumns: Boolean;
+    FTabsPreviousLineIndent: Boolean;
     FTabWidth: Integer;
     { Compare }
     FCompareIgnoreBlanks: Boolean;
@@ -328,6 +330,10 @@ type
     property SelectedBlockIndent: Boolean read FSelectedBlockIndent write FSelectedBlockIndent;
     [IniValue('Options', 'TabsToSpaces', 'False')]
     property TabsToSpaces: Boolean read FTabsToSpaces write FTabsToSpaces;
+    [IniValue('Options', 'TabsColumns', 'True')]
+    property TabsColumns: Boolean read FTabsColumns write FTabsColumns;
+    [IniValue('Options', 'TabsPreviousLineIndent', 'False')]
+    property TabsPreviousLineIndent: Boolean read FTabsPreviousLineIndent write FTabsPreviousLineIndent;
     [IniValue('Options', 'TabWidth', '2')]
     property TabWidth: Integer read FTabWidth write FTabWidth;
     { View }
@@ -982,6 +988,14 @@ begin
       Tabs.Options := Tabs.Options + [toTabsToSpaces]
     else
       Tabs.Options := Tabs.Options - [toTabsToSpaces];
+    if FTabsColumns then
+      Tabs.Options := Tabs.Options + [toColumns]
+    else
+      Tabs.Options := Tabs.Options - [toColumns];
+    if FTabsPreviousLineIndent then
+      Tabs.Options := Tabs.Options + [toPreviousLineIndent]
+    else
+      Tabs.Options := Tabs.Options - [toPreviousLineIndent];
     Tabs.Width := FTabWidth;
     { Word wrap }
     WordWrap.Enabled := FEnableWordWrap;

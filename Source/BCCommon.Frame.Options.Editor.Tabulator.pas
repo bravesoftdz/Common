@@ -15,6 +15,10 @@ type
     SliderSelectedBlockIndent: TsSlider;
     StickyLabelTabsToSpaces: TsStickyLabel;
     SliderTabsToSpaces: TsSlider;
+    SliderColumns: TsSlider;
+    SliderPreviousLineIndent: TsSlider;
+    StickyLabelColumns: TsStickyLabel;
+    StickyLabelPreviousLineIndent: TsStickyLabel;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -52,6 +56,8 @@ procedure TOptionsEditorTabulatorFrame.PutData;
 begin
   OptionsContainer.SelectedBlockIndent := SliderSelectedBlockIndent.SliderOn;
   OptionsContainer.TabsToSpaces := SliderTabsToSpaces.SliderOn;
+  OptionsContainer.TabsColumns := SliderColumns.SliderOn;
+  OptionsContainer.TabsPreviousLineIndent := SliderPreviousLineIndent.SliderOn;
   OptionsContainer.TabWidth := StrToIntDef(EditWidth.Text, 2);
 end;
 
@@ -59,6 +65,8 @@ procedure TOptionsEditorTabulatorFrame.GetData;
 begin
   SliderSelectedBlockIndent.SliderOn := OptionsContainer.SelectedBlockIndent;
   SliderTabsToSpaces.SliderOn := OptionsContainer.TabsToSpaces;
+  SliderColumns.SliderOn := OptionsContainer.TabsColumns;
+  SliderPreviousLineIndent.SliderOn := OptionsContainer.TabsPreviousLineIndent;
   EditWidth.Text := IntToStr(OptionsContainer.TabWidth);
 end;
 

@@ -1,12 +1,12 @@
 inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
   Width = 182
-  Height = 87
+  Height = 135
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 178
-    Height = 87
+    Height = 135
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -52,9 +52,39 @@ inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
       AttachTo = SliderTabsToSpaces
       Gap = 8
     end
+    object StickyLabelColumns: TsStickyLabel
+      Left = 0
+      Top = 50
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Columns'
+      ParentColor = False
+      AttachTo = SliderColumns
+      Gap = 8
+    end
+    object StickyLabelPreviousLineIndent: TsStickyLabel
+      Left = 0
+      Top = 73
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Previous line indent'
+      ParentColor = False
+      AttachTo = SliderPreviousLineIndent
+      Gap = 8
+    end
     object EditWidth: TBCEdit
       Left = 0
-      Top = 66
+      Top = 114
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -62,7 +92,7 @@ inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
       Margins.Right = 4
       Margins.Bottom = 4
       AutoSize = False
-      TabOrder = 0
+      TabOrder = 4
       Text = '2'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -82,7 +112,7 @@ inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
       Top = 0
       Width = 50
       AutoSize = True
-      TabOrder = 1
+      TabOrder = 0
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -98,7 +128,39 @@ inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
       Top = 23
       Width = 50
       AutoSize = True
+      TabOrder = 1
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderColumns: TsSlider
+      Left = 128
+      Top = 46
+      Width = 50
+      AutoSize = True
       TabOrder = 2
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderPreviousLineIndent: TsSlider
+      Left = 128
+      Top = 69
+      Width = 50
+      AutoSize = True
+      TabOrder = 3
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -111,7 +173,7 @@ inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
     end
   end
   inherited FrameAdapter: TsFrameAdapter
-    Left = 104
-    Top = 44
+    Left = 110
+    Top = 92
   end
 end
