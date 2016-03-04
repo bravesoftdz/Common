@@ -963,9 +963,9 @@ begin
     { Special chars }
     SpecialChars.Visible := FEnableSpecialChars;
     if FSpecialCharsUseTextColor then
-      SpecialChars.Options := SpecialChars.Options + [scoUseTextColor]
+      SpecialChars.Options := SpecialChars.Options + [scoTextColor]
     else
-      SpecialChars.Options := SpecialChars.Options - [scoUseTextColor];
+      SpecialChars.Options := SpecialChars.Options - [scoTextColor];
     SpecialChars.Style := TBCEditorSpecialCharsStyle(FSpecialCharsStyle);
     SpecialChars.EndOfLine.Visible := FSpecialEndOfLineVisible;
     SpecialChars.EndOfLine.Color := StringToColor(FSpecialEndOfLineColor);
