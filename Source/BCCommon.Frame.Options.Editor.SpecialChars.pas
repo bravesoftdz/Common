@@ -25,6 +25,8 @@ type
     SliderEndOfLineVisible: TsSlider;
     StickyLabelSelectionVisible: TsStickyLabel;
     SliderSelectionVisible: TsSlider;
+    SliderUseMiddleColor: TsSlider;
+    StickyLabelUseMiddleColor: TsStickyLabel;
   protected
     procedure Init; override;
     procedure GetData; override;
@@ -80,6 +82,7 @@ end;
 procedure TOptionsEditorSpecialCharsFrame.PutData;
 begin
   OptionsContainer.SpecialCharsUseTextColor := SliderUseTextColor.SliderOn;
+  OptionsContainer.SpecialCharsUseMiddleColor := SliderUseMiddleColor.SliderOn;
   OptionsContainer.SpecialCharsStyle := ComboBoxStyle.ItemIndex;
   OptionsContainer.SpecialEndOfLineVisible := SliderEndOfLineVisible.SliderOn;
   OptionsContainer.SpecialEndOfLineColor := ColorComboBoxEndOfLineColor.ColorText;
@@ -91,6 +94,7 @@ end;
 procedure TOptionsEditorSpecialCharsFrame.GetData;
 begin
   SliderUseTextColor.SliderOn := OptionsContainer.SpecialCharsUseTextColor;
+  SliderUseMiddleColor.SliderOn := OptionsContainer.SpecialCharsUseMiddleColor;
   ComboBoxStyle.ItemIndex := OptionsContainer.SpecialCharsStyle;
   SliderEndOfLineVisible.SliderOn := OptionsContainer.SpecialEndOfLineVisible;
   ColorComboBoxEndOfLineColor.ColorText := OptionsContainer.SpecialEndOfLineColor;

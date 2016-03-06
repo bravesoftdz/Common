@@ -1,12 +1,12 @@
 inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
   Width = 223
-  Height = 345
+  Height = 375
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 219
-    Height = 345
+    Height = 375
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -25,19 +25,28 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
     object StickyLabelUseTextColor: TsStickyLabel
       Left = 0
       Top = 4
-      Width = 67
+      Width = 100
       Height = 13
       Caption = 'Use text color'
       AttachTo = SliderUseTextColor
       Gap = 8
     end
+    object StickyLabelUseMiddleColor: TsStickyLabel
+      Left = 0
+      Top = 28
+      Width = 100
+      Height = 13
+      Caption = 'Use middle color'
+      AttachTo = SliderUseMiddleColor
+      Gap = 8
+    end
     object GroupBoxSelection: TBCGroupBox
       Left = 0
-      Top = 252
+      Top = 282
       Width = 219
       Height = 93
       Caption = ' Selection'
-      TabOrder = 3
+      TabOrder = 5
       SkinData.SkinSection = 'GROUPBOX'
       Checked = False
       object StickyLabelSelectionVisible: TsStickyLabel
@@ -90,7 +99,7 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
     end
     object ColorComboBoxColor: TBCColorComboBox
       Left = 0
-      Top = 39
+      Top = 69
       Width = 200
       Height = 22
       BoundLabel.Active = True
@@ -106,12 +115,12 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 2
       ColorText = 'clWindow'
     end
     object ComboBoxStyle: TBCComboBox
       Left = 0
-      Top = 83
+      Top = 113
       Width = 133
       Height = 22
       Margins.Left = 4
@@ -128,16 +137,16 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
-      TabOrder = 1
+      TabOrder = 3
       UseMouseWheel = False
     end
     object GroupBoxEndOfLine: TBCGroupBox
       Left = 0
-      Top = 112
+      Top = 142
       Width = 219
       Height = 137
       Caption = ' End of line'
-      TabOrder = 2
+      TabOrder = 4
       SkinData.SkinSection = 'GROUPBOX'
       Checked = False
       object StickyEndOfLineVisible: TsStickyLabel
@@ -211,11 +220,11 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       end
     end
     object SliderUseTextColor: TsSlider
-      Left = 75
+      Left = 108
       Top = 0
       Width = 50
       AutoSize = True
-      TabOrder = 4
+      TabOrder = 0
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -226,6 +235,22 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+    end
+    object SliderUseMiddleColor: TsSlider
+      Left = 108
+      Top = 24
+      Width = 50
+      AutoSize = True
+      TabOrder = 1
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
 end

@@ -4,7 +4,8 @@ interface
 
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  BCCommon.Frame.Options.Base, BCControl.Panel, acSlider, sLabel, Vcl.StdCtrls, Vcl.ExtCtrls, sPanel, sFrameAdapter;
+  BCCommon.Frame.Options.Base, BCControl.Panel, acSlider, sLabel, Vcl.StdCtrls, Vcl.ExtCtrls, sPanel, sFrameAdapter,
+  sComboBox, BCControl.ComboBox;
 
 type
   TOptionsEditorSearchFrame = class(TBCOptionsBaseFrame)
@@ -15,8 +16,10 @@ type
     SliderShowSearchMap: TsSlider;
     StickyLabelVisible: TsStickyLabel;
     SliderVisible: TsSlider;
+    ComboBoxAlign: TBCComboBox;
   protected
     procedure GetData; override;
+    procedure Init; override;
     procedure PutData; override;
   public
     destructor Destroy; override;
@@ -29,7 +32,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Options.Container, BCCommon.Utils;
+  BCCommon.Options.Container, BCCommon.Utils, BCCommon.Language.Strings;
 
 var
   FOptionsEditorSearchFrame: TOptionsEditorSearchFrame;
@@ -48,18 +51,35 @@ begin
   FOptionsEditorSearchFrame := nil;
 end;
 
+procedure TOptionsEditorSearchFrame.Init;
+begin
+  with ComboBoxAlign.Items do
+  begin
+    Add(LanguageDatamodule.GetSQLFormatter('Left'));
+    Add(LanguageDatamodule.GetSQLFormatter('Right'));
+  end;
+end;
+
 procedure TOptionsEditorSearchFrame.PutData;
 begin
-  OptionsContainer.SearchVisible := SliderVisible.SliderOn;
-  OptionsContainer.DocumentSpecificSearch := SliderDocumentSpecificSearch.SliderOn;
-  OptionsContainer.ShowSearchMap := SliderShowSearchMap.SliderOn;
+  with OptionsContainer do
+  begin
+    SearchVisible := SliderVisible.SliderOn;
+    DocumentSpecificSearch := SliderDocumentSpecificSearch.SliderOn;
+    ShowSearchMap := SliderShowSearchMap.SliderOn;
+    SearchMapAlign := ComboBoxAlign.ItemIndex;
+  end;
 end;
 
 procedure TOptionsEditorSearchFrame.GetData;
 begin
-  SliderVisible.SliderOn := OptionsContainer.SearchVisible;
-  SliderDocumentSpecificSearch.SliderOn := OptionsContainer.DocumentSpecificSearch;
-  SliderShowSearchMap.SliderOn := OptionsContainer.ShowSearchMap;
+  with OptionsContainer do
+  begin
+    SliderVisible.SliderOn := SearchVisible;
+    SliderDocumentSpecificSearch.SliderOn := DocumentSpecificSearch;
+    SliderShowSearchMap.SliderOn := ShowSearchMap;
+    ComboBoxAlign.ItemIndex := SearchMapAlign;
+  end;
 end;
 
 end.

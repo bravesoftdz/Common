@@ -1,12 +1,12 @@
 inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
   Width = 212
-  Height = 67
+  Height = 113
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 208
-    Height = 67
+    Height = 113
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -114,6 +114,28 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+    end
+    object ComboBoxAlign: TBCComboBox
+      Left = 0
+      Top = 91
+      Width = 157
+      Height = 22
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Alignment = taLeftJustify
+      BoundLabel.Active = True
+      BoundLabel.Caption = 'Align'
+      BoundLabel.Indent = 4
+      BoundLabel.Layout = sclTopLeft
+      DropDownCount = 9
+      SkinData.SkinSection = 'COMBOBOX'
+      VerticalAlignment = taAlignTop
+      Style = csOwnerDrawFixed
+      ItemIndex = -1
+      TabOrder = 3
+      UseMouseWheel = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

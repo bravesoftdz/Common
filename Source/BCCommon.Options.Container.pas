@@ -83,6 +83,7 @@ type
     FDocumentSpecificSearch: Boolean;
     FDocumentSpecificSearchText: string;
     FShowSearchMap: Boolean;
+    FSearchMapAlign: Integer;
     { Selection }
     FSelectionVisible: Boolean;
     FALTSetsColumnMode: Boolean;
@@ -93,6 +94,7 @@ type
     FTripleClickRowSelect: Boolean;
     { Special chars }
     FSpecialCharsUseTextColor: Boolean;
+    FSpecialCharsUseMiddleColor: Boolean;
     FSpecialCharsStyle: Integer;
     FSpecialEndOfLineVisible: Boolean;
     FSpecialEndOfLineColor: string;
@@ -288,6 +290,8 @@ type
     property DocumentSpecificSearchText: string read FDocumentSpecificSearchText write FDocumentSpecificSearchText;
     [IniValue('Options', 'ShowSearchMap', 'True')]
     property ShowSearchMap: Boolean read FShowSearchMap write FShowSearchMap;
+    [IniValue('Options', 'SearchMapAlign', '1')]
+    property SearchMapAlign: Integer read FSearchMapAlign write FSearchMapAlign;
     { Selection }
     [IniValue('Options', 'SelectionVisible', 'True')]
     property SelectionVisible: Boolean read FSelectionVisible write FSelectionVisible;
@@ -306,6 +310,8 @@ type
     { Special chars }
     [IniValue('Options', 'SpecialCharsUseTextColor', 'True')]
     property SpecialCharsUseTextColor: Boolean read FSpecialCharsUseTextColor write FSpecialCharsUseTextColor;
+    [IniValue('Options', 'SpecialCharsUseMiddleColor', 'True')]
+    property SpecialCharsUseMiddleColor: Boolean read FSpecialCharsUseMiddleColor write FSpecialCharsUseMiddleColor;
     [IniValue('Options', 'SpecialCharsStyle', '0')]
     property SpecialCharsStyle: Integer read FSpecialCharsStyle write FSpecialCharsStyle;
     [IniValue('Options', 'SpecialEndOfLineVisible', 'True')]
@@ -960,12 +966,18 @@ begin
       Selection.Mode := smColumn
     else
       Selection.Mode := smNormal;
+    { Search }
+    Search.Map.Align := TBCEditorSearchMapAlign(FSearchMapAlign);
     { Special chars }
     SpecialChars.Visible := FEnableSpecialChars;
     if FSpecialCharsUseTextColor then
       SpecialChars.Options := SpecialChars.Options + [scoTextColor]
     else
       SpecialChars.Options := SpecialChars.Options - [scoTextColor];
+    if FSpecialCharsUseMiddleColor then
+      SpecialChars.Options := SpecialChars.Options + [scoMiddleColor]
+    else
+      SpecialChars.Options := SpecialChars.Options - [scoMiddleColor];
     SpecialChars.Style := TBCEditorSpecialCharsStyle(FSpecialCharsStyle);
     SpecialChars.EndOfLine.Visible := FSpecialEndOfLineVisible;
     SpecialChars.EndOfLine.Color := StringToColor(FSpecialEndOfLineColor);
