@@ -58,6 +58,7 @@ type
     procedure SetFolderText(Value: string);
     procedure ReadIniFile;
     procedure WriteIniFile;
+    procedure WriteSection(ASection: string; AStrings: TStrings; AIncludeTrailingPathDelimeter: Boolean = False);
   public
     function GetFileExtensions(AFileExtensions: string): string;
     property FileTypeText: string read GetFileTypeText;
@@ -176,6 +177,27 @@ begin
   ButtonFind.Enabled := Trim(ComboBoxTextToFind.Text) <> '';
 end;
 
+procedure TFindInFilesDialog.WriteSection(ASection: string; AStrings: TStrings; AIncludeTrailingPathDelimeter: Boolean = False);
+var
+  i: Integer;
+  LString: string;
+begin
+  with TIniFile.Create(GetIniFilename) do
+  try
+    EraseSection(ASection);
+    for i := 0 to AStrings.Count - 1 do
+    begin
+      LString := AStrings[i];
+      if AIncludeTrailingPathDelimeter then
+        LString := IncludeTrailingPathDelimiter(LString);
+
+      WriteString(ASection, IntToStr(i), LString);
+    end;
+  finally
+    Free;
+  end;
+end;
+
 procedure TFindInFilesDialog.ActionDirectoryItemsButtonClickExecute(Sender: TObject);
 begin
   with TItemListDialog.Create(Self) do
@@ -183,7 +205,10 @@ begin
     Caption := LanguageDataModule.GetConstant('DirectoryItems');
     ListBox.Items.Assign(ComboBoxDirectory.Items);
     if ShowModal = mrOk then
+    begin
       ComboBoxDirectory.Items.Assign(ListBox.Items);
+      WriteSection('FindInFilesDirectories', ListBox.Items, True);
+    end;
   finally
     Free;
   end;
@@ -196,7 +221,10 @@ begin
     Caption := LanguageDataModule.GetConstant('FileMaskItems');
     ListBox.Items.Assign(ComboBoxFileMask.Items);
     if ShowModal = mrOk then
+    begin
       ComboBoxFileMask.Items.Assign(ListBox.Items);
+      WriteSection('FindInFilesFileMasks', ListBox.Items);
+    end;
   finally
     Free;
   end;
@@ -209,7 +237,10 @@ begin
     Caption := LanguageDataModule.GetConstant('TextToFindItems');
     ListBox.Items.Assign(ComboBoxTextToFind.Items);
     if ShowModal = mrOk then
+    begin
       ComboBoxTextToFind.Items.Assign(ListBox.Items);
+      WriteSection('TextToFindItems', ListBox.Items);
+    end;
   finally
     Free;
   end;

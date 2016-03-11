@@ -270,7 +270,7 @@ type
     [IniValue('Options', 'RightMarginPosition', '80')]
     property RightMarginPosition: Integer read FRightMarginPosition write FRightMarginPosition;
     { Scroll }
-    [IniValue('Options', 'ScrollAutosizeMaxWidth', 'False')]
+    [IniValue('Options', 'ScrollAutosizeMaxWidth', 'True')]
     property ScrollAutosizeMaxWidth: Boolean read FScrollAutosizeMaxWidth write FScrollAutosizeMaxWidth;
     [IniValue('Options', 'ScrollHalfPage', 'False')]
     property ScrollHalfPage: Boolean read FScrollHalfPage write FScrollHalfPage;
