@@ -14,8 +14,11 @@ function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStr
 function GetFileVersion(FileName: string): string;
 function GetHighlighters: TStringList;
 function GetHighlighterColors: TStringList;
+function GetOldIniFilename: string; deprecated;
+function GetOldOutFilename: string; deprecated;
 function GetIniFilename: string;
 function GetOutFilename: string;
+function GetUserAppDataPath(const AAppName: string): string;
 function GetSQLFormatterDLLFilename: string;
 function IsVirtualDrive(Drive: Char): Boolean;
 function SystemDir: string;
@@ -31,13 +34,31 @@ uses
   BCCommon.Language.Strings, BCControl.Utils, System.IOUtils, System.StrUtils, System.Masks;
 
 const
-  DirDelimiter = '/';
+  AppDataFolder = '/';
 
-function PathAddSeparator(const Path: string): string;
+function GetSpecialFolderPath(const AFolder: Integer; const APath: string = ''): string;
+const
+  SHGFP_TYPE_CURRENT = 0;
+var
+  LPath: array [0 .. MAX_PATH + 1] of char;
 begin
-  Result := Path;
-  if (Path = '') or (Path[Length(Path)] <> DirDelimiter) then
-    Result := Path + DirDelimiter;
+  if not Succeeded(SHGetFolderPath(0, AFolder, 0, SHGFP_TYPE_CURRENT, @LPath[0])) then
+    raise Exception.Create('Path is missing.')
+  else
+  begin
+    Result := LPath;
+    if APath <> '' then
+      Result := IncludeTrailingPathDelimiter(Result) + APath;
+
+    if not System.SysUtils.DirectoryExists(Result) then
+      if not System.SysUtils.ForceDirectories(Result) then
+        raise Exception.Create('Can''t create path ' + Result);
+  end;
+end;
+
+function GetUserAppDataPath(const AAppName: string): string;
+begin
+  Result := IncludeTrailingPathDelimiter(GetSpecialFolderPath(CSIDL_LOCAL_APPDATA, IncludeTrailingPathDelimiter(AAppName)));
 end;
 
 function DriveToPidlBind(const DriveName: string; out Folder: IShellFolder): PItemIdList;
@@ -55,7 +76,7 @@ begin
     begin
       if Succeeded(DesktopFolder.BindToObject(Drives, nil, IID_IShellFolder, Pointer(Folder))) then
       begin
-        Path := PChar(PathAddSeparator(DriveName));
+        Path := PChar(IncludeTrailingPathDelimiter(DriveName));
         Attr := 0;
         if Failed(Folder.ParseDisplayName(0, nil, Path, Eaten, Result, Attr)) then
         begin
@@ -322,14 +343,31 @@ begin
   end;
 end;
 
-function GetIniFilename: string;
+function GetOldIniFilename: string;
 begin
   Result := ChangeFileExt(Application.EXEName, '.ini');
 end;
 
-function GetOutFilename: string;
+function GetOldOutFilename: string;
 begin
   Result := ChangeFileExt(Application.EXEName, '.out');
+end;
+
+function GetAppName: string;
+begin
+  {$ifdef EDITBONE}
+  Result := 'EditBone';
+  {$endif}
+end;
+
+function GetIniFilename: string;
+begin
+  Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), '.ini');
+end;
+
+function GetOutFilename: string;
+begin
+  Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), '.out');
 end;
 
 function GetSQLFormatterDLLFilename: string;
