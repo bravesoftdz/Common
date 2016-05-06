@@ -5,15 +5,15 @@ interface
 uses
   System.UITypes;
 
-function AskYesOrNo(Msg: string): Boolean;
-function AskYesOrNoAll(Msg: string): Integer;
+function AskYesOrNo(const AMsg: string): Boolean;
+function AskYesOrNoAll(const AMsg: string): Integer;
 function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons): Integer; overload;
 function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; Captions: array of string): Integer; overload;
 function SaveChanges(IncludeCancel: Boolean = True): Integer;
 procedure MessageBeep;
-procedure ShowErrorMessage(Msg: string);
-procedure ShowMessage(Msg: string);
-procedure ShowWarningMessage(Msg: string);
+procedure ShowErrorMessage(const AMsg: string);
+procedure ShowMessage(const AMsg: string);
+procedure ShowWarningMessage(const AMsg: string);
 
 implementation
 
@@ -70,14 +70,14 @@ begin
   end;
 end;
 
-function AskYesOrNo(Msg: string): Boolean;
+function AskYesOrNo(const AMsg: string): Boolean;
 begin
-  Result := MessageDialog(Msg, mtConfirmation, [mbYes, mbNo]) = mrYes;
+  Result := MessageDialog(AMsg, mtConfirmation, [mbYes, mbNo]) = mrYes;
 end;
 
-function AskYesOrNoAll(Msg: string): Integer;
+function AskYesOrNoAll(const AMsg: string): Integer;
 begin
-  Result := MessageDialog(Msg, mtConfirmation, [mbYes, mbYesToAll, mbNo, mbNoToAll]);
+  Result := MessageDialog(AMsg, mtConfirmation, [mbYes, mbYesToAll, mbNo, mbNoToAll]);
 end;
 
 function SaveChanges(IncludeCancel: Boolean): Integer;
@@ -91,19 +91,19 @@ begin
   Result := MessageDialog(LanguageDataModule.GetYesOrNoMessage('SaveChanges'), mtConfirmation, Buttons);
 end;
 
-procedure ShowMessage(Msg: string);
+procedure ShowMessage(const AMsg: string);
 begin
-  MessageDialog(Msg, mtInformation, [mbOK]);
+  MessageDialog(AMsg, mtInformation, [mbOK]);
 end;
 
-procedure ShowErrorMessage(Msg: string);
+procedure ShowErrorMessage(const AMsg: string);
 begin
-  MessageDialog(Msg, mtError, [mbOK]);
+  MessageDialog(AMsg, mtError, [mbOK]);
 end;
 
-procedure ShowWarningMessage(Msg: string);
+procedure ShowWarningMessage(const AMsg: string);
 begin
-  MessageDialog(Msg, mtWarning, [mbOK]);
+  MessageDialog(AMsg, mtWarning, [mbOK]);
 end;
 
 end.

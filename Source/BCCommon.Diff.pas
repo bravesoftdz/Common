@@ -68,7 +68,7 @@ type
     FInts2: TPointerList;
     FLastCompareRec: TCompareRec;
     function GetCompare(AIndex: Integer): TCompareRec;
-    function GetCompareCount: Integer;
+    function GetCount: Integer;
     function PopDiff: Boolean;
     function SnakeChrB(k, Offset1, Offset2, Len1, Len2: Integer): Boolean;
     function SnakeChrF(k, Offset1, Offset2, Len1, Len2: Integer): Boolean;
@@ -90,7 +90,7 @@ type
     procedure Clear;
     property Cancelled: Boolean read FCancelled;
     property Compares[Index: Integer]: TCompareRec read GetCompare; default;
-    property Count: Integer read GetCompareCount;
+    property Count: Integer read GetCount;
     property DiffStats: TDiffStats read FDiffStats;
   end;
 
@@ -581,7 +581,7 @@ begin
 
   case ChangeKind of
     ckNone:
-      for i := 1 to Range do
+      for i := 1 to Range do //FI:W528 FixInsight ignore
       begin
         with FLastCompareRec do
         begin
@@ -598,7 +598,7 @@ begin
       end;
     ckAdd:
       begin
-        for i := 1 to Range do
+        for i := 1 to Range do //FI:W528 FixInsight ignore
         begin
           with FLastCompareRec do
           begin
@@ -630,7 +630,7 @@ begin
         end;
       end;
     ckDelete:
-      for i := 1 to Range do
+      for i := 1 to Range do //FI:W528 FixInsight ignore
       begin
         with FLastCompareRec do
         begin
@@ -690,7 +690,7 @@ begin
 
   case ChangeKind of
     ckNone:
-      for i := 1 to Range do
+      for i := 1 to Range do //FI:W528 FixInsight ignore
       begin
         with FLastCompareRec do
         begin
@@ -706,7 +706,7 @@ begin
         Inc(FDiffStats.Matches);
       end;
     ckAdd:
-      for i := 1 to Range do
+      for i := 1 to Range do //FI:W528 FixInsight ignore
       begin
         with FLastCompareRec do
         begin
@@ -740,7 +740,7 @@ begin
         Inc(FDiffStats.Adds);
       end;
     ckDelete:
-      for i := 1 to Range do
+      for i := 1 to Range do //FI:W528 FixInsight ignore
       begin
         with FLastCompareRec do
         begin
@@ -796,7 +796,7 @@ begin
   FChrs2 := nil;
 end;
 
-function TDiff.GetCompareCount: Integer;
+function TDiff.GetCount: Integer;
 begin
   Result := FCompareList.Count;
 end;

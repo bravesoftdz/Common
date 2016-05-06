@@ -46,13 +46,13 @@ type
     FProgressBar: TBCProgressBar;
     FStopWatch: TStopWatch;
     procedure CreateProgressBar;
-    procedure ReadFiles(RootDirectory: string);
+    procedure ReadFiles(const ARootDirectory: string);
     procedure ReadIniFile;
     procedure ResizeProgressBar;
     procedure SetVisibleRows;
     procedure WriteIniFile;
   public
-    procedure Open(RootDirectory: string);
+    procedure Open(const ARootDirectory: string);
     property OnOpenFile: TOpenFileEvent read FOpenFile write FOpenFile;
   end;
 
@@ -314,14 +314,14 @@ begin
   CreateProgressBar;
 end;
 
-procedure TSearchForFilesForm.Open(RootDirectory: string);
+procedure TSearchForFilesForm.Open(const ARootDirectory: string);
 var
   LTimeDifference: string;
   LCount: Integer;
 begin
-  if RootDirectory = '' then
+  if ARootDirectory = '' then
     Exit;
-  Caption := Format('%s - [%s]', [Caption, RootDirectory]);
+  Caption := Format('%s - [%s]', [Caption, ARootDirectory]);
   PanelSearchingFiles.Visible := False;
   ReadIniFile;
   Show;
@@ -329,7 +329,7 @@ begin
   try
     StatusBar.Panels[0].Text := LanguageDataModule.GetConstant('CountingFiles');
     Application.ProcessMessages;
-    LCount := CountFilesInFolder(RootDirectory, '*.*', '*.*');
+    LCount := CountFilesInFolder(ARootDirectory, '*.*', '*.*');
   finally
     Screen.Cursor := crDefault;
   end;
@@ -337,7 +337,7 @@ begin
   FStopWatch.Reset;
   FStopWatch.Start;
   try
-    ReadFiles(RootDirectory);
+    ReadFiles(ARootDirectory);
   finally
     FProgressBar.Hide;
     if not FFormClosing then
@@ -388,7 +388,7 @@ begin
   end;
 end;
 
-procedure TSearchForFilesForm.ReadFiles(RootDirectory: string);
+procedure TSearchForFilesForm.ReadFiles(const ARootDirectory: string);
 var
   Node: PVirtualNode;
   NodeData: PSearchRec;
@@ -411,7 +411,7 @@ begin
   if FFormClosing then
     Exit;
   {$WARNINGS OFF} { IncludeTrailingBackslash is specific to a platform }
-  shFindFile := FindFirstFile(PChar(IncludeTrailingBackslash(RootDirectory) + '*.*'), sWin32FD);
+  shFindFile := FindFirstFile(PChar(IncludeTrailingBackslash(ARootDirectory) + '*.*'), sWin32FD);
   {$WARNINGS ON}
   if shFindFile <> INVALID_HANDLE_VALUE then
   try
@@ -423,7 +423,7 @@ begin
       begin
         if IsDirectory(sWin32FD) then
           {$WARNINGS OFF} { IncludeTrailingBackslash is specific to a platform }
-          ReadFiles(IncludeTrailingBackslash(RootDirectory) + FName)
+          ReadFiles(IncludeTrailingBackslash(ARootDirectory) + FName)
           {$WARNINGS ON}
         else
         begin
@@ -435,8 +435,8 @@ begin
             NodeData := VirtualDrawTreeSearch.GetNodeData(Node);
             NodeData.FileName := FName;
             {$WARNINGS OFF} { ExcludeTrailingBackslash is specific to a platform }
-            NodeData.FilePath := ExcludeTrailingBackslash(RootDirectory);
-            NodeData.ImageIndex := GetIconIndex(IncludeTrailingBackslash(RootDirectory) + FName);
+            NodeData.FilePath := ExcludeTrailingBackslash(ARootDirectory);
+            NodeData.ImageIndex := GetIconIndex(IncludeTrailingBackslash(ARootDirectory) + FName);
             {$WARNINGS ON}
             VirtualDrawTreeSearch.IsVisible[Node] := (Pos(UpperCase(EditSearchFor.Text), UpperCase(NodeData.FileName)) <> 0) or (EditSearchFor.Text = '');
           end;

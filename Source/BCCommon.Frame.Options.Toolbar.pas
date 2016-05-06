@@ -57,7 +57,7 @@ type
   private
     FActionList: TObjectList<TAction>;
     FIsChanged: Boolean;
-    function FindItemByName(ItemName: string): TAction;
+    function FindItemByName(const AItemName: string): TAction;
     procedure MoveSelectedNodesDown;
     procedure MoveSelectedNodesUp;
     procedure SetNodeHeight;
@@ -232,12 +232,12 @@ begin
   FOptionsToolbarFrame := nil;
 end;
 
-function TOptionsToolbarFrame.FindItemByName(ItemName: string): TAction;
+function TOptionsToolbarFrame.FindItemByName(const AItemName: string): TAction;
 begin
   Result := nil;
   if Assigned(FActionList) then
   for Result in FActionList do
-    if Result.Name = ItemName then
+    if Result.Name = AItemName then
       Exit;
 end;
 
@@ -469,7 +469,7 @@ begin
     if SelectedCount = 0 then
       Exit;
     Node := GetFirstSelected;
-    for i := 0 to SelectedCount - 1 do
+    for i := 0 to SelectedCount - 1 do //FI:W528 FixInsight ignore
     begin
       PrevNode := GetPrevious(Node,false);
       MoveTo(Node,PrevNode,amInsertBefore,false);
@@ -548,9 +548,8 @@ begin
     S := Data^.Action.Caption;
     if S = '-' then
     begin
-      with R do
-        HyphenCount := (Right - Left) div Canvas.TextWidth(S);
-      for i := 0 to HyphenCount  do
+      HyphenCount := (R.Right - R.Left) div Canvas.TextWidth(S);
+      for i := 0 to HyphenCount  do //FI:W528 FixInsight ignore
         S := S + '-';
     end;
 

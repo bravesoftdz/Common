@@ -35,7 +35,7 @@ type
     procedure SetVisibleRows;
     procedure WMActivate(var AMessage: TWMActivate); message WM_ACTIVATE;
   public
-    procedure Execute(AHighlighters: TStrings; ASelectedHighlighter: string);
+    procedure Execute(AHighlighters: TStrings; const ASelectedHighlighter: string);
     property OnSelectHighlighter: TSelectHighlighterEvent read FSelectHighlighter write FSelectHighlighter;
   end;
 
@@ -67,7 +67,7 @@ begin
   end;
 end;
 
-procedure TPopupHighlighterDialog.Execute(AHighlighters: TStrings; ASelectedHighlighter: string);
+procedure TPopupHighlighterDialog.Execute(AHighlighters: TStrings; const ASelectedHighlighter: string);
 var
   i: Integer;
   LNode, LSelectedNode: PVirtualNode;

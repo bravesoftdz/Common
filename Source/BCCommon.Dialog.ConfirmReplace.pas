@@ -23,7 +23,7 @@ type
     procedure ReadIniFile;
     procedure WriteIniFile;
   public
-    class function ClassShowModal(AOwner: TComponent; AConfirmText: string): Integer;
+    class function ClassShowModal(AOwner: TComponent; const AConfirmText: string): Integer;
   end;
 
 implementation
@@ -33,7 +33,7 @@ implementation
 uses
   System.IniFiles, BCCommon.FileUtils, BCCommon.Utils;
 
-class function TConfirmReplaceDialog.ClassShowModal(AOwner: TComponent; AConfirmText: string): Integer;
+class function TConfirmReplaceDialog.ClassShowModal(AOwner: TComponent; const AConfirmText: string): Integer;
 begin
   with TConfirmReplaceDialog.Create(AOwner) do
   try

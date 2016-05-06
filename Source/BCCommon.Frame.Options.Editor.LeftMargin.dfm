@@ -1,18 +1,18 @@
 inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
-  Width = 229
+  Width = 195
   Height = 340
-  AutoSize = False
   Visible = False
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 225
+    Width = 191
     Height = 340
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
+    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     Font.Charset = DEFAULT_CHARSET
@@ -132,7 +132,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
     object GroupBoxLineNumbers: TBCGroupBox
       Left = 0
       Top = 116
-      Width = 225
+      Width = 191
       Height = 137
       Caption = ' Line numbers'
       TabOrder = 0
@@ -141,7 +141,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       object StickyLabelShowInTens: TsStickyLabel
         Left = 9
         Top = 23
-        Width = 120
+        Width = 111
         Height = 13
         Margins.Left = 4
         Margins.Top = 4
@@ -156,7 +156,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       object StickyLabelShowLeadingZeros: TsStickyLabel
         Left = 9
         Top = 46
-        Width = 120
+        Width = 111
         Height = 13
         Margins.Left = 4
         Margins.Top = 4
@@ -171,7 +171,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       object StickyLabelShowAfterLastLine: TsStickyLabel
         Left = 9
         Top = 69
-        Width = 120
+        Width = 111
         Height = 13
         Margins.Left = 4
         Margins.Top = 4
@@ -184,7 +184,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
         Gap = 8
       end
       object SliderShowInTens: TsSlider
-        Left = 137
+        Left = 128
         Top = 19
         Width = 50
         AutoSize = True
@@ -200,7 +200,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
         SliderCaptionOff = 'No'
       end
       object SliderShowLeadingZeros: TsSlider
-        Left = 137
+        Left = 128
         Top = 42
         Width = 50
         AutoSize = True
@@ -216,7 +216,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
         SliderCaptionOff = 'No'
       end
       object SliderShowAfterLastLine: TsSlider
-        Left = 137
+        Left = 128
         Top = 65
         Width = 50
         AutoSize = True

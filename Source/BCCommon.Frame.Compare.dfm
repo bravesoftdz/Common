@@ -278,6 +278,7 @@ object CompareFrame: TCompareFrame
         RightMargin.Visible = True
         Scroll.Bars = ssHorizontal
         SpecialChars.Style = scsDot
+        SyncEdit.ShortCut = 24650
         TabOrder = 1
         WordWrap.Enabled = False
         WordWrap.Indicator.Glyph.Data = {
@@ -569,6 +570,7 @@ object CompareFrame: TCompareFrame
         RightMargin.Visible = True
         Scroll.Bars = ssHorizontal
         SpecialChars.Style = scsDot
+        SyncEdit.ShortCut = 24650
         TabOrder = 1
         WordWrap.Enabled = False
         WordWrap.Indicator.Glyph.Data = {

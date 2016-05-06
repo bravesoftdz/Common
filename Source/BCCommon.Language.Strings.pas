@@ -23,22 +23,22 @@ type
   protected
     procedure FreeHookedConstraintsList;
   public
-    function GetConstant(Name: string): string;
-    function GetConvertConstant(Name: string): string;
-    function GetErrorMessage(Name: string): string;
-    function GetFileTypes(Name: string): string;
-    function GetMessage(Name: string): string;
-    function GetPAskYesOrNo(Name: string): PWideChar;
+    function GetConstant(const Name: string): string;
+    function GetConvertConstant(const Name: string): string;
+    function GetErrorMessage(const Name: string): string;
+    function GetFileTypes(const Name: string): string;
+    function GetMessage(const Name: string): string;
+    function GetPAskYesOrNo(const Name: string): PWideChar;
     function GetPColor(AIndex: Integer): PWideChar;
-    function GetPConstant(Name: string): PWideChar;
+    function GetPConstant(const Name: string): PWideChar;
     function GetPDialog(AIndex: Integer): PWideChar;
-    function GetSQLFormatter(Name: string): string;
-    function GetWarningMessage(Name: string): string;
-    function GetYesOrNoMessage(Name: string): string;
+    function GetSQLFormatter(const Name: string): string;
+    function GetWarningMessage(const Name: string): string;
+    function GetYesOrNoMessage(const Name: string): string;
     //property ColorComboBoxStrings: TStrings read FColorComboBoxStrings;
   end;
 
-procedure ReadLanguageFile(Language: string);
+procedure ReadLanguageFile(const Language: string);
 
 var
   LanguageDataModule: TLanguageDataModule;
@@ -59,7 +59,7 @@ begin
   VirtualProtect(aResStringRec, SizeOf(aResStringRec^), OldProtect, @OldProtect);
 end;
 
-procedure ReadLanguageFile(Language: string);
+procedure ReadLanguageFile(const Language: string);
 var
   LanguagePath: string;
   BigIniFile: TMemIniFile;
@@ -98,7 +98,6 @@ begin
     SetStringHolder(LanguageDataModule.MultiStringHolderSQLFormatter, 'SQLFormatterConstant');
     SetStringHolder(LanguageDataModule.MultiStringHolderColorConstant, 'ColorConstant');
     SetStringHolder(LanguageDataModule.MultiStringHolderDialogConstant, 'DialogConstant');
-    //BigIniFile.ReadSectionValues('ColorComboBox', LanguageDataModule.FColorComboBoxStrings);
   finally
     BigIniFile.Free;
   end;
@@ -186,47 +185,47 @@ begin
   HookResourceString(@SBCEditorRightMarginPosition, LanguageDataModule.GetPConstant('Position'));
 end;
 
-function TLanguageDataModule.GetYesOrNoMessage(Name: string): string;
+function TLanguageDataModule.GetYesOrNoMessage(const Name: string): string;
 begin
   Result := Trim(MultiStringHolderYesOrNo.StringsByName[Name].Text);
 end;
 
-function TLanguageDataModule.GetMessage(Name: string): string;
+function TLanguageDataModule.GetMessage(const Name: string): string;
 begin
   Result := Trim(MultiStringHolderMessage.StringsByName[Name].Text);
 end;
 
-function TLanguageDataModule.GetErrorMessage(Name: string): string;
+function TLanguageDataModule.GetErrorMessage(const Name: string): string;
 begin
   Result := Trim(MultiStringHolderErrorMessage.StringsByName[Name].Text);
 end;
 
-function TLanguageDataModule.GetWarningMessage(Name: string): string;
+function TLanguageDataModule.GetWarningMessage(const Name: string): string;
 begin
   Result := Trim(MultiStringHolderWarningMessage.StringsByName[Name].Text);
 end;
 
-function TLanguageDataModule.GetFileTypes(Name: string): string;
+function TLanguageDataModule.GetFileTypes(const Name: string): string;
 begin
   Result := Trim(MultiStringHolderFileTypes.StringsByName[Name].Text);
 end;
 
-function TLanguageDataModule.GetConstant(Name: string): string;
+function TLanguageDataModule.GetConstant(const Name: string): string;
 begin
   Result := Trim(MultiStringHolderConstant.StringsByName[Name].Text);
 end;
 
-function TLanguageDataModule.GetConvertConstant(Name: string): string;
+function TLanguageDataModule.GetConvertConstant(const Name: string): string;
 begin
   Result := Trim(MultiStringHolderConvertConstant.StringsByName[Name].Text);
 end;
 
-function TLanguageDataModule.GetSQLFormatter(Name: string): string;
+function TLanguageDataModule.GetSQLFormatter(const Name: string): string;
 begin
   Result := Trim(MultiStringHolderSQLFormatter.StringsByName[Name].Text);
 end;
 
-function TLanguageDataModule.GetPAskYesOrNo(Name: string): PWideChar;
+function TLanguageDataModule.GetPAskYesOrNo(const Name: string): PWideChar;
 var
   LConstant: string;
 begin
@@ -246,7 +245,7 @@ begin
   FHookedConstantsList.Add(Result);
 end;
 
-function TLanguageDataModule.GetPConstant(Name: string): PWideChar;
+function TLanguageDataModule.GetPConstant(const Name: string): PWideChar;
 var
   LConstant: string;
 begin

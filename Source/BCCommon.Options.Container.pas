@@ -53,6 +53,7 @@ type
     FMinimapShowBookmarks: Boolean;
     FMinimapShowIndentGuides: Boolean;
     FMinimapShowBorder: Boolean;
+    FMinimapShowShadow: Boolean;
     FMinimapUseBlending: Boolean;
     FMinimapInvertBlending: Boolean;
     FMinimapWidth: Integer;
@@ -235,6 +236,8 @@ type
     property MinimapShowIndentGuides: Boolean read FMinimapShowIndentGuides write FMinimapShowIndentGuides;
     [IniValue('Options', 'MinimapShowBorder', 'False')]
     property MinimapShowBorder: Boolean read FMinimapShowBorder write FMinimapShowBorder;
+    [IniValue('Options', 'MinimapShowShadow', 'False')]
+    property MinimapShowShadow: Boolean read FMinimapShowShadow write FMinimapShowShadow;
     [IniValue('Options', 'MinimapUseBlending', 'False')]
     property MinimapUseBlending: Boolean read FMinimapUseBlending write FMinimapUseBlending;
     [IniValue('Options', 'MinimapInvertBlending', 'False')]
@@ -572,7 +575,7 @@ type
     destructor Destroy; override;
     //function FileType(FileType: TFileType): string;
     function GetFilterExt(FilterIndex: Cardinal): string;
-    function GetFilterIndex(FileExt: string): Cardinal;
+    function GetFilterIndex(const AFileExt: string): Cardinal;
     function SupportedFileExtensions(Refresh: Boolean = False): string;
    // procedure AssignTo(Dest: TPersistent); override;
     procedure ReadIniFile; override;
@@ -874,6 +877,7 @@ begin
       Minimap.Indicator.Options := Minimap.Indicator.Options + [ioInvertBlending]
     else
       Minimap.Indicator.Options := Minimap.Indicator.Options - [ioInvertBlending];
+    Minimap.Shadow.Visible := FMinimapShowShadow;
     Minimap.Width := FMinimapWidth;
     Minimap.Align := TBCEditorMinimapAlign(FMinimapAlign);
     { Editor }
@@ -1083,13 +1087,13 @@ begin
     Result := Copy(Result, 1, Pos(';', Result) - 1);
 end;
 
-function TEditBoneOptionsContainer.GetFilterIndex(FileExt: string): Cardinal;
+function TEditBoneOptionsContainer.GetFilterIndex(const AFileExt: string): Cardinal;
 var
   i: Integer;
 begin
   Result := 1;
   for i := 0 to FFileTypes.Count - 1 do
-    if IsExtInFileType(FileExt, FFileTypes.Strings[i]) then
+    if IsExtInFileType(AFileExt, FFileTypes.Strings[i]) then
     begin
       Result := i + 2;
       Break;

@@ -219,7 +219,7 @@ type
   TFormatSQL = function(SQL: PWideChar; Database: Integer): PWideChar; stdcall;
   TFreeAString = procedure(AStr: PWideChar); stdcall;
 
-function FormatSQL(SQL: string; Database: TSQLDatabase): string;
+function FormatSQL(const ASQL: string; ADatabase: TSQLDatabase): string;
 function SQLFormatterOptionsContainer: TSQLFormatterOptionsContainer;
 
 implementation
@@ -249,7 +249,7 @@ begin
   TIniPersist.Save(GetIniFilename, Self);
 end;
 
-function FormatSQL(SQL: string; Database: TSQLDatabase): string;
+function FormatSQL(const ASQL: string; ADatabase: TSQLDatabase): string;
 var
   DLLHandle: THandle;
   s: PWideChar;
@@ -263,13 +263,13 @@ begin
     if DLLHandle = 0 then
     begin
       ShowErrorMessage('DLL load failure');
-      Result := SQL;
+      Result := ASQL;
       Exit;
     end;
     @FormatSQLFunction := GetProcAddress(DLLHandle, 'FormatSQL');
     @FreeAStringProcedure := GetProcAddress(DLLHandle, 'FreeAString');
     if Assigned(FormatSQLFunction) then
-      s := FormatSQLFunction(PWideChar(SQL), Ord(Database));
+      s := FormatSQLFunction(PWideChar(ASQL), Ord(ADatabase));
     Result := s;
   finally
     if Assigned(FreeAStringProcedure) then

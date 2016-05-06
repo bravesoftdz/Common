@@ -5,7 +5,7 @@ interface
 uses
   Vcl.Forms;
 
-function GetSelectedLanguage(Default: string = ''): string;
+function GetSelectedLanguage(const Default: string = ''): string;
 procedure UpdateLanguage(Form: TForm; SelectedLanguage: string = ''); overload;
 
 implementation
@@ -16,7 +16,7 @@ uses
   BCControl.GroupBox, BCControl.RadioButton, BCControl.Panel, BCControl.Edit, sLabel, acSlider,
   BCControl.DateEdit, BCControl.ComboBox;
 
-function GetSelectedLanguage(Default: string): string;
+function GetSelectedLanguage(const Default: string): string;
 begin
   with TBigIniFile.Create(GetIniFilename) do
   try

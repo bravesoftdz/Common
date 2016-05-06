@@ -84,7 +84,7 @@ procedure TItemListDialog.ActionSortExecute(Sender: TObject);
 begin
   inherited;
   ListBox.Sorted := True;
-  ListBox.Sorted := False;
+  ListBox.Sorted := False; //FI:W508 FixInsight ignore
 end;
 
 end.

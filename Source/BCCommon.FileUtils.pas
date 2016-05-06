@@ -5,17 +5,17 @@ interface
 uses
   Winapi.Windows, System.Classes, System.Types;
 
-function CountFilesInFolder(AFolderText: string; AFileTypeText: string; AFileExtensions: string): Integer;
+function CountFilesInFolder(const AFolderText: string; const AFileTypeText: string; const AFileExtensions: string): Integer;
 function DisplayContextMenu(const Handle: THandle; const FileName: string; Pos: TPoint): Boolean;
-function FormatFileName(FileName: string; Modified: Boolean = False): string;
-function GetFileDateTime(FileName: string): TDateTime;
-function GetFileNamesFromFolder(Folder: string; FileType: string = ''): TStrings;
+function FormatFileName(const FileName: string; const Modified: Boolean = False): string;
+function GetFileDateTime(const FileName: string): TDateTime;
+function GetFileNamesFromFolder(const Folder: string; const FileType: string = ''): TStrings;
 function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStringDynArray;
-function GetFileVersion(FileName: string): string;
+function GetFileVersion(const FileName: string): string;
 function GetHighlighters: TStringList;
 function GetHighlighterColors: TStringList;
-function GetOldIniFilename: string; deprecated;
-function GetOldOutFilename: string; deprecated;
+function GetOldIniFilename: string;
+function GetOldOutFilename: string;
 function GetIniFilename: string;
 function GetOutFilename: string;
 function GetUserAppDataPath(const AAppName: string): string;
@@ -25,7 +25,7 @@ function SystemDir: string;
 function VirtualDrivePath(Drive: Char): string;
 procedure CreateVirtualDrive(const Drive: Char; const Path: string);
 procedure DeleteVirtualDrive(const Drive: Char);
-procedure FilePropertiesDialog(FileName: string);
+procedure FilePropertiesDialog(const FileName: string);
 
 implementation
 
@@ -274,7 +274,7 @@ begin
   Result := TDirectory.GetFiles(APath, LSearchOption, Predicate);
 end;
 
-function CountFilesInFolder(AFolderText: string; AFileTypeText: string; AFileExtensions: string): Integer;
+function CountFilesInFolder(const AFolderText: string; const AFileTypeText: string; const AFileExtensions: string): Integer;
 var
   FName: string;
 begin
@@ -286,7 +286,7 @@ begin
     Inc(Result);
 end;
 
-function GetFileDateTime(FileName: string): TDateTime;
+function GetFileDateTime(const FileName: string): TDateTime;
 var
   SearchRec: TSearchRec;
 begin
@@ -294,7 +294,7 @@ begin
   Result := SearchRec.TimeStamp;
 end;
 
-function GetFileVersion(FileName: string): string;
+function GetFileVersion(const FileName: string): string;
 var
   VerInfo: Pointer;
   VerValue: PVSFixedFileInfo;
@@ -322,7 +322,7 @@ begin
   FreeMem(VerInfo, InfoSize);
 end;
 
-function GetFileNamesFromFolder(Folder: string; FileType: string): TStrings;
+function GetFileNamesFromFolder(const Folder: string; const FileType: string): TStrings;
 var
   SearchRec: TSearchRec;
 begin
@@ -377,7 +377,7 @@ begin
 {$WARNINGS ON}
 end;
 
-function FormatFileName(FileName: string; Modified: Boolean): string;
+function FormatFileName(const FileName: string; const Modified: Boolean): string;
 begin
   Result := Trim(FileName);
   if Pos('~', Result) = Length(Result) then
@@ -431,7 +431,7 @@ begin
   ShellExecute(1, 'open', 'subst', PChar(Param), PChar(SystemDir), SW_HIDE);
 end;
 
-procedure FilePropertiesDialog(FileName: string);
+procedure FilePropertiesDialog(const FileName: string);
 var
   ShellExecuteInfo: TShellExecuteInfo;
 begin

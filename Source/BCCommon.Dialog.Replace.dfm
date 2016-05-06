@@ -273,6 +273,8 @@ inherited ReplaceDialog: TReplaceDialog
       Height = 21
       Align = alClient
       Alignment = taLeftJustify
+      BoundLabel.Indent = 4
+      BoundLabel.Layout = sclTopLeft
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
       ItemIndex = -1

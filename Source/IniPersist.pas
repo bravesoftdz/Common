@@ -37,7 +37,7 @@ type
     FSection: string;
     FBooleanValue: Boolean;
   public
-    constructor Create(const aSection: String; const aName: string; const aDefaultValue: String);
+    constructor Create(const ASection: String; const AName: string; const ADefaultValue: String);
   published
     property Section: string read FSection write FSection;
     property Name: string read FName write FName;
@@ -49,12 +49,12 @@ type
 
   TIniPersist = class(TObject)
   private
-    class procedure SetValue(aData: String; var aValue: TValue);
-    class function GetValue(var aValue: TValue): String;
+    class procedure SetValue(const AData: String; var AValue: TValue);
+    class function GetValue(var AValue: TValue): String;
     class function GetIniAttribute(Obj: TRttiObject): IniValueAttribute;
   public
-    class procedure Load(FileName: String; Obj: TObject);
-    class procedure Save(FileName: String; Obj: TObject);
+    class procedure Load(const AFileName: String; Obj: TObject);
+    class procedure Save(const AFileName: String; Obj: TObject);
   end;
 
 implementation
@@ -64,12 +64,12 @@ uses
 
 { TIniValue }
 
-constructor IniValueAttribute.Create(const aSection, aName, aDefaultValue: String);
+constructor IniValueAttribute.Create(const ASection, AName, ADefaultValue: String); // FI:W525 FixInsight ignore
 begin
   FBooleanValue := False;
-  FSection := aSection;
-  FName := aName;
-  FDefaultValue := aDefaultValue;
+  FSection := ASection;
+  FName := AName;
+  FDefaultValue := ADefaultValue;
 end;
 
 { TIniPersist }
@@ -84,7 +84,7 @@ begin
   Result := nil;
 end;
 
-class procedure TIniPersist.Load(FileName: String; Obj: TObject);
+class procedure TIniPersist.Load(const AFileName: String; Obj: TObject);
 var
   ctx: TRttiContext;
   objType: TRttiType;
@@ -97,7 +97,7 @@ var
 begin
   ctx := TRttiContext.Create;
   try
-    Ini := TIniFile.Create(FileName);
+    Ini := TIniFile.Create(AFileName);
     try
       objType := ctx.GetType(Obj.ClassInfo);
       for Prop in objType.GetProperties do
@@ -110,8 +110,7 @@ begin
           begin
             if Data = '0' then
               Data := 'False'
-            else
-            if Data = '1' then
+            else if Data = '1' then
               Data := 'True';
           end;
           Value := Prop.GetValue(Obj);
@@ -124,8 +123,7 @@ begin
         IniValue := GetIniAttribute(Field);
         if Assigned(IniValue) then
         begin
-          Data := Ini.ReadString(IniValue.Section, IniValue.Name,
-            IniValue.DefaultValue);
+          Data := Ini.ReadString(IniValue.Section, IniValue.Name, IniValue.DefaultValue);
           Value := Field.GetValue(Obj);
           SetValue(Data, Value);
           Field.SetValue(Obj, Value);
@@ -139,31 +137,30 @@ begin
   end;
 end;
 
-class procedure TIniPersist.SetValue(aData: String; var aValue: TValue);
+class procedure TIniPersist.SetValue(const AData: String; var AValue: TValue);
 var
   I: Integer;
 begin
-  case aValue.Kind of
+  case AValue.Kind of
     tkWChar, tkLString, tkWString, tkString, tkChar, tkUString:
-      aValue := aData;
+      AValue := AData;
     tkInteger, tkInt64:
-      aValue := StrToInt(aData);
+      AValue := StrToInt(AData);
     tkFloat:
-      aValue := StrToFloat(aData);
+      AValue := StrToFloat(AData);
     tkEnumeration:
-      aValue := TValue.FromOrdinal(aValue.TypeInfo,
-        GetEnumValue(aValue.TypeInfo, aData));
+      AValue := TValue.FromOrdinal(AValue.TypeInfo, GetEnumValue(AValue.TypeInfo, AData));
     tkSet:
       begin
-        I := StringToSet(aValue.TypeInfo, aData);
-        TValue.Make(@I, aValue.TypeInfo, aValue);
+        I := StringToSet(AValue.TypeInfo, AData);
+        TValue.Make(@I, AValue.TypeInfo, AValue);
       end;
   else
     raise EIniPersist.Create('Type not Supported');
   end;
 end;
 
-class procedure TIniPersist.Save(FileName: String; Obj: TObject);
+class procedure TIniPersist.Save(const AFileName: String; Obj: TObject);
 var
   RttiContext: TRttiContext;
   objType: TRttiType;
@@ -176,7 +173,7 @@ var
 begin
   RttiContext := TRttiContext.Create;
   try
-    Ini := TIniFile.Create(FileName);
+    Ini := TIniFile.Create(AFileName);
     try
       objType := RttiContext.GetType(Obj.ClassInfo);
       for Prop in objType.GetProperties do
@@ -207,11 +204,11 @@ begin
   end;
 end;
 
-class function TIniPersist.GetValue(var aValue: TValue): string;
+class function TIniPersist.GetValue(var AValue: TValue): string;
 begin
-  if aValue.Kind in [tkWChar, tkLString, tkWString, tkString, tkChar, tkUString,
-    tkInteger, tkInt64, tkFloat, tkEnumeration, tkSet] then
-    result := aValue.ToString
+  if AValue.Kind in [tkWChar, tkLString, tkWString, tkString, tkChar, tkUString, tkInteger, tkInt64, tkFloat,
+    tkEnumeration, tkSet] then
+    Result := AValue.ToString
   else
     raise EIniPersist.Create('Type not Supported');
 end;

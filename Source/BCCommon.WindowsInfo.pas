@@ -97,7 +97,6 @@ type
 
 resourcestring
   RsUnableToOpenKeyRead  = 'Unable to open key "%s\%s" for read';
-  RsUnableToOpenKeyWrite = 'Unable to open key "%s\%s" for write';
   RsUnableToAccessValue  = 'Unable to open key "%s\%s" and access value "%s"';
   RsWrongDataType        = '"%s\%s\%s" is of wrong kind or size';
   RsInconsistentPath     = '"%s" does not match RootKey';
@@ -426,13 +425,13 @@ begin
   RetValue := string(TmpRet);
 end;
 
-function RegReadStringDef(const RootKey: HKEY; const Key, Name: string; Def: string): string;
+function RegReadStringDef(const RootKey: HKEY; const Key, Name: string; const ADef: string): string;
 begin
   try
     if not RegReadStringEx(RootKey, Key, Name, Result, False) then
-      Result := Def;
+      Result := ADef;
   except
-    Result := Def;
+    Result := ADef;
   end;
 end;
 
@@ -538,7 +537,7 @@ begin
   begin
     UniqueString(S);
     P := PChar(S);
-    for I := 1 to L do
+    for I := 1 to L do  //FI:W528 FixInsight ignore
     begin
       P^ := P^.ToUpper;
       Inc(P);

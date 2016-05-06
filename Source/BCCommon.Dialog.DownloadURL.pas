@@ -25,12 +25,12 @@ type
     FCancel: Boolean;
     procedure OnURLDownloadProgress(Sender: TDownLoadURL; Progress, ProgressMax: Cardinal;
       StatusCode: TURLDownloadStatus; StatusText: string; var Cancel: Boolean);
-    procedure SetInformationText(Value: string);
+    procedure SetInformationText(const AValue: string);
   public
-    function Open(DefaultFileName: string; DownloadURL: string): string;
+    function Open(const ADefaultFileName: string; const ADownloadURL: string): string;
   end;
 
-procedure CheckForUpdates(AppName: string; AboutVersion: string);
+procedure CheckForUpdates(const AAppName: string; const AAboutVersion: string);
 
 function DownloadURLDialog: TDownloadURLDialog;
 
@@ -66,14 +66,14 @@ begin
   FDownloadURLDialog := nil;
 end;
 
-procedure TDownloadURLDialog.SetInformationText(Value: string);
+procedure TDownloadURLDialog.SetInformationText(const AValue: string);
 begin
-  LabelInformation.Caption := Value;
+  LabelInformation.Caption := AValue;
   Invalidate;
   Application.ProcessMessages;
 end;
 
-function TDownloadURLDialog.Open(DefaultFileName: string; DownloadURL: string): string;
+function TDownloadURLDialog.Open(const ADefaultFileName: string; const ADownloadURL: string): string;
 begin
   FCancel := False;
   Result := '';
@@ -81,18 +81,18 @@ begin
   Application.ProcessMessages;
   SaveDialog.Filter := Trim(StringReplace(LanguageDataModule.GetFileTypes('Zip'), '|', #0, [rfReplaceAll])) + #0#0;
   SaveDialog.Title := LanguageDataModule.GetConstant('SaveAs');
-  SaveDialog.FileName := DefaultFileName;
+  SaveDialog.FileName := ADefaultFileName;
   SaveDialog.DefaultExt := 'zip';
   {if BCCommon.Dialog.SaveFile(Handle, '', Trim(StringReplace(LanguageDataModule.GetFileTypes('Zip')
         , '|', #0, [rfReplaceAll])) + #0#0,
         LanguageDataModule.GetConstant('SaveAs'), FilterIndex, DefaultFileName, 'zip') then  }
   if SaveDialog.Execute(Handle) then
   begin
-    SetInformationText(DownloadURL);
+    SetInformationText(ADownloadURL);
     Application.ProcessMessages;
     with TDownloadURL.Create(Self) do
     try
-      URL := DownloadURL;
+      URL := ADownloadURL;
       FileName := SaveDialog.Files[0];
       Result := FileName;
       OnDownloadProgress := OnURLDownloadProgress;
@@ -165,7 +165,7 @@ begin
   end
 end;
 
-procedure CheckForUpdates(AppName: string; AboutVersion: string);
+procedure CheckForUpdates(const AAppName: string; const AAboutVersion: string);
 var
   Version: string;
   FileName: string;
@@ -173,19 +173,19 @@ begin
   try
     try
       Screen.Cursor := crHourGlass;
-      Version := GetAppVersion(Format('%s/newversioncheck.php?a=%s&v=%s', [BONECODE_URL, LowerCase(AppName), AboutVersion]));
+      Version := GetAppVersion(Format('%s/newversioncheck.php?a=%s&v=%s', [BONECODE_URL, LowerCase(AAppName), AAboutVersion]));
     finally
       Screen.Cursor := crDefault;
     end;
 
-    if (Trim(Version) <> '') and (Version <> AboutVersion) then
+    if (Trim(Version) <> '') and (Version <> AAboutVersion) then
     begin
-      if AskYesOrNo(Format(LanguageDataModule.GetYesOrNoMessage('NewVersion'), [Version, AppName, CHR_DOUBLE_ENTER])) then
+      if AskYesOrNo(Format(LanguageDataModule.GetYesOrNoMessage('NewVersion'), [Version, AAppName, CHR_DOUBLE_ENTER])) then
       begin
         {$IFDEF WIN64}
         AppName := AppName + '64';
         {$ENDIF}
-        FileName := DownloadURLDialog.Open(Format('%s.zip', [AppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, AppName]));
+        FileName := DownloadURLDialog.Open(Format('%s.zip', [AAppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, AAppName]));
         ShellExecute(Application.Handle, PChar('explore'), nil, nil, PChar(ExtractFilePath(FileName)), SW_SHOWNORMAL);
       end;
     end

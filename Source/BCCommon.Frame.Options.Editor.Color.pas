@@ -375,9 +375,9 @@ begin
   LElementDataValue := GetElementDataValue;
   if Assigned(LElementDataValue) then
   begin
-    ColorComboBoxElementsForeground.Selected := clNone;
+    //ColorComboBoxElementsForeground.Selected := clNone;
     ColorComboBoxElementsForeground.Selected := StringToColor(LElementDataValue.ObjectValue['Foreground']);
-    ColorComboBoxElementsBackground.Selected := clNone;
+    //ColorComboBoxElementsBackground.Selected := clNone;
     ColorComboBoxElementsBackground.Selected := StringToColor(LElementDataValue.ObjectValue['Background']);
     LStyle := LElementDataValue.ObjectValue['Style'];
     SliderElementsAttributesBold.SliderOn := Pos('Bold', LStyle) <> 0;

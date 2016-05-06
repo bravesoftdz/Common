@@ -54,13 +54,13 @@ type
     function GetLookInSubfolders: Boolean;
     function GetSearchCaseSensitive: Boolean;
     procedure SetButtons;
-    procedure SetFindWhatText(AValue: string);
-    procedure SetFolderText(Value: string);
+    procedure SetFindWhatText(const AValue: string);
+    procedure SetFolderText(const AValue: string);
     procedure ReadIniFile;
     procedure WriteIniFile;
-    procedure WriteSection(ASection: string; AStrings: TStrings; AIncludeTrailingPathDelimeter: Boolean = False);
+    procedure WriteSection(const ASection: string; AStrings: TStrings; AIncludeTrailingPathDelimeter: Boolean = False);
   public
-    function GetFileExtensions(AFileExtensions: string): string;
+    function GetFileExtensions(const AFileExtensions: string): string;
     property FileTypeText: string read GetFileTypeText;
     property FindWhatText: string read GetFindWhatText write SetFindWhatText;
     property FolderText: string read GetFolderText write SetFolderText;
@@ -110,13 +110,13 @@ begin
   Result := ComboBoxTextToFind.Text;
 end;
 
-procedure TFindInFilesDialog.SetFindWhatText(AValue: string);
+procedure TFindInFilesDialog.SetFindWhatText(const AValue: string);
 begin
   ComboBoxTextToFind.Text := AValue;
   SetButtons;
 end;
 
-function TFindInFilesDialog.GetFileExtensions(AFileExtensions: string): string;
+function TFindInFilesDialog.GetFileExtensions(const AFileExtensions: string): string;
 var
   i: Integer;
   s, LFileExtension: string;
@@ -157,9 +157,9 @@ begin
   {$WARNINGS ON}
 end;
 
-procedure TFindInFilesDialog.SetFolderText(Value: string);
+procedure TFindInFilesDialog.SetFolderText(const AValue: string);
 begin
-  ComboBoxDirectory.Text := Value;
+  ComboBoxDirectory.Text := AValue;
 end;
 
 function TFindInFilesDialog.GetSearchCaseSensitive: Boolean;
@@ -177,7 +177,7 @@ begin
   ButtonFind.Enabled := Trim(ComboBoxTextToFind.Text) <> '';
 end;
 
-procedure TFindInFilesDialog.WriteSection(ASection: string; AStrings: TStrings; AIncludeTrailingPathDelimeter: Boolean = False);
+procedure TFindInFilesDialog.WriteSection(const ASection: string; AStrings: TStrings; AIncludeTrailingPathDelimeter: Boolean = False);
 var
   i: Integer;
   LString: string;

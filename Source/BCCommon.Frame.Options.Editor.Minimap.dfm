@@ -1,12 +1,12 @@
 inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
   Width = 182
-  Height = 224
+  Height = 248
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 178
-    Height = 224
+    Height = 248
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -39,7 +39,7 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
     end
     object StickyLabelShowIndentGuides: TsStickyLabel
       Left = 0
-      Top = 50
+      Top = 73
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -69,7 +69,7 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
     end
     object StickyLabelShowBorder: TsStickyLabel
       Left = 0
-      Top = 73
+      Top = 50
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -84,7 +84,7 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
     end
     object StickyLabelUseBlending: TsStickyLabel
       Left = 0
-      Top = 96
+      Top = 119
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -99,7 +99,7 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
     end
     object StickyLabelInvertBlending: TsStickyLabel
       Left = 0
-      Top = 119
+      Top = 142
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -112,9 +112,24 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
       AttachTo = SliderInvertBlending
       Gap = 8
     end
+    object StickyLabelShowShadow: TsStickyLabel
+      Left = 0
+      Top = 96
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show shadow'
+      ParentColor = False
+      AttachTo = SliderShowShadow
+      Gap = 8
+    end
     object EditWidth: TBCEdit
       Left = 0
-      Top = 159
+      Top = 183
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -127,7 +142,7 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 7
       Text = '100'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -160,10 +175,10 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
     end
     object SliderShowIndentGuides: TsSlider
       Left = 128
-      Top = 46
+      Top = 69
       Width = 50
       AutoSize = True
-      TabOrder = 2
+      TabOrder = 3
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -192,7 +207,7 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
     end
     object ComboBoxAlign: TBCComboBox
       Left = 0
-      Top = 202
+      Top = 226
       Width = 157
       Height = 22
       Margins.Left = 4
@@ -209,12 +224,28 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
-      TabOrder = 4
+      TabOrder = 8
       UseMouseWheel = False
     end
     object SliderShowBorder: TsSlider
       Left = 128
-      Top = 69
+      Top = 46
+      Width = 50
+      AutoSize = True
+      TabOrder = 2
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderUseBlending: TsSlider
+      Left = 128
+      Top = 115
       Width = 50
       AutoSize = True
       TabOrder = 5
@@ -228,9 +259,9 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
     end
-    object SliderUseBlending: TsSlider
+    object SliderInvertBlending: TsSlider
       Left = 128
-      Top = 92
+      Top = 138
       Width = 50
       AutoSize = True
       TabOrder = 6
@@ -244,12 +275,12 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
     end
-    object SliderInvertBlending: TsSlider
+    object SliderShowShadow: TsSlider
       Left = 128
-      Top = 115
+      Top = 92
       Width = 50
       AutoSize = True
-      TabOrder = 7
+      TabOrder = 4
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -262,7 +293,7 @@ inherited OptionsEditorMinimapFrame: TOptionsEditorMinimapFrame
     end
   end
   inherited FrameAdapter: TsFrameAdapter
-    Left = 80
-    Top = 10
+    Left = 74
+    Top = 65532
   end
 end

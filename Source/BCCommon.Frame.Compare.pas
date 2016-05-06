@@ -69,7 +69,7 @@ type
     FHashListLeft, FHashListRight: TList;
     FSpecialChars: Boolean;
     FLineNumbers: Boolean;
-    function OpenDocument(AInitialDir: string; var AFileName: string): Boolean;
+    function OpenDocument(const AInitialDir: string; var AFileName: string): Boolean;
     procedure ClearLeftEditor;
     procedure ClearRightEditor;
     procedure OpenFileToLeftEditor(AFilename: string);
@@ -152,6 +152,7 @@ const
   LeftRowColor, RightRowColor: TColor;
   RowInsideVisibleRows: Boolean;      }
 begin
+  inherited;
   {LStyles := StyleServices;
   LeftRowColor := clNone;
   RightRowColor := clNone;
@@ -310,7 +311,7 @@ begin
   OpenFileToLeftEditor(LeftComboBox.Text);
 end;
 
-function TCompareFrame.OpenDocument(AInitialDir: string; var AFileName: string): Boolean;
+function TCompareFrame.OpenDocument(const AInitialDir: string; var AFileName: string): Boolean;
 begin
   Result := False;
   AFileName := '';
@@ -356,6 +357,7 @@ const
   clr: TColor;
   LColor: TColor; }
 begin
+  inherited;
   (*LStyles := StyleServices;
 
   if FDiff.Count = 0 then
@@ -463,6 +465,7 @@ end;
 procedure TCompareFrame.LeftGridKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
+  inherited;
   {if Key = VK_PRIOR then
     LeftGrid.Row := Max(LeftGrid.Row - LeftGrid.VisibleRowCount, 0);
   if Key = VK_NEXT then
@@ -482,6 +485,7 @@ const
   clr: TColor;
   LColor: TColor; }
 begin
+  inherited;
  { LStyles := StyleServices;
 
   if FDiff.Count = 0 then

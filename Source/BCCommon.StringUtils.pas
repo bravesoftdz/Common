@@ -2,38 +2,40 @@ unit BCCommon.StringUtils;
 
 interface
 
-  function AnsiInitCap(Str: string): string;
-  function CapitalizeText(AText: string): string;
-  function DecryptString(Data: string): string;
+  function AnsiInitCap(const Str: string): string;
+  function CapitalizeText(const AText: string): string;
+  function DecryptString(const Data: string): string;
   function DeleteChars(const S: string; Chr: Char): string;
   function DeleteWhiteSpace(const s: string): string;
-  function EncryptString(Data: string): string;
-  function FormatJSON(AJSON: string; AIndentSize: Integer = 3): string;
-  function FormatXML(AXML: string): string;
-  function GetNextToken(ASeparator: string; AText: string): string;
-  function GetTokenAfter(ASeparator: string; AText: string): string;
-  function RemoveTokenFromStart(ASeparator: string; AText: string): string;
-  function RemoveNonAlpha(Source: string): string;
-  function StringBetween(Str: string; SubStr1: string; SubStr2: string): string;
-  function StrContainsChar(CharStr, Str: string): Boolean;
-  function WordCount(s: string): Integer;
+  function EncryptString(const Data: string): string;
+  function FormatJSON(const AJSON: string; AIndentSize: Integer = 3): string;
+  function FormatXML(const AXML: string): string;
+  function GetNextToken(const ASeparator: string; const AText: string): string;
+  function GetTokenAfter(const ASeparator: string; const AText: string): string;
+  function RemoveTokenFromStart(const ASeparator: string; const AText: string): string;
+  function RemoveNonAlpha(const Source: string): string;
+  function StringBetween(const Str: string; const SubStr1: string; const SubStr2: string): string;
+  function StrContainsChar(const CharStr: string; const Str: string): Boolean;
+  function WordCount(const s: string): Integer;
 
 implementation
 
 uses
   Winapi.Windows, System.Classes, System.SysUtils, System.Character, Xml.XMLDoc;
 
-function AnsiInitCap(Str: string): string;
+function AnsiInitCap(const Str: string): string;
 begin
   Result := Concat(AnsiUpperCase(Copy(Str, 1, 1)), AnsiLowerCase(Copy(Str, 2, Length(Str))));
 end;
 
-function CapitalizeText(AText: string): string;
+function CapitalizeText(const AText: string): string;
 var
   i: Integer;
   LChar: Char;
   LUpperCase: Boolean;
 begin
+  Result := '';
+
   LUpperCase := False;
   for i := 1 to Length(AText) do
   if AText[i] <> ' ' then
@@ -58,14 +60,14 @@ begin
       Delete(Result, I, 1);
 end;
 
-function StringBetween(Str: string; SubStr1: string; SubStr2: string): string;
+function StringBetween(const Str: string; const SubStr1: string; const SubStr2: string): string;
 begin
   Result := Str;
   Result := Copy(Result, Pos(SubStr1, Result) + 1, Length(Result));
   Result := Copy(Result, 1, Pos(SubStr2, Result) - 1);
 end;
 
-function DecryptString(Data: string): string;
+function DecryptString(const Data: string): string;
 var
   i: Integer;
 begin
@@ -80,7 +82,7 @@ begin
     end;
 end;
 
-function EncryptString(Data: string): string;
+function EncryptString(const Data: string): string;
 var
   i: Integer;
 begin
@@ -95,7 +97,7 @@ begin
     end;
 end;
 
-function GetNextToken(ASeparator: string; AText: string): string;
+function GetNextToken(const ASeparator: string; const AText: string): string;
 var
   i: Integer;
 begin
@@ -106,12 +108,12 @@ begin
     Result := AText;
 end;
 
-function GetTokenAfter(ASeparator: string; AText: string): string;
+function GetTokenAfter(const ASeparator: string; const AText: string): string;
 begin
   Result := System.Copy(AText, Pos(ASeparator, AText) + 1, Length(AText));
 end;
 
-function RemoveTokenFromStart(ASeparator: string; AText: string): string;
+function RemoveTokenFromStart(const ASeparator: string; const AText: string): string;
 var
   i: Integer;
 begin
@@ -138,7 +140,7 @@ begin
 end;
 
 { Minimize when AIndentSize < 0 }
-function FormatJSON(AJSON: string; AIndentSize: Integer = 3): string;
+function FormatJSON(const AJSON: string; AIndentSize: Integer = 3): string;
 var
   LPChar: PChar;
   LInsideString: Boolean;
@@ -225,7 +227,7 @@ end;
 
 { Note! The default encoding for XML files is UTF-8, so if no encoding attribute is found UTF-8 is
   assumed. If encoding is UTF-8, FormatXMLData function will remove the encoding attribute. }
-function FormatXML(AXML: string): string;
+function FormatXML(const AXML: string): string;
 var
   XMLDocument: TXMLDocument;
 begin
@@ -239,7 +241,7 @@ begin
   end;
 end;
 
-function WordCount(s: string): Integer;
+function WordCount(const s: string): Integer;
 var
   i: Integer;
   IsWhite, IsWhiteOld: Boolean;
@@ -256,7 +258,7 @@ begin
   end;
 end;
 
-function RemoveNonAlpha(Source: string): string;
+function RemoveNonAlpha(const Source: string): string;
 var
   i: Integer;
 begin
@@ -266,7 +268,7 @@ begin
       Result := Result + Source[i];
 end;
 
-function StrContainsChar(CharStr, Str: string): Boolean;
+function StrContainsChar(const CharStr: string; const Str: string): Boolean;
 var
   i: Integer;
 begin

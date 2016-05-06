@@ -52,8 +52,8 @@ type
     function GetSearchFor: string;
     procedure ReadIniFile;
     procedure SetButtons;
-    procedure SetReplaceWith(AValue: string);
-    procedure SetSearchFor(AValue: string);
+    procedure SetReplaceWith(const AValue: string);
+    procedure SetSearchFor(const AValue: string);
     procedure WriteIniFile;
   public
     procedure GetOptions(Editor: TBCEditor);
@@ -224,12 +224,12 @@ begin
   Result := ComboBoxSearchFor.Text;
 end;
 
-procedure TReplaceDialog.SetReplaceWith(AValue: string);
+procedure TReplaceDialog.SetReplaceWith(const AValue: string);
 begin
   ComboBoxReplaceWith.Text := AValue;
 end;
 
-procedure TReplaceDialog.SetSearchFor(AValue: string);
+procedure TReplaceDialog.SetSearchFor(const AValue: string);
 begin
   ComboBoxSearchFor.Text := AValue;
   SetButtons;

@@ -25,6 +25,8 @@ type
     StickyLabelShowBorder: TsStickyLabel;
     StickyLabelUseBlending: TsStickyLabel;
     StickyLabelInvertBlending: TsStickyLabel;
+    SliderShowShadow: TsSlider;
+    StickyLabelShowShadow: TsStickyLabel;
   protected
     procedure GetData; override;
     procedure Init; override;
@@ -76,6 +78,7 @@ begin
     MinimapShowBookmarks := SliderShowBookmarks.SliderOn;
     MinimapShowIndentGuides := SliderShowIndentGuides.SliderOn;
     MinimapShowBorder  := SliderShowBorder.SliderOn;
+    MinimapShowShadow  := SliderShowShadow.SliderOn;
     MinimapUseBlending := SliderUseBlending.SliderOn;
     MinimapInvertBlending := SliderInvertBlending.SliderOn;
     MinimapWidth := StrToIntDef(EditWidth.Text, 100);
@@ -91,6 +94,7 @@ begin
     SliderShowBookmarks.SliderOn := MinimapShowBookmarks;
     SliderShowIndentGuides.SliderOn := MinimapShowIndentGuides;
     SliderShowBorder.SliderOn := MinimapShowBorder;
+    SliderShowShadow.SliderOn := MinimapShowShadow;
     SliderUseBlending.SliderOn := MinimapUseBlending;
     SliderInvertBlending.SliderOn := MinimapInvertBlending;
     EditWidth.Text := IntToStr(MinimapWidth);

@@ -209,6 +209,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       RightMargin.Position = 80
       RightMargin.Visible = True
       SpecialChars.Style = scsDot
+      SyncEdit.ShortCut = 24650
       TabOrder = 1
       WordWrap.Enabled = False
       WordWrap.Indicator.Glyph.Data = {
@@ -260,8 +261,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       TabDragDrop = False
       object TabSheetEditor: TsTabSheet
         Caption = 'Editor'
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object ComboBoxEditorElement: TBCComboBox
           Left = 6
           Top = 22
@@ -310,6 +309,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             'Left margin line state normal'
             'Matching pair matched'
             'Matching pair unmatched'
+            'Minimap background'
             'Minimap bookmark'
             'Minimap visible lines'
             'Right margin'
@@ -350,8 +350,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       end
       object TabSheetElements: TsTabSheet
         Caption = 'Elements'
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object ComboBoxElementsName: TBCComboBox
           Left = 6
           Top = 19
@@ -531,8 +529,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       end
       object TabSheetGeneral: TsTabSheet
         Caption = 'General'
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object EditVersion: TBCEdit
           Left = 6
           Top = 18
@@ -578,8 +574,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       end
       object TabSheetAuthor: TsTabSheet
         Caption = 'Author'
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object EditName: TBCEdit
           Left = 6
           Top = 20
@@ -625,8 +619,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         AlignWithMargins = True
         Margins.Top = 2
         Caption = 'Use skin color'
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object PanelUseSkinColorLeft: TBCPanel
           Left = 0
           Top = 0

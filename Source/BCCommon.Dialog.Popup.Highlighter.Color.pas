@@ -24,7 +24,7 @@ type
     FSelectHighlighterColor: TSelectHighlighterColorEvent;
     procedure WMActivate(var AMessage: TWMActivate); message WM_ACTIVATE;
   public
-    procedure Execute(AHighlighterColors: TStrings; ASelectedHighlighterName: string);
+    procedure Execute(AHighlighterColors: TStrings; const ASelectedHighlighterName: string);
     property OnSelectHighlighterColor: TSelectHighlighterColorEvent read FSelectHighlighterColor write FSelectHighlighterColor;
   end;
 
@@ -51,7 +51,7 @@ begin
    VirtualDrawTree.SetFocus;
 end;
 
-procedure TPopupHighlighterColorDialog.Execute(AHighlighterColors: TStrings; ASelectedHighlighterName: string);
+procedure TPopupHighlighterColorDialog.Execute(AHighlighterColors: TStrings; const ASelectedHighlighterName: string);
 var
   i: Integer;
   LNode: PVirtualNode;

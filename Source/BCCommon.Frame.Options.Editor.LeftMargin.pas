@@ -56,6 +56,11 @@ begin
   Result := FOptionsEditorLeftMarginFrame;
   AlignSliders(Result.Panel);
   AlignSliders(Result.GroupBoxLineNumbers);
+  Result.GroupBoxLineNumbers.Width := Result.SliderShowInTens.Left + Result.SliderShowInTens.Width + 13;
+  Result.AutoSize := False;
+  Result.Panel.AutoSize := False;
+  Result.Panel.AutoSize := True; //FI:W508 FixInsight ignore
+  Result.AutoSize := True;
 end;
 
 destructor TOptionsEditorLeftMarginFrame.Destroy;
