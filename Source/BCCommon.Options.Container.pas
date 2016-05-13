@@ -767,9 +767,9 @@ begin
     { Caret }
     Caret.Visible := FShowCaret;
     if FRightMouseClickMovesCaret then
-      Caret.Options := Caret.Options + [coRightMouseClickMovesCaret]
+      Caret.Options := Caret.Options + [coRightMouseClickMove]
     else
-      Caret.Options := Caret.Options - [coRightMouseClickMovesCaret];
+      Caret.Options := Caret.Options - [coRightMouseClickMove];
     Caret.NonBlinking.Enabled := FShowNonblinkingCaret;
     Caret.NonBlinking.Colors.Background := StringToColor(FNonblinkingCaretBackgroundColor);
     Caret.NonBlinking.Colors.Foreground := StringToColor(FNonblinkingCaretForegroundColor);

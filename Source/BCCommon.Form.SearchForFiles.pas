@@ -229,7 +229,7 @@ begin
       DrawText(Canvas.Handle, S, Length(S), R, Format);
       R.Left := R.Left + Canvas.TextWidth(S);
       S := System.SysUtils.Format(' (%s)', [Data.FilePath]);
-      Canvas.Font.Color := MixColors(ColorToRGB(Font.Color), GetControlColor(Parent), DefDisabledBlend);
+      Canvas.Font.Color := BlendColors(ColorToRGB(Font.Color), GetControlColor(Parent), DefBlendDisabled);
 
       DrawText(Canvas.Handle, S, Length(S), R, Format);
     end;
