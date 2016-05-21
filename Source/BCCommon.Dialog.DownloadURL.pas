@@ -167,13 +167,18 @@ end;
 
 procedure CheckForUpdates(const AAppName: string; const AAboutVersion: string);
 var
-  Version: string;
-  FileName: string;
+  LAppName: string;
+  LVersion: string;
+  LFileName: string;
 begin
+  LAppName := AAppName;
+  {$IFDEF WIN64}
+  LAppName := LAppName + '64';
+  {$ENDIF}
   try
     try
       Screen.Cursor := crHourGlass;
-      Version := GetAppVersion(Format('%s/newversioncheck.php?a=%s&v=%s', [BONECODE_URL, LowerCase(AAppName), AAboutVersion]));
+      LVersion := GetAppVersion(Format('%s/newversioncheck.php?a=%s&v=%s', [BONECODE_URL, LowerCase(AAppName), AAboutVersion]));
     finally
       Screen.Cursor := crDefault;
     end;
@@ -182,11 +187,8 @@ begin
     begin
       if AskYesOrNo(Format(LanguageDataModule.GetYesOrNoMessage('NewVersion'), [Version, AAppName, CHR_DOUBLE_ENTER])) then
       begin
-        {$IFDEF WIN64}
-        AppName := AppName + '64';
-        {$ENDIF}
-        FileName := DownloadURLDialog.Open(Format('%s.zip', [AAppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, AAppName]));
-        ShellExecute(Application.Handle, PChar('explore'), nil, nil, PChar(ExtractFilePath(FileName)), SW_SHOWNORMAL);
+        LFileName := DownloadURLDialog.Open(Format('%s.zip', [LAppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, LAppName]));
+        ShellExecute(Application.Handle, PChar('explore'), nil, nil, PChar(ExtractFilePath(LFileName)), SW_SHOWNORMAL);
       end;
     end
     else
