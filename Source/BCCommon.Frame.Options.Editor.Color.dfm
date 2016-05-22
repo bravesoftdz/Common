@@ -1,16 +1,16 @@
 inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
-  Width = 451
-  Height = 305
+  Width = 505
+  Height = 335
   Align = alClient
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 447
-    Height = 305
+    Width = 497
+    Height = 335
     Margins.Left = 4
     Margins.Top = 0
-    Margins.Right = 0
+    Margins.Right = 4
     Margins.Bottom = 0
     Align = alClient
     BevelOuter = bvNone
@@ -27,7 +27,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object Splitter: TsSplitter
       Left = 0
       Top = 216
-      Width = 447
+      Width = 497
       Height = 6
       Cursor = crVSplit
       Align = alTop
@@ -37,7 +37,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       AlignWithMargins = True
       Left = 0
       Top = 0
-      Width = 447
+      Width = 497
       Height = 41
       Margins.Left = 0
       Margins.Top = 0
@@ -154,8 +154,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object Editor: TBCEditor
       Left = 0
       Top = 222
-      Width = 447
-      Height = 83
+      Width = 497
+      Height = 113
       Cursor = crIBeam
       Margins.Left = 0
       Margins.Top = 5
@@ -163,6 +163,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Margins.Bottom = 0
       ActiveLine.Indicator.Visible = False
       Align = alClient
+      Caret.MultiEdit.Enabled = True
       Caret.NonBlinking.Enabled = False
       Caret.Options = []
       CodeFolding.Colors.Indent = clBlack
@@ -249,7 +250,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object PageControl: TBCPageControl
       Left = 0
       Top = 44
-      Width = 447
+      Width = 497
       Height = 172
       ActivePage = TabSheetEditor
       Align = alTop
@@ -829,7 +830,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           end
         end
         object PanelUseSkinColorRight: TBCPanel
-          Left = 215
+          Left = 265
           Top = 0
           Width = 218
           Height = 135

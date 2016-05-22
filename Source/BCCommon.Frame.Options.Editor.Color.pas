@@ -5,12 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, BCEditor.JsonDataObjects,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sComboBox, BCControl.ComboBox,
-  sComboBoxes, BCControl.Panel,
-  BCEditor.Editor.Base, BCEditor.Editor, BCControl.SpeedButton,
+  sComboBoxes, BCControl.Panel, BCEditor.Editor.Base, BCEditor.Editor, BCControl.SpeedButton,
   BCControl.GroupBox, BCCommon.Frame.Options.Base, sFrameAdapter, Vcl.ActnList, BCControl.ScrollBox,
-  sDialogs, BCComponent.MultiStringHolder, sPageControl, BCControl.PageControl, sSplitter,
-  BCControl.Edit, sLabel, BCControl.Labels,
-  acSlider, System.Actions, sEdit, sGroupBox, Vcl.ComCtrls, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls, sPanel;
+  sDialogs, BCComponent.MultiStringHolder, sPageControl, BCControl.PageControl, sSplitter, BCControl.Edit,
+  sLabel, BCControl.Labels, acSlider, System.Actions, sEdit, sGroupBox, Vcl.ComCtrls, Vcl.Buttons, sSpeedButton,
+  Vcl.ExtCtrls, sPanel;
 
 type
   TOptionsEditorColorFrame = class(TBCOptionsBaseFrame)
@@ -85,7 +84,6 @@ type
     FFileName: string;
     FJSONObject: TJsonObject;
     FModified: Boolean;
-    function GetColorFileName: string;
     function GetElementDataValue: PJsonDataValue;
     procedure CreateJSONObject;
     procedure FreeJSONObject;
@@ -108,7 +106,7 @@ implementation
 
 uses
   BCCommon.Options.Container, BCCommon.Language.Strings, BCCommon.StringUtils, BCEditor.Highlighter.Colors,
-  BCCommon.Utils;
+  BCCommon.Utils, BCCommon.FileUtils;
 
 var
   FOptionsEditorColorFrame: TOptionsEditorColorFrame;
@@ -171,7 +169,14 @@ begin
     FJSONObject['Colors']['Info']['Author']['Email'] := EditEmail.Text;
 
     JsonSerializationConfig.IndentChar := '    ';
-    FJSONObject.SaveToFile(GetColorFileName, False);
+    FFileName := GetColorSaveFileName(FFileName);
+    FJSONObject.SaveToFile(FFileName, False);
+    OptionsContainer.HighlighterColorStrings.Free;
+    OptionsContainer.HighlighterColorStrings := GetHighlighterColors;
+    FModified := False;
+    FFileName := ChangeFileExt(ExtractFileName(FFileName), '');
+    ComboBoxColor.Items := OptionsContainer.HighlighterColorStrings;
+    ComboBoxColor.ItemIndex := ComboBoxColor.IndexOf(FFileName);
     if ADoChange then
       ComboBoxColorChange(Self);
   end;
@@ -302,16 +307,11 @@ begin
   end;
 end;
 
-function TOptionsEditorColorFrame.GetColorFileName: string;
-begin
-  Result := Format('%sColors\%s.json', [ExtractFilePath(Application.ExeName), FFileName]);
-end;
-
 procedure TOptionsEditorColorFrame.LoadColors;
 var
   LFileName: string;
 begin
-  LFileName := GetColorFileName;
+  LFileName := GetColorLoadFileName(FFileName);
   with Editor do
   begin
     Highlighter.Colors.LoadFromFile(LFileName);
@@ -323,7 +323,7 @@ procedure TOptionsEditorColorFrame.CreateJSONObject;
 var
   LFileName: string;
 begin
-  LFileName := GetColorFileName;
+  LFileName := GetColorLoadFileName(FFileName);
   FreeJSONObject;
   FJSONObject := TJsonObject.ParseFromFile(LFileName) as TJsonObject;
 end;
@@ -375,9 +375,7 @@ begin
   LElementDataValue := GetElementDataValue;
   if Assigned(LElementDataValue) then
   begin
-    //ColorComboBoxElementsForeground.Selected := clNone;
     ColorComboBoxElementsForeground.Selected := StringToColor(LElementDataValue.ObjectValue['Foreground']);
-    //ColorComboBoxElementsBackground.Selected := clNone;
     ColorComboBoxElementsBackground.Selected := StringToColor(LElementDataValue.ObjectValue['Background']);
     LStyle := LElementDataValue.ObjectValue['Style'];
     SliderElementsAttributesBold.SliderOn := Pos('Bold', LStyle) <> 0;

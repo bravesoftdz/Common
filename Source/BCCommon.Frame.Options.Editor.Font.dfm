@@ -112,7 +112,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       Font.Style = []
       ParentFont = False
       TabOrder = 3
-      OnChange = EditFontSizeChange
+      OnExit = EditFontSizeExit
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
       BoundLabel.Caption = 'Font size'

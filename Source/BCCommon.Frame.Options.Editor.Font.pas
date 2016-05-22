@@ -20,13 +20,12 @@ type
     Panel: TBCPanel;
     procedure ComboBoxElementChange(Sender: TObject);
     procedure ComboBoxColorChange(Sender: TObject);
+    procedure EditFontSizeExit(Sender: TObject);
     procedure FontComboBoxFontChange(Sender: TObject);
-    procedure EditFontSizeChange(Sender: TObject);
   private
     FFileName: string;
     FJSONObject: TJsonObject;
     FModified: Boolean;
-    function GetColorFileName: string;
     procedure FreeJSONObject;
     procedure SaveFont(ADoChange: Boolean = True);
   protected
@@ -42,7 +41,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Options.Container, BCCommon.StringUtils;
+  BCCommon.Options.Container, BCCommon.StringUtils, BCCommon.FileUtils;
 
 var
   FOptionsEditorFontFrame: TOptionsEditorFontFrame;
@@ -56,9 +55,10 @@ end;
 
 procedure TOptionsEditorFontFrame.FontComboBoxFontChange(Sender: TObject);
 begin
+  inherited;
   FModified := True;
   FJSONObject['Colors']['Editor']['Fonts'][CapitalizeText(ComboBoxElement.Text)] := FontComboBoxFont.Text;
-  SaveFont(False);
+  //SaveFont(False);
 end;
 
 procedure TOptionsEditorFontFrame.FreeJSONObject;
@@ -70,17 +70,19 @@ begin
   end;
 end;
 
-function TOptionsEditorFontFrame.GetColorFileName: string;
-begin
-  Result := Format('%sColors\%s.json', [ExtractFilePath(Application.ExeName), FFileName]);
-end;
-
 procedure TOptionsEditorFontFrame.SaveFont(ADoChange: Boolean = True);
 begin
   if Assigned(FJSONObject) then
   begin
     JsonSerializationConfig.IndentChar := '    ';
-    FJSONObject.SaveToFile(GetColorFileName, False);
+    FFileName := GetColorSaveFileName(FFileName);
+    FJSONObject.SaveToFile(FFileName, False);
+    OptionsContainer.HighlighterColorStrings.Free;
+    OptionsContainer.HighlighterColorStrings := GetHighlighterColors;
+    FModified := False;
+    FFileName := ChangeFileExt(ExtractFileName(FFileName), '');
+    ComboBoxColor.Items := OptionsContainer.HighlighterColorStrings;
+    ComboBoxColor.ItemIndex := ComboBoxColor.IndexOf(FFileName);
     if ADoChange then
       ComboBoxElementChange(Self);
   end;
@@ -94,7 +96,7 @@ begin
     SaveFont(False);
 
   FFileName := ComboBoxColor.Text;
-  LFileName := GetColorFileName;
+  LFileName := GetColorLoadFileName(FFileName);
 
   FModified := False;
   FreeJSONObject;
@@ -120,8 +122,9 @@ begin
   inherited;
 end;
 
-procedure TOptionsEditorFontFrame.EditFontSizeChange(Sender: TObject);
+procedure TOptionsEditorFontFrame.EditFontSizeExit(Sender: TObject);
 begin
+  inherited;
   FModified := True;
   FJSONObject['Colors']['Editor']['FontSizes'][CapitalizeText(ComboBoxElement.Text)] := EditFontSize.Text;
   SaveFont(False);

@@ -8,6 +8,8 @@ uses
 function CountFilesInFolder(const AFolderText: string; const AFileTypeText: string; const AFileExtensions: string): Integer;
 function DisplayContextMenu(const Handle: THandle; const FileName: string; Pos: TPoint): Boolean;
 function FormatFileName(const FileName: string; const Modified: Boolean = False): string;
+function GetColorLoadFileName(const AFileName: string): string;
+function GetColorSaveFileName(const AFileName: string): string;
 function GetFileDateTime(const FileName: string): TDateTime;
 function GetFileNamesFromFolder(const Folder: string; const FileType: string = ''): TStrings;
 function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStringDynArray;
@@ -248,6 +250,23 @@ begin
     Result := DisplayContextMenuPidl(Handle, Folder, ItemIdList, Pos);
     PidlFree(ItemIdList);
   end;
+end;
+
+function GetColorLoadFileName(const AFileName: string): string;
+begin
+  Result := Format('%sColors\%s.json', [ExtractFilePath(Application.ExeName), AFileName]);
+end;
+
+function GetColorSaveFileName(const AFileName: string): string;
+var
+  LFileName: string;
+begin
+  LFileName := ChangeFileExt(AFileName, '');
+  if (AFileName = 'Blue') or (AFileName = 'Classic') or (AFileName = 'Default') or (AFileName = 'Monokai') or
+    (AFileName = 'Ocean') or (AFileName = 'Purple') or (AFileName = 'Twilight') or (AFileName = 'Visual Studio [TM]') then
+    LFileName := LFileName + ' - modified';
+
+  Result := Format('%sColors\%s.json', [ExtractFilePath(Application.ExeName), LFileName]);
 end;
 
 function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStringDynArray;

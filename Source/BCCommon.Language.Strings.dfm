@@ -1354,6 +1354,11 @@ object LanguageDataModule: TLanguageDataModule
           'Free Pascal files (*.pp)')
       end
       item
+        Name = 'GLSL'
+        Strings.Strings = (
+          'GLSL files (*.glsl)')
+      end
+      item
         Name = 'Go'
         Strings.Strings = (
           'Go files (*.go)')
