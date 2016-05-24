@@ -26,6 +26,7 @@ type
     FFileName: string;
     FJSONObject: TJsonObject;
     FModified: Boolean;
+    function AskSaving: Boolean;
     procedure FreeJSONObject;
     procedure SaveFont(ADoChange: Boolean = True);
   protected
@@ -41,7 +42,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Options.Container, BCCommon.StringUtils, BCCommon.FileUtils;
+  BCCommon.Options.Container, BCCommon.StringUtils, BCCommon.FileUtils, BCCommon.Messages, BCCommon.Language.Strings;
 
 var
   FOptionsEditorFontFrame: TOptionsEditorFontFrame;
@@ -53,12 +54,27 @@ begin
   Result := FOptionsEditorFontFrame;
 end;
 
+function TOptionsEditorFontFrame.AskSaving: Boolean;
+begin
+  Result := False;
+  if IsOriginalColor(ComboBoxColor.Text) then
+    if not AskYesOrNo(LanguageDataModule.GetYesOrNoMessage('ChangeColorFile')) then
+    begin
+      ComboBoxElementChange(nil);
+      Exit;
+    end;
+  Result := True;
+end;
+
 procedure TOptionsEditorFontFrame.FontComboBoxFontChange(Sender: TObject);
 begin
   inherited;
+  if not AskSaving then
+    Exit;
+
   FModified := True;
   FJSONObject['Colors']['Editor']['Fonts'][CapitalizeText(ComboBoxElement.Text)] := FontComboBoxFont.Text;
-  //SaveFont(False);
+  SaveFont(False);
 end;
 
 procedure TOptionsEditorFontFrame.FreeJSONObject;
@@ -125,6 +141,9 @@ end;
 procedure TOptionsEditorFontFrame.EditFontSizeExit(Sender: TObject);
 begin
   inherited;
+  if not AskSaving then
+    Exit;
+
   FModified := True;
   FJSONObject['Colors']['Editor']['FontSizes'][CapitalizeText(ComboBoxElement.Text)] := EditFontSize.Text;
   SaveFont(False);

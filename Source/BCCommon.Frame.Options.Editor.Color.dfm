@@ -1,13 +1,13 @@
 inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
-  Width = 505
-  Height = 335
+  Width = 451
+  Height = 305
   Align = alClient
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 497
-    Height = 335
+    Width = 443
+    Height = 305
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 4
@@ -27,7 +27,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object Splitter: TsSplitter
       Left = 0
       Top = 216
-      Width = 497
+      Width = 443
       Height = 6
       Cursor = crVSplit
       Align = alTop
@@ -37,7 +37,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       AlignWithMargins = True
       Left = 0
       Top = 0
-      Width = 497
+      Width = 443
       Height = 41
       Margins.Left = 0
       Margins.Top = 0
@@ -154,8 +154,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object Editor: TBCEditor
       Left = 0
       Top = 222
-      Width = 497
-      Height = 113
+      Width = 443
+      Height = 83
       Cursor = crIBeam
       Margins.Left = 0
       Margins.Top = 5
@@ -250,7 +250,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
     object PageControl: TBCPageControl
       Left = 0
       Top = 44
-      Width = 497
+      Width = 443
       Height = 172
       ActivePage = TabSheetEditor
       Align = alTop
@@ -830,7 +830,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           end
         end
         object PanelUseSkinColorRight: TBCPanel
-          Left = 265
+          Left = 211
           Top = 0
           Width = 218
           Height = 135

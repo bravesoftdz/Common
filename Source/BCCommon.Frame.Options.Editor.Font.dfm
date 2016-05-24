@@ -95,6 +95,7 @@ inherited OptionsEditorFontFrame: TOptionsEditorFontFrame
       VerticalAlignment = taAlignTop
       TabOrder = 2
       OnChange = FontComboBoxFontChange
+      FilterOptions = [ShowTrueType]
     end
     object EditFontSize: TBCEdit
       Left = 0

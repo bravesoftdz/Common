@@ -72,6 +72,13 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'SearchStringNotFound'
         Strings.Strings = (
           'Search string '#39'%s'#39' not found')
+      end
+      item
+        Name = 'ChangeColorFile'
+        Strings.Strings = (
+          
+            'You are changing an original color file. Create a new modified c' +
+            'olor file?')
       end>
     Left = 92
     Top = 22

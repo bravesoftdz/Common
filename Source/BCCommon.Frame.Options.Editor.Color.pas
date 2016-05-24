@@ -106,7 +106,7 @@ implementation
 
 uses
   BCCommon.Options.Container, BCCommon.Language.Strings, BCCommon.StringUtils, BCEditor.Highlighter.Colors,
-  BCCommon.Utils, BCCommon.FileUtils;
+  BCCommon.Utils, BCCommon.FileUtils, BCCommon.Messages;
 
 var
   FOptionsEditorColorFrame: TOptionsEditorColorFrame;
@@ -276,6 +276,13 @@ end;
 
 procedure TOptionsEditorColorFrame.ColorComboBoxEditorColorChange(Sender: TObject);
 begin
+  if IsOriginalColor(ComboBoxColor.Text) then
+    if not AskYesOrNo(LanguageDataModule.GetYesOrNoMessage('ChangeColorFile')) then
+    begin
+      ComboBoxEditorElementChange(nil);
+      Exit;
+    end;
+
   FModified := True;
   FJSONObject['Colors']['Editor']['Colors'][CapitalizeText(ComboBoxEditorElement.Text)] := ColorToString(ColorComboBoxEditorColor.Selected);
   SaveColor;
@@ -400,7 +407,7 @@ end;
 procedure TOptionsEditorColorFrame.Init;
 begin
   PageControl.ActivePage := TabSheetEditor;
-  FModified := False;
+
   ComboBoxHighlighter.Items := OptionsContainer.HighlighterStrings;
   ComboBoxHighlighter.ItemIndex := ComboBoxHighlighter.Items.IndexOf(OptionsContainer.DefaultHighlighter);
   ComboBoxColor.Items := OptionsContainer.HighlighterColorStrings;
@@ -410,6 +417,8 @@ begin
   ComboBoxColorChange(Self);
   ComboBoxEditorElementChange(Self);
   ComboBoxElementsNameChange(Self);
+
+  FModified := False;
 end;
 
 procedure TOptionsEditorColorFrame.ActionAddColorExecute(Sender: TObject);

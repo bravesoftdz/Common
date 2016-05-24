@@ -22,6 +22,7 @@ function GetIniFilename: string;
 function GetOutFilename: string;
 function GetUserAppDataPath(const AAppName: string): string;
 function GetSQLFormatterDLLFilename: string;
+function IsOriginalColor(const AColorName: string): Boolean;
 function IsVirtualDrive(Drive: Char): Boolean;
 function SystemDir: string;
 function VirtualDrivePath(Drive: Char): string;
@@ -257,16 +258,30 @@ begin
   Result := Format('%sColors\%s.json', [ExtractFilePath(Application.ExeName), AFileName]);
 end;
 
+function IsOriginalColor(const AColorName: string): Boolean;
+begin
+  Result := (AColorName = 'Blue') or (AColorName = 'Classic') or (AColorName = 'Default') or (AColorName = 'Monokai') or
+    (AColorName = 'Ocean') or (AColorName = 'Purple') or (AColorName = 'Twilight') or (AColorName = 'Visual Studio [TM]')
+end;
+
 function GetColorSaveFileName(const AFileName: string): string;
 var
+  i: Integer;
   LFileName: string;
 begin
   LFileName := ChangeFileExt(AFileName, '');
-  if (AFileName = 'Blue') or (AFileName = 'Classic') or (AFileName = 'Default') or (AFileName = 'Monokai') or
-    (AFileName = 'Ocean') or (AFileName = 'Purple') or (AFileName = 'Twilight') or (AFileName = 'Visual Studio [TM]') then
-    LFileName := LFileName + ' - modified';
-
-  Result := Format('%sColors\%s.json', [ExtractFilePath(Application.ExeName), LFileName]);
+  if IsOriginalColor(AFileName) then
+  begin
+    Result := Format('%sColors\%s - modified.json', [ExtractFilePath(Application.ExeName), LFileName]);
+    i := 2;
+    while FileExists(Result) do
+    begin
+      Result := Format('%sColors\%s - modified(%d).json', [ExtractFilePath(Application.ExeName), LFileName, i]);
+      Inc(i);
+    end
+  end
+  else
+    Result := Format('%sColors\%s.json', [ExtractFilePath(Application.ExeName), LFileName]);
 end;
 
 function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStringDynArray;
