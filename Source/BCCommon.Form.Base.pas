@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCComponent.SkinProvider, BCComponent.TitleBar,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCComponent.TitleBar,
   BCComponent.SkinManager, BCControl.StatusBar, Vcl.ActnList, BCControl.ProgressBar,
   Vcl.AppEvnts, Vcl.Menus, sSkinManager, System.Win.TaskbarCore, Vcl.Taskbar, System.Actions, sSkinProvider, acTitleBar,
   Vcl.ComCtrls, sStatusBar;
@@ -16,7 +16,7 @@ type
     ApplicationEvents: TApplicationEvents;
     MainMenu: TMainMenu;
     SkinManager: TBCSkinManager;
-    SkinProvider: TBCSkinProvider;
+    SkinProvider: TsSkinProvider;
     StatusBar: TBCStatusBar;
     TitleBar: TBCTitleBar;
     procedure ActionFileExitExecute(Sender: TObject);

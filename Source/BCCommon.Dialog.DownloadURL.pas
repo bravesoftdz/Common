@@ -83,9 +83,6 @@ begin
   SaveDialog.Title := LanguageDataModule.GetConstant('SaveAs');
   SaveDialog.FileName := ADefaultFileName;
   SaveDialog.DefaultExt := 'zip';
-  {if BCCommon.Dialog.SaveFile(Handle, '', Trim(StringReplace(LanguageDataModule.GetFileTypes('Zip')
-        , '|', #0, [rfReplaceAll])) + #0#0,
-        LanguageDataModule.GetConstant('SaveAs'), FilterIndex, DefaultFileName, 'zip') then  }
   if SaveDialog.Execute(Handle) then
   begin
     SetInformationText(ADownloadURL);

@@ -78,7 +78,7 @@ object BCBaseForm: TBCBaseForm
     Left = 40
     Top = 76
   end
-  object SkinProvider: TBCSkinProvider
+  object SkinProvider: TsSkinProvider
     AddedTitle.Font.Charset = DEFAULT_CHARSET
     AddedTitle.Font.Color = clNone
     AddedTitle.Font.Height = -11

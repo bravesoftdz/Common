@@ -273,6 +273,7 @@ begin
   if IsOriginalColor(AFileName) then
   begin
     Result := Format('%sColors\%s - modified.json', [ExtractFilePath(Application.ExeName), LFileName]);
+
     i := 2;
     while FileExists(Result) do
     begin
