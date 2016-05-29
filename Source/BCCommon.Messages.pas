@@ -3,11 +3,11 @@ unit BCCommon.Messages;
 interface
 
 uses
-  System.UITypes;
+  Vcl.Controls, System.UITypes;
 
-function AskYesOrNo(const AMsg: string): Boolean;
+function AskYesOrNo(const AMsg: string; const AOwner: TWinControl = nil): Boolean;
 function AskYesOrNoAll(const AMsg: string): Integer;
-function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons): Integer; overload;
+function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; const AOwner: TWinControl = nil): Integer; overload;
 function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; Captions: array of string): Integer; overload;
 function SaveChanges(IncludeCancel: Boolean = True): Integer;
 procedure MessageBeep;
@@ -25,13 +25,19 @@ begin
   Winapi.Windows.MessageBeep(MB_ICONASTERISK);
 end;
 
-function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons): Integer;
+function MessageDialog(const Msg: string; DlgType: TMsgDlgType; Buttons: TMsgDlgButtons; const AOwner: TWinControl = nil): Integer;
 begin
   with CreateMessageDialog(Msg, DlgType, Buttons) do
   try
     HelpContext := 0;
     HelpFile := '';
-    Position := poMainFormCenter;
+    if Assigned(AOwner) then
+    begin
+      Left := AOwner.Left + (AOwner.Width - Width) div 2;
+      Top := AOwner.Top + (AOwner.Height - Height) div 2;
+    end
+    else
+      Position := poMainFormCenter;
     Result := ShowModal;
   finally
     Free;
@@ -70,9 +76,9 @@ begin
   end;
 end;
 
-function AskYesOrNo(const AMsg: string): Boolean;
+function AskYesOrNo(const AMsg: string; const AOwner: TWinControl = nil): Boolean;
 begin
-  Result := MessageDialog(AMsg, mtConfirmation, [mbYes, mbNo]) = mrYes;
+  Result := MessageDialog(AMsg, mtConfirmation, [mbYes, mbNo], AOwner) = mrYes;
 end;
 
 function AskYesOrNoAll(const AMsg: string): Integer;

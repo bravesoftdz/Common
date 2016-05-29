@@ -169,7 +169,12 @@ begin
     FJSONObject['Colors']['Info']['Author']['Email'] := EditEmail.Text;
 
     JsonSerializationConfig.IndentChar := '    ';
-    FFileName := GetColorSaveFileName(FFileName);
+    FFileName := GetColorSaveFileName(Parent, FFileName);
+    if FFileName = '' then
+    begin
+      ComboBoxColorChange(Self);
+      Exit;
+    end;
     FJSONObject.SaveToFile(FFileName, False);
     OptionsContainer.HighlighterColorStrings.Free;
     OptionsContainer.HighlighterColorStrings := GetHighlighterColors;
@@ -277,7 +282,7 @@ end;
 procedure TOptionsEditorColorFrame.ColorComboBoxEditorColorChange(Sender: TObject);
 begin
   if IsOriginalColor(ComboBoxColor.Text) then
-    if not AskYesOrNo(LanguageDataModule.GetYesOrNoMessage('ChangeColorFile')) then
+    if not AskYesOrNo(LanguageDataModule.GetYesOrNoMessage('ChangeColorFile'), OwnerForm) then
     begin
       ComboBoxEditorElementChange(nil);
       Exit;
@@ -425,8 +430,7 @@ procedure TOptionsEditorColorFrame.ActionAddColorExecute(Sender: TObject);
 var
   LColorName: string;
 begin
-  SaveDialog.Filter := Trim(StringReplace(LanguageDataModule.GetFileTypes('JSON')
-        , '|', #0, [rfReplaceAll])) + #0#0;
+  SaveDialog.Filter := Trim(StringReplace(LanguageDataModule.GetFileTypes('JSON'), '|', #0, [rfReplaceAll])) + #0#0;
   SaveDialog.Title := LanguageDataModule.GetConstant('SaveAs');
   SaveDialog.InitialDir := Format('%sColors\', [ExtractFilePath(Application.ExeName)]);
   SaveDialog.FileName := '';

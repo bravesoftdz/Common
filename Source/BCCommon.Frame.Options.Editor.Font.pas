@@ -58,7 +58,7 @@ function TOptionsEditorFontFrame.AskSaving: Boolean;
 begin
   Result := False;
   if IsOriginalColor(ComboBoxColor.Text) then
-    if not AskYesOrNo(LanguageDataModule.GetYesOrNoMessage('ChangeColorFile')) then
+    if not AskYesOrNo(LanguageDataModule.GetYesOrNoMessage('ChangeColorFile'), OwnerForm) then
     begin
       ComboBoxElementChange(nil);
       Exit;
@@ -91,7 +91,12 @@ begin
   if Assigned(FJSONObject) then
   begin
     JsonSerializationConfig.IndentChar := '    ';
-    FFileName := GetColorSaveFileName(FFileName);
+    FFileName := GetColorSaveFileName(Parent, FFileName);
+    if FFileName = '' then
+    begin
+      ComboBoxElementChange(nil);
+      Exit;
+    end;
     FJSONObject.SaveToFile(FFileName, False);
     OptionsContainer.HighlighterColorStrings.Free;
     OptionsContainer.HighlighterColorStrings := GetHighlighterColors;

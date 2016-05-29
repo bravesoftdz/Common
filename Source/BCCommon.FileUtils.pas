@@ -7,9 +7,9 @@ uses
 
 function CountFilesInFolder(const AFolderText: string; const AFileTypeText: string; const AFileExtensions: string): Integer;
 function DisplayContextMenu(const Handle: THandle; const FileName: string; Pos: TPoint): Boolean;
-function FormatFileName(const FileName: string; const Modified: Boolean = False): string;
+function FormatFileName(const AFileName: string; const AModified: Boolean = False): string;
 function GetColorLoadFileName(const AFileName: string): string;
-function GetColorSaveFileName(const AFileName: string): string;
+function GetColorSaveFileName(const AOwner: TComponent; const AFileName: string): string;
 function GetFileDateTime(const FileName: string): TDateTime;
 function GetFileNamesFromFolder(const Folder: string; const FileType: string = ''): TStrings;
 function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStringDynArray;
@@ -23,9 +23,9 @@ function GetOutFilename: string;
 function GetUserAppDataPath(const AAppName: string): string;
 function GetSQLFormatterDLLFilename: string;
 function IsOriginalColor(const AColorName: string): Boolean;
-function IsVirtualDrive(Drive: Char): Boolean;
+function IsVirtualDrive(ADrive: Char): Boolean;
 function SystemDir: string;
-function VirtualDrivePath(Drive: Char): string;
+function VirtualDrivePath(ADrive: Char): string;
 procedure CreateVirtualDrive(const Drive: Char; const Path: string);
 procedure DeleteVirtualDrive(const Drive: Char);
 procedure FilePropertiesDialog(const FileName: string);
@@ -34,7 +34,7 @@ implementation
 
 uses
   Winapi.ShellAPI, Winapi.ShlObj, Winapi.ActiveX, Winapi.Messages, System.SysUtils, System.AnsiStrings, Vcl.Forms,
-  BCCommon.Language.Strings, BCControl.Utils, System.IOUtils, System.StrUtils, System.Masks;
+  BCCommon.Language.Strings, BCControl.Utils, System.IOUtils, System.StrUtils, System.Masks, sDialogs;
 
 const
   AppDataFolder = '/';
@@ -264,25 +264,26 @@ begin
     (AColorName = 'Ocean') or (AColorName = 'Purple') or (AColorName = 'Twilight') or (AColorName = 'Visual Studio [TM]')
 end;
 
-function GetColorSaveFileName(const AFileName: string): string;
+function GetColorSaveFileName(const AOwner: TComponent; const AFileName: string): string;
 var
-  i: Integer;
-  LFileName: string;
+  //LFileName: string;
+  LSaveDialog: TsSaveDialog;
 begin
-  LFileName := ChangeFileExt(AFileName, '');
+  Result := Format('%sColors\%s.json', [ExtractFilePath(Application.ExeName), AFileName]);
+  //LFileName := ChangeFileExt(AFileName, '');
   if IsOriginalColor(AFileName) then
   begin
-    Result := Format('%sColors\%s - modified.json', [ExtractFilePath(Application.ExeName), LFileName]);
-
-    i := 2;
-    while FileExists(Result) do
-    begin
-      Result := Format('%sColors\%s - modified(%d).json', [ExtractFilePath(Application.ExeName), LFileName, i]);
-      Inc(i);
-    end
+    LSaveDialog := TsSaveDialog.Create(AOwner);
+    LSaveDialog.Filter := Trim(StringReplace(LanguageDataModule.GetFileTypes('JSON'), '|', #0, [rfReplaceAll])) + #0#0;
+    LSaveDialog.Title := LanguageDataModule.GetConstant('SaveAs');
+    LSaveDialog.InitialDir := Format('%sColors\', [ExtractFilePath(Application.ExeName)]);
+    try
+      if LSaveDialog.Execute then
+        Result := ChangeFileExt(LSaveDialog.FileName, '.json');
+    finally
+      LSaveDialog.Free;
+    end;
   end
-  else
-    Result := Format('%sColors\%s.json', [ExtractFilePath(Application.ExeName), LFileName]);
 end;
 
 function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStringDynArray;
@@ -412,34 +413,34 @@ begin
 {$WARNINGS ON}
 end;
 
-function FormatFileName(const FileName: string; const Modified: Boolean): string;
+function FormatFileName(const AFileName: string; const AModified: Boolean): string;
 begin
-  Result := Trim(FileName);
+  Result := Trim(AFileName);
   if Pos('~', Result) = Length(Result) then
     Result := System.Copy(Result, 0, Length(Result) - 1);
-  if Modified then
+  if AModified then
     Result := Format('%s~', [Result]);
 end;
 
-function IsVirtualDrive(Drive: Char): Boolean;
+function IsVirtualDrive(ADrive: Char): Boolean;
 var
-  DeviceName, TargetPath: string;
+  LDeviceName, LTargetPath: string;
 begin
-  TargetPath := Drive + ':';
-  SetLength(DeviceName, Max_Path + 1);
-  SetLength(DeviceName, QueryDosDevice(PChar(TargetPath), PChar(DeviceName), Length(DeviceName)));
-  Result := Pos('\??\', DeviceName) = 1;
+  LTargetPath := ADrive + ':';
+  SetLength(LDeviceName, Max_Path + 1);
+  SetLength(LDeviceName, QueryDosDevice(PChar(LTargetPath), PChar(LDeviceName), Length(LDeviceName)));
+  Result := Pos('\??\', LDeviceName) = 1;
 end;
 
-function VirtualDrivePath(Drive: Char): string;
+function VirtualDrivePath(ADrive: Char): string;
 var
-  DeviceName, TargetPath: string;
+  LDeviceName, LTargetPath: string;
 begin
-  TargetPath := Drive + ':';
-  SetLength(DeviceName, Max_Path + 1);
-  SetLength(DeviceName, QueryDosDevice(PWideChar(TargetPath), PWideChar(DeviceName), Length(DeviceName)));
-  if Pos('\??\', DeviceName) = 1 then
-    Result := Trim(Copy(DeviceName, 5, Length(DeviceName)))
+  LTargetPath := ADrive + ':';
+  SetLength(LDeviceName, Max_Path + 1);
+  SetLength(LDeviceName, QueryDosDevice(PChar(LTargetPath), PChar(LDeviceName), Length(LDeviceName)));
+  if Pos('\??\', LDeviceName) = 1 then
+    Result := Trim(Copy(LDeviceName, 5, Length(LDeviceName)))
   else
     Result := '';
 end;

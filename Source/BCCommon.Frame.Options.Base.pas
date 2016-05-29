@@ -16,6 +16,7 @@ type
     procedure Init; virtual;
     procedure GetData; virtual;
     procedure PutData; virtual;
+    property OwnerForm: TForm read FOwnerForm;
   public
     constructor Create(AOwner: TComponent); override;
     procedure ShowFrame;
