@@ -54,7 +54,6 @@ inherited OptionsToolbarFrame: TOptionsToolbarFrame
       OnDragOver = VirtualDrawTreeDragOver
       OnDragDrop = VirtualDrawTreeDragDrop
       OnDrawNode = VirtualDrawTreeDrawNode
-      OnFreeNode = VirtualDrawTreeFreeNode
       OnGetImageIndex = VirtualDrawTreeGetImageIndex
       OnGetNodeWidth = VirtualDrawTreeGetNodeWidth
       Columns = <

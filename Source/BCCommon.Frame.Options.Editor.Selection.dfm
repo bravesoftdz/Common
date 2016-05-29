@@ -1,12 +1,12 @@
 inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
   Width = 182
-  Height = 159
+  Height = 205
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 178
-    Height = 159
+    Height = 205
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -24,7 +24,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     SkinData.SkinSection = 'CHECKBOX'
     object StickyLabelTripleClickRowSelect: TsStickyLabel
       Left = 0
-      Top = 142
+      Top = 188
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -39,7 +39,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     end
     object StickyLabelHighlightSimilarTerms: TsStickyLabel
       Left = 0
-      Top = 50
+      Top = 73
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -84,7 +84,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     end
     object StickyLabelToEndOfLine: TsStickyLabel
       Left = 0
-      Top = 96
+      Top = 142
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -99,7 +99,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     end
     object StickyLabelFromEndOfLine: TsStickyLabel
       Left = 0
-      Top = 73
+      Top = 119
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -114,7 +114,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     end
     object StickyLabelToEndOfLastLine: TsStickyLabel
       Left = 0
-      Top = 119
+      Top = 165
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -127,12 +127,42 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       AttachTo = SliderToEndOfLastLine
       Gap = 8
     end
+    object StickyLabelTermsCaseSensitive: TsStickyLabel
+      Left = 0
+      Top = 96
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Terms case-sensitive'
+      ParentColor = False
+      AttachTo = SliderTermsCaseSensitive
+      Gap = 8
+    end
+    object StickyLabelExpandRealNumbers: TsStickyLabel
+      Left = 0
+      Top = 50
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Expand real numbers'
+      ParentColor = False
+      AttachTo = SliderExpandRealNumbers
+      Gap = 8
+    end
     object SliderTripleClickRowSelect: TsSlider
       Left = 128
-      Top = 138
+      Top = 184
       Width = 50
       AutoSize = True
-      TabOrder = 6
+      TabOrder = 8
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -145,10 +175,10 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     end
     object SliderHighlightSimilarTerms: TsSlider
       Left = 128
-      Top = 46
+      Top = 69
       Width = 50
       AutoSize = True
-      TabOrder = 2
+      TabOrder = 3
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -193,10 +223,10 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
     end
     object SliderToEndOfLine: TsSlider
       Left = 128
-      Top = 92
+      Top = 138
       Width = 50
       AutoSize = True
-      TabOrder = 4
+      TabOrder = 6
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -209,22 +239,6 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       OnSliderChange = SliderToEndOfLineSliderChange
     end
     object SliderFromEndOfLine: TsSlider
-      Left = 128
-      Top = 69
-      Width = 50
-      AutoSize = True
-      TabOrder = 3
-      ImageIndexOff = 0
-      ImageIndexOn = 0
-      FontOn.Charset = DEFAULT_CHARSET
-      FontOn.Color = clWindowText
-      FontOn.Height = -11
-      FontOn.Name = 'Tahoma'
-      FontOn.Style = []
-      SliderCaptionOn = 'Yes'
-      SliderCaptionOff = 'No'
-    end
-    object SliderToEndOfLastLine: TsSlider
       Left = 128
       Top = 115
       Width = 50
@@ -239,7 +253,55 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+    end
+    object SliderToEndOfLastLine: TsSlider
+      Left = 128
+      Top = 161
+      Width = 50
+      AutoSize = True
+      TabOrder = 7
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
       OnSliderChange = SliderToEndOfLastLineSliderChange
+    end
+    object SliderTermsCaseSensitive: TsSlider
+      Left = 128
+      Top = 92
+      Width = 50
+      AutoSize = True
+      TabOrder = 4
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderExpandRealNumbers: TsSlider
+      Left = 128
+      Top = 46
+      Width = 50
+      AutoSize = True
+      TabOrder = 2
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
   inherited FrameAdapter: TsFrameAdapter

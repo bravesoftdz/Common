@@ -24,6 +24,10 @@ type
     StickyLabelFromEndOfLine: TsStickyLabel;
     SliderToEndOfLastLine: TsSlider;
     StickyLabelToEndOfLastLine: TsStickyLabel;
+    SliderTermsCaseSensitive: TsSlider;
+    StickyLabelTermsCaseSensitive: TsStickyLabel;
+    SliderExpandRealNumbers: TsSlider;
+    StickyLabelExpandRealNumbers: TsStickyLabel;
     procedure SliderToEndOfLineSliderChange(Sender: TObject);
     procedure SliderToEndOfLastLineSliderChange(Sender: TObject);
   protected
@@ -63,7 +67,9 @@ procedure TOptionsEditorSelectionFrame.PutData;
 begin
   OptionsContainer.SelectionVisible := SliderVisible.SliderOn;
   OptionsContainer.ALTSetsColumnMode := SliderALTSetsColumnMode.SliderOn;
+  OptionsContainer.SelectionExpandRealNumbers := SliderExpandRealNumbers.SliderOn;
   OptionsContainer.HighlightSimilarTerms := SliderHighlightSimilarTerms.SliderOn;
+  OptionsContainer.SelectionTermsCaseSensitive := SliderTermsCaseSensitive.SliderOn;
   OptionsContainer.SelectionFromEndOfLine := SliderFromEndOfLine.SliderOn;
   OptionsContainer.SelectionToEndOfLine := SliderToEndOfLine.SliderOn;
   OptionsContainer.SelectionToEndOfLastLine := SliderToEndOfLastLine.SliderOn;
@@ -88,7 +94,9 @@ procedure TOptionsEditorSelectionFrame.GetData;
 begin
   SliderVisible.SliderOn := OptionsContainer.SelectionVisible;
   SliderALTSetsColumnMode.SliderOn := OptionsContainer.ALTSetsColumnMode;
+  SliderExpandRealNumbers.SliderOn := OptionsContainer.SelectionExpandRealNumbers;
   SliderHighlightSimilarTerms.SliderOn := OptionsContainer.HighlightSimilarTerms;
+  SliderTermsCaseSensitive.SliderOn := OptionsContainer.SelectionTermsCaseSensitive;
   SliderFromEndOfLine.SliderOn := OptionsContainer.SelectionFromEndOfLine;
   SliderToEndOfLine.SliderOn := OptionsContainer.SelectionToEndOfLine;
   SliderToEndOfLastLine.SliderOn := OptionsContainer.SelectionToEndOfLastLine;

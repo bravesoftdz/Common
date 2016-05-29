@@ -47,7 +47,6 @@ type
     procedure VirtualDrawTreeDragDrop(Sender: TBaseVirtualTree; Source: TObject; DataObject: IDataObject; Formats: TFormatArray; Shift: TShiftState; Pt: TPoint; var Effect: Integer; Mode: TDropMode);
     procedure VirtualDrawTreeDragOver(Sender: TBaseVirtualTree; Source: TObject; Shift: TShiftState; State: TDragState; Pt: TPoint; Mode: TDropMode; var Effect: Integer; var Accept: Boolean);
     procedure VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
-    procedure VirtualDrawTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure VirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
     procedure VirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas; Node: PVirtualNode; Column: TColumnIndex; var NodeWidth: Integer);
     procedure ActionMoveUpExecute(Sender: TObject);
@@ -131,8 +130,7 @@ begin
   else
     NewNode := VirtualDrawTree.AddChild(nil);
   NewData := VirtualDrawTree.GetNodeData(NewNode);
-  NewData^.Action := TAction.Create(nil);
-  NewData^.Action.Caption := '-';
+  NewData^.Action := nil; 
   FIsChanged := True;
 end;
 
@@ -200,7 +198,7 @@ begin
   begin
     LData := VirtualDrawTree.GetNodeData(LNode);
     if Assigned(LData) then
-      if LData^.Action.Caption <> '-' then
+      if Assigned(LData^.Action) then
         VirtualDrawTree.NodeHeight[LNode] := VirtualDrawTree.Images.Height + 2;
     LNode := VirtualDrawTree.GetNext(LNode);
   end;
@@ -229,6 +227,7 @@ end;
 destructor TOptionsToolbarFrame.Destroy;
 begin
   inherited;
+
   FOptionsToolbarFrame := nil;
 end;
 
@@ -273,10 +272,7 @@ begin
         VirtualDrawTree.NodeHeight[LNode] := VirtualDrawTree.Images.Height + 2;
       end
       else
-      begin
-        LAction := TAction.Create(nil);
-        LAction.Caption := '-';
-      end;
+        LAction := nil;
       LData^.Action := LAction;
     end;
     LNode := VirtualDrawTree.GetFirst;
@@ -309,7 +305,7 @@ begin
       while Assigned(Node) do
       begin
         Data := VirtualDrawTree.GetNodeData(Node);
-        if Data^.Action.Caption <> '-' then
+        if Assigned(Data^.Action) then
           Value := Data^.Action.Name
         else
           Value := '-';
@@ -325,7 +321,7 @@ end;
 procedure TOptionsToolbarFrame.ActionResetExecute(Sender: TObject);
 var
   i: Integer;
-  Node: PVirtualNode;
+  LNode: PVirtualNode;
 
   procedure DeleteNodes;
   var
@@ -345,20 +341,17 @@ var
     LData: PTreeData;
     LAction: TAction;
   begin
-    Node := VirtualDrawTree.AddChild(nil);
-    LData := VirtualDrawTree.GetNodeData(Node);
+    LNode := VirtualDrawTree.AddChild(nil);
+    LData := VirtualDrawTree.GetNodeData(LNode);
     if ActionName <> '-' then
     begin
       LAction := FindItemByName(ActionName);
       if Assigned(LAction) then
         LAction.Tag := 1;
-      VirtualDrawTree.NodeHeight[Node] := VirtualDrawTree.Images.Height + 2;
+      VirtualDrawTree.NodeHeight[LNode] := VirtualDrawTree.Images.Height + 2;
     end
     else
-    begin
-      LAction := TAction.Create(nil);
-      LAction.Caption := '-';
-    end;
+      LAction := nil;
     LData^.Action := LAction;
   end;
 
@@ -416,9 +409,9 @@ begin
   AddNode('-');
   AddNode('ToolsCompareFilesAction');
   {$endif}
-  Node := VirtualDrawTree.GetFirst;
-  if Assigned(Node) then
-    VirtualDrawTree.Selected[Node] := True;
+  LNode := VirtualDrawTree.GetFirst;
+  if Assigned(LNode) then
+    VirtualDrawTree.Selected[LNode] := True;
   VirtualDrawTree.EndUpdate;
   FIsChanged := True;
 end;
@@ -441,21 +434,21 @@ end;
 procedure TOptionsToolbarFrame.VirtualDrawTreeDragDrop(Sender: TBaseVirtualTree; Source: TObject;
   DataObject: IDataObject; Formats: TFormatArray; Shift: TShiftState; Pt: TPoint; var Effect: Integer; Mode: TDropMode);
 var
-  pSource, pTarget: PVirtualNode;
-  attMode: TVTNodeAttachMode;
+  LSourceNode, LTargetNode: PVirtualNode;
+  LNodeAttachMode: TVTNodeAttachMode;
 begin
-  pSource := TVirtualStringTree(Source).FocusedNode;
-  pTarget := Sender.DropTargetNode;
+  LSourceNode := TVirtualStringTree(Source).FocusedNode;
+  LTargetNode := Sender.DropTargetNode;
 
-  if pTarget.Index > pSource.Index then
-    attMode := amInsertAfter
+  if LTargetNode.Index > LSourceNode.Index then
+    LNodeAttachMode := amInsertAfter
   else
-  if pTarget.Index < pSource.Index then
-    attMode := amInsertBefore
+  if LTargetNode.Index < LSourceNode.Index then
+    LNodeAttachMode := amInsertBefore
   else
-    attMode := amNoWhere;
+    LNodeAttachMode := amNoWhere;
 
-  Sender.MoveTo(pSource, pTarget, attMode, False);
+  Sender.MoveTo(LSourceNode, LTargetNode, LNodeAttachMode, False);
   FIsChanged := True;
 end;
 
@@ -521,7 +514,7 @@ begin
       Exit;
 
     if Assigned(FrameAdapter.SkinData) and Assigned(FrameAdapter.SkinData.SkinManager) then
-      Canvas.Font.Color := FrameAdapter.SkinData.SkinManager.GetActiveEditFontColor //clWindowText; //LColor;
+      Canvas.Font.Color := FrameAdapter.SkinData.SkinManager.GetActiveEditFontColor
     else
       Canvas.Font.Color := clWindowText;
 
@@ -545,7 +538,10 @@ begin
     InflateRect(R, -TextMargin, 0);
     Dec(R.Right);
     Dec(R.Bottom);
-    S := Data^.Action.Caption;
+    if Assigned(Data^.Action) then
+      S := Data^.Action.Caption
+    else
+      S := '-';
     if S = '-' then
     begin
       HyphenCount := (R.Right - R.Left) div Canvas.TextWidth(S);
@@ -561,28 +557,17 @@ begin
   end;
 end;
 
-procedure TOptionsToolbarFrame.VirtualDrawTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
-var
-  Data: PTreeData;
-begin
-  Data := VirtualDrawTree.GetNodeData(Node);
-  if Assigned(Data) then
-    if Data^.Action.Caption = '-' then
-      Data^.Action.Free;
-
-  inherited;
-end;
-
 procedure TOptionsToolbarFrame.VirtualDrawTreeGetImageIndex(Sender: TBaseVirtualTree; Node: PVirtualNode;
   Kind: TVTImageKind; Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
 var
-  Data: PTreeData;
+  LData: PTreeData;
 begin
   if Kind in [ikNormal, ikSelected] then
   begin
-    Data := VirtualDrawTree.GetNodeData(Node);
-    if Assigned(Data) then
-      ImageIndex := Data^.Action.ImageIndex;
+    LData := VirtualDrawTree.GetNodeData(Node);
+    if Assigned(LData) then
+      if Assigned(LData^.Action) then
+        ImageIndex := LData^.Action.ImageIndex;
   end;
 end;
 

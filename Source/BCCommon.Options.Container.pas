@@ -88,7 +88,9 @@ type
     { Selection }
     FSelectionVisible: Boolean;
     FALTSetsColumnMode: Boolean;
+    FSelectionExpandRealNumbers: Boolean;
     FHighlightSimilarTerms: Boolean;
+    FSelectionTermsCaseSensitive: Boolean;
     FSelectionFromEndOfLine: Boolean;
     FSelectionToEndOfLine: Boolean;
     FSelectionToEndOfLastLine: Boolean;
@@ -300,8 +302,12 @@ type
     property SelectionVisible: Boolean read FSelectionVisible write FSelectionVisible;
     [IniValue('Options', 'ALTSetsColumnMode', 'True')]
     property ALTSetsColumnMode: Boolean read FALTSetsColumnMode write FALTSetsColumnMode;
+    [IniValue('Options', 'SelectionExpandRealNumbers', 'False')]
+    property SelectionExpandRealNumbers: Boolean read FSelectionExpandRealNumbers write FSelectionExpandRealNumbers;
     [IniValue('Options', 'HighlightSimilarTerms', 'True')]
     property HighlightSimilarTerms: Boolean read FHighlightSimilarTerms write FHighlightSimilarTerms;
+    [IniValue('Options', 'SelectionTermsCaseSensitive', 'True')]
+    property SelectionTermsCaseSensitive: Boolean read FSelectionTermsCaseSensitive write FSelectionTermsCaseSensitive;
     [IniValue('Options', 'SelectionFromEndOfLine', 'False')]
     property SelectionFromEndOfLine: Boolean read FSelectionFromEndOfLine write FSelectionFromEndOfLine;
     [IniValue('Options', 'SelectionToEndOfLine', 'False')]
@@ -573,11 +579,9 @@ type
     function GetFilters: string;
   public
     destructor Destroy; override;
-    //function FileType(FileType: TFileType): string;
     function GetFilterExt(FilterIndex: Cardinal): string;
     function GetFilterIndex(const AFileExt: string): Cardinal;
     function SupportedFileExtensions(Refresh: Boolean = False): string;
-   // procedure AssignTo(Dest: TPersistent); override;
     procedure ReadIniFile; override;
   published
     { Defaults }
@@ -958,10 +962,18 @@ begin
       Selection.Options := Selection.Options + [soToEndOfLastLine]
     else
       Selection.Options := Selection.Options - [soToEndOfLastLine];
+    if FSelectionExpandRealNumbers then
+      Selection.Options := Selection.Options + [soExpandRealNumbers]
+    else
+      Selection.Options := Selection.Options - [soExpandRealNumbers];
     if FHighlightSimilarTerms then
       Selection.Options := Selection.Options + [soHighlightSimilarTerms]
     else
       Selection.Options := Selection.Options - [soHighlightSimilarTerms];
+    if FSelectionTermsCaseSensitive then
+      Selection.Options := Selection.Options + [soTermsCaseSensitive]
+    else
+      Selection.Options := Selection.Options - [soTermsCaseSensitive];
     if FTripleClickRowSelect then
       Selection.Options := Selection.Options + [soTripleClickRowSelect]
     else
