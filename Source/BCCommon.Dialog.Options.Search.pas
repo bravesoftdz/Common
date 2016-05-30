@@ -52,7 +52,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BigIni, BCCommon.Utils, BCCommon.FileUtils;
+  System.IniFiles, BCCommon.Utils, BCCommon.FileUtils;
 
 class procedure TSearchOptionsDialog.ClassShowModal(AEditor: TBCEditor);
 var
@@ -75,7 +75,7 @@ end;
 
 procedure TSearchOptionsDialog.WriteIniFile;
 begin
-  with TBigIniFile.Create(GetIniFilename) do
+  with TIniFile.Create(GetIniFilename) do
   try
     WriteBool('Options', 'SearchBeepIfSearchStringNotFound', SliderBeepIfSearchStringNotFound.SliderOn);
     WriteBool('Options', 'SearchCaseSensitive', SliderCaseSensitive.SliderOn);

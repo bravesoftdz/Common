@@ -60,6 +60,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
     Caption = ' Options'
     TabOrder = 1
     SkinData.SkinSection = 'GROUPBOX'
+    Checked = False
     object StickyLabelCaseSensitive: TsStickyLabel
       Left = 12
       Top = 23
@@ -99,6 +100,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
     Caption = ' Search directory options '
     TabOrder = 2
     SkinData.SkinSection = 'GROUPBOX'
+    Checked = False
     object PanelDirectoryComboBoxAndButton: TBCPanel
       AlignWithMargins = True
       Left = 12

@@ -19,6 +19,7 @@ function GetHighlighterColors: TStringList;
 function GetOldIniFilename: string;
 function GetOldOutFilename: string;
 function GetIniFilename: string;
+function GetUniIniFilename: string;
 function GetOutFilename: string;
 function GetUserAppDataPath(const AAppName: string): string;
 function GetSQLFormatterDLLFilename: string;
@@ -397,6 +398,11 @@ end;
 function GetIniFilename: string;
 begin
   Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), '.ini');
+end;
+
+function GetUniIniFilename: string;
+begin
+  Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), 'Uni.ini');
 end;
 
 function GetOutFilename: string;

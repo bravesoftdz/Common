@@ -11,14 +11,14 @@ procedure UpdateLanguage(Form: TForm; SelectedLanguage: string = ''); overload;
 implementation
 
 uses
-  BigIni, BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
+  BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
   Vcl.ExtCtrls, VirtualTrees, sPageControl, Vcl.Consts,
   BCControl.GroupBox, BCControl.RadioButton, BCControl.Panel, BCControl.Edit, sLabel, acSlider,
   BCControl.DateEdit, BCControl.ComboBox;
 
 function GetSelectedLanguage(const Default: string): string;
 begin
-  with TBigIniFile.Create(GetIniFilename) do
+  with TIniFile.Create(GetIniFilename) do
   try
     Result := ReadString('Options', 'Language', Default);
   finally

@@ -718,8 +718,8 @@ type
 implementation
 
 uses
-  System.SysUtils, Vcl.ComCtrls, Vcl.Graphics, Vcl.Menus, BCCommon.StringUtils, BCCommon.Language.Strings, BigIni,
-  BCEditor.Editor, BCEditor.Types, BCControl.Utils, BCControl.Statusbar;
+  System.SysUtils, Vcl.ComCtrls, Vcl.Graphics, Vcl.Menus, BCCommon.StringUtils, BCCommon.Language.Strings,
+  System.IniFiles, BCEditor.Editor, BCEditor.Types, BCControl.Utils, BCControl.Statusbar;
 
 {$ifdef ORABONE}
 var
@@ -748,7 +748,7 @@ procedure TOptionsContainer.ReadIniFile;
 begin
   TIniPersist.Load(GetIniFilename, Self);
 
-  with TBigIniFile.Create(GetIniFilename) do
+  with TIniFile.Create(GetIniFilename) do
   try
     { OS-dependent options }
     FMainMenuSystemFontName := ReadString('Options', 'MainMenuSystemFontName', Screen.MenuFont.Name);
@@ -1070,7 +1070,7 @@ begin
       LanguageDataModule.MultiStringHolderFileTypes.MultipleStrings.Items[i].Strings.Text);
 
   LFileTypes := TStringList.Create;
-  with TBigIniFile.Create(GetIniFilename) do
+  with TIniFile.Create(GetIniFilename) do
   try
     ReadSectionValues('FileTypes', LFileTypes);
     for i := 0 to LFileTypes.Count - 1 do

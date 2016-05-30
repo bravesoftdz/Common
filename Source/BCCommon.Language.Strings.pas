@@ -62,7 +62,7 @@ end;
 procedure ReadLanguageFile(const Language: string);
 var
   LanguagePath: string;
-  BigIniFile: TMemIniFile;
+  LMemIniFile: TMemIniFile;
 
   procedure SetStringHolder(MultiStringHolder: TBCMultiStringHolder; Section: string);
   var
@@ -73,7 +73,7 @@ var
     for i := 0 to MultiStringHolder.MultipleStrings.Count - 1 do
     begin
       StringName := MultiStringHolder.MultipleStrings.Items[i].Name;
-      s := BigIniFile.ReadString(Section, StringName, '');
+      s := LMemIniFile.ReadString(Section, StringName, '');
       if s <> '' then
         MultiStringHolder.MultipleStrings.Items[i].Strings.Text := s;
     end;
@@ -86,7 +86,7 @@ begin
   if not DirectoryExists(LanguagePath) then
     Exit;
 
-  BigIniFile := TMemIniFile.Create(Format('%s%s.%s', [LanguagePath, Language, 'lng']), TEncoding.Unicode);
+  LMemIniFile := TMemIniFile.Create(Format('%s%s.%s', [LanguagePath, Language, 'lng']), TEncoding.Unicode);
   try
     SetStringHolder(LanguageDataModule.MultiStringHolderYesOrNo, 'AskYesOrNo');
     SetStringHolder(LanguageDataModule.MultiStringHolderMessage, 'Message');
@@ -99,7 +99,7 @@ begin
     SetStringHolder(LanguageDataModule.MultiStringHolderColorConstant, 'ColorConstant');
     SetStringHolder(LanguageDataModule.MultiStringHolderDialogConstant, 'DialogConstant');
   finally
-    BigIniFile.Free;
+    LMemIniFile.Free;
   end;
 
   { colors }

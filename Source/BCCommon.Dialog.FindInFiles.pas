@@ -148,7 +148,10 @@ end;
 
 function TFindInFilesDialog.GetFileTypeText: string;
 begin
-  Result := ComboBoxFileMask.Text;
+  if Trim(ComboBoxFileMask.Text) = '' then
+    Result := '*.*'
+  else
+    Result := ComboBoxFileMask.Text;
 end;
 
 function TFindInFilesDialog.GetFolderText: string;
@@ -185,7 +188,7 @@ var
   i: Integer;
   LString: string;
 begin
-  with TIniFile.Create(GetIniFilename) do
+  with TMemIniFile.Create(GetUniIniFilename, TEncoding.Unicode) do
   try
     EraseSection(ASection);
     for i := 0 to AStrings.Count - 1 do
@@ -196,6 +199,7 @@ begin
 
       WriteString(ASection, IntToStr(i), LString);
     end;
+    UpdateFile;
   finally
     Free;
   end;
@@ -285,9 +289,10 @@ end;
 procedure TFindInFilesDialog.ReadIniFile;
 var
   LItems: TStrings;
+  LFileMask: string;
 begin
   LItems := TStringList.Create;
-  with TIniFile.Create(GetIniFilename) do
+  with TMemIniFile.Create(GetUniIniFilename, TEncoding.Unicode) do
   try
     SliderCaseSensitive.SliderOn := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
     SliderIncludeSubDirectories.SliderOn := ReadBool('FindInFilesOptions', 'IncludeSubDirectories', True);
@@ -295,12 +300,17 @@ begin
     ReadSectionValues('TextToFindItems', LItems);
     InsertItemsToComboBox(LItems, ComboBoxTextToFind);
     ReadSectionValues('FindInFilesFileMasks', LItems);
+    if LItems.Count = 0 then
+      LItems.Add('*.*');
     InsertItemsToComboBox(LItems, ComboBoxFileMask);
     ReadSectionValues('FindInFilesDirectories', LItems);
     InsertItemsToComboBox(LItems, ComboBoxDirectory);
 
     ComboBoxTextToFind.ItemIndex := ComboBoxTextToFind.Items.IndexOf(ReadString('FindInFilesOptions', 'TextToFind', ''));
-    ComboBoxFileMask.ItemIndex := ComboBoxFileMask.Items.IndexOf(ReadString('FindInFilesOptions', 'FileMask', '*.*'));
+    LFileMask := ReadString('FindInFilesOptions', 'FileMask', '*.*');
+    if LFileMask = '' then
+      LFileMask := '*.*';
+    ComboBoxFileMask.ItemIndex := ComboBoxFileMask.Items.IndexOf(LFileMask);
     ComboBoxDirectory.ItemIndex := ComboBoxDirectory.Items.IndexOf(ReadString('FindInFilesOptions', 'Directory', ''));
   finally
     LItems.Free;
@@ -312,7 +322,7 @@ procedure TFindInFilesDialog.WriteIniFile;
 var
   i: Integer;
 begin
-  with TIniFile.Create(GetIniFilename) do
+  with TMemIniFile.Create(GetUniIniFilename, TEncoding.Unicode) do
   try
     WriteBool('FindInFilesOptions', 'CaseSensitive', SliderCaseSensitive.SliderOn);
     WriteBool('FindInFilesOptions', 'IncludeSubDirectories', SliderIncludeSubDirectories.SliderOn);
@@ -332,6 +342,7 @@ begin
     WriteString('FindInFilesOptions', 'TextToFind', ComboBoxTextToFind.Text);
     WriteString('FindInFilesOptions', 'FileMask', ComboBoxFileMask.Text);
     WriteString('FindInFilesOptions', 'Directory', IncludeTrailingPathDelimiter(ComboBoxDirectory.Text));
+    UpdateFile;
   finally
     Free;
   end;

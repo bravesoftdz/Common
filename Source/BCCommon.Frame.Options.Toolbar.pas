@@ -81,8 +81,8 @@ implementation
 {$R *.dfm}
 
 uses
-  Winapi.Windows, BigIni, BCCommon.FileUtils, BCCommon.Dialog.Options.ToolbarItems, BCCommon.Consts,
-  System.SysUtils, BCCommon.Utils, BCCommon.Options.Container;
+  Winapi.Windows, BCCommon.FileUtils, BCCommon.Dialog.Options.ToolbarItems, BCCommon.Consts,
+  System.SysUtils, System.IniFiles, BCCommon.Utils, BCCommon.Options.Container;
 
 var
   FOptionsToolbarFrame: TOptionsToolbarFrame;
@@ -251,7 +251,7 @@ var
 begin
   { read from ini }
   LToolbarItems := TStringList.Create;
-  with TBigIniFile.Create(GetIniFilename) do
+  with TIniFile.Create(GetIniFilename) do
   try
     { read items from ini }
     ReadSectionValues('ToolbarItems', LToolbarItems);
@@ -296,7 +296,7 @@ begin
   if FIsChanged then
   begin
     OptionsContainer.ToolbarIconSizeSmall := RadioButtonSmallIcons.Checked;
-    with TBigIniFile.Create(GetIniFilename) do
+    with TIniFile.Create(GetIniFilename) do
     try
       WriteBool('ToolbarItemsChanged', 'Changed', True);
       i := 0;
