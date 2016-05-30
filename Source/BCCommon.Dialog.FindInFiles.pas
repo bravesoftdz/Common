@@ -39,6 +39,7 @@ type
     PanelTextToFindClient: TBCPanel;
     ComboBoxTextToFind: TBCComboBox;
     ActionTextToFindItemsButtonClick: TAction;
+    ActionFind: TAction;
     procedure ActionDirectoryButtonClickExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
@@ -47,6 +48,8 @@ type
     procedure ActionDirectoryItemsButtonClickExecute(Sender: TObject);
     procedure ComboBoxTextToFindChange(Sender: TObject);
     procedure ActionTextToFindItemsButtonClickExecute(Sender: TObject);
+    procedure ActionFindUpdate(Sender: TObject);
+    procedure ActionFindExecute(Sender: TObject);
   private
     function GetFileTypeText: string;
     function GetFindWhatText: string;
@@ -228,6 +231,18 @@ begin
   finally
     Free;
   end;
+end;
+
+procedure TFindInFilesDialog.ActionFindExecute(Sender: TObject);
+begin
+  inherited;
+  ModalResult := mrOk;
+end;
+
+procedure TFindInFilesDialog.ActionFindUpdate(Sender: TObject);
+begin
+  inherited;
+  ActionFind.Enabled := (Trim(ComboBoxTextToFind.Text) <> '') and (Trim(ComboBoxDirectory.Text) <> '')
 end;
 
 procedure TFindInFilesDialog.ActionTextToFindItemsButtonClickExecute(Sender: TObject);

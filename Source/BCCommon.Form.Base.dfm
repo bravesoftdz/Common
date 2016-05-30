@@ -32,20 +32,18 @@ object BCBaseForm: TBCBaseForm
     AnimEffects.Minimizing.Active = False
     AnimEffects.SkinChanging.Active = False
     ButtonsOptions.ShowFocusRect = False
-    IsDefault = False
     Active = False
     Saturation = 10
     InternalSkins = <>
-    MenuSupport.IcoLineSkin = 'ICOLINE'
-    MenuSupport.UseExtraLine = True
     MenuSupport.ExtraLineFont.Charset = DEFAULT_CHARSET
     MenuSupport.ExtraLineFont.Color = clWindowText
     MenuSupport.ExtraLineFont.Height = -13
     MenuSupport.ExtraLineFont.Name = 'Tahoma'
     MenuSupport.ExtraLineFont.Style = [fsBold]
+    MenuSupport.UseExtraLine = True
     SkinDirectory = 'Skins'
     SkinName = 'Windows 10'
-    SkinInfo = 'N/A'
+    SkinInfo = '0'
     ThirdParty.ThirdEdits = 'TBCEditorPrintPreview'#13#10
     ThirdParty.ThirdButtons = 'TButton'#13#10
     ThirdParty.ThirdBitBtns = ' '#13#10
@@ -79,11 +77,6 @@ object BCBaseForm: TBCBaseForm
     Top = 76
   end
   object SkinProvider: TsSkinProvider
-    AddedTitle.Font.Charset = DEFAULT_CHARSET
-    AddedTitle.Font.Color = clNone
-    AddedTitle.Font.Height = -11
-    AddedTitle.Font.Name = 'Tahoma'
-    AddedTitle.Font.Style = []
     SkinData.SkinSection = 'FORM'
     TitleBar = TitleBar
     TitleButtons = <>

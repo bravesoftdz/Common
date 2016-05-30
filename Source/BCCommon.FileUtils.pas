@@ -266,11 +266,9 @@ end;
 
 function GetColorSaveFileName(const AOwner: TComponent; const AFileName: string): string;
 var
-  //LFileName: string;
   LSaveDialog: TsSaveDialog;
 begin
   Result := Format('%sColors\%s.json', [ExtractFilePath(Application.ExeName), AFileName]);
-  //LFileName := ChangeFileExt(AFileName, '');
   if IsOriginalColor(AFileName) then
   begin
     LSaveDialog := TsSaveDialog.Create(AOwner);

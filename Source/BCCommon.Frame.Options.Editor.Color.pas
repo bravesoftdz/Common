@@ -145,6 +145,8 @@ end;
 
 procedure TOptionsEditorColorFrame.PutData;
 begin
+  if not FModified then
+    Exit;
   OptionsContainer.SkinActiveLineBackground := SliderSkinActiveLineBackground.SliderOn;
   OptionsContainer.SkinBackground := SliderSkinBackground.SliderOn;
   OptionsContainer.SkinBookmarkPanelBackground := SliderSkinBookmarkPanelBackground.SliderOn;

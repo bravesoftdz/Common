@@ -28,10 +28,9 @@ inherited FindInFilesDialog: TFindInFilesDialog
       Top = 8
       Width = 75
       Height = 25
+      Action = ActionFind
       Align = alRight
-      Caption = '&Find'
       Default = True
-      Enabled = False
       ModalResult = 1
       TabOrder = 0
     end
@@ -61,7 +60,6 @@ inherited FindInFilesDialog: TFindInFilesDialog
     Caption = ' Options'
     TabOrder = 1
     SkinData.SkinSection = 'GROUPBOX'
-    Checked = False
     object StickyLabelCaseSensitive: TsStickyLabel
       Left = 12
       Top = 23
@@ -101,7 +99,6 @@ inherited FindInFilesDialog: TFindInFilesDialog
     Caption = ' Search directory options '
     TabOrder = 2
     SkinData.SkinSection = 'GROUPBOX'
-    Checked = False
     object PanelDirectoryComboBoxAndButton: TBCPanel
       AlignWithMargins = True
       Left = 12
@@ -549,6 +546,11 @@ inherited FindInFilesDialog: TFindInFilesDialog
     end
     object ActionDirectoryItemsButtonClick: TAction
       OnExecute = ActionDirectoryItemsButtonClickExecute
+    end
+    object ActionFind: TAction
+      Caption = 'Find'
+      OnExecute = ActionFindExecute
+      OnUpdate = ActionFindUpdate
     end
   end
 end
