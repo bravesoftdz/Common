@@ -291,6 +291,42 @@ var
   LItems: TStrings;
   LFileMask: string;
 begin
+  { Old - remove }
+  LItems := TStringList.Create;
+  with TIniFile.Create(GetIniFilename) do
+  try
+    if SectionExists('TextToFindItems') then
+    begin
+      SliderCaseSensitive.SliderOn := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
+      SliderIncludeSubDirectories.SliderOn := ReadBool('FindInFilesOptions', 'IncludeSubDirectories', True);
+
+      ReadSectionValues('TextToFindItems', LItems);
+      InsertItemsToComboBox(LItems, ComboBoxTextToFind);
+      ReadSectionValues('FindInFilesFileMasks', LItems);
+      if LItems.Count = 0 then
+        LItems.Add('*.*');
+      InsertItemsToComboBox(LItems, ComboBoxFileMask);
+      ReadSectionValues('FindInFilesDirectories', LItems);
+      InsertItemsToComboBox(LItems, ComboBoxDirectory);
+
+      ComboBoxTextToFind.ItemIndex := ComboBoxTextToFind.Items.IndexOf(ReadString('FindInFilesOptions', 'TextToFind', ''));
+      LFileMask := ReadString('FindInFilesOptions', 'FileMask', '*.*');
+      if LFileMask = '' then
+        LFileMask := '*.*';
+      ComboBoxFileMask.ItemIndex := ComboBoxFileMask.Items.IndexOf(LFileMask);
+      ComboBoxDirectory.ItemIndex := ComboBoxDirectory.Items.IndexOf(ReadString('FindInFilesOptions', 'Directory', ''));
+
+      EraseSection('TextToFindItems');
+      EraseSection('FindInFilesFileMasks');
+      EraseSection('FindInFilesDirectories');
+      EraseSection('FindInFilesOptions');
+      Exit;
+    end;
+  finally
+    LItems.Free;
+    Free;
+  end;
+  { New }
   LItems := TStringList.Create;
   with TMemIniFile.Create(GetUniIniFilename, TEncoding.Unicode) do
   try

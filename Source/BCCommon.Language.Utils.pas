@@ -12,7 +12,7 @@ implementation
 
 uses
   BCCommon.FileUtils, System.SysUtils, System.IniFiles, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls,
-  Vcl.ExtCtrls, VirtualTrees, sPageControl, Vcl.Consts,
+  Vcl.ExtCtrls, VirtualTrees, sPageControl, Vcl.Consts, BCControl.Labels,
   BCControl.GroupBox, BCControl.RadioButton, BCControl.Panel, BCControl.Edit, sLabel, acSlider,
   BCControl.DateEdit, BCControl.ComboBox;
 
@@ -64,6 +64,13 @@ begin
         s := ReadString(Form.Name, TLabel(Form.Components[i]).Name, '');
         if s <> '' then
           TLabel(Form.Components[i]).Caption := s
+      end
+      else
+      if Form.Components[i] is TBCLabel then
+      begin
+        s := ReadString(Form.Name, TBCLabel(Form.Components[i]).Name, '');
+        if s <> '' then
+          TBCLabel(Form.Components[i]).Caption := s
       end
       else
       if Form.Components[i] is TsStickyLabel then
