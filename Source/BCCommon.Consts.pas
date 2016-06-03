@@ -17,6 +17,7 @@ const
 
   PARAM_NO_INI = '-noini';
   PARAM_NO_SKIN = '-noskin';
+  PARAM_APP_INI_PATH = '-appinipath';
 
   ShortCuts: array[0..110] of TShortCut = (
     scNone,

@@ -31,6 +31,9 @@ procedure CreateVirtualDrive(const Drive: Char; const Path: string);
 procedure DeleteVirtualDrive(const Drive: Char);
 procedure FilePropertiesDialog(const FileName: string);
 
+var
+  GApplicationIniPath: Boolean;
+
 implementation
 
 uses
@@ -397,17 +400,26 @@ end;
 
 function GetIniFilename: string;
 begin
-  Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), '.ini');
+  if GApplicationIniPath then
+    Result := ChangeFileExt(Application.EXEName, '.ini')
+  else
+    Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), '.ini');
 end;
 
 function GetUniIniFilename: string;
 begin
-  Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), 'Uni.ini');
+  if GApplicationIniPath then
+    Result := ChangeFileExt(Application.EXEName, 'Uni.ini')
+  else
+    Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), 'Uni.ini');
 end;
 
 function GetOutFilename: string;
 begin
-  Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), '.out');
+  if GApplicationIniPath then
+    Result := ChangeFileExt(Application.EXEName, '.out')
+  else
+    Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), '.out');
 end;
 
 function GetSQLFormatterDLLFilename: string;
