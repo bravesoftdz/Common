@@ -905,7 +905,7 @@ begin
       Options := Options + [eoTrimTrailingSpaces]
     else
       Options := Options - [eoTrimTrailingSpaces];
-    LineSpacing.Spacing := FLineSpacing;
+    LineSpacing := FLineSpacing;
     { Right margin }
     RightMargin.Visible := FRightMarginVisible;
     if FRightMarginMouseMove then

@@ -180,9 +180,9 @@ begin
       Screen.Cursor := crDefault;
     end;
 
-    if (Trim(Version) <> '') and (Version <> AAboutVersion) then
+    if (Trim(LVersion) <> '') and (LVersion <> AAboutVersion) then
     begin
-      if AskYesOrNo(Format(LanguageDataModule.GetYesOrNoMessage('NewVersion'), [Version, AAppName, CHR_DOUBLE_ENTER])) then
+      if AskYesOrNo(Format(LanguageDataModule.GetYesOrNoMessage('NewVersion'), [LVersion, AAppName, CHR_DOUBLE_ENTER])) then
       begin
         LFileName := DownloadURLDialog.Open(Format('%s.zip', [LAppName]), Format('%s/downloads/%s.zip', [BONECODE_URL, LAppName]));
         ShellExecute(Application.Handle, PChar('explore'), nil, nil, PChar(ExtractFilePath(LFileName)), SW_SHOWNORMAL);
