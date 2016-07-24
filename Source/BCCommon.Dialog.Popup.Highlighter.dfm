@@ -65,11 +65,6 @@ object PopupHighlighterDialog: TPopupHighlighterDialog
   object SkinProvider: TsSkinProvider
     AllowExtBorders = False
     DrawNonClientArea = False
-    AddedTitle.Font.Charset = DEFAULT_CHARSET
-    AddedTitle.Font.Color = clNone
-    AddedTitle.Font.Height = -11
-    AddedTitle.Font.Name = 'Tahoma'
-    AddedTitle.Font.Style = []
     SkinData.SkinSection = 'FORM'
     TitleButtons = <>
     Left = 44

@@ -175,7 +175,6 @@ inherited SkinSelectDialog: TSkinSelectDialog
       SkinData.OuterEffects.Visibility = ovAlways
       CaptionSkin = 'PROGRESSH'
       CaptionWidth = 100
-      Checked = False
       object LabelSaturationValue: TsLabel
         Left = 192
         Top = 87

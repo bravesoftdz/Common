@@ -52,6 +52,7 @@ type
   private
     { Private declarations }
     FPreviewForm: TFormSkinPreview;
+    procedure DeleteCommercialSkins;
   public
     { Public declarations }
     class procedure ClassShowModal(ASkinManager: TBCSkinManager);
@@ -71,45 +72,55 @@ begin
   Application.CreateForm(TSkinSelectDialog, LSkinSelectDialog);
 
   with LSkinSelectDialog do
+  try
+    ASkinManager.GetExternalSkinNames(ListBoxSkins.Items);
+    DeleteCommercialSkins;
+    ListBoxSkins.ItemIndex := ListBoxSkins.Items.IndexOf(ASkinManager.SkinName);
+    FPreviewForm := TFormSkinPreview.Create(nil); // Form will be freed automatically together with this frame
     try
-      ASkinManager.GetExternalSkinNames(ListBoxSkins.Items);
-      ListBoxSkins.ItemIndex := ListBoxSkins.Items.IndexOf(ASkinManager.SkinName);
-      FPreviewForm := TFormSkinPreview.Create(nil); // Form will be freed automatically together with this frame
-      try
-        FPreviewForm.Align := alClient;
-        FPreviewForm.Parent := PanelPreviewArea;
-        FPreviewForm.Name := 'FormSkinPreview';
-        FPreviewForm.PreviewManager.SkinDirectory := ASkinManager.SkinDirectory;
-        FPreviewForm.PreviewManager.SkinName := ListBoxSkins.Items[ListBoxSkins.ItemIndex];
-        FPreviewForm.Constraints.MinHeight := PanelPreviewArea.Height;
-        FPreviewForm.Constraints.MinWidth := PanelPreviewArea.Width;
-        TrackBarHueOffset.Position := ASkinManager.HueOffset;
-        TrackBarSaturation.Position := ASkinManager.Saturation;
-        TrackBarBrightness.Position := ASkinManager.Brightness;
-        SliderBlendOnMove.SliderOn := ASkinManager.AnimEffects.BlendOnMoving.Active;
-        SliderAllowGlowing.SliderOn := ASkinManager.Effects.AllowGlowing;
-        SliderExtendedBordersMode.SliderOn := ASkinManager.ExtendedBorders;
-        FPreviewForm.PreviewManager.Active := True;
-        FPreviewForm.Visible := True;
-        if ShowModal = mrOk then
-        begin
-          ASkinManager.SkinName := ListBoxSkins.Items[ListBoxSkins.ItemIndex];
-          ASkinManager.BeginUpdate;
-          ASkinManager.HueOffset := TrackBarHueOffset.Position;
-          ASkinManager.Saturation := TrackBarSaturation.Position;
-          ASkinManager.Brightness := TrackBarBrightness.Position;
-          ASkinManager.AnimEffects.BlendOnMoving.Active := SliderBlendOnMove.SliderOn;
-          ASkinManager.ExtendedBorders := SliderExtendedBordersMode.SliderOn;
-          ASkinManager.Effects.AllowGlowing := SliderAllowGlowing.SliderOn;
-          ASkinManager.EndUpdate(True, False);
-        end;
-      finally
-        FPreviewForm.Free;
+      FPreviewForm.Align := alClient;
+      FPreviewForm.Parent := PanelPreviewArea;
+      FPreviewForm.Name := 'FormSkinPreview';
+      FPreviewForm.PreviewManager.SkinDirectory := ASkinManager.SkinDirectory;
+      FPreviewForm.PreviewManager.SkinName := ListBoxSkins.Items[ListBoxSkins.ItemIndex];
+      FPreviewForm.Constraints.MinHeight := PanelPreviewArea.Height;
+      FPreviewForm.Constraints.MinWidth := PanelPreviewArea.Width;
+      TrackBarHueOffset.Position := ASkinManager.HueOffset;
+      TrackBarSaturation.Position := ASkinManager.Saturation;
+      TrackBarBrightness.Position := ASkinManager.Brightness;
+      SliderBlendOnMove.SliderOn := ASkinManager.AnimEffects.BlendOnMoving.Active;
+      SliderAllowGlowing.SliderOn := ASkinManager.Effects.AllowGlowing;
+      SliderExtendedBordersMode.SliderOn := ASkinManager.ExtendedBorders;
+      FPreviewForm.PreviewManager.Active := True;
+      FPreviewForm.Visible := True;
+      if ShowModal = mrOk then
+      begin
+        ASkinManager.SkinName := ListBoxSkins.Items[ListBoxSkins.ItemIndex];
+        ASkinManager.BeginUpdate;
+        ASkinManager.HueOffset := TrackBarHueOffset.Position;
+        ASkinManager.Saturation := TrackBarSaturation.Position;
+        ASkinManager.Brightness := TrackBarBrightness.Position;
+        ASkinManager.AnimEffects.BlendOnMoving.Active := SliderBlendOnMove.SliderOn;
+        ASkinManager.ExtendedBorders := SliderExtendedBordersMode.SliderOn;
+        ASkinManager.Effects.AllowGlowing := SliderAllowGlowing.SliderOn;
+        ASkinManager.EndUpdate(True, False);
       end;
     finally
-      Free;
-      LSkinSelectDialog := nil;
+      FPreviewForm.Free;
     end;
+  finally
+    Free;
+    LSkinSelectDialog := nil;
+  end;
+end;
+
+procedure TSkinSelectDialog.DeleteCommercialSkins;
+var
+  i: Integer;
+begin
+  for i := ListBoxSkins.Items.Count - 1 downto 0 do
+  if Pos('(CS)', ListBoxSkins.Items[i]) <> 0 then
+    ListBoxSkins.Items.Delete(i);
 end;
 
 procedure TSkinSelectDialog.FormCreate(Sender: TObject);
