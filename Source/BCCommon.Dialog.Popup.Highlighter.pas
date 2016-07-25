@@ -147,6 +147,7 @@ begin
   if Assigned(Data) then
     if Assigned(FSelectHighlighter) then
       FSelectHighlighter(Data.Name);
+  Close;
 end;
 
 procedure TPopupHighlighterDialog.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);

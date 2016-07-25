@@ -2,6 +2,8 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
   Width = 451
   Height = 305
   Align = alClient
+  ExplicitWidth = 451
+  ExplicitHeight = 305
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
@@ -199,7 +201,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       LeftMargin.Width = 55
       Lines.Strings = (
         '')
-      LineSpacing.Spacing = 0
+      LineSpacing = 0
       MatchingPair.Enabled = True
       Minimap.Font.Charset = DEFAULT_CHARSET
       Minimap.Font.Color = clWindowText
@@ -262,6 +264,10 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       TabDragDrop = False
       object TabSheetEditor: TsTabSheet
         Caption = 'Editor'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object ComboBoxEditorElement: TBCComboBox
           Left = 6
           Top = 22
@@ -351,6 +357,10 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       end
       object TabSheetElements: TsTabSheet
         Caption = 'Elements'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object ComboBoxElementsName: TBCComboBox
           Left = 6
           Top = 19
@@ -441,7 +451,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
           Caption = ' Attributes'
           TabOrder = 3
           SkinData.SkinSection = 'GROUPBOX'
-          Checked = False
           object StickyLabelElementsAttributesBold: TsStickyLabel
             Left = 12
             Top = 26
@@ -530,6 +539,10 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       end
       object TabSheetGeneral: TsTabSheet
         Caption = 'General'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object EditVersion: TBCEdit
           Left = 6
           Top = 18
@@ -575,6 +588,10 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       end
       object TabSheetAuthor: TsTabSheet
         Caption = 'Author'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object EditName: TBCEdit
           Left = 6
           Top = 20
@@ -620,6 +637,10 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         AlignWithMargins = True
         Margins.Top = 2
         Caption = 'Use skin color'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object PanelUseSkinColorLeft: TBCPanel
           Left = 0
           Top = 0
