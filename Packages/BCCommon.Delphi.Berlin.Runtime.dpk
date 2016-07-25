@@ -1,4 +1,4 @@
-package BCCommon.Delphi.XE8.Runtime;
+package BCCommon.Delphi.Berlin.Runtime;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -31,14 +31,14 @@ package BCCommon.Delphi.XE8.Runtime;
 
 requires
   rtl,
-  BCControls.Delphi.XE8.Runtime,
-  BCComponents.Delphi.XE8.Runtime,
+  BCControls.Delphi.Berlin.Runtime,
+  BCComponents.Delphi.Berlin.Runtime,
   VirtualTreesR,
   vclactnband,
   xmlrtl,
-  acntDelphiXE8,
-  BCEditor.Delphi.XE8.Runtime,
-  EhLib220;
+  acntDX10Berlin_R,
+  BCEditor.Delphi.Berlin.Runtime,
+  acntDX10Berlin;
 
 contains
   BCCommon.Images in '..\Source\BCCommon.Images.pas' {ImagesDataModule: TDataModule},
@@ -53,7 +53,6 @@ contains
   BCCommon.Language.Utils in '..\Source\BCCommon.Language.Utils.pas',
   BCCommon.StringUtils in '..\Source\BCCommon.StringUtils.pas',
   BCCommon.FileUtils in '..\Source\BCCommon.FileUtils.pas',
-  BCCommon.Utils in '..\Source\BCCommon.Utils.pas',
   BCCommon.Options.Container in '..\Source\BCCommon.Options.Container.pas',
   BCCommon.Frame.Options.Base in '..\Source\BCCommon.Frame.Options.Base.pas' {BCOptionsBaseFrame: TFrame},
   BCCommon.Frame.Options.Editor.CompletionProposal in '..\Source\BCCommon.Frame.Options.Editor.CompletionProposal.pas' {OptionsEditorCompletionProposalFrame: TFrame},
@@ -98,15 +97,13 @@ contains
   BCCommon.Frame.Options.Editor.Selection in '..\Source\BCCommon.Frame.Options.Editor.Selection.pas' {OptionsEditorSelectionFrame: TFrame},
   BCCommon.Frame.Options.Editor.SpecialChars in '..\Source\BCCommon.Frame.Options.Editor.SpecialChars.pas' {OptionsEditorSpecialCharsFrame: TFrame},
   BCCommon.Dialog.InputQuery in '..\Source\BCCommon.Dialog.InputQuery.pas' {InputQueryDialog},
-  BigIni in '..\Source\BigIni.pas',
-  BCCommon.Diff in '..\Source\BCCommon.Diff.pas',
-  IniPersist in '..\Source\IniPersist.pas',
   BCCommon.Dialog.ItemList in '..\Source\BCCommon.Dialog.ItemList.pas' {ItemListDialog},
   BCCommon.Dialog.SkinSelect in '..\Source\BCCommon.Dialog.SkinSelect.pas' {SkinSelectDialog},
   BCCommon.Form.Base in '..\Source\BCCommon.Form.Base.pas' {BCBaseForm},
-  BCCommon.Dialog.Popup.Highlighter.Color in '..\Source\BCCommon.Dialog.Popup.Highlighter.Color.pas' {PopupHighlighterColorDialog},
-  BCCommon.Dialog.Popup.Highlighter in '..\Source\BCCommon.Dialog.Popup.Highlighter.pas' {PopupHighlighterDialog},
   BCCommon.WindowsInfo in '..\Source\BCCommon.WindowsInfo.pas',
-  BCCommon.Frame.Options.Editor.SyncEdit in '..\Source\BCCommon.Frame.Options.Editor.SyncEdit.pas' {OptionsEditorSyncEditFrame: TFrame};
+  BCCommon.Diff in '..\Source\BCCommon.Diff.pas',
+  BigIni in '..\Source\BigIni.pas',
+  IniPersist in '..\Source\IniPersist.pas',
+  BCCommon.Utils in '..\Source\BCCommon.Utils.pas';
 
 end.
