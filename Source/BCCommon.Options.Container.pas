@@ -79,6 +79,7 @@ type
     FScrollPastEndOfFile: Boolean;
     FScrollPastEndOfLineMarker: Boolean;
     FScrollShowHint: Boolean;
+    FScrollShowShadow: Boolean;
     { Search }
     FSearchVisible: Boolean;
     FDocumentSpecificSearch: Boolean;
@@ -287,6 +288,8 @@ type
     property ScrollPastEndOfLineMarker: Boolean read FScrollPastEndOfLineMarker write FScrollPastEndOfLineMarker;
     [IniValue('Options', 'ScrollShowHint', 'True')]
     property ScrollShowHint: Boolean read FScrollShowHint write FScrollShowHint;
+    [IniValue('Options', 'ScrollShowShadow', 'True')]
+    property ScrollShowShadow: Boolean read FScrollShowShadow write FScrollShowShadow;
     { Search }
     [IniValue('Options', 'SearchVisible', 'False')]
     property SearchVisible: Boolean read FSearchVisible write FSearchVisible;
@@ -946,7 +949,7 @@ begin
       Scroll.Options := Scroll.Options + [soShowHint]
     else
       Scroll.Options := Scroll.Options - [soShowHint];
-    Scroll.Shadow.Visible := True;
+    Scroll.Shadow.Visible := FScrollShowShadow;
     { Search }
     Search.Map.Visible := FShowSearchMap;
     { Selection }

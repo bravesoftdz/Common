@@ -1,7 +1,6 @@
 inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
   Width = 164
   Height = 113
-  AutoSize = False
   ExplicitWidth = 164
   ExplicitHeight = 113
   object Panel: TBCPanel [0]

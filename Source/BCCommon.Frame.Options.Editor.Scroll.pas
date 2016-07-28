@@ -22,6 +22,8 @@ type
     SliderPastEndOfLineMarker: TsSlider;
     StickyLabelShowHint: TsStickyLabel;
     SliderShowHint: TsSlider;
+    StickyLabelShowShadow: TsStickyLabel;
+    SliderShowShadow: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -63,6 +65,7 @@ begin
   OptionsContainer.ScrollPastEndOfFile := SliderPastEndOfFile.SliderOn;
   OptionsContainer.ScrollPastEndOfLineMarker := SliderPastEndOfLineMarker.SliderOn;
   OptionsContainer.ScrollShowHint := SliderShowHint.SliderOn;
+  OptionsContainer.ScrollShowShadow := SliderShowShadow.SliderOn;
 end;
 
 procedure TOptionsEditorScrollFrame.GetData;
@@ -73,6 +76,7 @@ begin
   SliderPastEndOfFile.SliderOn := OptionsContainer.ScrollPastEndOfFile;
   SliderPastEndOfLineMarker.SliderOn := OptionsContainer.ScrollPastEndOfLineMarker;
   SliderShowHint.SliderOn := OptionsContainer.ScrollShowHint;
+  SliderShowShadow.SliderOn := OptionsContainer.ScrollShowShadow;
 end;
 
 end.
