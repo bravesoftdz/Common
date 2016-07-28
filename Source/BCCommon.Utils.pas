@@ -11,12 +11,13 @@ function InsertTextToCombo(ComboBox: TBCComboBox): Integer;
 function SetFormInsideWorkArea(Left, Width: Integer): Integer;
 function PostInc(var i: Integer): Integer; inline;
 procedure InsertItemsToComboBox(AItems: TStrings; AComboBox: TBCComboBox);
-procedure AlignSliders(AWinControl: TWinControl);
+procedure AlignSliders(AWinControl: TWinControl; ALeftMargin: Integer = 0);
 
 implementation
 
 uses
-  System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, sLabel, BCCommon.StringUtils, BCCommon.WindowsInfo;
+  System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, acSlider, sLabel, BCCommon.StringUtils,
+  BCCommon.WindowsInfo;
 
 function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean;
 begin
@@ -102,20 +103,28 @@ begin
   Inc(i)
 end;
 
-procedure AlignSliders(AWinControl: TWinControl);
+procedure AlignSliders(AWinControl: TWinControl; ALeftMargin: Integer = 0);
 var
   i: Integer;
   LMaxLength: Integer;
+  LMaxSliderLeft: Integer;
   LLabel: TsStickyLabel;
+  LSlider: TsSlider;
 begin
   LMaxLength := 0;
+  LMaxSliderLeft := 0;
   for i := 0 to AWinControl.ControlCount - 1 do
     if AWinControl.Controls[i] is TsStickyLabel then
     begin
       LLabel := AWinControl.Controls[i] as TsStickyLabel;
+
       LLabel.AutoSize := True;
       if LLabel.Width > LMaxLength then
+      begin
+        LSlider := LLabel.AttachTo as TsSlider;
+        LMaxSliderLeft := LSlider.Left - LLabel.Left;
         LMaxLength := LLabel.Width;
+      end;
       LLabel.AutoSize := False;
     end;
   for i := 0 to AWinControl.ControlCount - 1 do
@@ -123,6 +132,8 @@ begin
     begin
       LLabel := AWinControl.Controls[i] as TsStickyLabel;
       LLabel.Width := LMaxLength;
+      LSlider := LLabel.AttachTo as TsSlider;
+      LSlider.Left := LMaxSliderLeft + ALeftMargin;
     end;
 end;
 

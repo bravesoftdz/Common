@@ -113,7 +113,7 @@ end;
 procedure TSearchOptionsDialog.FormShow(Sender: TObject);
 begin
   inherited;
-  AlignSliders(Panel);
+  AlignSliders(Panel, 8);
   Width := SliderBeepIfSearchStringNotFound.Left + SliderBeepIfSearchStringNotFound.Width + 12;
 end;
 

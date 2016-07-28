@@ -3,6 +3,8 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
   ClientHeight = 329
   ClientWidth = 253
   Position = poMainFormCenter
+  ExplicitWidth = 259
+  ExplicitHeight = 358
   PixelsPerInch = 96
   TextHeight = 13
   object Panel: TBCPanel

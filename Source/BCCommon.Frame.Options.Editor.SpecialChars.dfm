@@ -1,6 +1,8 @@
 inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
   Width = 223
   Height = 375
+  ExplicitWidth = 223
+  ExplicitHeight = 375
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
@@ -25,17 +27,19 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
     object StickyLabelUseTextColor: TsStickyLabel
       Left = 0
       Top = 4
-      Width = 100
+      Width = 77
       Height = 13
+      AutoSize = False
       Caption = 'Use text color'
       AttachTo = SliderUseTextColor
       Gap = 8
     end
     object StickyLabelUseMiddleColor: TsStickyLabel
       Left = 0
-      Top = 28
-      Width = 100
+      Top = 30
+      Width = 77
       Height = 13
+      AutoSize = False
       Caption = 'Use middle color'
       AttachTo = SliderUseMiddleColor
       Gap = 8
@@ -48,7 +52,6 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       Caption = ' Selection'
       TabOrder = 5
       SkinData.SkinSection = 'GROUPBOX'
-      Checked = False
       object StickyLabelSelectionVisible: TsStickyLabel
         Left = 12
         Top = 24
@@ -148,7 +151,6 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       Caption = ' End of line'
       TabOrder = 4
       SkinData.SkinSection = 'GROUPBOX'
-      Checked = False
       object StickyEndOfLineVisible: TsStickyLabel
         Left = 10
         Top = 22
@@ -220,7 +222,7 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       end
     end
     object SliderUseTextColor: TsSlider
-      Left = 108
+      Left = 85
       Top = 0
       Width = 50
       AutoSize = True
@@ -237,8 +239,8 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       SliderOn = False
     end
     object SliderUseMiddleColor: TsSlider
-      Left = 108
-      Top = 24
+      Left = 85
+      Top = 26
       Width = 50
       AutoSize = True
       TabOrder = 1

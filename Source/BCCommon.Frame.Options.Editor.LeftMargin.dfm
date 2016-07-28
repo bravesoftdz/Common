@@ -2,6 +2,8 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
   Width = 195
   Height = 340
   Visible = False
+  ExplicitWidth = 195
+  ExplicitHeight = 340
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
@@ -137,7 +139,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Caption = ' Line numbers'
       TabOrder = 0
       SkinData.SkinSection = 'GROUPBOX'
-      Checked = False
       object StickyLabelShowInTens: TsStickyLabel
         Left = 9
         Top = 23

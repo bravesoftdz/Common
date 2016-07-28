@@ -55,7 +55,7 @@ begin
     FOptionsEditorLeftMarginFrame := TOptionsEditorLeftMarginFrame.Create(AOwner);
   Result := FOptionsEditorLeftMarginFrame;
   AlignSliders(Result.Panel);
-  AlignSliders(Result.GroupBoxLineNumbers);
+  AlignSliders(Result.GroupBoxLineNumbers, 10);
   Result.GroupBoxLineNumbers.Width := Result.SliderShowInTens.Left + Result.SliderShowInTens.Width + 13;
   Result.AutoSize := False;
   Result.Panel.AutoSize := False;

@@ -254,7 +254,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Top = 44
       Width = 443
       Height = 172
-      ActivePage = TabSheetEditor
+      ActivePage = TabSheetElements
       Align = alTop
       TabHeight = 22
       TabOrder = 2
@@ -264,10 +264,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       TabDragDrop = False
       object TabSheetEditor: TsTabSheet
         Caption = 'Editor'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ComboBoxEditorElement: TBCComboBox
           Left = 6
           Top = 22
@@ -357,10 +353,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       end
       object TabSheetElements: TsTabSheet
         Caption = 'Elements'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ComboBoxElementsName: TBCComboBox
           Left = 6
           Top = 19
@@ -539,10 +531,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       end
       object TabSheetGeneral: TsTabSheet
         Caption = 'General'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object EditVersion: TBCEdit
           Left = 6
           Top = 18
@@ -588,10 +576,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       end
       object TabSheetAuthor: TsTabSheet
         Caption = 'Author'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object EditName: TBCEdit
           Left = 6
           Top = 20
@@ -637,10 +621,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         AlignWithMargins = True
         Margins.Top = 2
         Caption = 'Use skin color'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object PanelUseSkinColorLeft: TBCPanel
           Left = 0
           Top = 0

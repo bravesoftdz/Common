@@ -946,6 +946,7 @@ begin
       Scroll.Options := Scroll.Options + [soShowHint]
     else
       Scroll.Options := Scroll.Options - [soShowHint];
+    Scroll.Shadow.Visible := True;
     { Search }
     Search.Map.Visible := FShowSearchMap;
     { Selection }

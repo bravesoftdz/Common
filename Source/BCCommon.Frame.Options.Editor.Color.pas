@@ -116,7 +116,7 @@ begin
   if not Assigned(FOptionsEditorColorFrame) then
     FOptionsEditorColorFrame := TOptionsEditorColorFrame.Create(AOwner);
   Result := FOptionsEditorColorFrame;
-  AlignSliders(Result.GroupBoxAttributes);
+  AlignSliders(Result.GroupBoxAttributes, 10);
   AlignSliders(Result.PanelUseSkinColorLeft);
   AlignSliders(Result.PanelUseSkinColorRight);
 end;
