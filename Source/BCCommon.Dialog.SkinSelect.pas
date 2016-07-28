@@ -119,7 +119,7 @@ var
   i: Integer;
 begin
   for i := ListBoxSkins.Items.Count - 1 downto 0 do
-  if Pos('(CS)', ListBoxSkins.Items[i]) <> 0 then
+  if (Pos('(CS)', ListBoxSkins.Items[i]) <> 0) or (ListBoxSkins.Items[i] = 'TV-c') then
     ListBoxSkins.Items.Delete(i);
 end;
 

@@ -7,6 +7,8 @@ inherited SkinSelectDialog: TSkinSelectDialog
   Padding.Right = 6
   Position = poMainFormCenter
   OnCreate = FormCreate
+  ExplicitWidth = 754
+  ExplicitHeight = 412
   PixelsPerInch = 96
   TextHeight = 13
   object SplitterLeft: TBCSplitter

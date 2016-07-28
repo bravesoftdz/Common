@@ -901,6 +901,10 @@ begin
       Undo.Options := Undo.Options + [uoGroupUndo]
     else
       Undo.Options := Undo.Options - [uoGroupUndo];
+    if FUndoAfterSave then
+      Undo.Options := Undo.Options + [uoUndoAfterSave]
+    else
+      Undo.Options := Undo.Options - [uoUndoAfterSave];
      if FTrimTrailingSpaces then
       Options := Options + [eoTrimTrailingSpaces]
     else
