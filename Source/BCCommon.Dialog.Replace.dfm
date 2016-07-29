@@ -24,7 +24,6 @@ inherited ReplaceDialog: TReplaceDialog
     TabOrder = 4
     TabStop = True
     SkinData.SkinSection = 'GROUPBOX'
-    Checked = False
     object StickyLabelCaseSensitive: TsStickyLabel
       Left = 12
       Top = 26
@@ -355,7 +354,6 @@ inherited ReplaceDialog: TReplaceDialog
     TabOrder = 5
     TabStop = True
     SkinData.SkinSection = 'GROUPBOX'
-    Checked = False
     object RadioButtonWholeFile: TBCRadioButton
       Left = 12
       Top = 20

@@ -3,9 +3,8 @@ unit BCCommon.Dialog.Replace;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCCommon.Dialog.Base,
-  BCControl.ComboBox, Vcl.StdCtrls, BCControl.Panel,
-  BCControl.RadioButton, BCEditor.Editor, BCEditor.Types, BCControl.Button, sComboBox,
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCCommon.Dialog.Base, BCControl.ComboBox,
+  Vcl.StdCtrls, BCControl.Panel, BCControl.RadioButton, BCEditor.Editor, BCEditor.Types, BCControl.Button, sComboBox,
   sRadioButton, BCControl.GroupBox, sLabel, acSlider, sButton, Vcl.ExtCtrls, sPanel, sGroupBox;
 
 type
@@ -116,7 +115,7 @@ begin
   ReadIniFile;
   if ComboBoxSearchFor.CanFocus then
     ComboBoxSearchFor.SetFocus;
-  AlignSliders(GroupBoxOptions);
+  AlignSliders(GroupBoxOptions, 12);
 end;
 
 procedure TReplaceDialog.SetButtons;
