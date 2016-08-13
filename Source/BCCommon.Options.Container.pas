@@ -73,7 +73,6 @@ type
     FRightMarginShowMovingHint: Boolean;
     FRightMarginPosition: Integer;
     { Scroll }
-    FScrollAutosizeMaxWidth: Boolean;
     FScrollHalfPage: Boolean;
     FScrollHintFollows: Boolean;
     FScrollPastEndOfFile: Boolean;
@@ -276,8 +275,6 @@ type
     [IniValue('Options', 'RightMarginPosition', '80')]
     property RightMarginPosition: Integer read FRightMarginPosition write FRightMarginPosition;
     { Scroll }
-    [IniValue('Options', 'ScrollAutosizeMaxWidth', 'True')]
-    property ScrollAutosizeMaxWidth: Boolean read FScrollAutosizeMaxWidth write FScrollAutosizeMaxWidth;
     [IniValue('Options', 'ScrollHalfPage', 'False')]
     property ScrollHalfPage: Boolean read FScrollHalfPage write FScrollHalfPage;
     [IniValue('Options', 'ScrollHintFollows', 'False')]
@@ -925,10 +922,6 @@ begin
       RightMargin.Options := RightMargin.Options - [rmoShowMovingHint];
     RightMargin.Position := FRightMarginPosition;
     { Scroll }
-    if FScrollAutosizeMaxWidth then
-      Scroll.Options := Scroll.Options + [soAutosizeMaxWidth]
-    else
-      Scroll.Options := Scroll.Options - [soAutosizeMaxWidth];
     if FScrollHalfPage then
       Scroll.Options := Scroll.Options + [soHalfPage]
     else
@@ -946,9 +939,9 @@ begin
     else
       Scroll.Options := Scroll.Options - [soPastEndOfLine];
     if FScrollShowHint then
-      Scroll.Options := Scroll.Options + [soShowHint]
+      Scroll.Options := Scroll.Options + [soShowVerticalScrollHint]
     else
-      Scroll.Options := Scroll.Options - [soShowHint];
+      Scroll.Options := Scroll.Options - [soShowVerticalScrollHint];
     Scroll.Shadow.Visible := FScrollShowShadow;
     { Search }
     Search.Map.Visible := FShowSearchMap;

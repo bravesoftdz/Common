@@ -10,8 +10,6 @@ uses
 type
   TOptionsEditorScrollFrame = class(TBCOptionsBaseFrame)
     Panel: TBCPanel;
-    StickyLabelAutosizeMaxWidth: TsStickyLabel;
-    SliderAutosizeMaxWidth: TsSlider;
     StickyLabelHalfPage: TsStickyLabel;
     SliderHalfPage: TsSlider;
     StickyLabelHintFollows: TsStickyLabel;
@@ -59,7 +57,6 @@ end;
 
 procedure TOptionsEditorScrollFrame.PutData;
 begin
-  OptionsContainer.ScrollAutosizeMaxWidth := SliderAutosizeMaxWidth.SliderOn;
   OptionsContainer.ScrollHalfPage := SliderHalfPage.SliderOn;
   OptionsContainer.ScrollHintFollows := SliderHintFollows.SliderOn;
   OptionsContainer.ScrollPastEndOfFile := SliderPastEndOfFile.SliderOn;
@@ -70,7 +67,6 @@ end;
 
 procedure TOptionsEditorScrollFrame.GetData;
 begin
-  SliderAutosizeMaxWidth.SliderOn := OptionsContainer.ScrollAutosizeMaxWidth;
   SliderHalfPage.SliderOn := OptionsContainer.ScrollHalfPage;
   SliderHintFollows.SliderOn := OptionsContainer.ScrollHintFollows;
   SliderPastEndOfFile.SliderOn := OptionsContainer.ScrollPastEndOfFile;
