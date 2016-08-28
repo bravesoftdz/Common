@@ -18,18 +18,10 @@ type
     SliderVisible: TsSlider;
     StickyLabelALTSetsColumnMode: TsStickyLabel;
     SliderALTSetsColumnMode: TsSlider;
-    StickyLabelToEndOfLine: TsStickyLabel;
-    SliderToEndOfLine: TsSlider;
-    SliderFromEndOfLine: TsSlider;
-    StickyLabelFromEndOfLine: TsStickyLabel;
-    SliderToEndOfLastLine: TsSlider;
-    StickyLabelToEndOfLastLine: TsStickyLabel;
     SliderTermsCaseSensitive: TsSlider;
     StickyLabelTermsCaseSensitive: TsStickyLabel;
     SliderExpandRealNumbers: TsSlider;
     StickyLabelExpandRealNumbers: TsStickyLabel;
-    procedure SliderToEndOfLineSliderChange(Sender: TObject);
-    procedure SliderToEndOfLastLineSliderChange(Sender: TObject);
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -70,24 +62,7 @@ begin
   OptionsContainer.SelectionExpandRealNumbers := SliderExpandRealNumbers.SliderOn;
   OptionsContainer.HighlightSimilarTerms := SliderHighlightSimilarTerms.SliderOn;
   OptionsContainer.SelectionTermsCaseSensitive := SliderTermsCaseSensitive.SliderOn;
-  OptionsContainer.SelectionFromEndOfLine := SliderFromEndOfLine.SliderOn;
-  OptionsContainer.SelectionToEndOfLine := SliderToEndOfLine.SliderOn;
-  OptionsContainer.SelectionToEndOfLastLine := SliderToEndOfLastLine.SliderOn;
   OptionsContainer.TripleClickRowSelect := SliderTripleClickRowSelect.SliderOn;
-end;
-
-procedure TOptionsEditorSelectionFrame.SliderToEndOfLastLineSliderChange(Sender: TObject);
-begin
-  inherited;
-  if SliderToEndOfLastLine.SliderOn then
-    SliderToEndOfLine.SliderOn := False;
-end;
-
-procedure TOptionsEditorSelectionFrame.SliderToEndOfLineSliderChange(Sender: TObject);
-begin
-  inherited;
-  if SliderToEndOfLine.SliderOn then
-    SliderToEndOfLastLine.SliderOn := False;
 end;
 
 procedure TOptionsEditorSelectionFrame.GetData;
@@ -97,9 +72,6 @@ begin
   SliderExpandRealNumbers.SliderOn := OptionsContainer.SelectionExpandRealNumbers;
   SliderHighlightSimilarTerms.SliderOn := OptionsContainer.HighlightSimilarTerms;
   SliderTermsCaseSensitive.SliderOn := OptionsContainer.SelectionTermsCaseSensitive;
-  SliderFromEndOfLine.SliderOn := OptionsContainer.SelectionFromEndOfLine;
-  SliderToEndOfLine.SliderOn := OptionsContainer.SelectionToEndOfLine;
-  SliderToEndOfLastLine.SliderOn := OptionsContainer.SelectionToEndOfLastLine;
   SliderTripleClickRowSelect.SliderOn := OptionsContainer.TripleClickRowSelect;
 end;
 

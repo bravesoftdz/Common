@@ -91,9 +91,6 @@ type
     FSelectionExpandRealNumbers: Boolean;
     FHighlightSimilarTerms: Boolean;
     FSelectionTermsCaseSensitive: Boolean;
-    FSelectionFromEndOfLine: Boolean;
-    FSelectionToEndOfLine: Boolean;
-    FSelectionToEndOfLastLine: Boolean;
     FTripleClickRowSelect: Boolean;
     { Special chars }
     FSpecialCharsUseTextColor: Boolean;
@@ -293,7 +290,7 @@ type
     [IniValue('Options', 'DocumentSpecificSearch', 'False')]
     property DocumentSpecificSearch: Boolean read FDocumentSpecificSearch write FDocumentSpecificSearch;
     property DocumentSpecificSearchText: string read FDocumentSpecificSearchText write FDocumentSpecificSearchText;
-    [IniValue('Options', 'ShowSearchMap', 'True')]
+    [IniValue('Options', 'ShowSearchMap', 'False')]
     property ShowSearchMap: Boolean read FShowSearchMap write FShowSearchMap;
     [IniValue('Options', 'SearchMapAlign', '1')]
     property SearchMapAlign: Integer read FSearchMapAlign write FSearchMapAlign;
@@ -308,12 +305,6 @@ type
     property HighlightSimilarTerms: Boolean read FHighlightSimilarTerms write FHighlightSimilarTerms;
     [IniValue('Options', 'SelectionTermsCaseSensitive', 'True')]
     property SelectionTermsCaseSensitive: Boolean read FSelectionTermsCaseSensitive write FSelectionTermsCaseSensitive;
-    [IniValue('Options', 'SelectionFromEndOfLine', 'False')]
-    property SelectionFromEndOfLine: Boolean read FSelectionFromEndOfLine write FSelectionFromEndOfLine;
-    [IniValue('Options', 'SelectionToEndOfLine', 'False')]
-    property SelectionToEndOfLine: Boolean read FSelectionToEndOfLine write FSelectionToEndOfLine;
-    [IniValue('Options', 'SelectionToEndOfLastLine', 'False')]
-    property SelectionToEndOfLastLine: Boolean read FSelectionToEndOfLastLine write FSelectionToEndOfLastLine;
     [IniValue('Options', 'TripleClickRowSelect', 'False')]
     property TripleClickRowSelect: Boolean read FTripleClickRowSelect write FTripleClickRowSelect;
     { Special chars }
@@ -951,18 +942,6 @@ begin
       Selection.Options := Selection.Options + [soALTSetsColumnMode]
     else
       Selection.Options := Selection.Options - [soALTSetsColumnMode];
-    if FSelectionFromEndOfLine then
-      Selection.Options := Selection.Options + [soFromEndOfLine]
-    else
-      Selection.Options := Selection.Options - [soFromEndOfLine];
-    if FSelectionToEndOfLine then
-      Selection.Options := Selection.Options + [soToEndOfLine]
-    else
-      Selection.Options := Selection.Options - [soToEndOfLine];
-    if FSelectionToEndOfLastLine then
-      Selection.Options := Selection.Options + [soToEndOfLastLine]
-    else
-      Selection.Options := Selection.Options - [soToEndOfLastLine];
     if FSelectionExpandRealNumbers then
       Selection.Options := Selection.Options + [soExpandRealNumbers]
     else
