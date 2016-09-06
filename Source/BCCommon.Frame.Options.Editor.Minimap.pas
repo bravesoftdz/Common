@@ -27,6 +27,8 @@ type
     StickyLabelInvertBlending: TsStickyLabel;
     SliderShowShadow: TsSlider;
     StickyLabelShowShadow: TsStickyLabel;
+    StickyLabelShowSearchResults: TsStickyLabel;
+    SliderShowSearchResults: TsSlider;
   protected
     procedure GetData; override;
     procedure Init; override;
@@ -78,6 +80,7 @@ begin
     MinimapShowBookmarks := SliderShowBookmarks.SliderOn;
     MinimapShowIndentGuides := SliderShowIndentGuides.SliderOn;
     MinimapShowBorder  := SliderShowBorder.SliderOn;
+    MinimapShowSearchResults  := SliderShowSearchResults.SliderOn;
     MinimapShowShadow  := SliderShowShadow.SliderOn;
     MinimapUseBlending := SliderUseBlending.SliderOn;
     MinimapInvertBlending := SliderInvertBlending.SliderOn;
@@ -94,6 +97,7 @@ begin
     SliderShowBookmarks.SliderOn := MinimapShowBookmarks;
     SliderShowIndentGuides.SliderOn := MinimapShowIndentGuides;
     SliderShowBorder.SliderOn := MinimapShowBorder;
+    SliderShowSearchResults.SliderOn := MinimapShowSearchResults;
     SliderShowShadow.SliderOn := MinimapShowShadow;
     SliderUseBlending.SliderOn := MinimapUseBlending;
     SliderInvertBlending.SliderOn := MinimapInvertBlending;

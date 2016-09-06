@@ -53,6 +53,7 @@ type
     FMinimapShowBookmarks: Boolean;
     FMinimapShowIndentGuides: Boolean;
     FMinimapShowBorder: Boolean;
+    FMinimapShowSearchResults: Boolean;
     FMinimapShowShadow: Boolean;
     FMinimapUseBlending: Boolean;
     FMinimapInvertBlending: Boolean;
@@ -235,6 +236,8 @@ type
     property MinimapShowIndentGuides: Boolean read FMinimapShowIndentGuides write FMinimapShowIndentGuides;
     [IniValue('Options', 'MinimapShowBorder', 'False')]
     property MinimapShowBorder: Boolean read FMinimapShowBorder write FMinimapShowBorder;
+    [IniValue('Options', 'MinimapShowSearchResults', 'False')]
+    property MinimapShowSearchResults: Boolean read FMinimapShowSearchResults write FMinimapShowSearchResults;
     [IniValue('Options', 'MinimapShowShadow', 'False')]
     property MinimapShowShadow: Boolean read FMinimapShowShadow write FMinimapShowShadow;
     [IniValue('Options', 'MinimapUseBlending', 'False')]
@@ -860,6 +863,10 @@ begin
       Minimap.Options := Minimap.Options + [moShowIndentGuides]
     else
       Minimap.Options := Minimap.Options - [moShowIndentGuides];
+    if FMinimapShowSearchResults then
+      Minimap.Options := Minimap.Options + [moShowSearchResults]
+    else
+      Minimap.Options := Minimap.Options - [moShowSearchResults];
     if FMinimapShowBorder then
       Minimap.Indicator.Options := Minimap.Indicator.Options + [ioShowBorder]
     else
