@@ -2,8 +2,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
   Width = 451
   Height = 305
   Align = alClient
-  ExplicitWidth = 451
-  ExplicitHeight = 305
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
@@ -246,8 +244,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00}
       WordWrap.Indicator.MaskColor = clFuchsia
-      WordWrap.Position = 80
-      WordWrap.Style = wwsClientWidth
+      WordWrap.Style = wwsPageWidth
     end
     object PageControl: TBCPageControl
       Left = 0
