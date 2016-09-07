@@ -78,7 +78,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Language.Strings, BCCommon.Utils, System.IniFiles,
+  BCCommon.Language.Strings, BCCommon.Utils, System.IniFiles, System.Math,
   {$WARNINGS OFF}
   Vcl.FileCtrl, { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}
@@ -289,44 +289,7 @@ end;
 procedure TFindInFilesDialog.ReadIniFile;
 var
   LItems: TStrings;
-  LFileMask: string;
 begin
-  { Old - remove }
-  LItems := TStringList.Create;
-  with TIniFile.Create(GetIniFilename) do
-  try
-    if SectionExists('TextToFindItems') then
-    begin
-      SliderCaseSensitive.SliderOn := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
-      SliderIncludeSubDirectories.SliderOn := ReadBool('FindInFilesOptions', 'IncludeSubDirectories', True);
-
-      ReadSectionValues('TextToFindItems', LItems);
-      InsertItemsToComboBox(LItems, ComboBoxTextToFind);
-      ReadSectionValues('FindInFilesFileMasks', LItems);
-      if LItems.Count = 0 then
-        LItems.Add('*.*');
-      InsertItemsToComboBox(LItems, ComboBoxFileMask);
-      ReadSectionValues('FindInFilesDirectories', LItems);
-      InsertItemsToComboBox(LItems, ComboBoxDirectory);
-
-      ComboBoxTextToFind.ItemIndex := ComboBoxTextToFind.Items.IndexOf(ReadString('FindInFilesOptions', 'TextToFind', ''));
-      LFileMask := ReadString('FindInFilesOptions', 'FileMask', '*.*');
-      if LFileMask = '' then
-        LFileMask := '*.*';
-      ComboBoxFileMask.ItemIndex := ComboBoxFileMask.Items.IndexOf(LFileMask);
-      ComboBoxDirectory.ItemIndex := ComboBoxDirectory.Items.IndexOf(ReadString('FindInFilesOptions', 'Directory', ''));
-
-      EraseSection('TextToFindItems');
-      EraseSection('FindInFilesFileMasks');
-      EraseSection('FindInFilesDirectories');
-      EraseSection('FindInFilesOptions');
-      Exit;
-    end;
-  finally
-    LItems.Free;
-    Free;
-  end;
-  { New }
   LItems := TStringList.Create;
   with TMemIniFile.Create(GetUniIniFilename, TEncoding.Unicode) do
   try
@@ -335,18 +298,17 @@ begin
 
     ReadSectionValues('TextToFindItems', LItems);
     InsertItemsToComboBox(LItems, ComboBoxTextToFind);
+
     ReadSectionValues('FindInFilesFileMasks', LItems);
-    if LItems.Count = 0 then
-      LItems.Add('*.*');
     InsertItemsToComboBox(LItems, ComboBoxFileMask);
+    if ComboBoxFileMask.Items.IndexOf('*.*') = -1 then
+      ComboBoxFileMask.Items.Insert(0, '*.*');
+
     ReadSectionValues('FindInFilesDirectories', LItems);
     InsertItemsToComboBox(LItems, ComboBoxDirectory);
 
     ComboBoxTextToFind.ItemIndex := ComboBoxTextToFind.Items.IndexOf(ReadString('FindInFilesOptions', 'TextToFind', ''));
-    LFileMask := ReadString('FindInFilesOptions', 'FileMask', '*.*');
-    if LFileMask = '' then
-      LFileMask := '*.*';
-    ComboBoxFileMask.ItemIndex := ComboBoxFileMask.Items.IndexOf(LFileMask);
+    ComboBoxFileMask.ItemIndex := Max(ComboBoxFileMask.Items.IndexOf(ReadString('FindInFilesOptions', 'FileMask', '*.*')), 0);
     ComboBoxDirectory.ItemIndex := ComboBoxDirectory.Items.IndexOf(ReadString('FindInFilesOptions', 'Directory', ''));
   finally
     LItems.Free;
