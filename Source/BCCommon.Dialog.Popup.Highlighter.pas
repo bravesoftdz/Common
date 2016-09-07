@@ -147,7 +147,7 @@ begin
   if Assigned(Data) then
     if Assigned(FSelectHighlighter) then
       FSelectHighlighter(Data.Name);
-  Close;
+  Hide;
 end;
 
 procedure TPopupHighlighterDialog.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
@@ -196,9 +196,6 @@ begin
     SendMessage(Self.PopupParent.Handle, WM_NCACTIVATE, WPARAM(True), -1);
 
   inherited;
-
-  if AMessage.Active = WA_INACTIVE then
-    Release;
 end;
 
 procedure TPopupHighlighterDialog.ActionClearExecute(Sender: TObject);
