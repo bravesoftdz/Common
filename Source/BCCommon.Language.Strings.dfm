@@ -486,6 +486,11 @@ object LanguageDataModule: TLanguageDataModule
           'Top Line: %d')
       end
       item
+        Name = 'Triangle'
+        Strings.Strings = (
+          'Triangle')
+      end
+      item
         Name = 'VersionInfoNotFound'
         Strings.Strings = (
           'Version info not found.')

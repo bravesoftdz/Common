@@ -1,12 +1,12 @@
 inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
   Width = 182
-  Height = 271
+  Height = 293
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 178
-    Height = 271
+    Height = 293
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -129,7 +129,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
     end
     object StickyLabelUncollapseByHintClick: TsStickyLabel
       Left = 0
-      Top = 165
+      Top = 188
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -142,9 +142,24 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       AttachTo = SliderUncollapseByHintClick
       Gap = 8
     end
+    object StickyLabelShowTreeLine: TsStickyLabel
+      Left = 0
+      Top = 165
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Show tree line'
+      ParentColor = False
+      AttachTo = SliderShowTreeLine
+      Gap = 8
+    end
     object ComboBoxMarkStyle: TBCComboBox
       Left = 0
-      Top = 205
+      Top = 227
       Width = 133
       Height = 22
       Margins.Left = 4
@@ -278,10 +293,10 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
     end
     object SliderUncollapseByHintClick: TsSlider
       Left = 128
-      Top = 161
+      Top = 184
       Width = 50
       AutoSize = True
-      TabOrder = 8
+      TabOrder = 9
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -294,7 +309,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
     end
     object EditHintRowCount: TBCEdit
       Left = 0
-      Top = 250
+      Top = 272
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -307,7 +322,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 9
+      TabOrder = 10
       Text = '40'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -322,9 +337,25 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       NumbersAllowMinus = False
       NumbersAllowPlus = False
     end
+    object SliderShowTreeLine: TsSlider
+      Left = 128
+      Top = 161
+      Width = 50
+      AutoSize = True
+      TabOrder = 8
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
   end
   inherited FrameAdapter: TsFrameAdapter
-    Left = 96
-    Top = 116
+    Left = 118
+    Top = 246
   end
 end

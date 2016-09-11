@@ -29,6 +29,8 @@ type
     StickyLabelUncollapseByHintClick: TsStickyLabel;
     SliderUncollapseByHintClick: TsSlider;
     EditHintRowCount: TBCEdit;
+    StickyLabelShowTreeLine: TsStickyLabel;
+    SliderShowTreeLine: TsSlider;
   protected
     procedure Init; override;
     procedure GetData; override;
@@ -69,8 +71,9 @@ begin
   with ComboBoxMarkStyle.Items do
   begin
     Clear;
-    Add(LanguageDatamodule.GetConstant('Square'));
     Add(LanguageDatamodule.GetConstant('Circle'));
+    Add(LanguageDatamodule.GetConstant('Square'));
+    Add(LanguageDatamodule.GetConstant('Triangle'));
   end;
 end;
 
@@ -83,6 +86,7 @@ begin
   OptionsContainer.ShowCollapsedCodeHint := SliderShowCollapsedCodeHint.SliderOn;
   OptionsContainer.ShowCollapsedLine := SliderShowCollapsedLine.SliderOn;
   OptionsContainer.ShowIndentGuides := SliderShowIndentGuides.SliderOn;
+  OptionsContainer.ShowTreeLine := SliderShowTreeLine.SliderOn;
   OptionsContainer.UncollapseByHintClick := SliderUncollapseByHintClick.SliderOn;
   OptionsContainer.CodeFoldingMarkStyle := ComboBoxMarkStyle.ItemIndex;
   OptionsContainer.CodeFoldingHintRowCount := StrToIntDef(EditHintRowCount.Text, 40);
@@ -97,6 +101,7 @@ begin
   SliderShowCollapsedCodeHint.SliderOn := OptionsContainer.ShowCollapsedCodeHint;
   SliderShowCollapsedLine.SliderOn := OptionsContainer.ShowCollapsedLine;
   SliderShowIndentGuides.SliderOn := OptionsContainer.ShowIndentGuides;
+  SliderShowTreeLine.SliderOn := OptionsContainer.ShowTreeLine;
   SliderUncollapseByHintClick.SliderOn := OptionsContainer.UncollapseByHintClick;
   ComboBoxMarkStyle.ItemIndex := OptionsContainer.CodeFoldingMarkStyle;
   EditHintRowCount.Text := IntToStr(OptionsContainer.CodeFoldingHintRowCount);

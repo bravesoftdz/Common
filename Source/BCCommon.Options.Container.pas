@@ -24,6 +24,7 @@ type
     FShowCollapsedCodeHint: Boolean;
     FShowCollapsedLine: Boolean;
     FShowIndentGuides: Boolean;
+    FShowTreeLine: Boolean;
     FUncollapseByHintClick: Boolean;
     FCodeFoldingMarkStyle: Integer;
     FCodeFoldingHintRowCount: Integer;
@@ -182,6 +183,8 @@ type
     property ShowCollapsedLine: Boolean read FShowCollapsedLine write FShowCollapsedLine;
     [IniValue('Options', 'ShowIndentGuides', 'True')]
     property ShowIndentGuides: Boolean read FShowIndentGuides write FShowIndentGuides;
+    [IniValue('Options', 'ShowTreeLine', 'True')]
+    property ShowTreeLine: Boolean read FShowTreeLine write FShowTreeLine;
     [IniValue('Options', 'UncollapseByHintClick', 'True')]
     property UncollapseByHintClick: Boolean read FUncollapseByHintClick write FUncollapseByHintClick;
     [IniValue('Options', 'CodeFoldingMarkStyle', '0')]
@@ -801,6 +804,10 @@ begin
         CodeFolding.Options := CodeFolding.Options + [cfoShowIndentGuides]
       else
         CodeFolding.Options := CodeFolding.Options - [cfoShowIndentGuides];
+      if FShowTreeLine then
+        CodeFolding.Options := CodeFolding.Options + [cfoShowTreeLine]
+      else
+        CodeFolding.Options := CodeFolding.Options - [cfoShowTreeLine];
       if FUncollapseByHintClick then
         CodeFolding.Options := CodeFolding.Options + [cfoUncollapseByHintClick]
       else
