@@ -61,6 +61,7 @@ var
 begin
   LMaxWidth := 0;
 
+  VirtualDrawTree.Clear;
   for i := 0 to AHighlighterColors.Count - 1 do
   begin
     LNode := VirtualDrawTree.AddChild(nil);

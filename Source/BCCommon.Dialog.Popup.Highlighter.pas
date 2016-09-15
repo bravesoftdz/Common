@@ -77,6 +77,7 @@ var
 begin
   LMaxWidth := 0;
   LSelectedNode := nil;
+  VirtualDrawTree.Clear;
   for i := 0 to AHighlighters.Count - 1 do
   begin
     LNode := VirtualDrawTree.AddChild(nil);
