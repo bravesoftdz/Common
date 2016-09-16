@@ -109,6 +109,9 @@ contains
   BCCommon.SQL.Tokenizer in '..\Source\BCCommon.SQL.Tokenizer.pas',
   BCCommon.StringUtils in '..\Source\BCCommon.StringUtils.pas',
   BCCommon.Utils in '..\Source\BCCommon.Utils.pas',
-  BCCommon.WindowsInfo in '..\Source\BCCommon.WindowsInfo.pas';
+  BCCommon.WindowsInfo in '..\Source\BCCommon.WindowsInfo.pas',
+  BCCommon.Dialog.Popup.SearchEngine in '..\Source\BCCommon.Dialog.Popup.SearchEngine.pas' {BCPopupSearchEngineDialog},
+  BCCommon.Encoding in '..\Source\BCCommon.Encoding.pas',
+  BCCommon.Dialog.Popup.Encoding in '..\Source\BCCommon.Dialog.Popup.Encoding.pas' {PopupEncodingDialog};
 
 end.
