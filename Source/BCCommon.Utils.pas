@@ -8,6 +8,7 @@ uses
 function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean;
 function GetOSInfo: string;
 function InsertTextToCombo(ComboBox: TBCComboBox): Integer;
+function ScaleSize(const ASize: Integer): Integer;
 function SetFormInsideWorkArea(Left, Width: Integer): Integer;
 function PostInc(var i: Integer): Integer; inline;
 procedure InsertItemsToComboBox(AItems: TStrings; AComboBox: TBCComboBox);
@@ -66,6 +67,11 @@ begin
         Result := ComboBox.Items.Count - 1;
     end;
   end;
+end;
+
+function ScaleSize(const ASize: Integer): Integer;
+begin
+  Result := Round(ASize * (Screen.PixelsPerInch / 96));
 end;
 
 function SetFormInsideWorkArea(Left, Width: Integer): Integer;

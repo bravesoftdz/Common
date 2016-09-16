@@ -8,7 +8,7 @@ uses
   System.Actions, Vcl.ActnList;
 
 type
-  TSelectEncodingEvent = procedure(AId: Integer) of object;
+  TSelectEncodingEvent = procedure(const AIndex: Integer) of object;
 
   TPopupEncodingDialog = class(TForm)
     VirtualDrawTree: TVirtualDrawTree;
@@ -33,12 +33,12 @@ implementation
 {$R *.dfm}
 
 uses
-  System.Types, BCControl.Utils, BCCommon.Encoding, sGraphUtils, sVclUtils, System.Math, acPopupController;
+  System.Types, BCControl.Utils, BCCommon.Utils, BCCommon.Encoding, sGraphUtils, sVclUtils, System.Math, acPopupController;
 
 type
   PSearchRec = ^TSearchRec;
   TSearchRec = packed record
-    Id: Integer;
+    Index: Integer;
     Name: string;
   end;
 
@@ -55,22 +55,23 @@ end;
 procedure TPopupEncodingDialog.Execute(const ASelectedEncoding: string);
 var
   i: Integer;
-  Node: PVirtualNode;
-  NodeData: PSearchRec;
   LWidth, LMaxWidth: Integer;
 
-  procedure AddEncoding(AId: Integer; AName: string);
+  procedure AddEncoding(const AIndex: Integer; const AName: string);
+  var
+    LNode: PVirtualNode;
+    LNodeData: PSearchRec;
   begin
-    Node := VirtualDrawTree.AddChild(nil);
-    NodeData := VirtualDrawTree.GetNodeData(Node);
+    LNode := VirtualDrawTree.AddChild(nil);
+    LNodeData := VirtualDrawTree.GetNodeData(LNode);
 
     LWidth := VirtualDrawTree.Canvas.TextWidth(AName);
     if LWidth > LMaxWidth then
       LMaxWidth := LWidth;
 
-    NodeData.Id := AId;
-    NodeData.Name := AName;
-    VirtualDrawTree.Selected[Node] := ASelectedEncoding = AName;
+    LNodeData.Index := AIndex;
+    LNodeData.Name := AName;
+    VirtualDrawTree.Selected[LNode] := ASelectedEncoding = AName;
   end;
 
 begin
@@ -82,37 +83,37 @@ begin
 
   VirtualDrawTree.Invalidate;
 
-  Width := LMaxWidth + 80;
-  Height := Min(Integer(VirtualDrawTree.DefaultNodeHeight) * 7 + VirtualDrawTree.BorderWidth * 2 + 2, TForm(Self.PopupParent).Height);
+  Width := LMaxWidth + ScaleSize(80);
+  Height := Min(Integer(VirtualDrawTree.DefaultNodeHeight) * 7 + VirtualDrawTree.BorderWidth * 2 + ScaleSize(2), TForm(Self.PopupParent).Height);
 
-  ShowPopupForm(Self, Point(Left, Top + 2));
+  ShowPopupForm(Self, Point(Left, Top + ScaleSize(2)));
 end;
 
 procedure TPopupEncodingDialog.VirtualDrawTreeDblClick(Sender: TObject);
 var
-  Node: PVirtualNode;
-  Data: PSearchRec;
+  LNode: PVirtualNode;
+  LData: PSearchRec;
 begin
-  Node := VirtualDrawTree.GetFirstSelected;
-  Data := VirtualDrawTree.GetNodeData(Node);
-  if Assigned(Data) then
+  LNode := VirtualDrawTree.GetFirstSelected;
+  LData := VirtualDrawTree.GetNodeData(LNode);
+  if Assigned(LData) then
     if Assigned(FSelectEncoding) then
-      FSelectEncoding(Data.Id);
+      FSelectEncoding(LData.Index);
   Hide;
 end;
 
 procedure TPopupEncodingDialog.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
 var
-  Data: PSearchRec;
-  S: string;
-  R: TRect;
-  Format: Cardinal;
+  LData: PSearchRec;
+  LName: string;
+  LRect: TRect;
+  LFormat: Cardinal;
 begin
   with Sender as TVirtualDrawTree, PaintInfo do
   begin
-    Data := Sender.GetNodeData(Node);
+    LData := Sender.GetNodeData(Node);
 
-    if not Assigned(Data) then
+    if not Assigned(LData) then
       Exit;
 
     Canvas.Font.Color := SkinProvider.SkinData.SkinManager.GetActiveEditFontColor;
@@ -125,18 +126,17 @@ begin
 
     SetBKMode(Canvas.Handle, TRANSPARENT);
 
-    R := ContentRect;
-    InflateRect(R, -TextMargin, 0);
-    Dec(R.Right);
-    Dec(R.Bottom);
+    LRect := ContentRect;
+    InflateRect(LRect, -TextMargin, 0);
+    Dec(LRect.Right);
+    Dec(LRect.Bottom);
 
-    S := Data.Name;
+    LName := LData.Name;
 
-    if Length(S) > 0 then
+    if LName.Length > 0 then
     begin
-      Format := DT_TOP or DT_LEFT or DT_VCENTER or DT_SINGLELINE;
-
-      DrawText(Canvas.Handle, S, Length(S), R, Format);
+      LFormat := DT_TOP or DT_LEFT or DT_VCENTER or DT_SINGLELINE;
+      DrawText(Canvas.Handle, LName, LName.Length, LRect, LFormat);
     end;
   end;
 end;
@@ -151,25 +151,26 @@ end;
 
 procedure TPopupEncodingDialog.VirtualDrawTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
 var
-  Data: PSearchRec;
+  LData: PSearchRec;
 begin
-  Data := Sender.GetNodeData(Node);
-  Finalize(Data^);
+  LData := Sender.GetNodeData(Node);
+  Finalize(LData^);
+
   inherited;
 end;
 
 procedure TPopupEncodingDialog.VirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas;
   Node: PVirtualNode; Column: TColumnIndex; var NodeWidth: Integer);
 var
-  Data: PSearchRec;
-  AMargin: Integer;
+  LData: PSearchRec;
+  LMargin: Integer;
 begin
   with Sender as TVirtualDrawTree do
   begin
-    AMargin := TextMargin;
-    Data := GetNodeData(Node);
-    if Assigned(Data) then
-      NodeWidth := Canvas.TextWidth(Data.Name) + 2 * AMargin;
+    LMargin := TextMargin;
+    LData := GetNodeData(Node);
+    if Assigned(LData) then
+      NodeWidth := Canvas.TextWidth(LData.Name) + 2 * LMargin;
   end;
 end;
 

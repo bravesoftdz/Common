@@ -361,6 +361,11 @@ object LanguageDataModule: TLanguageDataModule
           'Modified')
       end
       item
+        Name = 'Normal'
+        Strings.Strings = (
+          'Normal')
+      end
+      item
         Name = 'OccurencesFound'
         Strings.Strings = (
           '%d occurence(s) have been found in %s')
@@ -409,6 +414,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'PrintedBy'
         Strings.Strings = (
           'Printed by %s')
+      end
+      item
+        Name = 'RegularExpression'
+        Strings.Strings = (
+          'Regular expression')
       end
       item
         Name = 'Rename'
@@ -499,6 +509,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'VerticalLine'
         Strings.Strings = (
           'Vertical line')
+      end
+      item
+        Name = 'Wildcard'
+        Strings.Strings = (
+          'Wildcard')
       end>
     Left = 88
     Top = 254
