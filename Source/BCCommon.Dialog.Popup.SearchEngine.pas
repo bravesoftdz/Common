@@ -17,6 +17,8 @@ type
     procedure VirtualDrawTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure VirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas; Node: PVirtualNode;
       Column: TColumnIndex; var NodeWidth: Integer);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     FSelectSearchEngine: TSelectSearchEngineEvent;
@@ -41,6 +43,16 @@ type
     Name: string;
   end;
 
+procedure TBCPopupSearchEngineDialog.FormCreate(Sender: TObject);
+begin
+  VirtualDrawTree.NodeDataSize := SizeOf(TSearchRec);
+end;
+
+procedure TBCPopupSearchEngineDialog.FormShow(Sender: TObject);
+begin
+  VirtualDrawTree.SetFocus;
+end;
+
 procedure TBCPopupSearchEngineDialog.VirtualDrawTreeDblClick(Sender: TObject);
 var
   LNode: PVirtualNode;
@@ -59,7 +71,6 @@ var
   LData: PSearchRec;
   LName: string;
   LRect: TRect;
-  LFormat: Cardinal;
 begin
   with Sender as TVirtualDrawTree, PaintInfo do
   begin
@@ -86,10 +97,7 @@ begin
     LName := LData.Name;
 
     if Length(LName) > 0 then
-    begin
-      LFormat := DT_TOP or DT_LEFT or DT_VCENTER or DT_SINGLELINE;
-      DrawText(Canvas.Handle, LName, Length(LName), LRect, LFormat);
-    end;
+      DrawText(Canvas.Handle, LName, Length(LName), LRect, DT_TOP or DT_LEFT or DT_VCENTER or DT_SINGLELINE);
   end;
 end;
 

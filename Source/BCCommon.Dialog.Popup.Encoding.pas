@@ -107,7 +107,6 @@ var
   LData: PSearchRec;
   LName: string;
   LRect: TRect;
-  LFormat: Cardinal;
 begin
   with Sender as TVirtualDrawTree, PaintInfo do
   begin
@@ -134,10 +133,7 @@ begin
     LName := LData.Name;
 
     if Length(LName) > 0 then
-    begin
-      LFormat := DT_TOP or DT_LEFT or DT_VCENTER or DT_SINGLELINE;
-      DrawText(Canvas.Handle, LName, Length(LName), LRect, LFormat);
-    end;
+      DrawText(Canvas.Handle, LName, Length(LName), LRect, DT_TOP or DT_LEFT or DT_VCENTER or DT_SINGLELINE);
   end;
 end;
 
