@@ -133,10 +133,10 @@ begin
 
     LName := LData.Name;
 
-    if LName.Length > 0 then
+    if Length(LName) > 0 then
     begin
       LFormat := DT_TOP or DT_LEFT or DT_VCENTER or DT_SINGLELINE;
-      DrawText(Canvas.Handle, LName, LName.Length, LRect, LFormat);
+      DrawText(Canvas.Handle, LName, Length(LName), LRect, LFormat);
     end;
   end;
 end;
