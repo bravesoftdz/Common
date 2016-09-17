@@ -55,7 +55,7 @@ type
     procedure SetSearchFor(const AValue: string);
     procedure WriteIniFile;
   public
-    procedure GetOptions(Editor: TBCEditor);
+    procedure GetOptions(AEditor: TBCEditor);
     property SearchFor: string read GetSearchFor write SetSearchFor;
     property ReplaceWith: string read GetReplaceWith write SetReplaceWith;
     property ReplaceInWholeFile: Boolean read GetReplaceInWholeFile;
@@ -80,33 +80,24 @@ begin
   Result := FReplaceDialog;
 end;
 
-procedure TReplaceDialog.GetOptions(Editor: TBCEditor);
-
-  procedure SetOption(Enabled: Boolean; Option: TBCEditorReplaceOption);
-  begin
-    if Enabled then
-      Editor.Replace.Options := Editor.Replace.Options + [Option]
-    else
-      Editor.Replace.Options := Editor.Replace.Options - [Option];
-  end;
-
+procedure TReplaceDialog.GetOptions(AEditor: TBCEditor);
 begin
-  SetOption(SliderCaseSensitive.SliderOn, roCaseSensitive);
-  SetOption(SliderPromptOnReplace.SliderOn, roPrompt);
-  SetOption(SliderSelectedOnly.SliderOn, roSelectedOnly);
-  SetOption(SliderWholeWordsOnly.SliderOn, roWholeWordsOnly);
-  SetOption(ModalResult = mrYes, roReplaceAll);
+  AEditor.Replace.SetOption(roCaseSensitive, SliderCaseSensitive.SliderOn);
+  AEditor.Replace.SetOption(roPrompt, SliderPromptOnReplace.SliderOn);
+  AEditor.Replace.SetOption(roSelectedOnly, SliderSelectedOnly.SliderOn);
+  AEditor.Replace.SetOption(roWholeWordsOnly, SliderWholeWordsOnly.SliderOn);
+  AEditor.Replace.SetOption(roReplaceAll, ModalResult = mrYes);
   if RadioButtonReplaceWith.Checked then
-    Editor.Replace.Action := eraReplace
+    AEditor.Replace.Action := eraReplace
   else
-    Editor.Replace.Action := eraDeleteLine;
+    AEditor.Replace.Action := eraDeleteLine;
   if SliderRegularExpression.SliderOn then
-    Editor.Replace.Engine := seRegularExpression
+    AEditor.Replace.Engine := seRegularExpression
   else
   if SliderWildCard.SliderOn then
-    Editor.Replace.Engine := seWildCard
+    AEditor.Replace.Engine := seWildCard
   else
-    Editor.Replace.Engine := seNormal;
+    AEditor.Replace.Engine := seNormal;
 end;
 
 procedure TReplaceDialog.FormShow(Sender: TObject);

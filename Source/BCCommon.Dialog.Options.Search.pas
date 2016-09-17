@@ -32,8 +32,8 @@ type
     StickyLabelWrapAround: TsStickyLabel;
     procedure FormShow(Sender: TObject);
   private
-    procedure SetOptions(Editor: TBCEditor);
-    procedure GetOptions(Editor: TBCEditor);
+    procedure SetOptions(AEditor: TBCEditor);
+    procedure GetOptions(AEditor: TBCEditor);
     procedure WriteIniFile;
   public
     class procedure ClassShowModal(AEditor: TBCEditor);
@@ -82,44 +82,35 @@ begin
   end;
 end;
 
-procedure TSearchOptionsDialog.SetOptions(Editor: TBCEditor);
+procedure TSearchOptionsDialog.SetOptions(AEditor: TBCEditor);
 begin
-  SliderBeepIfSearchStringNotFound.SliderOn := soBeepIfStringNotFound in Editor.Search.Options;
-  SliderEntireScope.SliderOn := soEntireScope in Editor.Search.Options;
-  SliderHighlightResult.SliderOn := soHighlightResults in Editor.Search.Options;
-  SliderSearchOnTyping.SliderOn := soSearchOnTyping in Editor.Search.Options;
-  SliderShowSearchMatchNotFound.SliderOn := soShowSearchMatchNotFound in Editor.Search.Options;
-  SliderShowSearchStringNotFound.SliderOn := soShowStringNotFound in Editor.Search.Options;
-  SliderWholeWordsOnly.SliderOn := soWholeWordsOnly in Editor.Search.Options;
-  SliderWrapAround.SliderOn := soWrapAround in Editor.Search.Options;
+  SliderBeepIfSearchStringNotFound.SliderOn := soBeepIfStringNotFound in AEditor.Search.Options;
+  SliderEntireScope.SliderOn := soEntireScope in AEditor.Search.Options;
+  SliderHighlightResult.SliderOn := soHighlightResults in AEditor.Search.Options;
+  SliderSearchOnTyping.SliderOn := soSearchOnTyping in AEditor.Search.Options;
+  SliderShowSearchMatchNotFound.SliderOn := soShowSearchMatchNotFound in AEditor.Search.Options;
+  SliderShowSearchStringNotFound.SliderOn := soShowStringNotFound in AEditor.Search.Options;
+  SliderWholeWordsOnly.SliderOn := soWholeWordsOnly in AEditor.Search.Options;
+  SliderWrapAround.SliderOn := soWrapAround in AEditor.Search.Options;
 end;
 
 procedure TSearchOptionsDialog.FormShow(Sender: TObject);
 begin
   inherited;
-  AlignSliders(Panel, 8);
-  Width := SliderBeepIfSearchStringNotFound.Left + SliderBeepIfSearchStringNotFound.Width + 12;
+  AlignSliders(Panel, ScaleSize(8));
+  Width := SliderBeepIfSearchStringNotFound.Left + SliderBeepIfSearchStringNotFound.Width + ScaleSize(12);
 end;
 
-procedure TSearchOptionsDialog.GetOptions(Editor: TBCEditor);
-
-  procedure SetOption(Enabled: Boolean; Option: TBCEditorSearchOption);
-  begin
-    if Enabled then
-      Editor.Search.Options := Editor.Search.Options + [Option]
-    else
-      Editor.Search.Options := Editor.Search.Options - [Option];
-  end;
-
+procedure TSearchOptionsDialog.GetOptions(AEditor: TBCEditor);
 begin
-  SetOption(SliderBeepIfSearchStringNotFound.SliderOn, soBeepIfStringNotFound);
-  SetOption(SliderEntireScope.SliderOn, soEntireScope);
-  SetOption(SliderHighlightResult.SliderOn, soHighlightResults);
-  SetOption(SliderSearchOnTyping.SliderOn, soSearchOnTyping);
-  SetOption(SliderShowSearchMatchNotFound.SliderOn, soShowSearchMatchNotFound);
-  SetOption(SliderShowSearchStringNotFound.SliderOn, soShowStringNotFound);
-  SetOption(SliderWholeWordsOnly.SliderOn, soWholeWordsOnly);
-  SetOption(SliderWrapAround.SliderOn, soWrapAround);
+  AEditor.Search.SetOption(soBeepIfStringNotFound, SliderBeepIfSearchStringNotFound.SliderOn);
+  AEditor.Search.SetOption(soEntireScope, SliderEntireScope.SliderOn);
+  AEditor.Search.SetOption(soHighlightResults, SliderHighlightResult.SliderOn);
+  AEditor.Search.SetOption(soSearchOnTyping, SliderSearchOnTyping.SliderOn);
+  AEditor.Search.SetOption(soShowSearchMatchNotFound, SliderShowSearchMatchNotFound.SliderOn);
+  AEditor.Search.SetOption(soShowStringNotFound, SliderShowSearchStringNotFound.SliderOn);
+  AEditor.Search.SetOption(soWholeWordsOnly, SliderWholeWordsOnly.SliderOn);
+  AEditor.Search.SetOption(soWrapAround, SliderWrapAround.SliderOn);
 end;
 
 end.

@@ -761,16 +761,15 @@ begin
 end;
 
 procedure TOptionsContainer.AssignTo(Dest: TPersistent);
+var
+  LShortCut: string;
 begin
   if Assigned(Dest) and (Dest is TBCEditor) then
   with Dest as TBCEditor do
   begin
     { Caret }
     Caret.Visible := FShowCaret;
-    if FRightMouseClickMovesCaret then
-      Caret.Options := Caret.Options + [coRightMouseClickMove]
-    else
-      Caret.Options := Caret.Options - [coRightMouseClickMove];
+    Caret.SetOption(coRightMouseClickMove, FRightMouseClickMovesCaret);
     Caret.NonBlinking.Enabled := FShowNonblinkingCaret;
     Caret.NonBlinking.Colors.Background := StringToColor(FNonblinkingCaretBackgroundColor);
     Caret.NonBlinking.Colors.Foreground := StringToColor(FNonblinkingCaretForegroundColor);
@@ -780,54 +779,24 @@ begin
     if Highlighter.CodeFoldingRangeCount > 0 then
     begin
       CodeFolding.Visible := FShowCodeFolding;
-      if FFoldMultilineComments then
-        CodeFolding.Options := CodeFolding.Options + [cfoFoldMultilineComments]
-      else
-        CodeFolding.Options := CodeFolding.Options - [cfoFoldMultilineComments];
-      if FHighlightIndentGuides then
-        CodeFolding.Options := CodeFolding.Options + [cfoHighlightIndentGuides]
-      else
-        CodeFolding.Options := CodeFolding.Options - [cfoHighlightIndentGuides];
-      if FHighlightMatchingPair then
-        CodeFolding.Options := CodeFolding.Options + [cfoHighlightMatchingPair]
-      else
-        CodeFolding.Options := CodeFolding.Options - [cfoHighlightMatchingPair];
-      if FShowCollapsedCodeHint then
-        CodeFolding.Options := CodeFolding.Options + [cfoShowCollapsedCodeHint]
-      else
-        CodeFolding.Options := CodeFolding.Options - [cfoShowCollapsedCodeHint];
-      if FShowCollapsedLine then
-        CodeFolding.Options := CodeFolding.Options + [cfoShowCollapsedLine]
-      else
-        CodeFolding.Options := CodeFolding.Options - [cfoShowCollapsedLine];
-      if FShowIndentGuides then
-        CodeFolding.Options := CodeFolding.Options + [cfoShowIndentGuides]
-      else
-        CodeFolding.Options := CodeFolding.Options - [cfoShowIndentGuides];
-      if FShowTreeLine then
-        CodeFolding.Options := CodeFolding.Options + [cfoShowTreeLine]
-      else
-        CodeFolding.Options := CodeFolding.Options - [cfoShowTreeLine];
-      if FUncollapseByHintClick then
-        CodeFolding.Options := CodeFolding.Options + [cfoUncollapseByHintClick]
-      else
-        CodeFolding.Options := CodeFolding.Options - [cfoUncollapseByHintClick];
+      CodeFolding.SetOption(cfoFoldMultilineComments, FFoldMultilineComments);
+      CodeFolding.SetOption(cfoHighlightIndentGuides, FHighlightIndentGuides);
+      CodeFolding.SetOption(cfoHighlightMatchingPair, FHighlightMatchingPair);
+      CodeFolding.SetOption(cfoShowCollapsedCodeHint, FShowCollapsedCodeHint);
+      CodeFolding.SetOption(cfoShowCollapsedLine, FShowCollapsedLine);
+      CodeFolding.SetOption(cfoShowIndentGuides, FShowIndentGuides);
+      CodeFolding.SetOption(cfoShowTreeLine, FShowTreeLine);
+      CodeFolding.SetOption(cfoUncollapseByHintClick, FUncollapseByHintClick);
       CodeFolding.MarkStyle := TBCEditorCodeFoldingMarkStyle(FCodeFoldingMarkStyle);
       CodeFolding.Hint.RowCount := FCodeFoldingHintRowCount;
     end;
     { Completion proposal }
-    if not FCompletionProposalEnabled then
-      CompletionProposal.ShortCut := TextToShortCut('')
-    else
-      CompletionProposal.ShortCut := TextToShortCut(FCompletionProposalShortcut);
-    if FCompletionProposalCaseSensitive then
-      CompletionProposal.Options := CompletionProposal.Options + [cpoCaseSensitive]
-    else
-      CompletionProposal.Options := CompletionProposal.Options - [cpoCaseSensitive];
-    if FCompletionProposalAutoInvoke then
-      CompletionProposal.Options := CompletionProposal.Options + [cpoAutoInvoke]
-    else
-      CompletionProposal.Options := CompletionProposal.Options - [cpoAutoInvoke];
+    LShortCut := '';
+    if FCompletionProposalEnabled then
+      LShortCut := FCompletionProposalShortcut;
+    CompletionProposal.ShortCut := TextToShortCut(LShortCut);
+    CompletionProposal.SetOption(cpoCaseSensitive, FCompletionProposalCaseSensitive);
+    CompletionProposal.SetOption(cpoAutoInvoke, FCompletionProposalAutoInvoke);
     { Left margin }
     LeftMargin.Visible := FLeftMarginVisible;
     LeftMargin.Autosize := FLeftMarginAutosize;
@@ -835,143 +804,57 @@ begin
     LeftMargin.Bookmarks.Panel.Visible := FLeftMarginShowBookmarkPanel;
     LeftMargin.LineState.Enabled := FLeftMarginShowLineState;
     LeftMargin.LineNumbers.Visible := FEnableLineNumbers;
-    if FLeftMarginLineNumbersShowInTens then
-      LeftMargin.LineNumbers.Options := LeftMargin.LineNumbers.Options + [lnoIntens]
-    else
-      LeftMargin.LineNumbers.Options := LeftMargin.LineNumbers.Options - [lnoIntens];
-    if FLeftMarginLineNumbersShowLeadingZeros then
-      LeftMargin.LineNumbers.Options := LeftMargin.LineNumbers.Options + [lnoLeadingZeros]
-    else
-      LeftMargin.LineNumbers.Options := LeftMargin.LineNumbers.Options - [lnoLeadingZeros];
-    if FLeftMarginLineNumbersShowAfterLastLine then
-      LeftMargin.LineNumbers.Options := LeftMargin.LineNumbers.Options + [lnoAfterLastLine]
-    else
-      LeftMargin.LineNumbers.Options := LeftMargin.LineNumbers.Options - [lnoAfterLastLine];
+    LeftMargin.LineNumbers.SetOption(lnoIntens, FLeftMarginLineNumbersShowInTens);
+    LeftMargin.LineNumbers.SetOption(lnoLeadingZeros, FLeftMarginLineNumbersShowLeadingZeros);
+    LeftMargin.LineNumbers.SetOption(lnoAfterLastLine, FLeftMarginLineNumbersShowAfterLastLine);
     LeftMargin.LineNumbers.StartFrom := FLeftMarginLineNumbersStartFrom;
     LeftMargin.Width := FLeftMarginWidth;
     LeftMargin.Bookmarks.Panel.Width := FLeftMarginBookmarkPanelWidth;
     { Matching pair }
     MatchingPair.Enabled := FMatchingPairEnabled;
-    if FMatchingPairHighlightAfterToken then
-      MatchingPair.Options := MatchingPair.Options + [mpoHighlightAfterToken]
-    else
-      MatchingPair.Options := MatchingPair.Options - [mpoHighlightAfterToken];
-    if FMatchingPairHighlightUnmatched then
-      MatchingPair.Options := MatchingPair.Options + [mpoHighlightUnmatched]
-    else
-      MatchingPair.Options := MatchingPair.Options - [mpoHighlightUnmatched];
+    MatchingPair.SetOption(mpoHighlightAfterToken, FMatchingPairHighlightAfterToken);
+    MatchingPair.SetOption(mpoHighlightUnmatched, FMatchingPairHighlightUnmatched);
     { Minimap }
     Minimap.Visible := Minimap.Visible or FMinimapVisible;
-    if FMinimapShowBookmarks then
-      Minimap.Options := Minimap.Options + [moShowBookmarks]
-    else
-      Minimap.Options := Minimap.Options - [moShowBookmarks];
-    if FMinimapShowIndentGuides then
-      Minimap.Options := Minimap.Options + [moShowIndentGuides]
-    else
-      Minimap.Options := Minimap.Options - [moShowIndentGuides];
-    if FMinimapShowSearchResults then
-      Minimap.Options := Minimap.Options + [moShowSearchResults]
-    else
-      Minimap.Options := Minimap.Options - [moShowSearchResults];
-    if FMinimapShowBorder then
-      Minimap.Indicator.Options := Minimap.Indicator.Options + [ioShowBorder]
-    else
-      Minimap.Indicator.Options := Minimap.Indicator.Options - [ioShowBorder];
-    if FMinimapUseBlending then
-      Minimap.Indicator.Options := Minimap.Indicator.Options + [ioUseBlending]
-    else
-      Minimap.Indicator.Options := Minimap.Indicator.Options - [ioUseBlending];
-    if FMinimapInvertBlending then
-      Minimap.Indicator.Options := Minimap.Indicator.Options + [ioInvertBlending]
-    else
-      Minimap.Indicator.Options := Minimap.Indicator.Options - [ioInvertBlending];
+    Minimap.SetOption(moShowBookmarks, FMinimapShowBookmarks);
+    Minimap.SetOption(moShowIndentGuides, FMinimapShowIndentGuides);
+    Minimap.SetOption(moShowSearchResults, FMinimapShowSearchResults);
+    Minimap.Indicator.SetOption(ioShowBorder, FMinimapShowBorder);
+    Minimap.Indicator.SetOption(ioUseBlending, FMinimapUseBlending);
+    Minimap.Indicator.SetOption(ioInvertBlending, FMinimapInvertBlending);
     Minimap.Shadow.Visible := FMinimapShowShadow;
     Minimap.Width := FMinimapWidth;
     Minimap.Align := TBCEditorMinimapAlign(FMinimapAlign);
     { Editor }
-    if FAutoIndent then
-      Options := Options + [eoAutoIndent]
-    else
-      Options := Options - [eoAutoIndent];
-    if FDragDropEditing then
-      Options := Options + [eoDragDropEditing]
-    else
-      Options := Options - [eoDragDropEditing];
-    if FDropFiles then
-      Options := Options + [eoDropFiles]
-    else
-      Options := Options - [eoDropFiles];
-    if FGroupUndo then
-      Undo.Options := Undo.Options + [uoGroupUndo]
-    else
-      Undo.Options := Undo.Options - [uoGroupUndo];
-    if FUndoAfterSave then
-      Undo.Options := Undo.Options + [uoUndoAfterSave]
-    else
-      Undo.Options := Undo.Options - [uoUndoAfterSave];
-     if FTrimTrailingSpaces then
-      Options := Options + [eoTrimTrailingSpaces]
-    else
-      Options := Options - [eoTrimTrailingSpaces];
+    SetOption(eoAutoIndent, FAutoIndent);
+    SetOption(eoDragDropEditing, FDragDropEditing);
+    SetOption(eoDropFiles, FDropFiles);
+    SetOption(eoTrimTrailingSpaces, FTrimTrailingSpaces);
     LineSpacing := FLineSpacing;
+    { Undo }
+    Undo.SetOption(uoGroupUndo, FGroupUndo);
+    Undo.SetOption(uoUndoAfterSave, FUndoAfterSave);
     { Right margin }
     RightMargin.Visible := FRightMarginVisible;
-    if FRightMarginMouseMove then
-      RightMargin.Options := RightMargin.Options + [rmoMouseMove]
-    else
-      RightMargin.Options := RightMargin.Options - [rmoMouseMove];
-    if FRightMarginShowMovingHint then
-      RightMargin.Options := RightMargin.Options + [rmoShowMovingHint]
-    else
-      RightMargin.Options := RightMargin.Options - [rmoShowMovingHint];
+    RightMargin.SetOption(rmoMouseMove, FRightMarginMouseMove);
+    RightMargin.SetOption(rmoShowMovingHint, FRightMarginShowMovingHint);
     RightMargin.Position := FRightMarginPosition;
     { Scroll }
-    if FScrollHalfPage then
-      Scroll.Options := Scroll.Options + [soHalfPage]
-    else
-      Scroll.Options := Scroll.Options - [soHalfPage];
-    if FScrollHintFollows then
-      Scroll.Options := Scroll.Options + [soHintFollows]
-    else
-      Scroll.Options := Scroll.Options - [soHintFollows];
-    if FScrollPastEndOfFile then
-      Scroll.Options := Scroll.Options + [soPastEndOfFileMarker]
-    else
-      Scroll.Options := Scroll.Options - [soPastEndOfFileMarker];
-    if FScrollPastEndOfLineMarker then
-      Scroll.Options := Scroll.Options + [soPastEndOfLine]
-    else
-      Scroll.Options := Scroll.Options - [soPastEndOfLine];
-    if FScrollShowHint then
-      Scroll.Options := Scroll.Options + [soShowVerticalScrollHint]
-    else
-      Scroll.Options := Scroll.Options - [soShowVerticalScrollHint];
+    Scroll.SetOption(soHalfPage, FScrollHalfPage);
+    Scroll.SetOption(soHintFollows, FScrollHintFollows);
+    Scroll.SetOption(soPastEndOfFileMarker, FScrollPastEndOfFile);
+    Scroll.SetOption(soPastEndOfLine, FScrollPastEndOfLineMarker);
+    Scroll.SetOption(soShowVerticalScrollHint, FScrollShowHint);
     Scroll.Shadow.Visible := FScrollShowShadow;
     { Search }
     Search.Map.Visible := FShowSearchMap;
     { Selection }
     Selection.Visible := FSelectionVisible;
-    if FALTSetsColumnMode then
-      Selection.Options := Selection.Options + [soALTSetsColumnMode]
-    else
-      Selection.Options := Selection.Options - [soALTSetsColumnMode];
-    if FSelectionExpandRealNumbers then
-      Selection.Options := Selection.Options + [soExpandRealNumbers]
-    else
-      Selection.Options := Selection.Options - [soExpandRealNumbers];
-    if FHighlightSimilarTerms then
-      Selection.Options := Selection.Options + [soHighlightSimilarTerms]
-    else
-      Selection.Options := Selection.Options - [soHighlightSimilarTerms];
-    if FSelectionTermsCaseSensitive then
-      Selection.Options := Selection.Options + [soTermsCaseSensitive]
-    else
-      Selection.Options := Selection.Options - [soTermsCaseSensitive];
-    if FTripleClickRowSelect then
-      Selection.Options := Selection.Options + [soTripleClickRowSelect]
-    else
-      Selection.Options := Selection.Options - [soTripleClickRowSelect];
+    Selection.SetOption(soALTSetsColumnMode, FALTSetsColumnMode);
+    Selection.SetOption(soExpandRealNumbers, FSelectionExpandRealNumbers);
+    Selection.SetOption(soHighlightSimilarTerms, FHighlightSimilarTerms);
+    Selection.SetOption(soTermsCaseSensitive, FSelectionTermsCaseSensitive);
+    Selection.SetOption(soTripleClickRowSelect, FTripleClickRowSelect);
     if FEnableSelectionMode then
       Selection.Mode := smColumn
     else
@@ -980,14 +863,8 @@ begin
     Search.Map.Align := TBCEditorSearchMapAlign(FSearchMapAlign);
     { Special chars }
     SpecialChars.Visible := FEnableSpecialChars;
-    if FSpecialCharsUseTextColor then
-      SpecialChars.Options := SpecialChars.Options + [scoTextColor]
-    else
-      SpecialChars.Options := SpecialChars.Options - [scoTextColor];
-    if FSpecialCharsUseMiddleColor then
-      SpecialChars.Options := SpecialChars.Options + [scoMiddleColor]
-    else
-      SpecialChars.Options := SpecialChars.Options - [scoMiddleColor];
+    SpecialChars.SetOption(scoTextColor, FSpecialCharsUseTextColor);
+    SpecialChars.SetOption(scoMiddleColor, FSpecialCharsUseMiddleColor);
     SpecialChars.Style := TBCEditorSpecialCharsStyle(FSpecialCharsStyle);
     SpecialChars.EndOfLine.Visible := FSpecialEndOfLineVisible;
     SpecialChars.EndOfLine.Color := StringToColor(FSpecialEndOfLineColor);
@@ -996,28 +873,13 @@ begin
     SpecialChars.Selection.Color := StringToColor(FSpecialSelectionColor);
     { Sync edit }
     SyncEdit.Enabled := FSyncEditEnabled;
-    if SyncEditCaseSensitive then
-      SyncEdit.Options := SyncEdit.Options + [seCaseSensitive]
-    else
-      SyncEdit.Options := SyncEdit.Options - [seCaseSensitive];
+    SyncEdit.SetOption(seCaseSensitive, FSyncEditCaseSensitive);
     SyncEdit.Activator.Visible := FSyncEditShowActivateIcon;
     { Tabs }
-    if FSelectedBlockIndent then
-      Tabs.Options := Tabs.Options + [toSelectedBlockIndent]
-    else
-      Tabs.Options := Tabs.Options - [toSelectedBlockIndent];
-    if FTabsToSpaces then
-      Tabs.Options := Tabs.Options + [toTabsToSpaces]
-    else
-      Tabs.Options := Tabs.Options - [toTabsToSpaces];
-    if FTabsColumns then
-      Tabs.Options := Tabs.Options + [toColumns]
-    else
-      Tabs.Options := Tabs.Options - [toColumns];
-    if FTabsPreviousLineIndent then
-      Tabs.Options := Tabs.Options + [toPreviousLineIndent]
-    else
-      Tabs.Options := Tabs.Options - [toPreviousLineIndent];
+    Tabs.SetOption(toSelectedBlockIndent, FSelectedBlockIndent);
+    Tabs.SetOption(toTabsToSpaces, FTabsToSpaces);
+    Tabs.SetOption(toColumns, FTabsColumns);
+    Tabs.SetOption(toPreviousLineIndent, FTabsPreviousLineIndent);
     Tabs.Width := FTabWidth;
     { Word wrap }
     WordWrap.Enabled := FEnableWordWrap;
