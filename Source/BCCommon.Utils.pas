@@ -3,7 +3,7 @@ unit BCCommon.Utils;
 interface
 
 uses
-  Winapi.Windows, System.Classes, System.Types, BCControl.ComboBox, Vcl.Controls;
+  Winapi.Windows, System.Classes, System.Types, BCControl.ComboBox, Vcl.Controls, Vcl.ValEdit;
 
 function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean;
 function GetOSInfo: string;
@@ -11,7 +11,7 @@ function InsertTextToCombo(ComboBox: TBCComboBox): Integer;
 function ScaleSize(const ASize: Integer): Integer;
 function SetFormInsideWorkArea(Left, Width: Integer): Integer;
 function PostInc(var i: Integer): Integer; inline;
-procedure InsertItemsToComboBox(AItems: TStrings; AComboBox: TBCComboBox);
+procedure InsertItemsToComboBox(AValueListEditor: TValueListEditor; AComboBox: TBCComboBox);
 procedure AlignSliders(AWinControl: TWinControl; ALeftMargin: Integer = 0);
 
 implementation
@@ -33,15 +33,15 @@ begin
   Result := GetWindowsVersionString + ' ' + GetWindowsEditionString;
 end;
 
-procedure InsertItemsToComboBox(AItems: TStrings; AComboBox: TBCComboBox);
+procedure InsertItemsToComboBox(AValueListEditor: TValueListEditor; AComboBox: TBCComboBox);
 var
   i: Integer;
   s: string;
 begin
   AComboBox.Clear;
-  for i := AItems.Count - 1 downto 0 do
+  for i := AValueListEditor.Strings.Count - 1 downto 0 do
   begin
-    s := GetTokenAfter('=', AItems.Strings[i]);
+    s := AValueListEditor.Values[IntToStr(i)];
     if AComboBox.Items.IndexOf(s) = -1 then
       AComboBox.Items.Add(s);
   end;

@@ -82,7 +82,7 @@ uses
   {$WARNINGS OFF}
   Vcl.FileCtrl, { warning: FileCtrl is specific to a platform }
   {$WARNINGS ON}
-  BCCommon.FileUtils, BCCommon.Dialog.ItemList;
+  Vcl.ValEdit, BCCommon.FileUtils, BCCommon.Dialog.ItemList;
 
 var
   LFindInFilesDialog: TFindInFilesDialog;
@@ -288,30 +288,30 @@ end;
 
 procedure TFindInFilesDialog.ReadIniFile;
 var
-  LItems: TStrings;
+  LValueListEditor: TValueListEditor;
 begin
-  LItems := TStringList.Create;
+  LValueListEditor := TValueListEditor.Create(nil);
   with TMemIniFile.Create(GetUniIniFilename, TEncoding.Unicode) do
   try
     SliderCaseSensitive.SliderOn := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
     SliderIncludeSubDirectories.SliderOn := ReadBool('FindInFilesOptions', 'IncludeSubDirectories', True);
 
-    ReadSectionValues('TextToFindItems', LItems);
-    InsertItemsToComboBox(LItems, ComboBoxTextToFind);
+    ReadSectionValues('TextToFindItems', LValueListEditor.Strings);
+    InsertItemsToComboBox(LValueListEditor, ComboBoxTextToFind);
 
-    ReadSectionValues('FindInFilesFileMasks', LItems);
-    InsertItemsToComboBox(LItems, ComboBoxFileMask);
+    ReadSectionValues('FindInFilesFileMasks', LValueListEditor.Strings);
+    InsertItemsToComboBox(LValueListEditor, ComboBoxFileMask);
     if ComboBoxFileMask.Items.IndexOf('*.*') = -1 then
       ComboBoxFileMask.Items.Insert(0, '*.*');
 
-    ReadSectionValues('FindInFilesDirectories', LItems);
-    InsertItemsToComboBox(LItems, ComboBoxDirectory);
+    ReadSectionValues('FindInFilesDirectories', LValueListEditor.Strings);
+    InsertItemsToComboBox(LValueListEditor, ComboBoxDirectory);
 
     ComboBoxTextToFind.ItemIndex := ComboBoxTextToFind.Items.IndexOf(ReadString('FindInFilesOptions', 'TextToFind', ''));
     ComboBoxFileMask.ItemIndex := Max(ComboBoxFileMask.Items.IndexOf(ReadString('FindInFilesOptions', 'FileMask', '*.*')), 0);
     ComboBoxDirectory.ItemIndex := ComboBoxDirectory.Items.IndexOf(ReadString('FindInFilesOptions', 'Directory', ''));
   finally
-    LItems.Free;
+    LValueListEditor.Free;
     Free;
   end;
 end;

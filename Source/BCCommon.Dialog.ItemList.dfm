@@ -117,8 +117,8 @@ inherited ItemListDialog: TItemListDialog
       ShowHint = False
       ButtonStyle = tbsCheck
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 22
       Images = ImagesDataModule.ImageList
+      ImageIndex = 22
     end
     object SpeedButtonInsert: TBCSpeedButton
       Left = 2
@@ -140,8 +140,8 @@ inherited ItemListDialog: TItemListDialog
       ShowHint = False
       ButtonStyle = tbsCheck
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 18
       Images = ImagesDataModule.ImageList
+      ImageIndex = 18
     end
     object SpeedButtonClear: TBCSpeedButton
       Left = 132
@@ -162,8 +162,8 @@ inherited ItemListDialog: TItemListDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 65
       Images = ImagesDataModule.ImageList
+      ImageIndex = 65
     end
     object SpeedButtonDivider2: TBCSpeedButton
       AlignWithMargins = True
@@ -207,8 +207,8 @@ inherited ItemListDialog: TItemListDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 129
       Images = ImagesDataModule.ImageList
+      ImageIndex = 129
     end
     object SpeedButtonMoveDown: TBCSpeedButton
       Left = 262
@@ -229,8 +229,8 @@ inherited ItemListDialog: TItemListDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 130
       Images = ImagesDataModule.ImageList
+      ImageIndex = 130
     end
     object SpeedButtonSort: TBCSpeedButton
       Left = 322
@@ -251,8 +251,8 @@ inherited ItemListDialog: TItemListDialog
       ShowHint = False
       ButtonStyle = tbsTextButton
       SkinData.SkinSection = 'TOOLBUTTON'
-      ImageIndex = 31
       Images = ImagesDataModule.ImageList
+      ImageIndex = 31
     end
   end
   object ActionList: TActionList
