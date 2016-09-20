@@ -1,13 +1,13 @@
 inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
-  Width = 183
-  Height = 111
+  Width = 182
+  Height = 133
   Visible = False
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 179
-    Height = 111
+    Width = 178
+    Height = 133
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -40,7 +40,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
     end
     object StickyLabelMouseMove: TsStickyLabel
       Left = 0
-      Top = 27
+      Top = 50
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -54,8 +54,8 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Gap = 8
     end
     object StickyLabelShowMovingHint: TsStickyLabel
-      Left = 1
-      Top = 51
+      Left = 0
+      Top = 73
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -68,9 +68,24 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       AttachTo = SliderShowMovingHint
       Gap = 8
     end
+    object StickyLabelAutoLineBreak: TsStickyLabel
+      Left = 0
+      Top = 27
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Auto line break'
+      ParentColor = False
+      AttachTo = SliderAutoLineBreak
+      Gap = 8
+    end
     object EditPosition: TBCEdit
       Left = 0
-      Top = 90
+      Top = 112
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -83,7 +98,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 4
       Text = '80'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -103,7 +118,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       Top = 0
       Width = 50
       AutoSize = True
-      TabOrder = 1
+      TabOrder = 0
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -116,7 +131,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
     end
     object SliderMouseMove: TsSlider
       Left = 128
-      Top = 23
+      Top = 46
       Width = 50
       AutoSize = True
       TabOrder = 2
@@ -131,8 +146,8 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       SliderCaptionOff = 'No'
     end
     object SliderShowMovingHint: TsSlider
-      Left = 129
-      Top = 47
+      Left = 128
+      Top = 69
       Width = 50
       AutoSize = True
       TabOrder = 3
@@ -146,9 +161,25 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
     end
+    object SliderAutoLineBreak: TsSlider
+      Left = 128
+      Top = 23
+      Width = 50
+      AutoSize = True
+      TabOrder = 1
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
   end
   inherited FrameAdapter: TsFrameAdapter
-    Left = 122
-    Top = 74
+    Left = 100
+    Top = 66
   end
 end

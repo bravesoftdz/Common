@@ -17,6 +17,8 @@ type
     SliderMouseMove: TsSlider;
     SliderShowMovingHint: TsSlider;
     StickyLabelShowMovingHint: TsStickyLabel;
+    SliderAutoLineBreak: TsSlider;
+    StickyLabelAutoLineBreak: TsStickyLabel;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -53,6 +55,7 @@ end;
 procedure TOptionsEditorRightMarginFrame.PutData;
 begin
   OptionsContainer.RightMarginVisible := SliderVisible.SliderOn;
+  OptionsContainer.RightMarginAutoLineBreak := SliderAutoLineBreak.SliderOn;
   OptionsContainer.RightMarginMouseMove := SliderMouseMove.SliderOn;
   OptionsContainer.RightMarginShowMovingHint := SliderShowMovingHint.SliderOn;
   OptionsContainer.RightMarginPosition := StrToIntDef(EditPosition.Text, 80);
@@ -61,6 +64,7 @@ end;
 procedure TOptionsEditorRightMarginFrame.GetData;
 begin
   SliderVisible.SliderOn := OptionsContainer.RightMarginVisible;
+  SliderAutoLineBreak.SliderOn := OptionsContainer.RightMarginAutoLineBreak;
   SliderMouseMove.SliderOn := OptionsContainer.RightMarginMouseMove;
   SliderShowMovingHint.SliderOn := OptionsContainer.RightMarginShowMovingHint;
   EditPosition.Text := IntToStr(OptionsContainer.RightMarginPosition);

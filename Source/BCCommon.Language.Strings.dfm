@@ -1516,6 +1516,11 @@ object LanguageDataModule: TLanguageDataModule
           'Text files (*.txt;*.ini)')
       end
       item
+        Name = 'TypeScript'
+        Strings.Strings = (
+          'TypeScript files (*.ts)')
+      end
+      item
         Name = 'UnrealScript'
         Strings.Strings = (
           'UnrealScript files (*.uc)')

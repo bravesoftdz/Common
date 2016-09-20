@@ -71,6 +71,7 @@ type
     FLineSpacing: Integer;
     { Right margin }
     FRightMarginVisible: Boolean;
+    FRightMarginAutoLineBreak: Boolean;
     FRightMarginMouseMove: Boolean;
     FRightMarginShowMovingHint: Boolean;
     FRightMarginPosition: Integer;
@@ -271,6 +272,8 @@ type
     { Right margin }
     [IniValue('Options', 'RightMarginVisible', 'True')]
     property RightMarginVisible: Boolean read FRightMarginVisible write FRightMarginVisible;
+    [IniValue('Options', 'RightMarginAutoLineBreak', 'False')]
+    property RightMarginAutoLineBreak: Boolean read FRightMarginAutoLineBreak write FRightMarginAutoLineBreak;
     [IniValue('Options', 'RightMarginMouseMove', 'True')]
     property RightMarginMouseMove: Boolean read FRightMarginMouseMove write FRightMarginMouseMove;
     [IniValue('Options', 'RightMarginShowMovingHint', 'True')]
@@ -836,6 +839,7 @@ begin
     Undo.SetOption(uoUndoAfterSave, FUndoAfterSave);
     { Right margin }
     RightMargin.Visible := FRightMarginVisible;
+    RightMargin.SetOption(rmoAutoLineBreak, FRightMarginAutoLineBreak);
     RightMargin.SetOption(rmoMouseMove, FRightMarginMouseMove);
     RightMargin.SetOption(rmoShowMovingHint, FRightMarginShowMovingHint);
     RightMargin.Position := FRightMarginPosition;
