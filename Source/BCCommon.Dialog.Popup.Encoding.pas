@@ -84,6 +84,7 @@ begin
   VirtualDrawTree.Invalidate;
 
   Width := LMaxWidth + ScaleSize(80);
+
   Height := Min(Integer(VirtualDrawTree.DefaultNodeHeight) * 7 + VirtualDrawTree.BorderWidth * 2 + ScaleSize(2), TForm(Self.PopupParent).Height);
 
   ShowPopupForm(Self, Point(Left, Top + ScaleSize(2)));

@@ -44,7 +44,7 @@ object PopupHighlighterColorDialog: TPopupHighlighterColorDialog
   end
   object SkinProvider: TsSkinProvider
     AllowExtBorders = False
-    DrawNonClientArea = False
+    AllowBlendOnMoving = False
     SkinData.SkinSection = 'FORM'
     TitleButtons = <>
     Left = 44
