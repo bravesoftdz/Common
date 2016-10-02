@@ -386,6 +386,11 @@ object LanguageDataModule: TLanguageDataModule
           'Overwrite')
       end
       item
+        Name = 'Page'
+        Strings.Strings = (
+          'Page')
+      end
+      item
         Name = 'Pilcrow'
         Strings.Strings = (
           'Pilcrow')
@@ -429,6 +434,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'RenameFailed'
         Strings.Strings = (
           '%s rename failed')
+      end
+      item
+        Name = 'RightMargin'
+        Strings.Strings = (
+          'Right margin')
       end
       item
         Name = 'SaveAs'

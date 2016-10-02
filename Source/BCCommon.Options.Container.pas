@@ -145,10 +145,12 @@ type
     FStatusBarShowKeyState: Boolean;
     FStatusBarShowModified: Boolean;
     { View }
-    FEnableLineNumbers: Boolean;
-    FEnableSelectionMode: Boolean;
-    FEnableSpecialChars: Boolean;
-    FEnableWordWrap: Boolean;
+    FLineNumbersEnabled: Boolean;
+    FSelectionModeEnabled: Boolean;
+    FSpecialCharsEnabled: Boolean;
+    FWordWrapEnabled: Boolean;
+    { Word wrap }
+    FWordWrapWidth: Integer;
   public
     procedure AssignTo(Dest: TPersistent); override;
     procedure ReadIniFile; virtual;
@@ -352,14 +354,14 @@ type
     [IniValue('Options', 'TabWidth', '2')]
     property TabWidth: Integer read FTabWidth write FTabWidth;
     { View }
-    [IniValue('Options', 'EnableLineNumbers', 'True')]
-    property EnableLineNumbers: Boolean read FEnableLineNumbers write FEnableLineNumbers;
-    [IniValue('Options', 'EnableSelectionMode', 'False')]
-    property EnableSelectionMode: Boolean read FEnableSelectionMode write FEnableSelectionMode;
-    [IniValue('Options', 'EnableSpecialChars', 'False')]
-    property EnableSpecialChars: Boolean read FEnableSpecialChars write FEnableSpecialChars;
-    [IniValue('Options', 'EnableWordWrap', 'False')]
-    property EnableWordWrap: Boolean read FEnableWordWrap write FEnableWordWrap;
+    [IniValue('Options', 'LineNumbersEnabled', 'True')]
+    property LineNumbersEnabled: Boolean read FLineNumbersEnabled write FLineNumbersEnabled;
+    [IniValue('Options', 'SelectionModeEnabled', 'False')]
+    property SelectionModeEnabled: Boolean read FSelectionModeEnabled write FSelectionModeEnabled;
+    [IniValue('Options', 'SpecialCharsEnabled', 'False')]
+    property SpecialCharsEnabled: Boolean read FSpecialCharsEnabled write FSpecialCharsEnabled;
+    [IniValue('Options', 'WordWrapEnabled', 'False')]
+    property WordWrapEnabled: Boolean read FWordWrapEnabled write FWordWrapEnabled;
     { Compare }
     [IniValue('Options', 'CompareIgnoreBlanks', 'True')]
     property CompareIgnoreBlanks: Boolean read FCompareIgnoreBlanks write FCompareIgnoreBlanks;
@@ -413,6 +415,9 @@ type
     property StatusBarShowKeyState: Boolean read FStatusBarShowKeyState write FStatusBarShowKeyState;
     [IniValue('Options', 'StatusBarShowModified', 'True')]
     property StatusBarShowModified: Boolean read FStatusBarShowModified write FStatusBarShowModified;
+    { Word wrap }
+    [IniValue('Options', 'WordWrapWidth', '0')]
+    property WordWrapWidth: Integer read FWordWrapWidth write FWordWrapWidth;
   end;
 
   {$ifdef ORABONE}
@@ -785,13 +790,13 @@ begin
       CodeFolding.SetOption(cfoFoldMultilineComments, FFoldMultilineComments);
       CodeFolding.SetOption(cfoHighlightIndentGuides, FHighlightIndentGuides);
       CodeFolding.SetOption(cfoHighlightMatchingPair, FHighlightMatchingPair);
-      CodeFolding.SetOption(cfoShowCollapsedCodeHint, FShowCollapsedCodeHint);
       CodeFolding.SetOption(cfoShowCollapsedLine, FShowCollapsedLine);
       CodeFolding.SetOption(cfoShowIndentGuides, FShowIndentGuides);
       CodeFolding.SetOption(cfoShowTreeLine, FShowTreeLine);
       CodeFolding.SetOption(cfoUncollapseByHintClick, FUncollapseByHintClick);
       CodeFolding.MarkStyle := TBCEditorCodeFoldingMarkStyle(FCodeFoldingMarkStyle);
       CodeFolding.Hint.RowCount := FCodeFoldingHintRowCount;
+      CodeFolding.Hint.Indicator.Visible := FShowCollapsedCodeHint;
     end;
     { Completion proposal }
     LShortCut := '';
@@ -806,7 +811,7 @@ begin
     LeftMargin.Bookmarks.Visible := FLeftMarginShowBookmarks;
     LeftMargin.Bookmarks.Panel.Visible := FLeftMarginShowBookmarkPanel;
     LeftMargin.LineState.Enabled := FLeftMarginShowLineState;
-    LeftMargin.LineNumbers.Visible := FEnableLineNumbers;
+    LeftMargin.LineNumbers.Visible := FLineNumbersEnabled;
     LeftMargin.LineNumbers.SetOption(lnoIntens, FLeftMarginLineNumbersShowInTens);
     LeftMargin.LineNumbers.SetOption(lnoLeadingZeros, FLeftMarginLineNumbersShowLeadingZeros);
     LeftMargin.LineNumbers.SetOption(lnoAfterLastLine, FLeftMarginLineNumbersShowAfterLastLine);
@@ -859,14 +864,14 @@ begin
     Selection.SetOption(soHighlightSimilarTerms, FHighlightSimilarTerms);
     Selection.SetOption(soTermsCaseSensitive, FSelectionTermsCaseSensitive);
     Selection.SetOption(soTripleClickRowSelect, FTripleClickRowSelect);
-    if FEnableSelectionMode then
+    if FSelectionModeEnabled then
       Selection.Mode := smColumn
     else
       Selection.Mode := smNormal;
     { Search }
     Search.Map.Align := TBCEditorSearchMapAlign(FSearchMapAlign);
     { Special chars }
-    SpecialChars.Visible := FEnableSpecialChars;
+    SpecialChars.Visible := FSpecialCharsEnabled;
     SpecialChars.SetOption(scoTextColor, FSpecialCharsUseTextColor);
     SpecialChars.SetOption(scoMiddleColor, FSpecialCharsUseMiddleColor);
     SpecialChars.Style := TBCEditorSpecialCharsStyle(FSpecialCharsStyle);
@@ -886,7 +891,8 @@ begin
     Tabs.SetOption(toPreviousLineIndent, FTabsPreviousLineIndent);
     Tabs.Width := FTabWidth;
     { Word wrap }
-    WordWrap.Enabled := FEnableWordWrap;
+    WordWrap.Enabled := FWordWrapEnabled;
+    WordWrap.Width := TBCEditorWordWrapWidth(FWordWrapWidth);
   end
   else
   if Assigned(Dest) and (Dest is TBCStatusBar) then

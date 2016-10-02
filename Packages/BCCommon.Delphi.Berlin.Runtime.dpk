@@ -112,6 +112,7 @@ contains
   BCCommon.WindowsInfo in '..\Source\BCCommon.WindowsInfo.pas',
   BCCommon.Dialog.Popup.SearchEngine in '..\Source\BCCommon.Dialog.Popup.SearchEngine.pas' {BCPopupSearchEngineDialog},
   BCCommon.Encoding in '..\Source\BCCommon.Encoding.pas',
-  BCCommon.Dialog.Popup.Encoding in '..\Source\BCCommon.Dialog.Popup.Encoding.pas' {PopupEncodingDialog};
+  BCCommon.Dialog.Popup.Encoding in '..\Source\BCCommon.Dialog.Popup.Encoding.pas' {PopupEncodingDialog},
+  BCCommon.Frame.Options.Editor.WordWrap in '..\Source\BCCommon.Frame.Options.Editor.WordWrap.pas' {BCOptionsBaseFrame1: TFrame};
 
 end.
