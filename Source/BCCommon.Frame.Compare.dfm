@@ -232,6 +232,7 @@ object CompareFrame: TCompareFrame
         Cursor = crIBeam
         ActiveLine.Indicator.Visible = False
         Align = alClient
+        Caret.MultiEdit.Enabled = True
         Caret.NonBlinking.Enabled = False
         Caret.Options = []
         CodeFolding.Colors.Indent = clBlack
@@ -240,6 +241,7 @@ object CompareFrame: TCompareFrame
         CodeFolding.Hint.Font.Height = -11
         CodeFolding.Hint.Font.Name = 'Courier New'
         CodeFolding.Hint.Font.Style = []
+        CodeFolding.Hint.Indicator.Glyph.Visible = False
         CompletionProposal.CloseChars = '()[]. '
         CompletionProposal.Columns = <
           item
@@ -267,6 +269,7 @@ object CompareFrame: TCompareFrame
         LeftMargin.Width = 55
         Lines.Strings = (
           '')
+        LineSpacing = 0
         MatchingPair.Enabled = True
         Minimap.Font.Charset = DEFAULT_CHARSET
         Minimap.Font.Color = clWindowText
@@ -312,8 +315,7 @@ object CompareFrame: TCompareFrame
           FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
           FF00}
         WordWrap.Indicator.MaskColor = clFuchsia
-        WordWrap.Position = 80
-        WordWrap.Style = wwsClientWidth
+        WordWrap.Width = wwwPage
       end
     end
     object RightPanel: TBCPanel
@@ -524,6 +526,7 @@ object CompareFrame: TCompareFrame
         Cursor = crIBeam
         ActiveLine.Indicator.Visible = False
         Align = alClient
+        Caret.MultiEdit.Enabled = True
         Caret.NonBlinking.Enabled = False
         Caret.Options = []
         CodeFolding.Colors.Indent = clBlack
@@ -532,6 +535,7 @@ object CompareFrame: TCompareFrame
         CodeFolding.Hint.Font.Height = -11
         CodeFolding.Hint.Font.Name = 'Courier New'
         CodeFolding.Hint.Font.Style = []
+        CodeFolding.Hint.Indicator.Glyph.Visible = False
         CompletionProposal.CloseChars = '()[]. '
         CompletionProposal.Columns = <
           item
@@ -559,6 +563,7 @@ object CompareFrame: TCompareFrame
         LeftMargin.Width = 55
         Lines.Strings = (
           '')
+        LineSpacing = 0
         MatchingPair.Enabled = True
         Minimap.Font.Charset = DEFAULT_CHARSET
         Minimap.Font.Color = clWindowText
@@ -604,8 +609,7 @@ object CompareFrame: TCompareFrame
           FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
           FF00}
         WordWrap.Indicator.MaskColor = clFuchsia
-        WordWrap.Position = 80
-        WordWrap.Style = wwsClientWidth
+        WordWrap.Width = wwwPage
       end
     end
     object DrawBarPanel: TBCPanel

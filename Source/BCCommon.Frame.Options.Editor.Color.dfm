@@ -172,6 +172,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       CodeFolding.Hint.Font.Height = -11
       CodeFolding.Hint.Font.Name = 'Courier New'
       CodeFolding.Hint.Font.Style = []
+      CodeFolding.Hint.Indicator.Glyph.Visible = False
       CompletionProposal.CloseChars = '()[]. '
       CompletionProposal.Columns = <
         item
@@ -244,7 +245,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00}
       WordWrap.Indicator.MaskColor = clFuchsia
-      WordWrap.Style = wwsPageWidth
+      WordWrap.Width = wwwPage
     end
     object PageControl: TBCPageControl
       Left = 0
