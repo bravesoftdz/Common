@@ -537,7 +537,7 @@ begin
   begin
     UniqueString(S);
     P := PChar(S);
-    for I := 1 to L do  //FI:W528 FixInsight ignore
+    for I := 1 to L do
     begin
       P^ := P^.ToUpper;
       Inc(P);

@@ -1,12 +1,12 @@
 inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
   Width = 212
-  Height = 113
+  Height = 136
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 208
-    Height = 113
+    Height = 136
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -24,7 +24,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
     SkinData.SkinSection = 'CHECKBOX'
     object StickyLabelDocumentSpecificSearch: TsStickyLabel
       Left = 0
-      Top = 27
+      Top = 50
       Width = 150
       Height = 13
       Margins.Left = 4
@@ -39,7 +39,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
     end
     object StickyLabelShowSearchMap: TsStickyLabel
       Left = 0
-      Top = 50
+      Top = 73
       Width = 150
       Height = 13
       Margins.Left = 4
@@ -67,12 +67,27 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       AttachTo = SliderVisible
       Gap = 8
     end
+    object StickyLabelClearWhenClosed: TsStickyLabel
+      Left = 0
+      Top = 27
+      Width = 150
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Clear when closed'
+      ParentColor = False
+      AttachTo = SliderClearWhenClosed
+      Gap = 8
+    end
     object SliderDocumentSpecificSearch: TsSlider
       Left = 158
-      Top = 23
+      Top = 46
       Width = 50
       AutoSize = True
-      TabOrder = 1
+      TabOrder = 2
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -85,10 +100,10 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
     end
     object SliderShowSearchMap: TsSlider
       Left = 158
-      Top = 46
+      Top = 69
       Width = 50
       AutoSize = True
-      TabOrder = 2
+      TabOrder = 3
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -117,7 +132,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
     end
     object ComboBoxAlign: TBCComboBox
       Left = 0
-      Top = 91
+      Top = 114
       Width = 157
       Height = 22
       Margins.Left = 4
@@ -134,8 +149,24 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       VerticalAlignment = taAlignTop
       Style = csOwnerDrawFixed
       ItemIndex = -1
-      TabOrder = 3
+      TabOrder = 4
       UseMouseWheel = False
+    end
+    object SliderClearWhenClosed: TsSlider
+      Left = 158
+      Top = 23
+      Width = 50
+      AutoSize = True
+      TabOrder = 1
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
     end
   end
   inherited FrameAdapter: TsFrameAdapter

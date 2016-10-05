@@ -581,7 +581,7 @@ begin
 
   case ChangeKind of
     ckNone:
-      for i := 1 to Range do //FI:W528 FixInsight ignore
+      for i := 1 to Range do
       begin
         with FLastCompareRec do
         begin
@@ -598,7 +598,7 @@ begin
       end;
     ckAdd:
       begin
-        for i := 1 to Range do //FI:W528 FixInsight ignore
+        for i := 1 to Range do
         begin
           with FLastCompareRec do
           begin
@@ -630,7 +630,7 @@ begin
         end;
       end;
     ckDelete:
-      for i := 1 to Range do //FI:W528 FixInsight ignore
+      for i := 1 to Range do
       begin
         with FLastCompareRec do
         begin
@@ -690,7 +690,7 @@ begin
 
   case ChangeKind of
     ckNone:
-      for i := 1 to Range do //FI:W528 FixInsight ignore
+      for i := 1 to Range do
       begin
         with FLastCompareRec do
         begin
@@ -706,7 +706,7 @@ begin
         Inc(FDiffStats.Matches);
       end;
     ckAdd:
-      for i := 1 to Range do //FI:W528 FixInsight ignore
+      for i := 1 to Range do
       begin
         with FLastCompareRec do
         begin
@@ -740,11 +740,10 @@ begin
         Inc(FDiffStats.Adds);
       end;
     ckDelete:
-      for i := 1 to Range do //FI:W528 FixInsight ignore
+      for i := 1 to Range do
       begin
         with FLastCompareRec do
         begin
-
           // check if a range of deletes are following a range of adds
           // and convert them to modifies ...
           if Kind = ckAdd then

@@ -59,7 +59,7 @@ begin
   Result.GroupBoxLineNumbers.Width := Result.SliderShowInTens.Left + Result.SliderShowInTens.Width + 13;
   Result.AutoSize := False;
   Result.Panel.AutoSize := False;
-  Result.Panel.AutoSize := True; //FI:W508 FixInsight ignore
+  Result.Panel.AutoSize := True;
   Result.AutoSize := True;
 end;
 
@@ -71,32 +71,38 @@ end;
 
 procedure TOptionsEditorLeftMarginFrame.PutData;
 begin
-  OptionsContainer.LeftMarginVisible := SliderVisible.SliderOn;
-  OptionsContainer.LeftMarginAutosize := SliderAutosize.SliderOn;
-  OptionsContainer.LeftMarginShowBookmarks := SliderShowBookmarks.SliderOn;
-  OptionsContainer.LeftMarginShowBookmarkPanel := SliderShowBookmarkPanel.SliderOn;
-  OptionsContainer.LeftMarginShowLineState := SliderShowLineState.SliderOn;
-  OptionsContainer.LeftMarginLineNumbersShowInTens := SliderShowInTens.SliderOn;
-  OptionsContainer.LeftMarginLineNumbersShowLeadingZeros := SliderShowLeadingZeros.SliderOn;
-  OptionsContainer.LeftMarginLineNumbersShowAfterLastLine := SliderShowAfterLastLine.SliderOn;
-  OptionsContainer.LeftMarginLineNumbersStartFrom := StrToIntDef(EditLineNumbersStartFrom.Text, 1);
-  OptionsContainer.LeftMarginWidth := StrToIntDef(EditWidth.Text, 57);
-  OptionsContainer.LeftMarginBookmarkPanelWidth := StrToIntDef(EditBookmarkPanelWidth.Text, 20);
+  with OptionsContainer do
+  begin
+    LeftMarginVisible := SliderVisible.SliderOn;
+    LeftMarginAutosize := SliderAutosize.SliderOn;
+    LeftMarginShowBookmarks := SliderShowBookmarks.SliderOn;
+    LeftMarginShowBookmarkPanel := SliderShowBookmarkPanel.SliderOn;
+    LeftMarginShowLineState := SliderShowLineState.SliderOn;
+    LeftMarginLineNumbersShowInTens := SliderShowInTens.SliderOn;
+    LeftMarginLineNumbersShowLeadingZeros := SliderShowLeadingZeros.SliderOn;
+    LeftMarginLineNumbersShowAfterLastLine := SliderShowAfterLastLine.SliderOn;
+    LeftMarginLineNumbersStartFrom := StrToIntDef(EditLineNumbersStartFrom.Text, 1);
+    LeftMarginWidth := StrToIntDef(EditWidth.Text, 57);
+    LeftMarginBookmarkPanelWidth := StrToIntDef(EditBookmarkPanelWidth.Text, 20);
+  end;
 end;
 
 procedure TOptionsEditorLeftMarginFrame.GetData;
 begin
-  SliderVisible.SliderOn := OptionsContainer.LeftMarginVisible;
-  SliderAutosize.SliderOn := OptionsContainer.LeftMarginAutosize;
-  SliderShowBookmarks.SliderOn := OptionsContainer.LeftMarginShowBookmarks;
-  SliderShowBookmarkPanel.SliderOn := OptionsContainer.LeftMarginShowBookmarkPanel;
-  SliderShowLineState.SliderOn := OptionsContainer.LeftMarginShowLineState;
-  SliderShowInTens.SliderOn := OptionsContainer.LeftMarginLineNumbersShowInTens;
-  SliderShowLeadingZeros.SliderOn := OptionsContainer.LeftMarginLineNumbersShowLeadingZeros;
-  SliderShowAfterLastLine.SliderOn := OptionsContainer.LeftMarginLineNumbersShowAfterLastLine;
-  EditLineNumbersStartFrom.Text := IntToStr(OptionsContainer.LeftMarginLineNumbersStartFrom);
-  EditWidth.Text := IntToStr(OptionsContainer.LeftMarginWidth);
-  EditBookmarkPanelWidth.Text := IntToStr(OptionsContainer.LeftMarginBookmarkPanelWidth);
+  with OptionsContainer do
+  begin
+    SliderVisible.SliderOn := LeftMarginVisible;
+    SliderAutosize.SliderOn := LeftMarginAutosize;
+    SliderShowBookmarks.SliderOn := LeftMarginShowBookmarks;
+    SliderShowBookmarkPanel.SliderOn := LeftMarginShowBookmarkPanel;
+    SliderShowLineState.SliderOn := LeftMarginShowLineState;
+    SliderShowInTens.SliderOn := LeftMarginLineNumbersShowInTens;
+    SliderShowLeadingZeros.SliderOn := LeftMarginLineNumbersShowLeadingZeros;
+    SliderShowAfterLastLine.SliderOn := LeftMarginLineNumbersShowAfterLastLine;
+    EditLineNumbersStartFrom.Text := IntToStr(LeftMarginLineNumbersStartFrom);
+    EditWidth.Text := IntToStr(LeftMarginWidth);
+    EditBookmarkPanelWidth.Text := IntToStr(LeftMarginBookmarkPanelWidth);
+  end;
 end;
 
 end.

@@ -84,6 +84,7 @@ type
     FScrollShowShadow: Boolean;
     { Search }
     FSearchVisible: Boolean;
+    FSearchClearWhenClosed: Boolean;
     FDocumentSpecificSearch: Boolean;
     FDocumentSpecificSearchText: string;
     FShowSearchMap: Boolean;
@@ -298,6 +299,8 @@ type
     { Search }
     [IniValue('Options', 'SearchVisible', 'False')]
     property SearchVisible: Boolean read FSearchVisible write FSearchVisible;
+    [IniValue('Options', 'SearchClearWhenClosed', 'False')]
+    property SearchClearWhenClosed: Boolean read FSearchClearWhenClosed write FSearchClearWhenClosed;
     [IniValue('Options', 'DocumentSpecificSearch', 'False')]
     property DocumentSpecificSearch: Boolean read FDocumentSpecificSearch write FDocumentSpecificSearch;
     property DocumentSpecificSearchText: string read FDocumentSpecificSearchText write FDocumentSpecificSearchText;

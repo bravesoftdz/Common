@@ -9,36 +9,32 @@ uses
 
 type
   TItemListDialog = class(TBCBaseDialog)
-    PanelButtons: TBCPanel;
-    ButtonFind: TButton;
-    ButtonCancel: TButton;
-    ListBox: TsListBox;
-    PanelTop: TBCPanel;
-    SpeedButtonDivider1: TBCSpeedButton;
-    SpeedButtonDelete: TBCSpeedButton;
-    SpeedButtonInsert: TBCSpeedButton;
-    SpeedButtonClear: TBCSpeedButton;
-    ActionList: TActionList;
-    ActionInsert: TAction;
-    ActionDelete: TAction;
     ActionClearAll: TAction;
-    SpeedButtonDivider2: TBCSpeedButton;
-    SpeedButtonMoveUp: TBCSpeedButton;
-    SpeedButtonMoveDown: TBCSpeedButton;
-    ActionMoveUp: TAction;
+    ActionDelete: TAction;
+    ActionInsert: TAction;
+    ActionList: TActionList;
     ActionMoveDown: TAction;
+    ActionMoveUp: TAction;
     ActionSort: TAction;
+    ButtonCancel: TButton;
+    ButtonFind: TButton;
+    ListBox: TsListBox;
+    PanelButtons: TBCPanel;
+    PanelTop: TBCPanel;
+    SpeedButtonClear: TBCSpeedButton;
+    SpeedButtonDelete: TBCSpeedButton;
+    SpeedButtonDivider1: TBCSpeedButton;
+    SpeedButtonDivider2: TBCSpeedButton;
+    SpeedButtonInsert: TBCSpeedButton;
+    SpeedButtonMoveDown: TBCSpeedButton;
+    SpeedButtonMoveUp: TBCSpeedButton;
     SpeedButtonSort: TBCSpeedButton;
-    procedure ActionInsertExecute(Sender: TObject);
-    procedure ActionDeleteExecute(Sender: TObject);
     procedure ActionClearAllExecute(Sender: TObject);
-    procedure ActionSortExecute(Sender: TObject);
-    procedure ActionMoveUpExecute(Sender: TObject);
+    procedure ActionDeleteExecute(Sender: TObject);
+    procedure ActionInsertExecute(Sender: TObject);
     procedure ActionMoveDownExecute(Sender: TObject);
-  private
-    { Private declarations }
-  public
-    { Public declarations }
+    procedure ActionMoveUpExecute(Sender: TObject);
+    procedure ActionSortExecute(Sender: TObject);
   end;
 
 implementation
@@ -84,7 +80,7 @@ procedure TItemListDialog.ActionSortExecute(Sender: TObject);
 begin
   inherited;
   ListBox.Sorted := True;
-  ListBox.Sorted := False; //FI:W508 FixInsight ignore
+  ListBox.Sorted := False;
 end;
 
 end.

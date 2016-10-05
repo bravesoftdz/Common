@@ -462,7 +462,7 @@ begin
     if SelectedCount = 0 then
       Exit;
     Node := GetFirstSelected;
-    for i := 0 to SelectedCount - 1 do //FI:W528 FixInsight ignore
+    for i := 0 to SelectedCount - 1 do
     begin
       PrevNode := GetPrevious(Node,false);
       MoveTo(Node,PrevNode,amInsertBefore,false);
@@ -545,7 +545,7 @@ begin
     if S = '-' then
     begin
       HyphenCount := (R.Right - R.Left) div Canvas.TextWidth(S);
-      for i := 0 to HyphenCount  do //FI:W528 FixInsight ignore
+      for i := 0 to HyphenCount do
         S := S + '-';
     end;
 
@@ -562,13 +562,12 @@ procedure TOptionsToolbarFrame.VirtualDrawTreeGetImageIndex(Sender: TBaseVirtual
 var
   LData: PTreeData;
 begin
-  if Kind in [ikNormal, ikSelected] then
-  begin
-    LData := VirtualDrawTree.GetNodeData(Node);
-    if Assigned(LData) then
-      if Assigned(LData^.Action) then
-        ImageIndex := LData^.Action.ImageIndex;
-  end;
+  if Kind = ikState then
+    Exit;
+  LData := VirtualDrawTree.GetNodeData(Node);
+  if Assigned(LData) then
+    if Assigned(LData^.Action) then
+      ImageIndex := LData^.Action.ImageIndex;
 end;
 
 procedure TOptionsToolbarFrame.VirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas;

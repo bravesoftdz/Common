@@ -2,8 +2,6 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
   Width = 195
   Height = 340
   Visible = False
-  ExplicitWidth = 195
-  ExplicitHeight = 340
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4

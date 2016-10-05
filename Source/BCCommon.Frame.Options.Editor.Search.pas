@@ -17,6 +17,8 @@ type
     StickyLabelVisible: TsStickyLabel;
     SliderVisible: TsSlider;
     ComboBoxAlign: TBCComboBox;
+    SliderClearWhenClosed: TsSlider;
+    StickyLabelClearWhenClosed: TsStickyLabel;
   protected
     procedure GetData; override;
     procedure Init; override;
@@ -65,6 +67,7 @@ begin
   with OptionsContainer do
   begin
     SearchVisible := SliderVisible.SliderOn;
+    SearchClearWhenClosed := SliderClearWhenClosed.SliderOn;
     DocumentSpecificSearch := SliderDocumentSpecificSearch.SliderOn;
     ShowSearchMap := SliderShowSearchMap.SliderOn;
     SearchMapAlign := ComboBoxAlign.ItemIndex;
@@ -76,6 +79,7 @@ begin
   with OptionsContainer do
   begin
     SliderVisible.SliderOn := SearchVisible;
+    SliderClearWhenClosed.SliderOn := SearchClearWhenClosed;
     SliderDocumentSpecificSearch.SliderOn := DocumentSpecificSearch;
     SliderShowSearchMap.SliderOn := ShowSearchMap;
     ComboBoxAlign.ItemIndex := SearchMapAlign;
