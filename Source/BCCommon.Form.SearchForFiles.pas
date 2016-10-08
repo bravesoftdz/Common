@@ -342,9 +342,9 @@ begin
   try
     ReadFiles(ARootDirectory);
   finally
-    FProgressBar.Hide;
     if not FFormClosing then
     begin
+      FProgressBar.Hide;
       FStopWatch.Stop;
       if StrToInt(FormatDateTime('n', FStopWatch.ElapsedMilliseconds / MSecsPerDay)) < 1 then
         LTimeDifference := FormatDateTime(Format('s.zzz "%s"', [LanguageDataModule.GetConstant('Second')]), FStopWatch.ElapsedMilliseconds / MSecsPerDay)
