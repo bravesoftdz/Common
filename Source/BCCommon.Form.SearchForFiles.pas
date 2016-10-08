@@ -251,6 +251,8 @@ procedure TSearchForFilesForm.VirtualDrawTreeSearchGetImageIndex(Sender: TBaseVi
 var
   Data: PSearchRec;
 begin
+  if Kind = ikState then
+    Exit;
   Data := VirtualDrawTreeSearch.GetNodeData(Node);
   if Assigned(Data) then
     ImageIndex := Data.ImageIndex;

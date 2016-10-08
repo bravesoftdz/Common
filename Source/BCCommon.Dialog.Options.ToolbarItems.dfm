@@ -93,17 +93,11 @@ object OptionsToolbarItemsDialog: TOptionsToolbarItemsDialog
       item
         Options = [coEnabled, coParentBidiMode, coParentColor, coVisible, coAutoSpring]
         Position = 0
-        Width = 310
+        Width = 314
         WideText = 'Menu Item'
       end>
   end
   object SkinProvider: TsSkinProvider
-    AddedTitle.Font.Charset = DEFAULT_CHARSET
-    AddedTitle.Font.Color = clNone
-    AddedTitle.Font.Height = -11
-    AddedTitle.Font.Name = 'Tahoma'
-    AddedTitle.Font.Style = []
-    FormHeader.AdditionalHeight = 0
     SkinData.SkinSection = 'FORM'
     TitleButtons = <>
     Left = 196

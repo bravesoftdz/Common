@@ -141,12 +141,11 @@ procedure TOptionsToolbarItemsDialog.VirtualDrawTreeAddItemsGetImageIndex(Sender
 var
   Data: PTreeData;
 begin
-  if Kind in [ikNormal, ikSelected] then
-  begin
-    Data := VirtualDrawTreeAddItems.GetNodeData(Node);
-    if Assigned(Data) then
-      ImageIndex := Data^.Action.ImageIndex;
-  end;
+  if Kind = ikState then
+    Exit;
+  Data := VirtualDrawTreeAddItems.GetNodeData(Node);
+  if Assigned(Data) then
+    ImageIndex := Data^.Action.ImageIndex;
 end;
 
 procedure TOptionsToolbarItemsDialog.VirtualDrawTreeAddItemsGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas;
