@@ -80,7 +80,7 @@ object OptionsToolbarItemsDialog: TOptionsToolbarItemsDialog
     ParentCtl3D = False
     SelectionBlendFactor = 255
     TabOrder = 1
-    TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand]
+    TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoChangeScale]
     TreeOptions.MiscOptions = [toCheckSupport, toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning, toEditOnClick]
     TreeOptions.PaintOptions = [toHideFocusRect, toShowButtons, toShowDropmark, toShowRoot, toThemeAware, toGhostedIfUnfocused]
     TreeOptions.SelectionOptions = [toFullRowSelect, toMiddleClickSelect]
@@ -93,7 +93,7 @@ object OptionsToolbarItemsDialog: TOptionsToolbarItemsDialog
       item
         Options = [coEnabled, coParentBidiMode, coParentColor, coVisible, coAutoSpring]
         Position = 0
-        Width = 314
+        Width = 310
         WideText = 'Menu Item'
       end>
   end

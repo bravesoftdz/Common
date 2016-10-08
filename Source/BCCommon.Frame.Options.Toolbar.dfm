@@ -45,7 +45,7 @@ inherited OptionsToolbarFrame: TOptionsToolbarFrame
       PopupMenu = PopupActionBar
       SelectionBlendFactor = 255
       TabOrder = 0
-      TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toDisableAutoscrollOnFocus]
+      TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toDisableAutoscrollOnFocus, toAutoChangeScale]
       TreeOptions.MiscOptions = [toAcceptOLEDrop, toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning]
       TreeOptions.PaintOptions = [toHideFocusRect, toShowButtons, toShowDropmark, toShowRoot, toThemeAware]
       TreeOptions.SelectionOptions = [toFullRowSelect, toMiddleClickSelect, toAlwaysSelectNode]
