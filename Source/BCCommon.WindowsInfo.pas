@@ -56,9 +56,9 @@ const
    );
 
   HexPrefixPascal = string('$');
-  HexPrefixC      = string('0x');
+  //HexPrefixC      = string('0x');
   HexDigitFmt32   = string('%.8x');
-  HexDigitFmt64   = string('%.16x');
+  //HexDigitFmt64   = string('%.16x');
 
   HexPrefix = HexPrefixPascal;
 

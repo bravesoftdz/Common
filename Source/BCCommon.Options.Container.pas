@@ -812,7 +812,7 @@ begin
     LeftMargin.Visible := FLeftMarginVisible;
     LeftMargin.Autosize := FLeftMarginAutosize;
     LeftMargin.Bookmarks.Visible := FLeftMarginShowBookmarks;
-    LeftMargin.Bookmarks.Panel.Visible := FLeftMarginShowBookmarkPanel;
+    LeftMargin.MarksPanel.Visible := FLeftMarginShowBookmarkPanel;
     LeftMargin.LineState.Enabled := FLeftMarginShowLineState;
     LeftMargin.LineNumbers.Visible := FLineNumbersEnabled;
     LeftMargin.LineNumbers.SetOption(lnoIntens, FLeftMarginLineNumbersShowInTens);
@@ -820,7 +820,7 @@ begin
     LeftMargin.LineNumbers.SetOption(lnoAfterLastLine, FLeftMarginLineNumbersShowAfterLastLine);
     LeftMargin.LineNumbers.StartFrom := FLeftMarginLineNumbersStartFrom;
     LeftMargin.Width := FLeftMarginWidth;
-    LeftMargin.Bookmarks.Panel.Width := FLeftMarginBookmarkPanelWidth;
+    LeftMargin.MarksPanel.Width := FLeftMarginBookmarkPanelWidth;
     { Matching pair }
     MatchingPair.Enabled := FMatchingPairEnabled;
     MatchingPair.SetOption(mpoHighlightAfterToken, FMatchingPairHighlightAfterToken);
