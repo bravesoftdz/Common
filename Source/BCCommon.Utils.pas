@@ -8,11 +8,11 @@ uses
 function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean;
 function GetOSInfo: string;
 function InsertTextToCombo(ComboBox: TBCComboBox): Integer;
+function PostInc(var AValue: Integer): Integer; inline;
 function ScaleSize(const ASize: Integer): Integer;
-function SetFormInsideWorkArea(Left, Width: Integer): Integer;
-function PostInc(var i: Integer): Integer; inline;
+function SetFormInsideWorkArea(const ALeft, AWidth: Integer): Integer;
+procedure AlignSliders(AWinControl: TWinControl; const ALeftMargin: Integer = 0);
 procedure InsertItemsToComboBox(AValueListEditor: TValueListEditor; AComboBox: TBCComboBox);
-procedure AlignSliders(AWinControl: TWinControl; ALeftMargin: Integer = 0);
 
 implementation
 
@@ -23,9 +23,9 @@ uses
 function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean;
 begin
   if ABrowserPath = '' then
-    Result := ShellExecute(0, 'open', PChar(AURL), nil, nil, SW_SHOWNORMAL) > 32
+    Result := ShellExecute(0, nil, PChar(AURL), nil, nil, SW_SHOWNORMAL) > 32
   else
-    Result := ShellExecute(0, 'open', PChar(ABrowserPath), PChar(AURL), nil, SW_SHOWNORMAL) > 32
+    Result := ShellExecute(0, nil, PChar(ABrowserPath), PChar(AURL), nil, SW_SHOWNORMAL) > 32
 end;
 
 function GetOSInfo: string;
@@ -35,35 +35,35 @@ end;
 
 procedure InsertItemsToComboBox(AValueListEditor: TValueListEditor; AComboBox: TBCComboBox);
 var
-  i: Integer;
-  s: string;
+  LIndex: Integer;
+  LValue: string;
 begin
   AComboBox.Clear;
-  for i := AValueListEditor.Strings.Count - 1 downto 0 do
+  for LIndex := AValueListEditor.Strings.Count - 1 downto 0 do
   begin
-    s := AValueListEditor.Values[IntToStr(i)];
-    if AComboBox.Items.IndexOf(s) = -1 then
-      AComboBox.Items.Add(s);
+    LValue := AValueListEditor.Values[IntToStr(LIndex)];
+    if AComboBox.Items.IndexOf(LValue) = -1 then
+      AComboBox.Items.Add(LValue);
   end;
 end;
 
 function InsertTextToCombo(ComboBox: TBCComboBox): Integer;
 var
-  s: string;
-  i: Integer;
+  LText: string;
+  LIndex: Integer;
 begin
   Result := -1;
   with ComboBox do
   begin
-    s := Text;
-    if s <> '' then
+    LText := Text;
+    if LText <> '' then
     begin
-      i := Items.IndexOf(s);
-      if i > -1 then
-        Items.Delete(i);
-      Items.Insert(0, s);
-      Text := s;
-      if i = -1 then
+      LIndex := Items.IndexOf(LText);
+      if LIndex > -1 then
+        Items.Delete(LIndex);
+      Items.Insert(0, LText);
+      Text := LText;
+      if LIndex = -1 then
         Result := ComboBox.Items.Count - 1;
     end;
   end;
@@ -74,44 +74,44 @@ begin
   Result := Round(ASize * (Screen.PixelsPerInch / 96));
 end;
 
-function SetFormInsideWorkArea(Left, Width: Integer): Integer;
+function SetFormInsideWorkArea(const ALeft, AWidth: Integer): Integer;
 var
-  i: Integer;
-  ScreenPos: Integer;
+  LIndex: Integer;
+  LScreenPos: Integer;
   LMonitor: TMonitor;
 begin
-  Result := Left;
+  Result := ALeft;
   { check if the application is outside left side }
-  ScreenPos := 0;
-  for i := 0 to Screen.MonitorCount - 1 do
+  LScreenPos := 0;
+  for LIndex := 0 to Screen.MonitorCount - 1 do
   begin
-    LMonitor := Screen.Monitors[i];
-    if LMonitor.WorkareaRect.Left < ScreenPos then
-      ScreenPos := LMonitor.WorkareaRect.Left;
+    LMonitor := Screen.Monitors[LIndex];
+    if LMonitor.WorkareaRect.Left < LScreenPos then
+      LScreenPos := LMonitor.WorkareaRect.Left;
   end;
-  if Left + Width < ScreenPos then
-    Result := (Screen.Width - Width) div 2;
+  if ALeft + AWidth < LScreenPos then
+    Result := (Screen.Width - AWidth) div 2;
   { check if the application is outside right side }
-  ScreenPos := 0;
-  for i := 0 to Screen.MonitorCount - 1 do
+  LScreenPos := 0;
+  for LIndex := 0 to Screen.MonitorCount - 1 do
   begin
-    LMonitor := Screen.Monitors[i];
-    if LMonitor.WorkareaRect.Right > ScreenPos then
-      ScreenPos := LMonitor.WorkareaRect.Right;
+    LMonitor := Screen.Monitors[LIndex];
+    if LMonitor.WorkareaRect.Right > LScreenPos then
+      LScreenPos := LMonitor.WorkareaRect.Right;
   end;
-  if Left > ScreenPos then
-    Result := (Screen.Width - Width) div 2;
+  if ALeft > LScreenPos then
+    Result := (Screen.Width - AWidth) div 2;
 end;
 
-function PostInc(var i: Integer): Integer; inline;
+function PostInc(var AValue: Integer): Integer; inline;
 begin
-  Result := i;
-  Inc(i)
+  Result := AValue;
+  Inc(AValue)
 end;
 
-procedure AlignSliders(AWinControl: TWinControl; ALeftMargin: Integer = 0);
+procedure AlignSliders(AWinControl: TWinControl; const ALeftMargin: Integer = 0);
 var
-  i: Integer;
+  LIndex: Integer;
   LMaxLength: Integer;
   LMaxSliderLeft: Integer;
   LLabel: TsStickyLabel;
@@ -119,28 +119,28 @@ var
 begin
   LMaxLength := 0;
   LMaxSliderLeft := 0;
-  for i := 0 to AWinControl.ControlCount - 1 do
-    if AWinControl.Controls[i] is TsStickyLabel then
-    begin
-      LLabel := AWinControl.Controls[i] as TsStickyLabel;
+  for LIndex := 0 to AWinControl.ControlCount - 1 do
+  if AWinControl.Controls[LIndex] is TsStickyLabel then
+  begin
+    LLabel := AWinControl.Controls[LIndex] as TsStickyLabel;
 
-      LLabel.AutoSize := True;
-      if LLabel.Width > LMaxLength then
-      begin
-        LSlider := LLabel.AttachTo as TsSlider;
-        LMaxSliderLeft := LSlider.Left - LLabel.Left;
-        LMaxLength := LLabel.Width;
-      end;
-      LLabel.AutoSize := False;
-    end;
-  for i := 0 to AWinControl.ControlCount - 1 do
-    if AWinControl.Controls[i] is TsStickyLabel then
+    LLabel.AutoSize := True;
+    if LLabel.Width > LMaxLength then
     begin
-      LLabel := AWinControl.Controls[i] as TsStickyLabel;
-      LLabel.Width := LMaxLength;
       LSlider := LLabel.AttachTo as TsSlider;
-      LSlider.Left := LMaxSliderLeft + ALeftMargin;
+      LMaxSliderLeft := LSlider.Left - LLabel.Left;
+      LMaxLength := LLabel.Width;
     end;
+    LLabel.AutoSize := False;
+  end;
+  for LIndex := 0 to AWinControl.ControlCount - 1 do
+  if AWinControl.Controls[LIndex] is TsStickyLabel then
+  begin
+    LLabel := AWinControl.Controls[LIndex] as TsStickyLabel;
+    LLabel.Width := LMaxLength;
+    LSlider := LLabel.AttachTo as TsSlider;
+    LSlider.Left := LMaxSliderLeft + ALeftMargin;
+  end;
 end;
 
 end.

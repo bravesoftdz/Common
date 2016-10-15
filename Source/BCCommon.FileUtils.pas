@@ -6,30 +6,31 @@ uses
   Winapi.Windows, System.Classes, System.Types;
 
 function CountFilesInFolder(const AFolderText: string; const AFileTypeText: string; const AFileExtensions: string): Integer;
-function DisplayContextMenu(const Handle: THandle; const FileName: string; Pos: TPoint): Boolean;
+function DisplayContextMenu(const AHandle: THandle; const AFileName: string; APos: TPoint): Boolean;
 function FormatFileName(const AFileName: string; const AModified: Boolean = False): string;
+function GetClipboardHistoryFileName: string;
 function GetColorLoadFileName(const AFileName: string): string;
 function GetColorSaveFileName(const AOwner: TComponent; const AFileName: string): string;
-function GetFileDateTime(const FileName: string): TDateTime;
+function GetFileDateTime(const AFileName: string): TDateTime;
 function GetFileNamesFromFolder(const Folder: string; const FileType: string = ''): TStrings;
-function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStringDynArray;
-function GetFileVersion(const FileName: string): string;
+function GetFiles(const APath, AMasks: string; const ALookInSubfolders: Boolean): TStringDynArray;
+function GetFileVersion(const AFileName: string): string;
 function GetHighlighters: TStringList;
 function GetHighlighterColors: TStringList;
-function GetOldIniFilename: string;
-function GetOldOutFilename: string;
-function GetIniFilename: string;
-function GetUniIniFilename: string;
-function GetOutFilename: string;
+function GetOldIniFileName: string;
+function GetOldOutFileName: string;
+function GetIniFileName: string;
+function GetUniIniFileName: string;
+function GetOutFileName: string;
 function GetUserAppDataPath(const AAppName: string): string;
-function GetSQLFormatterDLLFilename: string;
+function GetSQLFormatterDLLFileName: string;
 function IsOriginalColor(const AColorName: string): Boolean;
 function IsVirtualDrive(ADrive: Char): Boolean;
 function SystemDir: string;
-function VirtualDrivePath(ADrive: Char): string;
-procedure CreateVirtualDrive(const Drive: Char; const Path: string);
-procedure DeleteVirtualDrive(const Drive: Char);
-procedure FilePropertiesDialog(const FileName: string);
+function VirtualDrivePath(const ADrive: Char): string;
+procedure CreateVirtualDrive(const ADrive: Char; const APath: string);
+procedure DeleteVirtualDrive(const ADrive: Char);
+procedure FilePropertiesDialog(const AFileName: string);
 
 var
   GApplicationIniPath: Boolean;
@@ -47,7 +48,7 @@ function GetSpecialFolderPath(const AFolder: Integer; const APath: string = ''):
 const
   SHGFP_TYPE_CURRENT = 0;
 var
-  LPath: array [0 .. MAX_PATH + 1] of char;
+  LPath: array [0 .. MAX_PATH + 1] of Char;
 begin
   if not Succeeded(SHGetFolderPath(0, AFolder, 0, SHGFP_TYPE_CURRENT, @LPath[0])) then
     raise Exception.Create('Path is missing.')
@@ -70,22 +71,21 @@ end;
 
 function DriveToPidlBind(const DriveName: string; out Folder: IShellFolder): PItemIdList;
 var
-  Attr: ULONG;
-  Eaten: ULONG;
-  DesktopFolder: IShellFolder;
-  Drives: PItemIdList;
-  Path: PWideChar;
+  LAttributes, LChEaten: ULONG;
+  LDesktopFolder: IShellFolder;
+  LDrivesIdList: PItemIdList;
+  LPath: PChar;
 begin
   Result := nil;
-  if Succeeded(SHGetDesktopFolder(DesktopFolder)) then
+  if Succeeded(SHGetDesktopFolder(LDesktopFolder)) then
   begin
-    if Succeeded(SHGetSpecialFolderLocation(0, CSIDL_DRIVES, Drives)) then
+    if Succeeded(SHGetSpecialFolderLocation(0, CSIDL_DRIVES, LDrivesIdList)) then
     begin
-      if Succeeded(DesktopFolder.BindToObject(Drives, nil, IID_IShellFolder, Pointer(Folder))) then
+      if Succeeded(LDesktopFolder.BindToObject(LDrivesIdList, nil, IID_IShellFolder, Pointer(Folder))) then
       begin
-        Path := PChar(IncludeTrailingPathDelimiter(DriveName));
-        Attr := 0;
-        if Failed(Folder.ParseDisplayName(0, nil, Path, Eaten, Result, Attr)) then
+        LPath := PChar(IncludeTrailingPathDelimiter(DriveName));
+        LAttributes := 0;
+        if Failed(Folder.ParseDisplayName(0, nil, LPath, LChEaten, Result, LAttributes)) then
         begin
           Folder := nil;
           // Failure probably means that this is not a drive. However, do not
@@ -93,88 +93,88 @@ begin
         end;
       end;
     end;
-    CoTaskMemFree(Drives);
+    CoTaskMemFree(LDrivesIdList);
   end;
 end;
 
-function PidlFree(var IdList: PItemIdList): Boolean;
+function PidlFree(var AIdList: PItemIdList): Boolean;
 var
   Malloc: IMalloc;
 begin
   Result := False;
-  if IdList = nil then
+  if not Assigned(AIdList) then
     Result := True
   else
   begin
     Malloc := nil;
-    if Succeeded(SHGetMalloc(Malloc)) and (Malloc.DidAlloc(IdList) > 0) then
+    if Succeeded(SHGetMalloc(Malloc)) and (Malloc.DidAlloc(AIdList) > 0) then
     begin
-      Malloc.Free(IdList);
-      IdList := nil;
+      Malloc.Free(AIdList);
+      AIdList := nil;
       Result := True;
     end;
   end;
 end;
 
-function PathToPidlBind(const FileName: string; out Folder: IShellFolder): PItemIdList;
+function PathToPidlBind(const AFileName: string; out AFolder: IShellFolder): PItemIdList;
 var
-  Attr, Eaten: ULONG;
-  PathIdList: PItemIdList;
-  DesktopFolder: IShellFolder;
-  Path, ItemName: PWideChar;
+  LAttributes, LChEaten: ULONG;
+  LPathIdList: PItemIdList;
+  LDesktopFolder: IShellFolder;
+  LPath, LItemName: PWideChar;
 begin
   Result := nil;
-  Path := PChar(ExtractFilePath(FileName));
-  ItemName := PChar(ExtractFileName(FileName));
+  LPath := PChar(ExtractFilePath(AFileName));
+  LItemName := PChar(ExtractFileName(AFileName));
 
-  if Succeeded(SHGetDesktopFolder(DesktopFolder)) then
+  if Succeeded(SHGetDesktopFolder(LDesktopFolder)) then
   begin
-    Attr := 0;
-    if Succeeded(DesktopFolder.ParseDisplayName(0, nil, Path, Eaten, PathIdList, Attr)) then
+    LAttributes := 0;
+    if Succeeded(LDesktopFolder.ParseDisplayName(0, nil, LPath, LChEaten, LPathIdList, LAttributes)) then
     begin
-      if Succeeded(DesktopFolder.BindToObject(PathIdList, nil, IID_IShellFolder, Pointer(Folder))) then
-        if Failed(Folder.ParseDisplayName(0, nil, ItemName, Eaten, Result, Attr)) then
+      if Succeeded(LDesktopFolder.BindToObject(LPathIdList, nil, IID_IShellFolder, Pointer(AFolder))) then
+        if Failed(AFolder.ParseDisplayName(0, nil, LItemName, LChEaten, Result, LAttributes)) then
         begin
-          Folder := nil;
-          Result := DriveToPidlBind(FileName, Folder);
+          AFolder := nil;
+          Result := DriveToPidlBind(AFileName, AFolder);
         end;
-      PidlFree(PathIdList);
+      PidlFree(LPathIdList);
     end
     else
-      Result := DriveToPidlBind(FileName, Folder);
+      Result := DriveToPidlBind(AFileName, AFolder);
   end;
 end;
 
-procedure ResetMemory(out P; Size: Longint);
+procedure ResetMemory(out AWndClass; AWndClassSize: Longint);
 begin
-  if Size > 0 then
+  if AWndClassSize > 0 then
   begin
-    Byte(P) := 0;
-    FillChar(P, Size, 0);
+    Byte(AWndClass) := 0;
+    FillChar(AWndClass, AWndClassSize, 0);
   end;
 end;
 
 function MenuCallback(Wnd: THandle; Msg: UINT; wParam: wParam; lParam: lParam): LRESULT; stdcall;
 var
-  ContextMenu2: IContextMenu2;
+  LContextMenu2: IContextMenu2;
 begin
   case Msg of
     WM_CREATE:
       begin
-        ContextMenu2 := IContextMenu2(PCreateStruct(lParam).lpCreateParams);
-        SetWindowLongPtr(Wnd, GWLP_USERDATA, LONG_PTR(ContextMenu2));
+        LContextMenu2 := IContextMenu2(PCreateStruct(lParam).lpCreateParams);
+        SetWindowLongPtr(Wnd, GWLP_USERDATA, LONG_PTR(LContextMenu2));
         Result := DefWindowProc(Wnd, Msg, wParam, lParam);
       end;
     WM_INITMENUPOPUP:
       begin
-        ContextMenu2 := IContextMenu2(GetWindowLongPtr(Wnd, GWLP_USERDATA));
-        ContextMenu2.HandleMenuMsg(Msg, wParam, lParam);
+        LContextMenu2 := IContextMenu2(GetWindowLongPtr(Wnd, GWLP_USERDATA));
+        LContextMenu2.HandleMenuMsg(Msg, wParam, lParam);
         Result := 0;
       end;
     WM_DRAWITEM, WM_MEASUREITEM:
       begin
-        ContextMenu2 := IContextMenu2(GetWindowLongPtr(Wnd, GWLP_USERDATA));
-        ContextMenu2.HandleMenuMsg(Msg, wParam, lParam);
+        LContextMenu2 := IContextMenu2(GetWindowLongPtr(Wnd, GWLP_USERDATA));
+        LContextMenu2.HandleMenuMsg(Msg, wParam, lParam);
         Result := 1;
       end;
   else
@@ -182,78 +182,76 @@ begin
   end;
 end;
 
-function CreateMenuCallbackWnd(const ContextMenu: IContextMenu2): THandle;
+function CreateMenuCallbackWnd(const AContextMenu: IContextMenu2): THandle;
 const
   IcmCallbackWnd = 'ICMCALLBACKWND';
 var
-  WndClass: TWndClass;
+  LWndClass: TWndClass;
 begin
-  ResetMemory(WndClass, SizeOf(WndClass));
-  WndClass.lpszClassName := PChar(IcmCallbackWnd);
-  WndClass.lpfnWndProc := @MenuCallback;
-  WndClass.hInstance := hInstance;
-  Winapi.Windows.RegisterClass(WndClass);
+  ResetMemory(LWndClass, SizeOf(LWndClass));
+  LWndClass.lpszClassName := PChar(IcmCallbackWnd);
+  LWndClass.lpfnWndProc := @MenuCallback;
+  LWndClass.hInstance := hInstance;
+  Winapi.Windows.RegisterClass(LWndClass);
   Result := CreateWindow(IcmCallbackWnd, IcmCallbackWnd, WS_POPUPWINDOW, 0, 0, 0, 0, 0, 0, hInstance,
-    Pointer(ContextMenu));
+    Pointer(AContextMenu));
 end;
 
-function DisplayContextMenuPidl(const Handle: THandle; const Folder: IShellFolder; Item: PItemIdList;
+function DisplayContextMenuPidl(const AHandle: THandle; const AFolder: IShellFolder; AItem: PItemIdList;
   Pos: TPoint): Boolean;
 var
-  Cmd: Cardinal;
-  ContextMenu: IContextMenu;
-  ContextMenu2: IContextMenu2;
-  Menu: HMENU;
-  CommandInfo: TCMInvokeCommandInfo;
-  CallbackWindow: THandle;
+  LCommand: Cardinal;
+  LContextMenu: IContextMenu;
+  LContextMenu2: IContextMenu2;
+  LMenu: HMENU;
+  LCommandInfo: TCMInvokeCommandInfo;
+  LCallbackWindow: THandle;
 begin
   Result := False;
-  if (Item = nil) or (Folder = nil) then
+  if not Assigned(AItem) or not Assigned(AFolder) then
     Exit;
-  Folder.GetUIObjectOf(Handle, 1, Item, IID_IContextMenu, nil, Pointer(ContextMenu));
-  if ContextMenu <> nil then
+  AFolder.GetUIObjectOf(AHandle, 1, AItem, IID_IContextMenu, nil, Pointer(LContextMenu));
+  if LContextMenu <> nil then
   begin
-    Menu := CreatePopupMenu;
-    if Menu <> 0 then
+    LMenu := CreatePopupMenu;
+    if LMenu <> 0 then
     begin
-      if Succeeded(ContextMenu.QueryContextMenu(Menu, 0, 1, $7FFF, CMF_EXPLORE)) then
+      if Succeeded(LContextMenu.QueryContextMenu(LMenu, 0, 1, $7FFF, CMF_EXPLORE)) then
       begin
-        CallbackWindow := 0;
-        if Succeeded(ContextMenu.QueryInterface(IContextMenu2, ContextMenu2)) then
+        LCallbackWindow := 0;
+        if Succeeded(LContextMenu.QueryInterface(IContextMenu2, LContextMenu2)) then
+          LCallbackWindow := CreateMenuCallbackWnd(LContextMenu2);
+        ClientToScreen(AHandle, Pos);
+        LCommand := Cardinal(TrackPopupMenu(LMenu, TPM_LEFTALIGN or TPM_LEFTBUTTON or TPM_RIGHTBUTTON or TPM_RETURNCMD, Pos.X,
+          Pos.Y, 0, LCallbackWindow, nil));
+        if LCommand <> 0 then
         begin
-          CallbackWindow := CreateMenuCallbackWnd(ContextMenu2);
+          ResetMemory(LCommandInfo, SizeOf(LCommandInfo));
+          LCommandInfo.cbSize := SizeOf(TCMInvokeCommandInfo);
+          LCommandInfo.hwnd := AHandle;
+          LCommandInfo.lpVerb := MakeIntResourceA(LCommand - 1);
+          LCommandInfo.nShow := SW_SHOWNORMAL;
+          Result := Succeeded(LContextMenu.InvokeCommand(LCommandInfo));
         end;
-        ClientToScreen(Handle, Pos);
-        Cmd := Cardinal(TrackPopupMenu(Menu, TPM_LEFTALIGN or TPM_LEFTBUTTON or TPM_RIGHTBUTTON or TPM_RETURNCMD, Pos.X,
-          Pos.Y, 0, CallbackWindow, nil));
-        if Cmd <> 0 then
-        begin
-          ResetMemory(CommandInfo, SizeOf(CommandInfo));
-          CommandInfo.cbSize := SizeOf(TCMInvokeCommandInfo);
-          CommandInfo.hwnd := Handle;
-          CommandInfo.lpVerb := MakeIntResourceA(Cmd - 1);
-          CommandInfo.nShow := SW_SHOWNORMAL;
-          Result := Succeeded(ContextMenu.InvokeCommand(CommandInfo));
-        end;
-        if CallbackWindow <> 0 then
-          DestroyWindow(CallbackWindow);
+        if LCallbackWindow <> 0 then
+          DestroyWindow(LCallbackWindow);
       end;
-      DestroyMenu(Menu);
+      DestroyMenu(LMenu);
     end;
   end;
 end;
 
-function DisplayContextMenu(const Handle: THandle; const FileName: string; Pos: TPoint): Boolean;
+function DisplayContextMenu(const AHandle: THandle; const AFileName: string; APos: TPoint): Boolean;
 var
-  ItemIdList: PItemIdList;
-  Folder: IShellFolder;
+  LItemIdList: PItemIdList;
+  LFolder: IShellFolder;
 begin
   Result := False;
-  ItemIdList := PathToPidlBind(FileName, Folder);
-  if ItemIdList <> nil then
+  LItemIdList := PathToPidlBind(AFileName, LFolder);
+  if LItemIdList <> nil then
   begin
-    Result := DisplayContextMenuPidl(Handle, Folder, ItemIdList, Pos);
-    PidlFree(ItemIdList);
+    Result := DisplayContextMenuPidl(AHandle, LFolder, LItemIdList, APos);
+    PidlFree(LItemIdList);
   end;
 end;
 
@@ -288,10 +286,10 @@ begin
   end
 end;
 
-function GetFiles(const APath, AMasks: string; ALookInSubfolders: Boolean): TStringDynArray;
+function GetFiles(const APath, AMasks: string; const ALookInSubfolders: Boolean): TStringDynArray;
 var
-  MaskArray: TStringDynArray;
-  Predicate: TDirectory.TFilterPredicate;
+  LMaskArray: TStringDynArray;
+  LPredicate: TDirectory.TFilterPredicate;
   LSearchOption: TSearchOption;
 begin
   if ALookInSubfolders then
@@ -299,65 +297,66 @@ begin
   else
     LSearchOption := System.IOUtils.TSearchOption.soTopDirectoryOnly;
 
-  MaskArray := SplitString(AMasks, ';');
-  Predicate := function(const Path: string; const SearchRec: TSearchRec): Boolean
+  LMaskArray := SplitString(AMasks, ';');
+  LPredicate :=
+    function(const APath: string; const ASearchRec: TSearchRec): Boolean
     var
-      Mask: string;
+      LMask: string;
     begin
-      for Mask in MaskArray do
-        if MatchesMask(SearchRec.Name, Mask) then
+      for LMask in LMaskArray do
+        if MatchesMask(ASearchRec.Name, LMask) then
           Exit(True);
       Exit(False);
     end;
-  Result := TDirectory.GetFiles(APath, LSearchOption, Predicate);
+  Result := TDirectory.GetFiles(APath, LSearchOption, LPredicate);
 end;
 
 function CountFilesInFolder(const AFolderText: string; const AFileTypeText: string; const AFileExtensions: string): Integer;
 var
-  FName: string;
+  LName: string;
 begin
   Result := 0;
-  for FName in GetFiles(AFolderText, AFileTypeText, True) do
+  for LName in GetFiles(AFolderText, AFileTypeText, True) do
   if (AFileExtensions = '*.*') or
-    (AFileTypeText = '*.*') and IsExtInFileType(ExtractFileExt(FName), AFileExtensions) or
-    IsExtInFileType(ExtractFileExt(FName), AFileTypeText) then
+    (AFileTypeText = '*.*') and IsExtInFileType(ExtractFileExt(LName), AFileExtensions) or
+    IsExtInFileType(ExtractFileExt(LName), AFileTypeText) then
     Inc(Result);
 end;
 
-function GetFileDateTime(const FileName: string): TDateTime;
+function GetFileDateTime(const AFileName: string): TDateTime;
 var
-  SearchRec: TSearchRec;
+  LSearchRec: TSearchRec;
 begin
-  FindFirst(FileName, faAnyFile, SearchRec);
-  Result := SearchRec.TimeStamp;
+  FindFirst(AFileName, faAnyFile, LSearchRec);
+  Result := LSearchRec.TimeStamp;
 end;
 
-function GetFileVersion(const FileName: string): string;
+function GetFileVersion(const AFileName: string): string;
 var
-  VerInfo: Pointer;
-  VerValue: PVSFixedFileInfo;
-  InfoSize: Cardinal;
-  ValueSize: Cardinal;
-  Dummy: Cardinal;
-  TempPath: PChar;
+  LVersionInfo: Pointer;
+  LFixedFileInfo: PVSFixedFileInfo;
+  LInfoSize: Cardinal;
+  LValueSize: Cardinal;
+  LDummy: Cardinal;
+  LTempPath: PChar;
 begin
-  if Trim(FileName) = EmptyStr then
-    TempPath := PChar(ParamStr(0))
+  if Trim(AFileName) = EmptyStr then
+    LTempPath := PChar(ParamStr(0))
   else
-    TempPath := PChar(FileName);
+    LTempPath := PChar(AFileName);
 
-  InfoSize := GetFileVersionInfoSize(TempPath, Dummy);
+  LInfoSize := GetFileVersionInfoSize(LTempPath, LDummy);
 
-  if InfoSize = 0 then
+  if LInfoSize = 0 then
     Exit(LanguageDataModule.GetConstant('VersionInfoNotFound'));
 
-  GetMem(VerInfo, InfoSize);
-  GetFileVersionInfo(TempPath, 0, InfoSize, VerInfo);
-  VerQueryValue(VerInfo, '\', Pointer(VerValue), ValueSize);
+  GetMem(LVersionInfo, LInfoSize);
+  GetFileVersionInfo(LTempPath, 0, LInfoSize, LVersionInfo);
+  VerQueryValue(LVersionInfo, '\', Pointer(LFixedFileInfo), LValueSize);
 
-  with VerValue^ do
+  with LFixedFileInfo^ do
     Result := Format('%d.%d.%d', [dwFileVersionMS shr 16, dwFileVersionMS and $FFFF, dwFileVersionLS shr 16]);
-  FreeMem(VerInfo, InfoSize);
+  FreeMem(LVersionInfo, LInfoSize);
 end;
 
 function GetFileNamesFromFolder(const Folder: string; const FileType: string): TStrings;
@@ -381,12 +380,12 @@ begin
   end;
 end;
 
-function GetOldIniFilename: string;
+function GetOldIniFileName: string;
 begin
   Result := ChangeFileExt(Application.EXEName, '.ini');
 end;
 
-function GetOldOutFilename: string;
+function GetOldOutFileName: string;
 begin
   Result := ChangeFileExt(Application.EXEName, '.out');
 end;
@@ -398,7 +397,15 @@ begin
   {$endif}
 end;
 
-function GetIniFilename: string;
+function GetClipboardHistoryFileName: string;
+begin
+  if GApplicationIniPath then
+    Result := ChangeFileExt(Application.EXEName, 'ClipboardHistory.ini')
+  else
+    Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), 'ClipboardHistory.ini');
+end;
+
+function GetIniFileName: string;
 begin
   if GApplicationIniPath then
     Result := ChangeFileExt(Application.EXEName, '.ini')
@@ -406,7 +413,7 @@ begin
     Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), '.ini');
 end;
 
-function GetUniIniFilename: string;
+function GetUniIniFileName: string;
 begin
   if GApplicationIniPath then
     Result := ChangeFileExt(Application.EXEName, 'Uni.ini')
@@ -414,7 +421,7 @@ begin
     Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), 'Uni.ini');
 end;
 
-function GetOutFilename: string;
+function GetOutFileName: string;
 begin
   if GApplicationIniPath then
     Result := ChangeFileExt(Application.EXEName, '.out')
@@ -422,7 +429,7 @@ begin
     Result := GetUserAppDataPath(GetAppName) + ChangeFileExt(ExtractFileName(Application.EXEName), '.out');
 end;
 
-function GetSQLFormatterDLLFilename: string;
+function GetSQLFormatterDLLFileName: string;
 begin
 {$WARNINGS OFF} { IncludeTrailingPathDelimiter is specific to a platform }
   Result := IncludeTrailingPathDelimiter(ExtractFilePath(Application.EXEName)) + 'SQLFormatter.dll';
@@ -448,7 +455,7 @@ begin
   Result := Pos('\??\', LDeviceName) = 1;
 end;
 
-function VirtualDrivePath(ADrive: Char): string;
+function VirtualDrivePath(const ADrive: Char): string;
 var
   LDeviceName, LTargetPath: string;
 begin
@@ -467,34 +474,34 @@ begin
   GetSystemDirectory(@Result[1], Max_Path);
 end;
 
-procedure CreateVirtualDrive(const Drive: Char; const Path: string);
+procedure CreateVirtualDrive(const ADrive: Char; const APath: string);
 var
-  Param: string;
+  LParam: string;
 begin
-  Param := Format('%s: "%s"', [Drive, Path]);
-  ShellExecute(1, 'open', 'subst', PChar(Param), PChar(SystemDir), SW_HIDE);
+  LParam := Format('%s: "%s"', [ADrive, APath]);
+  ShellExecute(1, nil, 'subst', PChar(LParam), PChar(SystemDir), SW_HIDE);
 end;
 
-procedure DeleteVirtualDrive(const Drive: Char);
+procedure DeleteVirtualDrive(const ADrive: Char);
 var
-  Param: string;
+  LParam: string;
 begin
-  Param := Format('%s: /d', [Drive]);
-  ShellExecute(1, 'open', 'subst', PChar(Param), PChar(SystemDir), SW_HIDE);
+  LParam := Format('%s: /d', [ADrive]);
+  ShellExecute(1, nil, 'subst', PChar(LParam), PChar(SystemDir), SW_HIDE);
 end;
 
-procedure FilePropertiesDialog(const FileName: string);
+procedure FilePropertiesDialog(const AFileName: string);
 var
-  ShellExecuteInfo: TShellExecuteInfo;
+  LShellExecuteInfo: TShellExecuteInfo;
 begin
-  if FileName = '' then
+  if AFileName = '' then
     Exit;
-  FillChar(ShellExecuteInfo, SizeOf(ShellExecuteInfo), 0);
-  ShellExecuteInfo.cbSize := SizeOf(ShellExecuteInfo);
-  ShellExecuteInfo.lpFile := PChar(FileName);
-  ShellExecuteInfo.lpVerb := 'properties';
-  ShellExecuteInfo.fMask  := SEE_MASK_INVOKEIDLIST;
-  ShellExecuteEx(@ShellExecuteInfo);
+  FillChar(LShellExecuteInfo, SizeOf(LShellExecuteInfo), 0);
+  LShellExecuteInfo.cbSize := SizeOf(LShellExecuteInfo);
+  LShellExecuteInfo.lpFile := PChar(AFileName);
+  LShellExecuteInfo.lpVerb := 'properties';
+  LShellExecuteInfo.fMask  := SEE_MASK_INVOKEIDLIST;
+  ShellExecuteEx(@LShellExecuteInfo);
 end;
 
 function GetHighlighters: TStringList;
