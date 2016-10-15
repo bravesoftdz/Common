@@ -41,6 +41,12 @@ type
     SliderAllowGlowing: TsSlider;
     StickyLabelAllowGlowing: TsStickyLabel;
     HTMLLabelAllSkinsDownload: TsHTMLLabel;
+    SliderAllowAeroBlurring: TsSlider;
+    StickyLabelAllowAeroBlurring: TsStickyLabel;
+    StickyLabelAllowAnimation: TsStickyLabel;
+    SliderAllowAnimation: TsSlider;
+    SliderAllowOuterEffects: TsSlider;
+    StickyLabelAllowOuterEffects: TsStickyLabel;
     procedure ListBoxSkinsClick(Sender: TObject);
     procedure TrackBarHueOffsetSkinPaint(Sender: TObject; Canvas: TCanvas);
     procedure TrackBarHueOffsetChange(Sender: TObject);
@@ -89,7 +95,10 @@ begin
       TrackBarSaturation.Position := ASkinManager.Saturation;
       TrackBarBrightness.Position := ASkinManager.Brightness;
       SliderBlendOnMove.SliderOn := ASkinManager.AnimEffects.BlendOnMoving.Active;
+      SliderAllowAeroBlurring.SliderOn := ASkinManager.Effects.AllowAeroBluring;
+      SliderAllowAnimation.SliderOn := ASkinManager.Effects.AllowAnimation;
       SliderAllowGlowing.SliderOn := ASkinManager.Effects.AllowGlowing;
+      SliderAllowOuterEffects.SliderOn := ASkinManager.Effects.AllowOuterEffects;
       SliderExtendedBordersMode.SliderOn := ASkinManager.ExtendedBorders;
       FPreviewForm.PreviewManager.Active := True;
       FPreviewForm.Visible := True;
@@ -102,7 +111,10 @@ begin
         ASkinManager.Brightness := TrackBarBrightness.Position;
         ASkinManager.AnimEffects.BlendOnMoving.Active := SliderBlendOnMove.SliderOn;
         ASkinManager.ExtendedBorders := SliderExtendedBordersMode.SliderOn;
+        ASkinManager.Effects.AllowAeroBluring := SliderAllowAeroBlurring.SliderOn;
+        ASkinManager.Effects.AllowAnimation := SliderAllowAnimation.SliderOn;
         ASkinManager.Effects.AllowGlowing := SliderAllowGlowing.SliderOn;
+        ASkinManager.Effects.AllowOuterEffects := SliderAllowOuterEffects.SliderOn;
         ASkinManager.EndUpdate(True, False);
       end;
     finally

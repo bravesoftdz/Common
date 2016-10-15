@@ -1,33 +1,31 @@
 inherited SkinSelectDialog: TSkinSelectDialog
   Caption = 'Select skin'
-  ClientHeight = 383
+  ClientHeight = 407
   ClientWidth = 748
   Padding.Left = 6
   Padding.Top = 6
   Padding.Right = 6
   Position = poMainFormCenter
   OnCreate = FormCreate
-  ExplicitWidth = 754
-  ExplicitHeight = 412
   PixelsPerInch = 96
   TextHeight = 13
   object SplitterLeft: TBCSplitter
     Left = 146
     Top = 6
-    Height = 330
+    Height = 354
     SkinData.SkinSection = 'SPLITTER'
   end
   object SplitterRight: TBCSplitter
     Left = 510
     Top = 6
-    Height = 330
+    Height = 354
     Align = alRight
   end
   object ListBoxSkins: TsListBox
     Left = 6
     Top = 6
     Width = 140
-    Height = 330
+    Height = 354
     Align = alLeft
     TabOrder = 0
     OnClick = ListBoxSkinsClick
@@ -36,7 +34,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
   object PanelButtons: TBCPanel
     AlignWithMargins = True
     Left = 9
-    Top = 339
+    Top = 363
     Width = 733
     Height = 41
     Margins.Right = 0
@@ -99,7 +97,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
     Left = 152
     Top = 6
     Width = 358
-    Height = 330
+    Height = 354
     Margins.Bottom = 0
     Align = alClient
     BevelOuter = bvNone
@@ -111,7 +109,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
     Left = 516
     Top = 6
     Width = 226
-    Height = 330
+    Height = 354
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 3
@@ -150,7 +148,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
     end
     object StickyLabelAllowGlowing: TsStickyLabel
       Left = 10
-      Top = 262
+      Top = 310
       Width = 150
       Height = 13
       Margins.Left = 4
@@ -162,6 +160,54 @@ inherited SkinSelectDialog: TSkinSelectDialog
       Color = clBtnFace
       ParentColor = False
       AttachTo = SliderAllowGlowing
+      Gap = 8
+    end
+    object StickyLabelAllowAeroBlurring: TsStickyLabel
+      Left = 10
+      Top = 262
+      Width = 150
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Allow aero blurring'
+      Color = clBtnFace
+      ParentColor = False
+      AttachTo = SliderAllowAeroBlurring
+      Gap = 8
+    end
+    object StickyLabelAllowAnimation: TsStickyLabel
+      Left = 10
+      Top = 286
+      Width = 150
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Allow animation'
+      Color = clBtnFace
+      ParentColor = False
+      AttachTo = SliderAllowAnimation
+      Gap = 8
+    end
+    object StickyLabelAllowOuterEffects: TsStickyLabel
+      Left = 10
+      Top = 334
+      Width = 150
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Allow outer effects'
+      Color = clBtnFace
+      ParentColor = False
+      AttachTo = SliderAllowOuterEffects
       Gap = 8
     end
     object GroupBoxSkinColorization: TsGroupBox
@@ -381,10 +427,64 @@ inherited SkinSelectDialog: TSkinSelectDialog
     end
     object SliderAllowGlowing: TsSlider
       Left = 168
+      Top = 306
+      Width = 50
+      AutoSize = True
+      TabOrder = 5
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+      SliderOn = False
+      OnSliderChange = SliderBlendOnMoveSliderChange
+    end
+    object SliderAllowAeroBlurring: TsSlider
+      Left = 168
       Top = 258
       Width = 50
       AutoSize = True
       TabOrder = 3
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+      SliderOn = False
+      OnSliderChange = SliderBlendOnMoveSliderChange
+    end
+    object SliderAllowAnimation: TsSlider
+      Left = 168
+      Top = 282
+      Width = 50
+      AutoSize = True
+      TabOrder = 4
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+      SliderOn = False
+      OnSliderChange = SliderBlendOnMoveSliderChange
+    end
+    object SliderAllowOuterEffects: TsSlider
+      Left = 168
+      Top = 330
+      Width = 50
+      AutoSize = True
+      TabOrder = 6
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
