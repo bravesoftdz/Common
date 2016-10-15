@@ -25,6 +25,8 @@ type
     SliderTrimTrailingSpaces: TsSlider;
     StickyLabelUndoAfterSave: TsStickyLabel;
     SliderUndoAfterSave: TsSlider;
+    SliderSaveClipboardHistory: TsSlider;
+    StickyLabelSaveClipboardHistory: TsStickyLabel;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -65,6 +67,7 @@ begin
   OptionsContainer.DragDropEditing := SliderDragDropEditing.SliderOn;
   OptionsContainer.DropFiles := SliderDropFiles.SliderOn;
   OptionsContainer.GroupUndo := SliderGroupUndo.SliderOn;
+  OptionsContainer.SaveClipboardHistory := SliderSaveClipboardHistory.SliderOn;
   OptionsContainer.TrimTrailingSpaces := SliderTrimTrailingSpaces.SliderOn;
   OptionsContainer.UndoAfterSave := SliderUndoAfterSave.SliderOn;
   OptionsContainer.LineSpacing := StrToIntDef(EditLineSpacing.Text, 1);
@@ -77,6 +80,7 @@ begin
   SliderDragDropEditing.SliderOn := OptionsContainer.DragDropEditing;
   SliderDropFiles.SliderOn := OptionsContainer.DropFiles;
   SliderGroupUndo.SliderOn := OptionsContainer.GroupUndo;
+  SliderSaveClipboardHistory.SliderOn := OptionsContainer.SaveClipboardHistory;
   SliderTrimTrailingSpaces.SliderOn := OptionsContainer.TrimTrailingSpaces;
   SliderUndoAfterSave.SliderOn := OptionsContainer.UndoAfterSave;
   EditLineSpacing.Text := IntToStr(OptionsContainer.LineSpacing);

@@ -18,7 +18,6 @@ type
     ActionSort: TAction;
     ButtonCancel: TButton;
     ButtonFind: TButton;
-    ListBox: TsListBox;
     PanelButtons: TBCPanel;
     PanelTop: TBCPanel;
     SpeedButtonClear: TBCSpeedButton;
@@ -29,6 +28,7 @@ type
     SpeedButtonMoveDown: TBCSpeedButton;
     SpeedButtonMoveUp: TBCSpeedButton;
     SpeedButtonSort: TBCSpeedButton;
+    ListBox: TsListBox;
     procedure ActionClearAllExecute(Sender: TObject);
     procedure ActionDeleteExecute(Sender: TObject);
     procedure ActionInsertExecute(Sender: TObject);

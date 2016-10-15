@@ -1,14 +1,12 @@
 inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
   Width = 182
-  Height = 202
-  ExplicitWidth = 182
-  ExplicitHeight = 202
+  Height = 226
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 178
-    Height = 202
+    Height = 226
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -101,7 +99,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     end
     object StickyLabelTrimTrailingSpaces: TsStickyLabel
       Left = 0
-      Top = 119
+      Top = 142
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -116,7 +114,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     end
     object StickyLabelUndoAfterSave: TsStickyLabel
       Left = 0
-      Top = 142
+      Top = 165
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -129,9 +127,24 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       AttachTo = SliderUndoAfterSave
       Gap = 8
     end
+    object StickyLabelSaveClipboardHistory: TsStickyLabel
+      Left = 0
+      Top = 119
+      Width = 120
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Save clipboard history'
+      ParentColor = False
+      AttachTo = SliderSaveClipboardHistory
+      Gap = 8
+    end
     object EditLineSpacing: TBCEdit
       Left = 0
-      Top = 181
+      Top = 205
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -236,22 +249,6 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     end
     object SliderTrimTrailingSpaces: TsSlider
       Left = 128
-      Top = 115
-      Width = 50
-      AutoSize = True
-      TabOrder = 6
-      ImageIndexOff = 0
-      ImageIndexOn = 0
-      FontOn.Charset = DEFAULT_CHARSET
-      FontOn.Color = clWindowText
-      FontOn.Height = -11
-      FontOn.Name = 'Tahoma'
-      FontOn.Style = []
-      SliderCaptionOn = 'Yes'
-      SliderCaptionOff = 'No'
-    end
-    object SliderUndoAfterSave: TsSlider
-      Left = 128
       Top = 138
       Width = 50
       AutoSize = True
@@ -266,9 +263,41 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
     end
+    object SliderUndoAfterSave: TsSlider
+      Left = 128
+      Top = 161
+      Width = 50
+      AutoSize = True
+      TabOrder = 8
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderSaveClipboardHistory: TsSlider
+      Left = 128
+      Top = 115
+      Width = 50
+      AutoSize = True
+      TabOrder = 6
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
   end
   inherited FrameAdapter: TsFrameAdapter
-    Left = 134
-    Top = 154
+    Left = 146
+    Top = 22
   end
 end

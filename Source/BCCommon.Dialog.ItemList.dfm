@@ -46,20 +46,6 @@ inherited ItemListDialog: TItemListDialog
       TabOrder = 1
     end
   end
-  object ListBox: TsListBox
-    AlignWithMargins = True
-    Left = 6
-    Top = 62
-    Width = 394
-    Height = 307
-    Margins.Left = 6
-    Margins.Top = 0
-    Margins.Right = 6
-    Margins.Bottom = 0
-    Align = alClient
-    TabOrder = 1
-    SkinData.SkinSection = 'EDIT'
-  end
   object PanelTop: TBCPanel
     Left = 0
     Top = 0
@@ -72,7 +58,7 @@ inherited ItemListDialog: TItemListDialog
     Padding.Right = 2
     Padding.Bottom = 2
     ParentColor = True
-    TabOrder = 2
+    TabOrder = 1
     SkinData.SkinSection = 'CHECKBOX'
     object SpeedButtonDivider1: TBCSpeedButton
       AlignWithMargins = True
@@ -254,6 +240,20 @@ inherited ItemListDialog: TItemListDialog
       Images = ImagesDataModule.ImageList
       ImageIndex = 31
     end
+  end
+  object ListBox: TsListBox
+    AlignWithMargins = True
+    Left = 6
+    Top = 62
+    Width = 394
+    Height = 307
+    Margins.Left = 6
+    Margins.Top = 0
+    Margins.Right = 6
+    Margins.Bottom = 0
+    Align = alClient
+    TabOrder = 2
+    SkinData.SkinSection = 'EDIT'
   end
   object ActionList: TActionList
     Images = ImagesDataModule.ImageList
