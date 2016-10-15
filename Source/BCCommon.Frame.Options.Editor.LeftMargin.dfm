@@ -1,18 +1,17 @@
 inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
   Width = 195
-  Height = 340
+  Height = 383
   Visible = False
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 191
-    Height = 340
+    Height = 383
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
-    AutoSize = True
     BevelOuter = bvNone
     Color = clWindow
     Font.Charset = DEFAULT_CHARSET
@@ -114,7 +113,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 6
       Text = '48'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -135,7 +134,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Width = 191
       Height = 137
       Caption = ' Line numbers'
-      TabOrder = 0
+      TabOrder = 5
       SkinData.SkinSection = 'GROUPBOX'
       object StickyLabelShowInTens: TsStickyLabel
         Left = 9
@@ -276,7 +275,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 7
       Text = '20'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -296,7 +295,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Top = 0
       Width = 50
       AutoSize = True
-      TabOrder = 3
+      TabOrder = 0
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -312,7 +311,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Top = 23
       Width = 50
       AutoSize = True
-      TabOrder = 4
+      TabOrder = 1
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -328,7 +327,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Top = 46
       Width = 50
       AutoSize = True
-      TabOrder = 5
+      TabOrder = 2
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -344,7 +343,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Top = 69
       Width = 50
       AutoSize = True
-      TabOrder = 6
+      TabOrder = 3
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -360,7 +359,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       Top = 92
       Width = 50
       AutoSize = True
-      TabOrder = 7
+      TabOrder = 4
       ImageIndexOff = 0
       ImageIndexOn = 0
       FontOn.Charset = DEFAULT_CHARSET
@@ -370,6 +369,28 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+    end
+    object ColorComboBoxBookmarkLineColor: TBCColorComboBox
+      Left = 0
+      Top = 361
+      Width = 191
+      Height = 22
+      BoundLabel.Active = True
+      BoundLabel.Caption = 'Bookmark line color'
+      BoundLabel.Indent = 4
+      BoundLabel.Layout = sclTopLeft
+      SkinData.SkinSection = 'COMBOBOX'
+      Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbIncludeNone, cbCustomColor]
+      Selected = clNone
+      DefaultColorColor = clNone
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 8
+      ColorText = 'clNone'
     end
   end
   inherited FrameAdapter: TsFrameAdapter

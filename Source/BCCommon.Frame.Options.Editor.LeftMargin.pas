@@ -5,7 +5,8 @@ interface
 uses
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, BCControl.Edit,
   BCCommon.Frame.Options.Base, BCControl.Panel,
-  BCControl.GroupBox, acSlider, sLabel, sGroupBox, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
+  BCControl.GroupBox, acSlider, sLabel, sGroupBox, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter, Vcl.ComCtrls,
+  sComboBoxes, BCControl.ComboBox;
 
 type
   TOptionsEditorLeftMarginFrame = class(TBCOptionsBaseFrame)
@@ -30,6 +31,7 @@ type
     StickyLabelShowAfterLastLine: TsStickyLabel;
     SliderShowAfterLastLine: TsSlider;
     EditLineNumbersStartFrom: TBCEdit;
+    ColorComboBoxBookmarkLineColor: TBCColorComboBox;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -84,6 +86,7 @@ begin
     LeftMarginLineNumbersStartFrom := StrToIntDef(EditLineNumbersStartFrom.Text, 1);
     LeftMarginWidth := StrToIntDef(EditWidth.Text, 57);
     LeftMarginBookmarkPanelWidth := StrToIntDef(EditBookmarkPanelWidth.Text, 20);
+    LeftMarginBookmarkLineColor := ColorComboBoxBookmarkLineColor.ColorText;
   end;
 end;
 
@@ -102,6 +105,7 @@ begin
     EditLineNumbersStartFrom.Text := IntToStr(LeftMarginLineNumbersStartFrom);
     EditWidth.Text := IntToStr(LeftMarginWidth);
     EditBookmarkPanelWidth.Text := IntToStr(LeftMarginBookmarkPanelWidth);
+    ColorComboBoxBookmarkLineColor.ColorText := LeftMarginBookmarkLineColor;
   end;
 end;
 

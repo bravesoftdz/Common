@@ -45,6 +45,7 @@ type
     FLeftMarginLineNumbersStartFrom: Integer;
     FLeftMarginWidth: Integer;
     FLeftMarginBookmarkPanelWidth: Integer;
+    FLeftMarginBookmarkLineColor: string;
     { Matching pair }
     FMatchingPairEnabled: Boolean;
     FMatchingPairHighlightAfterToken: Boolean;
@@ -228,6 +229,8 @@ type
     property LeftMarginWidth: Integer read FLeftMarginWidth write FLeftMarginWidth;
     [IniValue('Options', 'LeftMarginBookmarkPanelWidth', '20')]
     property LeftMarginBookmarkPanelWidth: Integer read FLeftMarginBookmarkPanelWidth write FLeftMarginBookmarkPanelWidth;
+    [IniValue('Options', 'LeftMarginBookmarkLineColor', 'clNone')]
+    property LeftMarginBookmarkLineColor: string read FLeftMarginBookmarkLineColor write FLeftMarginBookmarkLineColor;
     { Matching pair }
     [IniValue('Options', 'MatchingPairEnabled', 'True')]
     property MatchingPairEnabled: Boolean read FMatchingPairEnabled write FMatchingPairEnabled;
@@ -824,6 +827,7 @@ begin
     LeftMargin.LineNumbers.StartFrom := FLeftMarginLineNumbersStartFrom;
     LeftMargin.Width := FLeftMarginWidth;
     LeftMargin.MarksPanel.Width := FLeftMarginBookmarkPanelWidth;
+    LeftMargin.Colors.BookmarkBackground := StringToColor(FLeftMarginBookmarkLineColor);
     { Matching pair }
     MatchingPair.Enabled := FMatchingPairEnabled;
     MatchingPair.SetOption(mpoHighlightAfterToken, FMatchingPairHighlightAfterToken);
