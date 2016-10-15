@@ -211,6 +211,11 @@ object LanguageDataModule: TLanguageDataModule
           'Compare Files')
       end
       item
+        Name = 'Confirmation'
+        Strings.Strings = (
+          'Confirmation')
+      end
+      item
         Name = 'CountingFiles'
         Strings.Strings = (
           'Counting files...')
@@ -259,6 +264,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'Enter'
         Strings.Strings = (
           'Enter')
+      end
+      item
+        Name = 'Error'
+        Strings.Strings = (
+          'Error')
       end
       item
         Name = 'FileMaskItems'
@@ -314,6 +324,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'HorizontalLine'
         Strings.Strings = (
           'Horizontal line')
+      end
+      item
+        Name = 'Information'
+        Strings.Strings = (
+          'Information')
       end
       item
         Name = 'Insert'
@@ -519,6 +534,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'VerticalLine'
         Strings.Strings = (
           'Vertical line')
+      end
+      item
+        Name = 'Warning'
+        Strings.Strings = (
+          'Warning')
       end
       item
         Name = 'Wildcard'
