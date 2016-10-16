@@ -1,12 +1,12 @@
 inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
   Width = 182
-  Height = 226
+  Height = 248
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
     Width = 178
-    Height = 226
+    Height = 248
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -99,7 +99,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     end
     object StickyLabelTrimTrailingSpaces: TsStickyLabel
       Left = 0
-      Top = 142
+      Top = 119
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -114,7 +114,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     end
     object StickyLabelUndoAfterSave: TsStickyLabel
       Left = 0
-      Top = 165
+      Top = 142
       Width = 120
       Height = 13
       Margins.Left = 4
@@ -127,24 +127,9 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       AttachTo = SliderUndoAfterSave
       Gap = 8
     end
-    object StickyLabelSaveClipboardHistory: TsStickyLabel
-      Left = 0
-      Top = 119
-      Width = 120
-      Height = 13
-      Margins.Left = 4
-      Margins.Top = 4
-      Margins.Right = 4
-      Margins.Bottom = 4
-      AutoSize = False
-      Caption = 'Save clipboard history'
-      ParentColor = False
-      AttachTo = SliderSaveClipboardHistory
-      Gap = 8
-    end
     object EditLineSpacing: TBCEdit
       Left = 0
-      Top = 205
+      Top = 181
       Width = 64
       Height = 21
       Margins.Left = 4
@@ -152,6 +137,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       Margins.Right = 4
       Margins.Bottom = 4
       AutoSize = False
+      NumbersOnly = True
       TabOrder = 0
       Text = '0'
       SkinData.SkinSection = 'EDIT'
@@ -249,38 +235,6 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
     end
     object SliderTrimTrailingSpaces: TsSlider
       Left = 128
-      Top = 138
-      Width = 50
-      AutoSize = True
-      TabOrder = 7
-      ImageIndexOff = 0
-      ImageIndexOn = 0
-      FontOn.Charset = DEFAULT_CHARSET
-      FontOn.Color = clWindowText
-      FontOn.Height = -11
-      FontOn.Name = 'Tahoma'
-      FontOn.Style = []
-      SliderCaptionOn = 'Yes'
-      SliderCaptionOff = 'No'
-    end
-    object SliderUndoAfterSave: TsSlider
-      Left = 128
-      Top = 161
-      Width = 50
-      AutoSize = True
-      TabOrder = 8
-      ImageIndexOff = 0
-      ImageIndexOn = 0
-      FontOn.Charset = DEFAULT_CHARSET
-      FontOn.Color = clWindowText
-      FontOn.Height = -11
-      FontOn.Name = 'Tahoma'
-      FontOn.Style = []
-      SliderCaptionOn = 'Yes'
-      SliderCaptionOff = 'No'
-    end
-    object SliderSaveClipboardHistory: TsSlider
-      Left = 128
       Top = 115
       Width = 50
       AutoSize = True
@@ -295,9 +249,51 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
     end
+    object SliderUndoAfterSave: TsSlider
+      Left = 128
+      Top = 138
+      Width = 50
+      AutoSize = True
+      TabOrder = 7
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object EditClipboardHistoryItemsCount: TBCEdit
+      Left = 0
+      Top = 227
+      Width = 64
+      Height = 21
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      NumbersOnly = True
+      TabOrder = 8
+      Text = '0'
+      SkinData.SkinSection = 'EDIT'
+      BoundLabel.Active = True
+      BoundLabel.Caption = 'Clipboard history items count'
+      BoundLabel.Indent = 4
+      BoundLabel.Layout = sclTopLeft
+      EnterToTab = False
+      OnlyNumbers = True
+      NumbersWithDots = False
+      NumbersWithSpots = False
+      ErrorColor = 14803198
+      NumbersAllowMinus = False
+      NumbersAllowPlus = False
+    end
   end
   inherited FrameAdapter: TsFrameAdapter
-    Left = 146
+    Left = 168
     Top = 22
   end
 end

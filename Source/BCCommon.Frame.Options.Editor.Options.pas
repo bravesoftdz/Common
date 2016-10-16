@@ -25,8 +25,7 @@ type
     SliderTrimTrailingSpaces: TsSlider;
     StickyLabelUndoAfterSave: TsStickyLabel;
     SliderUndoAfterSave: TsSlider;
-    SliderSaveClipboardHistory: TsSlider;
-    StickyLabelSaveClipboardHistory: TsStickyLabel;
+    EditClipboardHistoryItemsCount: TBCEdit;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -62,28 +61,34 @@ end;
 
 procedure TOptionsEditorOptionsFrame.PutData;
 begin
-  OptionsContainer.AutoIndent := SliderAutoIndent.SliderOn;
-  OptionsContainer.AutoSave := SliderAutoSave.SliderOn;
-  OptionsContainer.DragDropEditing := SliderDragDropEditing.SliderOn;
-  OptionsContainer.DropFiles := SliderDropFiles.SliderOn;
-  OptionsContainer.GroupUndo := SliderGroupUndo.SliderOn;
-  OptionsContainer.SaveClipboardHistory := SliderSaveClipboardHistory.SliderOn;
-  OptionsContainer.TrimTrailingSpaces := SliderTrimTrailingSpaces.SliderOn;
-  OptionsContainer.UndoAfterSave := SliderUndoAfterSave.SliderOn;
-  OptionsContainer.LineSpacing := StrToIntDef(EditLineSpacing.Text, 1);
+  with OptionsContainer do
+  begin
+    AutoIndent := SliderAutoIndent.SliderOn;
+    AutoSave := SliderAutoSave.SliderOn;
+    DragDropEditing := SliderDragDropEditing.SliderOn;
+    DropFiles := SliderDropFiles.SliderOn;
+    GroupUndo := SliderGroupUndo.SliderOn;
+    TrimTrailingSpaces := SliderTrimTrailingSpaces.SliderOn;
+    UndoAfterSave := SliderUndoAfterSave.SliderOn;
+    LineSpacing := StrToIntDef(EditLineSpacing.Text, 1);
+    ClipboardHistoryItemsCount := StrToIntDef(EditClipboardHistoryItemsCount.Text, 16);
+  end;
 end;
 
 procedure TOptionsEditorOptionsFrame.GetData;
 begin
-  SliderAutoIndent.SliderOn := OptionsContainer.AutoIndent;
-  SliderAutoSave.SliderOn := OptionsContainer.AutoSave;
-  SliderDragDropEditing.SliderOn := OptionsContainer.DragDropEditing;
-  SliderDropFiles.SliderOn := OptionsContainer.DropFiles;
-  SliderGroupUndo.SliderOn := OptionsContainer.GroupUndo;
-  SliderSaveClipboardHistory.SliderOn := OptionsContainer.SaveClipboardHistory;
-  SliderTrimTrailingSpaces.SliderOn := OptionsContainer.TrimTrailingSpaces;
-  SliderUndoAfterSave.SliderOn := OptionsContainer.UndoAfterSave;
-  EditLineSpacing.Text := IntToStr(OptionsContainer.LineSpacing);
+  with OptionsContainer do
+  begin
+    SliderAutoIndent.SliderOn := AutoIndent;
+    SliderAutoSave.SliderOn := AutoSave;
+    SliderDragDropEditing.SliderOn := DragDropEditing;
+    SliderDropFiles.SliderOn := DropFiles;
+    SliderGroupUndo.SliderOn := GroupUndo;
+    SliderTrimTrailingSpaces.SliderOn := TrimTrailingSpaces;
+    SliderUndoAfterSave.SliderOn := UndoAfterSave;
+    EditLineSpacing.Text := IntToStr(LineSpacing);
+    EditClipboardHistoryItemsCount.Text := IntToStr(ClipboardHistoryItemsCount);
+  end;
 end;
 
 end.

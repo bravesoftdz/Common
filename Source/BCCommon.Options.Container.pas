@@ -70,7 +70,7 @@ type
     FTrimTrailingSpaces: Boolean;
     FUndoAfterSave: Boolean;
     FLineSpacing: Integer;
-    FSaveClipboardHistory: Boolean;
+    FClipboardHistoryItemsCount: Integer;
     { Right margin }
     FRightMarginVisible: Boolean;
     FRightMarginAutoLineBreak: Boolean;
@@ -276,8 +276,8 @@ type
     property UndoAfterSave: Boolean read FUndoAfterSave write FUndoAfterSave;
     [IniValue('Options', 'LineSpacing', '1')]
     property LineSpacing: Integer read FLineSpacing write FLineSpacing;
-    [IniValue('Options', 'SaveClipboardHistory', 'False')]
-    property SaveClipboardHistory: Boolean read FSaveClipboardHistory write FSaveClipboardHistory;
+    [IniValue('Options', 'ClipboardHistoryItemsCount', '16')]
+    property ClipboardHistoryItemsCount: Integer read FClipboardHistoryItemsCount write FClipboardHistoryItemsCount;
     { Right margin }
     [IniValue('Options', 'RightMarginVisible', 'True')]
     property RightMarginVisible: Boolean read FRightMarginVisible write FRightMarginVisible;

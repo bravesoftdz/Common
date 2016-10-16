@@ -113,6 +113,7 @@ contains
   BCCommon.Dialog.Popup.SearchEngine in '..\Source\BCCommon.Dialog.Popup.SearchEngine.pas' {BCPopupSearchEngineDialog},
   BCCommon.Encoding in '..\Source\BCCommon.Encoding.pas',
   BCCommon.Dialog.Popup.Encoding in '..\Source\BCCommon.Dialog.Popup.Encoding.pas' {PopupEncodingDialog},
-  BCCommon.Frame.Options.Editor.WordWrap in '..\Source\BCCommon.Frame.Options.Editor.WordWrap.pas' {BCOptionsBaseFrame1: TFrame};
+  BCCommon.Frame.Options.Editor.WordWrap in '..\Source\BCCommon.Frame.Options.Editor.WordWrap.pas' {OptionsEditorWordWrapFrame: TFrame},
+  BCCommon.Dialog.ClipboardHistory in '..\Source\BCCommon.Dialog.ClipboardHistory.pas' {ClipboardHistoryDialog};
 
 end.

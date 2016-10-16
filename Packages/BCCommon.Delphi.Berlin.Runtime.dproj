@@ -368,9 +368,13 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Source\BCCommon.Frame.Options.Editor.WordWrap.pas">
-            <Form>BCOptionsBaseFrame1</Form>
+            <Form>OptionsEditorWordWrapFrame</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\Source\BCCommon.Dialog.ClipboardHistory.pas">
+            <Form>ClipboardHistoryDialog</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

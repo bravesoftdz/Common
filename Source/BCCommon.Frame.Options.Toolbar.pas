@@ -120,24 +120,24 @@ end;
 
 procedure TOptionsToolbarFrame.ActionAddDividerExecute(Sender: TObject);
 var
-  NewNode, CurrentNode: PVirtualNode;
-  NewData: PTreeData;
+  LNewNode, LCurrentNode: PVirtualNode;
+  LNewData: PTreeData;
 begin
   inherited;
-  CurrentNode := VirtualDrawTree.GetFirstSelected;
-  if Assigned(CurrentNode) then
-    NewNode := VirtualDrawTree.InsertNode(CurrentNode, amInsertAfter)
+  LCurrentNode := VirtualDrawTree.GetFirstSelected;
+  if Assigned(LCurrentNode) then
+    LNewNode := VirtualDrawTree.InsertNode(LCurrentNode, amInsertAfter)
   else
-    NewNode := VirtualDrawTree.AddChild(nil);
-  NewData := VirtualDrawTree.GetNodeData(NewNode);
-  NewData^.Action := nil; 
+    LNewNode := VirtualDrawTree.AddChild(nil);
+  LNewData := VirtualDrawTree.GetNodeData(LNewNode);
+  LNewData^.Action := nil;
   FIsChanged := True;
 end;
 
 procedure TOptionsToolbarFrame.ActionAddItemExecute(Sender: TObject);
 var
-  Node, NewNode, CurrentNode: PVirtualNode;
-  Data, NewData: PTreeData;
+  LNode, LNewNode, LCurrentNode: PVirtualNode;
+  LData, LNewData: PTreeData;
 begin
   inherited;
    with OptionsToolbarItemsDialog(ActionList) do
@@ -145,25 +145,25 @@ begin
      if Open then
      begin
        { insert selected items }
-       Node := VirtualDrawTreeAddItems.GetFirst;
-       while Assigned(Node) do
+       LNode := VirtualDrawTreeAddItems.GetFirst;
+       while Assigned(LNode) do
        begin
-         if Node.CheckState = csCheckedNormal then
+         if LNode.CheckState = csCheckedNormal then
          begin
-           Data := VirtualDrawTreeAddItems.GetNodeData(Node);
-           CurrentNode := VirtualDrawTree.GetFirstSelected;
-           if Assigned(CurrentNode) then
-             NewNode := VirtualDrawTree.InsertNode(CurrentNode, amInsertAfter)
+           LData := VirtualDrawTreeAddItems.GetNodeData(LNode);
+           LCurrentNode := VirtualDrawTree.GetFirstSelected;
+           if Assigned(LCurrentNode) then
+             LNewNode := VirtualDrawTree.InsertNode(LCurrentNode, amInsertAfter)
            else
-             NewNode := VirtualDrawTree.AddChild(nil);
-           NewData := VirtualDrawTree.GetNodeData(NewNode);
-           NewData^.Action := Data^.Action;
-           NewData^.Action.Tag := 1;
-           VirtualDrawTree.Selected[NewNode] := True;
-           VirtualDrawTree.NodeHeight[NewNode] := VirtualDrawTree.Images.Height + 2;
+             LNewNode := VirtualDrawTree.AddChild(nil);
+           LNewData := VirtualDrawTree.GetNodeData(LNewNode);
+           LNewData^.Action := LData^.Action;
+           LNewData^.Action.Tag := 1;
+           VirtualDrawTree.Selected[LNewNode] := True;
+           VirtualDrawTree.NodeHeight[LNewNode] := VirtualDrawTree.Images.Height + 2;
            FIsChanged := True;
          end;
-         Node := VirtualDrawTreeAddItems.GetNext(Node);
+         LNode := VirtualDrawTreeAddItems.GetNext(LNode);
        end;
      end;
    finally
@@ -173,17 +173,17 @@ end;
 
 procedure TOptionsToolbarFrame.ActionDeleteExecute(Sender: TObject);
 var
-  Node: PVirtualNode;
-  Data: PTreeData;
+  LNode: PVirtualNode;
+  LData: PTreeData;
 begin
   inherited;
-  Node := VirtualDrawTree.GetFirstSelected;
-  if Assigned(Node) then
+  LNode := VirtualDrawTree.GetFirstSelected;
+  if Assigned(LNode) then
   begin
-    Data := VirtualDrawTree.GetNodeData(Node);
-    if Assigned(Data^.Action) then
-      Data^.Action.Tag := 0;
-    VirtualDrawTree.DeleteNode(Node);
+    LData := VirtualDrawTree.GetNodeData(LNode);
+    if Assigned(LData^.Action) then
+      LData^.Action.Tag := 0;
+    VirtualDrawTree.DeleteNode(LNode);
     FIsChanged := True;
   end;
 end;
@@ -500,17 +500,17 @@ end;
 
 procedure TOptionsToolbarFrame.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
 var
-  Data: PTreeData;
-  S: string;
-  R: TRect;
-  Format: Cardinal;
-  i, HyphenCount: Integer;
+  LData: PTreeData;
+  LText: string;
+  LRect: TRect;
+  LFormat: Cardinal;
+  i, LHyphenCount: Integer;
 begin
   with Sender as TVirtualDrawTree, PaintInfo do
   begin
-    Data := Sender.GetNodeData(Node);
+    LData := Sender.GetNodeData(Node);
 
-    if not Assigned(Data) then
+    if not Assigned(LData) then
       Exit;
 
     if Assigned(FrameAdapter.SkinData) and Assigned(FrameAdapter.SkinData.SkinManager) then
@@ -534,25 +534,25 @@ begin
 
     SetBKMode(Canvas.Handle, TRANSPARENT);
 
-    R := ContentRect;
-    InflateRect(R, -TextMargin, 0);
-    Dec(R.Right);
-    Dec(R.Bottom);
-    if Assigned(Data^.Action) then
-      S := Data^.Action.Caption
+    LRect := ContentRect;
+    InflateRect(LRect, -TextMargin, 0);
+    Dec(LRect.Right);
+    Dec(LRect.Bottom);
+    if Assigned(LData^.Action) then
+      LText := LData^.Action.Caption
     else
-      S := '-';
-    if S = '-' then
+      LText := '-';
+    if LText = '-' then
     begin
-      HyphenCount := (R.Right - R.Left) div Canvas.TextWidth(S);
-      for i := 0 to HyphenCount do
-        S := S + '-';
+      LHyphenCount := (LRect.Right - LRect.Left) div Canvas.TextWidth(LText);
+      for i := 0 to LHyphenCount do
+        LText := LText + '-';
     end;
 
-    if Length(S) > 0 then
+    if Length(LText) > 0 then
     begin
-      Format := DT_TOP or DT_LEFT or DT_VCENTER or DT_SINGLELINE;
-      DrawText(Canvas.Handle, S, Length(S), R, Format)
+      LFormat := DT_TOP or DT_LEFT or DT_VCENTER or DT_SINGLELINE;
+      DrawText(Canvas.Handle, LText, Length(LText), LRect, LFormat)
     end;
   end;
 end;
@@ -573,7 +573,7 @@ end;
 procedure TOptionsToolbarFrame.VirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas;
   Node: PVirtualNode; Column: TColumnIndex; var NodeWidth: Integer);
 begin
-  NodeWidth := VirtualDrawTree.Width
+  NodeWidth := VirtualDrawTree.Width;
 end;
 
 end.
