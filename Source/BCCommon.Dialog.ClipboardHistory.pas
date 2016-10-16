@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, BCEditor.Editor,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Dialog.Base, Vcl.StdCtrls, sListBox, Vcl.Buttons, sSpeedButton,
   BCControl.SpeedButton, Vcl.ExtCtrls, sPanel, BCControl.Panel, System.Actions, Vcl.ActnList, VirtualTrees,
-  System.Generics.Collections, sSkinProvider;
+  System.Generics.Collections, sSkinProvider, Vcl.ComCtrls, sStatusBar, BCControl.StatusBar;
 
 type
   TClipboardHistoryOnInsertInEditor =  procedure(var AText: string);
@@ -23,6 +23,7 @@ type
     SpeedButtonInsertInEditor: TBCSpeedButton;
     VirtualDrawTree: TVirtualDrawTree;
     SkinProvider: TsSkinProvider;
+    StatusBar: TBCStatusBar;
     procedure FormDestroy(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
@@ -201,7 +202,7 @@ begin
   begin
     LData := Sender.GetNodeData(Node);
     if Assigned(LData) then
-      NodeWidth := Canvas.TextWidth(LData^.Text) + 2 * TextMargin;
+      NodeWidth := Canvas.TextWidth(LData^.Text); // + 2 * TextMargin;
   end;
 end;
 
