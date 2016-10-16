@@ -39,7 +39,7 @@ type
     procedure ReadIniFile;
     procedure WriteIniFile;
   public
-    procedure GetItems;
+    procedure SetDrawTreeData;
     procedure Open(AClipboardHistoryItems: TList<string>);
     property OnInsertInEditor: TClipboardHistoryOnInsertInEditor read FOnInsertInEditor write FOnInsertInEditor;
   end;
@@ -73,7 +73,7 @@ procedure TClipboardHistoryDialog.ActionClearAllExecute(Sender: TObject);
 begin
   inherited;
   FClipboardHistoryItems.Clear;
-  GetItems;
+  SetDrawTreeData;
 end;
 
 procedure TClipboardHistoryDialog.ActionCopyToClipboardExecute(Sender: TObject);
@@ -117,10 +117,9 @@ end;
 procedure TClipboardHistoryDialog.Open(AClipboardHistoryItems: TList<string>);
 begin
   FClipboardHistoryItems := AClipboardHistoryItems;
-  UpdateLanguage(Self, GetSelectedLanguage);
   ReadIniFile;
   VirtualDrawTree.NodeDataSize := SizeOf(TTreeData);
-  GetItems;
+  SetDrawTreeData;
   Show;
 end;
 
@@ -202,7 +201,7 @@ begin
   begin
     LData := Sender.GetNodeData(Node);
     if Assigned(LData) then
-      NodeWidth := Canvas.TextWidth(LData^.Text); // + 2 * TextMargin;
+      NodeWidth := Canvas.TextWidth(LData^.Text);
   end;
 end;
 
@@ -223,7 +222,7 @@ begin
   end;
 end;
 
-procedure TClipboardHistoryDialog.GetItems;
+procedure TClipboardHistoryDialog.SetDrawTreeData;
 var
   LIndex: Integer;
   LNode: PVirtualNode;

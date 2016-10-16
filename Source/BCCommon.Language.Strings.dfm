@@ -35,11 +35,6 @@ object LanguageDataModule: TLanguageDataModule
           'Delete virtual drive %s, are you sure?')
       end
       item
-        Name = 'DocumentTimeChanged'
-        Strings.Strings = (
-          'Document %s'#39#39's time/date changed. Reload?')
-      end
-      item
         Name = 'NewVersion'
         Strings.Strings = (
           

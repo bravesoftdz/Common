@@ -8,21 +8,22 @@ inherited ItemListDialog: TItemListDialog
   object PanelButtons: TBCPanel
     AlignWithMargins = True
     Left = 3
-    Top = 372
+    Top = 380
     Width = 397
-    Height = 41
+    Height = 33
+    Margins.Top = 0
     Margins.Right = 6
     Align = alBottom
     BevelOuter = bvNone
-    Padding.Top = 8
-    Padding.Bottom = 8
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
     object ButtonFind: TButton
-      Left = 242
-      Top = 8
+      AlignWithMargins = True
+      Left = 239
+      Top = 5
       Width = 75
       Height = 25
+      Margins.Top = 5
       Align = alRight
       Caption = '&OK'
       Default = True
@@ -32,13 +33,12 @@ inherited ItemListDialog: TItemListDialog
     object ButtonCancel: TButton
       AlignWithMargins = True
       Left = 322
-      Top = 8
+      Top = 5
       Width = 75
       Height = 25
       Margins.Left = 5
-      Margins.Top = 0
+      Margins.Top = 5
       Margins.Right = 0
-      Margins.Bottom = 0
       Align = alRight
       Cancel = True
       Caption = 'Cancel'
@@ -246,7 +246,7 @@ inherited ItemListDialog: TItemListDialog
     Left = 6
     Top = 62
     Width = 394
-    Height = 307
+    Height = 318
     Margins.Left = 6
     Margins.Top = 0
     Margins.Right = 6
