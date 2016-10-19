@@ -134,7 +134,7 @@ var
 begin
   LForm := CreateMessageDialog(AMsg, ADlgType, AButtons, mbCancel);
   with LForm do
-  begin
+  try
     Caption := ACaption;
     Color := clWindow;
     LCaptionIndex := 0;
@@ -157,7 +157,7 @@ begin
       end;
 
     LButtonBottom := LButton.Top + LButton.Height;
-    LButtonMinOuterMargin := ScaleSize(ClientHeight - (LButtonBottom));
+    LButtonMinOuterMargin := ScaleSize(ClientHeight - LButtonBottom);
     LButtonsWidthNeeded := LButtonWidth * LButtonCount + CBUTTON_SPACING * (LButtonCount - 1);
     LFormWidth := Max(ClientWidth, LButtonsWidthNeeded + LButtonMinOuterMargin * 2);
     LCaptionMargin := GetSystemMetrics(SM_CXSIZE) + GetSystemMetrics(SM_CXFIXEDFRAME);
@@ -169,19 +169,18 @@ begin
 
     LButtonLeft := (ClientWidth - LButtonsWidthNeeded) div 2;
     for I := 0 to ComponentCount - 1 Do
+    if Components[I] is TButton then
     begin
-      if Components[I] is TButton then
-      begin
-        LButton := TButton(Components[I]);
-        LButton.Width := LButtonWidth;
-        LButton.SetBounds(LButtonLeft, LButton.Top, LButton.Width, LButton.Height);
-        Inc(LButtonLeft, LButton.Width + CBUTTON_SPACING);
-        if LCaptionIndex <= High(AButtonCaptions) then
-          LButton.Caption := AButtonCaptions[LCaptionIndex];
-        Inc(LCaptionIndex);
-      end;
+      LButton := TButton(Components[I]);
+      LButton.Width := LButtonWidth;
+      LButton.SetBounds(LButtonLeft, LButton.Top, LButton.Width, LButton.Height);
+      Inc(LButtonLeft, LButton.Width + CBUTTON_SPACING);
+      if LCaptionIndex <= High(AButtonCaptions) then
+        LButton.Caption := AButtonCaptions[LCaptionIndex];
+      Inc(LCaptionIndex);
     end;
     Result := Showmodal;
+  finally
     Free;
   end;
 end;

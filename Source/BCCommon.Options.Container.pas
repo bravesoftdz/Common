@@ -808,6 +808,7 @@ begin
       CodeFolding.Hint.Indicator.Visible := FShowCollapsedCodeHint;
     end;
     { Completion proposal }
+    CompletionProposal.Enabled := FCompletionProposalEnabled;
     LShortCut := '';
     if FCompletionProposalEnabled then
       LShortCut := FCompletionProposalShortcut;

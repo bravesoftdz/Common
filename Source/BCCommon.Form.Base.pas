@@ -3,11 +3,10 @@ unit BCCommon.Form.Base;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCComponent.TitleBar,
-  BCComponent.SkinManager, BCControl.StatusBar, Vcl.ActnList, BCControl.ProgressBar,
-  Vcl.AppEvnts, Vcl.Menus, sSkinManager, System.Win.TaskbarCore, Vcl.Taskbar, System.Actions, sSkinProvider, acTitleBar,
-  Vcl.ComCtrls, sStatusBar;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls,
+  Vcl.Forms, Vcl.Dialogs, BCComponent.TitleBar, BCComponent.SkinManager, BCControl.StatusBar, Vcl.ActnList,
+  BCControl.ProgressBar, Vcl.AppEvnts, Vcl.Menus, sSkinManager, System.Win.TaskbarCore, Vcl.Taskbar, System.Actions,
+  sSkinProvider, acTitleBar, Vcl.ComCtrls, sStatusBar;
 
 type
   TBCBaseForm = class(TForm)
@@ -33,7 +32,6 @@ type
     procedure ResizeProgressBar;
   public
     property ProgressBar: TBCProgressBar read FProgressBar write FProgressBar;
-    property Taskbar: TTaskbar read FTaskbar write FTaskbar;
     property OnSkinChange: TNotifyEvent read FSkinChange write FSkinChange;
   end;
 
@@ -57,7 +55,6 @@ begin
     SkinManager.SkinDirectory;
   {$WARN SYMBOL_PLATFORM ON}
   SkinManager.Active := True;
-  FTaskbar := TTaskBar.Create(Self);
   CreateProgressBar;
 end;
 
@@ -83,19 +80,23 @@ end;
 
 procedure TBCBaseForm.ProgressBarStepChange(Sender: TObject);
 begin
-  Taskbar.ProgressValue := FProgressBar.Progress;
+  if Assigned(FTaskbar) then
+    FTaskbar.ProgressValue := FProgressBar.Progress;
 end;
 
 procedure TBCBaseForm.ProgressBarShow(Sender: TObject);
 begin
+  if not Assigned(FTaskbar) then
+    FTaskbar := TTaskBar.Create(Self);
   ResizeProgressBar;
-  Taskbar.ProgressMaxValue := FProgressBar.MaxValue;
-  Taskbar.ProgressState := TTaskBarProgressState.Normal;
+  FTaskbar.ProgressMaxValue := FProgressBar.MaxValue;
+  FTaskbar.ProgressState := TTaskBarProgressState.Normal;
 end;
 
 procedure TBCBaseForm.ProgressBarHide(Sender: TObject);
 begin
-  Taskbar.ProgressState := TTaskBarProgressState.None;
+  if Assigned(FTaskbar) then
+    FTaskbar.ProgressState := TTaskBarProgressState.None;
 end;
 
 procedure TBCBaseForm.CreateProgressBar;
