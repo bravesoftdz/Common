@@ -48,7 +48,6 @@ begin
   end;
 end;
 
-
 procedure MessageBeep;
 begin
   Winapi.Windows.MessageBeep(MB_ICONASTERISK);
@@ -102,8 +101,8 @@ function MessageDialog(const AMsg: string; ADlgType: TMsgDlgType; AButtons: TMsg
     LCanvasFontHeight := ACanvas.Font.Height;
     LCanvasFontStyle := ACanvas.Font.Style;
     try
-      LNonClientMetrics.cbSize := SizeOf(TNonClientMetrics);
-      SystemParametersInfo(SPI_GETNONCLIENTMETRICS, SizeOf(TNonClientMetrics), @LNonClientMetrics, 0);
+      LNonClientMetrics.cbSize := TNonClientMetrics.SizeOf;
+      SystemParametersInfo(SPI_GETNONCLIENTMETRICS, TNonClientMetrics.SizeOf, @LNonClientMetrics, 0);
       ACanvas.Font.Height := LNonClientMetrics.lfCaptionFont.lfHeight;
       ACanvas.Font.Name := LNonClientMetrics.lfCaptionFont.lfFaceName;
       ACanvas.Font.Style := [];
@@ -163,7 +162,6 @@ begin
     LCaptionMargin := GetSystemMetrics(SM_CXSIZE) + GetSystemMetrics(SM_CXFIXEDFRAME);
     LCaptionMargin := ScaleSize(LCaptionMargin);
     LFormWidth := Max(LFormWidth, GetCaptionTextWidth(Canvas, ACaption) + LCaptionMargin);
-
     ClientWidth := LFormWidth;
     ClientHeight := Max(ClientHeight, LButtonMinOuterMargin + LButtonBottom);
 
