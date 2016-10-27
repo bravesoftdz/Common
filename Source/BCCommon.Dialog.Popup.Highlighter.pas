@@ -30,6 +30,7 @@ type
       Column: TColumnIndex; var NodeWidth: Integer);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure ButtonedEditKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     FSelectHighlighter: TSelectHighlighterEvent;
     procedure SetVisibleRows;
@@ -208,6 +209,22 @@ procedure TPopupHighlighterDialog.ActionSearchExecute(Sender: TObject);
 begin
   ButtonedEdit.RightButton.Visible := Trim(ButtonedEdit.Text) <> '';
   SetVisibleRows;
+end;
+
+procedure TPopupHighlighterDialog.ButtonedEditKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  case Key of
+    VK_UP:
+      begin
+        VirtualDrawTree.SetFocus;
+        VirtualDrawTree.Selected[VirtualDrawTree.GetFirstSelected.PrevSibling] := True;
+      end;
+    VK_DOWN:
+      begin
+        VirtualDrawTree.SetFocus;
+        VirtualDrawTree.Selected[VirtualDrawTree.GetFirstSelected.NextSibling] := True;
+      end;
+  end;
 end;
 
 procedure TPopupHighlighterDialog.SetVisibleRows;

@@ -60,6 +60,7 @@ object PopupHighlighterDialog: TPopupHighlighterDialog
     RightButton.PressedImageIndex = 2
     TabOrder = 1
     OnChange = ActionSearchExecute
+    OnKeyDown = ButtonedEditKeyDown
     OnRightButtonClick = ActionClearExecute
   end
   object SkinProvider: TsSkinProvider
