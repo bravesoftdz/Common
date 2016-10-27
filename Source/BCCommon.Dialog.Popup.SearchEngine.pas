@@ -60,10 +60,10 @@ var
 begin
   LNode := VirtualDrawTree.GetFirstSelected;
   LData := VirtualDrawTree.GetNodeData(LNode);
+  Hide;
   if Assigned(LData) then
     if Assigned(FSelectSearchEngine) then
       FSelectSearchEngine(LData.SearchEngine);
-  Hide;
 end;
 
 procedure TBCPopupSearchEngineDialog.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);

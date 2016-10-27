@@ -92,10 +92,10 @@ var
 begin
   Node := VirtualDrawTree.GetFirstSelected;
   Data := VirtualDrawTree.GetNodeData(Node);
+  Hide;
   if Assigned(Data) then
     if Assigned(FSelectHighlighterColor) then
       FSelectHighlighterColor(Data.Name);
-  Hide;
 end;
 
 procedure TPopupHighlighterColorDialog.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);

@@ -97,10 +97,10 @@ var
 begin
   LNode := VirtualDrawTree.GetFirstSelected;
   LData := VirtualDrawTree.GetNodeData(LNode);
+  Hide;
   if Assigned(LData) then
     if Assigned(FSelectEncoding) then
       FSelectEncoding(LData.Index);
-  Hide;
 end;
 
 procedure TPopupEncodingDialog.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
