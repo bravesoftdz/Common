@@ -682,6 +682,7 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Top = 65
   end
   object PrintDialog: TPrintDialog
+    Options = [poPageNums, poSelection]
     Left = 210
     Top = 152
   end

@@ -234,7 +234,16 @@ end;
 
 procedure TPrintPreviewDialog.ActionPrintExecute(Sender: TObject);
 begin
-  PrintPreview.Print;
+  if PrintDialog.Execute(Handle) then
+  begin
+    PrintPreview.EditorPrint.Copies := PrintDialog.Copies;
+    PrintPreview.EditorPrint.SelectedOnly := PrintDialog.PrintRange = prSelection;
+
+    if PrintDialog.PrintRange = prPageNums then
+      PrintPreview.EditorPrint.PrintRange(PrintDialog.FromPage, PrintDialog.ToPage)
+    else
+      PrintPreview.EditorPrint.Print;
+  end;
 end;
 
 procedure TPrintPreviewDialog.PercentClick(Sender: TObject);
