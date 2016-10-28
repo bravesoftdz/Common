@@ -240,7 +240,7 @@ begin
     PrintPreview.EditorPrint.SelectedOnly := PrintDialog.PrintRange = prSelection;
 
     if PrintDialog.PrintRange = prPageNums then
-      PrintPreview.EditorPrint.PrintRange(PrintDialog.FromPage, PrintDialog.ToPage)
+      PrintPreview.EditorPrint.Print(PrintDialog.FromPage, PrintDialog.ToPage)
     else
       PrintPreview.EditorPrint.Print;
   end;
