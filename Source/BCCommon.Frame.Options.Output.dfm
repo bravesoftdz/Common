@@ -1,12 +1,12 @@
 inherited OptionsOutputFrame: TOptionsOutputFrame
-  Width = 152
-  Height = 87
+  Width = 162
+  Height = 111
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
     Top = 0
-    Width = 148
-    Height = 87
+    Width = 158
+    Height = 111
     Margins.Left = 4
     Margins.Top = 0
     Margins.Right = 0
@@ -19,7 +19,7 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
     object StickyLabelShowTreeLines: TsStickyLabel
       Left = 0
       Top = 4
-      Width = 90
+      Width = 100
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
@@ -34,7 +34,7 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
     object StickyLabelShowCheckBox: TsStickyLabel
       Left = 0
       Top = 27
-      Width = 90
+      Width = 100
       Height = 13
       Margins.Left = 4
       Margins.Top = 4
@@ -46,16 +46,30 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
       AttachTo = SliderShowCheckBox
       Gap = 8
     end
+    object StickyLabelUseExplorerTheme: TsStickyLabel
+      Left = 0
+      Top = 50
+      Width = 100
+      Height = 13
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      AutoSize = False
+      Caption = 'Use explorer theme'
+      AttachTo = SliderUseExplorerTheme
+      Gap = 8
+    end
     object EditIndent: TBCEdit
       Left = 0
-      Top = 66
+      Top = 90
       Width = 64
       Height = 21
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      TabOrder = 0
+      TabOrder = 3
       Text = '20'
       SkinData.SkinSection = 'EDIT'
       BoundLabel.Active = True
@@ -71,7 +85,7 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
       NumbersAllowPlus = False
     end
     object SliderShowCheckBox: TsSlider
-      Left = 98
+      Left = 108
       Top = 23
       Width = 50
       AutoSize = True
@@ -87,8 +101,24 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
       SliderCaptionOff = 'No'
     end
     object SliderShowTreeLines: TsSlider
-      Left = 98
+      Left = 108
       Top = 0
+      Width = 50
+      AutoSize = True
+      TabOrder = 0
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+    end
+    object SliderUseExplorerTheme: TsSlider
+      Left = 108
+      Top = 46
       Width = 50
       AutoSize = True
       TabOrder = 2

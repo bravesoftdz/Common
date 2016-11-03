@@ -3,8 +3,9 @@ unit BCCommon.Utils;
 interface
 
 uses
-  Winapi.Windows, System.Classes, System.Types, BCControl.ComboBox, Vcl.Controls, Vcl.ValEdit;
+  Winapi.Windows, System.Classes, System.Types, BCControl.ComboBox, Vcl.Controls, Vcl.ValEdit, Vcl.Graphics;
 
+function ColorToHex(const AColor: TColor): string;
 function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean;
 function GetOSInfo: string;
 function InsertTextToCombo(ComboBox: TBCComboBox): Integer;
@@ -19,6 +20,11 @@ implementation
 uses
   System.SysUtils, System.IOUtils, Winapi.ShellApi, Vcl.Forms, acSlider, sLabel, BCCommon.StringUtils,
   BCCommon.WindowsInfo;
+
+function ColorToHex(const AColor: TColor): string;
+begin
+  Result := IntToHex(GetRValue(AColor), 2) + IntToHex(GetGValue(AColor), 2) + IntToHex(GetBValue(AColor), 2);
+end;
 
 function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean;
 begin

@@ -15,6 +15,8 @@ type
     SliderShowCheckBox: TsSlider;
     StickyLabelShowCheckBox: TsStickyLabel;
     SliderShowTreeLines: TsSlider;
+    StickyLabelUseExplorerTheme: TsStickyLabel;
+    SliderUseExplorerTheme: TsSlider;
   protected
     procedure GetData; override;
     procedure PutData; override;
@@ -50,16 +52,24 @@ end;
 
 procedure TOptionsOutputFrame.PutData;
 begin
-  OptionsContainer.OutputShowTreeLines := SliderShowTreeLines.SliderOn;
-  OptionsContainer.OutputShowCheckBox:= SliderShowCheckBox.SliderOn;
-  OptionsContainer.OutputIndent := StrToIntDef(EditIndent.Text, 16);
+  with OptionsContainer do
+  begin
+    OutputShowTreeLines := SliderShowTreeLines.SliderOn;
+    OutputShowCheckBox := SliderShowCheckBox.SliderOn;
+    OutputUseExplorerTheme := SliderUseExplorerTheme.SliderOn;
+    OutputIndent := StrToIntDef(EditIndent.Text, 16);
+  end;
 end;
 
 procedure TOptionsOutputFrame.GetData;
 begin
-  SliderShowTreeLines.SliderOn := OptionsContainer.OutputShowTreeLines;
-  SliderShowCheckBox.SliderOn := OptionsContainer.OutputShowCheckBox;
-  EditIndent.Text := IntToStr(OptionsContainer.OutputIndent);
+  with OptionsContainer do
+  begin
+    SliderShowTreeLines.SliderOn := OutputShowTreeLines;
+    SliderShowCheckBox.SliderOn := OutputShowCheckBox;
+    SliderUseExplorerTheme.SliderOn := OutputUseExplorerTheme;
+    EditIndent.Text := IntToStr(OutputIndent);
+  end;
 end;
 
 end.

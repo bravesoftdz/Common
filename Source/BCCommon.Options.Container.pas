@@ -130,6 +130,7 @@ type
     FOutputIndent: Integer;
     FOutputShowTreeLines: Boolean;
     FOutputShowCheckBox: Boolean;
+    FOutputUseExplorerTheme: Boolean;
     { Print }
     FPrintDateTime: Integer;
     FPrintDocumentName: Integer;
@@ -386,12 +387,14 @@ type
     [IniValue('Options', 'MainMenuUseSystemFont', 'False')]
     property MainMenuUseSystemFont: Boolean read FMainMenuUseSystemFont write FMainMenuUseSystemFont;
     { Output }
-    [IniValue('Options', 'OutputIndent', '20')]
+    [IniValue('Options', 'OutputIndent', '16')]
     property OutputIndent: Integer read FOutputIndent write FOutputIndent;
     [IniValue('Options', 'OutputShowTreeLines', 'False')]
     property OutputShowTreeLines: Boolean read FOutputShowTreeLines write FOutputShowTreeLines;
     [IniValue('Options', 'OutputShowCheckBox', 'True')]
     property OutputShowCheckBox: Boolean read FOutputShowCheckBox write FOutputShowCheckBox;
+    [IniValue('Options', 'OutputUseExplorerTheme', 'True')]
+    property OutputUseExplorerTheme: Boolean read FOutputUseExplorerTheme write FOutputUseExplorerTheme;
     { Print }
     [IniValue('Options', 'PrintDateTime', '1')]
     property PrintDateTime: Integer read FPrintDateTime write FPrintDateTime;
@@ -540,6 +543,7 @@ type
     FDirIndent: Integer;
     FDirMultiLine: Boolean;
     FDirRightClickSelect: Boolean;
+    FDirUseExplorerTheme: Boolean;
     FDirSaveTabs: Boolean;
     FDirShowArchiveFiles: Boolean;
     FDirShowCloseButton: Boolean;
@@ -621,7 +625,7 @@ type
     property DirCloseTabByDblClick: Boolean read FDirCloseTabByDblClick write FDirCloseTabByDblClick;
     [IniValue('Options', 'DirCloseTabByMiddleClick', 'False')]
     property DirCloseTabByMiddleClick: Boolean read FDirCloseTabByMiddleClick write FDirCloseTabByMiddleClick;
-    [IniValue('Options', 'DirIndent', '20')]
+    [IniValue('Options', 'DirIndent', '16')]
     property DirIndent: Integer read FDirIndent write FDirIndent;
     [IniValue('Options', 'DirMultiLine', 'False')]
     property DirMultiLine: Boolean read FDirMultiLine write FDirMultiLine;
@@ -645,6 +649,8 @@ type
     property DirShowTreeLines: Boolean read FDirShowTreeLines write FDirShowTreeLines;
     [IniValue('Options', 'DirShowOverlayIcons', 'True')]
     property DirShowOverlayIcons: Boolean read FDirShowOverlayIcons write FDirShowOverlayIcons;
+    [IniValue('Options', 'DirUseExplorerTheme', 'True')]
+    property DirUseExplorerTheme: Boolean read FDirUseExplorerTheme write FDirUseExplorerTheme;
     [IniValue('Options', 'DirAlign', '0')]
     property DirAlign: Integer read FDirAlign write FDirAlign;
     { Document }

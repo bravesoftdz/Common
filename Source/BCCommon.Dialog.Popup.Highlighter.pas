@@ -146,7 +146,9 @@ var
 begin
   Node := VirtualDrawTree.GetFirstSelected;
   Data := VirtualDrawTree.GetNodeData(Node);
+
   Hide;
+
   if Assigned(Data) then
     if Assigned(FSelectHighlighter) then
       FSelectHighlighter(Data.Name);
