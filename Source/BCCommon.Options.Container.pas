@@ -393,7 +393,7 @@ type
     property OutputShowTreeLines: Boolean read FOutputShowTreeLines write FOutputShowTreeLines;
     [IniValue('Options', 'OutputShowCheckBox', 'True')]
     property OutputShowCheckBox: Boolean read FOutputShowCheckBox write FOutputShowCheckBox;
-    [IniValue('Options', 'OutputUseExplorerTheme', 'True')]
+    [IniValue('Options', 'OutputUseExplorerTheme', 'False')]
     property OutputUseExplorerTheme: Boolean read FOutputUseExplorerTheme write FOutputUseExplorerTheme;
     { Print }
     [IniValue('Options', 'PrintDateTime', '1')]
@@ -649,7 +649,7 @@ type
     property DirShowTreeLines: Boolean read FDirShowTreeLines write FDirShowTreeLines;
     [IniValue('Options', 'DirShowOverlayIcons', 'True')]
     property DirShowOverlayIcons: Boolean read FDirShowOverlayIcons write FDirShowOverlayIcons;
-    [IniValue('Options', 'DirUseExplorerTheme', 'True')]
+    [IniValue('Options', 'DirUseExplorerTheme', 'False')]
     property DirUseExplorerTheme: Boolean read FDirUseExplorerTheme write FDirUseExplorerTheme;
     [IniValue('Options', 'DirAlign', '0')]
     property DirAlign: Integer read FDirAlign write FDirAlign;

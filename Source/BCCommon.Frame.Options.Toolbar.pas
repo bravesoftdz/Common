@@ -521,15 +521,9 @@ begin
     if vsSelected in PaintInfo.Node.States then
     begin
       if Assigned(FrameAdapter.SkinData) and Assigned(FrameAdapter.SkinData.SkinManager) then
-      begin
-        Canvas.Brush.Color := FrameAdapter.SkinData.SkinManager.GetHighLightColor;
         Canvas.Font.Color := FrameAdapter.SkinData.SkinManager.GetHighLightFontColor
-      end
       else
-      begin
-        Canvas.Brush.Color := clHighlight;
         Canvas.Font.Color := clHighlightText;
-      end;
     end;
 
     SetBKMode(Canvas.Handle, TRANSPARENT);

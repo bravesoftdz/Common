@@ -208,10 +208,7 @@ begin
     Canvas.Font.Color := SkinProvider.SkinData.SkinManager.GetActiveEditFontColor;
 
     if vsSelected in PaintInfo.Node.States then
-    begin
-      Canvas.Brush.Color := SkinProvider.SkinData.SkinManager.GetHighLightColor;
-      Canvas.Font.Color := SkinProvider.SkinData.SkinManager.GetHighLightFontColor
-    end;
+      Canvas.Font.Color := SkinProvider.SkinData.SkinManager.GetHighLightFontColor;
 
     SetBKMode(Canvas.Handle, TRANSPARENT);
 

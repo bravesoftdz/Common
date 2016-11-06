@@ -163,8 +163,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Margins.Bottom = 0
       ActiveLine.Indicator.Visible = False
       Align = alClient
-      Caret.MultiEdit.Enabled = True
-      Caret.NonBlinking.Enabled = False
       Caret.Options = []
       CodeFolding.Colors.Indent = clBlack
       CodeFolding.Hint.Font.Charset = DEFAULT_CHARSET
@@ -207,13 +205,9 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Minimap.Font.Height = -4
       Minimap.Font.Name = 'Courier New'
       Minimap.Font.Style = []
-      Minimap.Width = 140
-      RightMargin.Position = 80
-      RightMargin.Visible = True
       SpecialChars.Style = scsDot
       SyncEdit.ShortCut = 24650
       TabOrder = 1
-      WordWrap.Enabled = False
       WordWrap.Indicator.Glyph.Data = {
         7E030000424D7E0300000000000036000000280000000F0000000E0000000100
         2000000000004803000000000000000000000000000000000000FFFFFF00FFFF
@@ -245,7 +239,6 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00}
       WordWrap.Indicator.MaskColor = clFuchsia
-      WordWrap.Width = wwwPage
     end
     object PageControl: TBCPageControl
       Left = 0
