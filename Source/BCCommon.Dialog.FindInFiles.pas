@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, BCControl.ComboBox,
   Vcl.ActnList, BCCommon.Dialog.Base, sComboBox, BCControl.SpeedButton, BCControl.Panel, BCControl.GroupBox, sLabel,
-  acSlider, System.Actions, Vcl.Buttons, sSpeedButton, sGroupBox, Vcl.ExtCtrls, sPanel;
+  acSlider, System.Actions, Vcl.Buttons, sSpeedButton, sGroupBox, Vcl.ExtCtrls, sPanel, sRadioButton,
+  BCControl.RadioButton;
 
 type
   TFindInFilesDialog = class(TBCBaseDialog)
@@ -39,6 +40,12 @@ type
     ComboBoxTextToFind: TBCComboBox;
     ActionTextToFindItemsButtonClick: TAction;
     ActionFind: TAction;
+    StickyLabelWholeWordsOnly: TsStickyLabel;
+    SliderWholeWordsOnly: TsSlider;
+    GroupBoxEngine: TBCGroupBox;
+    RadioButtonNormal: TBCRadioButton;
+    RadioButtonRegularExpressions: TBCRadioButton;
+    RadioButtonWildcard: TBCRadioButton;
     procedure ActionDirectoryButtonClickExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
@@ -54,10 +61,15 @@ type
     function GetFindWhatText: string;
     function GetFolderText: string;
     function GetLookInSubfolders: Boolean;
+    function GetRegularExpressions: Boolean;
     function GetSearchCaseSensitive: Boolean;
+    function GetSearchEngine: Integer;
+    function GetWholeWordsOnly: Boolean;
+    function GetWildcard: Boolean;
     procedure SetButtons;
     procedure SetFindWhatText(const AValue: string);
     procedure SetFolderText(const AValue: string);
+    procedure SetSearchEngine(const AIndex: Integer);
     procedure ReadIniFile;
     procedure WriteIniFile;
     procedure WriteSection(const ASection: string; AStrings: TStrings; AIncludeTrailingPathDelimeter: Boolean = False);
@@ -68,6 +80,9 @@ type
     property FolderText: string read GetFolderText write SetFolderText;
     property LookInSubfolders: Boolean read GetLookInSubfolders;
     property SearchCaseSensitive: Boolean read GetSearchCaseSensitive;
+    property RegularExpressions: Boolean read GetRegularExpressions;
+    property Wildcard: Boolean read GetWildcard;
+    property WholeWordsOnly: Boolean read GetWholeWordsOnly;
   end;
 
 function FindInFilesDialog: TFindInFilesDialog;
@@ -92,6 +107,8 @@ begin
     Application.CreateForm(TFindInFilesDialog, LFindInFilesDialog);
   Result := LFindInFilesDialog;
   Result.ReadIniFile;
+  AlignSliders(Result.GroupBoxSearchOptions, 12);
+  AlignSliders(Result.GroupBoxSearchDirectoryOptions, 12);
 end;
 
 procedure TFindInFilesDialog.FormDestroy(Sender: TObject);
@@ -285,6 +302,26 @@ begin
     WriteIniFile;
 end;
 
+procedure TFindInFilesDialog.SetSearchEngine(const AIndex: Integer);
+begin
+  case AIndex of
+    0: RadioButtonNormal.Checked := True;
+    1: RadioButtonRegularExpressions.Checked := True;
+    2: RadioButtonWildcard.Checked := True;
+  end;
+end;
+
+function TFindInFilesDialog.GetSearchEngine: Integer;
+begin
+  if RadioButtonNormal.Checked then
+    Result := 0
+  else
+  if RadioButtonRegularExpressions.Checked then
+    Result := 1
+  else
+    Result := 2
+end;
+
 procedure TFindInFilesDialog.ReadIniFile;
 var
   LValueListEditor: TValueListEditor;
@@ -292,6 +329,7 @@ begin
   LValueListEditor := TValueListEditor.Create(nil);
   with TMemIniFile.Create(GetUniIniFilename, TEncoding.Unicode) do
   try
+    SetSearchEngine(ReadInteger('FindInFiles', 'Engine', 0));
     SliderCaseSensitive.SliderOn := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
     SliderIncludeSubDirectories.SliderOn := ReadBool('FindInFilesOptions', 'IncludeSubDirectories', True);
 
@@ -317,24 +355,25 @@ end;
 
 procedure TFindInFilesDialog.WriteIniFile;
 var
-  i: Integer;
+  LIndex: Integer;
 begin
   with TMemIniFile.Create(GetUniIniFilename, TEncoding.Unicode) do
   try
+    WriteInteger('FindInFiles', 'Engine', GetSearchEngine);
     WriteBool('FindInFilesOptions', 'CaseSensitive', SliderCaseSensitive.SliderOn);
     WriteBool('FindInFilesOptions', 'IncludeSubDirectories', SliderIncludeSubDirectories.SliderOn);
 
-    i := InsertTextToCombo(ComboBoxTextToFind);
-    if i <> -1 then
-      WriteString('TextToFindItems', IntToStr(i), ComboBoxTextToFind.Items[0]);
+    LIndex := InsertTextToCombo(ComboBoxTextToFind);
+    if LIndex <> -1 then
+      WriteString('TextToFindItems', IntToStr(LIndex), ComboBoxTextToFind.Items[0]);
 
-    i := InsertTextToCombo(ComboBoxFileMask);
-    if i <> -1 then
-      WriteString('FindInFilesFileMasks', IntToStr(i), ComboBoxFileMask.Items[0]);
+    LIndex := InsertTextToCombo(ComboBoxFileMask);
+    if LIndex <> -1 then
+      WriteString('FindInFilesFileMasks', IntToStr(LIndex), ComboBoxFileMask.Items[0]);
 
-    i := InsertTextToCombo(ComboBoxDirectory);
-    if i <> -1 then
-      WriteString('FindInFilesDirectories', IntToStr(i), IncludeTrailingPathDelimiter(ComboBoxDirectory.Items[0]));
+    LIndex := InsertTextToCombo(ComboBoxDirectory);
+    if LIndex <> -1 then
+      WriteString('FindInFilesDirectories', IntToStr(LIndex), IncludeTrailingPathDelimiter(ComboBoxDirectory.Items[0]));
 
     WriteString('FindInFilesOptions', 'TextToFind', ComboBoxTextToFind.Text);
     WriteString('FindInFilesOptions', 'FileMask', ComboBoxFileMask.Text);
@@ -343,6 +382,21 @@ begin
   finally
     Free;
   end;
+end;
+
+function TFindInFilesDialog.GetRegularExpressions: Boolean;
+begin
+  Result := RadioButtonRegularExpressions.Checked;
+end;
+
+function TFindInFilesDialog.GetWholeWordsOnly: Boolean;
+begin
+  Result := SliderWholeWordsOnly.SliderOn;
+end;
+
+function TFindInFilesDialog.GetWildcard: Boolean;
+begin
+  Result := RadioButtonWildcard.Checked;
 end;
 
 end.

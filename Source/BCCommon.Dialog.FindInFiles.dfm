@@ -1,6 +1,6 @@
 inherited FindInFilesDialog: TFindInFilesDialog
   Caption = 'Find in Files'
-  ClientHeight = 296
+  ClientHeight = 374
   ClientWidth = 499
   Padding.Left = 6
   Padding.Top = 6
@@ -13,7 +13,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
   object PanelButtons: TBCPanel
     AlignWithMargins = True
     Left = 9
-    Top = 252
+    Top = 330
     Width = 484
     Height = 41
     Margins.Right = 0
@@ -53,9 +53,9 @@ inherited FindInFilesDialog: TFindInFilesDialog
   end
   object GroupBoxSearchOptions: TBCGroupBox
     Left = 6
-    Top = 54
+    Top = 105
     Width = 487
-    Height = 50
+    Height = 77
     Align = alTop
     Caption = ' Options'
     TabOrder = 1
@@ -63,14 +63,25 @@ inherited FindInFilesDialog: TFindInFilesDialog
     object StickyLabelCaseSensitive: TsStickyLabel
       Left = 12
       Top = 23
-      Width = 69
+      Width = 100
       Height = 13
+      AutoSize = False
       Caption = 'Case sensitive'
       AttachTo = SliderCaseSensitive
       Gap = 8
     end
+    object StickyLabelWholeWordsOnly: TsStickyLabel
+      Left = 12
+      Top = 48
+      Width = 100
+      Height = 13
+      AutoSize = False
+      Caption = 'Whole words only'
+      AttachTo = SliderWholeWordsOnly
+      Gap = 8
+    end
     object SliderCaseSensitive: TsSlider
-      Left = 89
+      Left = 120
       Top = 19
       Width = 50
       AutoSize = True
@@ -86,11 +97,28 @@ inherited FindInFilesDialog: TFindInFilesDialog
       SliderCaptionOff = 'No'
       SliderOn = False
     end
+    object SliderWholeWordsOnly: TsSlider
+      Left = 120
+      Top = 44
+      Width = 50
+      AutoSize = True
+      TabOrder = 1
+      ImageIndexOff = 0
+      ImageIndexOn = 0
+      FontOn.Charset = DEFAULT_CHARSET
+      FontOn.Color = clWindowText
+      FontOn.Height = -11
+      FontOn.Name = 'Tahoma'
+      FontOn.Style = []
+      SliderCaptionOn = 'Yes'
+      SliderCaptionOff = 'No'
+      SliderOn = False
+    end
   end
   object GroupBoxSearchDirectoryOptions: TBCGroupBox
     AlignWithMargins = True
     Left = 6
-    Top = 107
+    Top = 185
     Width = 487
     Height = 142
     Margins.Left = 0
@@ -391,6 +419,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
         Top = 10
         Width = 105
         Height = 13
+        AutoSize = False
         Caption = 'Include subdirectories'
         AttachTo = SliderIncludeSubDirectories
         Gap = 8
@@ -528,6 +557,42 @@ inherited FindInFilesDialog: TFindInFilesDialog
         OnChange = ComboBoxTextToFindChange
         UseMouseWheel = False
       end
+    end
+  end
+  object GroupBoxEngine: TBCGroupBox
+    Left = 6
+    Top = 54
+    Width = 487
+    Height = 51
+    Align = alTop
+    Caption = ' Engine '
+    TabOrder = 4
+    SkinData.SkinSection = 'GROUPBOX'
+    object RadioButtonNormal: TBCRadioButton
+      Left = 12
+      Top = 20
+      Width = 53
+      Height = 20
+      Caption = 'Normal'
+      Checked = True
+      TabOrder = 0
+      TabStop = True
+    end
+    object RadioButtonRegularExpressions: TBCRadioButton
+      Left = 105
+      Top = 20
+      Width = 117
+      Height = 20
+      Caption = 'Regular expressions'
+      TabOrder = 1
+    end
+    object RadioButtonWildcard: TBCRadioButton
+      Left = 258
+      Top = 20
+      Width = 61
+      Height = 20
+      Caption = 'Wildcard'
+      TabOrder = 2
     end
   end
   object ActionList: TActionList
