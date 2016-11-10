@@ -63,8 +63,8 @@ begin
         Items.Delete(LIndex);
       Items.Insert(0, LText);
       Text := LText;
-      if LIndex = -1 then
-        Result := ComboBox.Items.Count - 1;
+      //if LIndex = -1 then
+      Result := ComboBox.Items.Count - 1;
     end;
   end;
 end;

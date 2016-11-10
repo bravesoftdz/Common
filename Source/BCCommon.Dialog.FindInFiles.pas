@@ -338,14 +338,14 @@ begin
 
     ReadSectionValues('FindInFilesFileMasks', LValueListEditor.Strings);
     InsertItemsToComboBox(LValueListEditor, ComboBoxFileMask);
-    if ComboBoxFileMask.Items.IndexOf('*.*') = -1 then
-      ComboBoxFileMask.Items.Insert(0, '*.*');
 
     ReadSectionValues('FindInFilesDirectories', LValueListEditor.Strings);
     InsertItemsToComboBox(LValueListEditor, ComboBoxDirectory);
 
     ComboBoxTextToFind.ItemIndex := ComboBoxTextToFind.Items.IndexOf(ReadString('FindInFilesOptions', 'TextToFind', ''));
-    ComboBoxFileMask.ItemIndex := Max(ComboBoxFileMask.Items.IndexOf(ReadString('FindInFilesOptions', 'FileMask', '*.*')), 0);
+    ComboBoxFileMask.ItemIndex := ComboBoxFileMask.Items.IndexOf(ReadString('FindInFilesOptions', 'FileMask', ''));
+    if ComboBoxFileMask.Text = '' then
+      ComboBoxFileMask.Text := '*.*';
     ComboBoxDirectory.ItemIndex := ComboBoxDirectory.Items.IndexOf(ReadString('FindInFilesOptions', 'Directory', ''));
   finally
     LValueListEditor.Free;
