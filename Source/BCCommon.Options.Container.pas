@@ -194,7 +194,7 @@ type
     property ShowTreeLine: Boolean read FShowTreeLine write FShowTreeLine;
     [IniValue('Options', 'UncollapseByHintClick', 'True')]
     property UncollapseByHintClick: Boolean read FUncollapseByHintClick write FUncollapseByHintClick;
-    [IniValue('Options', 'CodeFoldingMarkStyle', '0')]
+    [IniValue('Options', 'CodeFoldingMarkStyle', '1')]
     property CodeFoldingMarkStyle: Integer read FCodeFoldingMarkStyle write FCodeFoldingMarkStyle;
     [IniValue('Options', 'CodeFoldingHintRowCount', '40')]
     property CodeFoldingHintRowCount: Integer read FCodeFoldingHintRowCount write FCodeFoldingHintRowCount;
@@ -387,7 +387,7 @@ type
     [IniValue('Options', 'MainMenuUseSystemFont', 'False')]
     property MainMenuUseSystemFont: Boolean read FMainMenuUseSystemFont write FMainMenuUseSystemFont;
     { Output }
-    [IniValue('Options', 'OutputIndent', '16')]
+    [IniValue('Options', 'OutputIndent', '20')]
     property OutputIndent: Integer read FOutputIndent write FOutputIndent;
     [IniValue('Options', 'OutputShowTreeLines', 'False')]
     property OutputShowTreeLines: Boolean read FOutputShowTreeLines write FOutputShowTreeLines;
@@ -512,7 +512,7 @@ type
     property PollingInterval: Integer read FPollingInterval write FPollingInterval;
     [IniValue('Options', 'SchemaBrowserAlign', 'Bottom')]
     property SchemaBrowserAlign: string read FSchemaBrowserAlign write FSchemaBrowserAlign;
-    [IniValue('Options', 'SchemaBrowserIndent', '16')]
+    [IniValue('Options', 'SchemaBrowserIndent', '20')]
     property SchemaBrowserIndent: Integer read FSchemaBrowserIndent write FSchemaBrowserIndent;
     [IniValue('Options', 'SchemaBrowserShowTreeLines', 'False')]
     property SchemaBrowserShowTreeLines: Boolean read FSchemaBrowserShowTreeLines write FSchemaBrowserShowTreeLines;
@@ -625,7 +625,7 @@ type
     property DirCloseTabByDblClick: Boolean read FDirCloseTabByDblClick write FDirCloseTabByDblClick;
     [IniValue('Options', 'DirCloseTabByMiddleClick', 'False')]
     property DirCloseTabByMiddleClick: Boolean read FDirCloseTabByMiddleClick write FDirCloseTabByMiddleClick;
-    [IniValue('Options', 'DirIndent', '16')]
+    [IniValue('Options', 'DirIndent', '20')]
     property DirIndent: Integer read FDirIndent write FDirIndent;
     [IniValue('Options', 'DirMultiLine', 'False')]
     property DirMultiLine: Boolean read FDirMultiLine write FDirMultiLine;

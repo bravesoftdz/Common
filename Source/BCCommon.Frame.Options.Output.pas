@@ -57,7 +57,7 @@ begin
     OutputShowTreeLines := SliderShowTreeLines.SliderOn;
     OutputShowCheckBox := SliderShowCheckBox.SliderOn;
     OutputUseExplorerTheme := SliderUseExplorerTheme.SliderOn;
-    OutputIndent := StrToIntDef(EditIndent.Text, 16);
+    OutputIndent := StrToIntDef(EditIndent.Text, 20);
   end;
 end;
 

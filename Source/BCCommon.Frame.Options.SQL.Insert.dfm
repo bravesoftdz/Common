@@ -120,6 +120,7 @@ inherited OptionsSQLInsertFrame: TOptionsSQLInsertFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

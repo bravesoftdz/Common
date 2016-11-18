@@ -127,6 +127,7 @@ inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderSpaceInsideCreate: TsSlider
       Left = 319
@@ -143,6 +144,7 @@ inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderSpaceInsideExpression: TsSlider
       Left = 319
@@ -159,6 +161,7 @@ inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderSpaceInsideSubquery: TsSlider
       Left = 319
@@ -175,6 +178,7 @@ inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderSpaceInsideFunction: TsSlider
       Left = 319
@@ -191,6 +195,7 @@ inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderSpaceInsideTypename: TsSlider
       Left = 319
@@ -207,6 +212,7 @@ inherited OptionsSQLWhitespaceFrame: TOptionsSQLWhitespaceFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

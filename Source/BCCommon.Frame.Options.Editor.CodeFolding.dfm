@@ -194,6 +194,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderFoldMultilineComments: TsSlider
       Left = 128
@@ -210,6 +211,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderHighlightIndentGuides: TsSlider
       Left = 128
@@ -226,6 +228,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderHighlightMatchingPair: TsSlider
       Left = 128
@@ -242,6 +245,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowCollapsedCodeHint: TsSlider
       Left = 128
@@ -258,6 +262,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowCollapsedLine: TsSlider
       Left = 128
@@ -274,6 +279,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowIndentGuides: TsSlider
       Left = 128
@@ -290,6 +296,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderUncollapseByHintClick: TsSlider
       Left = 128
@@ -306,6 +313,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object EditHintRowCount: TBCEdit
       Left = 0
@@ -352,6 +360,7 @@ inherited OptionsEditorCodeFoldingFrame: TOptionsEditorCodeFoldingFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

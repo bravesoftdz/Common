@@ -101,6 +101,7 @@ inherited ReplaceDialog: TReplaceDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderPromptOnReplace: TsSlider
       Left = 122
@@ -118,6 +119,7 @@ inherited ReplaceDialog: TReplaceDialog
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderRegularExpression: TsSlider
       Left = 122
@@ -137,6 +139,7 @@ inherited ReplaceDialog: TReplaceDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderSelectedOnly: TsSlider
       Left = 122
@@ -155,6 +158,7 @@ inherited ReplaceDialog: TReplaceDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderWholeWordsOnly: TsSlider
       Left = 122
@@ -173,6 +177,7 @@ inherited ReplaceDialog: TReplaceDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderWildCard: TsSlider
       Left = 122
@@ -192,6 +197,7 @@ inherited ReplaceDialog: TReplaceDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
   end
   object PanelSearchForComboBox: TBCPanel

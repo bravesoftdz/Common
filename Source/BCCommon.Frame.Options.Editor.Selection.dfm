@@ -127,6 +127,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderHighlightSimilarTerms: TsSlider
       Left = 128
@@ -143,6 +144,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderVisible: TsSlider
       Left = 128
@@ -159,6 +161,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderALTSetsColumnMode: TsSlider
       Left = 128
@@ -175,6 +178,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderTermsCaseSensitive: TsSlider
       Left = 128
@@ -191,6 +195,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderExpandRealNumbers: TsSlider
       Left = 128
@@ -207,6 +212,7 @@ inherited OptionsEditorSelectionFrame: TOptionsEditorSelectionFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

@@ -3,34 +3,33 @@ unit BCCommon.Frame.Options.Editor.CodeFolding;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  BCControl.Panel, sComboBox, BCControl.ComboBox, BCCommon.Frame.Options.Base, acSlider,
-  sLabel, BCControl.Edit, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls,
+  Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, BCControl.Panel, sComboBox, BCControl.ComboBox, BCCommon.Frame.Options.Base,
+  acSlider, sLabel, BCControl.Edit, sEdit, Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsEditorCodeFoldingFrame = class(TBCOptionsBaseFrame)
     ComboBoxMarkStyle: TBCComboBox;
+    EditHintRowCount: TBCEdit;
     Panel: TBCPanel;
-    StickyLabelVisible: TsStickyLabel;
+    SliderFoldMultilineComments: TsSlider;
+    SliderHighlightIndentGuides: TsSlider;
+    SliderHighlightMatchingPair: TsSlider;
+    SliderShowCollapsedCodeHint: TsSlider;
+    SliderShowCollapsedLine: TsSlider;
+    SliderShowIndentGuides: TsSlider;
+    SliderShowTreeLine: TsSlider;
+    SliderUncollapseByHintClick: TsSlider;
     SliderVisible: TsSlider;
     StickyLabelFoldMultilineComments: TsStickyLabel;
-    SliderFoldMultilineComments: TsSlider;
     StickyLabelHighlightIndentGuides: TsStickyLabel;
-    SliderHighlightIndentGuides: TsSlider;
     StickyLabelHighlightMatchingPair: TsStickyLabel;
-    SliderHighlightMatchingPair: TsSlider;
     StickyLabelShowCollapsedCodeHint: TsStickyLabel;
-    SliderShowCollapsedCodeHint: TsSlider;
     StickyLabelShowCollapsedLine: TsStickyLabel;
-    SliderShowCollapsedLine: TsSlider;
     StickyLabelShowIndentGuides: TsStickyLabel;
-    SliderShowIndentGuides: TsSlider;
-    StickyLabelUncollapseByHintClick: TsStickyLabel;
-    SliderUncollapseByHintClick: TsSlider;
-    EditHintRowCount: TBCEdit;
     StickyLabelShowTreeLine: TsStickyLabel;
-    SliderShowTreeLine: TsSlider;
+    StickyLabelUncollapseByHintClick: TsStickyLabel;
+    StickyLabelVisible: TsStickyLabel;
   protected
     procedure Init; override;
     procedure GetData; override;
@@ -79,32 +78,38 @@ end;
 
 procedure TOptionsEditorCodeFoldingFrame.PutData;
 begin
-  OptionsContainer.ShowCodeFolding := SliderVisible.SliderOn;
-  OptionsContainer.FoldMultilineComments := SliderFoldMultilineComments.SliderOn;
-  OptionsContainer.HighlightIndentGuides := SliderHighlightIndentGuides.SliderOn;
-  OptionsContainer.HighlightMatchingPair := SliderHighlightMatchingPair.SliderOn;
-  OptionsContainer.ShowCollapsedCodeHint := SliderShowCollapsedCodeHint.SliderOn;
-  OptionsContainer.ShowCollapsedLine := SliderShowCollapsedLine.SliderOn;
-  OptionsContainer.ShowIndentGuides := SliderShowIndentGuides.SliderOn;
-  OptionsContainer.ShowTreeLine := SliderShowTreeLine.SliderOn;
-  OptionsContainer.UncollapseByHintClick := SliderUncollapseByHintClick.SliderOn;
-  OptionsContainer.CodeFoldingMarkStyle := ComboBoxMarkStyle.ItemIndex;
-  OptionsContainer.CodeFoldingHintRowCount := StrToIntDef(EditHintRowCount.Text, 40);
+  with OptionsContainer do
+  begin
+    ShowCodeFolding := SliderVisible.SliderOn;
+    FoldMultilineComments := SliderFoldMultilineComments.SliderOn;
+    HighlightIndentGuides := SliderHighlightIndentGuides.SliderOn;
+    HighlightMatchingPair := SliderHighlightMatchingPair.SliderOn;
+    ShowCollapsedCodeHint := SliderShowCollapsedCodeHint.SliderOn;
+    ShowCollapsedLine := SliderShowCollapsedLine.SliderOn;
+    ShowIndentGuides := SliderShowIndentGuides.SliderOn;
+    ShowTreeLine := SliderShowTreeLine.SliderOn;
+    UncollapseByHintClick := SliderUncollapseByHintClick.SliderOn;
+    CodeFoldingMarkStyle := ComboBoxMarkStyle.ItemIndex;
+    CodeFoldingHintRowCount := StrToIntDef(EditHintRowCount.Text, 40);
+  end;
 end;
 
 procedure TOptionsEditorCodeFoldingFrame.GetData;
 begin
-  SliderVisible.SliderOn := OptionsContainer.ShowCodeFolding;
-  SliderFoldMultilineComments.SliderOn := OptionsContainer.FoldMultilineComments;
-  SliderHighlightIndentGuides.SliderOn := OptionsContainer.HighlightIndentGuides;
-  SliderHighlightMatchingPair.SliderOn := OptionsContainer.HighlightMatchingPair;
-  SliderShowCollapsedCodeHint.SliderOn := OptionsContainer.ShowCollapsedCodeHint;
-  SliderShowCollapsedLine.SliderOn := OptionsContainer.ShowCollapsedLine;
-  SliderShowIndentGuides.SliderOn := OptionsContainer.ShowIndentGuides;
-  SliderShowTreeLine.SliderOn := OptionsContainer.ShowTreeLine;
-  SliderUncollapseByHintClick.SliderOn := OptionsContainer.UncollapseByHintClick;
-  ComboBoxMarkStyle.ItemIndex := OptionsContainer.CodeFoldingMarkStyle;
-  EditHintRowCount.Text := IntToStr(OptionsContainer.CodeFoldingHintRowCount);
+  with OptionsContainer do
+  begin
+    SliderVisible.SliderOn := ShowCodeFolding;
+    SliderFoldMultilineComments.SliderOn := FoldMultilineComments;
+    SliderHighlightIndentGuides.SliderOn := HighlightIndentGuides;
+    SliderHighlightMatchingPair.SliderOn := HighlightMatchingPair;
+    SliderShowCollapsedCodeHint.SliderOn := ShowCollapsedCodeHint;
+    SliderShowCollapsedLine.SliderOn := ShowCollapsedLine;
+    SliderShowIndentGuides.SliderOn := ShowIndentGuides;
+    SliderShowTreeLine.SliderOn := ShowTreeLine;
+    SliderUncollapseByHintClick.SliderOn := UncollapseByHintClick;
+    ComboBoxMarkStyle.ItemIndex := CodeFoldingMarkStyle;
+    EditHintRowCount.Text := IntToStr(CodeFoldingHintRowCount);
+  end;
 end;
 
 end.

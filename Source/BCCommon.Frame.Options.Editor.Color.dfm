@@ -245,7 +245,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
       Top = 44
       Width = 443
       Height = 172
-      ActivePage = TabSheetElements
+      ActivePage = TabSheetUseSkinColor
       Align = alTop
       TabHeight = 22
       TabOrder = 2
@@ -481,6 +481,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
             SliderOn = False
+            KeepThumbAspectRatio = False
           end
           object SliderElementsAttributesItalic: TsSlider
             Left = 86
@@ -499,6 +500,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
             SliderOn = False
+            KeepThumbAspectRatio = False
           end
           object SliderElementsAttributesUnderline: TsSlider
             Left = 86
@@ -517,6 +519,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
             SliderOn = False
+            KeepThumbAspectRatio = False
           end
         end
       end
@@ -733,6 +736,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            KeepThumbAspectRatio = False
             OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinForeground: TsSlider
@@ -750,6 +754,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            KeepThumbAspectRatio = False
             OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinSelectionForeground: TsSlider
@@ -767,6 +772,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            KeepThumbAspectRatio = False
             OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinLeftMarginBackground: TsSlider
@@ -784,6 +790,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            KeepThumbAspectRatio = False
             OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinCodeFoldingBackground: TsSlider
@@ -801,6 +808,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            KeepThumbAspectRatio = False
             OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinCompletionProposalBackground: TsSlider
@@ -818,6 +826,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            KeepThumbAspectRatio = False
             OnSliderChange = SliderSkinValueClick
           end
         end
@@ -926,6 +935,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            KeepThumbAspectRatio = False
             OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinSelectionBackground: TsSlider
@@ -943,6 +953,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            KeepThumbAspectRatio = False
             OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinBookmarkPanelBackground: TsSlider
@@ -960,6 +971,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            KeepThumbAspectRatio = False
             OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinCodeFoldingHintBackground: TsSlider
@@ -977,6 +989,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            KeepThumbAspectRatio = False
             OnSliderChange = SliderSkinValueClick
           end
           object SliderSkinCompletionProposalSelectionBackground: TsSlider
@@ -994,6 +1007,7 @@ inherited OptionsEditorColorFrame: TOptionsEditorColorFrame
             FontOn.Style = []
             SliderCaptionOn = 'Yes'
             SliderCaptionOff = 'No'
+            KeepThumbAspectRatio = False
             OnSliderChange = SliderSkinValueClick
           end
         end

@@ -82,6 +82,7 @@ inherited OptionsEditorMatchingPairFrame: TOptionsEditorMatchingPairFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderHighlightAfterToken: TsSlider
       Left = 128
@@ -98,6 +99,7 @@ inherited OptionsEditorMatchingPairFrame: TOptionsEditorMatchingPairFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderHighlightUnmatched: TsSlider
       Left = 128
@@ -114,6 +116,7 @@ inherited OptionsEditorMatchingPairFrame: TOptionsEditorMatchingPairFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

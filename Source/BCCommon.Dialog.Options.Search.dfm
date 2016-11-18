@@ -111,6 +111,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderEntireScope: TsSlider
       Left = 195
@@ -129,6 +130,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderHighlightResult: TsSlider
       Left = 195
@@ -147,6 +149,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderSearchOnTyping: TsSlider
       Left = 195
@@ -165,6 +168,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderShowSearchStringNotFound: TsSlider
       Left = 195
@@ -183,6 +187,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderWholeWordsOnly: TsSlider
       Left = 195
@@ -201,6 +206,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderShowSearchMatchNotFound: TsSlider
       Left = 195
@@ -219,6 +225,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderWrapAround: TsSlider
       Left = 195
@@ -237,6 +244,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
   end
   object PanelButton: TBCPanel

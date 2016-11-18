@@ -179,6 +179,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowFooterLine: TsSlider
       Left = 108
@@ -195,6 +196,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowLineNumbers: TsSlider
       Left = 108
@@ -211,6 +213,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderWordWrap: TsSlider
       Left = 108
@@ -227,6 +230,7 @@ inherited OptionsPrintFrame: TOptionsPrintFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

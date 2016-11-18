@@ -149,6 +149,7 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowMacro: TsSlider
       Left = 106
@@ -166,6 +167,7 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowCaretPosition: TsSlider
       Left = 106
@@ -183,6 +185,7 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowKeyState: TsSlider
       Left = 106
@@ -200,6 +203,7 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowModified: TsSlider
       Left = 106
@@ -217,6 +221,7 @@ inherited OptionsStatusBarFrame: TOptionsStatusBarFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

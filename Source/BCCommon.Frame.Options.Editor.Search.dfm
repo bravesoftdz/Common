@@ -97,6 +97,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowSearchMap: TsSlider
       Left = 158
@@ -113,6 +114,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderVisible: TsSlider
       Left = 158
@@ -129,6 +131,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object ComboBoxAlign: TBCComboBox
       Left = 0
@@ -167,6 +170,7 @@ inherited OptionsEditorSearchFrame: TOptionsEditorSearchFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

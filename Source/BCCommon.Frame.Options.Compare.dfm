@@ -74,6 +74,7 @@ inherited OptionsCompareFrame: TOptionsCompareFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderIgnoreBlanks: TsSlider
       Left = 98
@@ -90,6 +91,7 @@ inherited OptionsCompareFrame: TOptionsCompareFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

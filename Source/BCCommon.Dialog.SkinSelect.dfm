@@ -405,6 +405,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
       OnSliderChange = SliderExtendedBordersModeSliderChange
     end
     object SliderBlendOnMove: TsSlider
@@ -423,6 +424,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
       OnSliderChange = SliderBlendOnMoveSliderChange
     end
     object SliderAllowGlowing: TsSlider
@@ -441,6 +443,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
       OnSliderChange = SliderBlendOnMoveSliderChange
     end
     object SliderAllowAeroBlurring: TsSlider
@@ -459,6 +462,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
       OnSliderChange = SliderBlendOnMoveSliderChange
     end
     object SliderAllowAnimation: TsSlider
@@ -477,6 +481,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
       OnSliderChange = SliderBlendOnMoveSliderChange
     end
     object SliderAllowOuterEffects: TsSlider
@@ -495,6 +500,7 @@ inherited SkinSelectDialog: TSkinSelectDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
       OnSliderChange = SliderBlendOnMoveSliderChange
     end
   end

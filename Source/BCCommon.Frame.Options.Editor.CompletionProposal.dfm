@@ -1,8 +1,6 @@
 inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposalFrame
   Width = 164
   Height = 113
-  ExplicitWidth = 164
-  ExplicitHeight = 113
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
@@ -99,6 +97,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderEnabled: TsSlider
       Left = 110
@@ -116,6 +115,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderAutoInvoke: TsSlider
       Left = 110
@@ -134,6 +134,7 @@ inherited OptionsEditorCompletionProposalFrame: TOptionsEditorCompletionProposal
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
   end
 end

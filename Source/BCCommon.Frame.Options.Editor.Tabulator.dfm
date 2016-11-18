@@ -122,6 +122,7 @@ inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderTabsToSpaces: TsSlider
       Left = 128
@@ -138,6 +139,7 @@ inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderColumns: TsSlider
       Left = 128
@@ -154,6 +156,7 @@ inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderPreviousLineIndent: TsSlider
       Left = 128
@@ -170,6 +173,7 @@ inherited OptionsEditorTabulatorFrame: TOptionsEditorTabulatorFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

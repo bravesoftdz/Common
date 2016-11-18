@@ -82,6 +82,7 @@ inherited OptionsEditorSyncEditFrame: TOptionsEditorSyncEditFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowActivateIcon: TsSlider
       Left = 128
@@ -98,6 +99,7 @@ inherited OptionsEditorSyncEditFrame: TOptionsEditorSyncEditFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderCaseSensitive: TsSlider
       Left = 128
@@ -114,6 +116,7 @@ inherited OptionsEditorSyncEditFrame: TOptionsEditorSyncEditFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

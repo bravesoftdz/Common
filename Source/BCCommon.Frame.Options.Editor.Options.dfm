@@ -168,6 +168,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderAutoSave: TsSlider
       Left = 128
@@ -184,6 +185,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderDragDropEditing: TsSlider
       Left = 128
@@ -200,6 +202,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderDropFiles: TsSlider
       Left = 128
@@ -216,6 +219,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderGroupUndo: TsSlider
       Left = 128
@@ -232,6 +236,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderTrimTrailingSpaces: TsSlider
       Left = 128
@@ -248,6 +253,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderUndoAfterSave: TsSlider
       Left = 128
@@ -264,6 +270,7 @@ inherited OptionsEditorOptionsFrame: TOptionsEditorOptionsFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object EditClipboardHistoryItemsCount: TBCEdit
       Left = 0

@@ -127,6 +127,7 @@ inherited OptionsEditorScrollFrame: TOptionsEditorScrollFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderHintFollows: TsSlider
       Left = 158
@@ -143,6 +144,7 @@ inherited OptionsEditorScrollFrame: TOptionsEditorScrollFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderPastEndOfFile: TsSlider
       Left = 158
@@ -159,6 +161,7 @@ inherited OptionsEditorScrollFrame: TOptionsEditorScrollFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderPastEndOfLineMarker: TsSlider
       Left = 158
@@ -175,6 +178,7 @@ inherited OptionsEditorScrollFrame: TOptionsEditorScrollFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowHint: TsSlider
       Left = 158
@@ -191,6 +195,7 @@ inherited OptionsEditorScrollFrame: TOptionsEditorScrollFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowShadow: TsSlider
       Left = 158
@@ -207,6 +212,7 @@ inherited OptionsEditorScrollFrame: TOptionsEditorScrollFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

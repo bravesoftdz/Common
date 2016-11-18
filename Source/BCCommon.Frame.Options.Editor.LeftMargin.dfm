@@ -196,6 +196,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
         FontOn.Style = []
         SliderCaptionOn = 'Yes'
         SliderCaptionOff = 'No'
+        KeepThumbAspectRatio = False
       end
       object SliderShowLeadingZeros: TsSlider
         Left = 128
@@ -212,6 +213,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
         FontOn.Style = []
         SliderCaptionOn = 'Yes'
         SliderCaptionOff = 'No'
+        KeepThumbAspectRatio = False
       end
       object SliderShowAfterLastLine: TsSlider
         Left = 128
@@ -228,6 +230,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
         FontOn.Style = []
         SliderCaptionOn = 'Yes'
         SliderCaptionOff = 'No'
+        KeepThumbAspectRatio = False
       end
       object EditLineNumbersStartFrom: TBCEdit
         Left = 9
@@ -305,6 +308,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderAutosize: TsSlider
       Left = 128
@@ -321,6 +325,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowBookmarks: TsSlider
       Left = 128
@@ -337,6 +342,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowBookmarkPanel: TsSlider
       Left = 128
@@ -353,6 +359,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowLineState: TsSlider
       Left = 128
@@ -369,6 +376,7 @@ inherited OptionsEditorLeftMarginFrame: TOptionsEditorLeftMarginFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object ColorComboBoxBookmarkLineColor: TBCColorComboBox
       Left = 0

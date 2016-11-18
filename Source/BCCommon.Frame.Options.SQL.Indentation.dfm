@@ -242,6 +242,7 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderBlockOnNewLine: TsSlider
       Left = 116
@@ -258,6 +259,7 @@ inherited OptionsSQLIndentationFrame: TOptionsSQLIndentationFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
 end

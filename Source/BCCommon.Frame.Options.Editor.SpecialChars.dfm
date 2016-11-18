@@ -1,8 +1,6 @@
 inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
   Width = 223
   Height = 375
-  ExplicitWidth = 223
-  ExplicitHeight = 375
   object Panel: TBCPanel [0]
     AlignWithMargins = True
     Left = 4
@@ -98,6 +96,7 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         SliderCaptionOn = 'Yes'
         SliderCaptionOff = 'No'
         SliderOn = False
+        KeepThumbAspectRatio = False
       end
     end
     object ColorComboBoxColor: TBCColorComboBox
@@ -219,6 +218,7 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
         SliderCaptionOn = 'Yes'
         SliderCaptionOff = 'No'
         SliderOn = False
+        KeepThumbAspectRatio = False
       end
     end
     object SliderUseTextColor: TsSlider
@@ -237,6 +237,7 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderUseMiddleColor: TsSlider
       Left = 85
@@ -253,6 +254,7 @@ inherited OptionsEditorSpecialCharsFrame: TOptionsEditorSpecialCharsFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
 end

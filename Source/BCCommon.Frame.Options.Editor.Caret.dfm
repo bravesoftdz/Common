@@ -60,7 +60,6 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
       Caption = ' Non-blinking caret'
       TabOrder = 0
       SkinData.SkinSection = 'GROUPBOX'
-      Checked = False
       object StickyLabelNonblinkingCaretEnabled: TsStickyLabel
         Left = 10
         Top = 20
@@ -132,6 +131,7 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
         FontOn.Style = []
         SliderCaptionOn = 'Yes'
         SliderCaptionOff = 'No'
+        KeepThumbAspectRatio = False
       end
     end
     object GroupBoxStyles: TBCGroupBox
@@ -142,7 +142,6 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
       Caption = ' Styles'
       TabOrder = 1
       SkinData.SkinSection = 'GROUPBOX'
-      Checked = False
       object ComboBoxStylesInsertCaret: TBCComboBox
         Left = 10
         Top = 37
@@ -203,6 +202,7 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderRightMouseClickMovesCaret: TsSlider
       Left = 158
@@ -219,6 +219,7 @@ inherited OptionsEditorCaretFrame: TOptionsEditorCaretFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
 end

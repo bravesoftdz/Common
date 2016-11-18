@@ -99,6 +99,7 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowTreeLines: TsSlider
       Left = 108
@@ -115,6 +116,7 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderUseExplorerTheme: TsSlider
       Left = 108
@@ -131,6 +133,7 @@ inherited OptionsOutputFrame: TOptionsOutputFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
 end

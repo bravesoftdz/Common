@@ -128,6 +128,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderMouseMove: TsSlider
       Left = 128
@@ -144,6 +145,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderShowMovingHint: TsSlider
       Left = 128
@@ -160,6 +162,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object SliderAutoLineBreak: TsSlider
       Left = 128
@@ -176,6 +179,7 @@ inherited OptionsEditorRightMarginFrame: TOptionsEditorRightMarginFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
   end
   inherited FrameAdapter: TsFrameAdapter

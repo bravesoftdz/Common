@@ -96,6 +96,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
     object SliderWholeWordsOnly: TsSlider
       Left = 120
@@ -113,6 +114,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
       SliderOn = False
+      KeepThumbAspectRatio = False
     end
   end
   object GroupBoxSearchDirectoryOptions: TBCGroupBox
@@ -439,6 +441,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
         FontOn.Style = []
         SliderCaptionOn = 'Yes'
         SliderCaptionOff = 'No'
+        KeepThumbAspectRatio = False
       end
     end
   end

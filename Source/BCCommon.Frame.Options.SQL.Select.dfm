@@ -22,7 +22,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = TabSheetSubquery
+      ActivePage = TabSheetOrderByClause
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -45,8 +45,6 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object StickyLabelAlignAlias: TsStickyLabel
           Left = 9
           Top = 99
@@ -151,6 +149,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
         object SliderColumnInNewLine: TsSlider
           Left = 187
@@ -167,6 +166,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
         object SliderTreatDistinctAsVirtualColumn: TsSlider
           Left = 187
@@ -183,13 +183,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
       end
       object TabSheetSubquery: TsTabSheet
         Caption = 'Subquery'
         ImageIndex = 1
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object StickyLabelNewLineAfterIn: TsStickyLabel
           Left = 9
           Top = 13
@@ -265,6 +264,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
         object SliderNewLineAfterExists: TsSlider
           Left = 207
@@ -281,6 +281,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
         object SliderNewlineAfterComparisonOperator: TsSlider
           Left = 207
@@ -297,6 +298,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
         object SliderNewlineBeforeComparisonOperator: TsSlider
           Left = 207
@@ -313,13 +315,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
       end
       object TabSheetIntoClause: TsTabSheet
         Caption = 'INTO clause'
         ImageIndex = 2
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object StickyLabelIntoClauseInNewLine: TsStickyLabel
           Left = 11
           Top = 13
@@ -349,6 +350,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
       end
       object TabSheetFromJoinClause: TsTabSheet
@@ -360,8 +362,6 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
         Font.Style = []
         ImageIndex = 3
         ParentFont = False
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object StickyLabelFromClauseInNewLine: TsStickyLabel
           Left = 9
           Top = 56
@@ -474,6 +474,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
         object SliderJoinClauseInNewLine: TsSlider
           Left = 207
@@ -490,6 +491,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
         object SliderAlignJoinWithFromKeyword: TsSlider
           Left = 207
@@ -506,6 +508,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
         object SliderAlignAndOrWithOnInJoinClause: TsSlider
           Left = 207
@@ -522,6 +525,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
         object SliderAlignAliasInFromClause: TsSlider
           Left = 207
@@ -538,13 +542,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
       end
       object TabSheetAndOrKeyword: TsTabSheet
         Caption = 'AND/OR keyword'
         ImageIndex = 4
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object StickyLabelAndOrUnderWhere: TsStickyLabel
           Left = 9
           Top = 56
@@ -627,6 +630,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
         object SliderWhereClauseInNewLine: TsSlider
           Left = 187
@@ -643,6 +647,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
         object SliderWhereClauseAlignExpr: TsSlider
           Left = 187
@@ -659,13 +664,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
       end
       object TabSheetGroupByClause: TsTabSheet
         Caption = 'GROUP BY clause'
         ImageIndex = 5
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object StickyLabelGroupByClauseInNewLine: TsStickyLabel
           Left = 9
           Top = 52
@@ -717,13 +721,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
       end
       object TabSheetHavingClause: TsTabSheet
         Caption = 'HAVING clause'
         ImageIndex = 6
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object StickyLabelHavingClauseInNewLine: TsStickyLabel
           Left = 11
           Top = 15
@@ -753,13 +756,12 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
       end
       object TabSheetOrderByClause: TsTabSheet
         Caption = 'ORDER BY clause'
         ImageIndex = 7
-        SkinData.CustomColor = False
-        SkinData.CustomFont = False
         object StickyLabelOrderByClauseInNewLine: TsStickyLabel
           Left = 11
           Top = 54
@@ -811,6 +813,7 @@ inherited OptionsSQLSelectFrame: TOptionsSQLSelectFrame
           FontOn.Style = []
           SliderCaptionOn = 'Yes'
           SliderCaptionOff = 'No'
+          KeepThumbAspectRatio = False
         end
       end
     end

@@ -47,6 +47,7 @@ inherited OptionsMainMenuFrame: TOptionsMainMenuFrame
       FontOn.Style = []
       SliderCaptionOn = 'Yes'
       SliderCaptionOff = 'No'
+      KeepThumbAspectRatio = False
     end
     object FontComboBoxFont: TBCFontComboBox
       Left = 0
