@@ -114,6 +114,7 @@ contains
   BCCommon.Encoding in '..\Source\BCCommon.Encoding.pas',
   BCCommon.Dialog.Popup.Encoding in '..\Source\BCCommon.Dialog.Popup.Encoding.pas' {PopupEncodingDialog},
   BCCommon.Frame.Options.Editor.WordWrap in '..\Source\BCCommon.Frame.Options.Editor.WordWrap.pas' {OptionsEditorWordWrapFrame: TFrame},
-  BCCommon.Dialog.ClipboardHistory in '..\Source\BCCommon.Dialog.ClipboardHistory.pas' {ClipboardHistoryDialog};
+  BCCommon.Dialog.ClipboardHistory in '..\Source\BCCommon.Dialog.ClipboardHistory.pas' {ClipboardHistoryDialog},
+  BCCommon.Dialog.Popup.ScaleMode in '..\Source\BCCommon.Dialog.Popup.ScaleMode.pas' {PopupScaleModeDialog};
 
 end.

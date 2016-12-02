@@ -578,6 +578,7 @@ type
     FToolbarIconSizeSmall: Boolean;
     FMenuBarVisible: Boolean;
     FMainMenuVisible: Boolean;
+    FSkinSelectorVisible: Boolean;
     FTitleBarFilenameVisible: Boolean;
     FTitleBarFileListVisible: Boolean;
     { Skin colors }
@@ -698,6 +699,8 @@ type
     property MenuBarVisible: Boolean read FMenuBarVisible write FMenuBarVisible;
     [IniValue('Options', 'MainMenuVisible', 'False')]
     property MainMenuVisible: Boolean read FMainMenuVisible write FMainMenuVisible;
+    [IniValue('Options', 'SkinSelectorVisible', 'False')]
+    property SkinSelectorVisible: Boolean read FSkinSelectorVisible write FSkinSelectorVisible;
     [IniValue('Options', 'TitlebarFilenameVisible', 'True')]
     property TitlebarFilenameVisible: Boolean read FTitlebarFilenameVisible write FTitlebarFilenameVisible;
     [IniValue('Options', 'TitlebarFileListVisible', 'True')]

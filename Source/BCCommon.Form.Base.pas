@@ -50,10 +50,12 @@ end;
 procedure TBCBaseForm.FormCreate(Sender: TObject);
 begin
   inherited;
+
   {$WARN SYMBOL_PLATFORM OFF}
   SkinManager.SkinDirectory := IncludeTrailingBackslash(ExtractFilePath(Application.ExeName)) +
     SkinManager.SkinDirectory;
   {$WARN SYMBOL_PLATFORM ON}
+  SkinManager.Options.ScaleMode := smAuto;
   SkinManager.Active := True;
   CreateProgressBar;
 end;

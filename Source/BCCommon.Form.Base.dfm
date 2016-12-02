@@ -12,6 +12,7 @@ object BCBaseForm: TBCBaseForm
   Font.Style = []
   Menu = MainMenu
   OldCreateOrder = False
+  Scaled = False
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   PixelsPerInch = 96

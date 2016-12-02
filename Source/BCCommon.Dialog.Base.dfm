@@ -12,7 +12,8 @@ object BCBaseDialog: TBCBaseDialog
   Font.Name = 'Tahoma'
   Font.Style = []
   KeyPreview = True
-  OldCreateOrder = False
+  OldCreateOrder = True
+  Scaled = False
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96

@@ -97,8 +97,8 @@ end;
 procedure TSearchOptionsDialog.FormShow(Sender: TObject);
 begin
   inherited;
-  AlignSliders(Panel, ScaleSize(8));
-  Width := SliderBeepIfSearchStringNotFound.Left + SliderBeepIfSearchStringNotFound.Width + ScaleSize(12);
+  AlignSliders(Panel, 8);
+  Width := SliderBeepIfSearchStringNotFound.Left + SliderBeepIfSearchStringNotFound.Width + 12;
 end;
 
 procedure TSearchOptionsDialog.GetOptions(AEditor: TBCEditor);

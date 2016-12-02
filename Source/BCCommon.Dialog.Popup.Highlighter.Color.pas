@@ -78,11 +78,11 @@ begin
 
   VirtualDrawTree.Invalidate;
 
-  Width := LMaxWidth + ScaleSize(80);
+  Width := LMaxWidth + 80;
   Height := Min(Integer(VirtualDrawTree.DefaultNodeHeight) * AHighlighterColors.Count + VirtualDrawTree.BorderWidth * 2 +
-    ScaleSize(2), TForm(Self.PopupParent).Height);
+    2, TForm(Self.PopupParent).Height);
 
-  ShowPopupForm(Self, Point(Left, Top + ScaleSize(2)));
+  ShowPopupForm(Self, Point(Left, Top + 2));
 end;
 
 procedure TPopupHighlighterColorDialog.VirtualDrawTreeDblClick(Sender: TObject);

@@ -9,7 +9,6 @@ function BrowseURL(const AURL: string; const ABrowserPath: string = ''): Boolean
 function GetOSInfo: string;
 function InsertTextToCombo(ComboBox: TBCComboBox): Integer;
 function PostInc(var AValue: Integer): Integer; inline;
-function ScaleSize(const ASize: Integer): Integer;
 function SetFormInsideWorkArea(const ALeft, AWidth: Integer): Integer;
 procedure AlignSliders(AWinControl: TWinControl; const ALeftMargin: Integer = 0);
 procedure InsertItemsToComboBox(AValueListEditor: TValueListEditor; AComboBox: TBCComboBox);
@@ -67,11 +66,6 @@ begin
       Result := ComboBox.Items.Count - 1;
     end;
   end;
-end;
-
-function ScaleSize(const ASize: Integer): Integer;
-begin
-  Result := Round(ASize * (Screen.PixelsPerInch / 96));
 end;
 
 function SetFormInsideWorkArea(const ALeft, AWidth: Integer): Integer;

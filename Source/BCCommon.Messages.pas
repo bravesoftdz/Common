@@ -138,7 +138,7 @@ begin
     Color := clWindow;
     LCaptionIndex := 0;
     LButtonCount := GetButtonCount;
-    LButtonWidth := ScaleSize(GetButtonWidth(LForm, AButtonCaptions, CMIN_BUTTON_WIDTH, LButton));
+    LButtonWidth := GetButtonWidth(LForm, AButtonCaptions, CMIN_BUTTON_WIDTH, LButton);
 
     if Assigned(AOwner) then
     begin
@@ -156,11 +156,10 @@ begin
       end;
 
     LButtonBottom := LButton.Top + LButton.Height;
-    LButtonMinOuterMargin := ScaleSize(ClientHeight - LButtonBottom);
+    LButtonMinOuterMargin := ClientHeight - LButtonBottom;
     LButtonsWidthNeeded := LButtonWidth * LButtonCount + CBUTTON_SPACING * (LButtonCount - 1);
     LFormWidth := Max(ClientWidth, LButtonsWidthNeeded + LButtonMinOuterMargin * 2);
     LCaptionMargin := GetSystemMetrics(SM_CXSIZE) + GetSystemMetrics(SM_CXFIXEDFRAME);
-    LCaptionMargin := ScaleSize(LCaptionMargin);
     LFormWidth := Max(LFormWidth, GetCaptionTextWidth(Canvas, ACaption) + LCaptionMargin);
     ClientWidth := LFormWidth;
     ClientHeight := Max(ClientHeight, LButtonMinOuterMargin + LButtonBottom);

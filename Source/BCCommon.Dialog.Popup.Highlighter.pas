@@ -103,11 +103,11 @@ begin
   if Assigned(LSelectedNode) then
     VirtualDrawTree.ScrollIntoView(LSelectedNode, True);
 
-  Width := LMaxWidth + ScaleSize(80);
+  Width := LMaxWidth + 80;
   Height := Min(Integer(VirtualDrawTree.DefaultNodeHeight) * AHighlighters.Count + ButtonedEdit.Height +
-    VirtualDrawTree.BorderWidth * 2 + ScaleSize(2), TForm(Self.PopupParent).Height - GetSystemMetrics(SM_CYCAPTION) - 10);
+    VirtualDrawTree.BorderWidth * 2 + 2, TForm(Self.PopupParent).Height - GetSystemMetrics(SM_CYCAPTION) - 10);
 
-  ShowPopupForm(Self, Point(Left, Top + ScaleSize(2)));
+  ShowPopupForm(Self, Point(Left, Top + 2));
 end;
 
 procedure TPopupHighlighterDialog.FormDestroy(Sender: TObject);

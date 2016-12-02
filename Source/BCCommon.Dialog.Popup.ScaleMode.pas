@@ -1,16 +1,20 @@
-unit BCCommon.Dialog.Popup.Encoding;
+unit BCCommon.Dialog.Popup.ScaleMode;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VirtualTrees, Vcl.ExtCtrls, sSkinProvider,
-  System.Actions, Vcl.ActnList;
+  System.Actions, Vcl.ActnList, sSkinManager;
+
+const
+  { sm100, sm125, sm150, sm200, smAuto }
+  SCALE_MODE_CAPTIONS: array [0 .. 4] of string = ('100%', '125%', '150%', '200%', 'Auto');
 
 type
-  TSelectEncodingEvent = procedure(const AIndex: Integer) of object;
+  TSelectScaleModeEvent = procedure(const AIndex: Integer) of object;
 
-  TPopupEncodingDialog = class(TForm)
+  TPopupScaleModeDialog = class(TForm)
     VirtualDrawTree: TVirtualDrawTree;
     SkinProvider: TsSkinProvider;
     procedure VirtualDrawTreeDblClick(Sender: TObject);
@@ -21,12 +25,14 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FSelectEncoding: TSelectEncodingEvent;
+    FSelectEncoding: TSelectScaleModeEvent;
     procedure WMActivate(var AMessage: TWMActivate); message WM_ACTIVATE;
   public
     procedure Execute(const ASelectedEncoding: string);
-    property OnSelectEncoding: TSelectEncodingEvent read FSelectEncoding write FSelectEncoding;
+    property OnSelectScaleMode: TSelectScaleModeEvent read FSelectEncoding write FSelectEncoding;
   end;
+
+  function ScaleModeToText(const AScaleMode: TacScaleMode): string;
 
 implementation
 
@@ -36,23 +42,35 @@ uses
   System.Types, BCControl.Utils, BCCommon.Utils, BCCommon.Encoding, sGraphUtils, sVclUtils, System.Math, acPopupController;
 
 type
-  PEncodingRec = ^TEncodingRec;
-  TEncodingRec = packed record
+  PScaleModeRec = ^TScaleModeRec;
+  TScaleModeRec = packed record
     Index: Integer;
     Name: string;
   end;
 
-procedure TPopupEncodingDialog.FormCreate(Sender: TObject);
+function ScaleModeToText(const AScaleMode: TacScaleMode): string;
+var
+  LScaleMode: Integer;
 begin
-  VirtualDrawTree.NodeDataSize := SizeOf(TEncodingRec);
+  Result := SCALE_MODE_CAPTIONS[High(SCALE_MODE_CAPTIONS)];
+  LScaleMode := Ord(AScaleMode);
+  if (LScaleMode >= Low(SCALE_MODE_CAPTIONS)) and (LScaleMode <= High(SCALE_MODE_CAPTIONS)) then
+    Result := SCALE_MODE_CAPTIONS[LScaleMode];
 end;
 
-procedure TPopupEncodingDialog.FormShow(Sender: TObject);
+{ TPopupScaleModeDialog }
+
+procedure TPopupScaleModeDialog.FormCreate(Sender: TObject);
+begin
+  VirtualDrawTree.NodeDataSize := SizeOf(TScaleModeRec);
+end;
+
+procedure TPopupScaleModeDialog.FormShow(Sender: TObject);
 begin
   VirtualDrawTree.SetFocus;
 end;
 
-procedure TPopupEncodingDialog.Execute(const ASelectedEncoding: string);
+procedure TPopupScaleModeDialog.Execute(const ASelectedEncoding: string);
 var
   i: Integer;
   LWidth, LMaxWidth: Integer;
@@ -60,7 +78,7 @@ var
   procedure AddEncoding(const AIndex: Integer; const AName: string);
   var
     LNode: PVirtualNode;
-    LNodeData: PEncodingRec;
+    LNodeData: PScaleModeRec;
   begin
     LNode := VirtualDrawTree.AddChild(nil);
     LNodeData := VirtualDrawTree.GetNodeData(LNode);
@@ -78,22 +96,22 @@ begin
   LMaxWidth := 0;
 
   VirtualDrawTree.Clear;
-  for i := Low(ENCODING_CAPTIONS) to High(ENCODING_CAPTIONS) do
-    AddEncoding(i, ENCODING_CAPTIONS[i]);
+  for i := Low(SCALE_MODE_CAPTIONS) to High(SCALE_MODE_CAPTIONS) do
+    AddEncoding(i, SCALE_MODE_CAPTIONS[i]);
 
   VirtualDrawTree.Invalidate;
 
   Width := LMaxWidth + 80;
 
-  Height := Min(Integer(VirtualDrawTree.DefaultNodeHeight) * 7 + VirtualDrawTree.BorderWidth * 2 + 2, TForm(Self.PopupParent).Height);
+  Height := Min(Integer(VirtualDrawTree.DefaultNodeHeight) * 5 + VirtualDrawTree.BorderWidth * 2 + 2, TForm(Self.PopupParent).Height);
 
   ShowPopupForm(Self, Point(Left, Top + 2));
 end;
 
-procedure TPopupEncodingDialog.VirtualDrawTreeDblClick(Sender: TObject);
+procedure TPopupScaleModeDialog.VirtualDrawTreeDblClick(Sender: TObject);
 var
   LNode: PVirtualNode;
-  LData: PEncodingRec;
+  LData: PScaleModeRec;
 begin
   LNode := VirtualDrawTree.GetFirstSelected;
   LData := VirtualDrawTree.GetNodeData(LNode);
@@ -103,9 +121,9 @@ begin
       FSelectEncoding(LData.Index);
 end;
 
-procedure TPopupEncodingDialog.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
+procedure TPopupScaleModeDialog.VirtualDrawTreeDrawNode(Sender: TBaseVirtualTree; const PaintInfo: TVTPaintInfo);
 var
-  LData: PEncodingRec;
+  LData: PScaleModeRec;
   LName: string;
   LRect: TRect;
 begin
@@ -135,7 +153,7 @@ begin
   end;
 end;
 
-procedure TPopupEncodingDialog.WMActivate(var AMessage: TWMActivate);
+procedure TPopupScaleModeDialog.WMActivate(var AMessage: TWMActivate);
 begin
   if AMessage.Active <> WA_INACTIVE then
     SendMessage(Self.PopupParent.Handle, WM_NCACTIVATE, WPARAM(True), -1);
@@ -143,9 +161,9 @@ begin
   inherited;
 end;
 
-procedure TPopupEncodingDialog.VirtualDrawTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
+procedure TPopupScaleModeDialog.VirtualDrawTreeFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
 var
-  LData: PEncodingRec;
+  LData: PScaleModeRec;
 begin
   LData := Sender.GetNodeData(Node);
   Finalize(LData^);
@@ -153,10 +171,10 @@ begin
   inherited;
 end;
 
-procedure TPopupEncodingDialog.VirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas;
+procedure TPopupScaleModeDialog.VirtualDrawTreeGetNodeWidth(Sender: TBaseVirtualTree; HintCanvas: TCanvas;
   Node: PVirtualNode; Column: TColumnIndex; var NodeWidth: Integer);
 var
-  LData: PEncodingRec;
+  LData: PScaleModeRec;
   LMargin: Integer;
 begin
   with Sender as TVirtualDrawTree do

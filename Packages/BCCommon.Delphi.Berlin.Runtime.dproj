@@ -376,6 +376,10 @@
             <Form>ClipboardHistoryDialog</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Source\BCCommon.Dialog.Popup.ScaleMode.pas">
+            <Form>PopupScaleModeDialog</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
