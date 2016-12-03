@@ -5,7 +5,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
   Position = poMainFormCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel: TBCPanel
+  object Panel: TBCPanel [0]
     Left = 0
     Top = 0
     Width = 253
@@ -247,7 +247,7 @@ inherited SearchOptionsDialog: TSearchOptionsDialog
       KeepThumbAspectRatio = False
     end
   end
-  object PanelButton: TBCPanel
+  object PanelButton: TBCPanel [1]
     Left = 0
     Top = 202
     Width = 253

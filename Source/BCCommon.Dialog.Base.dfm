@@ -18,4 +18,10 @@ object BCBaseDialog: TBCBaseDialog
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object SkinProvider: TsSkinProvider
+    SkinData.SkinSection = 'FORM'
+    TitleButtons = <>
+    Left = 390
+    Top = 20
+  end
 end

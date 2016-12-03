@@ -10,7 +10,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
   OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
-  object PanelButtons: TBCPanel
+  object PanelButtons: TBCPanel [0]
     AlignWithMargins = True
     Left = 9
     Top = 330
@@ -51,7 +51,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       TabOrder = 1
     end
   end
-  object GroupBoxSearchOptions: TBCGroupBox
+  object GroupBoxSearchOptions: TBCGroupBox [1]
     Left = 6
     Top = 105
     Width = 487
@@ -117,7 +117,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       KeepThumbAspectRatio = False
     end
   end
-  object GroupBoxSearchDirectoryOptions: TBCGroupBox
+  object GroupBoxSearchDirectoryOptions: TBCGroupBox [2]
     AlignWithMargins = True
     Left = 6
     Top = 185
@@ -445,7 +445,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       end
     end
   end
-  object PanelTextToFind: TBCPanel
+  object PanelTextToFind: TBCPanel [3]
     AlignWithMargins = True
     Left = 9
     Top = 6
@@ -562,7 +562,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       end
     end
   end
-  object GroupBoxEngine: TBCGroupBox
+  object GroupBoxEngine: TBCGroupBox [4]
     Left = 6
     Top = 54
     Width = 487

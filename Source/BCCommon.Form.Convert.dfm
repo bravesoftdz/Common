@@ -46,7 +46,8 @@ object ConvertForm: TConvertForm
     000000000000B9813FFFE2B068FFC0935DFFD0AE83FF00000000000000000000
     000000000000000000004B9BC8FF4799C7FF4799C7FF4799C7FF8BBFDDFF0000
     00000000000000000000B98545FF00000000000000000000000000000000}
-  OldCreateOrder = False
+  OldCreateOrder = True
+  Scaled = False
   OnClose = FormClose
   OnDestroy = FormDestroy
   PixelsPerInch = 96
@@ -182,5 +183,11 @@ object ConvertForm: TConvertForm
       Caption = '&Reset'
       Hint = 'Reset fields'
     end
+  end
+  object SkinProvider: TsSkinProvider
+    SkinData.SkinSection = 'FORM'
+    TitleButtons = <>
+    Left = 252
+    Top = 20
   end
 end

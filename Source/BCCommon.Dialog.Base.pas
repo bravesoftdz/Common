@@ -3,12 +3,13 @@ unit BCCommon.Dialog.Base;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, sSkinProvider;
 
 type
   TDialogType = (dtOpen, dtEdit);
 
   TBCBaseDialog = class(TForm)
+    SkinProvider: TsSkinProvider;
     procedure FormShow(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
