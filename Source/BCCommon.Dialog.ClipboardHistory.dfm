@@ -217,11 +217,4 @@ inherited ClipboardHistoryDialog: TClipboardHistoryDialog
       OnExecute = ActionClearAllExecute
     end
   end
-  object SkinProvider: TsSkinProvider
-    SkinData.SkinSection = 'FORM'
-    SkinData.OuterEffects.Visibility = ovAlways
-    TitleButtons = <>
-    Left = 30
-    Top = 80
-  end
 end

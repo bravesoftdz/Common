@@ -22,7 +22,6 @@ type
     SpeedButtonClearAll: TBCSpeedButton;
     SpeedButtonInsertInEditor: TBCSpeedButton;
     VirtualDrawTree: TVirtualDrawTree;
-    SkinProvider: TsSkinProvider;
     StatusBar: TBCStatusBar;
     procedure FormDestroy(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
