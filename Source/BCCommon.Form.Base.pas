@@ -52,8 +52,7 @@ begin
   inherited;
 
   {$WARN SYMBOL_PLATFORM OFF}
-  SkinManager.SkinDirectory := IncludeTrailingBackslash(ExtractFilePath(Application.ExeName)) +
-    SkinManager.SkinDirectory;
+  SkinManager.SkinDirectory := IncludeTrailingBackslash(ExtractFilePath(Application.ExeName)) + SkinManager.SkinDirectory;
   {$WARN SYMBOL_PLATFORM ON}
   SkinManager.Options.ScaleMode := smAuto; { Delphi will crash, if this is set in IDE }
   SkinManager.Active := True;

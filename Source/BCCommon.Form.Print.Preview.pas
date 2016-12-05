@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls, Vcl.ComCtrls, Vcl.ActnList,
   BCEditor.Print.Preview, Vcl.Menus, Vcl.AppEvnts, Vcl.Printers, BCCommon.Images, System.Actions, System.Types,
   BCControl.Panel, BCControl.StatusBar, Vcl.Dialogs, BCControl.SpeedButton, Vcl.Buttons, sSpeedButton, Vcl.ExtCtrls,
-  sPanel, sStatusBar, sTrackBar;
+  sPanel, sStatusBar, sTrackBar, sSkinProvider;
 
 type
   TPrintPreviewDialog = class(TForm)
@@ -59,6 +59,7 @@ type
     SpeedButtonZoomOut: TBCSpeedButton;
     StatusBar: TBCStatusBar;
     TrackBarZoom: TsTrackBar;
+    SkinProvider: TsSkinProvider;
     procedure ActionColorsExecute(Sender: TObject);
     procedure ActionColorsUpdate(Sender: TObject);
     procedure ActionExitExecute(Sender: TObject);
@@ -248,12 +249,10 @@ end;
 
 procedure TPrintPreviewDialog.PercentClick(Sender: TObject);
 begin
-  case (Sender as TMenuItem).Tag of
-    - 1:
-      PrintPreview.ScaleMode := pscPageWidth;
+  if (Sender as TMenuItem).Tag = -1 then
+    PrintPreview.ScaleMode := pscPageWidth
   else
     PrintPreview.ScalePercent := (Sender as TMenuItem).Tag;
-  end;
 end;
 
 procedure TPrintPreviewDialog.ActionExitExecute(Sender: TObject);
@@ -305,7 +304,7 @@ procedure TPrintPreviewDialog.PrintPreviewScaleChange(Sender: TObject);
 begin
   StatusBar.Panels[STATUSBAR_SCALE].Text := Format('%d%%', [PrintPreview.ScalePercent]);
   if TrackBarZoom.Position <> PrintPreview.ScalePercent then
-   TrackBarZoom.Position := PrintPreview.ScalePercent;
+    TrackBarZoom.Position := PrintPreview.ScalePercent;
 end;
 
 procedure TPrintPreviewDialog.TrackBarZoomChange(Sender: TObject);

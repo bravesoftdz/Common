@@ -69,8 +69,10 @@ object PrintPreviewDialog: TPrintPreviewDialog
       item
         Width = 400
       end>
+    ParentFont = True
     ParentShowHint = False
     ShowHint = True
+    UseSystemFont = False
     SkinData.SkinSection = 'STATUSBAR'
     object TrackBarZoom: TsTrackBar
       Tag = 5
@@ -685,5 +687,11 @@ object PrintPreviewDialog: TPrintPreviewDialog
     Options = [poPageNums, poSelection]
     Left = 210
     Top = 152
+  end
+  object SkinProvider: TsSkinProvider
+    SkinData.SkinSection = 'FORM'
+    TitleButtons = <>
+    Left = 350
+    Top = 174
   end
 end
