@@ -78,6 +78,7 @@ var
   i: Integer;
 begin
   FrameAdapter.SkinData.SkinManager.UpdateScale(Self);
+  Application.ProcessMessages;
   Show;
   { Autosize panels. This is stupid but TPanel can't be autosized before it's visible. }
   for i := 0 to ComponentCount - 1 do

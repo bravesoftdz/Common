@@ -55,7 +55,7 @@ begin
   SkinManager.SkinDirectory := IncludeTrailingBackslash(ExtractFilePath(Application.ExeName)) +
     SkinManager.SkinDirectory;
   {$WARN SYMBOL_PLATFORM ON}
-  SkinManager.Options.ScaleMode := smAuto;
+  SkinManager.Options.ScaleMode := smAuto; { Delphi will crash, if this is set in IDE }
   SkinManager.Active := True;
   CreateProgressBar;
 end;

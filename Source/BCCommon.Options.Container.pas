@@ -922,7 +922,7 @@ begin
     begin
       TBCStatusBar(Dest).Font.Name := FStatusBarFontName;
       TBCStatusBar(Dest).Font.Size := FStatusBarFontSize;
-      TBCStatusBar(Dest).Height := FStatusBarFontSize + 14;
+      //TBCStatusBar(Dest).Height := FStatusBarFontSize + 14;
     end;
   end
   else
