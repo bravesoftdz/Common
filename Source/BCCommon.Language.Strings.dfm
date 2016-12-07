@@ -1471,6 +1471,11 @@ object LanguageDataModule: TLanguageDataModule
           'MATLAB files (*.matlab)')
       end
       item
+        Name = 'MIME'
+        Strings.Strings = (
+          'MIME files (*.eml;*.mht)')
+      end
+      item
         Name = 'MS-DOS Batch'
         Strings.Strings = (
           'MS-DOS Batch files (*.bat;*.cmd)')
@@ -1529,6 +1534,11 @@ object LanguageDataModule: TLanguageDataModule
         Name = 'SQL - Standard'
         Strings.Strings = (
           'SQL files (*.sql)')
+      end
+      item
+        Name = 'Swift'
+        Strings.Strings = (
+          'Swift files (*.swift)')
       end
       item
         Name = 'TclTk'
