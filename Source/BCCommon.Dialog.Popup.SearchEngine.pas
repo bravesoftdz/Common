@@ -156,6 +156,7 @@ begin
   LMaxWidth := 0;
 
   VirtualDrawTree.Clear;
+  VirtualDrawTree.DefaultNodeHeight := Max(VirtualDrawTree.Canvas.TextHeight('Tg'), 18);
 
   AddSearchEngine(seNormal, LanguageDataModule.GetConstant('Normal'));
   AddSearchEngine(seRegularExpression, LanguageDataModule.GetConstant('RegularExpression'));

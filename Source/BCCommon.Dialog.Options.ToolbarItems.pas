@@ -42,7 +42,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Images, System.Types;
+  BCCommon.Images, System.Types, System.Math;
 
 var
   FOptionsToolbarItemsDialog: TOptionsToolbarItemsDialog;
@@ -126,7 +126,7 @@ var
 begin
   Data := Sender.GetNodeData(Node);
   Data^.Action := nil;
-  //Finalize(Data^);
+
   inherited;
 end;
 
@@ -156,6 +156,7 @@ var
 begin
   VirtualDrawTreeAddItems.BeginUpdate;
   VirtualDrawTreeAddItems.Clear;
+  VirtualDrawTreeAddItems.DefaultNodeHeight := Max(VirtualDrawTreeAddItems.Canvas.TextHeight('Tg'), 18);
   for LAction in FActionList do
   begin
     if (LAction.Tag <> 1) and (LAction.ImageIndex <> -1) and (LAction.Caption <> '') then

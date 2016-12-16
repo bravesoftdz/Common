@@ -78,6 +78,8 @@ begin
   LMaxWidth := 0;
 
   VirtualDrawTree.Clear;
+  VirtualDrawTree.DefaultNodeHeight := Max(VirtualDrawTree.Canvas.TextHeight('Tg'), 18);
+
   for i := Low(ENCODING_CAPTIONS) to High(ENCODING_CAPTIONS) do
     AddEncoding(i, ENCODING_CAPTIONS[i]);
 

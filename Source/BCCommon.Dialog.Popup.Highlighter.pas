@@ -79,6 +79,7 @@ begin
   LMaxWidth := 0;
   LSelectedNode := nil;
   VirtualDrawTree.Clear;
+  VirtualDrawTree.DefaultNodeHeight := Max(VirtualDrawTree.Canvas.TextHeight('Tg'), 18);
   for i := 0 to AHighlighters.Count - 1 do
   begin
     LNode := VirtualDrawTree.AddChild(nil);

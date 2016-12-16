@@ -50,7 +50,7 @@ implementation
 {$R *.dfm}
 
 uses
-  System.IniFiles, System.Types, Vcl.Clipbrd, BCCommon.Utils, BCCommon.FileUtils, BCCommon.Language.Utils;
+  System.IniFiles, System.Types, System.Math, Vcl.Clipbrd, BCCommon.Utils, BCCommon.FileUtils, BCCommon.Language.Utils;
 
 type
   PTreeData = ^TTreeData;
@@ -223,6 +223,7 @@ var
 begin
   VirtualDrawTree.BeginUpdate;
   VirtualDrawTree.Clear;
+  VirtualDrawTree.DefaultNodeHeight := Max(VirtualDrawTree.Canvas.TextHeight('Tg'), 18);
   for LIndex := 0 to FClipboardHistoryItems.Count - 1 do
   begin
     LNode := VirtualDrawTree.AddChild(nil);

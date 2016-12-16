@@ -5,13 +5,12 @@ inherited ReplaceDialog: TReplaceDialog
   Padding.Left = 6
   Padding.Top = 6
   Padding.Right = 6
-  OldCreateOrder = True
   Position = poMainFormCenter
   OnCloseQuery = FormCloseQuery
   OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
-  object GroupBoxOptions: TBCGroupBox
+  object GroupBoxOptions: TBCGroupBox [0]
     AlignWithMargins = True
     Left = 6
     Top = 120
@@ -200,7 +199,7 @@ inherited ReplaceDialog: TReplaceDialog
       KeepThumbAspectRatio = False
     end
   end
-  object PanelSearchForComboBox: TBCPanel
+  object PanelSearchForComboBox: TBCPanel [1]
     Left = 6
     Top = 6
     Width = 357
@@ -218,8 +217,8 @@ inherited ReplaceDialog: TReplaceDialog
       Align = alBottom
       Alignment = taLeftJustify
       BoundLabel.Active = True
-      BoundLabel.Caption = 'Search for'
       BoundLabel.Indent = 4
+      BoundLabel.Caption = 'Search for'
       BoundLabel.Layout = sclTopLeft
       SkinData.SkinSection = 'COMBOBOX'
       VerticalAlignment = taAlignTop
@@ -229,7 +228,7 @@ inherited ReplaceDialog: TReplaceDialog
       UseMouseWheel = False
     end
   end
-  object PanelReplaceWith: TBCPanel
+  object PanelReplaceWith: TBCPanel [2]
     Left = 6
     Top = 44
     Width = 357
@@ -261,7 +260,7 @@ inherited ReplaceDialog: TReplaceDialog
       SkinData.SkinSection = 'CHECKBOX'
     end
   end
-  object PanelReplaceWithComboBox: TBCPanel
+  object PanelReplaceWithComboBox: TBCPanel [3]
     Left = 6
     Top = 70
     Width = 357
@@ -287,7 +286,7 @@ inherited ReplaceDialog: TReplaceDialog
       UseMouseWheel = False
     end
   end
-  object PanelButtons: TBCPanel
+  object PanelButtons: TBCPanel [4]
     AlignWithMargins = True
     Left = 9
     Top = 369
@@ -348,7 +347,7 @@ inherited ReplaceDialog: TReplaceDialog
       SkinData.SkinSection = 'BUTTON'
     end
   end
-  object GroupBoxReplaceIn: TBCGroupBox
+  object GroupBoxReplaceIn: TBCGroupBox [5]
     Left = 6
     Top = 296
     Width = 357
@@ -381,7 +380,7 @@ inherited ReplaceDialog: TReplaceDialog
       SkinData.SkinSection = 'CHECKBOX'
     end
   end
-  object PanelDeleteLine: TBCPanel
+  object PanelDeleteLine: TBCPanel [6]
     Left = 6
     Top = 91
     Width = 357

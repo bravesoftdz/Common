@@ -43,7 +43,7 @@ inherited ClipboardHistoryDialog: TClipboardHistoryDialog
   OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
-  object PanelTop: TBCPanel
+  object PanelTop: TBCPanel [0]
     Left = 0
     Top = 0
     Width = 471
@@ -149,7 +149,7 @@ inherited ClipboardHistoryDialog: TClipboardHistoryDialog
       ImageIndex = 16
     end
   end
-  object VirtualDrawTree: TVirtualDrawTree
+  object VirtualDrawTree: TVirtualDrawTree [1]
     Left = 0
     Top = 62
     Width = 471
@@ -186,7 +186,7 @@ inherited ClipboardHistoryDialog: TClipboardHistoryDialog
     OnGetNodeWidth = VirtualDrawTreeGetNodeWidth
     Columns = <>
   end
-  object StatusBar: TBCStatusBar
+  object StatusBar: TBCStatusBar [2]
     Left = 0
     Top = 439
     Width = 471

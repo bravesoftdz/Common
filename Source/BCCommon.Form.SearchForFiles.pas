@@ -293,6 +293,7 @@ begin
     VirtualDrawTreeSearch.Images.BkColor := clNone;
     VirtualDrawTreeSearch.Images.ShareImages := True;
   end;
+  VirtualDrawTreeSearch.DefaultNodeHeight := VirtualDrawTreeSearch.Images.Height + 2;
 end;
 
 procedure TSearchForFilesForm.FormDestroy(Sender: TObject);
