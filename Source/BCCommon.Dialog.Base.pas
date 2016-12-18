@@ -30,10 +30,8 @@ implementation
 
 {$R *.dfm}
 
-{$IFDEF EDITBONE}
 uses
-  Winapi.Messages, BCCommon.Language.Utils;
-{$ENDIF}
+  Winapi.Messages{$IFDEF EDITBONE}, BCCommon.Language.Utils{$ENDIF};
 
 constructor TBCBaseDialog.Create(AOwner: TComponent);
 begin
