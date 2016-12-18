@@ -1,6 +1,6 @@
 inherited ReplaceDialog: TReplaceDialog
   Caption = 'Replace'
-  ClientHeight = 413
+  ClientHeight = 440
   ClientWidth = 369
   Padding.Left = 6
   Padding.Top = 6
@@ -13,11 +13,12 @@ inherited ReplaceDialog: TReplaceDialog
   object GroupBoxOptions: TBCGroupBox [0]
     AlignWithMargins = True
     Left = 6
-    Top = 120
+    Top = 124
     Width = 357
-    Height = 173
+    Height = 129
     Margins.Left = 0
     Margins.Right = 0
+    Margins.Bottom = 0
     Align = alTop
     Caption = ' Options'
     TabOrder = 4
@@ -25,7 +26,7 @@ inherited ReplaceDialog: TReplaceDialog
     SkinData.SkinSection = 'GROUPBOX'
     object StickyLabelCaseSensitive: TsStickyLabel
       Left = 12
-      Top = 26
+      Top = 23
       Width = 102
       Height = 13
       AutoSize = False
@@ -35,7 +36,7 @@ inherited ReplaceDialog: TReplaceDialog
     end
     object StickyLabelPromptOnReplace: TsStickyLabel
       Left = 12
-      Top = 49
+      Top = 48
       Width = 102
       Height = 13
       AutoSize = False
@@ -43,19 +44,9 @@ inherited ReplaceDialog: TReplaceDialog
       AttachTo = SliderPromptOnReplace
       Gap = 8
     end
-    object StickyLabelRegularExpression: TsStickyLabel
-      Left = 12
-      Top = 72
-      Width = 102
-      Height = 13
-      AutoSize = False
-      Caption = 'Regular expressions'
-      AttachTo = SliderRegularExpression
-      Gap = 8
-    end
     object StickyLabelSelectedOnly: TsStickyLabel
       Left = 12
-      Top = 95
+      Top = 73
       Width = 102
       Height = 13
       AutoSize = False
@@ -65,7 +56,7 @@ inherited ReplaceDialog: TReplaceDialog
     end
     object StickyLabelWholeWordsOnly: TsStickyLabel
       Left = 12
-      Top = 118
+      Top = 98
       Width = 102
       Height = 13
       AutoSize = False
@@ -73,19 +64,9 @@ inherited ReplaceDialog: TReplaceDialog
       AttachTo = SliderWholeWordsOnly
       Gap = 8
     end
-    object StickyLabelWildCard: TsStickyLabel
-      Left = 12
-      Top = 141
-      Width = 102
-      Height = 13
-      AutoSize = False
-      Caption = 'Wild card'
-      AttachTo = SliderWildCard
-      Gap = 8
-    end
     object SliderCaseSensitive: TsSlider
       Left = 122
-      Top = 22
+      Top = 19
       Width = 50
       AutoSize = True
       TabOrder = 0
@@ -104,7 +85,7 @@ inherited ReplaceDialog: TReplaceDialog
     end
     object SliderPromptOnReplace: TsSlider
       Left = 122
-      Top = 45
+      Top = 44
       Width = 50
       AutoSize = True
       TabOrder = 1
@@ -120,32 +101,12 @@ inherited ReplaceDialog: TReplaceDialog
       SliderCaptionOff = 'No'
       KeepThumbAspectRatio = False
     end
-    object SliderRegularExpression: TsSlider
+    object SliderSelectedOnly: TsSlider
       Left = 122
-      Top = 68
+      Top = 69
       Width = 50
       AutoSize = True
       TabOrder = 2
-      OnClick = SliderRegularExpressionClick
-      BoundLabel.Indent = 6
-      ImageIndexOff = 0
-      ImageIndexOn = 0
-      FontOn.Charset = DEFAULT_CHARSET
-      FontOn.Color = clWindowText
-      FontOn.Height = -11
-      FontOn.Name = 'Tahoma'
-      FontOn.Style = []
-      SliderCaptionOn = 'Yes'
-      SliderCaptionOff = 'No'
-      SliderOn = False
-      KeepThumbAspectRatio = False
-    end
-    object SliderSelectedOnly: TsSlider
-      Left = 122
-      Top = 91
-      Width = 50
-      AutoSize = True
-      TabOrder = 3
       BoundLabel.Indent = 6
       ImageIndexOff = 0
       ImageIndexOn = 0
@@ -161,30 +122,10 @@ inherited ReplaceDialog: TReplaceDialog
     end
     object SliderWholeWordsOnly: TsSlider
       Left = 122
-      Top = 114
+      Top = 94
       Width = 50
       AutoSize = True
-      TabOrder = 4
-      BoundLabel.Indent = 6
-      ImageIndexOff = 0
-      ImageIndexOn = 0
-      FontOn.Charset = DEFAULT_CHARSET
-      FontOn.Color = clWindowText
-      FontOn.Height = -11
-      FontOn.Name = 'Tahoma'
-      FontOn.Style = []
-      SliderCaptionOn = 'Yes'
-      SliderCaptionOff = 'No'
-      SliderOn = False
-      KeepThumbAspectRatio = False
-    end
-    object SliderWildCard: TsSlider
-      Left = 122
-      Top = 137
-      Width = 50
-      AutoSize = True
-      TabOrder = 5
-      OnClick = SliderWildCardClick
+      TabOrder = 3
       BoundLabel.Indent = 6
       ImageIndexOff = 0
       ImageIndexOn = 0
@@ -203,34 +144,88 @@ inherited ReplaceDialog: TReplaceDialog
     Left = 6
     Top = 6
     Width = 357
-    Height = 38
+    Height = 42
     Align = alTop
     AutoSize = True
     BevelOuter = bvNone
     TabOrder = 0
     SkinData.SkinSection = 'CHECKBOX'
-    object ComboBoxSearchFor: TBCComboBox
+    object PanelSearchForClient: TBCPanel
+      AlignWithMargins = True
       Left = 0
-      Top = 17
-      Width = 357
-      Height = 21
-      Align = alBottom
-      Alignment = taLeftJustify
-      BoundLabel.Active = True
-      BoundLabel.Indent = 4
-      BoundLabel.Caption = 'Search for'
-      BoundLabel.Layout = sclTopLeft
-      SkinData.SkinSection = 'COMBOBOX'
-      VerticalAlignment = taAlignTop
-      ItemIndex = -1
+      Top = 0
+      Width = 333
+      Height = 42
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Bottom = 0
+      Align = alClient
+      AutoSize = True
+      BevelOuter = bvNone
       TabOrder = 0
-      OnChange = ComboBoxSearchForChange
-      UseMouseWheel = False
+      SkinData.SkinSection = 'CHECKBOX'
+      object ComboBoxSearchFor: TBCComboBox
+        Left = 0
+        Top = 21
+        Width = 333
+        Height = 21
+        Align = alBottom
+        Alignment = taLeftJustify
+        BoundLabel.Active = True
+        BoundLabel.Indent = 4
+        BoundLabel.Caption = 'Search for'
+        BoundLabel.Layout = sclTopLeft
+        SkinData.SkinSection = 'COMBOBOX'
+        VerticalAlignment = taAlignTop
+        ItemIndex = -1
+        TabOrder = 0
+        OnChange = ComboBoxSearchForChange
+        UseMouseWheel = False
+      end
+    end
+    object PanelTextToFindRight: TBCPanel
+      Left = 336
+      Top = 0
+      Width = 21
+      Height = 42
+      Align = alRight
+      BevelOuter = bvNone
+      ParentColor = True
+      TabOrder = 1
+      SkinData.SkinSection = 'CHECKBOX'
+      object PanelTextToFindButton: TBCPanel
+        Left = 0
+        Top = 21
+        Width = 21
+        Height = 21
+        Align = alBottom
+        BevelOuter = bvNone
+        ParentColor = True
+        TabOrder = 0
+        SkinData.SkinSection = 'CHECKBOX'
+        object SpeedButtonSearchEngine: TBCSpeedButton
+          AlignWithMargins = True
+          Left = 0
+          Top = 0
+          Width = 21
+          Height = 21
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Action = ActionSearchEngine
+          Align = alLeft
+          Flat = True
+          SkinData.SkinSection = 'TOOLBUTTON'
+          Images = ImagesDataModule.ImageListSmall
+          ImageIndex = 143
+        end
+      end
     end
   end
   object PanelReplaceWith: TBCPanel [2]
     Left = 6
-    Top = 44
+    Top = 48
     Width = 357
     Height = 26
     Align = alTop
@@ -262,7 +257,7 @@ inherited ReplaceDialog: TReplaceDialog
   end
   object PanelReplaceWithComboBox: TBCPanel [3]
     Left = 6
-    Top = 70
+    Top = 74
     Width = 357
     Height = 21
     Align = alTop
@@ -289,7 +284,7 @@ inherited ReplaceDialog: TReplaceDialog
   object PanelButtons: TBCPanel [4]
     AlignWithMargins = True
     Left = 9
-    Top = 369
+    Top = 396
     Width = 354
     Height = 41
     Margins.Right = 0
@@ -349,7 +344,7 @@ inherited ReplaceDialog: TReplaceDialog
   end
   object GroupBoxReplaceIn: TBCGroupBox [5]
     Left = 6
-    Top = 296
+    Top = 323
     Width = 357
     Height = 70
     Align = alTop
@@ -382,7 +377,7 @@ inherited ReplaceDialog: TReplaceDialog
   end
   object PanelDeleteLine: TBCPanel [6]
     Left = 6
-    Top = 91
+    Top = 95
     Width = 357
     Height = 26
     Align = alTop
@@ -410,6 +405,93 @@ inherited ReplaceDialog: TReplaceDialog
       TabStop = True
       OnClick = RadioButtonDeleteLineClick
       SkinData.SkinSection = 'CHECKBOX'
+    end
+  end
+  object BCPanel1: TBCPanel [7]
+    Left = 6
+    Top = 253
+    Width = 357
+    Height = 70
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 7
+    SkinData.SkinSection = 'CHECKBOX'
+    object GroupBoxDirection: TBCGroupBox
+      Left = 0
+      Top = 0
+      Width = 175
+      Height = 70
+      Align = alLeft
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      BiDiMode = bdLeftToRight
+      Caption = ' Direction '
+      ParentBiDiMode = False
+      TabOrder = 0
+      TabStop = True
+      SkinData.SkinSection = 'GROUPBOX'
+      object RadioButtonDirectionForward: TBCRadioButton
+        Left = 12
+        Top = 20
+        Width = 60
+        Height = 20
+        Caption = 'Forward'
+        Checked = True
+        TabOrder = 0
+        TabStop = True
+        SkinData.SkinSection = 'CHECKBOX'
+      end
+      object RadioButtonDirectionBackward: TBCRadioButton
+        Left = 12
+        Top = 41
+        Width = 66
+        Height = 20
+        Caption = 'Backward'
+        TabOrder = 1
+        SkinData.SkinSection = 'CHECKBOX'
+      end
+    end
+    object GroupBoxOrigin: TBCGroupBox
+      Left = 182
+      Top = 0
+      Width = 175
+      Height = 70
+      Align = alRight
+      BiDiMode = bdLeftToRight
+      Caption = ' Origin '
+      ParentBiDiMode = False
+      TabOrder = 1
+      TabStop = True
+      SkinData.SkinSection = 'GROUPBOX'
+      object RadioButtonOriginFromCursor: TBCRadioButton
+        Left = 12
+        Top = 20
+        Width = 77
+        Height = 20
+        Caption = 'From cursor'
+        TabOrder = 0
+        SkinData.SkinSection = 'CHECKBOX'
+      end
+      object RadioButtonEntireScope: TBCRadioButton
+        Left = 12
+        Top = 41
+        Width = 79
+        Height = 20
+        Caption = 'Entire scope'
+        Checked = True
+        TabOrder = 1
+        TabStop = True
+        SkinData.SkinSection = 'CHECKBOX'
+      end
+    end
+  end
+  object ActionList: TActionList
+    Images = ImagesDataModule.ImageListSmall
+    Left = 256
+    Top = 78
+    object ActionSearchEngine: TAction
+      Hint = 'Select search engine'
+      ImageIndex = 143
+      OnExecute = ActionSearchEngineExecute
     end
   end
 end

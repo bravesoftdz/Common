@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sRadioButton, BCControl.RadioButton, VirtualTrees, sSkinProvider;
 
 type
-  TSelectSearchEngineEvent = procedure(ASearchEngine: TBCEditorSearchEngine) of object;
+  TSelectSearchEngineEvent = procedure(const ASearchEngine: TBCEditorSearchEngine) of object;
 
   TBCPopupSearchEngineDialog = class(TForm)
     SkinProvider: TsSkinProvider;
@@ -29,6 +29,8 @@ type
     property OnSelectSearchEngine: TSelectSearchEngineEvent read FSelectSearchEngine write FSelectSearchEngine;
   end;
 
+  function SearchEngineToString(const ASelectedSearchEngine: TBCEditorSearchEngine): string;
+
 implementation
 
 {$R *.dfm}
@@ -42,6 +44,17 @@ type
     SearchEngine: TBCEditorSearchEngine;
     Name: string;
   end;
+
+function SearchEngineToString(const ASelectedSearchEngine: TBCEditorSearchEngine): string;
+begin
+  case ASelectedSearchEngine of
+    seNormal: Result := LanguageDataModule.GetConstant('Normal');
+    seRegularExpression:  Result := LanguageDataModule.GetConstant('RegularExpression');
+    seWildcard:  Result := LanguageDataModule.GetConstant('Wildcard');
+  else
+    Result := 'Unknown search engine';
+  end;
+end;
 
 procedure TBCPopupSearchEngineDialog.FormCreate(Sender: TObject);
 begin

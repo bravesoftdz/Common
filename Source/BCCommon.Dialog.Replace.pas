@@ -5,7 +5,8 @@ interface
 uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, BCCommon.Dialog.Base, BCControl.ComboBox,
   Vcl.StdCtrls, BCControl.Panel, BCControl.RadioButton, BCEditor.Editor, BCEditor.Types, BCControl.Button, sComboBox,
-  sRadioButton, BCControl.GroupBox, sLabel, acSlider, sButton, Vcl.ExtCtrls, sPanel, sGroupBox, sSkinProvider;
+  sRadioButton, BCControl.GroupBox, sLabel, acSlider, sButton, Vcl.ExtCtrls, sPanel, sGroupBox, sSkinProvider,
+  System.Actions, Vcl.ActnList, Vcl.Buttons, sSpeedButton, BCControl.SpeedButton, BCCommon.Dialog.Popup.SearchEngine;
 
 type
   TReplaceDialog = class(TBCBaseDialog)
@@ -27,32 +28,43 @@ type
     StickyLabelCaseSensitive: TsStickyLabel;
     StickyLabelPromptOnReplace: TsStickyLabel;
     SliderPromptOnReplace: TsSlider;
-    SliderRegularExpression: TsSlider;
-    StickyLabelRegularExpression: TsStickyLabel;
     SliderSelectedOnly: TsSlider;
     StickyLabelSelectedOnly: TsStickyLabel;
     StickyLabelWholeWordsOnly: TsStickyLabel;
     SliderWholeWordsOnly: TsSlider;
-    StickyLabelWildCard: TsStickyLabel;
-    SliderWildCard: TsSlider;
     PanelDeleteLine: TBCPanel;
     RadioButtonDeleteLine: TBCRadioButton;
+    ActionList: TActionList;
+    ActionSearchEngine: TAction;
+    PanelTextToFindRight: TBCPanel;
+    PanelTextToFindButton: TBCPanel;
+    SpeedButtonSearchEngine: TBCSpeedButton;
+    BCPanel1: TBCPanel;
+    GroupBoxDirection: TBCGroupBox;
+    RadioButtonDirectionForward: TBCRadioButton;
+    RadioButtonDirectionBackward: TBCRadioButton;
+    GroupBoxOrigin: TBCGroupBox;
+    RadioButtonOriginFromCursor: TBCRadioButton;
+    RadioButtonEntireScope: TBCRadioButton;
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure RadioButtonDeleteLineClick(Sender: TObject);
     procedure RadioButtonReplaceWithClick(Sender: TObject);
-    procedure SliderRegularExpressionClick(Sender: TObject);
-    procedure SliderWildCardClick(Sender: TObject);
     procedure ComboBoxSearchForChange(Sender: TObject);
+    procedure ActionSearchEngineExecute(Sender: TObject);
   private
+    FPopupSearchEngineDialog: TBCPopupSearchEngineDialog;
+    FSearchEngine: TBCEditorSearchEngine;
     function GetReplaceInWholeFile: Boolean;
     function GetReplaceWith: string;
     function GetSearchFor: string;
     procedure ReadIniFile;
+    procedure SelectedSearchEngineClick(const ASearchEngine: TBCEditorSearchEngine);
     procedure SetButtons;
     procedure SetReplaceWith(const AValue: string);
     procedure SetSearchFor(const AValue: string);
+    procedure UpdateCaption;
     procedure WriteIniFile;
   public
     procedure GetOptions(AEditor: TBCEditor);
@@ -87,17 +99,15 @@ begin
   AEditor.Replace.SetOption(roSelectedOnly, SliderSelectedOnly.SliderOn);
   AEditor.Replace.SetOption(roWholeWordsOnly, SliderWholeWordsOnly.SliderOn);
   AEditor.Replace.SetOption(roReplaceAll, ModalResult = mrYes);
+  AEditor.Replace.SetOption(roBackwards, RadioButtonDirectionBackward.Checked);
+  AEditor.Replace.SetOption(roEntireScope, RadioButtonEntireScope.Checked);
+
   if RadioButtonReplaceWith.Checked then
     AEditor.Replace.Action := eraReplace
   else
     AEditor.Replace.Action := eraDeleteLine;
-  if SliderRegularExpression.SliderOn then
-    AEditor.Replace.Engine := seRegularExpression
-  else
-  if SliderWildCard.SliderOn then
-    AEditor.Replace.Engine := seWildCard
-  else
-    AEditor.Replace.Engine := seNormal;
+
+  AEditor.Replace.Engine := FSearchEngine;
 end;
 
 procedure TReplaceDialog.FormShow(Sender: TObject);
@@ -107,12 +117,38 @@ begin
   if ComboBoxSearchFor.CanFocus then
     ComboBoxSearchFor.SetFocus;
   AlignSliders(GroupBoxOptions, 12);
+  UpdateCaption;
+end;
+
+procedure TReplaceDialog.UpdateCaption;
+begin
+  Caption := Format('%s (%s)', [OrigCaption, SearchEngineToString(FSearchEngine)]);
 end;
 
 procedure TReplaceDialog.SetButtons;
 begin
   ButtonOK.Enabled := ComboBoxSearchFor.Text <> '';
   ButtonReplaceAll.Enabled := ButtonOK.Enabled;
+end;
+
+procedure TReplaceDialog.ActionSearchEngineExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(FPopupSearchEngineDialog) then
+  begin
+    FPopupSearchEngineDialog := TBCPopupSearchEngineDialog.Create(Self);
+    FPopupSearchEngineDialog.PopupParent := Self;
+    FPopupSearchEngineDialog.OnSelectSearchEngine := SelectedSearchEngineClick;
+  end;
+  LockPaint;
+  FPopupSearchEngineDialog.Execute(FSearchEngine);
+  UnlockPaint;
+end;
+
+procedure TReplaceDialog.SelectedSearchEngineClick(const ASearchEngine: TBCEditorSearchEngine);
+begin
+  FSearchEngine := ASearchEngine;
+  UpdateCaption;
 end;
 
 procedure TReplaceDialog.ComboBoxSearchForChange(Sender: TObject);
@@ -155,14 +191,17 @@ procedure TReplaceDialog.ReadIniFile;
 begin
   with TIniFile.Create(GetIniFilename) do
   try
+    FSearchEngine := TBCEditorSearchEngine(ReadInteger('ReplaceOptions', 'Engine', 0));
     RadioButtonReplaceWith.Checked := ReadBool('ReplaceOptions', 'ReplaceWith', True);
     RadioButtonDeleteLine.Checked := ReadBool('ReplaceOptions', 'DeleteLine', False);
     SliderCaseSensitive.SliderOn := ReadBool('ReplaceOptions', 'CaseSensitive', False);
     SliderPromptOnReplace.SliderOn := ReadBool('ReplaceOptions', 'PromptOnReplace', True);
-    SliderRegularExpression.SliderOn := ReadBool('ReplaceOptions', 'RegularExpressions', False);
     SliderSelectedOnly.SliderOn := ReadBool('ReplaceOptions', 'SelectedOnly', False);
     SliderWholeWordsOnly.SliderOn := ReadBool('ReplaceOptions', 'WholeWordsOnly', False);
-    SliderWildCard.SliderOn := ReadBool('ReplaceOptions', 'WildCard', False);
+    RadioButtonDirectionForward.Checked := ReadBool('ReplaceOptions', 'DirectionForward', True);
+    RadioButtonDirectionBackward.Checked := ReadBool('ReplaceOptions', 'DirectionBackward', False);
+    RadioButtonOriginFromCursor.Checked := ReadBool('ReplaceOptions', 'OriginFromCursor', False);
+    RadioButtonEntireScope.Checked := ReadBool('ReplaceOptions', 'OriginEntireScope', True);
     RadioButtonWholeFile.Checked := ReadBool('ReplaceOptions', 'WholeFile', True);
     RadioButtonAllOpenFiles.Checked := ReadBool('ReplaceOptions', 'AllOpenFiles', False);
   finally
@@ -170,28 +209,21 @@ begin
   end;
 end;
 
-procedure TReplaceDialog.SliderRegularExpressionClick(Sender: TObject);
-begin
-  SliderWildCard.SliderOn := False
-end;
-
-procedure TReplaceDialog.SliderWildCardClick(Sender: TObject);
-begin
-  SliderRegularExpression.SliderOn := False;
-end;
-
 procedure TReplaceDialog.WriteIniFile;
 begin
   with TIniFile.Create(GetIniFilename) do
   try
+    WriteInteger('ReplaceOptions', 'Engine', Integer(FSearchEngine));
     WriteBool('ReplaceOptions', 'ReplaceWith', RadioButtonReplaceWith.Checked);
     WriteBool('ReplaceOptions', 'DeleteLine', RadioButtonDeleteLine.Checked);
     WriteBool('ReplaceOptions', 'CaseSensitive', SliderCaseSensitive.SliderOn);
     WriteBool('ReplaceOptions', 'PromptOnReplace', SliderPromptOnReplace.SliderOn);
-    WriteBool('ReplaceOptions', 'RegularExpressions', SliderRegularExpression.SliderOn);
     WriteBool('ReplaceOptions', 'SelectedOnly', SliderSelectedOnly.SliderOn);
     WriteBool('ReplaceOptions', 'WholeWordsOnly', SliderWholeWordsOnly.SliderOn);
-    WriteBool('ReplaceOptions', 'WildCard', SliderWildCard.SliderOn);
+    WriteBool('ReplaceOptions', 'DirectionForward', RadioButtonDirectionForward.Checked);
+    WriteBool('ReplaceOptions', 'DirectionBackward', RadioButtonDirectionBackward.Checked);
+    WriteBool('ReplaceOptions', 'OriginFromCursor', RadioButtonOriginFromCursor.Checked);
+    WriteBool('ReplaceOptions', 'OriginEntireScope', RadioButtonEntireScope.Checked);
     WriteBool('ReplaceOptions', 'WholeFile', RadioButtonWholeFile.Checked);
     WriteBool('ReplaceOptions', 'AllOpenFiles', RadioButtonAllOpenFiles.Checked);
   finally

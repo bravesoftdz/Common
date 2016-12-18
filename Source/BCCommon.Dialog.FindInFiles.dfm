@@ -1,6 +1,6 @@
 inherited FindInFilesDialog: TFindInFilesDialog
   Caption = 'Find in Files'
-  ClientHeight = 374
+  ClientHeight = 322
   ClientWidth = 499
   Padding.Left = 6
   Padding.Top = 6
@@ -13,7 +13,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
   object PanelButtons: TBCPanel [0]
     AlignWithMargins = True
     Left = 9
-    Top = 330
+    Top = 278
     Width = 484
     Height = 41
     Margins.Right = 0
@@ -53,7 +53,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
   end
   object GroupBoxSearchOptions: TBCGroupBox [1]
     Left = 6
-    Top = 105
+    Top = 54
     Width = 487
     Height = 77
     Align = alTop
@@ -120,7 +120,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
   object GroupBoxSearchDirectoryOptions: TBCGroupBox [2]
     AlignWithMargins = True
     Left = 6
-    Top = 185
+    Top = 134
     Width = 487
     Height = 142
     Margins.Left = 0
@@ -277,8 +277,8 @@ inherited FindInFilesDialog: TFindInFilesDialog
           Align = alBottom
           Alignment = taLeftJustify
           BoundLabel.Active = True
-          BoundLabel.Caption = 'Directory'
           BoundLabel.Indent = 4
+          BoundLabel.Caption = 'Directory'
           BoundLabel.Layout = sclTopLeft
           SkinData.SkinSection = 'COMBOBOX'
           VerticalAlignment = taAlignTop
@@ -328,8 +328,8 @@ inherited FindInFilesDialog: TFindInFilesDialog
           Align = alBottom
           Alignment = taLeftJustify
           BoundLabel.Active = True
-          BoundLabel.Caption = 'File mask'
           BoundLabel.Indent = 4
+          BoundLabel.Caption = 'File mask'
           BoundLabel.Layout = sclTopLeft
           DropDownCount = 20
           SkinData.SkinSection = 'COMBOBOX'
@@ -459,9 +459,9 @@ inherited FindInFilesDialog: TFindInFilesDialog
     TabOrder = 3
     SkinData.SkinSection = 'CHECKBOX'
     object PanelTextToFindRight: TBCPanel
-      Left = 460
+      Left = 437
       Top = 0
-      Width = 21
+      Width = 44
       Height = 42
       Align = alRight
       BevelOuter = bvNone
@@ -471,7 +471,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       object PanelTextToFindButton: TBCPanel
         Left = 0
         Top = 21
-        Width = 21
+        Width = 44
         Height = 21
         Align = alBottom
         BevelOuter = bvNone
@@ -479,12 +479,12 @@ inherited FindInFilesDialog: TFindInFilesDialog
         TabOrder = 0
         SkinData.SkinSection = 'CHECKBOX'
         object SpeedButtonTextToFind: TBCSpeedButton
-          Left = 0
+          Left = 23
           Top = 0
           Width = 21
           Height = 21
           Action = ActionTextToFindItemsButtonClick
-          Align = alLeft
+          Align = alRight
           Flat = True
           Glyph.Data = {
             36040000424D3604000000000000360000002800000010000000100000000100
@@ -523,13 +523,30 @@ inherited FindInFilesDialog: TFindInFilesDialog
             93FFB7A494FFB7A595FFB5A292FFB4A191FFBBA99AFFB8A696B0}
           SkinData.SkinSection = 'TOOLBUTTON'
         end
+        object SpeedButtonSearchEngine: TBCSpeedButton
+          AlignWithMargins = True
+          Left = 0
+          Top = 0
+          Width = 21
+          Height = 21
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 6
+          Margins.Bottom = 0
+          Action = ActionSearchEngine
+          Align = alLeft
+          Flat = True
+          SkinData.SkinSection = 'TOOLBUTTON'
+          Images = ImagesDataModule.ImageListSmall
+          ImageIndex = 143
+        end
       end
     end
     object PanelTextToFindClient: TBCPanel
       AlignWithMargins = True
       Left = 0
       Top = 0
-      Width = 457
+      Width = 434
       Height = 42
       Margins.Left = 0
       Margins.Top = 0
@@ -542,7 +559,7 @@ inherited FindInFilesDialog: TFindInFilesDialog
       object ComboBoxTextToFind: TBCComboBox
         Left = 0
         Top = 21
-        Width = 457
+        Width = 434
         Height = 21
         Margins.Left = 0
         Margins.Top = 20
@@ -550,8 +567,8 @@ inherited FindInFilesDialog: TFindInFilesDialog
         Align = alBottom
         Alignment = taLeftJustify
         BoundLabel.Active = True
-        BoundLabel.Caption = 'Text to find'
         BoundLabel.Indent = 4
+        BoundLabel.Caption = 'Text to find'
         BoundLabel.Layout = sclTopLeft
         SkinData.SkinSection = 'COMBOBOX'
         VerticalAlignment = taAlignTop
@@ -562,45 +579,14 @@ inherited FindInFilesDialog: TFindInFilesDialog
       end
     end
   end
-  object GroupBoxEngine: TBCGroupBox [4]
-    Left = 6
-    Top = 54
-    Width = 487
-    Height = 51
-    Align = alTop
-    Caption = ' Engine '
-    TabOrder = 4
-    SkinData.SkinSection = 'GROUPBOX'
-    object RadioButtonNormal: TBCRadioButton
-      Left = 12
-      Top = 20
-      Width = 53
-      Height = 20
-      Caption = 'Normal'
-      Checked = True
-      TabOrder = 0
-      TabStop = True
-    end
-    object RadioButtonRegularExpressions: TBCRadioButton
-      Left = 105
-      Top = 20
-      Width = 117
-      Height = 20
-      Caption = 'Regular expressions'
-      TabOrder = 1
-    end
-    object RadioButtonWildcard: TBCRadioButton
-      Left = 258
-      Top = 20
-      Width = 61
-      Height = 20
-      Caption = 'Wildcard'
-      TabOrder = 2
-    end
+  inherited SkinProvider: TsSkinProvider
+    Left = 342
+    Top = 78
   end
   object ActionList: TActionList
-    Left = 378
-    Top = 6
+    Images = ImagesDataModule.ImageListSmall
+    Left = 256
+    Top = 78
     object ActionTextToFindItemsButtonClick: TAction
       OnExecute = ActionTextToFindItemsButtonClickExecute
     end
@@ -618,6 +604,11 @@ inherited FindInFilesDialog: TFindInFilesDialog
       Caption = 'Find'
       OnExecute = ActionFindExecute
       OnUpdate = ActionFindUpdate
+    end
+    object ActionSearchEngine: TAction
+      Hint = 'Select search engine'
+      ImageIndex = 143
+      OnExecute = ActionSearchEngineExecute
     end
   end
 end

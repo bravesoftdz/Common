@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls, BCControl.ComboBox,
   Vcl.ActnList, BCCommon.Dialog.Base, sComboBox, BCControl.SpeedButton, BCControl.Panel, BCControl.GroupBox, sLabel,
   acSlider, System.Actions, Vcl.Buttons, sSpeedButton, sGroupBox, Vcl.ExtCtrls, sPanel, sRadioButton,
-  BCControl.RadioButton, sSkinProvider;
+  BCEditor.Types, BCControl.RadioButton, sSkinProvider, BCCommon.Dialog.Popup.SearchEngine;
 
 type
   TFindInFilesDialog = class(TBCBaseDialog)
@@ -42,10 +42,8 @@ type
     ActionFind: TAction;
     StickyLabelWholeWordsOnly: TsStickyLabel;
     SliderWholeWordsOnly: TsSlider;
-    GroupBoxEngine: TBCGroupBox;
-    RadioButtonNormal: TBCRadioButton;
-    RadioButtonRegularExpressions: TBCRadioButton;
-    RadioButtonWildcard: TBCRadioButton;
+    SpeedButtonSearchEngine: TBCSpeedButton;
+    ActionSearchEngine: TAction;
     procedure ActionDirectoryButtonClickExecute(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
@@ -56,21 +54,22 @@ type
     procedure ActionTextToFindItemsButtonClickExecute(Sender: TObject);
     procedure ActionFindUpdate(Sender: TObject);
     procedure ActionFindExecute(Sender: TObject);
+    procedure ActionSearchEngineExecute(Sender: TObject);
   private
+    FPopupSearchEngineDialog: TBCPopupSearchEngineDialog;
+    FSearchEngine: TBCEditorSearchEngine;
     function GetFileTypeText: string;
     function GetFindWhatText: string;
     function GetFolderText: string;
     function GetLookInSubfolders: Boolean;
-    function GetRegularExpressions: Boolean;
     function GetSearchCaseSensitive: Boolean;
-    function GetSearchEngine: Integer;
     function GetWholeWordsOnly: Boolean;
-    function GetWildcard: Boolean;
+    procedure SelectedSearchEngineClick(const ASearchEngine: TBCEditorSearchEngine);
     procedure SetButtons;
     procedure SetFindWhatText(const AValue: string);
     procedure SetFolderText(const AValue: string);
-    procedure SetSearchEngine(const AIndex: Integer);
     procedure ReadIniFile;
+    procedure UpdateCaption;
     procedure WriteIniFile;
     procedure WriteSection(const ASection: string; AStrings: TStrings; AIncludeTrailingPathDelimeter: Boolean = False);
   public
@@ -79,9 +78,8 @@ type
     property FindWhatText: string read GetFindWhatText write SetFindWhatText;
     property FolderText: string read GetFolderText write SetFolderText;
     property LookInSubfolders: Boolean read GetLookInSubfolders;
+    property SearchEngine: TBCEditorSearchEngine read FSearchEngine;
     property SearchCaseSensitive: Boolean read GetSearchCaseSensitive;
-    property RegularExpressions: Boolean read GetRegularExpressions;
-    property Wildcard: Boolean read GetWildcard;
     property WholeWordsOnly: Boolean read GetWholeWordsOnly;
   end;
 
@@ -122,6 +120,12 @@ begin
   SetButtons;
   if ComboBoxTextToFind.CanFocus then
     ComboBoxTextToFind.SetFocus;
+  UpdateCaption;
+end;
+
+procedure TFindInFilesDialog.UpdateCaption;
+begin
+  Caption := Format('%s (%s)', [OrigCaption, SearchEngineToString(FSearchEngine)]);
 end;
 
 function TFindInFilesDialog.GetFindWhatText: string;
@@ -265,6 +269,26 @@ begin
   ActionFind.Enabled := (Trim(ComboBoxTextToFind.Text) <> '') and (Trim(ComboBoxDirectory.Text) <> '')
 end;
 
+procedure TFindInFilesDialog.ActionSearchEngineExecute(Sender: TObject);
+begin
+  inherited;
+  if not Assigned(FPopupSearchEngineDialog) then
+  begin
+    FPopupSearchEngineDialog := TBCPopupSearchEngineDialog.Create(Self);
+    FPopupSearchEngineDialog.PopupParent := Self;
+    FPopupSearchEngineDialog.OnSelectSearchEngine := SelectedSearchEngineClick;
+  end;
+  LockPaint;
+  FPopupSearchEngineDialog.Execute(FSearchEngine);
+  UnlockPaint;
+end;
+
+procedure TFindInFilesDialog.SelectedSearchEngineClick(const ASearchEngine: TBCEditorSearchEngine);
+begin
+  FSearchEngine := ASearchEngine;
+  UpdateCaption;
+end;
+
 procedure TFindInFilesDialog.ActionTextToFindItemsButtonClickExecute(Sender: TObject);
 begin
   with TItemListDialog.Create(Self) do
@@ -302,26 +326,6 @@ begin
     WriteIniFile;
 end;
 
-procedure TFindInFilesDialog.SetSearchEngine(const AIndex: Integer);
-begin
-  case AIndex of
-    0: RadioButtonNormal.Checked := True;
-    1: RadioButtonRegularExpressions.Checked := True;
-    2: RadioButtonWildcard.Checked := True;
-  end;
-end;
-
-function TFindInFilesDialog.GetSearchEngine: Integer;
-begin
-  if RadioButtonNormal.Checked then
-    Result := 0
-  else
-  if RadioButtonRegularExpressions.Checked then
-    Result := 1
-  else
-    Result := 2
-end;
-
 procedure TFindInFilesDialog.ReadIniFile;
 var
   LValueListEditor: TValueListEditor;
@@ -329,7 +333,8 @@ begin
   LValueListEditor := TValueListEditor.Create(nil);
   with TMemIniFile.Create(GetUniIniFilename, TEncoding.Unicode) do
   try
-    SetSearchEngine(ReadInteger('FindInFiles', 'Engine', 0));
+    FSearchEngine := TBCEditorSearchEngine(ReadInteger('FindInFiles', 'Engine', 0));
+
     SliderCaseSensitive.SliderOn := ReadBool('FindInFilesOptions', 'CaseSensitive', False);
     SliderIncludeSubDirectories.SliderOn := ReadBool('FindInFilesOptions', 'IncludeSubDirectories', True);
 
@@ -359,7 +364,7 @@ var
 begin
   with TMemIniFile.Create(GetUniIniFilename, TEncoding.Unicode) do
   try
-    WriteInteger('FindInFiles', 'Engine', GetSearchEngine);
+    WriteInteger('FindInFiles', 'Engine', Integer(FSearchEngine));
     WriteBool('FindInFilesOptions', 'CaseSensitive', SliderCaseSensitive.SliderOn);
     WriteBool('FindInFilesOptions', 'IncludeSubDirectories', SliderIncludeSubDirectories.SliderOn);
 
@@ -384,19 +389,9 @@ begin
   end;
 end;
 
-function TFindInFilesDialog.GetRegularExpressions: Boolean;
-begin
-  Result := RadioButtonRegularExpressions.Checked;
-end;
-
 function TFindInFilesDialog.GetWholeWordsOnly: Boolean;
 begin
   Result := SliderWholeWordsOnly.SliderOn;
-end;
-
-function TFindInFilesDialog.GetWildcard: Boolean;
-begin
-  Result := RadioButtonWildcard.Checked;
 end;
 
 end.

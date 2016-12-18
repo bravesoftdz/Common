@@ -33,6 +33,7 @@ object BCBaseForm: TBCBaseForm
     AnimEffects.Minimizing.Active = False
     AnimEffects.SkinChanging.Active = False
     ButtonsOptions.ShowFocusRect = False
+    IsDefault = False
     Active = False
     Saturation = 10
     InternalSkins = <>

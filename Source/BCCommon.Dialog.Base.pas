@@ -13,8 +13,13 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
+    FOrigCaption: string;
     FOrigHeight: Integer;
     FOrigWidth: Integer;
+  protected
+    procedure LockPaint;
+    procedure UnlockPaint;
+    property OrigCaption: string read FOrigCaption write FOrigCaption;
   public
     constructor Create(AOwner: TComponent); override;
     property OrigHeight: Integer read FOrigHeight write FOrigHeight;
@@ -27,7 +32,7 @@ implementation
 
 {$IFDEF EDITBONE}
 uses
-  BCCommon.Language.Utils;
+  Winapi.Messages, BCCommon.Language.Utils;
 {$ENDIF}
 
 constructor TBCBaseDialog.Create(AOwner: TComponent);
@@ -51,6 +56,19 @@ begin
   {$IFDEF EDITBONE}
   BCCommon.Language.Utils.UpdateLanguage(Self);
   {$ENDIF}
+  FOrigCaption := Caption;
+end;
+
+procedure TBCBaseDialog.LockPaint;
+begin
+  SkinProvider.SkinData.BeginUpdate;
+  SkinProvider.Form.Perform(WM_SETREDRAW, 0, 0);
+end;
+
+procedure TBCBaseDialog.UnlockPaint;
+begin
+  SkinProvider.SkinData.EndUpdate;
+  SkinProvider.Form.Perform(WM_SETREDRAW, 1, 0);
 end;
 
 end.

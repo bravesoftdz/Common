@@ -293,7 +293,6 @@ begin
     VirtualDrawTreeSearch.Images.BkColor := clNone;
     VirtualDrawTreeSearch.Images.ShareImages := True;
   end;
-  VirtualDrawTreeSearch.DefaultNodeHeight := VirtualDrawTreeSearch.Images.Height + 2;
 end;
 
 procedure TSearchForFilesForm.FormDestroy(Sender: TObject);
@@ -411,6 +410,7 @@ var
 begin
   if FFormClosing then
     Exit;
+  VirtualDrawTreeSearch.DefaultNodeHeight := VirtualDrawTreeSearch.Images.Height + 2;
   {$WARNINGS OFF} { IncludeTrailingBackslash is specific to a platform }
   shFindFile := FindFirstFile(PChar(IncludeTrailingBackslash(ARootDirectory) + '*.*'), sWin32FD);
   {$WARNINGS ON}
