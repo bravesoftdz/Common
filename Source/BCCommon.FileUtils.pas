@@ -439,7 +439,7 @@ end;
 function FormatFileName(const AFileName: string; const AModified: Boolean): string;
 begin
   Result := Trim(AFileName);
-  if Pos('~', Result) = Length(Result) then
+  if Pos('~', Result, Pos('.', Result)) = Length(Result) then
     Result := System.Copy(Result, 0, Length(Result) - 1);
   if AModified then
     Result := Format('%s~', [Result]);
