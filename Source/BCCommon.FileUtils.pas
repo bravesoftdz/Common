@@ -39,7 +39,7 @@ implementation
 
 uses
   Winapi.ShellAPI, Winapi.ShlObj, Winapi.ActiveX, Winapi.Messages, System.SysUtils, System.AnsiStrings, Vcl.Forms,
-  BCCommon.Language.Strings, BCControl.Utils, System.IOUtils, System.StrUtils, System.Masks, sDialogs;
+  BCCommon.Language.Strings, BCControl.Utils, System.IOUtils, System.StrUtils, System.Masks, System.Math, sDialogs;
 
 const
   AppDataFolder = '/';
@@ -439,7 +439,7 @@ end;
 function FormatFileName(const AFileName: string; const AModified: Boolean): string;
 begin
   Result := Trim(AFileName);
-  if Pos('~', Result, Pos('.', Result)) = Length(Result) then
+  if Pos('~', Result, Max(Pos('.', Result), 1)) = Length(Result) then
     Result := System.Copy(Result, 0, Length(Result) - 1);
   if AModified then
     Result := Format('%s~', [Result]);
