@@ -1,4 +1,4 @@
-inherited BCOptionsBaseFrame1: TBCOptionsBaseFrame1
+inherited OptionsTitleBarFrame: TOptionsTitleBarFrame
   Width = 182
   Height = 164
   object Panel: TBCPanel [0]

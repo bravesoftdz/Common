@@ -3,10 +3,9 @@ unit BCCommon.Frame.Options.StatusBar;
 interface
 
 uses
-  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  BCCommon.Options.Container,
-  BCCommon.Frame.Options.Base, BCControl.Panel, BCControl.Edit,
-  sFontCtrls, BCControl.ComboBox, acSlider, sLabel, Vcl.StdCtrls, sEdit, sComboBox, Vcl.ExtCtrls, sPanel, sFrameAdapter;
+  System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BCCommon.Frame.Options.Base,
+  BCControl.Panel, BCControl.Edit, sFontCtrls, BCControl.ComboBox, acSlider, sLabel, Vcl.StdCtrls, sEdit, sComboBox,
+  Vcl.ExtCtrls, sPanel, sFrameAdapter;
 
 type
   TOptionsStatusBarFrame = class(TBCOptionsBaseFrame)
@@ -37,7 +36,7 @@ implementation
 {$R *.dfm}
 
 uses
-  BCCommon.Utils;
+  BCCommon.Utils, BCCommon.Options.Container;
 
 var
   FOptionsStatusBarFrame: TOptionsStatusBarFrame;
@@ -58,24 +57,30 @@ end;
 
 procedure TOptionsStatusBarFrame.PutData;
 begin
-  OptionsContainer.StatusBarUseSystemFont := SliderUseSystemFont.SliderOn;
-  OptionsContainer.StatusBarFontName := FontComboBoxFont.Text;
-  OptionsContainer.StatusBarFontSize := EditFontSize.ValueInt;
-  OptionsContainer.StatusBarShowMacro := SliderShowMacro.SliderOn;
-  OptionsContainer.StatusBarShowCaretPosition := SliderShowCaretPosition.SliderOn;
-  OptionsContainer.StatusBarShowKeyState := SliderShowKeyState.SliderOn;
-  OptionsContainer.StatusBarShowModified := SliderShowModified.SliderOn;
+  with OptionsContainer do
+  begin
+    StatusBarUseSystemFont := SliderUseSystemFont.SliderOn;
+    StatusBarFontName := FontComboBoxFont.Text;
+    StatusBarFontSize := EditFontSize.ValueInt;
+    StatusBarShowMacro := SliderShowMacro.SliderOn;
+    StatusBarShowCaretPosition := SliderShowCaretPosition.SliderOn;
+    StatusBarShowKeyState := SliderShowKeyState.SliderOn;
+    StatusBarShowModified := SliderShowModified.SliderOn;
+  end;
 end;
 
 procedure TOptionsStatusBarFrame.GetData;
 begin
-  SliderUseSystemFont.SliderOn := OptionsContainer.StatusBarUseSystemFont;
-  FontComboBoxFont.ItemIndex := FontComboBoxFont.Items.IndexOf(OptionsContainer.StatusBarFontName);
-  EditFontSize.ValueInt := OptionsContainer.StatusBarFontSize;
-  SliderShowMacro.SliderOn := OptionsContainer.StatusBarShowMacro;
-  SliderShowCaretPosition.SliderOn := OptionsContainer.StatusBarShowCaretPosition;
-  SliderShowKeyState.SliderOn := OptionsContainer.StatusBarShowKeyState;
-  SliderShowModified.SliderOn := OptionsContainer.StatusBarShowModified;
+  with OptionsContainer do
+  begin
+    SliderUseSystemFont.SliderOn := StatusBarUseSystemFont;
+    FontComboBoxFont.ItemIndex := FontComboBoxFont.Items.IndexOf(StatusBarFontName);
+    EditFontSize.ValueInt := StatusBarFontSize;
+    SliderShowMacro.SliderOn := StatusBarShowMacro;
+    SliderShowCaretPosition.SliderOn := StatusBarShowCaretPosition;
+    SliderShowKeyState.SliderOn := StatusBarShowKeyState;
+    SliderShowModified.SliderOn := StatusBarShowModified;
+  end;
 end;
 
 end.

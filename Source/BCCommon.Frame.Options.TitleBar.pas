@@ -8,7 +8,7 @@ uses
   BCControl.Edit, sComboBox, sFontCtrls, BCControl.ComboBox, sLabel, Vcl.ExtCtrls, sPanel, BCControl.Panel;
 
 type
-  TBCOptionsBaseFrame1 = class(TBCOptionsBaseFrame)
+  TOptionsTitleBarFrame = class(TBCOptionsBaseFrame)
     Panel: TBCPanel;
     StickyLabelUseSystemFontName: TsStickyLabel;
     StickyLabelUseSystemSize: TsStickyLabel;
@@ -18,17 +18,61 @@ type
     SliderUseSystemFontName: TsSlider;
     SliderUseSystemSize: TsSlider;
     SliderUseSystemStyle: TsSlider;
-  private
-    { Private declarations }
+  protected
+    procedure GetData; override;
+    procedure PutData; override;
   public
-    { Public declarations }
+    destructor Destroy; override;
   end;
 
-var
-  BCOptionsBaseFrame1: TBCOptionsBaseFrame1;
+function OptionsTitleBarFrame(AOwner: TComponent): TOptionsTitleBarFrame;
 
 implementation
 
 {$R *.dfm}
+
+uses
+  BCCommon.Utils, BCCommon.Options.Container;
+
+var
+  FOptionsTitleBarFrame: TOptionsTitleBarFrame;
+
+function OptionsTitleBarFrame(AOwner: TComponent): TOptionsTitleBarFrame;
+begin
+  if not Assigned(FOptionsTitleBarFrame) then
+    FOptionsTitleBarFrame := TOptionsTitleBarFrame.Create(AOwner);
+  Result := FOptionsTitleBarFrame;
+  AlignSliders(Result.Panel);
+end;
+
+destructor TOptionsTitleBarFrame.Destroy;
+begin
+  inherited;
+  FOptionsTitleBarFrame := nil;
+end;
+
+procedure TOptionsTitleBarFrame.PutData;
+begin
+  with OptionsContainer do
+  begin
+    TitleBarUseSystemFontName := SliderUseSystemFontName.SliderOn;
+    TitleBarFontName := FontComboBoxFont.Text;
+    TitleBarFontSize := EditFontSize.ValueInt;
+    TitleBarUseSystemSize := SliderUseSystemSize.SliderOn;
+    TitleBarUseSystemStyle := SliderUseSystemStyle.SliderOn;
+  end;
+end;
+
+procedure TOptionsTitleBarFrame.GetData;
+begin
+  with OptionsContainer do
+  begin
+    SliderUseSystemFontName.SliderOn := TitleBarUseSystemFontName;
+    FontComboBoxFont.ItemIndex := FontComboBoxFont.Items.IndexOf(TitleBarFontName);
+    EditFontSize.ValueInt := TitleBarFontSize;
+    SliderUseSystemSize.SliderOn := TitleBarUseSystemSize;
+    SliderUseSystemStyle.SliderOn := TitleBarUseSystemStyle;
+  end;
+end;
 
 end.

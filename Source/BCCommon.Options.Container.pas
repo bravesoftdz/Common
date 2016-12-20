@@ -140,7 +140,7 @@ type
     FPrintShowHeaderLine: Boolean;
     FPrintShowLineNumbers: Boolean;
     FPrintWordWrapLine: Boolean;
-    { Statusbar }
+    { Status bar }
     FStatusBarFontName: string;
     FStatusBarFontSize: Integer;
     FStatusBarUseSystemFont: Boolean;
@@ -148,6 +148,12 @@ type
     FStatusBarShowCaretPosition: Boolean;
     FStatusBarShowKeyState: Boolean;
     FStatusBarShowModified: Boolean;
+    { Title bar }
+    FTitleBarFontName: string;
+    FTitleBarFontSize: Integer;
+    FTitleBarUseSystemFontName: Boolean;
+    FTitleBarUseSystemSize: Boolean;
+    FTitleBarUseSystemStyle: Boolean;
     { View }
     FLineNumbersEnabled: Boolean;
     FSelectionModeEnabled: Boolean;
@@ -412,12 +418,12 @@ type
     property PrintShowLineNumbers: Boolean read FPrintShowLineNumbers write FPrintShowLineNumbers;
     [IniValue('Options', 'PrintWordWrapLine', 'False')]
     property PrintWordWrapLine: Boolean read FPrintWordWrapLine write FPrintWordWrapLine;
-    { Statusbar }
+    { Status bar }
     [IniValue('Options', 'StatusBarFontName', 'Segoe UI')]
     property StatusBarFontName: string read FStatusBarFontName write FStatusBarFontName;
     [IniValue('Options', 'StatusBarFontSize', '8')]
     property StatusBarFontSize: Integer read FStatusBarFontSize write FStatusBarFontSize;
-    [IniValue('Options', 'StatusBarUseSystemFont', 'False')]
+    [IniValue('Options', 'StatusBarUseSystemFont', 'True')]
     property StatusBarUseSystemFont: Boolean read FStatusBarUseSystemFont write FStatusBarUseSystemFont;
     [IniValue('Options', 'StatusBarShowMacro', 'True')]
     property StatusBarShowMacro: Boolean read FStatusBarShowMacro write FStatusBarShowMacro;
@@ -427,6 +433,17 @@ type
     property StatusBarShowKeyState: Boolean read FStatusBarShowKeyState write FStatusBarShowKeyState;
     [IniValue('Options', 'StatusBarShowModified', 'True')]
     property StatusBarShowModified: Boolean read FStatusBarShowModified write FStatusBarShowModified;
+    { Title bar }
+    [IniValue('Options', 'TitleBarFontName', 'Segoe UI')]
+    property TitleBarFontName: string read FTitleBarFontName write FTitleBarFontName;
+    [IniValue('Options', 'TitleBarFontSize', '8')]
+    property TitleBarFontSize: Integer read FTitleBarFontSize write FTitleBarFontSize;
+    [IniValue('Options', 'TitleBarUseSystemFontName', 'True')]
+    property TitleBarUseSystemFontName: Boolean read FTitleBarUseSystemFontName write FTitleBarUseSystemFontName;
+    [IniValue('Options', 'TitleBarUseSystemSize', 'True')]
+    property TitleBarUseSystemSize: Boolean read FTitleBarUseSystemSize write FTitleBarUseSystemSize;
+    [IniValue('Options', 'TitleBarUseSystemStyle', 'True')]
+    property TitleBarUseSystemStyle: Boolean read FTitleBarUseSystemStyle write FTitleBarUseSystemStyle;
     { Word wrap }
     [IniValue('Options', 'WordWrapWidth', '0')]
     property WordWrapWidth: Integer read FWordWrapWidth write FWordWrapWidth;
@@ -742,7 +759,7 @@ implementation
 
 uses
   System.SysUtils, Vcl.ComCtrls, Vcl.Graphics, Vcl.Menus, BCCommon.StringUtils, BCCommon.Language.Strings,
-  System.IniFiles, BCEditor.Editor, BCEditor.Types, BCControl.Utils, BCControl.Statusbar;
+  System.IniFiles, BCEditor.Editor, BCEditor.Types, BCControl.Utils, BCControl.Statusbar, BCComponent.TitleBar;
 
 {$ifdef ORABONE}
 var
@@ -789,6 +806,8 @@ end;
 procedure TOptionsContainer.AssignTo(Dest: TPersistent);
 var
   LShortCut: string;
+  LTitleBar: TBCTitleBar;
+  LIndex: Integer;
 begin
   if Assigned(Dest) and (Dest is TBCEditor) then
   with Dest as TBCEditor do
@@ -922,7 +941,20 @@ begin
     begin
       TBCStatusBar(Dest).Font.Name := FStatusBarFontName;
       TBCStatusBar(Dest).Font.Size := FStatusBarFontSize;
-      //TBCStatusBar(Dest).Height := FStatusBarFontSize + 14;
+    end;
+  end
+  else
+  if Assigned(Dest) and (Dest is TBCTitleBar) then
+  begin
+    LTitleBar := Dest as TBCTitleBar;
+    for LIndex := 0 to LTitleBar.Items.Count - 1 do
+    with LTitleBar.Items[LIndex].FontData do
+    begin
+      Font.Name := FTitleBarFontName;
+      Font.Size := FTitleBarFontSize;
+      UseSysFontName := FTitleBarUseSystemFontName;
+      UseSysSize := FTitleBarUseSystemSize;
+      UseSysStyle := FTitleBarUseSystemStyle;
     end;
   end
   else
